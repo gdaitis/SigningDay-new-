@@ -59,7 +59,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="vpB-LF-EwZ" customClass="SDSearchBar">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search..." id="vpB-LF-EwZ" customClass="SDSearchBar">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -72,10 +72,26 @@
                                     <outlet property="delegate" destination="WFU-tw-UOZ" id="j3c-8n-2hN"/>
                                 </connections>
                             </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ztx-Gc-6ey">
+                                <rect key="frame" x="0.0" y="43" width="320" height="506"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hideKeyboard:" destination="WFU-tw-UOZ" eventType="touchUpInside" id="pB5-nD-qX1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="keyboardHiddingButton" destination="ztx-Gc-6ey" id="qPq-NX-96w"/>
                         <outlet property="searchBar" destination="vpB-LF-EwZ" id="21v-eX-kuT"/>
                         <outlet property="tableView" destination="b4C-UL-YKW" id="1Ax-Jc-lXG"/>
                     </connections>
@@ -85,6 +101,36 @@
             <point key="canvasLocation" x="-252" y="-287"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ECSlidingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
+        </class>
+        <class className="SDBaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseViewController.h"/>
+        </class>
+        <class className="SDInitialSlidingViewViewController" superclassName="ECSlidingViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDInitialSlidingViewViewController.h"/>
+        </class>
+        <class className="SDMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDMenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="hideKeyboard:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="keyboardHiddingButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="SDSearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SDSearchBar" superclassName="UISearchBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSearchBar.h"/>
+        </class>
+        <class className="SDViewController" superclassName="SDBaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+                <relationship kind="action" name="revealUnderRight:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

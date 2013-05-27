@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 
-@interface SDMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
+@interface SDMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate>
 
 @end

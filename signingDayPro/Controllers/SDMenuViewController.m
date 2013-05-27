@@ -18,6 +18,10 @@
 @property (nonatomic, strong) NSArray *menuItems;
 @property (nonatomic, weak) IBOutlet SDSearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UIButton *keyboardHiddingButton; //hides keyboard, is hidden until searchbar clicked.
+
+- (IBAction)hideKeyboard:(UIButton *)sender;
+- (void)dismissKeyboard;
 
 @end
 
@@ -37,12 +41,25 @@
 {
     [super viewDidLoad];
     
+    //setup sliding view parameters
     [self.slidingViewController setAnchorRightRevealAmount:280.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _keyboardHiddingButton.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    //First for user, second menu item list, third settings
     return 3;
 }
 
@@ -60,14 +77,14 @@
     //creating view with label
     UIView *result = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kHeaderSize)];
     result.backgroundColor = [UIColor clearColor];
-    SDMenuLabel *lbl = [[SDMenuLabel alloc] initWithFrame:CGRectMake(10, 8, result.frame.size.width-20, result.frame.size.height)];
-    lbl.textColor = [UIColor grayColor];
-    lbl.font = [UIFont fontWithName:@"BebasNeue" size:18.0];
+    SDMenuLabel *lbl = [[SDMenuLabel alloc] initWithFrame:CGRectMake(10, 5, result.frame.size.width-20, result.frame.size.height)];
+    lbl.textColor = [UIColor colorWithRed:0.31f green:0.31f blue:0.31f alpha:1.0f];
+    lbl.font = [UIFont fontWithName:@"Helvetica-Bold" size:11.0];
     [result addSubview:lbl];
     
     //adding bottom gray line
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8, 38, 260, 2)];
-    lineView.backgroundColor = [UIColor grayColor];
+    lineView.backgroundColor = [UIColor colorWithRed:0.31f green:0.31f blue:0.31f alpha:1.0f];
     [result addSubview:lineView];
     
     if (section == 0) {
@@ -186,6 +203,63 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
 //    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SDFollowingCell" bundle:nil] forCellReuseIdentifier:@"FollowingCellID"];
+}
+
+
+#pragma mark - searchBarDelegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    _keyboardHiddingButton.hidden = NO;
+    return YES;
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self dismissKeyboard];
+    
+    //search actions
+    
+}
+
+#pragma mark - IBActions
+
+- (IBAction)hideKeyboard:(UIButton *)sender
+{
+    [self dismissKeyboard];
+}
+
+- (void)dismissKeyboard
+{
+    if ([_searchBar isFirstResponder]) {
+        [_searchBar resignFirstResponder];
+    }
+    _keyboardHiddingButton.hidden = YES;
 }
 
 @end
