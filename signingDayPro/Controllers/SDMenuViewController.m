@@ -158,7 +158,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"SDViewController";
+    NSString *identifier = @"SDViewNavigationController";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];

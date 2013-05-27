@@ -1,24 +1,24 @@
 //
-//  SDInitialSlidingViewViewController.m
+//  SDInitialSlidingViewController.m
 //  signingDayPro
 //
 //  Created by Lukas Kekys on 5/22/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "SDInitialSlidingViewViewController.h"
+#import "SDInitialSlidingViewController.h"
 
-@interface SDInitialSlidingViewViewController ()
+@interface SDInitialSlidingViewController ()
 
 @end
 
-@implementation SDInitialSlidingViewViewController
+@implementation SDInitialSlidingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"SDViewController"];
+    self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
 }
 
 - (void)didReceiveMemoryWarning

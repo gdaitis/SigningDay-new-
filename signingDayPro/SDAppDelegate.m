@@ -15,6 +15,8 @@
     // Override point for customization after application launch.
     
     application.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
+    
     return YES;
 }
 							

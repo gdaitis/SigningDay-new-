@@ -1,5 +1,5 @@
 //
-//  SDInitialSlidingViewViewController.h
+//  SDInitialSlidingViewController.h
 //  signingDayPro
 //
 //  Created by Lukas Kekys on 5/22/13.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 
-@interface SDInitialSlidingViewViewController : ECSlidingViewController
+@interface SDInitialSlidingViewController : ECSlidingViewController
 
 @end

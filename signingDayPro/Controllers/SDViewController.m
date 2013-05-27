@@ -15,11 +15,16 @@
 
 @implementation SDViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
     // shadowPath, shadowOffset, and rotation is handled by ECSlidingViewController.
     // You just need to set the opacity, radius, and color.
     self.view.layer.shadowOpacity = 0.75f;
@@ -31,16 +36,16 @@
     }
     
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
-
-- (IBAction)revealMenu:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
-}
-
-- (IBAction)revealUnderRight:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECLeft];
+    
+    UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [titleButton setFrame:CGRectMake(0, 0, 170, 35)];
+    self.navigationItem.titleView = titleButton;
+    
+    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [menuButton setFrame:CGRectMake(0, 0, 170, 35)];
+    [menuButton setTitle:@"Menu" forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
 }
 
 @end
