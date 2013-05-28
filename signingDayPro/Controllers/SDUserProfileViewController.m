@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "SDViewController.h"
+#import "SDUserProfileViewController.h"
 #import "SDMenuViewController.h"
 
-@interface SDViewController ()
+@interface SDUserProfileViewController ()
 
 @end
 
-@implementation SDViewController
+@implementation SDUserProfileViewController
 
 - (void)viewDidLoad
 {

@@ -10,6 +10,7 @@
 #import "SDMenuLabel.h"
 #import "SDSearchBar.h"
 #import "SDMenuItemCell.h"
+#import "SDTableView.h"
 
 #define kHeaderSize  40
 
@@ -17,7 +18,7 @@
 
 @property (nonatomic, strong) NSArray *menuItems;
 @property (nonatomic, weak) IBOutlet SDSearchBar *searchBar;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet SDTableView *tableView;
 @property (nonatomic, weak) IBOutlet UIButton *keyboardHiddingButton; //hides keyboard, is hidden until searchbar clicked.
 
 - (IBAction)hideKeyboard:(UIButton *)sender;
@@ -50,6 +51,7 @@
 {
     [super viewWillAppear:animated];
     _keyboardHiddingButton.hidden = YES;
+    self.viewDeckController.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -158,27 +160,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"SDViewNavigationController";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+    UIViewController *centerVC = nil;
     
     if (indexPath.section == 0) {
         //show profile view controller
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
+        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
     }
     else if (indexPath.section == 1) {
         //show controller depending on selection
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
+        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
     }
     else {
         //show settings controller
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"SettingsStoryboard" bundle:nil];
+        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDSettingsNavigationController"];
     }
     
-//    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-//        CGRect frame = self.slidingViewController.topViewController.view.frame;
-//        self.slidingViewController.topViewController = newTopViewController;
-//        self.slidingViewController.topViewController.view.frame = frame;
-//        [self.slidingViewController resetTopView];
-//    }];
+    self.viewDeckController.centerController = centerVC;
+    [self.viewDeckController showCenterView:YES];
 }
 
 #pragma mark - UISearchDisplayController delegate methods
@@ -219,26 +222,6 @@
     return YES;
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    return YES;
-}
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
-    
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    
-}
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self dismissKeyboard];
@@ -260,6 +243,14 @@
         [_searchBar resignFirstResponder];
     }
     _keyboardHiddingButton.hidden = YES;
+}
+
+#pragma mark - IIViewDeckController delegate
+
+- (BOOL)viewDeckControllerWillCloseLeftView:(IIViewDeckController*)viewDeckController animated:(BOOL)animated
+{
+    [self dismissKeyboard];
+    return YES;
 }
 
 @end

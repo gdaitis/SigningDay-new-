@@ -17,7 +17,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"SDViewNavigationController"]
+    UIStoryboard *userProfileStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
+    self = [super initWithCenterViewController:[userProfileStoryboard instantiateViewControllerWithIdentifier:@"SDViewNavigationController"]
                             leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"Menu"]];
     if (self) {
         // Add any extra init code here

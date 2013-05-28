@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
-@interface SDMenuViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate>
+@interface SDMenuViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate,IIViewDeckControllerDelegate>
 
 @end

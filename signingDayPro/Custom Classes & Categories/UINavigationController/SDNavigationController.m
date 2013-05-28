@@ -113,12 +113,12 @@ typedef enum {
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                    target:nil
                                    action:nil];
-    fixedSpace.width = 35;
+    fixedSpace.width = 11;
     UIBarButtonItem *fixedSmallSpace = [[UIBarButtonItem alloc]
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                    target:nil
                                    action:nil];
-    fixedSmallSpace.width = 30;
+    fixedSmallSpace.width = 10;
     
     UIBarButtonItem *menuBarBtnItm = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
     
@@ -152,7 +152,8 @@ typedef enum {
         default:
             break;
     }
-    btn.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
+    btn.frame = CGRectMake(0, 0, 50, 40);
+    [btn setContentMode:UIViewContentModeCenter];
     [btn setImage:btnImg forState:UIControlStateNormal];
     [btn setImage:btnHighlightedImg forState:UIControlStateSelected];
     
