@@ -14,17 +14,15 @@
 
 @implementation SDInitialSlidingViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
-}
-
-- (void)didReceiveMemoryWarning
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"SDViewNavigationController"]
+                            leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"Menu"]];
+    if (self) {
+        // Add any extra init code here
+    }
+    return self;
 }
 
 @end

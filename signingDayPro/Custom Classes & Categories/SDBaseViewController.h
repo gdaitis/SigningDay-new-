@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ECSlidingViewController.h"
+#import "IIViewDeckController.h"
 
 @interface SDBaseViewController : UIViewController
 

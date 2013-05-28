@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ECSlidingViewController.h"
+#import "SDBaseViewController.h"
 
-@interface SDMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate>
+@interface SDMenuViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate>
 
 @end

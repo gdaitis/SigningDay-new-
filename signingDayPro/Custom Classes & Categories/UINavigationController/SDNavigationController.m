@@ -7,7 +7,7 @@
 //
 
 #import "SDNavigationController.h"
-#import "ECSlidingViewController.h"
+#import "IIViewDeckController.h"
 
 typedef enum {
     BARBUTTONTYPE_NOTIFICATIONS = 0,
@@ -62,7 +62,7 @@ typedef enum {
 - (void)revealMenu:(id)sender
 {
     //opens side menu
-    [self.slidingViewController anchorTopViewTo:ECRight];
+    [self.viewDeckController toggleLeftViewAnimated:YES];
 }
 
 #pragma mark - Toolbar 

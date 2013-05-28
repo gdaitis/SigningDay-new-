@@ -42,8 +42,8 @@
     [super viewDidLoad];
     
     //setup sliding view parameters
-    [self.slidingViewController setAnchorRightRevealAmount:280.0f];
-    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
+//    [self.slidingViewController setAnchorRightRevealAmount:280.0f];
+//    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -173,12 +173,12 @@
         //show settings controller
     }
     
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = newTopViewController;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
-    }];
+//    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+//        CGRect frame = self.slidingViewController.topViewController.view.frame;
+//        self.slidingViewController.topViewController = newTopViewController;
+//        self.slidingViewController.topViewController.view.frame = frame;
+//        [self.slidingViewController resetTopView];
+//    }];
 }
 
 #pragma mark - UISearchDisplayController delegate methods
