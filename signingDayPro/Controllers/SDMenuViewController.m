@@ -61,7 +61,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //First for user, second menu item list, third settings
+    //First for user, second for menu item list, third for settings
     return 3;
 }
 
@@ -85,7 +85,7 @@
     [result addSubview:lbl];
     
     //adding bottom gray line
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(8, 38, 260, 2)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 38, 254, 2)];
     lineView.backgroundColor = [UIColor colorWithRed:0.31f green:0.31f blue:0.31f alpha:1.0f];
     [result addSubview:lineView];
     
