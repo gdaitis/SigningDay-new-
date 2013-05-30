@@ -18,7 +18,7 @@
 #import "SDErrorService.h"
 #import "User.h"
 
-NSString * const kSDLogoURLString = @"https://www.signingday.com/cfs-file.ashx/__key/communityserver-components-sitefiles/SD-logo.png";
+NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.ashx/__key/communityserver-components-sitefiles/SD-logo.png";
 
 @interface SDUploadService ()
 

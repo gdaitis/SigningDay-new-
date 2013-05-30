@@ -46,7 +46,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.window animated:YES];
     hud.labelText = @"Logging in";
     
-    [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:[STKeychain getPasswordForUsername:@"initialApiKey" andServiceName:@"SigningDay" error:nil]];
+    [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:[STKeychain getPasswordForUsername:@"initialApiKey" andServiceName:@"SigningDayPro" error:nil]];
     [[SDAPIClient sharedClient] postPath:@"sd/clientdevices.json" 
                               parameters:parameters
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
@@ -64,7 +64,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                      
                                      NSString *apiKey = [JSON objectForKey:@"ApiKey"]; 
                                      NSError *error;
-                                     [STKeychain storeUsername:anUsername andPassword:apiKey forServiceName:@"SigningDay" updateExisting:YES error:&error];
+                                     [STKeychain storeUsername:anUsername andPassword:apiKey forServiceName:@"SigningDayPro" updateExisting:YES error:&error];
                                      if (error) {
                                          NSLog(@"Error while saving to keychain.");
                                          exit(-1);

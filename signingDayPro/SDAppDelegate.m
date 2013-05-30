@@ -33,16 +33,12 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     application.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
     
-    //checks for data migration, and setups suitable stack
-    [SDUtils setupCoreDataStack];
-    
-    // Override point for customization after application launch.
+    [MagicalRecord setupCoreDataStack];
     
     // Let the device know we want to receive push notifications
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
-
-    [STKeychain storeUsername:@"initialApiKey" andPassword:@"OGQ3MzZ4c205cWNtbzhiaHAxYnlqNzVqcGwzcWRhdDY6aU9T" forServiceName:@"SigningDay" updateExisting:NO error:nil];
+    [STKeychain storeUsername:@"initialApiKey" andPassword:@"OGQ3MzZ4c205cWNtbzhiaHAxYnlqNzVqcGwzcWRhdDY6aU9T" forServiceName:@"SigningDayPro" updateExisting:NO error:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fbSessionClosed) name:FBSessionDidBecomeClosedActiveSessionNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fbSessionOpened) name:FBSessionDidBecomeOpenActiveSessionNotification object:nil];

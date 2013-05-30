@@ -10,7 +10,11 @@
 #import "SDMenuLabel.h"
 #import "SDSearchBar.h"
 #import "SDMenuItemCell.h"
+#import "User.h"
+#import "Master.h"
 #import "SDTableView.h"
+#import "SDImageService.h"
+#import "UIImage+Crop.h"
 
 #define kHeaderSize  40
 
@@ -41,10 +45,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //setup sliding view parameters
-//    [self.slidingViewController setAnchorRightRevealAmount:280.0f];
-//    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,11 +52,17 @@
     [super viewWillAppear:animated];
     _keyboardHiddingButton.hidden = YES;
     self.viewDeckController.delegate = self;
+    
+    //adding observer to update username when needed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserUpdated) name:kUserUpdatedNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    //removing observer, view doesn't need to update when is invisible
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kUserUpdatedNotification object:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -141,10 +147,24 @@
 - (void)setupCell:(SDMenuItemCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        cell.txtLabel.text = @"Jalan McClendon";
+        NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+        Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+        User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier];
+        
+        if (user) {
+            cell.txtLabel.text = user.name;
+            [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
+                if (image != cell.imgView.image) {
+                    cell.imgView.image = image;
+                }
+            }];
+        }
+        else {
+            cell.txtLabel.text = nil;
+            cell.imgView.image = nil;
+        }
         cell.txtLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
         cell.txtLabel.textColor = [UIColor colorWithRed:228.0f/255.0f green:196.0f/255.0f blue:21.0f/255.0f alpha:1.0f];
-        cell.imgView.backgroundColor = [UIColor grayColor];
     }
     else if (indexPath.section == 1) {
         cell.txtLabel.text = [[_menuItems objectAtIndex:indexPath.row] valueForKey:@"Title"];
@@ -251,6 +271,13 @@
 {
     [self dismissKeyboard];
     return YES;
+}
+
+#pragma mark - NSNotif center updates
+
+- (void)UserUpdated
+{
+    [_tableView reloadData];
 }
 
 @end

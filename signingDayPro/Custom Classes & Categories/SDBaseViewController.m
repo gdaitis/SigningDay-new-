@@ -7,6 +7,8 @@
 //
 
 #import "SDBaseViewController.h"
+#import "MBProgressHUD.h"
+#import "Master.h"
 
 @interface SDBaseViewController ()
 
@@ -33,6 +35,27 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showProgressHudInView:(UIView *)view withText:(NSString *)text
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    if (text) {
+        hud.labelText = text;
+    }
+}
+
+- (void)hideProgressHudInView:(UIView *)view
+{
+    [MBProgressHUD hideAllHUDsForView:view animated:YES];
+}
+
+- (NSNumber *)getMasterIdentifier
+{
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    
+    return master.identifier;
 }
 
 @end

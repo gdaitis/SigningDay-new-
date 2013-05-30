@@ -137,7 +137,7 @@
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kSDAPIBaseURLString]];
     
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    NSString *apiKey = [STKeychain getPasswordForUsername:username andServiceName:@"SigningDay" error:nil];
+    NSString *apiKey = [STKeychain getPasswordForUsername:username andServiceName:@"SigningDayPro" error:nil];
     [httpClient setDefaultHeader:@"Rest-User-Token" value:apiKey];
     
     NSString *path = [NSString stringWithFormat:@"users/%d.json", [identifier integerValue]];
@@ -303,7 +303,7 @@
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kSDOldAPIBaseURLString]];
     
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    NSString *apiKey = [STKeychain getPasswordForUsername:username andServiceName:@"SigningDay" error:nil];
+    NSString *apiKey = [STKeychain getPasswordForUsername:username andServiceName:@"SigningDayPro" error:nil];
     [httpClient setDefaultHeader:@"Rest-User-Token" value:apiKey];
     [httpClient setDefaultHeader:@"VERB" value:@"DELETE"];
     

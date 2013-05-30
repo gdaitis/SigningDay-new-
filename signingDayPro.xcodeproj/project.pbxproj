@@ -93,7 +93,6 @@
 		805598D6174CE8200040631D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805598D5174CE8200040631D /* Default@2x.png */; };
 		805598D8174CE8200040631D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805598D7174CE8200040631D /* Default-568h@2x.png */; };
 		805598DB174CE8200040631D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805598D9174CE8200040631D /* MainStoryboard.storyboard */; };
-		80559911174CEED70040631D /* SDUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80559910174CEED70040631D /* SDUserProfileViewController.m */; };
 		805CF34E174E03040046E6A5 /* SDSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF34D174E03040046E6A5 /* SDSearchBar.m */; };
 		805CF354174E08320046E6A5 /* SDMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF353174E08320046E6A5 /* SDMenuItemCell.m */; };
 		805CF356174E08500046E6A5 /* SDMenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805CF355174E08500046E6A5 /* SDMenuItemCell.xib */; };
@@ -133,7 +132,20 @@
 		80EEF5D21756090200A7C803 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5D11756090200A7C803 /* User.m */; };
 		80EEF5D51756090200A7C803 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5D41756090200A7C803 /* Conversation.m */; };
 		80EEF5D817560D0500A7C803 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EEF5D717560D0500A7C803 /* libsqlite3.dylib */; };
-		80F3015C17538CD900134FF4 /* SDTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F3015B17538CD900134FF4 /* SDTestingViewController.m */; };
+		80EEF5E3175614D900A7C803 /* SDTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5E0175614D900A7C803 /* SDTestingViewController.m */; };
+		80EEF5E4175614D900A7C803 /* SDUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */; };
+		80EEF5EA17561A7E00A7C803 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */; };
+		80EEF5F21756231E00A7C803 /* login_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5EC1756231E00A7C803 /* login_bg.png */; };
+		80EEF5F31756231E00A7C803 /* login_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5ED1756231E00A7C803 /* login_bg@2x.png */; };
+		80EEF5F41756231E00A7C803 /* login_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5EE1756231E00A7C803 /* login_button.png */; };
+		80EEF5F51756231E00A7C803 /* login_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5EF1756231E00A7C803 /* login_button@2x.png */; };
+		80EEF5F61756231E00A7C803 /* login_fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5F01756231E00A7C803 /* login_fb.png */; };
+		80EEF5F71756231E00A7C803 /* login_fb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5F11756231E00A7C803 /* login_fb@2x.png */; };
+		80EEF5FA1756251B00A7C803 /* forgot_password.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5F81756251B00A7C803 /* forgot_password.png */; };
+		80EEF5FB1756251B00A7C803 /* forgot_password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5F91756251B00A7C803 /* forgot_password@2x.png */; };
+		80EEF601175626C200A7C803 /* SDForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */; };
+		80EEF602175626C200A7C803 /* SDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF600175626C200A7C803 /* SDLoginViewController.m */; };
+		80EEF605175627B400A7C803 /* SDCommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF604175627B400A7C803 /* SDCommonWebViewController.m */; };
 		80F301631753A05900134FF4 /* SDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F301621753A05900134FF4 /* SDNavigationController.m */; };
 		80F301751753A85E00134FF4 /* FollowersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301651753A85E00134FF4 /* FollowersIcon.png */; };
 		80F301761753A85E00134FF4 /* FollowersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301661753A85E00134FF4 /* FollowersIcon@2x.png */; };
@@ -306,8 +318,6 @@
 		805598D5174CE8200040631D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		805598D7174CE8200040631D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		805598DA174CE8200040631D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		8055990F174CEED70040631D /* SDUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileViewController.h; sourceTree = "<group>"; };
-		80559910174CEED70040631D /* SDUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileViewController.m; sourceTree = "<group>"; };
 		805CF34C174E03040046E6A5 /* SDSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchBar.h; sourceTree = "<group>"; };
 		805CF34D174E03040046E6A5 /* SDSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchBar.m; sourceTree = "<group>"; };
 		805CF352174E08320046E6A5 /* SDMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuItemCell.h; sourceTree = "<group>"; };
@@ -358,8 +368,25 @@
 		80EEF5D31756090200A7C803 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		80EEF5D41756090200A7C803 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		80EEF5D717560D0500A7C803 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		80F3015A17538CD900134FF4 /* SDTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTestingViewController.h; sourceTree = "<group>"; };
-		80F3015B17538CD900134FF4 /* SDTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTestingViewController.m; sourceTree = "<group>"; };
+		80EEF5DF175614D900A7C803 /* SDTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTestingViewController.h; sourceTree = "<group>"; };
+		80EEF5E0175614D900A7C803 /* SDTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTestingViewController.m; sourceTree = "<group>"; };
+		80EEF5E1175614D900A7C803 /* SDUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileViewController.h; sourceTree = "<group>"; };
+		80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileViewController.m; sourceTree = "<group>"; };
+		80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		80EEF5EC1756231E00A7C803 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg.png; sourceTree = "<group>"; };
+		80EEF5ED1756231E00A7C803 /* login_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bg@2x.png"; sourceTree = "<group>"; };
+		80EEF5EE1756231E00A7C803 /* login_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_button.png; sourceTree = "<group>"; };
+		80EEF5EF1756231E00A7C803 /* login_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_button@2x.png"; sourceTree = "<group>"; };
+		80EEF5F01756231E00A7C803 /* login_fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_fb.png; sourceTree = "<group>"; };
+		80EEF5F11756231E00A7C803 /* login_fb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_fb@2x.png"; sourceTree = "<group>"; };
+		80EEF5F81756251B00A7C803 /* forgot_password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forgot_password.png; sourceTree = "<group>"; };
+		80EEF5F91756251B00A7C803 /* forgot_password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forgot_password@2x.png"; sourceTree = "<group>"; };
+		80EEF5FD175626C200A7C803 /* SDForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDForgotPasswordViewController.h; sourceTree = "<group>"; };
+		80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDForgotPasswordViewController.m; sourceTree = "<group>"; };
+		80EEF5FF175626C200A7C803 /* SDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewController.h; sourceTree = "<group>"; };
+		80EEF600175626C200A7C803 /* SDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginViewController.m; sourceTree = "<group>"; };
+		80EEF603175627B400A7C803 /* SDCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommonWebViewController.h; sourceTree = "<group>"; };
+		80EEF604175627B400A7C803 /* SDCommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommonWebViewController.m; sourceTree = "<group>"; };
 		80F301611753A05900134FF4 /* SDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNavigationController.h; sourceTree = "<group>"; };
 		80F301621753A05900134FF4 /* SDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNavigationController.m; sourceTree = "<group>"; };
 		80F301651753A85E00134FF4 /* FollowersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FollowersIcon.png; sourceTree = "<group>"; };
@@ -750,6 +777,7 @@
 				805598D9174CE8200040631D /* MainStoryboard.storyboard */,
 				805CF3E81754E69C004C69E5 /* UserProfileStoryboard.storyboard */,
 				805CF3EB1754E870004C69E5 /* SettingsStoryboard.storyboard */,
+				80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */,
 				8032EFCE1755EEDE00C92AAC /* Services */,
 				8032F0971755F9AF00C92AAC /* Data Models */,
 				8055990C174CEE620040631D /* Controllers */,
@@ -808,10 +836,8 @@
 		8055990C174CEE620040631D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8055990F174CEED70040631D /* SDUserProfileViewController.h */,
-				80559910174CEED70040631D /* SDUserProfileViewController.m */,
-				80F3015A17538CD900134FF4 /* SDTestingViewController.h */,
-				80F3015B17538CD900134FF4 /* SDTestingViewController.m */,
+				80EEF5FC175626C200A7C803 /* LoginViewControllers */,
+				80EEF5DE175614D900A7C803 /* UerProfileViewControllers */,
 				805CF3ED1754EAFD004C69E5 /* SettingsViewControllers */,
 				8013F47F174CF9B000BA313B /* SDMenuViewController.h */,
 				8013F480174CF9B000BA313B /* SDMenuViewController.m */,
@@ -872,6 +898,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				80EEF5EB1756231E00A7C803 /* OldProjectImages */,
 				80F301641753A85E00134FF4 /* TopToolbar */,
 				80A0612B17529C84005FE319 /* SlidingMenu */,
 			);
@@ -901,6 +928,45 @@
 				80A0613B17529C84005FE319 /* WarRoomIcon@2x.png */,
 			);
 			path = SlidingMenu;
+			sourceTree = "<group>";
+		};
+		80EEF5DE175614D900A7C803 /* UerProfileViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				80EEF5DF175614D900A7C803 /* SDTestingViewController.h */,
+				80EEF5E0175614D900A7C803 /* SDTestingViewController.m */,
+				80EEF5E1175614D900A7C803 /* SDUserProfileViewController.h */,
+				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
+			);
+			path = UerProfileViewControllers;
+			sourceTree = "<group>";
+		};
+		80EEF5EB1756231E00A7C803 /* OldProjectImages */ = {
+			isa = PBXGroup;
+			children = (
+				80EEF5F81756251B00A7C803 /* forgot_password.png */,
+				80EEF5F91756251B00A7C803 /* forgot_password@2x.png */,
+				80EEF5EC1756231E00A7C803 /* login_bg.png */,
+				80EEF5ED1756231E00A7C803 /* login_bg@2x.png */,
+				80EEF5EE1756231E00A7C803 /* login_button.png */,
+				80EEF5EF1756231E00A7C803 /* login_button@2x.png */,
+				80EEF5F01756231E00A7C803 /* login_fb.png */,
+				80EEF5F11756231E00A7C803 /* login_fb@2x.png */,
+			);
+			path = OldProjectImages;
+			sourceTree = "<group>";
+		};
+		80EEF5FC175626C200A7C803 /* LoginViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				80EEF603175627B400A7C803 /* SDCommonWebViewController.h */,
+				80EEF604175627B400A7C803 /* SDCommonWebViewController.m */,
+				80EEF5FD175626C200A7C803 /* SDForgotPasswordViewController.h */,
+				80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */,
+				80EEF5FF175626C200A7C803 /* SDLoginViewController.h */,
+				80EEF600175626C200A7C803 /* SDLoginViewController.m */,
+			);
+			path = LoginViewControllers;
 			sourceTree = "<group>";
 		};
 		80F3015E1753A01B00134FF4 /* UINavigationController */ = {
@@ -1039,6 +1105,15 @@
 				8032F0901755F98E00C92AAC /* switchOffPlain.png in Resources */,
 				8032F0911755F98E00C92AAC /* switchThumb.png in Resources */,
 				80EEF5C51755FBD400A7C803 /* FacebookSDKResources.bundle in Resources */,
+				80EEF5EA17561A7E00A7C803 /* LoginStoryboard.storyboard in Resources */,
+				80EEF5F21756231E00A7C803 /* login_bg.png in Resources */,
+				80EEF5F31756231E00A7C803 /* login_bg@2x.png in Resources */,
+				80EEF5F41756231E00A7C803 /* login_button.png in Resources */,
+				80EEF5F51756231E00A7C803 /* login_button@2x.png in Resources */,
+				80EEF5F61756231E00A7C803 /* login_fb.png in Resources */,
+				80EEF5F71756231E00A7C803 /* login_fb@2x.png in Resources */,
+				80EEF5FA1756251B00A7C803 /* forgot_password.png in Resources */,
+				80EEF5FB1756251B00A7C803 /* forgot_password@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,14 +1126,12 @@
 			files = (
 				805598CE174CE8200040631D /* main.m in Sources */,
 				805598D2174CE8200040631D /* SDAppDelegate.m in Sources */,
-				80559911174CEED70040631D /* SDUserProfileViewController.m in Sources */,
 				8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */,
 				8013F47E174CF96400BA313B /* SDBaseViewController.m in Sources */,
 				8013F481174CF9B000BA313B /* SDMenuViewController.m in Sources */,
 				80236158174D1B6800595432 /* SDMenuLabel.m in Sources */,
 				805CF34E174E03040046E6A5 /* SDSearchBar.m in Sources */,
 				805CF354174E08320046E6A5 /* SDMenuItemCell.m in Sources */,
-				80F3015C17538CD900134FF4 /* SDTestingViewController.m in Sources */,
 				80F301631753A05900134FF4 /* SDNavigationController.m in Sources */,
 				805CF3D21754CAB9004C69E5 /* IIViewDeckController.m in Sources */,
 				805CF3D31754CAB9004C69E5 /* WrapController.m in Sources */,
@@ -1127,6 +1200,11 @@
 				80EEF5CF1756090200A7C803 /* Message.m in Sources */,
 				80EEF5D21756090200A7C803 /* User.m in Sources */,
 				80EEF5D51756090200A7C803 /* Conversation.m in Sources */,
+				80EEF5E3175614D900A7C803 /* SDTestingViewController.m in Sources */,
+				80EEF5E4175614D900A7C803 /* SDUserProfileViewController.m in Sources */,
+				80EEF601175626C200A7C803 /* SDForgotPasswordViewController.m in Sources */,
+				80EEF602175626C200A7C803 /* SDLoginViewController.m in Sources */,
+				80EEF605175627B400A7C803 /* SDCommonWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

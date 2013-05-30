@@ -11,4 +11,9 @@
 
 @interface SDBaseViewController : UIViewController
 
+- (NSNumber *)getMasterIdentifier;
+
+- (void)hideProgressHudInView:(UIView *)view;
+- (void)showProgressHudInView:(UIView *)view withText:(NSString *)text;
+
 @end

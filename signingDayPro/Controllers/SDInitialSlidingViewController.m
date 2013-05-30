@@ -7,8 +7,15 @@
 //
 
 #import "SDInitialSlidingViewController.h"
+#import "SDLoginService.h"
+#import "SDAPIClient.h"
+#import "SDLoginViewController.h"
 
-@interface SDInitialSlidingViewController ()
+@interface SDInitialSlidingViewController () <SDLoginViewControllerDelegate>
+
+@property (nonatomic, strong) SDLoginViewController *loginViewController;
+
+- (void)loginViewControllerDidFinishLoggingIn:(SDLoginViewController *)loginViewController;
 
 @end
 
@@ -24,6 +31,35 @@
         // Add any extra init code here
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"])
+        [self showLoginScreen];
+}
+
+- (void)showLoginScreen
+{
+    if (!self.loginViewController) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
+        SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        self.loginViewController = loginVC;
+        [_loginViewController setModalPresentationStyle:UIModalPresentationFullScreen];
+        _loginViewController.delegate = self;
+        
+        [self presentModalViewController:_loginViewController animated:YES];
+    } else if (!(_loginViewController.isViewLoaded && _loginViewController.view.window)) {
+        [self presentModalViewController:_loginViewController animated:YES];
+    }
+}
+
+#pragma mark - SDLoginViewController delegate methods
+
+- (void)loginViewControllerDidFinishLoggingIn:(SDLoginViewController *)loginViewController
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
