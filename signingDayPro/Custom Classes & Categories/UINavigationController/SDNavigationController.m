@@ -38,6 +38,10 @@ typedef enum {
 
 @property (nonatomic, assign) BarButtonType selectedMenuType;
 
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, assign) BOOL contentViewVisible;
+@property (nonatomic, assign) BOOL backButtonVisibleIfNeeded; //if popup opened in the top toolbar, we should hide the back button;
+
 @end
 
 @implementation SDNavigationController
@@ -48,6 +52,24 @@ typedef enum {
 @synthesize messageVC = _messageVC;
 @synthesize followingVC = _followingVC;
 @synthesize selectedMenuType = _selectedMenuType;
+
+
+
+- (UIView *)contentView
+{
+    if (!_contentView) {
+        
+        int widht = self.view.frame.size.width;
+        int toptoolbarHeight = self.topToolBar.frame.size.height;
+        int height = self.view.frame.size.height - toptoolbarHeight;
+        _backButtonVisibleIfNeeded = NO;
+        
+        UIView *contView = [[UIView alloc] initWithFrame:CGRectMake(0, -height, widht, height)];
+        _contentView = contView;
+        
+    }
+    return _contentView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +86,7 @@ typedef enum {
 	// Do any additional setup after loading the view.
     self.navigationBarHidden = YES;
     _selectedMenuType = BARBUTTONTYPE_NONE;
+    _backButtonVisibleIfNeeded = YES;
     
     //creates and adds buttons to the top toolbar
     [self setupToolbar];
@@ -113,7 +136,7 @@ typedef enum {
     //setting menu/Back button and other middle buttons
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *btnImg = nil;
-    if ([self.viewControllers count] > 1) {
+    if ([self.viewControllers count] > 1 && _backButtonVisibleIfNeeded) {
         btnImg = [UIImage imageNamed:@"MenuButtonBack.png"];
         [btn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -154,18 +177,27 @@ typedef enum {
             btnHighlightedImg = [UIImage imageNamed:@"NotificationIconActive.png"];
             [btn addTarget:self action:@selector(notificationsSelected:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = 1;
+            if (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) {
+                btn.selected = YES;
+            }
             break;
         case BARBUTTONTYPE_CONVERSATIONS:
             btnImg = [UIImage imageNamed:@"MailIcon.png"];
             btnHighlightedImg = [UIImage imageNamed:@"MailIconActive.png"];
             [btn addTarget:self action:@selector(conversationsSelected:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = 2;
+            if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
+                btn.selected = YES;
+            }
             break;
         case BARBUTTONTYPE_FOLLOWERS:
             btnImg = [UIImage imageNamed:@"FollowersIcon.png"];
             btnHighlightedImg = [UIImage imageNamed:@"FollowersIconActive.png"];
             [btn addTarget:self action:@selector(followersSelected:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = 3;
+            if (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) {
+                btn.selected = YES;
+            }
             break;
             
         default:
@@ -190,47 +222,39 @@ typedef enum {
 - (void)conversationsSelected:(UIButton *)btn
 {
     if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
-        btn.selected = NO;
-        [self hideConversations];
+        [self hideConversationsAndRemoveContentView:YES];
     }
     else if (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) {
-        [self hideFollowers];
+        [self hideFollowersAndRemoveContentView:NO];
         [self showConversations];
-        btn.selected = YES;
     }
     else if (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) {
 //        [self hideNotifications];
     }
     else {
-        //_selectedMenuType == BARBUTTONTYPE_NONE
         btn.selected = YES;
         [self showConversations];
     }
-    [UIView setAnimationTransition:UIViewAnimationOptionTransitionFlipFromBottom forView:self.navigationController.view cache:NO];
-
-    
+    [self setToolbarButtons];
+//    [UIView setAnimationTransition:UIViewAnimationOptionTransitionFlipFromBottom forView:self.navigationController.view cache:NO];
 }
 
 - (void)followersSelected:(UIButton *)btn
 {
     if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
-        [self hideConversations];
+        [self hideConversationsAndRemoveContentView:NO];
         [self showFollowers];
-        btn.selected= YES;
     }
     else if (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) {
-        btn.selected = NO;
-        [self hideFollowers];
+        [self hideFollowersAndRemoveContentView:YES];
     }
     else if (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) {
         //        [self hideNotifications];
     }
     else {
-        //_selectedMenuType == BARBUTTONTYPE_NONE
-        btn.selected = YES;
         [self showFollowers];
     }
-    [UIView setAnimationTransition:UIViewAnimationOptionTransitionFlipFromBottom forView:self.navigationController.view cache:NO];
+    [self setToolbarButtons];
 }
 
 #pragma mark - Displaying top menu
@@ -240,34 +264,42 @@ typedef enum {
     _selectedMenuType = BARBUTTONTYPE_CONVERSATIONS;
     if (!_messageVC) {
         SDMessageViewController *sdmessageVC = [[SDMessageViewController alloc] init];
-        sdmessageVC.view.frame = CGRectMake(0, -self.view.bounds.size.height+_topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
+        sdmessageVC.view.frame = self.contentView.bounds;
         
         self.messageVC = sdmessageVC;
     }
     
-    [self.view addSubview:_messageVC.view];
+    if (!_contentViewVisible) {
+        [self.view addSubview:self.contentView];
+        [self addTriangleArrowForBtnType:BARBUTTONTYPE_CONVERSATIONS];
+    }
+    else {
+        [self clearContentView];
+        [self animateTriangleArrowToBtnWithType:BARBUTTONTYPE_CONVERSATIONS];
+    }
+    
+    [self.contentView addSubview:_messageVC.view];
     [self.view bringSubviewToFront:_topToolBar];
-
-    [self addTriangleArrowForBtnType:BARBUTTONTYPE_CONVERSATIONS];
     
-    [UIView animateWithDuration:0.25f animations:^{
-        _messageVC.view.frame = CGRectMake(0, _topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
-    } completion:^(__unused BOOL finished) {
-    }];
-    
+    if (!_contentViewVisible) {
+        _contentViewVisible = YES;
+        [UIView animateWithDuration:0.25f animations:^{
+            _contentView.frame = CGRectMake(0, _topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
+        } completion:^(__unused BOOL finished) {
+        }];
+    }
     [_messageVC loadInfo];
 }
 
-- (void)hideConversations
+- (void)hideConversationsAndRemoveContentView:(BOOL)removeContentView
 {
-    _selectedMenuType = BARBUTTONTYPE_NONE;
     if (_messageVC) {
-        [UIView animateWithDuration:0.25f animations:^{
-            _messageVC.view.frame = CGRectMake(0, -self.view.bounds.size.height+_topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
-        } completion:^(__unused BOOL finished) {
-            [self removeTriangleArrow];
+        if (removeContentView) {
+            [self hideAndRemoveContentViewAnimated];
+        }
+        else {
             [_messageVC.view removeFromSuperview];
-        }];
+        }
     }
 }
 
@@ -276,35 +308,59 @@ typedef enum {
     _selectedMenuType = BARBUTTONTYPE_FOLLOWERS;
     if (!_followingVC) {
         SDFollowingViewController *sdfollowingVC = [[SDFollowingViewController alloc] init];
-        sdfollowingVC.view.frame = CGRectMake(0, -self.view.bounds.size.height+_topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
+        sdfollowingVC.view.frame = self.contentView.bounds;
         
         self.followingVC = sdfollowingVC;
     }
     
-    [self.view addSubview:_followingVC.view];
+    if (!_contentViewVisible) {
+        [self.view addSubview:self.contentView];
+        [self addTriangleArrowForBtnType:BARBUTTONTYPE_FOLLOWERS];
+    }
+    else {
+        [self clearContentView];
+        [self animateTriangleArrowToBtnWithType:BARBUTTONTYPE_FOLLOWERS];
+    }
+    
+    [self.contentView addSubview:_followingVC.view];
     [self.view bringSubviewToFront:_topToolBar];
     
-    [self addTriangleArrowForBtnType:BARBUTTONTYPE_FOLLOWERS];
-    
-    [UIView animateWithDuration:0.25f animations:^{
-        _followingVC.view.frame = CGRectMake(0, _topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
-    } completion:^(__unused BOOL finished) {
-        [_followingVC loadInfo];
-    }];
-}
-
-- (void)hideFollowers
-{
-    _selectedMenuType = BARBUTTONTYPE_NONE;
-    if (_followingVC) {
+    if (!_contentViewVisible) {
+        _contentViewVisible = YES;
         [UIView animateWithDuration:0.25f animations:^{
-            _followingVC.view.frame = CGRectMake(0, -self.view.bounds.size.height+_topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
+            _contentView.frame = CGRectMake(0, _topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
         } completion:^(__unused BOOL finished) {
-            [self removeTriangleArrow];
-            [_followingVC.view removeFromSuperview];
-            [SDFollowingService deleteUnnecessaryUsers];
         }];
     }
+    [_followingVC loadInfo];
+}
+
+- (void)hideFollowersAndRemoveContentView:(BOOL)removeContentView
+{
+    if (_followingVC) {
+        if (removeContentView) {
+            [self hideAndRemoveContentViewAnimated];
+        }
+        else {
+            [_followingVC.view removeFromSuperview];
+        }
+    }
+}
+
+- (void)hideAndRemoveContentViewAnimated
+{
+    _contentViewVisible = NO;
+    _selectedMenuType = BARBUTTONTYPE_NONE;
+    _backButtonVisibleIfNeeded = YES;
+    [UIView animateWithDuration:0.25f animations:^{
+        _contentView.frame = CGRectMake(0, -self.view.bounds.size.height+_topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
+    } completion:^(__unused BOOL finished) {
+        [self removeTriangleArrow];
+        [_contentView removeFromSuperview];
+        _contentView = nil;
+        [SDFollowingService deleteUnnecessaryUsers];
+    }];
+    [self setToolbarButtons];
 }
 
 - (void)addTriangleArrowForBtnType:(BarButtonType)barBtnType
@@ -337,11 +393,44 @@ typedef enum {
     [_topToolBar addSubview:triangleImgView];
 }
 
+- (void)animateTriangleArrowToBtnWithType:(BarButtonType)barBtnType
+{
+    UIImageView *triangleImgView = (UIImageView *)[_topToolBar viewWithTag:kTriangleViewTag];
+    CGRect frame = triangleImgView.frame;
+    
+    switch (barBtnType) {
+        case BARBUTTONTYPE_NOTIFICATIONS:
+            frame.origin.x = 87;
+            break;
+        case BARBUTTONTYPE_CONVERSATIONS:
+            frame.origin.x = 152;
+            break;
+        case BARBUTTONTYPE_FOLLOWERS:
+            frame.origin.x = 224;
+            break;
+            
+        default:
+            break;
+    }
+    [UIView animateWithDuration:0.25f animations:^{
+            triangleImgView.frame = frame;
+    } completion:^(__unused BOOL finished) {
+    }];
+}
+
 - (void)removeTriangleArrow
 {
     UIView *triangleView = [_topToolBar viewWithTag:kTriangleViewTag];
     if (triangleView) {
         [triangleView removeFromSuperview];
+    }
+}
+
+- (void)clearContentView
+{
+    for (id view in self.contentView.subviews)
+    {
+        [view removeFromSuperview];
     }
 }
 
