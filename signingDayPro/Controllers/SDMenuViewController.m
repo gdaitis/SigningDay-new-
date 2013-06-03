@@ -65,6 +65,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kUserUpdatedNotification object:nil];
 }
 
+#pragma mark - TableView datasource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //First for user, second for menu item list, third for settings
@@ -177,6 +179,8 @@
         cell.imgView.image = [UIImage imageNamed:@"SettingsIcon.png"];
     }
 }
+
+#pragma mark - TableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

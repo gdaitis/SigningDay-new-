@@ -37,7 +37,8 @@
                                     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
                                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
                                     NSNumber *identifier = master.identifier;
-                                    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
+                                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+                                    User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                                     if (!user) {
                                         user = [User MR_createInContext:context];
                                         user.identifier = identifier;

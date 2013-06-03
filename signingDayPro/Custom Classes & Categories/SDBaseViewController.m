@@ -52,10 +52,16 @@
 
 - (NSNumber *)getMasterIdentifier
 {
+    Master *master = [self getMaster];
+    return master.identifier;
+}
+
+- (Master *)getMaster
+{
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
     
-    return master.identifier;
+    return master;
 }
 
 @end

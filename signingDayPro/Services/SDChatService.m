@@ -57,8 +57,8 @@
         
         NSDictionary *authorDictionary = [conversationDictionary valueForKey:@"CreatedUser"];
         NSNumber *authorIdentifier = [NSNumber numberWithInt:[[authorDictionary valueForKey:@"Id"] intValue]];
-        NSString *authorIdentifierString = [NSString stringWithFormat:@"%d", [authorIdentifier intValue]];
-        User *author = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifierString];
+//        NSString *authorIdentifierString = [NSString stringWithFormat:@"%d", [authorIdentifier intValue]];
+        User *author = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier];
         if (!author) {
             author = [User MR_createInContext:context];
             author.identifier = authorIdentifier;
@@ -75,7 +75,7 @@
             NSNumber *identifier = [NSNumber numberWithInt:[[participantDictionary valueForKey:@"Id"] intValue]];
             if (![identifier isEqualToNumber:masterUserIndentifier]) {
                 NSNumber *participantUserIdentifier = [NSNumber numberWithInt:[[participantDictionary valueForKey:@"Id"] intValue]];
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %d", [participantUserIdentifier intValue]];
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@",participantUserIdentifier];
                 User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                 if (!user) {
                     user = [User MR_createInContext:context];
@@ -217,7 +217,7 @@
                                     NSArray *followers = [JSON objectForKey:@"Followers"];
                                     for (NSDictionary *userInfo in followers) {
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"Id"];
-                                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %d", [followersUserIdentifier intValue]];
+                                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followersUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];
@@ -300,7 +300,7 @@
                                     master.following = nil;
                                     
                                     for (NSDictionary *followingUserDictionary in followingDictionary) {
-                                        NSNumber *identifier = [NSNumber numberWithInt:[[followingUserDictionary valueForKey:@"Id"] integerValue]];
+                                        NSNumber *identifier = [NSNumber numberWithInt:[[followingUserDictionary valueForKey:@"Id"] intValue]];
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];

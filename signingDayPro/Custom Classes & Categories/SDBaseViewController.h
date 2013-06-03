@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "IIViewDeckController.h"
 
+@class Master;
+
 @interface SDBaseViewController : UIViewController
 
+- (Master *)getMaster;
 - (NSNumber *)getMasterIdentifier;
 
 - (void)hideProgressHudInView:(UIView *)view;

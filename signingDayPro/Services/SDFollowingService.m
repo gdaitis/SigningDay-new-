@@ -42,7 +42,7 @@
                                     for (NSDictionary *userInfo in followings) {
                                         NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"Id"];
                                         
-                                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %d", [followingsUserIdentifier intValue]];
+                                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followingsUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                                         Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
                                         if (!user) {
@@ -82,7 +82,7 @@
                                     NSArray *followers = [JSON objectForKey:@"Followers"];
                                     for (NSDictionary *userInfo in followers) {
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"Id"];
-                                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %d", [followersUserIdentifier intValue]];
+                                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followersUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];
