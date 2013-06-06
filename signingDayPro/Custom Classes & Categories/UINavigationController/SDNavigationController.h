@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDMessageViewController.h"
 
-@interface SDNavigationController : UINavigationController
+#define kTriangleViewTag 999
+#define kTopToolbarHeight 44
+
+@interface SDNavigationController : UINavigationController <SDMessageViewControllerDelegate>
 
 @property (nonatomic, weak) UIButton *menuButton;
 

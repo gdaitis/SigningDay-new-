@@ -9,6 +9,7 @@
 #import "SDBaseViewController.h"
 #import "MBProgressHUD.h"
 #import "Master.h"
+#import "SDNavigationController.h"
 
 @interface SDBaseViewController ()
 
@@ -29,6 +30,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning

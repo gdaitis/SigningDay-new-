@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B6B1EAF1760A7E900BC878A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EAE1760A7E900BC878A /* Default-568h@2x.png */; };
+		7B6B1EB11760A7EC00BC878A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EB01760A7EC00BC878A /* Default.png */; };
+		7B6B1EB31760A7EF00BC878A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EB21760A7EF00BC878A /* Default@2x.png */; };
+		7B6B1EB51760A86B00BC878A /* app_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EB41760A86B00BC878A /* app_icon_retina.png */; };
+		7B6B1EB71760A87100BC878A /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EB61760A87100BC878A /* app_icon.png */; };
+		7B6B1EBA1760A8C900BC878A /* login_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EB91760A8C900BC878A /* login_bg-568h@2x.png */; };
+		7B73651A175F7A49007A338E /* SDConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B736518175F6D0B007A338E /* SDConversationViewController.m */; };
+		7B73651D175F7ADE007A338E /* SDMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B73651C175F7ABE007A338E /* SDMessageCell.m */; };
+		7B736521175F8249007A338E /* MessagesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B736520175F8249007A338E /* MessagesStoryboard.storyboard */; };
+		7B736524175F84B3007A338E /* chat_send_message_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736522175F84B3007A338E /* chat_send_message_bg.png */; };
+		7B736525175F84B3007A338E /* chat_send_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736523175F84B3007A338E /* chat_send_message_bg@2x.png */; };
+		7B736529175F84F2007A338E /* send_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736527175F84F2007A338E /* send_button.png */; };
+		7B73652A175F84F2007A338E /* send_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736528175F84F2007A338E /* send_button@2x.png */; };
 		8013F477174CF36100BA313B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8013F476174CF36100BA313B /* QuartzCore.framework */; };
 		8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */; };
 		8013F47E174CF96400BA313B /* SDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47D174CF96400BA313B /* SDBaseViewController.m */; };
@@ -89,9 +102,6 @@
 		805598CC174CE8200040631D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 805598CA174CE8200040631D /* InfoPlist.strings */; };
 		805598CE174CE8200040631D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 805598CD174CE8200040631D /* main.m */; };
 		805598D2174CE8200040631D /* SDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 805598D1174CE8200040631D /* SDAppDelegate.m */; };
-		805598D4174CE8200040631D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 805598D3174CE8200040631D /* Default.png */; };
-		805598D6174CE8200040631D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805598D5174CE8200040631D /* Default@2x.png */; };
-		805598D8174CE8200040631D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805598D7174CE8200040631D /* Default-568h@2x.png */; };
 		805598DB174CE8200040631D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805598D9174CE8200040631D /* MainStoryboard.storyboard */; };
 		805CF34E174E03040046E6A5 /* SDSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF34D174E03040046E6A5 /* SDSearchBar.m */; };
 		805CF354174E08320046E6A5 /* SDMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF353174E08320046E6A5 /* SDMenuItemCell.m */; };
@@ -180,6 +190,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B6B1EAE1760A7E900BC878A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		7B6B1EB01760A7EC00BC878A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		7B6B1EB21760A7EF00BC878A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		7B6B1EB41760A86B00BC878A /* app_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_retina.png; path = ../app_icon_retina.png; sourceTree = "<group>"; };
+		7B6B1EB61760A87100BC878A /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon.png; path = ../app_icon.png; sourceTree = "<group>"; };
+		7B6B1EB91760A8C900BC878A /* login_bg-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bg-568h@2x.png"; sourceTree = "<group>"; };
+		7B736517175F6D0B007A338E /* SDConversationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDConversationViewController.h; sourceTree = "<group>"; };
+		7B736518175F6D0B007A338E /* SDConversationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDConversationViewController.m; sourceTree = "<group>"; };
+		7B73651B175F7ABD007A338E /* SDMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDMessageCell.h; sourceTree = "<group>"; };
+		7B73651C175F7ABE007A338E /* SDMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDMessageCell.m; sourceTree = "<group>"; };
+		7B736520175F8249007A338E /* MessagesStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessagesStoryboard.storyboard; sourceTree = "<group>"; };
+		7B736522175F84B3007A338E /* chat_send_message_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_send_message_bg.png; path = ../chat_send_message_bg.png; sourceTree = "<group>"; };
+		7B736523175F84B3007A338E /* chat_send_message_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chat_send_message_bg@2x.png"; path = "../chat_send_message_bg@2x.png"; sourceTree = "<group>"; };
+		7B736527175F84F2007A338E /* send_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_button.png; sourceTree = "<group>"; };
+		7B736528175F84F2007A338E /* send_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_button@2x.png"; sourceTree = "<group>"; };
 		8013F476174CF36100BA313B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8013F479174CF6E800BA313B /* SDInitialSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInitialSlidingViewController.h; sourceTree = "<group>"; };
 		8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDInitialSlidingViewController.m; sourceTree = "<group>"; };
@@ -330,9 +355,6 @@
 		805598CF174CE8200040631D /* signingDayPro-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "signingDayPro-Prefix.pch"; sourceTree = "<group>"; };
 		805598D0174CE8200040631D /* SDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDAppDelegate.h; sourceTree = "<group>"; };
 		805598D1174CE8200040631D /* SDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDAppDelegate.m; sourceTree = "<group>"; };
-		805598D3174CE8200040631D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		805598D5174CE8200040631D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		805598D7174CE8200040631D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		805598DA174CE8200040631D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		805CF34C174E03040046E6A5 /* SDSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchBar.h; sourceTree = "<group>"; };
 		805CF34D174E03040046E6A5 /* SDSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchBar.m; sourceTree = "<group>"; };
@@ -354,8 +376,8 @@
 		805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSettingsViewController.m; sourceTree = "<group>"; };
 		805CF3F61754FF59004C69E5 /* SDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTableView.h; sourceTree = "<group>"; };
 		805CF3F71754FF59004C69E5 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTableView.m; sourceTree = "<group>"; };
-		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMessageViewController.h; sourceTree = "<group>"; };
-		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMessageViewController.m; sourceTree = "<group>"; };
+		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMessageViewController.h; path = ../TableViewCells/Views/SDMessageViewController.h; sourceTree = "<group>"; };
+		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMessageViewController.m; path = ../TableViewCells/Views/SDMessageViewController.m; sourceTree = "<group>"; };
 		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
 		809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseToolbarItemViewController.m; sourceTree = "<group>"; };
 		809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBaseToolbarItemViewController.xib; sourceTree = "<group>"; };
@@ -410,8 +432,8 @@
 		80EEF5E1175614D900A7C803 /* SDUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileViewController.h; sourceTree = "<group>"; };
 		80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileViewController.m; sourceTree = "<group>"; };
 		80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
-		80EEF5EC1756231E00A7C803 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bg.png; sourceTree = "<group>"; };
-		80EEF5ED1756231E00A7C803 /* login_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bg@2x.png"; sourceTree = "<group>"; };
+		80EEF5EC1756231E00A7C803 /* login_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_bg.png; path = OldProjectImages/login_bg.png; sourceTree = "<group>"; };
+		80EEF5ED1756231E00A7C803 /* login_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login_bg@2x.png"; path = "OldProjectImages/login_bg@2x.png"; sourceTree = "<group>"; };
 		80EEF5EE1756231E00A7C803 /* login_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_button.png; sourceTree = "<group>"; };
 		80EEF5EF1756231E00A7C803 /* login_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_button@2x.png"; sourceTree = "<group>"; };
 		80EEF5F01756231E00A7C803 /* login_fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_fb.png; sourceTree = "<group>"; };
@@ -467,6 +489,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B6B1EB81760A8BF00BC878A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				80EEF5EC1756231E00A7C803 /* login_bg.png */,
+				80EEF5ED1756231E00A7C803 /* login_bg@2x.png */,
+				7B6B1EB91760A8C900BC878A /* login_bg-568h@2x.png */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		7B73652B175F8729007A338E /* MessagesViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				809E728517573633004840D3 /* SDMessageViewController.h */,
+				809E728617573633004840D3 /* SDMessageViewController.m */,
+				7B736517175F6D0B007A338E /* SDConversationViewController.h */,
+				7B736518175F6D0B007A338E /* SDConversationViewController.m */,
+			);
+			name = MessagesViewControllers;
+			sourceTree = "<group>";
+		};
 		80236152174D1B4C00595432 /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +858,7 @@
 				805CF3E81754E69C004C69E5 /* UserProfileStoryboard.storyboard */,
 				805CF3EB1754E870004C69E5 /* SettingsStoryboard.storyboard */,
 				80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */,
+				7B736520175F8249007A338E /* MessagesStoryboard.storyboard */,
 				8055990C174CEE620040631D /* Controllers */,
 				8032F0971755F9AF00C92AAC /* Data Models */,
 				8032EFCE1755EEDE00C92AAC /* Services */,
@@ -831,14 +875,16 @@
 			children = (
 				80A0612A17529C84005FE319 /* Images */,
 				805CF357174E0B740046E6A5 /* BebasNeue.otf */,
+				7B6B1EB21760A7EF00BC878A /* Default@2x.png */,
+				7B6B1EB01760A7EC00BC878A /* Default.png */,
+				7B6B1EAE1760A7E900BC878A /* Default-568h@2x.png */,
+				7B6B1EB61760A87100BC878A /* app_icon.png */,
+				7B6B1EB41760A86B00BC878A /* app_icon_retina.png */,
 				805598C9174CE8200040631D /* signingDayPro-Info.plist */,
 				80A0614D17529DB3005FE319 /* MenuItemList.plist */,
 				805598CA174CE8200040631D /* InfoPlist.strings */,
 				805598CD174CE8200040631D /* main.m */,
 				805598CF174CE8200040631D /* signingDayPro-Prefix.pch */,
-				805598D3174CE8200040631D /* Default.png */,
-				805598D5174CE8200040631D /* Default@2x.png */,
-				805598D7174CE8200040631D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -874,6 +920,7 @@
 		8055990C174CEE620040631D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7B73652B175F8729007A338E /* MessagesViewControllers */,
 				80EEF5FC175626C200A7C803 /* LoginViewControllers */,
 				80EEF5DE175614D900A7C803 /* UerProfileViewControllers */,
 				805CF3ED1754EAFD004C69E5 /* SettingsViewControllers */,
@@ -906,6 +953,8 @@
 				80E31BA71758AF990013545C /* SDFollowingCell.h */,
 				80E31BA81758AF990013545C /* SDFollowingCell.m */,
 				80E31BA91758AF990013545C /* SDFollowingCell.xib */,
+				7B73651B175F7ABD007A338E /* SDMessageCell.h */,
+				7B73651C175F7ABE007A338E /* SDMessageCell.m */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -942,8 +991,6 @@
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				809E728517573633004840D3 /* SDMessageViewController.h */,
-				809E728617573633004840D3 /* SDMessageViewController.m */,
 				809E72A417588B76004840D3 /* SDFollowingViewController.h */,
 				809E72A517588B76004840D3 /* SDFollowingViewController.m */,
 				809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */,
@@ -957,6 +1004,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7B6B1EB81760A8BF00BC878A /* Login */,
 				80E31BAD1758B8590013545C /* Follow_Unfollow */,
 				80EEF5EB1756231E00A7C803 /* OldProjectImages */,
 				80F301641753A85E00134FF4 /* TopToolbar */,
@@ -1017,12 +1065,14 @@
 			children = (
 				80EEF5F81756251B00A7C803 /* forgot_password.png */,
 				80EEF5F91756251B00A7C803 /* forgot_password@2x.png */,
-				80EEF5EC1756231E00A7C803 /* login_bg.png */,
-				80EEF5ED1756231E00A7C803 /* login_bg@2x.png */,
 				80EEF5EE1756231E00A7C803 /* login_button.png */,
 				80EEF5EF1756231E00A7C803 /* login_button@2x.png */,
 				80EEF5F01756231E00A7C803 /* login_fb.png */,
 				80EEF5F11756231E00A7C803 /* login_fb@2x.png */,
+				7B736522175F84B3007A338E /* chat_send_message_bg.png */,
+				7B736523175F84B3007A338E /* chat_send_message_bg@2x.png */,
+				7B736527175F84F2007A338E /* send_button.png */,
+				7B736528175F84F2007A338E /* send_button@2x.png */,
 			);
 			path = OldProjectImages;
 			sourceTree = "<group>";
@@ -1131,9 +1181,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				805598CC174CE8200040631D /* InfoPlist.strings in Resources */,
-				805598D4174CE8200040631D /* Default.png in Resources */,
-				805598D6174CE8200040631D /* Default@2x.png in Resources */,
-				805598D8174CE8200040631D /* Default-568h@2x.png in Resources */,
 				805598DB174CE8200040631D /* MainStoryboard.storyboard in Resources */,
 				805CF356174E08500046E6A5 /* SDMenuItemCell.xib in Resources */,
 				805CF358174E0B740046E6A5 /* BebasNeue.otf in Resources */,
@@ -1200,6 +1247,17 @@
 				80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */,
 				80E31BB41758B8590013545C /* FollowingUnselected.png in Resources */,
 				80E31BB51758B8590013545C /* FollowingUnselected@2x.png in Resources */,
+				7B736521175F8249007A338E /* MessagesStoryboard.storyboard in Resources */,
+				7B736524175F84B3007A338E /* chat_send_message_bg.png in Resources */,
+				7B736525175F84B3007A338E /* chat_send_message_bg@2x.png in Resources */,
+				7B736529175F84F2007A338E /* send_button.png in Resources */,
+				7B73652A175F84F2007A338E /* send_button@2x.png in Resources */,
+				7B6B1EAF1760A7E900BC878A /* Default-568h@2x.png in Resources */,
+				7B6B1EB11760A7EC00BC878A /* Default.png in Resources */,
+				7B6B1EB31760A7EF00BC878A /* Default@2x.png in Resources */,
+				7B6B1EB51760A86B00BC878A /* app_icon_retina.png in Resources */,
+				7B6B1EB71760A87100BC878A /* app_icon.png in Resources */,
+				7B6B1EBA1760A8C900BC878A /* login_bg-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,6 +1268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B73651D175F7ADE007A338E /* SDMessageCell.m in Sources */,
+				7B73651A175F7A49007A338E /* SDConversationViewController.m in Sources */,
 				805598CE174CE8200040631D /* main.m in Sources */,
 				805598D2174CE8200040631D /* SDAppDelegate.m in Sources */,
 				8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */,

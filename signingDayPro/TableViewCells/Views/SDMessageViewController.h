@@ -9,7 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseToolbarItemViewController.h"
 
+@class SDMessageViewController;
+@class Conversation;
+
+@protocol SDMessageViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)messageViewController:(SDMessageViewController *)messageViewController didSelectConversation:(Conversation *)conversation;
+
+@end
+
 @interface SDMessageViewController : SDBaseToolbarItemViewController
+
+@property (nonatomic, weak) id <SDMessageViewControllerDelegate> delegate;
 
 - (void)loadInfo;
 

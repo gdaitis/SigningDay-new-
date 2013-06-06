@@ -10,8 +10,10 @@
 #import "IIViewDeckController.h"
 
 #import "SDMessageViewController.h"
+#import "SDConversationViewController.h"
 #import "SDFollowingViewController.h"
 #import "SDFollowingService.h"
+#import "SDBaseViewController.h"
 
 typedef enum {
     BARBUTTONTYPE_NOTIFICATIONS = 0,
@@ -19,8 +21,6 @@ typedef enum {
     BARBUTTONTYPE_FOLLOWERS,
     BARBUTTONTYPE_NONE
 } BarButtonType;
-
-#define kTriangleViewTag 999
 
 @interface SDNavigationController ()
 
@@ -109,7 +109,7 @@ typedef enum {
 - (void)setupToolbar
 {
     //creating and adding toolbar
-    UIToolbar *tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    UIToolbar *tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kTopToolbarHeight)];
     self.topToolBar = tb;
     [_topToolBar setBackgroundImage:[UIImage imageNamed:@"ToolbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     [self.view addSubview:_topToolBar];
@@ -264,6 +264,7 @@ typedef enum {
     _selectedMenuType = BARBUTTONTYPE_CONVERSATIONS;
     if (!_messageVC) {
         SDMessageViewController *sdmessageVC = [[SDMessageViewController alloc] init];
+        sdmessageVC.delegate = self;
         sdmessageVC.view.frame = self.contentView.bounds;
         
         self.messageVC = sdmessageVC;
@@ -432,6 +433,21 @@ typedef enum {
     {
         [view removeFromSuperview];
     }
+}
+
+#pragma mark - SDMessageViewController delegate methods
+
+- (void)messageViewController:(SDMessageViewController *)messageViewController
+        didSelectConversation:(Conversation *)conversation
+{
+    [self hideConversationsAndRemoveContentView:YES];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
+                                                         bundle:nil];
+    SDConversationViewController *conversationViewController = (SDConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ConversationViewController"];
+    conversationViewController.conversation = conversation;
+    [self pushViewController:conversationViewController
+                    animated:YES];
 }
 
 @end

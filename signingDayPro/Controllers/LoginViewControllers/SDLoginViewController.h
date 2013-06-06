@@ -22,6 +22,6 @@
 
 - (IBAction)loginButtonPressed:(id)sender;
 
-@property (nonatomic, strong) id <SDLoginViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <SDLoginViewControllerDelegate> delegate;
 
 @end

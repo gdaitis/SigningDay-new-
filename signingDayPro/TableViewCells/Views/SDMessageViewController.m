@@ -14,6 +14,7 @@
 #import "User.h"
 #import "SDConversationCell.h"
 #import "AFNetworking.h"
+#import "SDConversationViewController.h"
 
 @interface SDMessageViewController ()
 
@@ -28,7 +29,10 @@
 
 - (id)init
 {
-    self = [super initWithNibName:@"SDBaseToolbarItemViewController" bundle:[NSBundle mainBundle]];
+    //self = [super initWithNibName:@"SDBaseToolbarItemViewController" bundle:[NSBundle mainBundle]];
+    UIStoryboard *messagesStoryboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
+                                                                 bundle:nil];
+    self = [messagesStoryboard instantiateViewControllerWithIdentifier:@"messagesViewController"];
     if (self) {
         // Custom initialization
     }
@@ -81,7 +85,10 @@
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"username"])
         string = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"master.username like %@", string];
-    self.dataArray = [Conversation MR_findAllSortedBy:@"lastMessageDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    self.dataArray = [Conversation MR_findAllSortedBy:@"lastMessageDate"
+                                            ascending:NO
+                                        withPredicate:predicate
+                                            inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     [self.tableView reloadData];
 }
 
@@ -204,6 +211,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Conversation *conversation = [self.dataArray objectAtIndex:indexPath.row];
+    [self.delegate messageViewController:self
+                   didSelectConversation:conversation];
 }
 
 #pragma mark - Actions
@@ -213,6 +224,16 @@
 //    SDNavigationController *newConversationNavigationController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"NewConversationNavigationController"];
 //    newConversationNavigationController.myDelegate = self;
 //    [self presentModalViewController:newConversationNavigationController animated:YES];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    if ([segue.identifier isEqual:@"PushConversationViewController"]) {
+        
+    }
 }
 
 @end
