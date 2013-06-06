@@ -18,8 +18,10 @@
 #import "SDImageService.h"
 #import "PSYBlockTimer.h"
 #import "UIImage+Crop.h"
+#import "SDBaseToolbarItemViewController.h"
+#import "SDContentHeaderView.h"
 
-#define VIEW_Y  44
+#define VIEW_Y  84
 #define VIEW_WIDTH    self.containerView.frame.size.width
 #define VIEW_HEIGHT    self.containerView.frame.size.height
 
@@ -49,12 +51,14 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 
 @interface SDConversationViewController ()
 
-@property (nonatomic, weak) IBOutlet ShadowedTableView *tableView;
+@property (nonatomic, weak) IBOutlet SDTableView *tableView;
 @property (nonatomic, weak) IBOutlet UIImageView *chatBar;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
 @property (nonatomic, weak) IBOutlet UITextView *enterMessageTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *textViewBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UILabel *namesHeaderLabel;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (nonatomic, strong) NSArray *messages;
 @property (nonatomic, assign) CGFloat previousContentHeight;
 @property BOOL firstLoad;
@@ -155,6 +159,20 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     self.sendButton.frame = CGRectMake(self.sendButton.frame.origin.x, 15, self.sendButton.frame.size.width, self.sendButton.frame.size.height);
     [self resetSendButton]; // disable initially
     [self.chatBar addSubview:self.sendButton];
+    
+    NSArray *users = [self.conversation.users allObjects];
+    NSMutableArray *usernames = [[NSMutableArray alloc] init];
+    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    for (User *user in users) {
+        if (![user.username isEqual:masterUsername])
+            [usernames addObject:user.username];
+    }
+    
+    NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
+    contentHeaderView.textLabel.text = [sortedUsernames componentsJoinedByString:@", "];
+    [self.view addSubview:contentHeaderView];
     
     [self reload];
 }
@@ -271,6 +289,8 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     [self setSendButton:nil];
     [self setTextViewBackgroundImageView:nil];
     [self setContainerView:nil];
+    [self setNamesHeaderLabel:nil];
+    [self setHeaderView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     
@@ -445,6 +465,33 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+/*- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kBaseToolbarItemViewControllerHeaderHeight)];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:view.frame];
+    lbl.textAlignment = UITextAlignmentCenter;
+    lbl.textColor = [UIColor lightGrayColor];
+    lbl.font = [UIFont boldSystemFontOfSize:15];
+    
+    NSArray *users = [self.conversation.users allObjects];
+    NSMutableArray *usernames = [[NSMutableArray alloc] init];
+    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    for (User *user in users) {
+        if (![user.username isEqual:masterUsername])
+            [usernames addObject:user.username];
+    }
+    
+    NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    lbl.text = [sortedUsernames componentsJoinedByString:@", "];
+    lbl.backgroundColor = [UIColor clearColor];
+    
+    [view addSubview:lbl];
+    
+    return view;
+}*/
 
 #pragma mark UITextViewDelegate
 
