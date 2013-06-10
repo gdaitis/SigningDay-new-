@@ -15,6 +15,7 @@
 #import "SDConversationCell.h"
 #import "AFNetworking.h"
 #import "SDConversationViewController.h"
+#import "SDContentHeaderView.h"
 
 @interface SDMessageViewController ()
 
@@ -52,6 +53,17 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"]) {
         [self reloadView];
     }
+    
+    SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    contentHeaderView.textLabel.text = @"Conversations";
+    contentHeaderView.textLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *img = [UIImage imageNamed:@"NewConversationButtonImage.png"];
+    btn.frame = CGRectMake(288, 8, img.size.width, img.size.height);
+    [btn setImage:img forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(startNewConversation) forControlEvents:UIControlEventTouchUpInside];
+    [contentHeaderView addSubview:btn];
+    [self.view addSubview:contentHeaderView];
 }
 
 - (void)loadInfo
@@ -111,31 +123,6 @@
 }
 
 #pragma mark - TableView datasource
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kBaseToolbarItemViewControllerHeaderHeight)];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *lbl = [[UILabel alloc] initWithFrame:view.frame];
-    lbl.textAlignment = UITextAlignmentCenter;
-    lbl.textColor = [UIColor lightGrayColor];
-    lbl.font = [UIFont boldSystemFontOfSize:15];
-    lbl.text = @"Conversations";
-    lbl.backgroundColor = [UIColor clearColor];
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *img = [UIImage imageNamed:@"NewConversationButtonImage.png"];
-    btn.frame = CGRectMake(288, 8, img.size.width, img.size.height);
-    [btn setImage:img forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(startNewConversation) forControlEvents:UIControlEventTouchUpInside];
-    
-    [view addSubview:lbl];
-    [view addSubview:btn];
-    
-    return view;
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -205,7 +192,6 @@
     return cell;
 }
 
-
 #pragma mark - TableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -224,16 +210,6 @@
 //    SDNavigationController *newConversationNavigationController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"NewConversationNavigationController"];
 //    newConversationNavigationController.myDelegate = self;
 //    [self presentModalViewController:newConversationNavigationController animated:YES];
-}
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue
-                 sender:(id)sender
-{
-    if ([segue.identifier isEqual:@"PushConversationViewController"]) {
-        
-    }
 }
 
 @end

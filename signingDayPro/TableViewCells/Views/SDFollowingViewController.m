@@ -12,6 +12,7 @@
 #import "SDAppDelegate.h"
 #import "SDFollowingCell.h"
 #import "SDFollowingService.h"
+#import "SDContentHeaderView.h"
 
 @interface SDFollowingViewController ()
 
@@ -50,6 +51,49 @@
     // Do any additional setup after loading the view from its nib.
     
     _controllerType = CONTROLLER_TYPE_FOLLOWERS;
+    
+    SDContentHeaderView *header = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, kBaseToolbarItemViewControllerHeaderHeight)];
+    
+    //adding gray line in the center
+    UIView *middleLineview = [[UIView alloc] initWithFrame:CGRectMake(160, 0, 1, kBaseToolbarItemViewControllerHeaderHeight)];
+    middleLineview.backgroundColor = [UIColor colorWithRed:215.0f/255.0f green:215.0f/255.0f blue:215.0f/255.0f alpha:1];
+    [header addSubview:middleLineview];
+    
+    //adding followers button
+    UIButton *followersbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    followersbtn.frame = CGRectMake(0, 0, 160, kBaseToolbarItemViewControllerHeaderHeight);
+    [followersbtn setTitle:@"Followers" forState:UIControlStateNormal];
+    [followersbtn setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1] forState:UIControlStateNormal];
+    [followersbtn setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1] forState:UIControlStateSelected];
+    followersbtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [followersbtn addTarget:self action:@selector(followTypeChanged:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.followersButton = nil;
+    self.followersButton = followersbtn;
+    [header addSubview:_followersButton];
+    
+    //adding following button
+    UIButton *followingbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    followingbtn.frame = CGRectMake(160, 0, 160, kBaseToolbarItemViewControllerHeaderHeight);
+    [followingbtn setTitle:@"Following" forState:UIControlStateNormal];
+    [followingbtn setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1] forState:UIControlStateNormal];
+    [followingbtn setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1] forState:UIControlStateSelected];
+    followingbtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [followingbtn addTarget:self action:@selector(followTypeChanged:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.followingButton = nil;
+    self.followingButton = followingbtn;
+    [header addSubview:_followingButton];
+    
+    //decide which button to selecte
+    if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
+        _followersButton.selected = YES;
+    }
+    else {
+        _followingButton.selected = YES;
+    }
+    
+    [self.view addSubview:header];
 }
 
 - (void)viewDidUnload
@@ -111,58 +155,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kBaseToolbarItemViewControllerHeaderHeight)];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    //adding gray line in the center
-    UIView *middleLineview = [[UIView alloc] initWithFrame:CGRectMake(160, 0, 1, kBaseToolbarItemViewControllerHeaderHeight)];
-    middleLineview.backgroundColor = [UIColor lightGrayColor];
-    [view addSubview:middleLineview];
-    
-    UIView *bottomLineview = [[UIView alloc] initWithFrame:CGRectMake(0, 39, self.view.bounds.size.width, 1)];
-    bottomLineview.backgroundColor = [UIColor lightGrayColor];
-    [view addSubview:bottomLineview];
-    
-
-    //adding followers button
-    UIButton *followersbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    followersbtn.frame = CGRectMake(0, 0, 160, kBaseToolbarItemViewControllerHeaderHeight);
-    [followersbtn setTitle:@"Followers" forState:UIControlStateNormal];
-    [followersbtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [followersbtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
-    [followersbtn addTarget:self action:@selector(followTypeChanged:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.followersButton = nil;
-    self.followersButton = followersbtn;    
-    [view addSubview:_followersButton];
-    
-    
-    //adding following button
-    UIButton *followingbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    followingbtn.frame = CGRectMake(160, 0, 160, kBaseToolbarItemViewControllerHeaderHeight);
-    [followingbtn setTitle:@"Following" forState:UIControlStateNormal];
-    [followingbtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [followingbtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
-    [followingbtn addTarget:self action:@selector(followTypeChanged:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.followingButton = nil;
-    self.followingButton = followingbtn;
-    [view addSubview:_followingButton];
-    
-    
-    //decide which button to selecte
-    if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
-        _followersButton.selected = YES;
-    }
-    else {
-        _followingButton.selected = YES;
-    }
-    
-    return view;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

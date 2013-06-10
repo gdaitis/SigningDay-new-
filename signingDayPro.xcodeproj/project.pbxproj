@@ -387,9 +387,9 @@
 		805CF3F71754FF59004C69E5 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTableView.m; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.m"; sourceTree = "<group>"; };
 		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMessageViewController.h; path = ../TableViewCells/Views/SDMessageViewController.h; sourceTree = "<group>"; };
 		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMessageViewController.m; path = ../TableViewCells/Views/SDMessageViewController.m; sourceTree = "<group>"; };
-		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
-		809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseToolbarItemViewController.m; sourceTree = "<group>"; };
-		809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBaseToolbarItemViewController.xib; sourceTree = "<group>"; };
+		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDBaseToolbarItemViewController.h; path = ../TableViewCells/Views/SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
+		809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDBaseToolbarItemViewController.m; path = ../TableViewCells/Views/SDBaseToolbarItemViewController.m; sourceTree = "<group>"; };
+		809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SDBaseToolbarItemViewController.xib; path = ../TableViewCells/Views/SDBaseToolbarItemViewController.xib; sourceTree = "<group>"; };
 		809E728F17575FE4004840D3 /* NewConversationButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewConversationButtonImage.png; sourceTree = "<group>"; };
 		809E729017575FE4004840D3 /* NewConversationButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewConversationButtonImage@2x.png"; sourceTree = "<group>"; };
 		809E729117575FE4004840D3 /* ToolbarItemSelectedArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarItemSelectedArrow.png; sourceTree = "<group>"; };
@@ -397,8 +397,8 @@
 		809E729F175779FB004840D3 /* SDConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDConversationCell.h; sourceTree = "<group>"; };
 		809E72A0175779FB004840D3 /* SDConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDConversationCell.m; sourceTree = "<group>"; };
 		809E72A217577A1B004840D3 /* SDConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConversationCell.xib; sourceTree = "<group>"; };
-		809E72A417588B76004840D3 /* SDFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDFollowingViewController.h; sourceTree = "<group>"; };
-		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDFollowingViewController.m; sourceTree = "<group>"; };
+		809E72A417588B76004840D3 /* SDFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDFollowingViewController.h; path = ../TableViewCells/Views/SDFollowingViewController.h; sourceTree = "<group>"; };
+		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFollowingViewController.m; path = ../TableViewCells/Views/SDFollowingViewController.m; sourceTree = "<group>"; };
 		80A0612C17529C84005FE319 /* ActivityFeedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ActivityFeedIcon.png; sourceTree = "<group>"; };
 		80A0612D17529C84005FE319 /* ActivityFeedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityFeedIcon@2x.png"; sourceTree = "<group>"; };
 		80A0612E17529C84005FE319 /* CoachesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CoachesIcon.png; sourceTree = "<group>"; };
@@ -508,6 +508,27 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		7B4628901765F34F00091954 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */,
+				809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */,
+				809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */,
+				7B73652B175F8729007A338E /* Messages */,
+				7B4628911765F35A00091954 /* Followers (-ing) */,
+			);
+			name = Toolbar;
+			sourceTree = "<group>";
+		};
+		7B4628911765F35A00091954 /* Followers (-ing) */ = {
+			isa = PBXGroup;
+			children = (
+				809E72A417588B76004840D3 /* SDFollowingViewController.h */,
+				809E72A517588B76004840D3 /* SDFollowingViewController.m */,
+			);
+			name = "Followers (-ing)";
+			sourceTree = "<group>";
+		};
 		7B6B1EB81760A8BF00BC878A /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,7 +539,7 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		7B73652B175F8729007A338E /* MessagesViewControllers */ = {
+		7B73652B175F8729007A338E /* Messages */ = {
 			isa = PBXGroup;
 			children = (
 				809E728517573633004840D3 /* SDMessageViewController.h */,
@@ -526,7 +547,7 @@
 				7B736517175F6D0B007A338E /* SDConversationViewController.h */,
 				7B736518175F6D0B007A338E /* SDConversationViewController.m */,
 			);
-			name = MessagesViewControllers;
+			name = Messages;
 			sourceTree = "<group>";
 		};
 		80236152174D1B4C00595432 /* UILabel */ = {
@@ -938,7 +959,7 @@
 		8055990C174CEE620040631D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7B73652B175F8729007A338E /* MessagesViewControllers */,
+				7B4628901765F34F00091954 /* Toolbar */,
 				80EEF5FC175626C200A7C803 /* LoginViewControllers */,
 				80EEF5DE175614D900A7C803 /* UerProfileViewControllers */,
 				805CF3ED1754EAFD004C69E5 /* SettingsViewControllers */,
@@ -1000,11 +1021,6 @@
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				809E72A417588B76004840D3 /* SDFollowingViewController.h */,
-				809E72A517588B76004840D3 /* SDFollowingViewController.m */,
-				809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */,
-				809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */,
-				809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */,
 				7B6B1EC11760C86900BC878A /* SDContentHeaderView.h */,
 				7B6B1EC21760C86900BC878A /* SDContentHeaderView.m */,
 				805CF3F61754FF59004C69E5 /* SDTableView.h */,

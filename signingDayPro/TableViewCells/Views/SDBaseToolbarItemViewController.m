@@ -41,6 +41,7 @@
     
     [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.84f alpha:1.0f]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.frame = CGRectMake(0, kBaseToolbarItemViewControllerHeaderHeight, self.view.bounds.size.width, self.view.bounds.size.height - kBaseToolbarItemViewControllerHeaderHeight);
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,11 +55,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return kBaseToolbarItemViewControllerHeaderHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
