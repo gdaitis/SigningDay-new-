@@ -45,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserUpdated) name:kUserUpdatedNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,17 +53,11 @@
     [super viewWillAppear:animated];
     _keyboardHiddingButton.hidden = YES;
     self.viewDeckController.delegate = self;
-    
-    //adding observer to update username when needed
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserUpdated) name:kUserUpdatedNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    //removing observer, view doesn't need to update when is invisible
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kUserUpdatedNotification object:nil];
 }
 
 #pragma mark - TableView datasource

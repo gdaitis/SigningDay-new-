@@ -59,6 +59,7 @@
 
 - (void)loginViewControllerDidFinishLoggingIn:(SDLoginViewController *)loginViewController
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdatedNotification object:nil];
     [self dismissModalViewControllerAnimated:YES];
 }
 

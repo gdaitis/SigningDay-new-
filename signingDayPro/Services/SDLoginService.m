@@ -13,6 +13,7 @@
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
 #import "SDErrorService.h"
+#import "User.h"
 
 NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUserDidLogoutNotificationName";
 
@@ -78,10 +79,22 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                          master = [Master MR_createInContext:context];
                                          master.username = anUsername;
                                          master.identifier = @([JSON[@"User"][@"Id"] intValue]);
-                                         master.photoGalleryId = @([JSON[@"PhotoGalleryId"] intValue]);
+                                         master.photoGalleryId = [JSON objectForKey:@"PhotoGalleryId"];
                                          master.videoGalleryId = @([JSON[@"VideoGalleryId"] intValue]);
                                          
                                      }
+                                     
+                                     User *user = [User MR_findFirstByAttribute:@"username" withValue:anUsername];
+                                     if (!user) {
+                                         user = [User MR_createInContext:context];
+                                         user.identifier = @([JSON[@"User"][@"Id"] intValue]);
+                                     }
+                                     NSDictionary *userDictionary = [JSON objectForKey:@"User"];
+                                     user.username = anUsername;
+                                     user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+                                     user.name = [userDictionary valueForKey:@"DisplayName"];
+                                     user.master = master;
+                                     
                                      if (facebookToken)
                                          master.facebookSharingOn = [NSNumber numberWithBool:YES];
                                      else
