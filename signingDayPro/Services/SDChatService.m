@@ -30,14 +30,7 @@
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
-    NSArray *conversationsToBeDeleted = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"isRead == %@", [NSNumber numberWithBool:isRead]] inContext:context];
-    for (Conversation *conversation in conversationsToBeDeleted) {
-        conversation.shouldBeDeleted = [NSNumber numberWithBool:YES];
-    }
-    
     NSArray *parsedConversations = [JSON objectForKey:@"Conversations"];
-    if (!isRead)
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[parsedConversations count]];
     for (NSDictionary *conversationDictionary in parsedConversations) {
         NSString *identifier = [conversationDictionary valueForKey:@"Id"];
         Conversation *conversation = [Conversation MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
@@ -57,7 +50,6 @@
         
         NSDictionary *authorDictionary = [conversationDictionary valueForKey:@"CreatedUser"];
         NSNumber *authorIdentifier = [NSNumber numberWithInt:[[authorDictionary valueForKey:@"Id"] intValue]];
-//        NSString *authorIdentifierString = [NSString stringWithFormat:@"%d", [authorIdentifier intValue]];
         User *author = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier];
         if (!author) {
             author = [User MR_createInContext:context];
@@ -66,6 +58,7 @@
         author.username = [authorDictionary valueForKey:@"Username"];
         author.avatarUrl = [authorDictionary valueForKey:@"AvatarUrl"];
         author.name = [authorDictionary valueForKey:@"DisplayName"];
+        
         conversation.author = author;
         
         Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
@@ -89,56 +82,48 @@
             }
         }
         conversation.master = master;
-        conversation.isRead = [NSNumber numberWithBool:isRead];
-    }
-    
-    for (Conversation *conversation in conversationsToBeDeleted) {
-        if ([conversation.shouldBeDeleted isEqualToNumber:[NSNumber numberWithBool:YES]])
-            [conversation MR_deleteInContext:context];
+        conversation.isRead = [NSNumber numberWithBool:[[conversationDictionary valueForKey:@"HasRead"] boolValue]];
     }
     
     [context MR_save];
 }
 
-+ (void)getConversationsWithSuccessBlock:(void (^)(void))block failureBlock:(void (^)(void))failureBlock
++ (void)getConversationsForPage:(int)pageNumber withSuccessBlock:(void (^)(int totalConversationCount))block failureBlock:(void (^)(void))failureBlock
 {
     [[SDAPIClient sharedClient] getPath:@"conversations.json"
-                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize", @"Unread", @"ReadStatus", nil]
-#warning paging problem
-                               success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                   [self performConversationParsingAndStoringForJSON:JSON forReadMessages:NO];
-                                   
-                                   [[SDAPIClient sharedClient] getPath:@"conversations.json"
-                                                            parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize", @"Read", @"ReadStatus", nil] success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                                                
-                                                                [self performConversationParsingAndStoringForJSON:JSON forReadMessages:YES];
-                                                                
-                                                                if (block)
-                                                                    block();
-                                                                
-                                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                                //
-                                                            }];
-                               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                   //
-                                   [SDErrorService handleError:error];
-                                   if (failureBlock)
-                                       failureBlock();
-                               }];
+                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize",[NSString stringWithFormat:@"%d",pageNumber], @"PageIndex", nil]
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
+                                    NSLog(@"JSON = %@",JSON);
+                                    
+                                    if (pageNumber == 0) {
+                                        [self markAllConversationsForDeletion];
+                                    }
+                                    [self performConversationParsingAndStoringForJSON:JSON forReadMessages:NO];
+                                    int totalConversations = [[JSON valueForKey:@"TotalCount"] intValue];
+                                    if (block)
+                                        block(totalConversations);
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    
+                                    [SDErrorService handleError:error];
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
 }
 
-+ (void)getMessagesFromConversation:(Conversation *)conversation success:(void (^)(void))block failure:(void (^)(void))failureBlock
++ (void)getMessagesWithPageNumber:(int)pageNumber fromConversation:(Conversation *)conversation success:(void (^)(int totalMessagesCount))block failure:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"conversations/%@/messages.json", conversation.identifier];
     [[SDAPIClient sharedClient] getPath:path
-                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize", nil]
-#warning paging problem
+                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize", [NSString stringWithFormat:@"%d",pageNumber], @"PageIndex", nil]
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
-                                    NSArray *messagesToBeDeleted = [Message MR_findAllInContext:context];
-                                    for (Message *message in messagesToBeDeleted) {
-                                        message.shouldBeDeleted = [NSNumber numberWithBool:YES];
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    int totalMessages = [[JSON valueForKey:@"TotalCount"] intValue];
+                                    
+                                    if (pageNumber == 0) {
+                                        [self markAllMessagesForDeletionForConversation:conversation];
                                     }
                                     
                                     NSArray *parsedMessages = [JSON objectForKey:@"Messages"];
@@ -160,6 +145,8 @@
                                         }
                                         user.avatarUrl = [authorDictionary valueForKey:@"AvatarUrl"];
                                         user.username = [authorDictionary valueForKey:@"Username"];
+                                        user.name = [authorDictionary valueForKey:@"DisplayName"];
+                                        
                                         message.user = user;
                                         NSString *dateString = [[messageDictionary objectForKey:@"CreatedDate"] stringByDeletingPathExtension];
                                         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -169,15 +156,10 @@
                                         message.text = [[messageDictionary objectForKey:@"Body"] stringByConvertingHTMLToPlainText];
                                     }
                                     
-                                    for (Message *message in messagesToBeDeleted) {
-                                        if ([message.shouldBeDeleted isEqualToNumber:[NSNumber numberWithBool:YES]])
-                                            [message MR_deleteInContext:context];
-                                    }
-                                    
                                     [context MR_save];
                                     
                                     if (block) {
-                                        block();
+                                        block(totalMessages);
                                     }
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SDErrorService handleError:error];
@@ -206,7 +188,7 @@
 {
     NSString *path = [NSString stringWithFormat:@"users/%d/followers.json", [identifier integerValue]];
     [[SDAPIClient sharedClient] getPath:path
-                             parameters:nil
+                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize", nil]
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
@@ -263,7 +245,7 @@
     [parameters setValue:@"true" forKey:@"IsRead"];
     
     NSString *apiKey = [STKeychain getPasswordForUsername:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]
-                                           andServiceName:@"SigningDayPro"
+                                           andServiceName:@"SigningDay"
                                                     error:nil];
     [httpClient setDefaultHeader:@"Rest-User-Token" value:apiKey];
     [httpClient postPath:@"sd/conversations.json"
@@ -293,14 +275,14 @@
     NSNumber *identifier = master.identifier;
     NSString *followersPath = [NSString stringWithFormat:@"users/%d/following.json", [identifier integerValue]];
     [[SDAPIClient sharedClient] getPath:followersPath
-                             parameters:nil
+                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize", nil]
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSDictionary *followingDictionary = [JSON objectForKey:@"Following"];
                                     
                                     master.following = nil;
                                     
                                     for (NSDictionary *followingUserDictionary in followingDictionary) {
-                                        NSNumber *identifier = [NSNumber numberWithInt:[[followingUserDictionary valueForKey:@"Id"] intValue]];
+                                        NSNumber *identifier = [NSNumber numberWithInt:[[followingUserDictionary valueForKey:@"Id"] integerValue]];
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];
@@ -322,6 +304,57 @@
                                     [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                                     [SDErrorService handleError:error];
                                 }];
+}
+
+
+
+#pragma mark deletion methods
+
+//marks conversations for deletion
++ (void)markAllConversationsForDeletion
+{
+    NSArray *conversationsToBeDeleted = [Conversation MR_findAll];
+    for (Conversation *conversation in conversationsToBeDeleted) {
+        conversation.shouldBeDeleted = [NSNumber numberWithBool:YES];
+    }
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    [context MR_save];
+}
+
++ (void)deleteMarkedConversations
+{
+    NSArray *conversationsToBeDeleted = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"shouldBeDeleted == %@", [NSNumber numberWithBool:YES]]];
+    for (Conversation *conversation in conversationsToBeDeleted) {
+        [conversation MR_deleteEntity];
+    }
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    [context MR_save];
+    
+    //setup badge on left unread conversations
+    NSArray *unreadConversations = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"isRead == %@", [NSNumber numberWithBool:NO]]];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadConversations count]];
+}
+
++ (void)markAllMessagesForDeletionForConversation:(Conversation *)conversation
+{
+    for (Message *message in conversation.messages) {
+        message.shouldBeDeleted = [NSNumber numberWithBool:YES];
+    }
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    [context MR_save];
+}
+
++ (void)deleteMarkedMessagesForConversation:(Conversation *)conversation
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSSet *messages = conversation.messages;
+    for (Message *mesage in messages)
+    {
+        if ([mesage.shouldBeDeleted boolValue]) {
+            [mesage MR_deleteInContext:context];
+        }
+    }
+    [context MR_save];
 }
 
 @end

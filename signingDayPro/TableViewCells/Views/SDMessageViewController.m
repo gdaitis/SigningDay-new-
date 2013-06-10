@@ -10,6 +10,7 @@
 
 #import "SDAppDelegate.h"
 #import "SDChatService.h"
+
 #import "Conversation.h"
 #import "User.h"
 #import "SDConversationCell.h"
@@ -19,6 +20,8 @@
 
 @interface SDMessageViewController ()
 
+@property (nonatomic, assign) int totalMessages;
+@property (nonatomic, assign) int currentMessagesPage;
 @property BOOL firstLoad;
 
 - (void)reloadView;
@@ -49,10 +52,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInForegroundNotification object:nil];
     
     self.firstLoad = YES;
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"]) {
-        [self reloadView];
-    }
+    _currentMessagesPage = _totalMessages = 0;
     
     SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     contentHeaderView.textLabel.text = @"Conversations";
@@ -70,6 +70,9 @@
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"]) {
         [self reloadView];
+    }
+    if (self.firstLoad) {
+        [self showProgressHudInView:self.view withText:@"Updating conversations"];
     }
     [self checkServer];
 }
@@ -104,18 +107,35 @@
     [self.tableView reloadData];
 }
 
+- (void)loadMoreData
+{
+    _currentMessagesPage++;
+    [self checkServer];
+}
+
 - (void)checkServer
 {
-    if (self.firstLoad) {
-        [self showProgressHudInView:self.view withText:@"Updating conversations"];
-    }
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"]) {
-        [SDChatService getConversationsWithSuccessBlock:^{
-            [self hideProgressHudInView:self.view];
-            if (self.firstLoad) {
-                self.firstLoad = NO;
+        
+        [SDChatService getConversationsForPage:_currentMessagesPage withSuccessBlock:^(int totalConversationCount) {
+            _totalMessages = totalConversationCount;
+            
+            //if there are more conversations, we need to download them
+            if ((_currentMessagesPage+1)*kMaxItemsPerPage < _totalMessages )
+            {
+                [self loadMoreData];
             }
-            [self reloadView];
+            else {
+                if (self.firstLoad) {
+                    self.firstLoad = NO;
+                }
+                //delete old messages
+                [SDChatService deleteMarkedConversations];
+                
+                [self reloadView];
+                [self hideProgressHudInView:self.view];
+            }
+            
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
         }];
