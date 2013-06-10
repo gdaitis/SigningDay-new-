@@ -46,7 +46,7 @@ style:UIBarButtonItemStylePlain target:self action:SELECTOR]
 static CGFloat const kMessageFontSize   = 14.0f;
 static CGFloat const kMessageTextWidth  = 242.0f;
 static CGFloat const kContentHeightMax  = 104.0f;
-static CGFloat const kChatBarHeight1    = 59.0f;
+static CGFloat const kChatBarHeight1    = 50.0f;
 static CGFloat const kChatBarHeight4    = 104.0f;
 
 @interface SDConversationViewController ()
@@ -115,7 +115,6 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     self.tableView.clearsContextBeforeDrawing = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     UIGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeKeyboard)];
     [self.tableView addGestureRecognizer:recognizer];
@@ -129,9 +128,9 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     self.chatBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
     self.chatBar.userInteractionEnabled = YES;
     
-    self.enterMessageTextView.frame = CGRectMake(9, 13, 217, 32);
+    self.enterMessageTextView.frame = CGRectMake(10, 10, 230, 30);
     
-    self.textViewBackgroundImageView.image = [[UIImage imageNamed:@"conversation_text_view_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 6, 8, 6)];
+    self.textViewBackgroundImageView.image = [[UIImage imageNamed:@"chat_box_text_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     self.textViewBackgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.textViewBackgroundImageView.frame = self.enterMessageTextView.frame;
     
@@ -156,7 +155,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     self.sendButton.clearsContextBeforeDrawing = NO;
     self.sendButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
-    self.sendButton.frame = CGRectMake(self.sendButton.frame.origin.x, 15, self.sendButton.frame.size.width, self.sendButton.frame.size.height);
+    self.sendButton.frame = CGRectMake(250, 10, self.sendButton.frame.size.width, self.sendButton.frame.size.height);
     [self resetSendButton]; // disable initially
     [self.chatBar addSubview:self.sendButton];
     
@@ -466,33 +465,6 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-/*- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kBaseToolbarItemViewControllerHeaderHeight)];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *lbl = [[UILabel alloc] initWithFrame:view.frame];
-    lbl.textAlignment = UITextAlignmentCenter;
-    lbl.textColor = [UIColor lightGrayColor];
-    lbl.font = [UIFont boldSystemFontOfSize:15];
-    
-    NSArray *users = [self.conversation.users allObjects];
-    NSMutableArray *usernames = [[NSMutableArray alloc] init];
-    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    for (User *user in users) {
-        if (![user.username isEqual:masterUsername])
-            [usernames addObject:user.username];
-    }
-    
-    NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    lbl.text = [sortedUsernames componentsJoinedByString:@", "];
-    lbl.backgroundColor = [UIColor clearColor];
-    
-    [view addSubview:lbl];
-    
-    return view;
-}*/
-
 #pragma mark UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
@@ -514,7 +486,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
                 if (self.previousContentHeight > kContentHeightMax) {
                     textView.scrollEnabled = NO;
                 }
-                textView.contentOffset = CGPointMake(0.0f, 6.0f);
+               // textView.contentOffset = CGPointMake(0.0f, 6.0f);
                 [self scrollToBottomAnimated:YES];
             } else if (self.previousContentHeight <= kContentHeightMax) {
                 textView.scrollEnabled = YES;

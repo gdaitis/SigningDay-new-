@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288A1765DC5500091954 /* chat_box_bg@2x.png */; };
+		7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */; };
+		7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */; };
 		7B6B1EAF1760A7E900BC878A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EAE1760A7E900BC878A /* Default-568h@2x.png */; };
 		7B6B1EB11760A7EC00BC878A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EB01760A7EC00BC878A /* Default.png */; };
 		7B6B1EB31760A7EF00BC878A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B6B1EB21760A7EF00BC878A /* Default@2x.png */; };
@@ -191,6 +194,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B46288A1765DC5500091954 /* chat_box_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_bg@2x.png"; sourceTree = "<group>"; };
+		7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_send_bt@2x.png"; sourceTree = "<group>"; };
+		7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_text_bg@2x.png"; sourceTree = "<group>"; };
 		7B6B1EAE1760A7E900BC878A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		7B6B1EB01760A7EC00BC878A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		7B6B1EB21760A7EF00BC878A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
@@ -377,8 +383,8 @@
 		805CF3EB1754E870004C69E5 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		805CF3F01754EB1A004C69E5 /* SDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSettingsViewController.h; sourceTree = "<group>"; };
 		805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSettingsViewController.m; sourceTree = "<group>"; };
-		805CF3F61754FF59004C69E5 /* SDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTableView.h; sourceTree = "<group>"; };
-		805CF3F71754FF59004C69E5 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTableView.m; sourceTree = "<group>"; };
+		805CF3F61754FF59004C69E5 /* SDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTableView.h; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.h"; sourceTree = "<group>"; };
+		805CF3F71754FF59004C69E5 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTableView.m; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.m"; sourceTree = "<group>"; };
 		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMessageViewController.h; path = ../TableViewCells/Views/SDMessageViewController.h; sourceTree = "<group>"; };
 		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMessageViewController.m; path = ../TableViewCells/Views/SDMessageViewController.m; sourceTree = "<group>"; };
 		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
@@ -492,6 +498,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B4628891765DC4600091954 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				7B46288A1765DC5500091954 /* chat_box_bg@2x.png */,
+				7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */,
+				7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
 		7B6B1EB81760A8BF00BC878A /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,7 +925,6 @@
 				8032F05A1755F98E00C92AAC /* UIImage+fixOrientation */,
 				8032F05D1755F98E00C92AAC /* UIPlaceHolderTextView */,
 				8032F0601755F98E00C92AAC /* Utils */,
-				805CF3F31754FEFD004C69E5 /* UIStaticHeaderTableView */,
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
 				80236152174D1B4C00595432 /* UILabel */,
@@ -982,15 +997,6 @@
 			path = SettingsViewControllers;
 			sourceTree = "<group>";
 		};
-		805CF3F31754FEFD004C69E5 /* UIStaticHeaderTableView */ = {
-			isa = PBXGroup;
-			children = (
-				805CF3F61754FF59004C69E5 /* SDTableView.h */,
-				805CF3F71754FF59004C69E5 /* SDTableView.m */,
-			);
-			path = UIStaticHeaderTableView;
-			sourceTree = "<group>";
-		};
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1001,6 +1007,8 @@
 				809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */,
 				7B6B1EC11760C86900BC878A /* SDContentHeaderView.h */,
 				7B6B1EC21760C86900BC878A /* SDContentHeaderView.m */,
+				805CF3F61754FF59004C69E5 /* SDTableView.h */,
+				805CF3F71754FF59004C69E5 /* SDTableView.m */,
 			);
 			name = Views;
 			path = TableViewCells/Views;
@@ -1009,6 +1017,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7B4628891765DC4600091954 /* Chat */,
 				7B6B1EB81760A8BF00BC878A /* Login */,
 				80E31BAD1758B8590013545C /* Follow_Unfollow */,
 				80EEF5EB1756231E00A7C803 /* OldProjectImages */,
@@ -1263,6 +1272,9 @@
 				7B6B1EB51760A86B00BC878A /* app_icon_retina.png in Resources */,
 				7B6B1EB71760A87100BC878A /* app_icon.png in Resources */,
 				7B6B1EBA1760A8C900BC878A /* login_bg-568h@2x.png in Resources */,
+				7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */,
+				7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */,
+				7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
