@@ -440,6 +440,13 @@ typedef enum {
 - (void)messageViewController:(SDMessageViewController *)messageViewController
         didSelectConversation:(Conversation *)conversation
 {
+    if ([[[self viewControllers] lastObject] isKindOfClass:[SDConversationViewController class]]) {
+        SDConversationViewController *conversationController = [[self viewControllers] lastObject];
+        if ([conversationController.conversation.identifier isEqual:conversation.identifier]) {
+            [self hideConversationsAndRemoveContentView:YES];
+            return;
+        }
+    }
     [self hideConversationsAndRemoveContentView:YES];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
