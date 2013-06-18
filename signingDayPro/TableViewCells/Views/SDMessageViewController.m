@@ -17,6 +17,7 @@
 #import "AFNetworking.h"
 #import "SDConversationViewController.h"
 #import "SDContentHeaderView.h"
+#import "SDAPIClient.h"
 
 @interface SDMessageViewController ()
 
@@ -144,7 +145,8 @@
 
 #pragma mark - TableView datasource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SDConversationCell *cell = nil;
     NSString *cellIdentifier = @"ConversationCell";

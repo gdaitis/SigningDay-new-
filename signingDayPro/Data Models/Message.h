@@ -2,7 +2,7 @@
 //  Message.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 5/29/13.
+//  Created by Vytautas Gudaitis on 6/18/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 

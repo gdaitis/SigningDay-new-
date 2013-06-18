@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C54" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ActivityStory" representedClassName="ActivityStory" syncable="YES">
+        <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentTypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="storyTypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="activityStories" inverseEntity="User" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="activityStory" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="activityStory" inverseEntity="Like" syncable="YES"/>
+        <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="activityStories" inverseEntity="Master" syncable="YES"/>
+    </entity>
+    <entity name="Comment" representedClassName="Comment" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="activityStory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="comments" inverseEntity="ActivityStory" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="comments" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Conversation" representedClassName="Conversation" syncable="YES">
-        <attribute name="identifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastMessageDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastMessageText" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +35,11 @@
         <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Like" representedClassName="Like" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="activityStory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="likes" inverseEntity="ActivityStory" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="likes" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Master" representedClassName="Master" syncable="YES">
         <attribute name="facebookSharingOn" optional="YES" attributeType="Integer 32" defaultValueString="NO" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -22,6 +47,7 @@
         <attribute name="twitterSharingOn" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoGalleryId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="activityStories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="master" inverseEntity="ActivityStory" syncable="YES"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Conversation" inverseName="master" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="followedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="following" inverseEntity="User" syncable="YES"/>
         <relationship name="following" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="followedBy" inverseEntity="User" syncable="YES"/>
@@ -45,18 +71,24 @@
         <attribute name="numberOfPhotos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="numberOfVideos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activityStories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="author" inverseEntity="ActivityStory" syncable="YES"/>
         <relationship name="authorOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="author" inverseEntity="Conversation" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="user" inverseEntity="Comment" syncable="YES"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="users" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="followedBy" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="following" inverseEntity="Master" syncable="YES"/>
         <relationship name="following" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="followedBy" inverseEntity="Master" syncable="YES"/>
+        <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="user" inverseEntity="Like" syncable="YES"/>
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Conversation" positionX="196" positionY="90" width="128" height="178"/>
-        <element name="ImageData" positionX="-198" positionY="-207" width="128" height="73"/>
-        <element name="Master" positionX="-308" positionY="5" width="128" height="193"/>
-        <element name="Message" positionX="-9" positionY="-180" width="128" height="133"/>
-        <element name="User" positionX="466" positionY="-243" width="128" height="270"/>
+        <element name="ActivityStory" positionX="-54" positionY="-441" width="128" height="193"/>
+        <element name="Conversation" positionX="198" positionY="135" width="128" height="178"/>
+        <element name="ImageData" positionX="-342" positionY="-207" width="128" height="73"/>
+        <element name="Like" positionX="153" positionY="-223" width="128" height="88"/>
+        <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
+        <element name="Message" positionX="-83" positionY="-160" width="128" height="133"/>
+        <element name="User" positionX="585" positionY="-198" width="128" height="313"/>
+        <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
     </elements>
 </model>

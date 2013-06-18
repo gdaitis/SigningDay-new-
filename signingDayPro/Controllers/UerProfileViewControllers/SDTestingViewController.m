@@ -7,6 +7,7 @@
 //
 
 #import "SDTestingViewController.h"
+#import "SDActivityFeedService.h"
 
 @interface SDTestingViewController ()
 
@@ -27,6 +28,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+#warning TESTING
+    [SDActivityFeedService getActivityStoriesWithSuccessBlock:^{
+        //
+    } failureBlock:^{
+        //
+    }];
 }
 
 - (void)didReceiveMemoryWarning

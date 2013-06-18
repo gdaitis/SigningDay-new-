@@ -2,14 +2,14 @@
 //  Master.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 5/29/13.
+//  Created by Vytautas Gudaitis on 6/18/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Conversation, User;
+@class ActivityStory, Conversation, User;
 
 @interface Master : NSManagedObject
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSNumber * twitterSharingOn;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSNumber * videoGalleryId;
+@property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) NSSet *conversations;
 @property (nonatomic, retain) NSSet *followedBy;
 @property (nonatomic, retain) NSSet *following;
@@ -26,6 +27,11 @@
 @end
 
 @interface Master (CoreDataGeneratedAccessors)
+
+- (void)addActivityStoriesObject:(ActivityStory *)value;
+- (void)removeActivityStoriesObject:(ActivityStory *)value;
+- (void)addActivityStories:(NSSet *)values;
+- (void)removeActivityStories:(NSSet *)values;
 
 - (void)addConversationsObject:(Conversation *)value;
 - (void)removeConversationsObject:(Conversation *)value;

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4457.6" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.6"/>
     </dependencies>
     <scenes>
         <!--Settings View Controller-->
         <scene sceneID="DMF-hO-fjF">
             <objects>
-                <viewController storyboardIdentifier="" id="LgF-rQ-9mK" customClass="SDSettingsViewController" sceneMemberID="viewController">
+                <viewController id="LgF-rQ-9mK" customClass="SDSettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B2Y-x5-vp5">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,6 +29,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="r9g-i7-76e"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5t9-hE-y36" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,6 +40,7 @@
         <scene sceneID="fIm-qk-hfP">
             <objects>
                 <navigationController storyboardIdentifier="SDSettingsNavigationController" navigationBarHidden="YES" id="ggV-ue-o9h" customClass="SDNavigationController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ua1-uK-m2e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
