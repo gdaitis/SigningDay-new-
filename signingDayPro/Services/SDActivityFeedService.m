@@ -114,6 +114,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failureBlock();
     }];
+    
 }
 
 + (void)likeActivityStory:(ActivityStory *)activityStory
