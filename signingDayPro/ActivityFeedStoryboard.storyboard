@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="I86-KX-rwa">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+    </dependencies>
+    <scenes>
+        <!--Activity Feed View Controller-->
+        <scene sceneID="IBs-Zr-NtT">
+            <objects>
+                <viewController storyboardIdentifier="" id="Sbr-vI-A1i" customClass="SDActivityFeedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rA9-DB-uaR">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CnO-3j-Spc">
+                                <color key="backgroundColor" white="0.90279995437956206" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Sbr-vI-A1i" id="5ny-qu-2mb"/>
+                                    <outlet property="delegate" destination="Sbr-vI-A1i" id="k6t-me-seD"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.9022011861" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CnO-3j-Spc" firstAttribute="leading" secondItem="rA9-DB-uaR" secondAttribute="leading" type="default" id="FqJ-iA-T4A"/>
+                            <constraint firstItem="CnO-3j-Spc" firstAttribute="top" secondItem="rA9-DB-uaR" secondAttribute="top" constant="44" type="user" id="GHb-kb-7za"/>
+                            <constraint firstItem="CnO-3j-Spc" firstAttribute="trailing" secondItem="rA9-DB-uaR" secondAttribute="trailing" type="default" id="bUc-bM-IKV"/>
+                            <constraint firstItem="CnO-3j-Spc" firstAttribute="bottom" secondItem="rA9-DB-uaR" secondAttribute="bottom" type="default" id="efz-XS-Kcl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="U1O-Kv-Dbj"/>
+                    <connections>
+                        <outlet property="tableView" destination="CnO-3j-Spc" id="3W6-ec-YGH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ANi-qD-53W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="621" y="-286"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yta-rA-Xbh">
+            <objects>
+                <navigationController storyboardIdentifier="SDActivityFeedNavigationController" navigationBarHidden="YES" id="I86-KX-rwa" customClass="SDNavigationController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F53-fg-e1c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="m7S-cw-s12">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="Sbr-vI-A1i" kind="relationship" relationship="rootViewController" id="TqB-Ue-aqu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dI0-bm-kfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="216" y="-286"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

@@ -15,7 +15,7 @@ typedef enum {
 	CONTROLLER_TYPE_FOLLOWERS
 } ControllerType;
 
-@interface SDFollowingViewController : SDBaseToolbarItemViewController
+@interface SDFollowingViewController : SDBaseToolbarItemViewController <UISearchDisplayDelegate,UISearchBarDelegate>
 
 @property (nonatomic, assign) ControllerType controllerType;
 

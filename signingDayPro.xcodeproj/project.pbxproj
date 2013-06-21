@@ -130,6 +130,10 @@
 		805CF3EC1754E870004C69E5 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805CF3EB1754E870004C69E5 /* SettingsStoryboard.storyboard */; };
 		805CF3F21754EB1A004C69E5 /* SDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */; };
 		805CF3F81754FF59004C69E5 /* SDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF3F71754FF59004C69E5 /* SDTableView.m */; };
+		805F725917719BC400BDA30F /* SDActivityFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F725817719BC400BDA30F /* SDActivityFeedCell.m */; };
+		805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */; };
+		805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */; };
+		805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */; };
 		809E728817573633004840D3 /* SDMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728617573633004840D3 /* SDMessageViewController.m */; };
 		809E728D175738DE004840D3 /* SDBaseToolbarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */; };
 		809E728E175738DE004840D3 /* SDBaseToolbarItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */; };
@@ -180,6 +184,10 @@
 		80EEF601175626C200A7C803 /* SDForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */; };
 		80EEF602175626C200A7C803 /* SDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF600175626C200A7C803 /* SDLoginViewController.m */; };
 		80EEF605175627B400A7C803 /* SDCommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF604175627B400A7C803 /* SDCommonWebViewController.m */; };
+		80F2590B1773411900D3B85E /* commentImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F259071773411900D3B85E /* commentImage.png */; };
+		80F2590C1773411900D3B85E /* commentImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F259081773411900D3B85E /* commentImage@2x.png */; };
+		80F2590D1773411900D3B85E /* LikeImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F259091773411900D3B85E /* LikeImage.png */; };
+		80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F2590A1773411900D3B85E /* LikeImage@2x.png */; };
 		80F301631753A05900134FF4 /* SDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F301621753A05900134FF4 /* SDNavigationController.m */; };
 		80F301751753A85E00134FF4 /* FollowersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301651753A85E00134FF4 /* FollowersIcon.png */; };
 		80F301761753A85E00134FF4 /* FollowersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301661753A85E00134FF4 /* FollowersIcon@2x.png */; };
@@ -407,6 +415,12 @@
 		805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSettingsViewController.m; sourceTree = "<group>"; };
 		805CF3F61754FF59004C69E5 /* SDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTableView.h; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.h"; sourceTree = "<group>"; };
 		805CF3F71754FF59004C69E5 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTableView.m; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.m"; sourceTree = "<group>"; };
+		805F725717719BC400BDA30F /* SDActivityFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedCell.h; sourceTree = "<group>"; };
+		805F725817719BC400BDA30F /* SDActivityFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedCell.m; sourceTree = "<group>"; };
+		805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityFeedCell.xib; sourceTree = "<group>"; };
+		805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityFeedStoryboard.storyboard; sourceTree = "<group>"; };
+		805F72651771AF9900BDA30F /* SDActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedViewController.h; sourceTree = "<group>"; };
+		805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedViewController.m; sourceTree = "<group>"; };
 		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMessageViewController.h; path = ../TableViewCells/Views/SDMessageViewController.h; sourceTree = "<group>"; };
 		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMessageViewController.m; path = ../TableViewCells/Views/SDMessageViewController.m; sourceTree = "<group>"; };
 		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDBaseToolbarItemViewController.h; path = ../TableViewCells/Views/SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
@@ -467,6 +481,10 @@
 		80EEF600175626C200A7C803 /* SDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginViewController.m; sourceTree = "<group>"; };
 		80EEF603175627B400A7C803 /* SDCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommonWebViewController.h; sourceTree = "<group>"; };
 		80EEF604175627B400A7C803 /* SDCommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommonWebViewController.m; sourceTree = "<group>"; };
+		80F259071773411900D3B85E /* commentImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentImage.png; sourceTree = "<group>"; };
+		80F259081773411900D3B85E /* commentImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "commentImage@2x.png"; sourceTree = "<group>"; };
+		80F259091773411900D3B85E /* LikeImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LikeImage.png; sourceTree = "<group>"; };
+		80F2590A1773411900D3B85E /* LikeImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeImage@2x.png"; sourceTree = "<group>"; };
 		80F301611753A05900134FF4 /* SDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNavigationController.h; sourceTree = "<group>"; };
 		80F301621753A05900134FF4 /* SDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNavigationController.m; sourceTree = "<group>"; };
 		80F301651753A85E00134FF4 /* FollowersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FollowersIcon.png; sourceTree = "<group>"; };
@@ -919,6 +937,7 @@
 				805CF3EB1754E870004C69E5 /* SettingsStoryboard.storyboard */,
 				80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */,
 				7B736520175F8249007A338E /* MessagesStoryboard.storyboard */,
+				805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */,
 				8055990C174CEE620040631D /* Controllers */,
 				8032F0971755F9AF00C92AAC /* Data Models */,
 				8032EFCE1755EEDE00C92AAC /* Services */,
@@ -979,6 +998,7 @@
 		8055990C174CEE620040631D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				805F725F1771AE9C00BDA30F /* ActivityFeedControllers */,
 				7B4628901765F34F00091954 /* Toolbar */,
 				80EEF5FC175626C200A7C803 /* LoginViewControllers */,
 				80EEF5DE175614D900A7C803 /* UerProfileViewControllers */,
@@ -1006,6 +1026,9 @@
 				809E729F175779FB004840D3 /* SDConversationCell.h */,
 				809E72A0175779FB004840D3 /* SDConversationCell.m */,
 				809E72A217577A1B004840D3 /* SDConversationCell.xib */,
+				805F725717719BC400BDA30F /* SDActivityFeedCell.h */,
+				805F725817719BC400BDA30F /* SDActivityFeedCell.m */,
+				805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */,
 				805CF352174E08320046E6A5 /* SDMenuItemCell.h */,
 				805CF353174E08320046E6A5 /* SDMenuItemCell.m */,
 				805CF355174E08500046E6A5 /* SDMenuItemCell.xib */,
@@ -1038,6 +1061,15 @@
 			path = SettingsViewControllers;
 			sourceTree = "<group>";
 		};
+		805F725F1771AE9C00BDA30F /* ActivityFeedControllers */ = {
+			isa = PBXGroup;
+			children = (
+				805F72651771AF9900BDA30F /* SDActivityFeedViewController.h */,
+				805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */,
+			);
+			path = ActivityFeedControllers;
+			sourceTree = "<group>";
+		};
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1053,6 +1085,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				80F259061773411900D3B85E /* ActivityFeedImages */,
 				7B4628891765DC4600091954 /* Chat */,
 				7B6B1EB81760A8BF00BC878A /* Login */,
 				80E31BAD1758B8590013545C /* Follow_Unfollow */,
@@ -1138,6 +1171,17 @@
 				80EEF600175626C200A7C803 /* SDLoginViewController.m */,
 			);
 			path = LoginViewControllers;
+			sourceTree = "<group>";
+		};
+		80F259061773411900D3B85E /* ActivityFeedImages */ = {
+			isa = PBXGroup;
+			children = (
+				80F259071773411900D3B85E /* commentImage.png */,
+				80F259081773411900D3B85E /* commentImage@2x.png */,
+				80F259091773411900D3B85E /* LikeImage.png */,
+				80F2590A1773411900D3B85E /* LikeImage@2x.png */,
+			);
+			path = ActivityFeedImages;
 			sourceTree = "<group>";
 		};
 		80F3015E1753A01B00134FF4 /* UINavigationController */ = {
@@ -1311,6 +1355,12 @@
 				7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */,
 				7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */,
 				7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */,
+				805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */,
+				805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */,
+				80F2590B1773411900D3B85E /* commentImage.png in Resources */,
+				80F2590C1773411900D3B85E /* commentImage@2x.png in Resources */,
+				80F2590D1773411900D3B85E /* LikeImage.png in Resources */,
+				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1414,6 +1464,8 @@
 				7BF9842A17706A97001109A3 /* Message.m in Sources */,
 				7BF9842D17706A97001109A3 /* Like.m in Sources */,
 				7BF9843017707D2C001109A3 /* ActivityStory.m in Sources */,
+				805F725917719BC400BDA30F /* SDActivityFeedCell.m in Sources */,
+				805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
