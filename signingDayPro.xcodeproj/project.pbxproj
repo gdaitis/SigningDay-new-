@@ -161,6 +161,7 @@
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616117534497005FE319 /* MagnifyingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0615F17534497005FE319 /* MagnifyingIcon.png */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
+		80CE109D1779788A005D2281 /* SDActivityFeedButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */; };
 		80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E31BA81758AF990013545C /* SDFollowingCell.m */; };
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
 		80E31BB21758B8590013545C /* FollowingSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BAE1758B8590013545C /* FollowingSelected.png */; };
@@ -452,6 +453,8 @@
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuItemList.plist; sourceTree = "<group>"; };
 		80A0615F17534497005FE319 /* MagnifyingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnifyingIcon.png; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
+		80CE109B1779788A005D2281 /* SDActivityFeedButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedButtonView.h; sourceTree = "<group>"; };
+		80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedButtonView.m; sourceTree = "<group>"; };
 		80E31BA71758AF990013545C /* SDFollowingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDFollowingCell.h; sourceTree = "<group>"; };
 		80E31BA81758AF990013545C /* SDFollowingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDFollowingCell.m; sourceTree = "<group>"; };
 		80E31BA91758AF990013545C /* SDFollowingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDFollowingCell.xib; sourceTree = "<group>"; };
@@ -1075,6 +1078,8 @@
 			children = (
 				7B6B1EC11760C86900BC878A /* SDContentHeaderView.h */,
 				7B6B1EC21760C86900BC878A /* SDContentHeaderView.m */,
+				80CE109B1779788A005D2281 /* SDActivityFeedButtonView.h */,
+				80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */,
 				805CF3F61754FF59004C69E5 /* SDTableView.h */,
 				805CF3F71754FF59004C69E5 /* SDTableView.m */,
 			);
@@ -1466,6 +1471,7 @@
 				7BF9843017707D2C001109A3 /* ActivityStory.m in Sources */,
 				805F725917719BC400BDA30F /* SDActivityFeedCell.m in Sources */,
 				805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */,
+				80CE109D1779788A005D2281 /* SDActivityFeedButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

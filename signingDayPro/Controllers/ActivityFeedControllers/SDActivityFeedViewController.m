@@ -10,6 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SDActivityFeedCell.h"
 
+#define kButtonImageViewTag 999
+#define kButtonCommentLabelTag 998
+
 @interface SDActivityFeedViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -88,23 +91,15 @@
                 break;
             }
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.thumbnailImageView.backgroundColor = [UIColor greenColor];
-        
-        cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-        cell.containerView.layer.borderWidth = 1.0f;
-        cell.containerView.layer.cornerRadius = 2.0f;
-        
-        cell.thumbnailImageView.layer.cornerRadius = 4.0f;
+        [self setupCell:cell];
     }
-    
-    [cell.likeButton setTitle:@"Like" forState:UIControlStateNormal];
-    [cell.commentButton setTitle:@"Comment" forState:UIControlStateNormal];
     
     cell.likeButton.tag = indexPath.row;
     cell.commentButton.tag = indexPath.row;
     
-    
+    cell.likeCountLabel.text = @"- 5";
+    cell.commentCountLabel.text = @"- 13";
+
     
     //=================== TESTING ==================================
     if (indexPath.row == 0) {
@@ -137,15 +132,35 @@
     
 }
 
-#pragma mark - image positioning
+#pragma mark - image positioning &cell setup
 
-- (void)calculateImagePositionForButton:(UIButton *)button
+- (void)setupCell:(SDActivityFeedCell *)cell
 {
-#warning unfinished!!!
-    CGSize size = [button.titleLabel.text sizeWithFont:button.titleLabel.font constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-    UIImageView *imageView = (UIImageView *)[button viewWithTag:999];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    cell.thumbnailImageView.backgroundColor = [UIColor greenColor];
     
+    cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
+    cell.containerView.layer.borderWidth = 1.0f;
+    cell.containerView.layer.cornerRadius = 2.0f;
+    
+    cell.thumbnailImageView.layer.cornerRadius = 4.0f;
 }
+
+//- (void)calculateImageAndLabelPositionForButton:(UIButton *)button
+//{
+//    CGSize size = [button.titleLabel.text sizeWithFont:button.titleLabel.font constrainedToSize:CGSizeMake(MAXFLOAT, button.titleLabel.frame.size.height) lineBreakMode:UILineBreakModeWordWrap];
+//    
+//    UIImageView *imageView = (UIImageView *)[button viewWithTag:kButtonImageViewTag];
+//    UILabel *countLabel = (UILabel *)[button viewWithTag:kButtonCommentLabelTag];
+//    
+//    CGRect frame = imageView.frame;
+//    frame.origin.x = button.center.x - size.width/2 - imageView.frame.size.width/2 -5;
+//    imageView.frame = frame;
+//    
+//    frame = countLabel.frame;
+//    frame.origin.x = button.center.x + size.width/2 + 5;
+//    imageView.frame = frame;
+//}
 
 
 @end
