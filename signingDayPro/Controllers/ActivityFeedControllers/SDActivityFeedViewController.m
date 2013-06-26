@@ -143,6 +143,14 @@
     cell.containerView.layer.borderWidth = 1.0f;
     cell.containerView.layer.cornerRadius = 2.0f;
     
+    cell.likeButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
+    cell.likeButtonView.layer.borderWidth = 1.0f;
+    cell.likeButtonView.layer.cornerRadius = 4.0f;
+    
+    cell.commentButton.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
+    cell.commentButton.layer.borderWidth = 1.0f;
+    cell.commentButton.layer.cornerRadius = 4.0f;
+    
     cell.thumbnailImageView.layer.cornerRadius = 4.0f;
 }
 
