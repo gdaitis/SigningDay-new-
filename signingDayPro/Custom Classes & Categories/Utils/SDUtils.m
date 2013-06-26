@@ -7,6 +7,7 @@
 //
 
 #import "SDUtils.h"
+#import "ActivityStory.h"
 
 @interface SDUtils()
 
@@ -45,6 +46,34 @@
                                                                                             error:&error];
     NSManagedObjectModel *destinationModel = [persistentStoreCoordinator managedObjectModel];
     BOOL result = [destinationModel isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    
+    return result;
+}
+
+- (int)heightForActivityStory:(ActivityStory *)activityStory
+{
+    int result = 0;
+    
+    
+//    NSMutableString *contentText = [[NSMutableString alloc] init];
+//    if ([_activityStory.activityTytle length] > 0) {
+//        [contentText appendFormat:@"%@\n",_activityStory.activityTytle];
+//    }
+//    if ([_activityStory.activityDescription length] > 0) {
+//        [contentText appendString:_activityStory.activityDescription];
+//    }
+    NSString *contentText = @"Just a testing text now, Just a testing text now, Just a testing text now";    
+    CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
+                          constrainedToSize:CGSizeMake(280, CGFLOAT_MAX)
+                              lineBreakMode:UILineBreakModeWordWrap];
+    
+    //    if (_activityStory.imagePath {
+    if (false) {
+        result = size.height + 10/*offset*/;
+    }
+    else {
+        result = size.height + 10/*offset*/ + 150;/*imageView size*/
+    }
     
     return result;
 }

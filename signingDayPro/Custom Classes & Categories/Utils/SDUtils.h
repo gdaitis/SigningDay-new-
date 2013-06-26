@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class ActivityStory;
+
 @interface SDUtils : NSObject
 
 + (void)setupCoreDataStack;
+- (int)heightForActivityStory:(ActivityStory *)activityStory;
 
 @end

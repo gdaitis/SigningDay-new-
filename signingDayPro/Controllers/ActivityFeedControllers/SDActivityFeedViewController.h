@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDBaseViewController.h"
 
-@interface SDActivityFeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SDActivityFeedViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

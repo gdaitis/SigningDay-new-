@@ -8,6 +8,10 @@
 
 #import "SDActivityFeedCell.h"
 
+@interface SDActivityFeedCell ()
+
+@end
+
 @implementation SDActivityFeedCell
 
 - (void)awakeFromNib

@@ -9,6 +9,8 @@
 #import "SDActivityFeedViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SDActivityFeedCell.h"
+#import "SDActivityFeedButtonView.h"
+#import "ActivityStory.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -16,6 +18,7 @@
 @interface SDActivityFeedViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
@@ -34,6 +37,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
+    
+//    ActivityStory *activityStory = [[ActivityStory alloc] init];
+//    activityStory.
+    
+    
     
 //    UINib *rowCellNib = [UINib nibWithNibName:@"SDActivityFeedCell" bundle:[NSBundle mainBundle]];
 //    [self.tableView registerNib:rowCellNib forCellReuseIdentifier:@"ActivityFeedCellId"];
@@ -136,20 +146,25 @@
 
 - (void)setupCell:(SDActivityFeedCell *)cell
 {
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.thumbnailImageView.backgroundColor = [UIColor greenColor];
     
     cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
     cell.containerView.layer.borderWidth = 1.0f;
-    cell.containerView.layer.cornerRadius = 2.0f;
+    cell.containerView.layer.cornerRadius = 4.0f;
     
     cell.likeButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
     cell.likeButtonView.layer.borderWidth = 1.0f;
     cell.likeButtonView.layer.cornerRadius = 4.0f;
+    cell.likeButtonView.clipsToBounds = YES;
     
     cell.commentButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
     cell.commentButtonView.layer.borderWidth = 1.0f;
     cell.commentButtonView.layer.cornerRadius = 4.0f;
+    cell.commentButtonView.clipsToBounds = YES;
+    
+    cell.buttonsBackgroundView.layer.borderColor = [[UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f] CGColor];
+    cell.buttonsBackgroundView.layer.borderWidth = 1.0f;
     
     cell.thumbnailImageView.layer.cornerRadius = 4.0f;
 }

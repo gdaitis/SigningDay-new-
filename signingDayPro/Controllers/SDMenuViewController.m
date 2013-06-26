@@ -45,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserUpdated) name:kUserUpdatedNotification object:nil];
 }
 
@@ -185,13 +186,20 @@
     
     if (indexPath.section == 0) {
         //show profile view controller
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
-        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
+        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
     }
     else if (indexPath.section == 1) {
         //show controller depending on selection
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
-        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
+        
+        if (indexPath.row == 0) {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
+        }
+        else {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
+        }
     }
     else {
         //show settings controller
