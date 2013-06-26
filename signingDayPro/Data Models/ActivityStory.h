@@ -2,7 +2,7 @@
 //  ActivityStory.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 6/26/13.
+//  Created by Lukas Kekys on 6/26/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -13,15 +13,15 @@
 
 @interface ActivityStory : NSManagedObject
 
+@property (nonatomic, retain) NSString * activityDescription;
+@property (nonatomic, retain) NSString * activityTitle;
 @property (nonatomic, retain) NSString * contentId;
 @property (nonatomic, retain) NSString * contentTypeId;
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * identifier;
+@property (nonatomic, retain) NSString * imagePath;
 @property (nonatomic, retain) NSDate * lastUpdateDate;
 @property (nonatomic, retain) NSString * storyTypeId;
-@property (nonatomic, retain) NSString * activityTitle;
-@property (nonatomic, retain) NSString * activityDescription;
-@property (nonatomic, retain) NSString * imagePath;
 @property (nonatomic, retain) User *author;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *likes;

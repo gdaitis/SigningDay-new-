@@ -2,7 +2,7 @@
 //  ActivityStory.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 6/26/13.
+//  Created by Lukas Kekys on 6/26/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -15,15 +15,15 @@
 
 @implementation ActivityStory
 
+@dynamic activityDescription;
+@dynamic activityTitle;
 @dynamic contentId;
 @dynamic contentTypeId;
 @dynamic createdDate;
 @dynamic identifier;
+@dynamic imagePath;
 @dynamic lastUpdateDate;
 @dynamic storyTypeId;
-@dynamic activityTitle;
-@dynamic activityDescription;
-@dynamic imagePath;
 @dynamic author;
 @dynamic comments;
 @dynamic likes;
