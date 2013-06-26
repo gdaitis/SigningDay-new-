@@ -185,8 +185,8 @@
     
     if (indexPath.section == 0) {
         //show profile view controller
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
-        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
+        centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
     }
     else if (indexPath.section == 1) {
         //show controller depending on selection
