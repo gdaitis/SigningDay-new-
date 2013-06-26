@@ -137,6 +137,7 @@
 		805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */; };
 		805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */; };
 		805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */; };
+		80630D11177B15B9002AA0BC /* SDActivityFeedCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */; };
 		809E728817573633004840D3 /* SDMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728617573633004840D3 /* SDMessageViewController.m */; };
 		809E728D175738DE004840D3 /* SDBaseToolbarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */; };
 		809E728E175738DE004840D3 /* SDBaseToolbarItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */; };
@@ -430,6 +431,8 @@
 		805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityFeedStoryboard.storyboard; sourceTree = "<group>"; };
 		805F72651771AF9900BDA30F /* SDActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedViewController.h; sourceTree = "<group>"; };
 		805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedViewController.m; sourceTree = "<group>"; };
+		80630D0F177B15B9002AA0BC /* SDActivityFeedCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedCellContentView.h; sourceTree = "<group>"; };
+		80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedCellContentView.m; sourceTree = "<group>"; };
 		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMessageViewController.h; path = ../TableViewCells/Views/SDMessageViewController.h; sourceTree = "<group>"; };
 		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMessageViewController.m; path = ../TableViewCells/Views/SDMessageViewController.m; sourceTree = "<group>"; };
 		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDBaseToolbarItemViewController.h; path = ../TableViewCells/Views/SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
@@ -1104,6 +1107,8 @@
 				80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */,
 				805CF3F61754FF59004C69E5 /* SDTableView.h */,
 				805CF3F71754FF59004C69E5 /* SDTableView.m */,
+				80630D0F177B15B9002AA0BC /* SDActivityFeedCellContentView.h */,
+				80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */,
 			);
 			name = Views;
 			path = TableViewCells/Views;
@@ -1496,6 +1501,7 @@
 				7B3031C5177AF857006EF25B /* Comment.m in Sources */,
 				7B3031C8177AF857006EF25B /* Like.m in Sources */,
 				7B3031CD177AFFC8006EF25B /* ActivityStory.m in Sources */,
+				80630D11177B15B9002AA0BC /* SDActivityFeedCellContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
