@@ -27,6 +27,7 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
 @synthesize deviceToken = _deviceToken;
 @synthesize twitterAccount = _twitterAccount;
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [application setStatusBarHidden:NO];
