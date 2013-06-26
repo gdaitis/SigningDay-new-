@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ActivityStory" representedClassName="ActivityStory" syncable="YES">
+        <attribute name="activityDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="activityTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentTypeId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="storyTypeId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="activityStories" inverseEntity="User" syncable="YES"/>
@@ -82,13 +85,13 @@
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ActivityStory" positionX="-54" positionY="-441" width="128" height="193"/>
+        <element name="ActivityStory" positionX="-56" positionY="-468" width="128" height="238"/>
+        <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
         <element name="Conversation" positionX="198" positionY="135" width="128" height="178"/>
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="73"/>
         <element name="Like" positionX="153" positionY="-223" width="128" height="88"/>
         <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
         <element name="Message" positionX="-83" positionY="-160" width="128" height="133"/>
         <element name="User" positionX="585" positionY="-198" width="128" height="313"/>
-        <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
     </elements>
 </model>

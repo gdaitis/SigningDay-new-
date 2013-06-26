@@ -12,6 +12,7 @@
 #import "User.h"
 #import "Like.h"
 #import "Comment.h"
+#import "HTMLParser.h"
 
 @interface SDActivityFeedService ()
 
@@ -42,6 +43,38 @@
                                         if (!activityStory) {
                                             activityStory = [ActivityStory MR_createInContext:context];
                                             activityStory.identifier = identifier;
+                                        }
+                                        
+                                        NSString *previewHtmlString = [activityStoryDictionary valueForKey:@"PreviewHtml"];
+                                        NSError *htmlError = nil;
+                                        HTMLParser *parser = [[HTMLParser alloc] initWithString:previewHtmlString
+                                                                                          error:&htmlError];
+                                        if (htmlError) {
+                                            NSLog(@"Error: %@", htmlError);
+                                        } else {
+                                            HTMLNode *bodyNode = [parser body];
+                                            
+                                            NSArray *spanNodes = [bodyNode findChildTags:@"span"];
+                                            for (HTMLNode *spanNode in spanNodes) {
+                                                if ([[spanNode getAttributeNamed:@"class"] isEqualToString:@"activity-title"]) {
+                                                    activityStory.activityTitle = [spanNode allContents];
+                                                }
+                                            }
+                                            
+                                            NSArray *divNodes = [bodyNode findChildTags:@"div"];
+                                            for (HTMLNode *divNode in divNodes) {
+                                                if ([[divNode getAttributeNamed:@"class"] isEqualToString:@"activity-description"]) {
+                                                    activityStory.activityDescription = [divNode allContents];
+                                                }
+                                                if ([[divNode getAttributeNamed:@"class"] isEqualToString:@"activity-content"]) {
+                                                    activityStory.activityDescription = [divNode allContents];
+                                                }
+                                            }
+                                            
+                                            NSArray *imgNodes = [bodyNode findChildTags:@"img"];
+                                            for (HTMLNode *imgNode in imgNodes) {
+                                                activityStory.imagePath = [imgNode getAttributeNamed:@"src"];
+                                            }
                                         }
                                         
                                         NSString *activityStoryTypeId = [activityStoryDictionary valueForKey:@"StoryTypeId"];

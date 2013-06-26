@@ -9,6 +9,7 @@
 #import "SDActivityFeedViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SDActivityFeedCell.h"
+#import "SDActivityFeedService.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -37,6 +38,20 @@
     
 //    UINib *rowCellNib = [UINib nibWithNibName:@"SDActivityFeedCell" bundle:[NSBundle mainBundle]];
 //    [self.tableView registerNib:rowCellNib forCellReuseIdentifier:@"ActivityFeedCellId"];
+    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+#warning TEST
+    [SDActivityFeedService getActivityStoriesWithSuccessBlock:^{
+        //
+    } failureBlock:^{
+        //
+    }];
 }
 
 - (void)didReceiveMemoryWarning

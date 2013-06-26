@@ -2,7 +2,7 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 6/18/13.
+//  Created by Vytautas Gudaitis on 6/26/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -24,13 +24,13 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) NSSet *authorOf;
+@property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *conversations;
 @property (nonatomic, retain) Master *followedBy;
 @property (nonatomic, retain) Master *following;
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
 @property (nonatomic, retain) NSSet *messages;
-@property (nonatomic, retain) NSSet *comments;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -44,6 +44,11 @@
 - (void)removeAuthorOfObject:(Conversation *)value;
 - (void)addAuthorOf:(NSSet *)values;
 - (void)removeAuthorOf:(NSSet *)values;
+
+- (void)addCommentsObject:(Comment *)value;
+- (void)removeCommentsObject:(Comment *)value;
+- (void)addComments:(NSSet *)values;
+- (void)removeComments:(NSSet *)values;
 
 - (void)addConversationsObject:(Conversation *)value;
 - (void)removeConversationsObject:(Conversation *)value;
@@ -59,10 +64,5 @@
 - (void)removeMessagesObject:(Message *)value;
 - (void)addMessages:(NSSet *)values;
 - (void)removeMessages:(NSSet *)values;
-
-- (void)addCommentsObject:(Comment *)value;
-- (void)removeCommentsObject:(Comment *)value;
-- (void)addComments:(NSSet *)values;
-- (void)removeComments:(NSSet *)values;
 
 @end
