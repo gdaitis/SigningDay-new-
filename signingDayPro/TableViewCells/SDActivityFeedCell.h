@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class SDActivityFeedCellContentView;
+
 @interface SDActivityFeedCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -16,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
 @property (weak, nonatomic) IBOutlet UIView *buttonsBackgroundView;
-@property (weak, nonatomic) IBOutlet UIView *resizableActivityFeedView;
+@property (weak, nonatomic) IBOutlet SDActivityFeedCellContentView *resizableActivityFeedView;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;

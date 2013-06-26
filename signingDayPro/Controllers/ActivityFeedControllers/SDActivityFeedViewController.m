@@ -12,6 +12,9 @@
 #import "SDActivityFeedButtonView.h"
 #import "ActivityStory.h"
 #import "SDActivityFeedService.h"
+#import "SDUtils.h"
+#import "User.h"
+#import "SDActivityFeedCellContentView.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -40,12 +43,7 @@
 	// Do any additional setup after loading the view.
     
     self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
-    
-//    ActivityStory *activityStory = [[ActivityStory alloc] init];
-//    activityStory.
-    
-    
-    
+        
 //    UINib *rowCellNib = [UINib nibWithNibName:@"SDActivityFeedCell" bundle:[NSBundle mainBundle]];
 //    [self.tableView registerNib:rowCellNib forCellReuseIdentifier:@"ActivityFeedCellId"];
 }
@@ -55,10 +53,12 @@
     [super viewDidAppear:animated];
     
 #warning TEST
+    [self showProgressHudInView:self.view withText:@"Loading"];
     [SDActivityFeedService getActivityStoriesWithSuccessBlock:^{
-        //
+        [self loadData];
+        [self hideProgressHudInView:self.view];
     } failureBlock:^{
-        //
+        [self hideProgressHudInView:self.view];
     }];
 }
 
@@ -74,17 +74,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int result = 200;
+    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
     
-    if (indexPath.row == 1) {
-        result = 300;
-    }
-    else if (indexPath.row == 2) {
-        result = 150;
-    }
-    else if (indexPath.row == 3) {
-        result = 250;
-    }
+    int contentHeight = [SDUtils heightForActivityStory:activityStory];
+    int result = 130/*buttons images etc..*/ + contentHeight;
 
     return result;
 }
@@ -93,7 +86,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 24;
+    return [_dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,30 +113,16 @@
     cell.likeButton.tag = indexPath.row;
     cell.commentButton.tag = indexPath.row;
     
-    cell.likeCountLabel.text = @"- 5";
-    cell.commentCountLabel.text = @"- 13";
-
+    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
     
-    //=================== TESTING ==================================
-    if (indexPath.row == 0) {
-        cell.nameLabel.text = @"Celes";
-    }
-    else if (indexPath.row == 1) {
-        cell.nameLabel.text = @"Celes vardo";
-    }
-    else if (indexPath.row == 2) {
-        cell.nameLabel.text = @"Celes vardo label";
-    }
-    else if (indexPath.row == 3) {
-        cell.nameLabel.text = @"Celes vardo label ilgio";
-    }
-    else {
-        cell.nameLabel.text = @"Celes vardo label ilgio testavimas";
-    }
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likes count]];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.comments count]];
+//    cell.nameLabel.text =activityStory.author.name;
+    [cell.resizableActivityFeedView setActivityStory:activityStory];
     
+    cell.nameLabel.text = @"Celes";
     cell.yearLabel.text = @"- DE, 2014";
     cell.postDateLabel.text = @"4 Minutes ago";
-    //=================== TESTING ==================================
     
     return cell;
 }
@@ -170,6 +149,7 @@
     cell.likeButtonView.layer.borderWidth = 1.0f;
     cell.likeButtonView.layer.cornerRadius = 4.0f;
     cell.likeButtonView.clipsToBounds = YES;
+    [cell.likeButtonView.layer setMasksToBounds:YES];
     
     cell.commentButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
     cell.commentButtonView.layer.borderWidth = 1.0f;
@@ -197,6 +177,12 @@
 //    frame.origin.x = button.center.x + size.width/2 + 5;
 //    imageView.frame = frame;
 //}
+
+- (void)loadData
+{
+    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO];
+    [self.tableView reloadData];
+}
 
 
 @end

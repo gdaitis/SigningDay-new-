@@ -12,8 +12,6 @@
 
 @interface SDActivityFeedCellContentView ()
 
-@property (nonatomic, strong) ActivityStory *activityStory;
-
 @end
 
 @implementation SDActivityFeedCellContentView
@@ -40,6 +38,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.bounds.size.width-20, self.bounds.size.height-20)];
     self.contentLabel = label;
     _contentLabel.font = [UIFont systemFontOfSize:15.0f];
+    _contentLabel.numberOfLines = 0;
     [self addSubview:_contentLabel];
     
     //creating imageView if cell will not have image this will be hidden
@@ -50,22 +49,18 @@
 
 - (void)setActivityStory:(ActivityStory *)activityStory
 {
-    _activityStory = nil;
-    self.activityStory = activityStory;
-    
-    [self recalculateSize];
+    [self recalculateSizeForActivityStory:activityStory];
 }
 
-- (void)recalculateSize
+- (void)recalculateSizeForActivityStory:(ActivityStory *)activityStory
 {
-//    NSMutableString *contentText = [[NSMutableString alloc] init];
-//    if ([_activityStory.activityTytle length] > 0) {
-//        [contentText appendFormat:@"%@\n",_activityStory.activityTytle];
-//    }
-//    if ([_activityStory.activityDescription length] > 0) {
-//        [contentText appendString:_activityStory.activityDescription];
-//    }
-    NSString *contentText = @"Just a testing text now, Just a testing text now, Just a testing text now";
+    NSMutableString *contentText = [[NSMutableString alloc] init];
+    if ([activityStory.activityTitle length] > 0) {
+        [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+    }
+    if ([activityStory.activityDescription length] > 0) {
+        [contentText appendString:activityStory.activityDescription];
+    }
     
     CGSize size = [contentText sizeWithFont:_contentLabel.font
                           constrainedToSize:CGSizeMake(_contentLabel.bounds.size.width, CGFLOAT_MAX)

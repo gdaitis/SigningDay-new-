@@ -13,6 +13,6 @@
 @interface SDUtils : NSObject
 
 + (void)setupCoreDataStack;
-- (int)heightForActivityStory:(ActivityStory *)activityStory;
++ (int)heightForActivityStory:(ActivityStory *)activityStory;
 
 @end

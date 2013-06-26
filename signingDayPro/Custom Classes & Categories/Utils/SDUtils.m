@@ -50,25 +50,24 @@
     return result;
 }
 
-- (int)heightForActivityStory:(ActivityStory *)activityStory
++ (int)heightForActivityStory:(ActivityStory *)activityStory
 {
     int result = 0;
     
     
-//    NSMutableString *contentText = [[NSMutableString alloc] init];
-//    if ([_activityStory.activityTytle length] > 0) {
-//        [contentText appendFormat:@"%@\n",_activityStory.activityTytle];
-//    }
-//    if ([_activityStory.activityDescription length] > 0) {
-//        [contentText appendString:_activityStory.activityDescription];
-//    }
-    NSString *contentText = @"Just a testing text now, Just a testing text now, Just a testing text now";    
+    NSMutableString *contentText = [[NSMutableString alloc] init];
+    if ([activityStory.activityTitle length] > 0) {
+        [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+    }
+    if ([activityStory.activityDescription length] > 0) {
+        [contentText appendString:activityStory.activityDescription];
+    }
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(280, CGFLOAT_MAX)
                               lineBreakMode:UILineBreakModeWordWrap];
     
-    //    if (_activityStory.imagePath {
-    if (false) {
+    //    if (!_activityStory.imagePath {
+    if (true) {
         result = size.height + 10/*offset*/;
     }
     else {
