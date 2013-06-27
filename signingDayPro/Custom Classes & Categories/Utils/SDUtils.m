@@ -54,7 +54,6 @@
 {
     int result = 0;
     
-    
     NSMutableString *contentText = [[NSMutableString alloc] init];
     if ([activityStory.activityTitle length] > 0) {
         [contentText appendFormat:@"%@\n",activityStory.activityTitle];
@@ -63,7 +62,7 @@
         [contentText appendString:activityStory.activityDescription];
     }
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
-                          constrainedToSize:CGSizeMake(280, CGFLOAT_MAX)
+                          constrainedToSize:CGSizeMake(278, CGFLOAT_MAX)
                               lineBreakMode:UILineBreakModeWordWrap];
     
     if ([activityStory.imagePath length] > 0) {
