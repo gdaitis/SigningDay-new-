@@ -35,6 +35,7 @@
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="conversations" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="ImageData" representedClassName="ImageData" syncable="YES">
+        <attribute name="fileData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -88,7 +89,7 @@
         <element name="ActivityStory" positionX="-56" positionY="-468" width="128" height="238"/>
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
         <element name="Conversation" positionX="198" positionY="135" width="128" height="178"/>
-        <element name="ImageData" positionX="-342" positionY="-207" width="128" height="73"/>
+        <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
         <element name="Like" positionX="153" positionY="-223" width="128" height="88"/>
         <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
         <element name="Message" positionX="-83" positionY="-160" width="128" height="133"/>

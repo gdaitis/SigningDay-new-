@@ -16,7 +16,8 @@
 
 @interface SDImageService ()
 
-- (void)downloadAndSaveImageWithUrlString:(NSString *)urlString success:(void (^)(UIImage *image))successBlock;
+- (void)downloadAndSaveImageDataObject:(ImageData *)imageData
+                               success:(void (^)(UIImage *image))successBlock;
 - (NSString *)documentsPathForFileName:(NSString *)name;
 
 @end
@@ -34,7 +35,8 @@
     return _sharedService;
 }
 
-- (void)getImageWithURLString:(NSString *)urlString success:(void (^)(UIImage *image))successBlock
+- (void)getImageWithURLString:(NSString *)urlString
+                      success:(void (^)(UIImage *image))successBlock
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_context];
     ImageData *imageData = imageData = [ImageData MR_findFirstByAttribute:@"urlString" withValue:urlString inContext:context];
@@ -44,7 +46,8 @@
         imageData.updateDate = [NSDate date];
         imageData.urlString = urlString;
         [context MR_save];
-        [self downloadAndSaveImageWithUrlString:urlString success:successBlock];
+        [self downloadAndSaveImageDataObject:imageData
+                                     success:successBlock];
         return;
     }
     // Case 2:
@@ -53,27 +56,31 @@
     float timePassed = timeInterval / secondsInOneHour;
     if (timePassed > kUpdateIntervalInHours) {
         imageData.updateDate = [NSDate date];
-        [self downloadAndSaveImageWithUrlString:urlString success:successBlock];
+        [self downloadAndSaveImageDataObject:imageData
+                                     success:successBlock];
         return;
     }
     // Case 3:
-    NSData *pngData = [NSData dataWithContentsOfFile:[self documentsPathForFileName:[urlString lastPathComponent]]];
-    UIImage *image = [UIImage imageWithData:pngData];
+    UIImage *image = [UIImage imageWithData:imageData.fileData];
     if (successBlock)
         successBlock(image);
 }
 
-- (void)downloadAndSaveImageWithUrlString:(NSString *)urlString success:(void (^)(UIImage *image))successBlock
+- (void)downloadAndSaveImageDataObject:(ImageData *)imageData
+                               success:(void (^)(UIImage *image))successBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
-        NSData *jpegData = UIImageJPEGRepresentation(image, 1);
-        NSString *filePath = [self documentsPathForFileName:[urlString lastPathComponent]];
-        [jpegData writeToFile:filePath atomically:YES];
-        if (successBlock) {
-            successBlock(image);
-        }
-    }];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageData.urlString]];
+    AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request
+                                                                                           success:^(UIImage *image) {
+                                                                                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                                                                               NSData *pngData = UIImagePNGRepresentation(image);
+                                                                                               imageData.fileData = pngData;
+                                                                                               [context MR_save];
+                                                                                               
+                                                                                               if (successBlock) {
+                                                                                                   successBlock(image);
+                                                                                               }
+                                                                                           }];
     [operation start];
 }
 

@@ -2,7 +2,7 @@
 //  ImageData.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 6/26/13.
+//  Created by Vytautas Gudaitis on 6/27/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,5 +14,6 @@
 
 @property (nonatomic, retain) NSDate * updateDate;
 @property (nonatomic, retain) NSString * urlString;
+@property (nonatomic, retain) NSData * fileData;
 
 @end
