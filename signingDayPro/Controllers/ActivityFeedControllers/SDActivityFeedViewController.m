@@ -111,11 +111,10 @@
             }
         }
         [self setupCell:cell];
-    }
-    else {
+    } else {
         [cell.thumbnailImageView cancelImageRequestOperation];
     }
-    cell.thumbnailImageView.image = nil;
+
     cell.likeButton.tag = indexPath.row;
     cell.commentButton.tag = indexPath.row;
     

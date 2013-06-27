@@ -11,7 +11,6 @@
 #import "AFNetworking.h"
 #import "SDImageService.h"
 #import <QuartzCore/QuartzCore.h>
-#import "UIImage+Crop.h"
 
 @interface SDConversationCell ()
 
@@ -50,19 +49,6 @@
     
     self.backgroundView.frame = self.bounds;
     self.highlightedImageView.frame = self.backgroundView.frame;
-    
-//    CGSize textSize = [self.messageTextLabel.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13]];
-//    if (textSize.width > self.messageTextLabel.frame.size.width && self.messageTextLabel.frame.size.height < 29) {
-//        self.messageTextLabel.frame = CGRectMake(self.messageTextLabel.frame.origin.x, self.messageTextLabel.frame.origin.y
-//                                                 , self.messageTextLabel.frame.size.width, self.messageTextLabel.frame.size.height + 15);
-//    }
-}
-
-- (void)setUserImageUrlString:(NSString *)userImageUrlString
-{
-    [[SDImageService sharedService] getImageWithURLString:userImageUrlString success:^(UIImage *image) {
-        self.userImageView.image = [image imageByScalingAndCroppingForSize:CGSizeMake(50 * [UIScreen mainScreen].scale, 50 * [UIScreen mainScreen].scale)];
-    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

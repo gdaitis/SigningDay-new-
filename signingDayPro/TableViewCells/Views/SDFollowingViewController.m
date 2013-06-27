@@ -13,6 +13,8 @@
 #import "SDFollowingCell.h"
 #import "SDFollowingService.h"
 #import "SDContentHeaderView.h"
+#import "AFNetworking.h"
+#import "UIImage+Crop.h"
 
 @interface SDFollowingViewController ()
 
@@ -290,13 +292,28 @@
             }
         }
         [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [cell.userImageView cancelImageRequestOperation];
     }
+    
     cell.followButton.tag = indexPath.row;
-    cell.userImageView.image = nil;
     
     User *user = [self.dataArray objectAtIndex:indexPath.row];
     cell.usernameTitle.text = user.name;
-    cell.userImageUrlString = user.avatarUrl;
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
+    [cell.userImageView setImageWithURLRequest:request
+                              placeholderImage:nil
+                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                           dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                               UIImage *anImage = [image imageByScalingAndCroppingForSize:CGSizeMake(48 * [UIScreen mainScreen].scale, 48 * [UIScreen mainScreen].scale)];
+                                               dispatch_async(dispatch_get_main_queue(), ^{
+                                                   cell.userImageView.image = anImage;
+                                               });
+                                           });
+                                       } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                           //
+                                       }];
     
     //check for following
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
