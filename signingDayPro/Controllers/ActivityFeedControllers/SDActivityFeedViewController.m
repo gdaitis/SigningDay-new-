@@ -124,11 +124,15 @@
     
     if ([activityStory.author.avatarUrl length] > 0) {
 //        NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.author.avatarUrl];
+        cell.thumbnailImageView.image = nil;
         [[SDImageService sharedService] getImageWithURLString:activityStory.author.avatarUrl success:^(UIImage *image) {
             if (image) {
                 cell.thumbnailImageView.image = image;
             }
         }];
+    }
+    else {
+        cell.thumbnailImageView.image = nil;
     }
     
     cell.nameLabel.text = @"Celes";
@@ -151,43 +155,38 @@
 {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-    cell.containerView.layer.borderWidth = 1.0f;
-    cell.containerView.layer.cornerRadius = 4.0f;
+//    [cell.contentView setOpaque:YES];
+//    [cell.backgroundView setOpaque:YES];
     
-    cell.likeButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-    cell.likeButtonView.layer.borderWidth = 1.0f;
-    cell.likeButtonView.layer.cornerRadius = 4.0f;
-    cell.likeButtonView.clipsToBounds = YES;
-    [cell.likeButtonView.layer setMasksToBounds:YES];
-    
-    cell.commentButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-    cell.commentButtonView.layer.borderWidth = 1.0f;
-    cell.commentButtonView.layer.cornerRadius = 4.0f;
-    cell.commentButtonView.clipsToBounds = YES;
-    
-    cell.buttonsBackgroundView.layer.borderColor = [[UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f] CGColor];
-    cell.buttonsBackgroundView.layer.borderWidth = 1.0f;
+    UIImage *image = [[UIImage imageNamed:@"strechableBorderedImage.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+
+    cell.likeButtonView.image = image;
+    cell.likeButtonView.backgroundColor = [UIColor clearColor];
+    cell.commentButtonView.image = image;
+    cell.commentButtonView.backgroundColor = [UIColor clearColor];
     
     cell.thumbnailImageView.layer.cornerRadius = 4.0f;
     cell.thumbnailImageView.clipsToBounds = YES;
+    
+    cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
+    cell.containerView.layer.borderWidth = 1.0f;
+    cell.containerView.layer.cornerRadius = 4.0f;
+//
+//    cell.likeButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
+//    cell.likeButtonView.layer.borderWidth = 1.0f;
+//    cell.likeButtonView.layer.cornerRadius = 4.0f;
+//    cell.likeButtonView.clipsToBounds = YES;
+//    [cell.likeButtonView.layer setMasksToBounds:YES];
+//    
+//    cell.commentButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
+//    cell.commentButtonView.layer.borderWidth = 1.0f;
+//    cell.commentButtonView.layer.cornerRadius = 4.0f;
+//    cell.commentButtonView.clipsToBounds = YES;
+//    
+//    cell.buttonsBackgroundView.layer.borderColor = [[UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f] CGColor];
+//    cell.buttonsBackgroundView.layer.borderWidth = 1.0f;
+//    
 }
-
-//- (void)calculateImageAndLabelPositionForButton:(UIButton *)button
-//{
-//    CGSize size = [button.titleLabel.text sizeWithFont:button.titleLabel.font constrainedToSize:CGSizeMake(MAXFLOAT, button.titleLabel.frame.size.height) lineBreakMode:UILineBreakModeWordWrap];
-//    
-//    UIImageView *imageView = (UIImageView *)[button viewWithTag:kButtonImageViewTag];
-//    UILabel *countLabel = (UILabel *)[button viewWithTag:kButtonCommentLabelTag];
-//    
-//    CGRect frame = imageView.frame;
-//    frame.origin.x = button.center.x - size.width/2 - imageView.frame.size.width/2 -5;
-//    imageView.frame = frame;
-//    
-//    frame = countLabel.frame;
-//    frame.origin.x = button.center.x + size.width/2 + 5;
-//    imageView.frame = frame;
-//}
 
 - (void)loadData
 {

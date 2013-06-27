@@ -23,8 +23,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
-@property (weak, nonatomic) IBOutlet UIView *likeButtonView;
-@property (weak, nonatomic) IBOutlet UIView *commentButtonView;
+@property (weak, nonatomic) IBOutlet UIImageView *likeButtonView;
+@property (weak, nonatomic) IBOutlet UIImageView *commentButtonView;
 @property (weak, nonatomic) IBOutlet UILabel *likeTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
