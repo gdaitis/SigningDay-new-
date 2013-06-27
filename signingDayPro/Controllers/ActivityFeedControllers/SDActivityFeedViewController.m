@@ -17,6 +17,7 @@
 #import "SDActivityFeedCellContentView.h"
 #import "SDAPIClient.h"
 #import "SDImageService.h"
+#import "AFNetworking.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -111,7 +112,10 @@
         }
         [self setupCell:cell];
     }
-    
+    else {
+        [cell.thumbnailImageView cancelImageRequestOperation];
+    }
+    cell.thumbnailImageView.image = nil;
     cell.likeButton.tag = indexPath.row;
     cell.commentButton.tag = indexPath.row;
     
@@ -119,20 +123,11 @@
     
     cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likes count]];
     cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.comments count]];
-//    cell.nameLabel.text =activityStory.author.name;
+    cell.nameLabel.text =activityStory.author.name;
     [cell.resizableActivityFeedView setActivityStory:activityStory];
     
     if ([activityStory.author.avatarUrl length] > 0) {
-//        NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.author.avatarUrl];
-        cell.thumbnailImageView.image = nil;
-        [[SDImageService sharedService] getImageWithURLString:activityStory.author.avatarUrl success:^(UIImage *image) {
-            if (image) {
-                cell.thumbnailImageView.image = image;
-            }
-        }];
-    }
-    else {
-        cell.thumbnailImageView.image = nil;
+        [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
     }
     
     cell.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];

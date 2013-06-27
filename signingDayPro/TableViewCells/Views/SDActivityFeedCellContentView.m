@@ -10,6 +10,7 @@
 #import "SDImageService.h"
 #import "ActivityStory.h"
 #import "SDAPIClient.h"
+#import "AFNetworking.h"
 
 @interface SDActivityFeedCellContentView ()
 
@@ -74,6 +75,8 @@
     _contentLabel.frame = frame;
     _contentLabel.text = contentText;
     
+    [_imageView cancelImageRequestOperation];
+    
     if ([activityStory.imagePath length] > 0) {
         
         //calculate position for photo
@@ -83,11 +86,7 @@
         
         _imageView.hidden = NO;
         NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.imagePath];
-        [[SDImageService sharedService] getImageWithURLString:fullUrl success:^(UIImage *image) {
-            if (image) {
-                _imageView.image = image;
-            }
-        }];
+        [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
     }
     else {
         _imageView.hidden = YES;
