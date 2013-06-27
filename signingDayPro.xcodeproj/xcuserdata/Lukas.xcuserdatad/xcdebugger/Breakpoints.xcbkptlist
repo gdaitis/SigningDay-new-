@@ -7,38 +7,12 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "signingDayPro/Controllers/ActivityFeedControllers/SDActivityFeedViewController.m"
-         timestampString = "393947032.927151"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "signingDayPro/TableViewCells/Views/SDActivityFeedCellContentView.m"
-         timestampString = "393946581.208713"
+         timestampString = "394011794.657086"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51"
-         landmarkName = "-setActivityStory:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "signingDayPro/TableViewCells/Views/SDActivityFeedCellContentView.m"
-         timestampString = "393946581.208713"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
          landmarkName = "-recalculateSizeForActivityStory:"
          landmarkType = "5">
       </FileBreakpoint>

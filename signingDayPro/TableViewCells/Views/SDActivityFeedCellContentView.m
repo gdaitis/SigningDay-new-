@@ -7,8 +7,9 @@
 //
 
 #import "SDActivityFeedCellContentView.h"
-
+#import "SDImageService.h"
 #import "ActivityStory.h"
+#import "SDAPIClient.h"
 
 @interface SDActivityFeedCellContentView ()
 
@@ -44,6 +45,8 @@
     //creating imageView if cell will not have image this will be hidden
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 150)];
     self.imageView = imageView;
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    _imageView.clipsToBounds = YES;
     [self addSubview:_imageView];
 }
 
@@ -71,19 +74,25 @@
     _contentLabel.frame = frame;
     _contentLabel.text = contentText;
     
-    //    if (_activityStory.imagePath {
-    if (false) {
+    if ([activityStory.imagePath length] > 0) {
+        
+        //calculate position for photo
+        frame = _imageView.frame;
+        frame.origin.y = _contentLabel.frame.size.height + _contentLabel.frame.origin.y +10/*offset betwen label and photo*/;
+        _imageView.frame = frame;
+        
         _imageView.hidden = NO;
-//        _imageView.image = [self getImageWithPath:imagePath];
+        NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.imagePath];
+        [[SDImageService sharedService] getImageWithURLString:fullUrl success:^(UIImage *image) {
+            if (image) {
+                _imageView.image = image;
+            }
+        }];
     }
     else {
         _imageView.hidden = YES;
         _imageView.image = nil;
     }
-    
-    frame = _imageView.frame;
-    frame.origin.y = _contentLabel.frame.size.height + _contentLabel.frame.origin.y;
-    _imageView.frame = frame;
 }
 
 

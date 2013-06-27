@@ -15,6 +15,8 @@
 #import "SDUtils.h"
 #import "User.h"
 #import "SDActivityFeedCellContentView.h"
+#import "SDAPIClient.h"
+#import "SDImageService.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -77,7 +79,7 @@
     ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
     
     int contentHeight = [SDUtils heightForActivityStory:activityStory];
-    int result = 130/*buttons images etc..*/ + contentHeight;
+    int result = 125/*buttons images etc..*/ + contentHeight;
 
     return result;
 }
@@ -120,6 +122,15 @@
 //    cell.nameLabel.text =activityStory.author.name;
     [cell.resizableActivityFeedView setActivityStory:activityStory];
     
+    if ([activityStory.author.avatarUrl length] > 0) {
+//        NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.author.avatarUrl];
+        [[SDImageService sharedService] getImageWithURLString:activityStory.author.avatarUrl success:^(UIImage *image) {
+            if (image) {
+                cell.thumbnailImageView.image = image;
+            }
+        }];
+    }
+    
     cell.nameLabel.text = @"Celes";
     cell.yearLabel.text = @"- DE, 2014";
     cell.postDateLabel.text = @"4 Minutes ago";
@@ -139,7 +150,6 @@
 - (void)setupCell:(SDActivityFeedCell *)cell
 {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.thumbnailImageView.backgroundColor = [UIColor greenColor];
     
     cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
     cell.containerView.layer.borderWidth = 1.0f;
@@ -160,6 +170,7 @@
     cell.buttonsBackgroundView.layer.borderWidth = 1.0f;
     
     cell.thumbnailImageView.layer.cornerRadius = 4.0f;
+    cell.thumbnailImageView.clipsToBounds = YES;
 }
 
 //- (void)calculateImageAndLabelPositionForButton:(UIButton *)button

@@ -66,12 +66,11 @@
                           constrainedToSize:CGSizeMake(280, CGFLOAT_MAX)
                               lineBreakMode:UILineBreakModeWordWrap];
     
-    //    if (!_activityStory.imagePath {
-    if (true) {
-        result = size.height + 10/*offset*/;
+    if ([activityStory.imagePath length] > 0) {
+        result = size.height + 10/*offset*/ + 150;/*imageView size*/
     }
     else {
-        result = size.height + 10/*offset*/ + 150;/*imageView size*/
+        result = size.height + 10/*offset*/;
     }
     
     return result;
