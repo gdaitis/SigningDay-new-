@@ -16,8 +16,8 @@
 
 @interface SDImageService ()
 
-- (void)downloadAndSaveImageDataObject:(ImageData *)imageData
-                               success:(void (^)(UIImage *image))successBlock;
+- (void)downloadAndSaveImageWithUrlString:(NSString *)urlString
+                                  success:(void (^)(UIImage *image))successBlock;
 - (NSString *)documentsPathForFileName:(NSString *)name;
 
 @end
@@ -38,7 +38,7 @@
 - (void)getImageWithURLString:(NSString *)urlString
                       success:(void (^)(UIImage *image))successBlock
 {
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_context];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     ImageData *imageData = imageData = [ImageData MR_findFirstByAttribute:@"urlString" withValue:urlString inContext:context];
     // Case 1:
     if (!imageData) {
@@ -46,8 +46,8 @@
         imageData.updateDate = [NSDate date];
         imageData.urlString = urlString;
         [context MR_save];
-        [self downloadAndSaveImageDataObject:imageData
-                                     success:successBlock];
+        [self downloadAndSaveImageWithUrlString:imageData.urlString
+                                        success:successBlock];
         return;
     }
     // Case 2:
@@ -56,25 +56,26 @@
     float timePassed = timeInterval / secondsInOneHour;
     if (timePassed > kUpdateIntervalInHours) {
         imageData.updateDate = [NSDate date];
-        [self downloadAndSaveImageDataObject:imageData
-                                     success:successBlock];
+        [context MR_save];
+        [self downloadAndSaveImageWithUrlString:imageData.urlString
+                                        success:successBlock];
         return;
     }
     // Case 3:
-    UIImage *image = [UIImage imageWithData:imageData.fileData];
     if (successBlock)
-        successBlock(image);
+        successBlock(imageData.image);
 }
 
-- (void)downloadAndSaveImageDataObject:(ImageData *)imageData
-                               success:(void (^)(UIImage *image))successBlock
+- (void)downloadAndSaveImageWithUrlString:(NSString *)urlString
+                                  success:(void (^)(UIImage *image))successBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageData.urlString]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request
                                                                                            success:^(UIImage *image) {
                                                                                                NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-                                                                                               NSData *pngData = UIImagePNGRepresentation(image);
-                                                                                               imageData.fileData = pngData;
+                                                                                               ImageData *imageData = [ImageData MR_findFirstByAttribute:@"urlString"
+                                                                                                                                               withValue:urlString];
+                                                                                               imageData.image = image;
                                                                                                [context MR_save];
                                                                                                
                                                                                                if (successBlock) {
