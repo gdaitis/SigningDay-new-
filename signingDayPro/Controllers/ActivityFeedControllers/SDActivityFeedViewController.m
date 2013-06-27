@@ -135,9 +135,9 @@
         cell.thumbnailImageView.image = nil;
     }
     
+    cell.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
     cell.nameLabel.text = @"Celes";
     cell.yearLabel.text = @"- DE, 2014";
-    cell.postDateLabel.text = @"4 Minutes ago";
     
     return cell;
 }

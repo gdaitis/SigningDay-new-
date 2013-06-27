@@ -76,6 +76,85 @@
     return result;
 }
 
-
++ (NSString *)formatedTimeForDate:(NSDate *)date
+{
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    [comps setDay:day];
+//    [comps setMonth:month];
+//    [comps setYear:year];
+//    [comps setHour:hour];
+//    [comps setMinute:minute];
+//    [comps setSecond:second];
+//    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSDate *date = [cal dateFromComponents:comps];
+    
+    NSString *result = nil;
+    
+//    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date toDate:[NSDate date] options:nil];
+    
+    NSLog(@"now = %@",[NSDate date]);
+    NSLog(@"previous = %@",date);
+    
+    NSInteger year = [components year];
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    
+    if (year > 0) {
+        if (year == 1) {
+            result = [NSString stringWithFormat:@"%d year ago",year];
+        }
+        else {
+            result = [NSString stringWithFormat:@"%d years ago",year];
+        }
+    }
+    else {
+        if (month > 0) {
+            if (month == 1) {
+                result = [NSString stringWithFormat:@"%d month ago",month];
+            }
+            else {
+                result = [NSString stringWithFormat:@"%d months ago",month];
+            }
+        }
+        else {
+            if (day > 0) {
+                if (day == 1) {
+                    result = [NSString stringWithFormat:@"%d day ago",day];
+                }
+                else {
+                    result = [NSString stringWithFormat:@"%d days ago",day];
+                }
+            }
+            else {
+                if (hour > 0) {
+                    if (hour == 1) {
+                        result = [NSString stringWithFormat:@"%d hour ago",hour];
+                    }
+                    else {
+                        result = [NSString stringWithFormat:@"%d hours ago",hour];
+                    }
+                }
+                else {
+                    if (minute > 0) {
+                        if (minute == 1) {
+                            result = [NSString stringWithFormat:@"%d minute ago",minute];
+                        }
+                        else {
+                            result = [NSString stringWithFormat:@"%d minutes ago",minute];
+                        }
+                    }
+                    else {
+                        result = [NSString stringWithFormat:@"few seconds ago"];
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
+    
 
 @end
