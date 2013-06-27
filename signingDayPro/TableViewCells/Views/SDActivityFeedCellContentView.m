@@ -37,7 +37,7 @@
 - (void)setupView
 {
     //creating content label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.bounds.size.width-20, self.bounds.size.height-20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.bounds.size.width-20, self.bounds.size.height-20)];
     self.contentLabel = label;
     _contentLabel.font = [UIFont systemFontOfSize:15.0f];
     _contentLabel.numberOfLines = 0;

@@ -80,7 +80,7 @@
     ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
     
     int contentHeight = [SDUtils heightForActivityStory:activityStory];
-    int result = 125/*buttons images etc..*/ + contentHeight;
+    int result = 120/*buttons images etc..*/ + contentHeight;
 
     return result;
 }
@@ -131,7 +131,6 @@
     }
     
     cell.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
-    cell.nameLabel.text = @"Celes";
     cell.yearLabel.text = @"- DE, 2014";
     
     return cell;
@@ -153,8 +152,13 @@
 //    [cell.contentView setOpaque:YES];
 //    [cell.backgroundView setOpaque:YES];
     
-    UIImage *image = [[UIImage imageNamed:@"strechableBorderedImage.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-
+    UIImage *image = [[UIImage imageNamed:@"strechableBorderedImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+//    UIImage *cellBackgroundImage = [[UIImage imageNamed:@"strechableCellBg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:55];
+    UIImage *cellBackgroundImage = [[UIImage imageNamed:@"strechableCellBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 55, 10)];
+    
+    cell.containerView.backgroundColor = [UIColor clearColor];
+    cell.containerView.image = cellBackgroundImage;
+    
     cell.likeButtonView.image = image;
     cell.likeButtonView.backgroundColor = [UIColor clearColor];
     cell.commentButtonView.image = image;
@@ -163,9 +167,9 @@
     cell.thumbnailImageView.layer.cornerRadius = 4.0f;
     cell.thumbnailImageView.clipsToBounds = YES;
     
-    cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-    cell.containerView.layer.borderWidth = 1.0f;
-    cell.containerView.layer.cornerRadius = 4.0f;
+//    cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
+//    cell.containerView.layer.borderWidth = 1.0f;
+//    cell.containerView.layer.cornerRadius = 4.0f;
 //
 //    cell.likeButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
 //    cell.likeButtonView.layer.borderWidth = 1.0f;

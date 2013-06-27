@@ -211,6 +211,8 @@
 		80F301841753A85E00134FF4 /* ToolbarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301741753A85E00134FF4 /* ToolbarBg@2x.png */; };
 		80FA04EA177C461000CE1ED5 /* strechableBorderedImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04E8177C461000CE1ED5 /* strechableBorderedImage.png */; };
 		80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04E9177C461000CE1ED5 /* strechableBorderedImage@2x.png */; };
+		80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04EC177C6F8500CE1ED5 /* strechableCellBg@2x.png */; };
+		80FA04EF177C6F8500CE1ED5 /* strechableCellBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04ED177C6F8500CE1ED5 /* strechableCellBg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -522,6 +524,8 @@
 		80F301741753A85E00134FF4 /* ToolbarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolbarBg@2x.png"; sourceTree = "<group>"; };
 		80FA04E8177C461000CE1ED5 /* strechableBorderedImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strechableBorderedImage.png; sourceTree = "<group>"; };
 		80FA04E9177C461000CE1ED5 /* strechableBorderedImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableBorderedImage@2x.png"; sourceTree = "<group>"; };
+		80FA04EC177C6F8500CE1ED5 /* strechableCellBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableCellBg@2x.png"; sourceTree = "<group>"; };
+		80FA04ED177C6F8500CE1ED5 /* strechableCellBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strechableCellBg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1217,6 +1221,8 @@
 		80F259061773411900D3B85E /* ActivityFeedImages */ = {
 			isa = PBXGroup;
 			children = (
+				80FA04EC177C6F8500CE1ED5 /* strechableCellBg@2x.png */,
+				80FA04ED177C6F8500CE1ED5 /* strechableCellBg.png */,
 				80F259071773411900D3B85E /* commentImage.png */,
 				80F259081773411900D3B85E /* commentImage@2x.png */,
 				80FA04E8177C461000CE1ED5 /* strechableBorderedImage.png */,
@@ -1406,6 +1412,8 @@
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80FA04EA177C461000CE1ED5 /* strechableBorderedImage.png in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
+				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
+				80FA04EF177C6F8500CE1ED5 /* strechableCellBg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
