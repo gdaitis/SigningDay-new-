@@ -10,8 +10,11 @@
 #import "MBProgressHUD.h"
 #import "Master.h"
 #import "SDNavigationController.h"
+#import "IIViewDeckController.h"
 
 @interface SDBaseViewController ()
+
+@property (nonatomic, strong) SDLoginViewController *loginViewController;
 
 @end
 
@@ -69,5 +72,29 @@
     
     return master;
 }
+
+#pragma mark - SDLoginViewController login & delegate methods
+
+- (void)loginViewControllerDidFinishLoggingIn:(SDLoginViewController *)loginViewController
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdatedNotification object:nil];
+    [self.viewDeckController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)showLoginScreen
+{
+    if (!self.loginViewController) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
+        SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        self.loginViewController = loginVC;
+        [_loginViewController setModalPresentationStyle:UIModalPresentationFullScreen];
+        _loginViewController.delegate = self;
+        
+        [self.viewDeckController presentModalViewController:_loginViewController animated:YES];
+    } else if (!(_loginViewController.isViewLoaded && _loginViewController.view.window)) {
+        [self.viewDeckController presentModalViewController:_loginViewController animated:YES];
+    }
+}
+
 
 @end

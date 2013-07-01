@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IIViewDeckController.h"
+#import "SDLoginViewController.h"
 
 @class Master;
 
-@interface SDBaseViewController : UIViewController
+@interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
 
 - (Master *)getMaster;
 - (NSNumber *)getMasterIdentifier;
+
+- (void)showLoginScreen;
 
 - (void)hideProgressHudInView:(UIView *)view;
 - (void)showProgressHudInView:(UIView *)view withText:(NSString *)text;

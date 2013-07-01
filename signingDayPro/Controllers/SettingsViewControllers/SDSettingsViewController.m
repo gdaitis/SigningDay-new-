@@ -7,8 +7,11 @@
 //
 
 #import "SDSettingsViewController.h"
+#import "SDLoginService.h"
 
 @interface SDSettingsViewController ()
+
+- (IBAction)logout:(id)sender;
 
 @end
 
@@ -33,6 +36,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - IBActions
+
+- (IBAction)logout:(id)sender
+{
+    [SDLoginService logout];
+    [self showLoginScreen];
 }
 
 @end

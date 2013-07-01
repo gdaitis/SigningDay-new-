@@ -15,6 +15,9 @@
 - (id)initWithBaseURL:(NSURL *)url;
 
 @end
+
+#warning Using development server
+
 //
 //NSString * const kSDBaseSigningDayURLString = @"https://www.signingday.com/";
 //NSString * const kSDAPIBaseURLString = @"https://www.signingday.com/api.ashx/v2/";

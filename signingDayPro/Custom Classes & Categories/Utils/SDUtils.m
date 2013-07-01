@@ -20,12 +20,9 @@
 + (void)setupCoreDataStack
 {
     if (![self databaseCompatible]) {
-        NSLog(@"Database incompatible");
         [MagicalRecord setupAutoMigratingCoreDataStack];
     }
     else {
-        
-        NSLog(@"Database compatible");
         [MagicalRecord setupCoreDataStack];
     }
 }
@@ -77,19 +74,7 @@
 
 + (NSString *)formatedTimeForDate:(NSDate *)date
 {
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    [comps setDay:day];
-//    [comps setMonth:month];
-//    [comps setYear:year];
-//    [comps setHour:hour];
-//    [comps setMinute:minute];
-//    [comps setSecond:second];
-//    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    NSDate *date = [cal dateFromComponents:comps];
-    
     NSString *result = nil;
-    
-//    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date toDate:[NSDate date] options:nil];
     
     NSLog(@"now = %@",[NSDate date]);

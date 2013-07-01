@@ -24,6 +24,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDBaseViewController.h"
 
 @protocol IIViewDeckControllerDelegate;
 
@@ -59,7 +60,7 @@ typedef enum {
 #define IIViewDeckCenterHiddenIsInteractive(interactivity) ((interactivity) == IIViewDeckCenterHiddenUserInteractive)
 
 
-@interface IIViewDeckController : UIViewController {
+@interface IIViewDeckController : SDBaseViewController {
 @private    
     CGFloat _panOrigin;
     BOOL _viewAppeared;
