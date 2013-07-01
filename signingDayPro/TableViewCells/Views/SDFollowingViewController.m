@@ -331,7 +331,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 48;
+    return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -373,6 +373,10 @@
 
 - (void)followTypeChanged:(UIButton *)btn
 {
+    if ([_searchBar isFirstResponder]) {
+        _searchBar.text = @"";
+        [self.searchDisplayController setActive:NO animated:YES];
+    }
     if (!btn.selected) {
         _userSet = nil;
         [SDFollowingService deleteUnnecessaryUsers];
@@ -386,7 +390,8 @@
             _followersButton.selected = NO;
         }
         btn.selected = YES;
-        [self reloadView];
+        _currentFollowingPage = _currentFollowersPage = _totalFollowings = _totalFollowers = 0;
+        [self updateInfoAndShowActivityIndicator:YES];
     }
 }
 
