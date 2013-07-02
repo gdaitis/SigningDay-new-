@@ -10,6 +10,7 @@
 #import "SDAPIClient.h"
 #import "User.h"
 #import "Master.h"
+#import "SDErrorService.h"
 #import "Conversation.h"
 #import "Message.h"
 #import "AFHTTPRequestOperation.h"
@@ -63,7 +64,7 @@
                                     if (completionBlock)
                                         completionBlock(totalUserCount);
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [SDErrorService handleError:error];
+                                    [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
                                         failureBlock();
                                 }];
@@ -106,7 +107,7 @@
                                     if (completionBlock)
                                         completionBlock(totalUserCount);
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [SDErrorService handleError:error];
+                                    [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
                                         failureBlock();
                                 }];
@@ -130,7 +131,7 @@
                      if (completionBlock)
                          completionBlock();
                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     [SDErrorService handleError:error];
+                     [SDErrorService handleError:error withOperation:operation];
                      if (failureBlock)
                          failureBlock();
                  }];
@@ -150,7 +151,7 @@
                                      if (completionBlock)
                                          completionBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [SDErrorService handleError:error];
+                                     [SDErrorService handleError:error withOperation:operation];
                                      if (failureBlock)
                                          failureBlock();
                                  }];
@@ -193,7 +194,7 @@
                                      if (completionBlock)
                                          completionBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [SDErrorService handleError:error];
+                                     [SDErrorService handleError:error withOperation:operation];
                                      if (failureBlock)
                                          failureBlock();
                                  }];
@@ -244,7 +245,7 @@
                                      if (completionBlock)
                                          completionBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [SDErrorService handleError:error];
+                                     [SDErrorService handleError:error withOperation:operation];
                                      if (failureBlock)
                                          failureBlock();
                                  }];
@@ -267,8 +268,6 @@
             if ([user.conversations count] == 0) {
                 //user doesn't have mutual conversation, and is not being followed or following master user, so it is going to be deleted
                 if (![[user.username lowercaseString] isEqualToString:[username lowercaseString]]) {
-                    NSLog(@"Username = %@",username);
-                    NSLog(@"%@ user got deleted",user.name);
                     //not master user can delete
                     [context deleteObject:user];
                 }

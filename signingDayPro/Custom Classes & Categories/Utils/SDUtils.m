@@ -60,7 +60,7 @@
     }
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(278, CGFLOAT_MAX)
-                              lineBreakMode:UILineBreakModeWordWrap];
+                              lineBreakMode:NSLineBreakByWordWrapping];
     
     if ([activityStory.imagePath length] > 0) {
         result = size.height + 10/*offset*/ + 150;/*imageView size*/

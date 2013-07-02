@@ -78,7 +78,9 @@
 - (void)loginViewControllerDidFinishLoggingIn:(SDLoginViewController *)loginViewController
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdatedNotification object:nil];
-    [self.viewDeckController dismissModalViewControllerAnimated:YES];
+    [self.viewDeckController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)showLoginScreen
@@ -90,9 +92,13 @@
         [_loginViewController setModalPresentationStyle:UIModalPresentationFullScreen];
         _loginViewController.delegate = self;
         
-        [self.viewDeckController presentModalViewController:_loginViewController animated:YES];
+        [self.viewDeckController presentViewController:_loginViewController animated:YES completion:^{
+            
+        }];
     } else if (!(_loginViewController.isViewLoaded && _loginViewController.view.window)) {
-        [self.viewDeckController presentModalViewController:_loginViewController animated:YES];
+        [self.viewDeckController presentViewController:_loginViewController animated:YES completion:^{
+            
+        }];
     }
 }
 

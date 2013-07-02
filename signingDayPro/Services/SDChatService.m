@@ -105,8 +105,7 @@
                                         block(totalConversations);
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    
-                                    [SDErrorService handleError:error];
+                                    [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
                                         failureBlock();
                                 }];
@@ -162,7 +161,7 @@
                                         block(totalMessages);
                                     }
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [SDErrorService handleError:error];
+                                    [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
                                         failureBlock();
                                 }];
@@ -180,7 +179,7 @@
                                      if (completionBlock)
                                          completionBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [SDErrorService handleError:error];
+                                     [SDErrorService handleError:error withOperation:operation];
                                  }];
 }
 
@@ -216,7 +215,7 @@
                                     if (completionBlock)
                                         completionBlock();
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [SDErrorService handleError:error];
+                                    [SDErrorService handleError:error withOperation:operation];
                                 }];
 }
 
@@ -231,7 +230,7 @@
                                      if (completionBlock)
                                          completionBlock(identifier);
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [SDErrorService handleError:error];
+                                     [SDErrorService handleError:error withOperation:operation];
                                  }];
 }
 
@@ -260,7 +259,7 @@
                      if (completionBlock)
                          completionBlock();
                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                     [SDErrorService handleError:error];
+                     [SDErrorService handleError:error withOperation:operation];
                  }];
 }
 
@@ -302,7 +301,7 @@
                                     [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
-                                    [SDErrorService handleError:error];
+                                    [SDErrorService handleError:error withOperation:operation];
                                 }];
 }
 

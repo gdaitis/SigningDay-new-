@@ -490,7 +490,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     
     CGSize size = [message.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13]
                            constrainedToSize:CGSizeMake(kMessageTextWidth, CGFLOAT_MAX)
-                               lineBreakMode:UILineBreakModeWordWrap];
+                               lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat height = size.height + 30 + 13;
     if (height < 68) {
         height = 68;

@@ -165,6 +165,9 @@
     cell.thumbnailImageView.layer.cornerRadius = 4.0f;
     cell.thumbnailImageView.clipsToBounds = YES;
     
+    [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
 //    cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
 //    cell.containerView.layer.borderWidth = 1.0f;
 //    cell.containerView.layer.cornerRadius = 4.0f;
@@ -189,6 +192,19 @@
 {
     self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO];
     [self.tableView reloadData];
+}
+
+
+#pragma mark - like/comment button pressed
+
+- (void)likeButtonPressed:(UIButton *)sender
+{
+    
+}
+
+- (void)commentButtonPressed:(UIButton *)sender
+{
+    
 }
 
 

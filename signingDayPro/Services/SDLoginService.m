@@ -108,7 +108,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                                      
-                                     [SDErrorService handleError:error];
+                                     [SDErrorService handleError:error withOperation:operation];
                                  }];
 }
 

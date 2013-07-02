@@ -62,6 +62,7 @@
     // Do any additional setup after loading the view from its nib.
     
     _controllerType = CONTROLLER_TYPE_FOLLOWERS;
+    _currentFollowersPage = _currentFollowingPage = 0;
     
     SDContentHeaderView *header = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, kBaseToolbarItemViewControllerHeaderHeight)];
     
@@ -220,14 +221,27 @@
         NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate];
         [request setFetchLimit:fetchLimit];
         //set sort descriptor
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
         [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         self.dataArray = [User MR_executeFetchRequest:request];
     } else {
+        //        NSPredicate *usernameSearchPredicate = [NSPredicate predicateWithFormat:@"username contains[cd] %@ OR name contains[cd] %@", searchText, searchText];
+        //        NSArray *predicatesArray = [NSArray arrayWithObjects:masterUsernamePredicate, usernameSearchPredicate, nil];
+        //        NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
+        //        self.searchResults = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:predicate];
+        
+        NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate];
+        [request setFetchLimit:fetchLimit];
+        //set sort descriptor
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+        [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
         NSPredicate *usernameSearchPredicate = [NSPredicate predicateWithFormat:@"username contains[cd] %@ OR name contains[cd] %@", searchText, searchText];
         NSArray *predicatesArray = [NSArray arrayWithObjects:masterUsernamePredicate, usernameSearchPredicate, nil];
         NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
-        self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:predicate];
+        [request setPredicate:predicate];
+        
+        self.dataArray = [User MR_executeFetchRequest:request];
     }
     [self reloadTableView];
 }
@@ -255,6 +269,12 @@
                     }
                 }
             }
+            else {
+                if (_searchActive) {
+                    //search active, we show loading indicator at bottom
+                    result++;
+                }
+            }
         }
     }
     else {
@@ -272,6 +292,12 @@
                     }
                 }
             }
+            else {
+                if (_searchActive) {
+                    //search active, we show loading indicator at bottom
+                    result++;
+                }
+            }
         }
     }
     
@@ -280,53 +306,75 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *followingCellID = @"FollowingCellID";
-    SDFollowingCell *cell = [tableView dequeueReusableCellWithIdentifier:followingCellID];
-    if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDFollowingCell" owner:nil options:nil];
-        for (id currentObject in topLevelObjects) {
-            if ([currentObject isKindOfClass:[UITableViewCell class]]) {
-                cell = (SDFollowingCell *) currentObject;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                break;
+    if (indexPath.row != [self.dataArray count]) {
+        static NSString *followingCellID = @"FollowingCellID";
+        SDFollowingCell *cell = [tableView dequeueReusableCellWithIdentifier:followingCellID];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDFollowingCell" owner:nil options:nil];
+            for (id currentObject in topLevelObjects) {
+                if ([currentObject isKindOfClass:[UITableViewCell class]]) {
+                    cell = (SDFollowingCell *) currentObject;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    break;
+                }
             }
+            [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            [cell.userImageView cancelImageRequestOperation];
         }
-        [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    } else {
-        [cell.userImageView cancelImageRequestOperation];
-    }
-    
-    cell.followButton.tag = indexPath.row;
-    
-    User *user = [self.dataArray objectAtIndex:indexPath.row];
-    cell.usernameTitle.text = user.name;
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
-    [cell.userImageView setImageWithURLRequest:request
-                              placeholderImage:nil
-                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                           dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                               UIImage *anImage = [image imageByScalingAndCroppingForSize:CGSizeMake(48 * [UIScreen mainScreen].scale, 48 * [UIScreen mainScreen].scale)];
-                                               dispatch_async(dispatch_get_main_queue(), ^{
-                                                   cell.userImageView.image = anImage;
+        
+        cell.followButton.tag = indexPath.row;
+        
+        User *user = [self.dataArray objectAtIndex:indexPath.row];
+        cell.usernameTitle.text = user.name;
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
+        [cell.userImageView setImageWithURLRequest:request
+                                  placeholderImage:nil
+                                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                               dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                   UIImage *anImage = [image imageByScalingAndCroppingForSize:CGSizeMake(48 * [UIScreen mainScreen].scale, 48 * [UIScreen mainScreen].scale)];
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       cell.userImageView.image = anImage;
+                                                   });
                                                });
-                                           });
-                                       } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                           //
-                                       }];
-    
-    //check for following
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
-    
-    if ([user.followedBy isEqual:master]) {
-        cell.followButton.selected = YES;
+                                           } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                               //
+                                           }];
+        
+        //check for following
+        NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+        Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+        
+        if ([user.followedBy isEqual:master]) {
+            cell.followButton.selected = YES;
+        }
+        else {
+            cell.followButton.selected = NO;
+        }
+        
+        return cell;
     }
     else {
-        cell.followButton.selected = NO;
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleWhite;
+        
+        if ([_searchBar.text length] > 0) {
+            activityViewStyle = UIActivityIndicatorViewStyleGray;
+        }
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
+        activityView.center = cell.center;
+        [cell addSubview:activityView];
+        [activityView startAnimating];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (!_searchActive) {
+            [self loadMoreData];
+        }
+        
+        return cell;
     }
-    
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -450,6 +498,7 @@
                 [self filterContentForSearchText:_searchBar.text];
             } failureBlock:^{
                 _searchActive = NO;
+                [self reloadTableView];
             }];
         }
     }
@@ -462,6 +511,7 @@
                 [self filterContentForSearchText:_searchBar.text];
             } failureBlock:^{
                 _searchActive = NO;
+                [self reloadTableView];
             }];
         }
     }

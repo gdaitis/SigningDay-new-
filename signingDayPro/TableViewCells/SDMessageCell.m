@@ -43,7 +43,7 @@
     
     self.backgroundView.frame = self.bounds;
     
-    CGSize size = [self.message.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13] constrainedToSize:CGSizeMake(242, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [self.message.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13] constrainedToSize:CGSizeMake(242, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     self.messageTextLabel.frame = CGRectMake(64, 31, size.width + 5, size.height);
     CGFloat height = size.height + 30 + 12;
     if (height < 67) {

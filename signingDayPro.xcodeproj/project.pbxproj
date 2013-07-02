@@ -74,7 +74,7 @@
 		8032F07D1755F98E00C92AAC /* NSManagedObjectModel+MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F0231755F98E00C92AAC /* NSManagedObjectModel+MagicalRecord.m */; };
 		8032F07E1755F98E00C92AAC /* NSPersistentStore+MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F0251755F98E00C92AAC /* NSPersistentStore+MagicalRecord.m */; };
 		8032F07F1755F98E00C92AAC /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F0271755F98E00C92AAC /* NSPersistentStoreCoordinator+MagicalRecord.m */; };
-		8032F0801755F98E00C92AAC /* MagicalRecord+Actions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F02A1755F98E00C92AAC /* MagicalRecord+Actions.m */; };
+		8032F0801755F98E00C92AAC /* MagicalRecord+Actions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F02A1755F98E00C92AAC /* MagicalRecord+Actions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8032F0811755F98E00C92AAC /* MagicalRecord+ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F02C1755F98E00C92AAC /* MagicalRecord+ErrorHandling.m */; };
 		8032F0821755F98E00C92AAC /* MagicalRecord+iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F02E1755F98E00C92AAC /* MagicalRecord+iCloud.m */; };
 		8032F0831755F98E00C92AAC /* MagicalRecord+Options.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F0301755F98E00C92AAC /* MagicalRecord+Options.m */; };
@@ -1613,7 +1613,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "signingDayPro/signingDayPro-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/signingDayPro-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SigningDay/FacebookSDK.framework/Versions/A\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1630,7 +1630,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "signingDayPro/signingDayPro-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/signingDayPro-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SigningDay/FacebookSDK.framework/Versions/A\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

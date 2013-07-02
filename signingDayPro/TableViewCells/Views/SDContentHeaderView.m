@@ -19,7 +19,7 @@
         self.backgroundColor = [UIColor whiteColor];
         
         self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        self.textLabel.textAlignment = UITextAlignmentCenter;
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.textColor = [UIColor blackColor];
         self.textLabel.font = [UIFont boldSystemFontOfSize:15];
         self.textLabel.backgroundColor = [UIColor whiteColor];

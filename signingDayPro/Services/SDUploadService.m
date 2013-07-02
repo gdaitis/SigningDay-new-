@@ -46,7 +46,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     [request setAccount:appDelegate.twitterAccount];
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         if (!responseData) {
-            [SDErrorService handleError:error];
+            [SDErrorService handleError:error withOperation:nil];
         }
         else {
             NSLog(@"Posting to twitter succeeded");
@@ -313,7 +313,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
         if (completionBlock)
             completionBlock();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SDErrorService handleError:error];
+        [SDErrorService handleError:error withOperation:operation];
         [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
     }];
     
