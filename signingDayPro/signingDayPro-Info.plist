@@ -20,7 +20,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.seriouslyinc.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.signingday.ios.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -28,7 +28,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -41,7 +41,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>FacebookAppID</key>
 	<string>638348949509845</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -65,11 +65,11 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0</real>
+				<real>0.0</real>
 				<key>Green</key>
-				<real>0</real>
+				<real>0.0</real>
 				<key>Red</key>
-				<real>0</real>
+				<real>0.0</real>
 			</dict>
 			<key>Translucent</key>
 			<false/>
