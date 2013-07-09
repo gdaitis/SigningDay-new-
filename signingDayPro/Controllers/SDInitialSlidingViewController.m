@@ -10,6 +10,7 @@
 #import "SDLoginService.h"
 #import "SDAPIClient.h"
 #import "SDLoginViewController.h"
+#import "SDLoginViewController.h"
 
 @interface SDInitialSlidingViewController ()
 
@@ -35,5 +36,6 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"])
         [self showLoginScreen];
 }
+
 
 @end

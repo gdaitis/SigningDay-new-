@@ -331,6 +331,58 @@
     [operation start];
 }
 
+
+
+#pragma mark 
+
++ (void)updateLoggedInUserWithCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
+{
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier];
+    
+    NSString *path = [NSString stringWithFormat:@"sd/following.json"];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",[user.identifier intValue]] ,@"Id", nil];
+    
+    [[SDAPIClient sharedClient] postPath:path
+                              parameters:dict
+                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                     
+                                     NSArray *results = [JSON objectForKey:@"Results"];
+                                     NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+                                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
+                                     
+                                     for (NSDictionary *userInfo in results) {
+                                         
+                                         NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
+                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier];
+                                         
+                                         if (!user) {
+                                             user = [User MR_createInContext:context];
+                                             user.identifier = followingsUserIdentifier;
+                                             user.username = [userInfo valueForKey:@"Username"];
+                                         }
+                                         user.master = master;
+                                         user.followedBy = master;
+                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
+                                         user.name = [userInfo valueForKey:@"DisplayName"];
+                                         
+//                                         user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                     }
+                                     [context MR_save];
+                                     
+                                     if (completionBlock)
+                                         completionBlock();
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     [SDErrorService handleError:error withOperation:operation];
+                                     if (failureBlock)
+                                         failureBlock();
+                                 }];
+}
+
+
+
 @end
 
 

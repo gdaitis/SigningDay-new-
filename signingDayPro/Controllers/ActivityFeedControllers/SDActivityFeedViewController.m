@@ -147,11 +147,7 @@
 {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-//    [cell.contentView setOpaque:YES];
-//    [cell.backgroundView setOpaque:YES];
-    
     UIImage *image = [[UIImage imageNamed:@"strechableBorderedImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-//    UIImage *cellBackgroundImage = [[UIImage imageNamed:@"strechableCellBg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:55];
     UIImage *cellBackgroundImage = [[UIImage imageNamed:@"strechableCellBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 55, 10)];
     
     cell.containerView.backgroundColor = [UIColor clearColor];
@@ -167,25 +163,6 @@
     
     [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    cell.containerView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-//    cell.containerView.layer.borderWidth = 1.0f;
-//    cell.containerView.layer.cornerRadius = 4.0f;
-//
-//    cell.likeButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-//    cell.likeButtonView.layer.borderWidth = 1.0f;
-//    cell.likeButtonView.layer.cornerRadius = 4.0f;
-//    cell.likeButtonView.clipsToBounds = YES;
-//    [cell.likeButtonView.layer setMasksToBounds:YES];
-//    
-//    cell.commentButtonView.layer.borderColor = [[UIColor colorWithRed:190.0f/255.0f green:190.0f/255.0f blue:190.0f/255.0f alpha:1.0f] CGColor];
-//    cell.commentButtonView.layer.borderWidth = 1.0f;
-//    cell.commentButtonView.layer.cornerRadius = 4.0f;
-//    cell.commentButtonView.clipsToBounds = YES;
-//    
-//    cell.buttonsBackgroundView.layer.borderColor = [[UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f] CGColor];
-//    cell.buttonsBackgroundView.layer.borderWidth = 1.0f;
-//    
 }
 
 - (void)loadData

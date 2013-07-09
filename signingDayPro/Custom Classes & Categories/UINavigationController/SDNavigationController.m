@@ -310,7 +310,7 @@ typedef enum {
     if (!_followingVC) {
         SDFollowingViewController *sdfollowingVC = [[SDFollowingViewController alloc] init];
         sdfollowingVC.view.frame = self.contentView.bounds;
-        
+        [SDFollowingService removeFollowing:YES andFollowed:YES];
         self.followingVC = sdfollowingVC;
     }
     
@@ -359,7 +359,6 @@ typedef enum {
         [self removeTriangleArrow];
         [_contentView removeFromSuperview];
         _contentView = nil;
-        [SDFollowingService deleteUnnecessaryUsers];
     }];
     [self setToolbarButtons];
 }

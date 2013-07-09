@@ -204,6 +204,7 @@
     if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
         masterUsernamePredicate = [NSPredicate predicateWithFormat:@"following.username like %@", username];
         fetchLimit = (_currentFollowersPage +1) *kMaxItemsPerPage;
+        
     }
     else {
         fetchLimit = (_currentFollowingPage +1) *kMaxItemsPerPage;
@@ -221,14 +222,20 @@
         NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate];
         [request setFetchLimit:fetchLimit];
         //set sort descriptor
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-        [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
+        NSString *sortingKey = nil;
+        if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
+            sortingKey = @"followerRelationshipCreated";
+        }
+        else {
+            sortingKey = @"followingRelationshipCreated";
+        }
+        
+        NSSortDescriptor *followingSortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortingKey ascending:NO selector:@selector(compare:)];
+        [request setSortDescriptors:[NSArray arrayWithObjects:followingSortDescriptor, /*nameSortDescriptor,*/ nil]];
         self.dataArray = [User MR_executeFetchRequest:request];
-    } else {
-        //        NSPredicate *usernameSearchPredicate = [NSPredicate predicateWithFormat:@"username contains[cd] %@ OR name contains[cd] %@", searchText, searchText];
-        //        NSArray *predicatesArray = [NSArray arrayWithObjects:masterUsernamePredicate, usernameSearchPredicate, nil];
-        //        NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
-        //        self.searchResults = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:predicate];
+    }
+    else {
         
         NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate];
         [request setFetchLimit:fetchLimit];
@@ -255,6 +262,7 @@
     int result = [self.dataArray count];
     
     if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
+        
         if ((_currentFollowersPage+1)*kMaxItemsPerPage < _totalFollowers ) {
             if (result > 0)
             {
@@ -427,7 +435,7 @@
     }
     if (!btn.selected) {
         _userSet = nil;
-        [SDFollowingService deleteUnnecessaryUsers];
+//        [SDFollowingService removeFollowing:YES andFollowed:YES];
         
         if ([btn isEqual:_followersButton]) {
             _controllerType = CONTROLLER_TYPE_FOLLOWERS;
@@ -447,13 +455,9 @@
 - (void)reloadTableView
 {
     if ([_searchBar.text length] > 0) {
+        
         //reload searchresultstableview tu update cell
-        for (UITableView *tView in self.view.subviews) {
-            if ([[tView class] isSubclassOfClass:[UITableView class]]) {
-                [tView reloadData];
-                break;
-            }
-        }
+        [_customSearchDisplayController.searchResultsTableView reloadData];
     }
     else {
         [self.tableView reloadData];

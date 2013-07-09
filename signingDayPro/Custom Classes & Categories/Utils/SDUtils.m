@@ -77,9 +77,6 @@
     NSString *result = nil;
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date toDate:[NSDate date] options:nil];
     
-    NSLog(@"now = %@",[NSDate date]);
-    NSLog(@"previous = %@",date);
-    
     NSInteger year = [components year];
     NSInteger month = [components month];
     NSInteger day = [components day];

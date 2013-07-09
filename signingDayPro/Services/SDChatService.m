@@ -94,8 +94,6 @@
                              parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize",[NSString stringWithFormat:@"%d",pageNumber], @"PageIndex", nil]
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     
-                                    NSLog(@"JSON = %@",JSON);
-                                    
                                     if (pageNumber == 0) {
                                         [self markAllConversationsForDeletion];
                                     }

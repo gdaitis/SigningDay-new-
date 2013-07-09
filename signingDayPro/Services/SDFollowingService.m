@@ -10,7 +10,6 @@
 #import "SDAPIClient.h"
 #import "User.h"
 #import "Master.h"
-#import "SDErrorService.h"
 #import "Conversation.h"
 #import "Message.h"
 #import "AFHTTPRequestOperation.h"
@@ -27,7 +26,7 @@
 
 @implementation SDFollowingService
 
-+ (void)getListOfFollowingsForUserWithIdentifier:(NSNumber *)identifier forPage:(int)pageNumber withCompletionBlock:(void (^)(int totalFollowingCount))completionBlock failureBlock:(void (^)(void))failureBlock
++ (void)getAlphabeticallySortedListOfFollowingsForUserWithIdentifier:(NSNumber *)identifier forPage:(int)pageNumber withCompletionBlock:(void (^)(int totalFollowingCount))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"users/%d/following.json", [identifier integerValue]];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize",[NSString stringWithFormat:@"%d",pageNumber], @"PageIndex", nil];
@@ -35,10 +34,10 @@
     [[SDAPIClient sharedClient] getPath:path
                              parameters:dict
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
                                     int totalUserCount = [[JSON valueForKey:@"TotalCount"] intValue];
-                                    NSLog(@"total followings = %d",totalUserCount);
                                     
                                     NSArray *followings = [JSON objectForKey:@"Following"];
                                     NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
@@ -46,18 +45,18 @@
                                     
                                     for (NSDictionary *userInfo in followings) {
                                         NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"Id"];
-                                        
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followingsUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];
-                                            user.identifier = [NSNumber numberWithInt:[[userInfo valueForKey:@"Id"] integerValue]];
+                                            user.identifier = followingsUserIdentifier;
                                             user.username = [userInfo valueForKey:@"Username"];
                                             user.master = master;
                                         }
                                         user.followedBy = master;
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
+                                        
                                     }
                                     [context MR_save];
                                     
@@ -70,7 +69,7 @@
                                 }];
 }
 
-+ (void)getListOfFollowersForUserWithIdentifier:(NSNumber *)identifier forPage:(int)pageNumber withCompletionBlock:(void (^)(int totalFollowerCount))completionBlock failureBlock:(void (^)(void))failureBlock
++ (void)getAlphabeticallySortedListOfFollowersForUserWithIdentifier:(NSNumber *)identifier forPage:(int)pageNumber withCompletionBlock:(void (^)(int totalFollowerCount))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"users/%d/followers.json", [identifier integerValue]];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize",[NSString stringWithFormat:@"%d",pageNumber], @"PageIndex", nil];
@@ -78,23 +77,22 @@
     [[SDAPIClient sharedClient] getPath:path
                              parameters:dict
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
                                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
                                     
-                                    master.followedBy = nil;
                                     int totalUserCount = [[JSON valueForKey:@"TotalCount"] intValue];
-                                    
-                                    NSLog(@"total followers = %d",totalUserCount);
                                     
                                     NSArray *followers = [JSON objectForKey:@"Followers"];
                                     for (NSDictionary *userInfo in followers) {
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"Id"];
+                                        
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followersUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];
-                                            user.identifier = [NSNumber numberWithInt:[[userInfo valueForKey:@"Id"] integerValue]];
+                                            user.identifier = followersUserIdentifier;
                                             user.username = [userInfo valueForKey:@"Username"];
                                             user.master = master;
                                         }
@@ -112,6 +110,110 @@
                                         failureBlock();
                                 }];
 }
+
+#pragma mark custom services
+
++ (void)getListOfFollowingsForUserWithIdentifier:(NSNumber *)identifier forPage:(int)pageNumber withCompletionBlock:(void (^)(int totalFollowingCount))completionBlock failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"sd/following.json"];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[identifier stringValue], @"UserId", @"100", @"MaxRows",[NSString stringWithFormat:@"%d",pageNumber], @"Page", nil];
+    
+    [[SDAPIClient sharedClient] getPath:path
+                             parameters:dict
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    
+                                    int totalUserCount = [[JSON valueForKey:@"TotalCount"] intValue];
+                                    
+                                    NSArray *followings = [JSON objectForKey:@"Results"];
+                                    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+                                    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
+                                    
+                                    for (NSDictionary *userInfo in followings) {
+                                        NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
+                                        NSLog(@"followingsUserIdentifier = %@",followingsUserIdentifier);
+                                        
+                                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followingsUserIdentifier];
+                                        User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
+                                        if (!user) {
+                                            user = [User MR_createInContext:context];
+                                            user.identifier = followingsUserIdentifier;
+                                            user.username = [userInfo valueForKey:@"Username"];
+                                            user.master = master;
+                                        }
+                                        user.followedBy = master;
+                                        user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
+                                        user.name = [userInfo valueForKey:@"DisplayName"];
+                                        
+                                        user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                    }
+                                    [context MR_save];
+                                    
+                                    if (completionBlock)
+                                        completionBlock(totalUserCount);
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    [SDErrorService handleError:error withOperation:operation];
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
+}
+
++ (void)getListOfFollowersForUserWithIdentifier:(NSNumber *)identifier forPage:(int)pageNumber withCompletionBlock:(void (^)(int totalFollowerCount))completionBlock failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"sd/followers.json"];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[identifier stringValue], @"UserId", @"100", @"MaxRows",[NSString stringWithFormat:@"%d",pageNumber], @"Page", nil];
+    
+    [[SDAPIClient sharedClient] getPath:path
+                             parameters:dict
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+                                    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
+                                    
+                                    int totalUserCount = [[JSON valueForKey:@"TotalCount"] intValue];
+                                    
+                                    NSArray *followers = [JSON objectForKey:@"Results"];
+                                    for (NSDictionary *userInfo in followers) {
+                                        NSNumber *followersUserIdentifier = [userInfo valueForKey:@"UserId"];
+                                        NSLog(@"followingsUserIdentifier = %@",followersUserIdentifier);
+                                        
+                                        User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followersUserIdentifier];
+                                        if (!user) {
+                                            user = [User MR_createInContext:context];
+                                            user.identifier = followersUserIdentifier;
+                                            user.username = [userInfo valueForKey:@"Username"];
+                                            user.master = master;
+                                        }
+                                        user.following = master;
+                                        user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
+                                        user.name = [userInfo valueForKey:@"DisplayName"];
+                                        
+                                        //check for follow relationship
+                                        if (![[userInfo valueForKey:@"CanFollow"] boolValue]) {
+                                            //loged in user follows this user
+                                            user.followedBy = master;
+                                        }
+                                        else {
+                                            //not following
+                                            user.followedBy = nil;
+                                        }
+                                        
+                                        user.followerRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                    }
+                                    [context MR_save];
+                                    
+                                    if (completionBlock)
+                                        completionBlock(totalUserCount);
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    [SDErrorService handleError:error withOperation:operation];
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
+}
+
+#pragma mark - follow/unfollow
 
 + (void)unfollowUserWithIdentifier:(NSNumber *)identifier withCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
@@ -188,6 +290,7 @@
                                          user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                          user.name = [userInfo valueForKey:@"DisplayName"];
                                          
+                                         user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
                                      [context MR_save];
                                      
@@ -239,6 +342,7 @@
                                              //not following
                                              user.followedBy = nil;
                                          }
+                                         user.followerRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
                                      [context MR_save];
                                      
@@ -269,6 +373,7 @@
                 //user doesn't have mutual conversation, and is not being followed or following master user, so it is going to be deleted
                 if (![[user.username lowercaseString] isEqualToString:[username lowercaseString]]) {
                     //not master user can delete
+                    NSLog(@"User deleted: %@",user.name);
                     [context deleteObject:user];
                 }
             }
@@ -294,6 +399,32 @@
     }
 }
 
-
++ (NSDate *)dateFromString:(NSString *)dateString
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
+    
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    
+    if (!date) {
+        
+        NSArray *dateFormatterList = [NSArray arrayWithObjects:@"yyyy-MM-dd'T'HH:mm:ss.SSS",
+                                      @"yyyy-MM-dd'T'HH:mm:ss", @"yyyy-MM-dd'T'HH:mm:ss.SS", @"yyyy-MM-dd'T'HH:mm:ss.S", nil];//include all possible dateformats here
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        for (NSString *dateFormatterString in dateFormatterList) {
+            
+            [dateFormatter setDateFormat:dateFormatterString];
+            NSDate *originalDate = [dateFormatter dateFromString:dateString];
+            
+            if (originalDate) {
+                date = originalDate;
+                break;
+            }
+        }
+    }
+    
+    return date;
+}
 
 @end
