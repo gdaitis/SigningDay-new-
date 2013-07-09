@@ -173,7 +173,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     
     NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
-    SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
+    SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     contentHeaderView.textLabel.text = [sortedUsernames componentsJoinedByString:@", "];
     [self.view addSubview:contentHeaderView];
     

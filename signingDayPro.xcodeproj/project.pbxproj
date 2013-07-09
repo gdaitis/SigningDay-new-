@@ -34,6 +34,10 @@
 		8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */; };
 		8013F47E174CF96400BA313B /* SDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47D174CF96400BA313B /* SDBaseViewController.m */; };
 		8013F481174CF9B000BA313B /* SDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F480174CF9B000BA313B /* SDMenuViewController.m */; };
+		80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D35178C272100C24398 /* SDNewConversationViewController.m */; };
+		80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D3D178C281700C24398 /* SDNewConversationCell.m */; };
+		80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80180D3E178C281700C24398 /* SDNewConversationCell.xib */; };
+		80180D46178C3C0C00C24398 /* SDUISearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D45178C3C0C00C24398 /* SDUISearchDisplayController.m */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		8032EFC81755E83300C92AAC /* SearchFieldBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC61755E83300C92AAC /* SearchFieldBg.png */; };
 		8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC71755E83300C92AAC /* SearchFieldBg@2x.png */; };
@@ -254,6 +258,13 @@
 		8013F47D174CF96400BA313B /* SDBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseViewController.m; sourceTree = "<group>"; };
 		8013F47F174CF9B000BA313B /* SDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuViewController.h; sourceTree = "<group>"; };
 		8013F480174CF9B000BA313B /* SDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuViewController.m; sourceTree = "<group>"; };
+		80180D34178C272100C24398 /* SDNewConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNewConversationViewController.h; sourceTree = "<group>"; };
+		80180D35178C272100C24398 /* SDNewConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNewConversationViewController.m; sourceTree = "<group>"; };
+		80180D3C178C281700C24398 /* SDNewConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNewConversationCell.h; sourceTree = "<group>"; };
+		80180D3D178C281700C24398 /* SDNewConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNewConversationCell.m; sourceTree = "<group>"; };
+		80180D3E178C281700C24398 /* SDNewConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNewConversationCell.xib; sourceTree = "<group>"; };
+		80180D44178C3C0C00C24398 /* SDUISearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUISearchDisplayController.h; sourceTree = "<group>"; };
+		80180D45178C3C0C00C24398 /* SDUISearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUISearchDisplayController.m; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
 		8032EFC61755E83300C92AAC /* SearchFieldBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchFieldBg.png; sourceTree = "<group>"; };
@@ -609,10 +620,21 @@
 			children = (
 				809E728517573633004840D3 /* SDMessageViewController.h */,
 				809E728617573633004840D3 /* SDMessageViewController.m */,
+				80180D34178C272100C24398 /* SDNewConversationViewController.h */,
+				80180D35178C272100C24398 /* SDNewConversationViewController.m */,
 				7B736517175F6D0B007A338E /* SDConversationViewController.h */,
 				7B736518175F6D0B007A338E /* SDConversationViewController.m */,
 			);
 			name = Messages;
+			sourceTree = "<group>";
+		};
+		80180D41178C3BF400C24398 /* UISearchDisplayController */ = {
+			isa = PBXGroup;
+			children = (
+				80180D44178C3C0C00C24398 /* SDUISearchDisplayController.h */,
+				80180D45178C3C0C00C24398 /* SDUISearchDisplayController.m */,
+			);
+			path = UISearchDisplayController;
 			sourceTree = "<group>";
 		};
 		80236152174D1B4C00595432 /* UILabel */ = {
@@ -1025,6 +1047,7 @@
 				8032F05D1755F98E00C92AAC /* UIPlaceHolderTextView */,
 				8032F0601755F98E00C92AAC /* Utils */,
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
+				80180D41178C3BF400C24398 /* UISearchDisplayController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
 				80236152174D1B4C00595432 /* UILabel */,
 				805CF3CD1754CAB9004C69E5 /* ViewDeck */,
@@ -1070,6 +1093,9 @@
 				805F725717719BC400BDA30F /* SDActivityFeedCell.h */,
 				805F725817719BC400BDA30F /* SDActivityFeedCell.m */,
 				805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */,
+				80180D3C178C281700C24398 /* SDNewConversationCell.h */,
+				80180D3D178C281700C24398 /* SDNewConversationCell.m */,
+				80180D3E178C281700C24398 /* SDNewConversationCell.xib */,
 				805CF352174E08320046E6A5 /* SDMenuItemCell.h */,
 				805CF353174E08320046E6A5 /* SDMenuItemCell.m */,
 				805CF355174E08500046E6A5 /* SDMenuItemCell.xib */,
@@ -1414,6 +1440,7 @@
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
 				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
 				80FA04EF177C6F8500CE1ED5 /* strechableCellBg.png in Resources */,
+				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,6 +1551,9 @@
 				80630D29177B1736002AA0BC /* User.m in Sources */,
 				7B755488177C574E00CBE6A3 /* ImageToDataTransformer.m in Sources */,
 				7B75548B177C578900CBE6A3 /* ImageData.m in Sources */,
+				80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */,
+				80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */,
+				80180D46178C3C0C00C24398 /* SDUISearchDisplayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

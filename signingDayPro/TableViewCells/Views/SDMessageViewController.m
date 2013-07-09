@@ -242,9 +242,7 @@
 
 - (void)startNewConversation
 {
-//    SDNavigationController *newConversationNavigationController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"NewConversationNavigationController"];
-//    newConversationNavigationController.myDelegate = self;
-//    [self presentModalViewController:newConversationNavigationController animated:YES];
+    [self.delegate didStartNewConversationInMessageViewController:self];
 }
 
 @end

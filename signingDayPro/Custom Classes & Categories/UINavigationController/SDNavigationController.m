@@ -15,6 +15,8 @@
 #import "SDFollowingService.h"
 #import "SDBaseViewController.h"
 
+#import "SDNewConversationViewController.h"
+
 typedef enum {
     BARBUTTONTYPE_NOTIFICATIONS = 0,
     BARBUTTONTYPE_CONVERSATIONS,
@@ -84,7 +86,7 @@ typedef enum {
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationBarHidden = YES;
+//    self.navigationBarHidden = YES;
     _selectedMenuType = BARBUTTONTYPE_NONE;
     _backButtonVisibleIfNeeded = YES;
     
@@ -128,6 +130,7 @@ typedef enum {
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [super pushViewController:viewController animated:animated];
+    [self.view bringSubviewToFront:_topToolBar];
     [self setToolbarButtons];
 }
 
@@ -454,6 +457,15 @@ typedef enum {
     conversationViewController.conversation = conversation;
     [self pushViewController:conversationViewController
                     animated:YES];
+}
+
+- (void)didStartNewConversationInMessageViewController:(SDMessageViewController *)messageViewController
+{
+    [self hideConversationsAndRemoveContentView:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
+                                                         bundle:nil];
+    SDNewConversationViewController *newMessageNavigationController = (SDNewConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"NewConversationViewController"];
+    [self pushViewController:newMessageNavigationController animated:YES];
 }
 
 @end

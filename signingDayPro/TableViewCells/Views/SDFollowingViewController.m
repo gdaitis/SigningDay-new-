@@ -15,6 +15,7 @@
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
 #import "UIImage+Crop.h"
+#import "SDUISearchDisplayController.h"
 
 @interface SDFollowingViewController ()
 
@@ -31,7 +32,7 @@
 @property (nonatomic, assign) int currentFollowingPage;
 
 @property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) UISearchDisplayController *customSearchDisplayController;
+@property (nonatomic, strong) SDUISearchDisplayController *customSearchDisplayController;
 
 - (void)followButtonPressed:(UIButton *)sender;
 
@@ -99,7 +100,7 @@
     _searchBar.delegate = self;
     [_searchBar sizeToFit];
     
-    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
+    SDUISearchDisplayController *searchDisplayController = [[SDUISearchDisplayController alloc]
                                                           initWithSearchBar:_searchBar contentsController:self];
     
     self.customSearchDisplayController = searchDisplayController;

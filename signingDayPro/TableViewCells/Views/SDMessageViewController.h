@@ -17,6 +17,7 @@
 @optional
 
 - (void)messageViewController:(SDMessageViewController *)messageViewController didSelectConversation:(Conversation *)conversation;
+- (void)didStartNewConversationInMessageViewController:(SDMessageViewController *)messageViewController;
 
 @end
 
