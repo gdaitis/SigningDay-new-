@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#import "UIImage+Crop.h"
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "UIImageView+AFNetworking.h"
@@ -117,19 +118,72 @@ static char kAFImageRequestOperationObjectKey;
                 self.image = responseObject;
                 self.af_imageRequestOperation = nil;
             }
-
+            
             if (success) {
                 success(operation.request, operation.response, responseObject);
             }
-
+            
             [[[self class] af_sharedImageCache] cacheImage:responseObject forRequest:urlRequest];
             
-
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             if ([[urlRequest URL] isEqual:[[self.af_imageRequestOperation request] URL]]) {
                 self.af_imageRequestOperation = nil;
             }
 
+            if (failure) {
+                failure(operation.request, operation.response, error);
+            }
+            
+        }];
+        
+        self.af_imageRequestOperation = requestOperation;
+        
+        [[[self class] af_sharedImageRequestOperationQueue] addOperation:self.af_imageRequestOperation];
+    }
+}
+
+// EDITED by Vytautas Gudaitis
+
+- (void)setImageWithURLRequest:(NSURLRequest *)urlRequest
+              placeholderImage:(UIImage *)placeholderImage
+                 cropedForSize:(CGSize)size
+                       success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image))success
+                       failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
+{
+    [self cancelImageRequestOperation];
+    
+    UIImage *cachedImage = [[[self class] af_sharedImageCache] cachedImageForRequest:urlRequest];
+    if (cachedImage) {
+        self.image = cachedImage;
+        self.af_imageRequestOperation = nil;
+        
+        if (success) {
+            success(nil, nil, cachedImage);
+        }
+    } else {
+        self.image = placeholderImage;
+        
+        AFImageRequestOperation *requestOperation = [[[AFImageRequestOperation alloc] initWithRequest:urlRequest] autorelease];
+        [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            UIImage *anImage = [responseObject imageByScalingAndCroppingForSize:CGSizeMake(size.width * [UIScreen mainScreen].scale, size.height * [UIScreen mainScreen].scale)];
+            
+            if ([[urlRequest URL] isEqual:[[self.af_imageRequestOperation request] URL]]) {
+                self.image = anImage;
+                self.af_imageRequestOperation = nil;
+            }
+            
+            if (success) {
+                success(operation.request, operation.response, anImage);
+            }
+            
+            [[[self class] af_sharedImageCache] cacheImage:anImage forRequest:urlRequest];
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            if ([[urlRequest URL] isEqual:[[self.af_imageRequestOperation request] URL]]) {
+                self.af_imageRequestOperation = nil;
+            }
+            
             if (failure) {
                 failure(operation.request, operation.response, error);
             }

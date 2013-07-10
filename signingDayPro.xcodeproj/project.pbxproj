@@ -1052,7 +1052,7 @@
 				7B73652B175F8729007A338E /* Messages */,
 				7B4628911765F35A00091954 /* Followers (-ing) */,
 				80EEF5FC175626C200A7C803 /* LoginViewControllers */,
-				80EEF5DE175614D900A7C803 /* UerProfileViewControllers */,
+				80EEF5DE175614D900A7C803 /* UserProfileViewControllers */,
 				805CF3ED1754EAFD004C69E5 /* SettingsViewControllers */,
 				8013F47F174CF9B000BA313B /* SDMenuViewController.h */,
 				8013F480174CF9B000BA313B /* SDMenuViewController.m */,
@@ -1190,7 +1190,7 @@
 			path = Follow_Unfollow;
 			sourceTree = "<group>";
 		};
-		80EEF5DE175614D900A7C803 /* UerProfileViewControllers */ = {
+		80EEF5DE175614D900A7C803 /* UserProfileViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				80EEF5DF175614D900A7C803 /* SDTestingViewController.h */,
@@ -1198,6 +1198,7 @@
 				80EEF5E1175614D900A7C803 /* SDUserProfileViewController.h */,
 				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
 			);
+			name = UserProfileViewControllers;
 			path = UerProfileViewControllers;
 			sourceTree = "<group>";
 		};
