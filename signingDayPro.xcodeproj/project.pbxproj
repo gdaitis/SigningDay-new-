@@ -37,7 +37,6 @@
 		80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D35178C272100C24398 /* SDNewConversationViewController.m */; };
 		80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D3D178C281700C24398 /* SDNewConversationCell.m */; };
 		80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80180D3E178C281700C24398 /* SDNewConversationCell.xib */; };
-		80180D46178C3C0C00C24398 /* SDUISearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D45178C3C0C00C24398 /* SDUISearchDisplayController.m */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		8032EFC81755E83300C92AAC /* SearchFieldBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC61755E83300C92AAC /* SearchFieldBg.png */; };
 		8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC71755E83300C92AAC /* SearchFieldBg@2x.png */; };
@@ -263,8 +262,6 @@
 		80180D3C178C281700C24398 /* SDNewConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNewConversationCell.h; sourceTree = "<group>"; };
 		80180D3D178C281700C24398 /* SDNewConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNewConversationCell.m; sourceTree = "<group>"; };
 		80180D3E178C281700C24398 /* SDNewConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNewConversationCell.xib; sourceTree = "<group>"; };
-		80180D44178C3C0C00C24398 /* SDUISearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUISearchDisplayController.h; sourceTree = "<group>"; };
-		80180D45178C3C0C00C24398 /* SDUISearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUISearchDisplayController.m; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
 		8032EFC61755E83300C92AAC /* SearchFieldBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchFieldBg.png; sourceTree = "<group>"; };
@@ -626,15 +623,6 @@
 				7B736518175F6D0B007A338E /* SDConversationViewController.m */,
 			);
 			name = Messages;
-			sourceTree = "<group>";
-		};
-		80180D41178C3BF400C24398 /* UISearchDisplayController */ = {
-			isa = PBXGroup;
-			children = (
-				80180D44178C3C0C00C24398 /* SDUISearchDisplayController.h */,
-				80180D45178C3C0C00C24398 /* SDUISearchDisplayController.m */,
-			);
-			path = UISearchDisplayController;
 			sourceTree = "<group>";
 		};
 		80236152174D1B4C00595432 /* UILabel */ = {
@@ -1047,7 +1035,6 @@
 				8032F05D1755F98E00C92AAC /* UIPlaceHolderTextView */,
 				8032F0601755F98E00C92AAC /* Utils */,
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
-				80180D41178C3BF400C24398 /* UISearchDisplayController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
 				80236152174D1B4C00595432 /* UILabel */,
 				805CF3CD1754CAB9004C69E5 /* ViewDeck */,
@@ -1553,7 +1540,6 @@
 				7B75548B177C578900CBE6A3 /* ImageData.m in Sources */,
 				80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */,
 				80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */,
-				80180D46178C3C0C00C24398 /* SDUISearchDisplayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

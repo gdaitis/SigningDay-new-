@@ -187,11 +187,13 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     
     //reset messages
     _currentMessagesPage = _totalMessages = 0;
-    if (self.firstLoad) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        hud.labelText = @"Updating chat";
+    if (!_isNewConversation) {
+        if (self.firstLoad) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            hud.labelText = @"Updating chat";
+        }
+        [self checkServer];
     }
-    [self checkServer];
 }
 
 - (void)viewDidAppear:(BOOL)animated

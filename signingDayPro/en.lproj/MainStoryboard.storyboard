@@ -24,11 +24,11 @@
             <objects>
                 <viewController storyboardIdentifier="Menu" id="WFU-tw-UOZ" customClass="SDMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qta-qn-Dmz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" id="b4C-UL-YKW" customClass="SDTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.080976277372262775" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search..." id="vpB-LF-EwZ" customClass="SDSearchBar">
@@ -45,7 +45,7 @@
                                 </connections>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ztx-Gc-6ey">
-                                <rect key="frame" x="0.0" y="43" width="320" height="462"/>
+                                <rect key="frame" x="0.0" y="43" width="320" height="506"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -62,7 +62,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="keyboardHiddingButton" destination="ztx-Gc-6ey" id="qPq-NX-96w"/>
                         <outlet property="searchBar" destination="vpB-LF-EwZ" id="21v-eX-kuT"/>
@@ -93,32 +92,6 @@
             <point key="canvasLocation" x="-720" y="-287"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="IIViewDeckController" superclassName="SDBaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
-        </class>
-        <class className="SDBaseViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseViewController.h"/>
-        </class>
-        <class className="SDInitialSlidingViewController" superclassName="IIViewDeckController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDInitialSlidingViewController.h"/>
-        </class>
-        <class className="SDMenuViewController" superclassName="SDBaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="hideKeyboard:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="keyboardHiddingButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="SDSearchBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="SDTableView"/>
-            </relationships>
-        </class>
-        <class className="SDSearchBar" superclassName="UISearchBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSearchBar.h"/>
-        </class>
-        <class className="SDTableView" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDTableView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

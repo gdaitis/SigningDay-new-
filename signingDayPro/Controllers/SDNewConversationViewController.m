@@ -17,6 +17,7 @@
 #import "SDNewConversationCell.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
+#import "SDConversationViewController.h"
 #import "SDFollowingService.h"
 
 @interface SDNewConversationViewController ()
@@ -73,9 +74,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     [self updateInfoAndShowActivityIndicator:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -342,6 +348,27 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SDFollowingCell" bundle:nil] forCellReuseIdentifier:@"FollowingCellID"];
+}
+
+#pragma mark - Seque transitions
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqual:@"ConversationViewControllerId"]) {
+        
+        NSIndexPath * indexPath = [self.tableView indexPathForCell:sender];
+        
+        //Create conversation for user at indexPath
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        Conversation *conversation = [Conversation MR_createInContext:context];
+        User *selectedUser = [self.searchResults objectAtIndex:indexPath.row];
+        [conversation addUsersObject:selectedUser];
+        [context MR_save];
+        
+        SDConversationViewController *conversationViewController = (SDConversationViewController *)[segue destinationViewController];
+        conversationViewController.conversation = conversation;
+        conversationViewController.isNewConversation = YES;
+    }
 }
 
 @end

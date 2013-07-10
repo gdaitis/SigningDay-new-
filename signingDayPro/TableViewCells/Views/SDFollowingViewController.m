@@ -15,7 +15,6 @@
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
 #import "UIImage+Crop.h"
-#import "SDUISearchDisplayController.h"
 
 @interface SDFollowingViewController ()
 
@@ -32,7 +31,7 @@
 @property (nonatomic, assign) int currentFollowingPage;
 
 @property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) SDUISearchDisplayController *customSearchDisplayController;
+@property (nonatomic, strong) UISearchDisplayController *customSearchDisplayController;
 
 - (void)followButtonPressed:(UIButton *)sender;
 
@@ -100,7 +99,7 @@
     _searchBar.delegate = self;
     [_searchBar sizeToFit];
     
-    SDUISearchDisplayController *searchDisplayController = [[SDUISearchDisplayController alloc]
+    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
                                                           initWithSearchBar:_searchBar contentsController:self];
     
     self.customSearchDisplayController = searchDisplayController;
@@ -430,14 +429,12 @@
 
 - (void)followTypeChanged:(UIButton *)btn
 {
-    if ([_searchBar isFirstResponder]) {
-        _searchBar.text = @"";
-        [self.searchDisplayController setActive:NO animated:YES];
-    }
+    _searchBar.text = @"";
+    [self.searchDisplayController setActive:NO animated:YES];
+    
     if (!btn.selected) {
-        _userSet = nil;
-//        [SDFollowingService removeFollowing:YES andFollowed:YES];
         
+        _userSet = nil;
         if ([btn isEqual:_followersButton]) {
             _controllerType = CONTROLLER_TYPE_FOLLOWERS;
             _followingButton.selected = NO;
