@@ -17,7 +17,7 @@
 
 @end
 
-@interface SDNewConversationViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface SDNewConversationViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) id <SDNewConversationViewControllerDelegate> delegate;
 

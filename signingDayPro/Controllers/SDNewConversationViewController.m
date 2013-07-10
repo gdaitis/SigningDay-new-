@@ -24,6 +24,7 @@
 
 @property (nonatomic, strong) NSArray *searchResults;
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) BOOL searchActive;
 
 //Pagination properties to keep track of the current page ant etc.
@@ -39,15 +40,6 @@
 @synthesize searchResults = _searchResults;
 @synthesize searchBar     = _searchBar;
 @synthesize delegate = _delegate;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -295,18 +287,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 48;
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    User *user = [self.searchResults objectAtIndex:indexPath.row];
-    [self.delegate newConversationViewController:self didFinishPickingUser:user];
 }
 
 #pragma mark - UISearchDisplayController delegate methods

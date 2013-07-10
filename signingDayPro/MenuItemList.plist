@@ -16,13 +16,7 @@
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>TEAMS</string>
-		<key>Image</key>
-		<string>TeamsIcon.png</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>COACHES</string>
+		<string>COLLEGES</string>
 		<key>Image</key>
 		<string>CoachesIcon.png</string>
 	</dict>

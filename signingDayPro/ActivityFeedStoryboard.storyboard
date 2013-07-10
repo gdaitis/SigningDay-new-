@@ -14,9 +14,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CnO-3j-Spc">
                                 <color key="backgroundColor" white="0.90279995437956206" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="548" id="nO4-qe-zvE"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="Sbr-vI-A1i" id="5ny-qu-2mb"/>
                                     <outlet property="delegate" destination="Sbr-vI-A1i" id="k6t-me-seD"/>
@@ -25,9 +22,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.9022011861" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CnO-3j-Spc" firstAttribute="top" secondItem="rA9-DB-uaR" secondAttribute="top" constant="44" id="3zg-wh-8J2"/>
                             <constraint firstItem="CnO-3j-Spc" firstAttribute="leading" secondItem="rA9-DB-uaR" secondAttribute="leading" type="default" id="FqJ-iA-T4A"/>
+                            <constraint firstAttribute="bottom" secondItem="CnO-3j-Spc" secondAttribute="bottom" type="user" id="GpP-Gs-HS9"/>
                             <constraint firstItem="CnO-3j-Spc" firstAttribute="trailing" secondItem="rA9-DB-uaR" secondAttribute="trailing" type="default" id="bUc-bM-IKV"/>
+                            <constraint firstItem="CnO-3j-Spc" firstAttribute="top" secondItem="rA9-DB-uaR" secondAttribute="top" constant="44" type="user" id="zbK-fq-w76"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U1O-Kv-Dbj"/>
