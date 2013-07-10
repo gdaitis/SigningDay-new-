@@ -254,6 +254,7 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
         [cell.userImageView setImageWithURLRequest:request
                                   placeholderImage:nil
+                                     cropedForSize:CGSizeMake(50, 50)
                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                                SDNewConversationCell *myCell = (SDNewConversationCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                                                myCell.userImageView.image = image;

@@ -71,6 +71,14 @@
  */
 - (void)cancelImageRequestOperation;
 
+// EDITED by Vytautas Gudaitis
+
+- (void)setImageWithURLRequest:(NSURLRequest *)urlRequest
+              placeholderImage:(UIImage *)placeholderImage
+                 cropedForSize:(CGSize)size
+                       success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image))success
+                       failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;
+
 @end
 
 #endif

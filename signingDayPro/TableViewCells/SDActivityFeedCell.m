@@ -8,6 +8,7 @@
 
 #import "SDActivityFeedCell.h"
 #import "SDActivityFeedCellContentView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDActivityFeedCell ()
 
@@ -36,6 +37,25 @@
         
         [self.contentView addConstraint:contentViewConstraint];
     }
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UIImage *image = [[UIImage imageNamed:@"strechableBorderedImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    UIImage *cellBackgroundImage = [[UIImage imageNamed:@"strechableCellBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 55, 10)];
+    
+    self.containerView.backgroundColor = [UIColor clearColor];
+    self.containerView.image = cellBackgroundImage;
+    
+    self.likeButtonView.image = image;
+    self.likeButtonView.backgroundColor = [UIColor clearColor];
+    self.commentButtonView.image = image;
+    self.commentButtonView.backgroundColor = [UIColor clearColor];
+    
+    self.thumbnailImageView.layer.cornerRadius = 4.0f;
+    self.thumbnailImageView.clipsToBounds = YES;
+    
+    [self.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -54,14 +74,16 @@
     // Configure the view for the selected state
 }
 
-//-(void)updateConstraints{
-//    [super updateConstraints];
-//    // add your constraints
-//}
+#pragma mark - like/comment button pressed
 
-//- (void)prepareForReuse
-//{
-//    [self setNeedsUpdateConstraints];
-//}
+- (void)likeButtonPressed:(UIButton *)sender
+{
+    
+}
+
+- (void)commentButtonPressed:(UIButton *)sender
+{
+    
+}
 
 @end

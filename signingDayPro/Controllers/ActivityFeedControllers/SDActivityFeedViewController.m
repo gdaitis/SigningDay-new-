@@ -7,7 +7,6 @@
 //
 
 #import "SDActivityFeedViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "SDActivityFeedCell.h"
 #import "SDActivityFeedButtonView.h"
 #import "ActivityStory.h"
@@ -109,7 +108,7 @@
                 break;
             }
         }
-        [self setupCell:cell];
+        //[self setupCell:cell];
     } else {
         [cell.thumbnailImageView cancelImageRequestOperation];
     }
@@ -141,48 +140,10 @@
     
 }
 
-#pragma mark - image positioning &cell setup
-
-- (void)setupCell:(SDActivityFeedCell *)cell
-{
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    UIImage *image = [[UIImage imageNamed:@"strechableBorderedImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    UIImage *cellBackgroundImage = [[UIImage imageNamed:@"strechableCellBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 55, 10)];
-    
-    cell.containerView.backgroundColor = [UIColor clearColor];
-    cell.containerView.image = cellBackgroundImage;
-    
-    cell.likeButtonView.image = image;
-    cell.likeButtonView.backgroundColor = [UIColor clearColor];
-    cell.commentButtonView.image = image;
-    cell.commentButtonView.backgroundColor = [UIColor clearColor];
-    
-    cell.thumbnailImageView.layer.cornerRadius = 4.0f;
-    cell.thumbnailImageView.clipsToBounds = YES;
-    
-    [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-}
-
 - (void)loadData
 {
     self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO];
     [self.tableView reloadData];
 }
-
-
-#pragma mark - like/comment button pressed
-
-- (void)likeButtonPressed:(UIButton *)sender
-{
-    
-}
-
-- (void)commentButtonPressed:(UIButton *)sender
-{
-    
-}
-
 
 @end
