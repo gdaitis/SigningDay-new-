@@ -130,6 +130,9 @@
 		805CF3EC1754E870004C69E5 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805CF3EB1754E870004C69E5 /* SettingsStoryboard.storyboard */; };
 		805CF3F21754EB1A004C69E5 /* SDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */; };
 		805CF3F81754FF59004C69E5 /* SDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 805CF3F71754FF59004C69E5 /* SDTableView.m */; };
+		805F6874178EFBF100ED186B /* SDTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F6872178EFBF100ED186B /* SDTermsViewController.m */; };
+		805F6877178F00B200ED186B /* SDSharingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F6876178F00B200ED186B /* SDSharingSettingsViewController.m */; };
+		805F687A178F014000ED186B /* SDEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F6879178F014000ED186B /* SDEditProfileViewController.m */; };
 		805F725917719BC400BDA30F /* SDActivityFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F725817719BC400BDA30F /* SDActivityFeedCell.m */; };
 		805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */; };
 		805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */; };
@@ -142,6 +145,8 @@
 		80630D23177B1736002AA0BC /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D22177B1736002AA0BC /* Message.m */; };
 		80630D26177B1736002AA0BC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D25177B1736002AA0BC /* Comment.m */; };
 		80630D29177B1736002AA0BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D28177B1736002AA0BC /* User.m */; };
+		808CEA9D178E937A0098AD5D /* SDCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CEA9A178E937A0098AD5D /* SDCameraOverlayView.m */; };
+		808CEA9E178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CEA9C178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m */; };
 		809E728817573633004840D3 /* SDMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728617573633004840D3 /* SDMessageViewController.m */; };
 		809E728D175738DE004840D3 /* SDBaseToolbarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */; };
 		809E728E175738DE004840D3 /* SDBaseToolbarItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */; };
@@ -426,6 +431,12 @@
 		805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSettingsViewController.m; sourceTree = "<group>"; };
 		805CF3F61754FF59004C69E5 /* SDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTableView.h; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.h"; sourceTree = "<group>"; };
 		805CF3F71754FF59004C69E5 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTableView.m; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.m"; sourceTree = "<group>"; };
+		805F6871178EFBF100ED186B /* SDTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTermsViewController.h; sourceTree = "<group>"; };
+		805F6872178EFBF100ED186B /* SDTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTermsViewController.m; sourceTree = "<group>"; };
+		805F6875178F00B200ED186B /* SDSharingSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSharingSettingsViewController.h; sourceTree = "<group>"; };
+		805F6876178F00B200ED186B /* SDSharingSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSharingSettingsViewController.m; sourceTree = "<group>"; };
+		805F6878178F014000ED186B /* SDEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEditProfileViewController.h; sourceTree = "<group>"; };
+		805F6879178F014000ED186B /* SDEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEditProfileViewController.m; sourceTree = "<group>"; };
 		805F725717719BC400BDA30F /* SDActivityFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedCell.h; sourceTree = "<group>"; };
 		805F725817719BC400BDA30F /* SDActivityFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedCell.m; sourceTree = "<group>"; };
 		805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityFeedCell.xib; sourceTree = "<group>"; };
@@ -448,6 +459,10 @@
 		80630D25177B1736002AA0BC /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		80630D27177B1736002AA0BC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		80630D28177B1736002AA0BC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		808CEA99178E937A0098AD5D /* SDCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCameraOverlayView.h; sourceTree = "<group>"; };
+		808CEA9A178E937A0098AD5D /* SDCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCameraOverlayView.m; sourceTree = "<group>"; };
+		808CEA9B178E937A0098AD5D /* SDSimplifiedCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSimplifiedCameraOverlayView.h; sourceTree = "<group>"; };
+		808CEA9C178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSimplifiedCameraOverlayView.m; sourceTree = "<group>"; };
 		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMessageViewController.h; path = ../TableViewCells/Views/SDMessageViewController.h; sourceTree = "<group>"; };
 		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMessageViewController.m; path = ../TableViewCells/Views/SDMessageViewController.m; sourceTree = "<group>"; };
 		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDBaseToolbarItemViewController.h; path = ../TableViewCells/Views/SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
@@ -508,8 +523,8 @@
 		80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDForgotPasswordViewController.m; sourceTree = "<group>"; };
 		80EEF5FF175626C200A7C803 /* SDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewController.h; sourceTree = "<group>"; };
 		80EEF600175626C200A7C803 /* SDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginViewController.m; sourceTree = "<group>"; };
-		80EEF603175627B400A7C803 /* SDCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommonWebViewController.h; sourceTree = "<group>"; };
-		80EEF604175627B400A7C803 /* SDCommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommonWebViewController.m; sourceTree = "<group>"; };
+		80EEF603175627B400A7C803 /* SDCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDCommonWebViewController.h; path = ../LoginViewControllers/SDCommonWebViewController.h; sourceTree = "<group>"; };
+		80EEF604175627B400A7C803 /* SDCommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDCommonWebViewController.m; path = ../LoginViewControllers/SDCommonWebViewController.m; sourceTree = "<group>"; };
 		80F259071773411900D3B85E /* commentImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentImage.png; sourceTree = "<group>"; };
 		80F259081773411900D3B85E /* commentImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "commentImage@2x.png"; sourceTree = "<group>"; };
 		80F259091773411900D3B85E /* LikeImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LikeImage.png; sourceTree = "<group>"; };
@@ -1054,6 +1069,7 @@
 				80EEF5FC175626C200A7C803 /* LoginViewControllers */,
 				80EEF5DE175614D900A7C803 /* UserProfileViewControllers */,
 				805CF3ED1754EAFD004C69E5 /* SettingsViewControllers */,
+				805F686E178EFBF100ED186B /* WebViewControllers */,
 				8013F47F174CF9B000BA313B /* SDMenuViewController.h */,
 				8013F480174CF9B000BA313B /* SDMenuViewController.m */,
 				8013F479174CF6E800BA313B /* SDInitialSlidingViewController.h */,
@@ -1111,8 +1127,23 @@
 			children = (
 				805CF3F01754EB1A004C69E5 /* SDSettingsViewController.h */,
 				805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */,
+				805F6875178F00B200ED186B /* SDSharingSettingsViewController.h */,
+				805F6876178F00B200ED186B /* SDSharingSettingsViewController.m */,
+				805F6878178F014000ED186B /* SDEditProfileViewController.h */,
+				805F6879178F014000ED186B /* SDEditProfileViewController.m */,
 			);
 			path = SettingsViewControllers;
+			sourceTree = "<group>";
+		};
+		805F686E178EFBF100ED186B /* WebViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				80EEF603175627B400A7C803 /* SDCommonWebViewController.h */,
+				80EEF604175627B400A7C803 /* SDCommonWebViewController.m */,
+				805F6871178EFBF100ED186B /* SDTermsViewController.h */,
+				805F6872178EFBF100ED186B /* SDTermsViewController.m */,
+			);
+			path = WebViewControllers;
 			sourceTree = "<group>";
 		};
 		805F725F1771AE9C00BDA30F /* ActivityFeedControllers */ = {
@@ -1124,9 +1155,21 @@
 			path = ActivityFeedControllers;
 			sourceTree = "<group>";
 		};
+		808CEA98178E937A0098AD5D /* CameraViews */ = {
+			isa = PBXGroup;
+			children = (
+				808CEA99178E937A0098AD5D /* SDCameraOverlayView.h */,
+				808CEA9A178E937A0098AD5D /* SDCameraOverlayView.m */,
+				808CEA9B178E937A0098AD5D /* SDSimplifiedCameraOverlayView.h */,
+				808CEA9C178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m */,
+			);
+			path = CameraViews;
+			sourceTree = "<group>";
+		};
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				808CEA98178E937A0098AD5D /* CameraViews */,
 				7B6B1EC11760C86900BC878A /* SDContentHeaderView.h */,
 				7B6B1EC21760C86900BC878A /* SDContentHeaderView.m */,
 				80CE109B1779788A005D2281 /* SDActivityFeedButtonView.h */,
@@ -1222,8 +1265,6 @@
 		80EEF5FC175626C200A7C803 /* LoginViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				80EEF603175627B400A7C803 /* SDCommonWebViewController.h */,
-				80EEF604175627B400A7C803 /* SDCommonWebViewController.m */,
 				80EEF5FD175626C200A7C803 /* SDForgotPasswordViewController.h */,
 				80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */,
 				80EEF5FF175626C200A7C803 /* SDLoginViewController.h */,
@@ -1541,6 +1582,11 @@
 				7B75548B177C578900CBE6A3 /* ImageData.m in Sources */,
 				80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */,
 				80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */,
+				808CEA9D178E937A0098AD5D /* SDCameraOverlayView.m in Sources */,
+				808CEA9E178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m in Sources */,
+				805F6874178EFBF100ED186B /* SDTermsViewController.m in Sources */,
+				805F6877178F00B200ED186B /* SDSharingSettingsViewController.m in Sources */,
+				805F687A178F014000ED186B /* SDEditProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

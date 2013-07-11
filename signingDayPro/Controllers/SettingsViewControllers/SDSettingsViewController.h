@@ -1,14 +1,16 @@
 //
 //  SDSettingsViewController.h
-//  signingDayPro
+//  SigningDay
 //
-//  Created by Lukas Kekys on 5/28/13.
-//  Copyright (c) 2013 Seriously inc. All rights reserved.
+//  Created by Vytautas Gudaitis on 7/26/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
-@interface SDSettingsViewController : SDBaseViewController
+@class SDSettingsViewController;
+
+@interface SDSettingsViewController : SDBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
 @end
