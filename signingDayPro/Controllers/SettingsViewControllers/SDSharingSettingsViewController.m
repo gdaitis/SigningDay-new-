@@ -12,6 +12,7 @@
 #import "Master.h"
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDSharingSettingsViewController ()
 
@@ -38,7 +39,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:140.0f/255.0f green:140.0f/255.0f blue:140.0f/255.0f alpha:1];
+    self.tableView.backgroundColor = kBaseBackgroundColor;
     
     UIImage *image = [UIImage imageNamed:@"back_nav_button.png"];
     CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
@@ -49,12 +50,16 @@
     self.navigationItem.leftBarButtonItem = barButton;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
 #pragma mark - Table view delegate and data source methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+{   
     SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     if (indexPath.row == 0) { // Facebook
@@ -136,26 +141,45 @@
                                       reuseIdentifier:CellIdentifier];
     }
     
+    //rounding selected cell corners
+    cell.selectedBackgroundView = nil;
+    UIView *cellSelectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(1, 0, 300, cell.frame.size.height)];
+    cellSelectedBackgroundView.backgroundColor = kBaseSelectedCellColor;
+    CAShapeLayer * maskLayer = [CAShapeLayer layer];
+    
+    
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
     
     if (indexPath.row == 0) { // Facebook
-        cell.textLabel.text = @"Facebook";
         
+        // round top corners
+        maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){8, 8}].CGPath;
+        
+        
+        cell.textLabel.text = @"Facebook";
         BOOL facebook = [master.facebookSharingOn boolValue];
         if (facebook)
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         else
             cell.accessoryType = UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) { // Twitter
-        cell.textLabel.text = @"Twitter";
+        
+        //round bottom corners
+        maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii: (CGSize){8, 8}].CGPath;
 
+        
+        cell.textLabel.text = @"Twitter";
         BOOL twitter = [master.twitterSharingOn boolValue];
         if (twitter)
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         else
             cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
+    //assigning selected rounded view to cell
+    cellSelectedBackgroundView.layer.mask = maskLayer;
+    cell.selectedBackgroundView = cellSelectedBackgroundView;
     
     return cell;
 }

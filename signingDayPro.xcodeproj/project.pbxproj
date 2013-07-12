@@ -38,6 +38,10 @@
 		80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D3D178C281700C24398 /* SDNewConversationCell.m */; };
 		80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80180D3E178C281700C24398 /* SDNewConversationCell.xib */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
+		80270421178FDC8000C8F872 /* submit_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 8027041F178FDC8000C8F872 /* submit_button.png */; };
+		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
+		80270425178FE39B00C8F872 /* sign_out_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270423178FE39B00C8F872 /* sign_out_button.png */; };
+		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
 		8032EFC81755E83300C92AAC /* SearchFieldBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC61755E83300C92AAC /* SearchFieldBg.png */; };
 		8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC71755E83300C92AAC /* SearchFieldBg@2x.png */; };
 		8032EFDF1755EEDE00C92AAC /* SDAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032EFD01755EEDE00C92AAC /* SDAPIClient.m */; };
@@ -269,6 +273,10 @@
 		80180D3E178C281700C24398 /* SDNewConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNewConversationCell.xib; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
+		8027041F178FDC8000C8F872 /* submit_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_button.png; sourceTree = "<group>"; };
+		80270420178FDC8000C8F872 /* submit_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit_button@2x.png"; sourceTree = "<group>"; };
+		80270423178FE39B00C8F872 /* sign_out_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign_out_button.png; sourceTree = "<group>"; };
+		80270424178FE39B00C8F872 /* sign_out_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign_out_button@2x.png"; sourceTree = "<group>"; };
 		8032EFC61755E83300C92AAC /* SearchFieldBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchFieldBg.png; sourceTree = "<group>"; };
 		8032EFC71755E83300C92AAC /* SearchFieldBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchFieldBg@2x.png"; sourceTree = "<group>"; };
 		8032EFCF1755EEDE00C92AAC /* SDAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAPIClient.h; sourceTree = "<group>"; };
@@ -1250,6 +1258,10 @@
 			children = (
 				80EEF5F81756251B00A7C803 /* forgot_password.png */,
 				80EEF5F91756251B00A7C803 /* forgot_password@2x.png */,
+				8027041F178FDC8000C8F872 /* submit_button.png */,
+				80270420178FDC8000C8F872 /* submit_button@2x.png */,
+				80270423178FE39B00C8F872 /* sign_out_button.png */,
+				80270424178FE39B00C8F872 /* sign_out_button@2x.png */,
 				80EEF5EE1756231E00A7C803 /* login_button.png */,
 				80EEF5EF1756231E00A7C803 /* login_button@2x.png */,
 				80EEF5F01756231E00A7C803 /* login_fb.png */,
@@ -1470,6 +1482,10 @@
 				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
 				80FA04EF177C6F8500CE1ED5 /* strechableCellBg.png in Resources */,
 				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
+				80270421178FDC8000C8F872 /* submit_button.png in Resources */,
+				80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */,
+				80270425178FE39B00C8F872 /* sign_out_button.png in Resources */,
+				80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

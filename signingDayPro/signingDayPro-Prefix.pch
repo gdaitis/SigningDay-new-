@@ -17,4 +17,8 @@
 
 #define kUserUpdatedNotification @"UserUpdatedNotification"
 #define kMaxItemsPerPage    100      //max 100 more info on http://telligent.com/community/developers/w/developer7/29725.list-following-rest-endpoint.aspx
+
+#define kBaseBackgroundColor [UIColor colorWithRed:140.0f/255.0f green:140.0f/255.0f blue:140.0f/255.0f alpha:1];
+#define kBaseSelectedCellColor [UIColor colorWithRed:207.0f/255.0f green:181.0f/255.0f blue:21.0f/255.0f alpha:1];
+
 #endif

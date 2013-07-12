@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "SDSettingsViewController.h"
 #import "SDNavigationController.h"
 #import "SDAppDelegate.h"
@@ -36,17 +38,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    UIImage *signOutImage = [UIImage imageNamed:@"sign_out_button.png"];
-    CGRect frame = CGRectMake(53, 153, signOutImage.size.width, signOutImage.size.height);
-    UIButton *abutton = [[UIButton alloc] initWithFrame:frame];
-    [abutton setBackgroundImage:signOutImage forState:UIControlStateNormal];
-    [abutton addTarget:self action:@selector(signOutButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView addSubview:abutton];
-    
-    self.tableView.backgroundColor = [UIColor colorWithRed:140.0f/255.0f green:140.0f/255.0f blue:140.0f/255.0f alpha:1];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.tableView.backgroundColor = kBaseBackgroundColor;
+    [self.tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
+}
 
 - (void)signOutButtonPressed
 {
@@ -77,23 +76,39 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator ;
     }
     
+    //rounding selected cell corners
+    cell.selectedBackgroundView = nil;
+    UIView *cellSelectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(1, 0, 300, cell.frame.size.height)];
+    cellSelectedBackgroundView.backgroundColor = kBaseSelectedCellColor;
+    CAShapeLayer * maskLayer = [CAShapeLayer layer];
+    
+    
     //first section text
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
                 cell.textLabel.text = @"Edit profile";
+            maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
         else {
             cell.textLabel.text = @"Sharing settings";
+            maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
     }//second section text
     else {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Terms of service";
+            maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
         else {
             cell.textLabel.text = @"Privacy Policy";
+            maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
     }
+    
+    
+    //assigning selected rounded view to cell
+    cellSelectedBackgroundView.layer.mask = maskLayer;
+    cell.selectedBackgroundView = cellSelectedBackgroundView;
     
     return cell;
 }
@@ -125,15 +140,44 @@
     return view;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    //adding signout button in first tableview sections footer
+    
+    if (section == 0) {
+        
+        //creating result view
+        UIImage *signOutImage = [UIImage imageNamed:@"sign_out_button.png"];
+        UIView *result = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+        result.backgroundColor = [UIColor clearColor];
+        
+        //adding signout button
+        CGRect frame = CGRectMake((self.view.frame.size.width/2) - (signOutImage.size.width/2), 10, signOutImage.size.width, signOutImage.size.height);
+        UIButton *abutton = [[UIButton alloc] initWithFrame:frame];
+        [abutton setBackgroundImage:signOutImage forState:UIControlStateNormal];
+        [abutton addTarget:self action:@selector(signOutButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [result addSubview:abutton];
+        
+        return result;
+    }
+    else {
+        
+        return nil;
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 33;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 50;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SettingsStoryboard" bundle:nil];
     UIViewController *viewController = nil;
     
@@ -152,7 +196,7 @@
             ((SDTermsViewController *)viewController).urlString = @"/p/terms.aspx";
         }
         else {
-            ((SDTermsViewController *)viewController).urlString = @"/p/privacypolicy.aspx";
+            ((SDTermsViewController *)viewController).urlString = @"/p/privacy.aspx";
         }
     }
     

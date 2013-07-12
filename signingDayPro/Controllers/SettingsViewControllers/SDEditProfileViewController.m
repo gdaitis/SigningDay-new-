@@ -51,7 +51,7 @@
     self.nameTextView.text = nil;
     self.bioTextView.text = nil;
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:140.0f/255.0f green:140.0f/255.0f blue:140.0f/255.0f alpha:1];
+    self.tableView.backgroundColor = kBaseBackgroundColor;
     
     UIImage *image = [UIImage imageNamed:@"back_nav_button.png"];
     CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);

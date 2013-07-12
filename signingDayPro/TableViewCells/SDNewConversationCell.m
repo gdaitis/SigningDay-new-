@@ -29,7 +29,7 @@
     UIView *cellBackgroundView = [[UIView alloc] init];
     [cellBackgroundView setBackgroundColor:[UIColor whiteColor]];
     self.backgroundView = cellBackgroundView;
-    self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:207.0f/255.0f green:181.0f/255.0f blue:21.0f/255.0f alpha:1];
+    self.selectedBackgroundView.backgroundColor = kBaseSelectedCellColor;
     self.bottomLine.backgroundColor = [UIColor colorWithRed:196.0f/255.0f green:196.0f/255.0f blue:196.0f/255.0f alpha:1];
 }
 
