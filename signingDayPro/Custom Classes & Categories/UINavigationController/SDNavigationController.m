@@ -116,7 +116,7 @@ typedef enum {
     [_topToolBar setBackgroundImage:[UIImage imageNamed:@"ToolbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     [self.view addSubview:_topToolBar];
     
-    [self setToolbarButtons];
+    //[self setToolbarButtons];
 }
 
 #pragma mark - Navigation
