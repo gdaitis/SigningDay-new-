@@ -32,6 +32,7 @@
 		7B4E81F1178FED60000ED26F /* SDAddTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E81ED178FED5F000ED26F /* SDAddTagsViewController.m */; };
 		7B4E81F2178FED60000ED26F /* SDAddTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E81EF178FED5F000ED26F /* SDAddTagsCell.m */; };
 		7B4E81F3178FED60000ED26F /* SDAddTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4E81F0178FED60000ED26F /* SDAddTagsCell.xib */; };
+		7B4E81F717901BA4000ED26F /* SDModalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E81F617901BA4000ED26F /* SDModalNavigationController.m */; };
 		7B585FB4178E92BB00E8602B /* add_media_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B585FB2178E92BB00E8602B /* add_media_button@2x.png */; };
 		7B585FB5178E92BB00E8602B /* buzz_something_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B585FB3178E92BB00E8602B /* buzz_something_button@2x.png */; };
 		7B585FB7178EA6DE00E8602B /* activity_feed_header_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B585FB6178EA6DE00E8602B /* activity_feed_header_bg@2x.png */; };
@@ -275,6 +276,8 @@
 		7B4E81EE178FED5F000ED26F /* SDAddTagsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAddTagsCell.h; sourceTree = "<group>"; };
 		7B4E81EF178FED5F000ED26F /* SDAddTagsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAddTagsCell.m; sourceTree = "<group>"; };
 		7B4E81F0178FED60000ED26F /* SDAddTagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDAddTagsCell.xib; sourceTree = "<group>"; };
+		7B4E81F517901BA4000ED26F /* SDModalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDModalNavigationController.h; sourceTree = "<group>"; };
+		7B4E81F617901BA4000ED26F /* SDModalNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDModalNavigationController.m; sourceTree = "<group>"; };
 		7B585FB2178E92BB00E8602B /* add_media_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_media_button@2x.png"; sourceTree = "<group>"; };
 		7B585FB3178E92BB00E8602B /* buzz_something_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buzz_something_button@2x.png"; sourceTree = "<group>"; };
 		7B585FB6178EA6DE00E8602B /* activity_feed_header_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_feed_header_bg@2x.png"; sourceTree = "<group>"; };
@@ -624,6 +627,7 @@
 				7B3031AE177ADB3D006EF25B /* HTMLParser.m */,
 			);
 			name = HTMLParser;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		7B4628891765DC4600091954 /* Chat */ = {
@@ -653,6 +657,25 @@
 				809E72A517588B76004840D3 /* SDFollowingViewController.m */,
 			);
 			name = "Followers (-ing)";
+			sourceTree = "<group>";
+		};
+		7B4E81F417901B0F000ED26F /* 3rd-Party Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				805CF3CD1754CAB9004C69E5 /* ViewDeck */,
+				8032F0511755F98E00C92AAC /* UICustomSwitch */,
+				8032F04D1755F98E00C92AAC /* STUtils */,
+				8032F0471755F98E00C92AAC /* Reachability */,
+				8032F0441755F98E00C92AAC /* PSYBlockTimer */,
+				8032F03F1755F98E00C92AAC /* NSString+HTML */,
+				8032F03C1755F98E00C92AAC /* NSString+Additions */,
+				8032F0391755F98E00C92AAC /* MBProgressHUD */,
+				8032EFFD1755F98E00C92AAC /* MagicalRecord */,
+				8032EFE71755F98E00C92AAC /* AFNetworking */,
+				7B3031AA177ADB2C006EF25B /* HTMLParser */,
+			);
+			name = "3rd-Party Frameworks";
+			path = UINavigationController;
 			sourceTree = "<group>";
 		};
 		7B6B1EB81760A8BF00BC878A /* Login */ = {
@@ -737,7 +760,8 @@
 				8032EFFB1755F98E00C92AAC /* UIImageView+AFNetworking.h */,
 				8032EFFC1755F98E00C92AAC /* UIImageView+AFNetworking.m */,
 			);
-			path = AFNetworking;
+			name = AFNetworking;
+			path = ../AFNetworking;
 			sourceTree = "<group>";
 		};
 		8032EFFD1755F98E00C92AAC /* MagicalRecord */ = {
@@ -747,7 +771,8 @@
 				8032F0281755F98E00C92AAC /* Core */,
 				8032F0381755F98E00C92AAC /* CoreData+MagicalRecord.h */,
 			);
-			path = MagicalRecord;
+			name = MagicalRecord;
+			path = ../MagicalRecord;
 			sourceTree = "<group>";
 		};
 		8032EFFE1755F98E00C92AAC /* Categories */ = {
@@ -847,7 +872,8 @@
 				8032F03A1755F98E00C92AAC /* MBProgressHUD.h */,
 				8032F03B1755F98E00C92AAC /* MBProgressHUD.m */,
 			);
-			path = MBProgressHUD;
+			name = MBProgressHUD;
+			path = ../MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		8032F03C1755F98E00C92AAC /* NSString+Additions */ = {
@@ -856,7 +882,8 @@
 				8032F03D1755F98E00C92AAC /* NSString+Additions.h */,
 				8032F03E1755F98E00C92AAC /* NSString+Additions.m */,
 			);
-			path = "NSString+Additions";
+			name = "NSString+Additions";
+			path = "../NSString+Additions";
 			sourceTree = "<group>";
 		};
 		8032F03F1755F98E00C92AAC /* NSString+HTML */ = {
@@ -867,7 +894,8 @@
 				8032F0421755F98E00C92AAC /* NSString+HTML.h */,
 				8032F0431755F98E00C92AAC /* NSString+HTML.m */,
 			);
-			path = "NSString+HTML";
+			name = "NSString+HTML";
+			path = "../NSString+HTML";
 			sourceTree = "<group>";
 		};
 		8032F0441755F98E00C92AAC /* PSYBlockTimer */ = {
@@ -876,7 +904,8 @@
 				8032F0451755F98E00C92AAC /* PSYBlockTimer.h */,
 				8032F0461755F98E00C92AAC /* PSYBlockTimer.m */,
 			);
-			path = PSYBlockTimer;
+			name = PSYBlockTimer;
+			path = ../PSYBlockTimer;
 			sourceTree = "<group>";
 		};
 		8032F0471755F98E00C92AAC /* Reachability */ = {
@@ -885,7 +914,8 @@
 				8032F0481755F98E00C92AAC /* Reachability.h */,
 				8032F0491755F98E00C92AAC /* Reachability.m */,
 			);
-			path = Reachability;
+			name = Reachability;
+			path = ../Reachability;
 			sourceTree = "<group>";
 		};
 		8032F04A1755F98E00C92AAC /* ShadowedTableView */ = {
@@ -902,7 +932,8 @@
 			children = (
 				8032F04E1755F98E00C92AAC /* Security */,
 			);
-			path = STUtils;
+			name = STUtils;
+			path = ../STUtils;
 			sourceTree = "<group>";
 		};
 		8032F04E1755F98E00C92AAC /* Security */ = {
@@ -923,7 +954,8 @@
 				8032F0551755F98E00C92AAC /* UICustomSwitch.h */,
 				8032F0561755F98E00C92AAC /* UICustomSwitch.m */,
 			);
-			path = UICustomSwitch;
+			name = UICustomSwitch;
+			path = ../UICustomSwitch;
 			sourceTree = "<group>";
 		};
 		8032F0571755F98E00C92AAC /* UIImage+Crop */ = {
@@ -1072,25 +1104,15 @@
 		80559904174CEDDE0040631D /* Custom Classes & Categories */ = {
 			isa = PBXGroup;
 			children = (
-				7B3031AA177ADB2C006EF25B /* HTMLParser */,
-				8032EFE71755F98E00C92AAC /* AFNetworking */,
-				8032EFFD1755F98E00C92AAC /* MagicalRecord */,
-				8032F0391755F98E00C92AAC /* MBProgressHUD */,
-				8032F03C1755F98E00C92AAC /* NSString+Additions */,
-				8032F03F1755F98E00C92AAC /* NSString+HTML */,
-				8032F0441755F98E00C92AAC /* PSYBlockTimer */,
-				8032F0471755F98E00C92AAC /* Reachability */,
-				8032F04A1755F98E00C92AAC /* ShadowedTableView */,
-				8032F04D1755F98E00C92AAC /* STUtils */,
-				8032F0511755F98E00C92AAC /* UICustomSwitch */,
-				8032F0571755F98E00C92AAC /* UIImage+Crop */,
+				7B4E81F417901B0F000ED26F /* 3rd-Party Frameworks */,
 				8032F05A1755F98E00C92AAC /* UIImage+fixOrientation */,
+				8032F0571755F98E00C92AAC /* UIImage+Crop */,
+				8032F04A1755F98E00C92AAC /* ShadowedTableView */,
 				8032F05D1755F98E00C92AAC /* UIPlaceHolderTextView */,
 				8032F0601755F98E00C92AAC /* Utils */,
-				80F3015E1753A01B00134FF4 /* UINavigationController */,
+				80F3015E1753A01B00134FF4 /* SDNavigationController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
 				80236152174D1B4C00595432 /* UILabel */,
-				805CF3CD1754CAB9004C69E5 /* ViewDeck */,
 				8013F47C174CF96400BA313B /* SDBaseViewController.h */,
 				8013F47D174CF96400BA313B /* SDBaseViewController.m */,
 			);
@@ -1156,7 +1178,8 @@
 				805CF3D01754CAB9004C69E5 /* WrapController.h */,
 				805CF3D11754CAB9004C69E5 /* WrapController.m */,
 			);
-			path = ViewDeck;
+			name = ViewDeck;
+			path = ../ViewDeck;
 			sourceTree = "<group>";
 		};
 		805CF3ED1754EAFD004C69E5 /* SettingsViewControllers */ = {
@@ -1330,12 +1353,15 @@
 			path = ActivityFeedImages;
 			sourceTree = "<group>";
 		};
-		80F3015E1753A01B00134FF4 /* UINavigationController */ = {
+		80F3015E1753A01B00134FF4 /* SDNavigationController */ = {
 			isa = PBXGroup;
 			children = (
 				80F301611753A05900134FF4 /* SDNavigationController.h */,
 				80F301621753A05900134FF4 /* SDNavigationController.m */,
+				7B4E81F517901BA4000ED26F /* SDModalNavigationController.h */,
+				7B4E81F617901BA4000ED26F /* SDModalNavigationController.m */,
 			);
+			name = SDNavigationController;
 			path = UINavigationController;
 			sourceTree = "<group>";
 		};
@@ -1647,6 +1673,7 @@
 				7B4E81EB178FED32000ED26F /* SDEnterMediaInfoViewController.m in Sources */,
 				7B4E81F1178FED60000ED26F /* SDAddTagsViewController.m in Sources */,
 				7B4E81F2178FED60000ED26F /* SDAddTagsCell.m in Sources */,
+				7B4E81F717901BA4000ED26F /* SDModalNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

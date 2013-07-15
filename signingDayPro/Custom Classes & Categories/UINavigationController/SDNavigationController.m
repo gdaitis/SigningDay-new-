@@ -17,45 +17,7 @@
 
 #import "SDNewConversationViewController.h"
 
-typedef enum {
-    BARBUTTONTYPE_NOTIFICATIONS = 0,
-    BARBUTTONTYPE_CONVERSATIONS,
-    BARBUTTONTYPE_FOLLOWERS,
-    BARBUTTONTYPE_NONE
-} BarButtonType;
-
-@interface SDNavigationController ()
-
-- (void)setToolbarButtons;
-- (void)popViewController;
-- (void)setupToolbar;
-- (void)showConversations;
-- (void)revealMenu:(id)sender;
-
-@property (nonatomic, weak) UIToolbar *topToolBar;
-@property (nonatomic, assign) BarButtonType *barButtonType;
-
-@property (nonatomic, strong) SDMessageViewController *messageVC;
-@property (nonatomic, strong) SDFollowingViewController *followingVC;
-
-@property (nonatomic, assign) BarButtonType selectedMenuType;
-
-@property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, assign) BOOL contentViewVisible;
-@property (nonatomic, assign) BOOL backButtonVisibleIfNeeded; //if popup opened in the top toolbar, we should hide the back button;
-
-@end
-
 @implementation SDNavigationController
-
-@synthesize menuButton = _menuButton;
-@synthesize topToolBar = _topToolBar;
-@synthesize barButtonType = _barButtonType;
-@synthesize messageVC = _messageVC;
-@synthesize followingVC = _followingVC;
-@synthesize selectedMenuType = _selectedMenuType;
-
-
 
 - (UIView *)contentView
 {
