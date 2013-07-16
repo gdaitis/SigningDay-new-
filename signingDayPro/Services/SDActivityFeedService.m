@@ -23,11 +23,21 @@
 
 @implementation SDActivityFeedService
 
-+ (void)getActivityStoriesWithSuccessBlock:(void (^)(void))successBlock
-                              failureBlock:(void (^)(void))failureBlock
++ (void)getActivityStoriesForUser:(User *)user
+                 withSuccessBlock:(void (^)(void))successBlock
+                     failureBlock:(void (^)(void))failureBlock
 {
+    NSDictionary *params = nil;
+    
+    //if user provided, add parameter with user id to get only this users activity stories
+    if (user) {
+        params = [[NSDictionary alloc] initWithObjectsAndKeys:[user.identifier stringValue], @"UserId", nil];
+        NSLog(@"params = %@",params);
+
+    }
+    
     [[SDAPIClient sharedClient] getPath:@"stories.json"
-                             parameters:nil
+                             parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSMutableArray *operationsArray = [[NSMutableArray alloc] init];
                                     

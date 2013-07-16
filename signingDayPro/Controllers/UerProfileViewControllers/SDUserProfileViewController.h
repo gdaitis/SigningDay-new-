@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
-@interface SDUserProfileViewController : SDBaseViewController
+@interface SDUserProfileViewController : SDBaseViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, strong) User *currentUser;
 
 @end

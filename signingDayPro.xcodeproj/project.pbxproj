@@ -151,6 +151,18 @@
 		80630D29177B1736002AA0BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D28177B1736002AA0BC /* User.m */; };
 		808CEA9D178E937A0098AD5D /* SDCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CEA9A178E937A0098AD5D /* SDCameraOverlayView.m */; };
 		808CEA9E178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CEA9C178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m */; };
+		809DF90317955AC5001F37B3 /* UserProfileBioButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F717955AC5001F37B3 /* UserProfileBioButton.png */; };
+		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
+		809DF90517955AC5001F37B3 /* UserProfileCommitsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F917955AC5001F37B3 /* UserProfileCommitsButton.png */; };
+		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
+		809DF90717955AC5001F37B3 /* UserProfileKeyAttributesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FB17955AC5001F37B3 /* UserProfileKeyAttributesButton.png */; };
+		809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */; };
+		809DF90917955AC5001F37B3 /* UserProfilePhotosButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FD17955AC5001F37B3 /* UserProfilePhotosButton.png */; };
+		809DF90A17955AC5001F37B3 /* UserProfilePhotosButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FE17955AC5001F37B3 /* UserProfilePhotosButton@2x.png */; };
+		809DF90B17955AC5001F37B3 /* UserProfileProspectsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FF17955AC5001F37B3 /* UserProfileProspectsButton.png */; };
+		809DF90C17955AC5001F37B3 /* UserProfileProspectsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF90017955AC5001F37B3 /* UserProfileProspectsButton@2x.png */; };
+		809DF90D17955AC5001F37B3 /* UserProfileVideoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF90117955AC5001F37B3 /* UserProfileVideoButton.png */; };
+		809DF90E17955AC5001F37B3 /* UserProfileVideoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF90217955AC5001F37B3 /* UserProfileVideoButton@2x.png */; };
 		809E728817573633004840D3 /* SDMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728617573633004840D3 /* SDMessageViewController.m */; };
 		809E728D175738DE004840D3 /* SDBaseToolbarItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728B175738DD004840D3 /* SDBaseToolbarItemViewController.m */; };
 		809E728E175738DE004840D3 /* SDBaseToolbarItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E728C175738DE004840D3 /* SDBaseToolbarItemViewController.xib */; };
@@ -178,6 +190,11 @@
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616117534497005FE319 /* MagnifyingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0615F17534497005FE319 /* MagnifyingIcon.png */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
+		80CCAE651793E6C30015429A /* SDUserProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE641793E6C30015429A /* SDUserProfileHeaderView.m */; };
+		80CCAE671793E6D20015429A /* SDUserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE661793E6D20015429A /* SDUserProfileHeaderView.xib */; };
+		80CCAE6A179404BE0015429A /* SDUserProfileSlidingButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */; };
+		80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */; };
+		80CCAE751794231B0015429A /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE741794231B0015429A /* UIView+NibLoading.m */; };
 		80CE109D1779788A005D2281 /* SDActivityFeedButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */; };
 		80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E31BA81758AF990013545C /* SDFollowingCell.m */; };
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
@@ -471,6 +488,18 @@
 		808CEA9A178E937A0098AD5D /* SDCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCameraOverlayView.m; sourceTree = "<group>"; };
 		808CEA9B178E937A0098AD5D /* SDSimplifiedCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSimplifiedCameraOverlayView.h; sourceTree = "<group>"; };
 		808CEA9C178E937A0098AD5D /* SDSimplifiedCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSimplifiedCameraOverlayView.m; sourceTree = "<group>"; };
+		809DF8F717955AC5001F37B3 /* UserProfileBioButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserProfileBioButton.png; sourceTree = "<group>"; };
+		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
+		809DF8F917955AC5001F37B3 /* UserProfileCommitsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserProfileCommitsButton.png; sourceTree = "<group>"; };
+		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
+		809DF8FB17955AC5001F37B3 /* UserProfileKeyAttributesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserProfileKeyAttributesButton.png; sourceTree = "<group>"; };
+		809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileKeyAttributesButton@2x.png"; sourceTree = "<group>"; };
+		809DF8FD17955AC5001F37B3 /* UserProfilePhotosButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserProfilePhotosButton.png; sourceTree = "<group>"; };
+		809DF8FE17955AC5001F37B3 /* UserProfilePhotosButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfilePhotosButton@2x.png"; sourceTree = "<group>"; };
+		809DF8FF17955AC5001F37B3 /* UserProfileProspectsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserProfileProspectsButton.png; sourceTree = "<group>"; };
+		809DF90017955AC5001F37B3 /* UserProfileProspectsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileProspectsButton@2x.png"; sourceTree = "<group>"; };
+		809DF90117955AC5001F37B3 /* UserProfileVideoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserProfileVideoButton.png; sourceTree = "<group>"; };
+		809DF90217955AC5001F37B3 /* UserProfileVideoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileVideoButton@2x.png"; sourceTree = "<group>"; };
 		809E728517573633004840D3 /* SDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMessageViewController.h; path = ../TableViewCells/Views/SDMessageViewController.h; sourceTree = "<group>"; };
 		809E728617573633004840D3 /* SDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMessageViewController.m; path = ../TableViewCells/Views/SDMessageViewController.m; sourceTree = "<group>"; };
 		809E728A175738DD004840D3 /* SDBaseToolbarItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDBaseToolbarItemViewController.h; path = ../TableViewCells/Views/SDBaseToolbarItemViewController.h; sourceTree = "<group>"; };
@@ -502,6 +531,14 @@
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuItemList.plist; sourceTree = "<group>"; };
 		80A0615F17534497005FE319 /* MagnifyingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnifyingIcon.png; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
+		80CCAE631793E6C30015429A /* SDUserProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHeaderView.h; sourceTree = "<group>"; };
+		80CCAE641793E6C30015429A /* SDUserProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileHeaderView.m; sourceTree = "<group>"; };
+		80CCAE661793E6D20015429A /* SDUserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileHeaderView.xib; sourceTree = "<group>"; };
+		80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileSlidingButtonView.h; sourceTree = "<group>"; };
+		80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileSlidingButtonView.m; sourceTree = "<group>"; };
+		80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileSlidingButtonView.xib; sourceTree = "<group>"; };
+		80CCAE731794231B0015429A /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
+		80CCAE741794231B0015429A /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		80CE109B1779788A005D2281 /* SDActivityFeedButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedButtonView.h; sourceTree = "<group>"; };
 		80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedButtonView.m; sourceTree = "<group>"; };
 		80E31BA71758AF990013545C /* SDFollowingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDFollowingCell.h; sourceTree = "<group>"; };
@@ -1056,6 +1093,7 @@
 				8032F0571755F98E00C92AAC /* UIImage+Crop */,
 				8032F05A1755F98E00C92AAC /* UIImage+fixOrientation */,
 				8032F05D1755F98E00C92AAC /* UIPlaceHolderTextView */,
+				80CCAE6D179411AF0015429A /* UIView+NibLoading */,
 				8032F0601755F98E00C92AAC /* Utils */,
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
@@ -1174,9 +1212,29 @@
 			path = CameraViews;
 			sourceTree = "<group>";
 		};
+		809DF8F617955AC5001F37B3 /* UserProfileViewImages */ = {
+			isa = PBXGroup;
+			children = (
+				809DF8F717955AC5001F37B3 /* UserProfileBioButton.png */,
+				809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */,
+				809DF8F917955AC5001F37B3 /* UserProfileCommitsButton.png */,
+				809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */,
+				809DF8FB17955AC5001F37B3 /* UserProfileKeyAttributesButton.png */,
+				809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */,
+				809DF8FD17955AC5001F37B3 /* UserProfilePhotosButton.png */,
+				809DF8FE17955AC5001F37B3 /* UserProfilePhotosButton@2x.png */,
+				809DF8FF17955AC5001F37B3 /* UserProfileProspectsButton.png */,
+				809DF90017955AC5001F37B3 /* UserProfileProspectsButton@2x.png */,
+				809DF90117955AC5001F37B3 /* UserProfileVideoButton.png */,
+				809DF90217955AC5001F37B3 /* UserProfileVideoButton@2x.png */,
+			);
+			path = UserProfileViewImages;
+			sourceTree = "<group>";
+		};
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80CCAE601793E66B0015429A /* UsersProfileViews */,
 				808CEA98178E937A0098AD5D /* CameraViews */,
 				7B6B1EC11760C86900BC878A /* SDContentHeaderView.h */,
 				7B6B1EC21760C86900BC878A /* SDContentHeaderView.m */,
@@ -1194,6 +1252,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				809DF8F617955AC5001F37B3 /* UserProfileViewImages */,
 				80F259061773411900D3B85E /* ActivityFeedImages */,
 				7B4628891765DC4600091954 /* Chat */,
 				7B6B1EB81760A8BF00BC878A /* Login */,
@@ -1230,6 +1289,28 @@
 			path = SlidingMenu;
 			sourceTree = "<group>";
 		};
+		80CCAE601793E66B0015429A /* UsersProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				80CCAE631793E6C30015429A /* SDUserProfileHeaderView.h */,
+				80CCAE641793E6C30015429A /* SDUserProfileHeaderView.m */,
+				80CCAE661793E6D20015429A /* SDUserProfileHeaderView.xib */,
+				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
+				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
+				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
+			);
+			path = UsersProfileViews;
+			sourceTree = "<group>";
+		};
+		80CCAE6D179411AF0015429A /* UIView+NibLoading */ = {
+			isa = PBXGroup;
+			children = (
+				80CCAE731794231B0015429A /* UIView+NibLoading.h */,
+				80CCAE741794231B0015429A /* UIView+NibLoading.m */,
+			);
+			path = "UIView+NibLoading";
+			sourceTree = "<group>";
+		};
 		80E31BAD1758B8590013545C /* Follow_Unfollow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1244,10 +1325,10 @@
 		80EEF5DE175614D900A7C803 /* UserProfileViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				80EEF5DF175614D900A7C803 /* SDTestingViewController.h */,
-				80EEF5E0175614D900A7C803 /* SDTestingViewController.m */,
 				80EEF5E1175614D900A7C803 /* SDUserProfileViewController.h */,
 				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
+				80EEF5DF175614D900A7C803 /* SDTestingViewController.h */,
+				80EEF5E0175614D900A7C803 /* SDTestingViewController.m */,
 			);
 			name = UserProfileViewControllers;
 			path = UerProfileViewControllers;
@@ -1486,6 +1567,20 @@
 				80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */,
 				80270425178FE39B00C8F872 /* sign_out_button.png in Resources */,
 				80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */,
+				80CCAE671793E6D20015429A /* SDUserProfileHeaderView.xib in Resources */,
+				80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */,
+				809DF90317955AC5001F37B3 /* UserProfileBioButton.png in Resources */,
+				809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */,
+				809DF90517955AC5001F37B3 /* UserProfileCommitsButton.png in Resources */,
+				809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */,
+				809DF90717955AC5001F37B3 /* UserProfileKeyAttributesButton.png in Resources */,
+				809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */,
+				809DF90917955AC5001F37B3 /* UserProfilePhotosButton.png in Resources */,
+				809DF90A17955AC5001F37B3 /* UserProfilePhotosButton@2x.png in Resources */,
+				809DF90B17955AC5001F37B3 /* UserProfileProspectsButton.png in Resources */,
+				809DF90C17955AC5001F37B3 /* UserProfileProspectsButton@2x.png in Resources */,
+				809DF90D17955AC5001F37B3 /* UserProfileVideoButton.png in Resources */,
+				809DF90E17955AC5001F37B3 /* UserProfileVideoButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1603,6 +1698,9 @@
 				805F6874178EFBF100ED186B /* SDTermsViewController.m in Sources */,
 				805F6877178F00B200ED186B /* SDSharingSettingsViewController.m in Sources */,
 				805F687A178F014000ED186B /* SDEditProfileViewController.m in Sources */,
+				80CCAE651793E6C30015429A /* SDUserProfileHeaderView.m in Sources */,
+				80CCAE6A179404BE0015429A /* SDUserProfileSlidingButtonView.m in Sources */,
+				80CCAE751794231B0015429A /* UIView+NibLoading.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

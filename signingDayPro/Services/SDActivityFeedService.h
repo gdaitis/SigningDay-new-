@@ -10,11 +10,13 @@
 
 @class ActivityStory;
 @class Comment;
+@class User;
 
 @interface SDActivityFeedService : NSObject
 
-+ (void)getActivityStoriesWithSuccessBlock:(void (^)(void))successBlock
-                              failureBlock:(void (^)(void))failureBlock;
++ (void)getActivityStoriesForUser:(User *)user
+                 withSuccessBlock:(void (^)(void))successBlock
+                     failureBlock:(void (^)(void))failureBlock;
 + (void)likeActivityStory:(ActivityStory *)activityStory
              successBlock:(void (^)(void))successBlock
              failureBlock:(void (^)(void))failureBlock;

@@ -28,12 +28,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    [SDActivityFeedService getActivityStoriesWithSuccessBlock:^{
-        //
-    } failureBlock:^{
-        //
-    }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,6 +9,7 @@
 #import "SDBaseViewController.h"
 #import "MBProgressHUD.h"
 #import "Master.h"
+#import "User.h"
 #import "SDLoginService.h"
 #import "SDNavigationController.h"
 #import "IIViewDeckController.h"
@@ -73,6 +74,12 @@
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
     
     return master;
+}
+
+- (User *)getMasterUser
+{
+    User *masterUser = [User MR_findFirstByAttribute:@"identifier" withValue:[self getMasterIdentifier]];
+    return masterUser;
 }
 
 #pragma mark - SDLoginViewController login & delegate methods

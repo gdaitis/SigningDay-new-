@@ -55,7 +55,7 @@
     [super viewDidAppear:animated];
     
     [self showProgressHudInView:self.view withText:@"Loading"];
-    [SDActivityFeedService getActivityStoriesWithSuccessBlock:^{
+    [SDActivityFeedService getActivityStoriesForUser:nil withSuccessBlock:^{
         [self loadData];
         [self hideProgressHudInView:self.view];
     } failureBlock:^{

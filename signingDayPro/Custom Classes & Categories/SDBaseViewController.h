@@ -10,11 +10,13 @@
 #import "SDLoginViewController.h"
 
 @class Master;
+@class User;
 
 @interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
 
 - (Master *)getMaster;
 - (NSNumber *)getMasterIdentifier;
+- (User *)getMasterUser;
 
 - (void)showLoginScreen;
 

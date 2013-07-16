@@ -14,6 +14,7 @@
 #import "Master.h"
 #import "SDTableView.h"
 #import "SDImageService.h"
+#import "SDUserProfileViewController.h"
 #import "UIImage+Crop.h"
 
 #define kHeaderSize  40
@@ -188,6 +189,9 @@
         //show profile view controller
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
         centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
+        
+        SDUserProfileViewController *userProfileController = [((UINavigationController *)centerVC).viewControllers lastObject];
+        userProfileController.currentUser = [self getMasterUser];
     }
     else if (indexPath.section == 1) {
         //show controller depending on selection
