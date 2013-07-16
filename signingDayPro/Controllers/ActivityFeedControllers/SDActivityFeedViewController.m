@@ -83,7 +83,8 @@
     [super viewDidAppear:animated];
     
     [self showProgressHudInView:self.tableView withText:@"Loading"];
-    [SDActivityFeedService getActivityStoriesWithSuccessBlock:^{
+    [SDActivityFeedService getActivityStoriesForUser:[self getMasterUser]
+     withSuccessBlock:^{
         [self loadData];
         [self hideProgressHudInView:self.tableView];
     } failureBlock:^{
