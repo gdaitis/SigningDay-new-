@@ -10,5 +10,5 @@
 #import "SDBaseViewController.h"
 
 @interface SDActivityFeedViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate>
-
+ 
 @end
