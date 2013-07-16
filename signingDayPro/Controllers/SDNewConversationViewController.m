@@ -47,8 +47,6 @@
     
     _currentFollowersPage = 0;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:kSDLoginServiceUserDidLogoutNotification object:nil];
-    
 //    UIImage *image = [UIImage imageNamed:@"x_button_yellow.png"];
 //    CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
 //    UIButton *button = [[UIButton alloc] initWithFrame:frame];

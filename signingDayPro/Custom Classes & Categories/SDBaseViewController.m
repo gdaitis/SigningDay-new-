@@ -9,6 +9,7 @@
 #import "SDBaseViewController.h"
 #import "MBProgressHUD.h"
 #import "Master.h"
+#import "SDLoginService.h"
 #import "SDNavigationController.h"
 #import "IIViewDeckController.h"
 
@@ -33,6 +34,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:kSDLoginServiceUserDidLogoutNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,6 +83,12 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+- (void)userDidLogout
+{
+    //optionally may call some functions to clear views and some data
+    [self showLoginScreen];
 }
 
 - (void)showLoginScreen
