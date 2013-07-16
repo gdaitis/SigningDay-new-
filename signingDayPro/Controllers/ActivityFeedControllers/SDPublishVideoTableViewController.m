@@ -8,7 +8,7 @@
 
 #import "SDPublishVideoTableViewController.h"
 #import "Reachability.h"
-#import "SDNavigationController.h"
+#import "SDModalNavigationController.h"
 #import "SDUploadService.h"
 
 @interface SDPublishVideoTableViewController ()
@@ -21,8 +21,8 @@
 {
     [super viewDidLoad];
     
-    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-    self.delegate = (id <SDPublishVideoTableViewControllerDelegate>) navigationController.myDelegate;
+    SDModalNavigationController *modalNavigationController = (SDModalNavigationController *)self.navigationController;
+    self.delegate = (id <SDPublishVideoTableViewControllerDelegate>) modalNavigationController.myDelegate;
 }
 
 - (IBAction)publishVideoPressed:(id)sender

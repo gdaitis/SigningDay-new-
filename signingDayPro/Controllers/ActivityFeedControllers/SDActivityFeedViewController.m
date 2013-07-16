@@ -26,11 +26,12 @@
 #import "SDEnterMediaInfoViewController.h"
 #import "SDPublishPhotoTableViewController.h"
 #import "SDPublishVideoTableViewController.h"
+#import "SDModalNavigationController.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
-@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate>
+@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
@@ -81,12 +82,12 @@
 {
     [super viewDidAppear:animated];
     
-    [self showProgressHudInView:self.view withText:@"Loading"];
+    [self showProgressHudInView:self.tableView withText:@"Loading"];
     [SDActivityFeedService getActivityStoriesWithSuccessBlock:^{
         [self loadData];
-        [self hideProgressHudInView:self.view];
+        [self hideProgressHudInView:self.tableView];
     } failureBlock:^{
-        [self hideProgressHudInView:self.view];
+        [self hideProgressHudInView:self.tableView];
     }];
 }
 
@@ -220,28 +221,33 @@
             
             SDCameraOverlayView *cameraOverlayView = [[SDCameraOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
             cameraOverlayView.delegate = self;
+            self.imagePicker.view.frame = cameraOverlayView.frame;
             self.imagePicker.cameraOverlayView = cameraOverlayView;
         } else if (buttonIndex == 1) {
             self.isFromLibrary = YES;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             self.imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         }
-        [self presentViewController:self.imagePicker
-                           animated:YES
-                         completion:nil];
+        [self.navigationController presentViewController:self.imagePicker
+                                                animated:YES
+                                              completion:nil];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
     } else if (actionSheet.tag == 102) {
         if (buttonIndex == 0) {
-            SDNavigationController *navigationController;
+            SDModalNavigationController *modalNavigationController;
             if ([self.mediaType isEqual:@"public.image"]) {
-                SDNavigationController *publishVideoNavigationViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PublishPhotoNavigationViewController"];
-                navigationController = publishVideoNavigationViewController;
+                SDModalNavigationController *publishPhotoModalNavigationViewController = [[UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PublishPhotoModalNavigationViewController"];
+                modalNavigationController = publishPhotoModalNavigationViewController;
             } else if ([self.mediaType isEqual:@"public.movie"]) {
-                SDNavigationController *publishPhotoNavigationViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PublishVideoNavigationViewController"];
-                navigationController = publishPhotoNavigationViewController;
+                SDModalNavigationController *publishVideoModalNavigationViewController = [[UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PublishVideoModalNavigationViewController"];
+                modalNavigationController = publishVideoModalNavigationViewController;
             }
-            navigationController.myDelegate = self;
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self presentViewController:navigationController animated:YES completion:nil];
+            modalNavigationController.myDelegate = self;
+            [self.navigationController dismissViewControllerAnimated:YES
+                                                          completion:^{
+                                                              [self presentViewController:modalNavigationController
+                                                                                 animated:YES
+                                                                               completion:nil];
             }];
             
         } else if (buttonIndex == 1 && !self.isFromLibrary) {
@@ -250,8 +256,8 @@
             else if ([self.mediaType isEqual:@"public.image"])
                 UIImageWriteToSavedPhotosAlbum(self.capturedImage, nil, nil, nil);
             
-            [self dismissViewControllerAnimated:YES
-                                     completion:nil];
+            [self.navigationController dismissViewControllerAnimated:YES
+                                                          completion:nil];
         } else if (buttonIndex == 2 && !self.isFromLibrary) {
             SDCameraOverlayView *cameraOverlayView = [[SDCameraOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
             cameraOverlayView.delegate = self;
@@ -264,8 +270,8 @@
             else if ([self.mediaType isEqual:@"public.image"])
                 UIImageWriteToSavedPhotosAlbum(self.capturedImage, nil, nil, nil);
         }
-        [self dismissViewControllerAnimated:YES
-                                 completion:nil];
+        [self.navigationController dismissViewControllerAnimated:YES
+                                                      completion:nil];
     }
 }
 
@@ -329,7 +335,7 @@
         actionSheet.tag = 102;
     }
     
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:self.imagePicker.view];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -411,6 +417,13 @@
                              completion:nil];
 }
 
+#pragma mark - SDModalNavigationController myDelegate methods
+
+- (void)modalNavigationControllerWantsToClose:(SDModalNavigationController *)modalNavigationController
+{
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
 
 
 @end

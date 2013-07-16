@@ -7,14 +7,14 @@
 //
 
 #import "SDEnterMediaInfoViewController.h"
-#import "SDNavigationController.h"
+#import "SDModalNavigationController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Master.h"
 #import "SDAppDelegate.h"
 #import "SDAddTagsViewController.h"
 #import "User.h"
 
-@interface SDEnterMediaInfoViewController () <SDAddTagsViewControllerDelegate, SDNavigationControllerDelegate>
+@interface SDEnterMediaInfoViewController () <SDAddTagsViewControllerDelegate, SDModalNavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *tagsLabel;
 @property (nonatomic, strong) NSArray *tagUsersArray;
@@ -39,12 +39,12 @@
 {
     [super viewDidLoad];
     
-    UIImage *image = [UIImage imageNamed:@"x_button_yellow.png"];
-    CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    UIButton *button = [[UIButton alloc] initWithFrame:frame];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *btnImg = [UIImage imageNamed:@"MenuButtonClose.png"];
+    [btn addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
+    [btn setImage:btnImg forState:UIControlStateNormal];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = barButton;
     
     self.titleTextView.placeholder = @"Title";
@@ -53,15 +53,15 @@
     self.descriptionTextView.placeholder = @"Description";
     self.descriptionTextView.placeholderColor = [UIColor grayColor];
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:140.0f/255.0f green:140.0f/255.0f blue:140.0f/255.0f alpha:1];
+    self.tableView.backgroundColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1];
     
     self.tagsLabel.textColor = [UIColor grayColor];
 }
 
 - (void)cancelButtonPressed
 {    
-    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-    [navigationController closePressed];
+    SDModalNavigationController *modalNavigationController = (SDModalNavigationController *)self.navigationController;
+    [modalNavigationController closePressed];
 }
 
 - (void)viewDidUnload
@@ -74,8 +74,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqual:@"presentAddTagsViewController"]) {
-        SDNavigationController *navigationController = [segue destinationViewController];
-        navigationController.myDelegate = self;
+        SDModalNavigationController *modalNavigationController = [segue destinationViewController];
+        modalNavigationController.myDelegate = self;
     }
 }
 
@@ -263,7 +263,7 @@
     
     NSMutableArray *namesArray = [[NSMutableArray alloc] init];
     for (User *user in tagUsersArray) {
-        [namesArray addObject:user.username];
+        [namesArray addObject:user.name];
     }
     self.tagsArray = namesArray;
     

@@ -84,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="nK5-Rp-ihK">
-                            <rect key="frame" x="0.0" y="385" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="385" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL1-7k-dOT">
@@ -107,8 +107,8 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="YL1-7k-dOT" firstAttribute="bottom" secondItem="nK5-Rp-ihK" secondAttribute="bottom" type="default" id="k3V-fN-w1x"/>
-                                <constraint firstItem="YL1-7k-dOT" firstAttribute="centerX" secondItem="nK5-Rp-ihK" secondAttribute="centerX" type="default" id="zup-tm-BTL"/>
+                                <constraint firstItem="YL1-7k-dOT" firstAttribute="centerY" secondItem="nK5-Rp-ihK" secondAttribute="centerY" type="default" id="8Sn-4i-Qgs"/>
+                                <constraint firstItem="YL1-7k-dOT" firstAttribute="leading" secondItem="nK5-Rp-ihK" secondAttribute="leading" constant="53" id="nDu-lU-Aqg"/>
                             </constraints>
                         </view>
                         <sections>
@@ -238,10 +238,11 @@
             </objects>
             <point key="canvasLocation" x="541" y="487"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Modal Navigation Controller-->
         <scene sceneID="z6m-c6-UCs">
             <objects>
-                <navigationController storyboardIdentifier="PublishVideoNavigationViewController" definesPresentationContext="YES" id="7dV-77-ev9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PublishVideoModalNavigationViewController" definesPresentationContext="YES" id="7dV-77-ev9" customClass="SDModalNavigationController" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fIj-g1-dRw">
                         <autoresizingMask key="autoresizingMask"/>
@@ -254,10 +255,11 @@
             </objects>
             <point key="canvasLocation" x="65" y="487"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Modal Navigation Controller-->
         <scene sceneID="Bsp-Yt-MQk">
             <objects>
-                <navigationController storyboardIdentifier="PublishPhotoNavigationViewController" definesPresentationContext="YES" id="evf-Cg-UxF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PublishPhotoModalNavigationViewController" definesPresentationContext="YES" id="evf-Cg-UxF" customClass="SDModalNavigationController" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FV8-XV-to8">
                         <autoresizingMask key="autoresizingMask"/>
@@ -279,7 +281,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="o6B-aB-Mhm">
-                            <rect key="frame" x="0.0" y="385" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="385" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rS-Jk-PCv">
@@ -303,7 +305,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="3rS-Jk-PCv" firstAttribute="centerX" secondItem="o6B-aB-Mhm" secondAttribute="centerX" type="default" id="Ene-YO-YhN"/>
-                                <constraint firstItem="3rS-Jk-PCv" firstAttribute="bottom" secondItem="o6B-aB-Mhm" secondAttribute="bottom" type="default" id="Myw-Sf-2Qd"/>
+                                <constraint firstItem="3rS-Jk-PCv" firstAttribute="centerY" secondItem="o6B-aB-Mhm" secondAttribute="centerY" type="default" id="iMN-ru-tiu"/>
                             </constraints>
                         </view>
                         <sections>
@@ -528,11 +530,12 @@
             </objects>
             <point key="canvasLocation" x="1755" y="817"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Modal Navigation Controller-->
         <scene sceneID="PzC-ym-IzI">
             <objects>
-                <navigationController id="P0D-2B-g2Q" sceneMemberID="viewController">
+                <navigationController id="P0D-2B-g2Q" customClass="SDModalNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dJS-co-vsg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -597,6 +600,9 @@
                 <relationship kind="outlet" name="titleTextView" candidateClass="UIPlaceHolderTextView"/>
             </relationships>
         </class>
+        <class className="SDModalNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDModalNavigationController.h"/>
+        </class>
         <class className="SDNavigationController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDNavigationController.h"/>
         </class>
@@ -622,6 +628,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ieX-g1-pJs"/>
+        <segue reference="djR-8l-6hh"/>
     </inferredMetricsTieBreakers>
 </document>

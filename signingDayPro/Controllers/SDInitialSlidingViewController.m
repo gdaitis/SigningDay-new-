@@ -10,7 +10,6 @@
 #import "SDLoginService.h"
 #import "SDAPIClient.h"
 #import "SDLoginViewController.h"
-#import "SDLoginViewController.h"
 
 @interface SDInitialSlidingViewController ()
 

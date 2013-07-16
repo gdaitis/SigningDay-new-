@@ -7,14 +7,14 @@
 //
 
 #import "SDAddTagsViewController.h"
-#import "SDNavigationController.h"
+#import "SDModalNavigationController.h"
 #import "SDLoginService.h"
 #import "Master.h"
 #import "SDChatService.h"
 #import "User.h"
 #import "MBProgressHUD.h"
 #import "SDAddTagsCell.h"
-
+#import "AFNetworking.h"
 #import "SDFollowingService.h"
 
 @interface SDAddTagsViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
@@ -64,10 +64,10 @@
     _currentFollowingPage = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:kSDLoginServiceUserDidLogoutNotification object:nil];
     
-    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-    self.delegate = (id <SDAddTagsViewControllerDelegate>)navigationController.myDelegate;
+    SDModalNavigationController *modalNavigationController = (SDModalNavigationController *)self.navigationController;
+    self.delegate = (id <SDAddTagsViewControllerDelegate>)modalNavigationController.myDelegate;
     
-    UIImage *image = [UIImage imageNamed:@"x_button_yellow.png"];
+    UIImage *image = [UIImage imageNamed:@"MenuButtonClose.png"];
     CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
     [button setBackgroundImage:image forState:UIControlStateNormal];
@@ -75,7 +75,7 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = barButton;
     
-    image = [UIImage imageNamed:@"done_button.png"];
+    image = [UIImage imageNamed:@"MenuButtonDone.png"];
     frame = CGRectMake(0, 0, image.size.width, image.size.height);
     button = [[UIButton alloc] initWithFrame:frame];
     [button setBackgroundImage:image forState:UIControlStateNormal];
@@ -83,13 +83,14 @@
     self.doneButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = self.doneButtonItem;
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg.png"]];
-    [imageView setFrame:self.tableView.bounds];
-    [self.tableView setBackgroundView:imageView];
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    self.tableView.backgroundColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.selectedTags = [[NSMutableArray alloc] init];
+    for (User *tagUser in [self.delegate arrayOfAlreadySelectedTags]) {
+        [self.selectedTags addObject:tagUser];
+    }
+    
     [self checkDoneButton];
 }
 
@@ -266,23 +267,28 @@
             }
         }
         
-        cell.userImageView.image = nil;
-        
         User *user = [self.searchResults objectAtIndex:indexPath.row];
-//        for (User *tagUser in [self.delegate arrayOfAlreadySelectedTags]) {
-//            if ([tagUser.identifier isEqualToNumber:user.identifier]) {
-//                cell.isChecked = YES;
-//            }
-//        }
-        if ([self.selectedTags containsObject:user]) {
+        
+        if ([self.selectedTags containsObject:user]) 
             cell.isChecked = YES;
-        }
-        else {
+        else 
             cell.isChecked = NO;
-        }
         
         cell.userTitleLabel.text = user.name;
-        cell.userAvatarUrlString = user.avatarUrl;
+            
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
+        [cell.userImageView setImageWithURLRequest:request
+                                  placeholderImage:nil
+                                     cropedForSize:CGSizeMake(48, 48)
+                                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                               
+                                               SDAddTagsCell *myCell = (SDAddTagsCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                                               myCell.userImageView.image = image;
+                                               
+                                           } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                               //
+                                           }];
+        
         [self checkDoneButton];
         return cell;
     }

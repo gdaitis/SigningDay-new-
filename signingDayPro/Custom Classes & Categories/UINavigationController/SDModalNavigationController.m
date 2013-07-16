@@ -7,6 +7,8 @@
 //
 
 #import "SDModalNavigationController.h"
+#import <QuartzCore/QuartzCore.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface SDModalNavigationController ()
 
@@ -14,20 +16,39 @@
 
 @implementation SDModalNavigationController
 
-- (void)setToolbarButtons
+- (void)viewDidLoad
 {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *btnImg = nil;
-    btnImg = [UIImage imageNamed:@"MenuButtonClose@2x.png"];
-    [btn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-    btn.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
-    self.menuButton = btn;
-    [self.menuButton setImage:btnImg forState:UIControlStateNormal];
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
     
-    UIBarButtonItem *menuBarBtnItm = [[UIBarButtonItem alloc] initWithCustomView:self.menuButton];
+    NSDictionary *textTitleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [UIColor colorWithRed:55.0/255.0 green:48.0/255.0 blue:8.0/255.0 alpha:1.0], UITextAttributeTextColor,
+                                         [UIColor colorWithRed:238.0/255.0 green:209.0/255.0 blue:39.0/255.0 alpha:1.0], UITextAttributeTextShadowColor,
+                                         [NSValue valueWithUIOffset:UIOffsetMake(1, 1)], UITextAttributeTextShadowOffset,
+                                         [UIFont fontWithName:@"BebasNeue" size:23.0], UITextAttributeFont,
+                                         nil];
+    self.navigationBar.titleTextAttributes = textTitleAttributes;
+    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"ToolbarBg.png"] forBarMetrics:UIBarMetricsDefault];
     
-    NSArray *btnArray = [NSArray arrayWithObjects:menuBarBtnItm, nil];
-    [self.topToolBar setItems:btnArray animated:NO];
+    [self.navigationBar setTitleVerticalPositionAdjustment:-1 forBarMetrics:UIBarMetricsDefault];
+    
+    CGColorRef darkColor = [[UIColor blackColor] colorWithAlphaComponent:.10f].CGColor;
+    CGColorRef lightColor = [UIColor clearColor].CGColor;
+    
+    CGFloat navigationBarBottom;
+    navigationBarBottom = self.navigationBar.frame.origin.y + self.navigationBar.frame.size.height;
+    
+    CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
+    newShadow.frame = CGRectMake(0, navigationBarBottom, self.view.frame.size.width, 4);
+    newShadow.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
+    
+    [self.view.layer addSublayer:newShadow];
 }
+
+- (void)closePressed
+{
+    [self.myDelegate modalNavigationControllerWantsToClose:self];
+}
+
 
 @end

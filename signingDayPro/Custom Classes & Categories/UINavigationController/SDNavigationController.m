@@ -78,7 +78,7 @@
     [_topToolBar setBackgroundImage:[UIImage imageNamed:@"ToolbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     [self.view addSubview:_topToolBar];
     
-    //[self setToolbarButtons];
+    [self setToolbarButtons];
 }
 
 #pragma mark - Navigation
@@ -428,6 +428,19 @@
                                                          bundle:nil];
     SDNewConversationViewController *newMessageNavigationController = (SDNewConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"NewConversationViewController"];
     [self pushViewController:newMessageNavigationController animated:YES];
+}
+
+#pragma mark - Orientation
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

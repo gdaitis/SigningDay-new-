@@ -7,7 +7,7 @@
 //
 
 #import "SDPublishPhotoTableViewController.h"
-#import "SDNavigationController.h"
+#import "SDModalNavigationController.h"
 #import "SDUploadService.h"
 #import "Master.h"
 #import "SDAppDelegate.h"
@@ -23,8 +23,8 @@
 {
     [super viewDidLoad];
     
-    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-    self.delegate = (id <SDPublishPhotoTableViewControllerDelegate>) navigationController.myDelegate;
+    SDModalNavigationController *modalNavigationController = (SDModalNavigationController *)self.navigationController;
+    self.delegate = (id <SDPublishPhotoTableViewControllerDelegate>) modalNavigationController.myDelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated
