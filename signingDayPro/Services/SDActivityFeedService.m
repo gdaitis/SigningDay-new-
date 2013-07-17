@@ -166,9 +166,9 @@
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     
-    NSString *path = [NSString stringWithFormat:@"users/%@/activities.json", username];
+    NSString *path = [NSString stringWithFormat:@"users/%@/statuses.json", username];
     [[SDAPIClient sharedClient] postPath:path
-                              parameters:@{@"Username": username, @"MessageBody":messageBody, @"MessageType":@"NewProfileAnnouncement", @"MessageSubject":@"Posted via Mobile"}
+                              parameters:@{@"Username": username, @"MessageBody":messageBody}
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
                                      successBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
