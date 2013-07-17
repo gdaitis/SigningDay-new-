@@ -27,6 +27,7 @@
 #import "SDPublishPhotoTableViewController.h"
 #import "SDPublishVideoTableViewController.h"
 #import "SDModalNavigationController.h"
+#import "SDBuzzSomethingViewController.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -190,7 +191,11 @@
 
 - (void)activityFeedHeaderViewDidClickOnBuzzSomething:(SDActivityFeedHeaderView *)activityFeedHeaderView
 {
-    
+    SDModalNavigationController *buzzSomethingModalNavigationViewController = [[UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"BuzzSomethingModalNavigationController"];
+    buzzSomethingModalNavigationViewController.myDelegate = self;
+    [self presentViewController:buzzSomethingModalNavigationViewController
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - UIActionSheet delegate methods

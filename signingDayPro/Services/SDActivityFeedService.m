@@ -160,6 +160,22 @@
     
 }
 
++ (void)postActivityStoryWithMessageBody:(NSString *)messageBody
+                            successBlock:(void (^)(void))successBlock
+                            failureBlock:(void (^)(void))failureBlock
+{
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    
+    NSString *path = [NSString stringWithFormat:@"users/%@/activities.json", username];
+    [[SDAPIClient sharedClient] postPath:path
+                              parameters:@{@"Username": username, @"MessageBody":messageBody, @"MessageType":@"NewProfileAnnouncement", @"MessageSubject":@"Posted via Mobile"}
+                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                     successBlock();
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     failureBlock();
+                                 }];
+}
+
 + (void)likeActivityStory:(ActivityStory *)activityStory
              successBlock:(void (^)(void))successBlock
              failureBlock:(void (^)(void))failureBlock
