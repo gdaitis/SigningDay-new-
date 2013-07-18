@@ -200,8 +200,8 @@
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
 		80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
-		80CCAE651793E6C30015429A /* SDUserProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE641793E6C30015429A /* SDUserProfileHeaderView.m */; };
-		80CCAE671793E6D20015429A /* SDUserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE661793E6D20015429A /* SDUserProfileHeaderView.xib */; };
+		80CCAE651793E6C30015429A /* SDUserProfileMemberHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */; };
+		80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */; };
 		80CCAE6A179404BE0015429A /* SDUserProfileSlidingButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */; };
 		80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */; };
 		80CCAE751794231B0015429A /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE741794231B0015429A /* UIView+NibLoading.m */; };
@@ -551,9 +551,9 @@
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
 		80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzSomethingViewController.m; sourceTree = "<group>"; };
 		80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButtonPost@2x.png"; sourceTree = "<group>"; };
-		80CCAE631793E6C30015429A /* SDUserProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHeaderView.h; sourceTree = "<group>"; };
-		80CCAE641793E6C30015429A /* SDUserProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileHeaderView.m; sourceTree = "<group>"; };
-		80CCAE661793E6D20015429A /* SDUserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileHeaderView.xib; sourceTree = "<group>"; };
+		80CCAE631793E6C30015429A /* SDUserProfileMemberHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileMemberHeaderView.h; sourceTree = "<group>"; };
+		80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileMemberHeaderView.m; sourceTree = "<group>"; };
+		80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileMemberHeaderView.xib; sourceTree = "<group>"; };
 		80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileSlidingButtonView.h; sourceTree = "<group>"; };
 		80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileSlidingButtonView.m; sourceTree = "<group>"; };
 		80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileSlidingButtonView.xib; sourceTree = "<group>"; };
@@ -1309,9 +1309,9 @@
 		80CCAE601793E66B0015429A /* UsersProfileViews */ = {
 			isa = PBXGroup;
 			children = (
-				80CCAE631793E6C30015429A /* SDUserProfileHeaderView.h */,
-				80CCAE641793E6C30015429A /* SDUserProfileHeaderView.m */,
-				80CCAE661793E6D20015429A /* SDUserProfileHeaderView.xib */,
+				80CCAE631793E6C30015429A /* SDUserProfileMemberHeaderView.h */,
+				80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */,
+				80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */,
 				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
 				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
 				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
@@ -1556,7 +1556,7 @@
 				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
 				80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */,
 				80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */,
-				80CCAE671793E6D20015429A /* SDUserProfileHeaderView.xib in Resources */,
+				80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */,
 				80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */,
 				809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */,
 				809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */,
@@ -1709,7 +1709,7 @@
 				805F6874178EFBF100ED186B /* SDTermsViewController.m in Sources */,
 				805F6877178F00B200ED186B /* SDSharingSettingsViewController.m in Sources */,
 				805F687A178F014000ED186B /* SDEditProfileViewController.m in Sources */,
-				80CCAE651793E6C30015429A /* SDUserProfileHeaderView.m in Sources */,
+				80CCAE651793E6C30015429A /* SDUserProfileMemberHeaderView.m in Sources */,
 				80CCAE6A179404BE0015429A /* SDUserProfileSlidingButtonView.m in Sources */,
 				80CCAE751794231B0015429A /* UIView+NibLoading.m in Sources */,
 				801088BB1795794A002EF1EB /* SDAddTagsCell.m in Sources */,

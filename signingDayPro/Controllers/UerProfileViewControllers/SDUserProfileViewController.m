@@ -9,7 +9,7 @@
 #import "SDUserProfileViewController.h"
 #import "SDMenuViewController.h"
 #import "SDProfileService.h"
-#import "SDUserProfileHeaderView.h"
+#import "SDUserProfileMemberHeaderView.h"
 #import "SDTableView.h"
 #import "User.h"
 #import "SDActivityFeedService.h"
@@ -31,7 +31,7 @@
 
 @property (nonatomic, strong) IBOutlet SDTableView *tableView;
 @property (atomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) SDUserProfileHeaderView *headerView;
+@property (nonatomic, strong) SDUserProfileMemberHeaderView *headerView;
 
 @end
 
@@ -88,6 +88,7 @@
     else {
         _headerView.buzzButtonView.hidden = NO;
     }
+    [_headerView setupInfoWithUser:_currentUser];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -108,9 +109,9 @@
         // Load headerview
         NSArray *topLevelObjects = nil;
         
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileHeaderView" owner:nil options:nil];
+        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
         for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDUserProfileHeaderView class]]) {
+            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
                 self.headerView = currentObject;
                 break;
             }
@@ -171,6 +172,14 @@
     cell.yearLabel.text = @"- DE, 2014";
     
     return cell;
+}
+
+#pragma mark - refresh
+
+- (void)checkServer
+{
+    [super checkServer];
+    [self loadActivityFeedInfo];
 }
 
 @end

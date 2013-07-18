@@ -27,7 +27,7 @@
 @implementation SDUserProfileSlidingButtonView
 
 
-
+#pragma mark - initializers
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -49,6 +49,8 @@
     }
     return self;
 }
+
+#pragma mark - View setup
 
 - (void)layoutSubviews
 {

@@ -29,4 +29,6 @@
 - (void)hideProgressHudInView:(UIView *)view;
 - (void)showProgressHudInView:(UIView *)view withText:(NSString *)text;
 
+- (void)checkServer;
+
 @end
