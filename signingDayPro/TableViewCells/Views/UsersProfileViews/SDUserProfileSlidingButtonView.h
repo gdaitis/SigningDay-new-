@@ -21,6 +21,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *videosButton;
 @property (nonatomic, weak) IBOutlet UIButton *bioButton;
 
+//sliding meniu label
+@property (nonatomic, weak) IBOutlet UILabel *keyAttributesLabel;
+
 
 
 - (void)setupView;

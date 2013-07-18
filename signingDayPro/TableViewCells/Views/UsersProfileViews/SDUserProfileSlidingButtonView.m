@@ -15,6 +15,13 @@
 @property (nonatomic, weak) IBOutlet UILabel *followingTitleLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
+//Sliding menu labels
+
+@property (nonatomic, weak) IBOutlet UILabel *photosLabel;
+@property (nonatomic, weak) IBOutlet UILabel *videosLabel;
+@property (nonatomic, weak) IBOutlet UILabel *bioLabel;
+
+
 @end
 
 @implementation SDUserProfileSlidingButtonView

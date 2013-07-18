@@ -21,21 +21,33 @@
 #import "AFNetworking.h"
 
 #define kUserProfileHeaderHeight 360
+#define kUserProfileHeaderHeightWithBuzzButtonView 450
 
 
-@interface SDUserProfileViewController ()
+@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate>
+{
+    BOOL _isMasterProfile;
+}
 
-@property (nonatomic, weak) IBOutlet SDTableView *tableView;
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) IBOutlet SDTableView *tableView;
+@property (atomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) SDUserProfileHeaderView *headerView;
 
 @end
 
+
 @implementation SDUserProfileViewController
+
+#pragma mark - View loading
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //chechking if user is view his own profile, depending on this we show or remove buzz button view
+    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        _isMasterProfile = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -61,29 +73,33 @@
 
 -(void)reloadActivityData
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
     [self.tableView reloadData];
     
     NSLog(@"tableview height = %f",self.tableView.frame.size.height);
 }
 
-
 #pragma mark - TableView datasource
 
 - (void)setupHeaderView
 {
-    
+    if (_isMasterProfile) {
+        _headerView.buzzButtonView.hidden = YES;
+    }
+    else {
+        _headerView.buzzButtonView.hidden = NO;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
+    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
     return [_dataArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return kUserProfileHeaderHeight;
+    return _isMasterProfile ? kUserProfileHeaderHeight : kUserProfileHeaderHeightWithBuzzButtonView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -107,7 +123,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
     
     int contentHeight = [SDUtils heightForActivityStory:activityStory];
     int result = 120/*buttons images etc..*/ + contentHeight;
@@ -133,7 +149,6 @@
                 break;
             }
         }
-        //[self setupCell:cell];
     } else {
         [cell.thumbnailImageView cancelImageRequestOperation];
     }
@@ -141,7 +156,7 @@
     cell.likeButton.tag = indexPath.row;
     cell.commentButton.tag = indexPath.row;
     
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
     
     cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likes count]];
     cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.comments count]];
@@ -157,7 +172,5 @@
     
     return cell;
 }
-
-#pragma mark UITableView delegate mothods
 
 @end
