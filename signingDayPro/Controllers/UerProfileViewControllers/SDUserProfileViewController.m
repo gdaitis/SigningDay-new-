@@ -21,21 +21,69 @@
 #import "AFNetworking.h"
 
 #define kUserProfileHeaderHeight 360
+#define kUserProfileHeaderHeightWithBuzzButtonView 450
 
 
-@interface SDUserProfileViewController ()
+@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate>
+{
+    BOOL _isMasterProfile;
+}
 
-@property (nonatomic, weak) IBOutlet SDTableView *tableView;
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) IBOutlet SDTableView *tableView;
+@property (atomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) SDUserProfileHeaderView *headerView;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
+
 @implementation SDUserProfileViewController
+
+#pragma mark - Getters/Setters
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"ActivityStory" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
+                              initWithKey:@"createdDate" ascending:NO];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
+    [fetchRequest setPredicate:predicate];
+    
+//    [fetchRequest setFetchBatchSize:20];
+    
+    NSFetchedResultsController *theFetchedResultsController =
+    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                        managedObjectContext:context sectionNameKeyPath:nil
+                                                   cacheName:@"Root"];
+    self.fetchedResultsController = theFetchedResultsController;
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
+    
+}
+
+#pragma mark - View loading
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //chechking if user is view his own profile, depending on this we show or remove buzz button view
+    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        _isMasterProfile = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -63,26 +111,67 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
     self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
     [self.tableView reloadData];
-    
-    NSLog(@"tableview height = %f",_tableView.frame.size.height);
 }
 
+
+
+//-(void)reloadActivityData
+//{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
+//        self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
+//
+//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//            [self performSelector:@selector(reloadTable) withObject:nil afterDelay:<#(NSTimeInterval)#>];
+//		});
+//	});
+//}
+
+//-(void)reloadActivityData
+//{
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
+//    [self fetchResultsUsingPredicate:predicate completionHandler:^(NSArray *data) {
+//        self.dataArray = data;
+//    }];
+//}
+//
+//-(void)fetchResultsUsingPredicate:(NSPredicate *)predicate completionHandler:(void (^)(NSArray *data))completionHandler
+//{    
+//    dispatch_queue_t coreDataQueue = dispatch_queue_create("com.coredata.queue", DISPATCH_QUEUE_SERIAL);
+//    dispatch_async(coreDataQueue, ^{
+//        NSArray *result = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
+//        
+//        if(completionHandler != nil)
+//        {
+//            completionHandler(result);
+//        }
+//    });
+//}
 
 #pragma mark - TableView datasource
 
 - (void)setupHeaderView
 {
-    
+    if (_isMasterProfile) {
+        _headerView.buzzButtonView.hidden = YES;
+    }
+    else {
+        _headerView.buzzButtonView.hidden = NO;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_dataArray count];
+    return [self.dataArray count];
+//    id  sectionInfo =
+//    [[_fetchedResultsController sections] objectAtIndex:section];
+//    return [sectionInfo numberOfObjects];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return kUserProfileHeaderHeight;
+    return _isMasterProfile ? kUserProfileHeaderHeight : kUserProfileHeaderHeightWithBuzzButtonView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -106,7 +195,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
     
     int contentHeight = [SDUtils heightForActivityStory:activityStory];
     int result = 120/*buttons images etc..*/ + contentHeight;
@@ -132,7 +221,6 @@
                 break;
             }
         }
-        //[self setupCell:cell];
     } else {
         [cell.thumbnailImageView cancelImageRequestOperation];
     }
@@ -140,7 +228,7 @@
     cell.likeButton.tag = indexPath.row;
     cell.commentButton.tag = indexPath.row;
     
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
     
     cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likes count]];
     cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.comments count]];

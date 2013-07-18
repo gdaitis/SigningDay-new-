@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SDUserProfileSlidingButtonView.h"
+#import "SDBuzzButtonView.h"
 
-@interface SDUserProfileHeaderView : UIView
+@interface SDUserProfileHeaderView : UIView <SDBuzzButtonViewDelegate>
 
 @property (nonatomic, strong) IBOutlet SDUserProfileSlidingButtonView *slidingButtonView;
+@property (nonatomic, strong) IBOutlet SDBuzzButtonView *buzzButtonView;
 
 @end
