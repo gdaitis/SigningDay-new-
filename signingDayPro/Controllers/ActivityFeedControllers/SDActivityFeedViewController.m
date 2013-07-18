@@ -115,7 +115,7 @@
     
     int contentHeight = [SDUtils heightForActivityStory:activityStory];
     int result = 120/*buttons images etc..*/ + contentHeight;
-
+    
     return result;
 }
 
@@ -167,6 +167,18 @@
     cell.yearLabel.text = @"- DE, 2014";
     
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 6)];
+    
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 6;
 }
 
 #pragma mark - TableView delegate
