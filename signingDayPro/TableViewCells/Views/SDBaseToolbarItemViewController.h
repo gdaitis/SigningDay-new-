@@ -16,7 +16,7 @@
 @interface SDBaseToolbarItemViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, weak) IBOutlet SDTableView *tableView;
+@property (nonatomic, strong) IBOutlet SDTableView *tableView;
 
 @end
 

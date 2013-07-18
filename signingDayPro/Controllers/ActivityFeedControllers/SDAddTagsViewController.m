@@ -113,7 +113,7 @@
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
     
     if (showActivityIndicator) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
         hud.labelText = @"Updating list";
     }
     
@@ -121,10 +121,10 @@
         [SDFollowingService getAlphabeticallySortedListOfFollowingsForUserWithIdentifier:master.identifier forPage:_currentFollowingPage withCompletionBlock:^(int totalFollowingCount) {
             //refresh the view
             _totalFollowings = totalFollowingCount;
-            [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
             [self reloadView];
         } failureBlock:^{
-            [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
         }];
 }
 

@@ -41,6 +41,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self beginRefreshing];
     [self loadActivityFeedInfo];
 }
 
@@ -49,12 +51,11 @@
 
 - (void)loadActivityFeedInfo
 {
-    [self showProgressHudInView:self.view withText:@"Loading"];
     [SDActivityFeedService getActivityStoriesForUser:_currentUser withSuccessBlock:^{
         [self reloadActivityData];
-        [self hideProgressHudInView:self.view];
+        [self endRefreshing];
     } failureBlock:^{
-        [self hideProgressHudInView:self.view];
+        [self endRefreshing];
     }];
 }
 
@@ -64,7 +65,7 @@
     self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
     [self.tableView reloadData];
     
-    NSLog(@"tableview height = %f",_tableView.frame.size.height);
+    NSLog(@"tableview height = %f",self.tableView.frame.size.height);
 }
 
 

@@ -14,6 +14,12 @@
 
 @interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
 
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
+- (void)beginRefreshing;
+- (void)endRefreshing;
+
 - (Master *)getMaster;
 - (NSNumber *)getMasterIdentifier;
 - (User *)getMasterUser;

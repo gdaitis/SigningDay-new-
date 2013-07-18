@@ -52,7 +52,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 
 @interface SDConversationViewController ()
 
-@property (nonatomic, weak) IBOutlet SDTableView *tableView;
+//@property (nonatomic, weak) IBOutlet SDTableView *tableView;
 @property (nonatomic, weak) IBOutlet UIImageView *chatBar;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
 @property (nonatomic, weak) IBOutlet UITextView *enterMessageTextView;
@@ -80,7 +80,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 
 @implementation SDConversationViewController
 
-@synthesize tableView = _tableView;
+//@synthesize tableView = _tableView;
 @synthesize enterMessageTextView = _enterMessageTextView;
 @synthesize textViewBackgroundImageView = _textViewBackgroundImageView;
 @synthesize conversation = _conversation;
@@ -115,6 +115,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     
+    [self.refreshControl removeFromSuperview];
     
     self.tableView.clearsContextBeforeDrawing = NO;
     self.tableView.delegate = self;
@@ -189,7 +190,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     _currentMessagesPage = _totalMessages = 0;
     if (!_isNewConversation) {
         if (self.firstLoad) {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
             hud.labelText = @"Updating chat";
         }
         [self checkServer];
@@ -233,12 +234,12 @@ static CGFloat const kChatBarHeight4    = 104.0f;
                 //delete old messages
                 [SDChatService deleteMarkedMessagesForConversation:self.conversation];
                 [self reload];
-                [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+                [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
                 [self scrollToBottomAnimated:YES];
             }
             
         } failure:^{
-            [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
         }];
     } else {
         self.firstLoad = NO;

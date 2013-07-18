@@ -123,6 +123,8 @@
     }
     
     [self.view addSubview:header];
+    
+    [self.refreshControl removeFromSuperview];
 }
 
 - (void)viewDidUnload
@@ -154,7 +156,7 @@
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
     
     if (showActivityIndicator) {
-        [self showProgressHudInView:self.view withText:@"Updating list"];
+        [self showProgressHudInView:self.tableView withText:@"Updating list"];
     }
     
     if (_controllerType == CONTROLLER_TYPE_FOLLOWING) {
@@ -162,20 +164,20 @@
         [SDFollowingService getListOfFollowingsForUserWithIdentifier:master.identifier forPage:_currentFollowingPage withCompletionBlock:^(int totalFollowingCount) {
             //refresh the view
             _totalFollowings = totalFollowingCount;
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
             [self reloadView];
         } failureBlock:^{
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
         }];
     }
     else {
         //get list of followers
         [SDFollowingService getListOfFollowersForUserWithIdentifier:master.identifier forPage:_currentFollowersPage withCompletionBlock:^(int totalFollowerCount) {
             _totalFollowers = totalFollowerCount; //set the count to know how much we should send
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
             [self reloadView];
         } failureBlock:^{
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
         }];
     }
 }
@@ -399,7 +401,7 @@
 
 - (void)followButtonPressed:(UIButton *)sender
 {
-    [self showProgressHudInView:self.view withText:@"Updating following list"];
+    [self showProgressHudInView:self.tableView withText:@"Updating following list"];
     
     User *user = [self.dataArray objectAtIndex:sender.tag];
     [self.userSet addObject:user.identifier];
@@ -407,19 +409,19 @@
     if (!sender.selected) {
         //following action
         [SDFollowingService followUserWithIdentifier:user.identifier withCompletionBlock:^{
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
             [self loadInfo];
         } failureBlock:^{
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
         }];
     }
     else {
         //unfollowing action
         [SDFollowingService unfollowUserWithIdentifier:user.identifier withCompletionBlock:^{
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
             [self loadInfo];
         } failureBlock:^{
-            [self hideProgressHudInView:self.view];
+            [self hideProgressHudInView:self.tableView];
         }];
     }
 }

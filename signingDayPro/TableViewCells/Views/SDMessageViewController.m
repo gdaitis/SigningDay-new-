@@ -73,7 +73,8 @@
         [self reloadView];
     }
     if (self.firstLoad) {
-        [self showProgressHudInView:self.view withText:@"Updating conversations"];
+        //[self showProgressHudInView:self.view withText:@"Updating conversations"];
+        [self beginRefreshing];
     }
     [self checkServer];
 }
@@ -134,11 +135,13 @@
                 [SDChatService deleteMarkedConversations];
                 
                 [self reloadView];
-                [self hideProgressHudInView:self.view];
+                //[self hideProgressHudInView:self.view];
+                [self endRefreshing];
             }
             
         } failureBlock:^{
-            [self hideProgressHudInView:self.view];
+            //[self hideProgressHudInView:self.view];
+            [self endRefreshing];
         }];
     }
 }

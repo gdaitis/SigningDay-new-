@@ -36,6 +36,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:kSDLoginServiceUserDidLogoutNotification object:nil];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor grayColor];
+    [self.refreshControl addTarget:self action:@selector(checkServer) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -80,6 +85,24 @@
 {
     User *masterUser = [User MR_findFirstByAttribute:@"identifier" withValue:[self getMasterIdentifier]];
     return masterUser;
+}
+
+#pragma mark - Loader methods
+
+- (void)beginRefreshing
+{
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    [self.refreshControl beginRefreshing];
+}
+
+- (void)endRefreshing
+{
+    [self.refreshControl endRefreshing];
+}
+
+- (void)checkServer
+{
+    // override this in a subclass
 }
 
 #pragma mark - SDLoginViewController login & delegate methods
