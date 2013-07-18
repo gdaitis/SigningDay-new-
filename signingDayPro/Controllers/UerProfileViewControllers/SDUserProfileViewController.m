@@ -32,47 +32,11 @@
 @property (nonatomic, strong) IBOutlet SDTableView *tableView;
 @property (atomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) SDUserProfileHeaderView *headerView;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
 
 @implementation SDUserProfileViewController
-
-#pragma mark - Getters/Setters
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"ActivityStory" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                              initWithKey:@"createdDate" ascending:NO];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-    [fetchRequest setPredicate:predicate];
-    
-//    [fetchRequest setFetchBatchSize:20];
-    
-    NSFetchedResultsController *theFetchedResultsController =
-    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                        managedObjectContext:context sectionNameKeyPath:nil
-                                                   cacheName:@"Root"];
-    self.fetchedResultsController = theFetchedResultsController;
-    _fetchedResultsController.delegate = self;
-    
-    return _fetchedResultsController;
-    
-}
 
 #pragma mark - View loading
 
@@ -108,46 +72,8 @@
 
 -(void)reloadActivityData
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
     [self.tableView reloadData];
 }
-
-
-
-//-(void)reloadActivityData
-//{
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-//        self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
-//
-//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-//            [self performSelector:@selector(reloadTable) withObject:nil afterDelay:<#(NSTimeInterval)#>];
-//		});
-//	});
-//}
-
-//-(void)reloadActivityData
-//{
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-//    [self fetchResultsUsingPredicate:predicate completionHandler:^(NSArray *data) {
-//        self.dataArray = data;
-//    }];
-//}
-//
-//-(void)fetchResultsUsingPredicate:(NSPredicate *)predicate completionHandler:(void (^)(NSArray *data))completionHandler
-//{    
-//    dispatch_queue_t coreDataQueue = dispatch_queue_create("com.coredata.queue", DISPATCH_QUEUE_SERIAL);
-//    dispatch_async(coreDataQueue, ^{
-//        NSArray *result = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
-//        
-//        if(completionHandler != nil)
-//        {
-//            completionHandler(result);
-//        }
-//    });
-//}
 
 #pragma mark - TableView datasource
 
@@ -163,10 +89,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataArray count];
-//    id  sectionInfo =
-//    [[_fetchedResultsController sections] objectAtIndex:section];
-//    return [sectionInfo numberOfObjects];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
+    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
+    return [_dataArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -244,7 +169,5 @@
     
     return cell;
 }
-
-#pragma mark UITableView delegate mothods
 
 @end
