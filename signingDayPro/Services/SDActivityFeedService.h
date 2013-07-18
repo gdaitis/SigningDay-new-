@@ -17,6 +17,9 @@
 + (void)getActivityStoriesForUser:(User *)user
                  withSuccessBlock:(void (^)(void))successBlock
                      failureBlock:(void (^)(void))failureBlock;
++ (void)postActivityStoryWithMessageBody:(NSString *)messageBody
+                            successBlock:(void (^)(void))successBlock
+                            failureBlock:(void (^)(void))failureBlock;
 + (void)likeActivityStory:(ActivityStory *)activityStory
              successBlock:(void (^)(void))successBlock
              failureBlock:(void (^)(void))failureBlock;

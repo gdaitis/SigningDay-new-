@@ -236,7 +236,77 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwZ-zg-9XG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541" y="487"/>
+            <point key="canvasLocation" x="1733" y="237"/>
+        </scene>
+        <!--Buzz Something View Controller - Say something...-->
+        <scene sceneID="BqW-w9-Qoh">
+            <objects>
+                <viewController id="x3s-Pi-LZ1" customClass="SDBuzzSomethingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6PR-XB-zXa">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKh-FH-Y3m">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3O-vP-M9w">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="jVJ-K9-mub"/>
+                                            <constraint firstAttribute="width" constant="50" id="pcz-1q-GVp"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esQ-x8-WtH">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="999" constant="276" type="user" id="OCv-Po-Zkf"/>
+                                            <constraint firstAttribute="width" constant="247" id="zvj-pU-Vdm"/>
+                                        </constraints>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="esQ-x8-WtH" firstAttribute="leading" secondItem="rKh-FH-Y3m" secondAttribute="leading" constant="61" id="WHg-wD-bEB"/>
+                                    <constraint firstAttribute="bottom" secondItem="esQ-x8-WtH" secondAttribute="bottom" constant="12" type="user" id="agi-7w-QY0"/>
+                                    <constraint firstItem="esQ-x8-WtH" firstAttribute="top" secondItem="rKh-FH-Y3m" secondAttribute="top" type="user" id="btH-MN-6aJ"/>
+                                    <constraint firstItem="u3O-vP-M9w" firstAttribute="top" secondItem="rKh-FH-Y3m" secondAttribute="top" constant="10" id="oVq-HR-M2p"/>
+                                    <constraint firstItem="u3O-vP-M9w" firstAttribute="leading" secondItem="rKh-FH-Y3m" secondAttribute="leading" constant="8" id="tIe-eA-5Rn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rKh-FH-Y3m" firstAttribute="trailing" secondItem="6PR-XB-zXa" secondAttribute="trailing" type="default" id="Mwf-5C-ZlZ"/>
+                            <constraint firstAttribute="bottom" secondItem="rKh-FH-Y3m" secondAttribute="bottom" constant="216" type="user" id="eXY-qr-7zY"/>
+                            <constraint firstItem="rKh-FH-Y3m" firstAttribute="leading" secondItem="6PR-XB-zXa" secondAttribute="leading" type="default" id="w6f-It-JSY"/>
+                            <constraint firstItem="rKh-FH-Y3m" firstAttribute="top" secondItem="6PR-XB-zXa" secondAttribute="top" type="user" id="ydb-Ge-QvE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Say something..." id="Trs-K6-iz1"/>
+                    <connections>
+                        <outlet property="contentView" destination="rKh-FH-Y3m" id="klU-TV-bsU"/>
+                        <outlet property="textView" destination="esQ-x8-WtH" id="i1d-iH-LcK"/>
+                        <outlet property="userImageView" destination="u3O-vP-M9w" id="kz8-Hk-A0L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1TS-Lk-Cg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1733" y="-691"/>
+        </scene>
+        <!--Modal Navigation Controller-->
+        <scene sceneID="Yet-cM-ZWP">
+            <objects>
+                <navigationController storyboardIdentifier="BuzzSomethingModalNavigationController" definesPresentationContext="YES" id="DGo-eb-cFE" customClass="SDModalNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5jV-RF-yfj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="x3s-Pi-LZ1" kind="relationship" relationship="rootViewController" id="HAF-6E-NYU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l8g-p2-xb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="-691"/>
         </scene>
         <!--Modal Navigation Controller-->
         <scene sceneID="z6m-c6-UCs">
@@ -253,7 +323,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isg-yH-gWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="487"/>
+            <point key="canvasLocation" x="1257" y="237"/>
         </scene>
         <!--Modal Navigation Controller-->
         <scene sceneID="Bsp-Yt-MQk">
@@ -270,7 +340,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7n-yb-5EV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="1283"/>
+            <point key="canvasLocation" x="1270" y="1033"/>
         </scene>
         <!--Publish Photo Table View Controller - Publish Photo-->
         <scene sceneID="PYo-vX-vAg">
@@ -433,7 +503,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s17-sX-ZCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="1283"/>
+            <point key="canvasLocation" x="1746" y="1033"/>
         </scene>
         <!--Add Tags View Controller - Add Tags-->
         <scene sceneID="KqV-1q-gPO">
@@ -528,7 +598,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1755" y="817"/>
+            <point key="canvasLocation" x="2947" y="567"/>
         </scene>
         <!--Modal Navigation Controller-->
         <scene sceneID="PzC-ym-IzI">
@@ -548,7 +618,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WP3-IA-12C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="817"/>
+            <point key="canvasLocation" x="2421" y="567"/>
         </scene>
     </scenes>
     <resources>
@@ -591,6 +661,14 @@
         </class>
         <class className="SDBaseViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseViewController.h"/>
+        </class>
+        <class className="SDBuzzSomethingViewController" superclassName="SDBaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBuzzSomethingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="userImageView" candidateClass="UIImageView"/>
+            </relationships>
         </class>
         <class className="SDEnterMediaInfoViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDEnterMediaInfoViewController.h"/>

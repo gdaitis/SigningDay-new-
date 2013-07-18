@@ -27,6 +27,7 @@
 #import "SDPublishPhotoTableViewController.h"
 #import "SDPublishVideoTableViewController.h"
 #import "SDModalNavigationController.h"
+#import "SDBuzzSomethingViewController.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -41,6 +42,11 @@
 @property (nonatomic, strong) UIImage *capturedImage;
 @property (nonatomic, strong) NSURL *capturedVideoURL;
 @property (nonatomic, strong) NSString *mediaType;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
+- (void)checkServer;
+- (void)beginRefreshing;
+- (void)endRefreshing;
 
 @end
 
@@ -76,19 +82,24 @@
     newShadow.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
     
     [self.view.layer addSublayer:newShadow];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor magentaColor];
+    [self.refreshControl addTarget:self action:@selector(checkServer) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self showProgressHudInView:self.tableView withText:@"Loading"];
+    [self beginRefreshing];
     [SDActivityFeedService getActivityStoriesForUser:[self getMasterUser]
      withSuccessBlock:^{
-        [self loadData];
-        [self hideProgressHudInView:self.tableView];
+         [self loadData];
+         [self endRefreshing];
     } failureBlock:^{
-        [self hideProgressHudInView:self.tableView];
+        [self endRefreshing];
     }];
 }
 
@@ -98,6 +109,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)checkServer
+{
+    [SDActivityFeedService getActivityStoriesForUser:[self getMasterUser]
+                                    withSuccessBlock:^{
+                                        [self loadData];
+                                        [self endRefreshing];
+                                    } failureBlock:^{
+                                        //
+                                    }];
+}
+
+- (void)beginRefreshing
+{
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    [self.refreshControl beginRefreshing];
+}
+
+- (void)endRefreshing
+{
+    [self.refreshControl endRefreshing];
+}
 
 #pragma mark - TableView datasource
 
@@ -190,7 +222,11 @@
 
 - (void)activityFeedHeaderViewDidClickOnBuzzSomething:(SDActivityFeedHeaderView *)activityFeedHeaderView
 {
-    
+    SDModalNavigationController *buzzSomethingModalNavigationViewController = [[UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"BuzzSomethingModalNavigationController"];
+    buzzSomethingModalNavigationViewController.myDelegate = self;
+    [self presentViewController:buzzSomethingModalNavigationViewController
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - UIActionSheet delegate methods
