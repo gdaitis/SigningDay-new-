@@ -41,10 +41,19 @@
 - (void)setupInfoWithUser:(User *)user
 {
     _nameLabel.text = user.name;
-    
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
         _userImageView.image = image;
     }];
+}
+
+- (void)hideBuzzButtonView:(BOOL)hide
+{
+    if (hide) {
+        _buzzButtonView.hidden = YES;
+    }
+    else {
+        _buzzButtonView.hidden = NO;
+    }
 }
 
 /*

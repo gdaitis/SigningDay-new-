@@ -32,6 +32,7 @@
 
 
 - (void)setupInfoWithUser:(User *)user;
+- (void)hideBuzzButtonView:(BOOL)hide;
 
 
 @end

@@ -175,6 +175,8 @@
 		80630D23177B1736002AA0BC /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D22177B1736002AA0BC /* Message.m */; };
 		80630D26177B1736002AA0BC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D25177B1736002AA0BC /* Comment.m */; };
 		80630D29177B1736002AA0BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D28177B1736002AA0BC /* User.m */; };
+		8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */; };
+		8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
 		809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */; };
@@ -521,6 +523,9 @@
 		80630D25177B1736002AA0BC /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		80630D27177B1736002AA0BC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		80630D28177B1736002AA0BC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		8063D2C817991BE500C01D92 /* SDUserProfilePlayerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfilePlayerHeaderView.h; sourceTree = "<group>"; };
+		8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfilePlayerHeaderView.m; sourceTree = "<group>"; };
+		8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfilePlayerHeaderView.xib; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileKeyAttributesButton@2x.png"; sourceTree = "<group>"; };
@@ -1312,6 +1317,9 @@
 				80CCAE631793E6C30015429A /* SDUserProfileMemberHeaderView.h */,
 				80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */,
 				80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */,
+				8063D2C817991BE500C01D92 /* SDUserProfilePlayerHeaderView.h */,
+				8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */,
+				8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */,
 				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
 				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
 				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
@@ -1594,6 +1602,7 @@
 				80D1F39C17967FF20051E8E1 /* MessageIcon@2x.png in Resources */,
 				80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */,
 				80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */,
+				8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1723,6 +1732,7 @@
 				801088FB17957C36002EF1EB /* SDSimplifiedCameraOverlayView.m in Sources */,
 				80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */,
 				80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */,
+				8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

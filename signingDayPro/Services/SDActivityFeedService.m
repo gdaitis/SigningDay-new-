@@ -32,7 +32,6 @@
     //if user provided, add parameter with user id to get only this users activity stories
     if (user) {
         params = [[NSDictionary alloc] initWithObjectsAndKeys:[user.identifier stringValue], @"UserId", nil];
-        NSLog(@"params = %@",params);
 
     }
     
@@ -142,7 +141,7 @@
                                                                                                                                                 [self createCommentFromDictionary:commentDictionary];
                                                                                                                                             }
                                                                                                                                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                                                                                                            NSLog(@"Comments parse failed");
+//                                                                                                                                            NSLog(@"Comments parse failed");
                                                                                                                                         }];
                                         [operationsArray addObject:commentsOperation];
                                     }

@@ -10,6 +10,7 @@
 #import "SDMenuViewController.h"
 #import "SDProfileService.h"
 #import "SDUserProfileMemberHeaderView.h"
+#import "SDUserProfilePlayerHeaderView.h"
 #import "SDTableView.h"
 #import "User.h"
 #import "SDActivityFeedService.h"
@@ -31,7 +32,7 @@
 
 @property (nonatomic, strong) IBOutlet SDTableView *tableView;
 @property (atomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) SDUserProfileMemberHeaderView *headerView;
+@property (nonatomic, strong) id headerView;    //may be different depending on user
 
 @end
 
@@ -83,10 +84,10 @@
 - (void)setupHeaderView
 {
     if (_isMasterProfile) {
-        _headerView.buzzButtonView.hidden = YES;
+        [_headerView hideBuzzButtonView:NO];
     }
     else {
-        _headerView.buzzButtonView.hidden = NO;
+        [_headerView hideBuzzButtonView:NO];
     }
     [_headerView setupInfoWithUser:_currentUser];
 }
@@ -106,12 +107,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (!_headerView) {
+ 
         // Load headerview
         NSArray *topLevelObjects = nil;
-        
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
+//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
+        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
         for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
+//            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
+            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
                 self.headerView = currentObject;
                 break;
             }
