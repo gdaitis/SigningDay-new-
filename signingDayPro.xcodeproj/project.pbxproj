@@ -177,6 +177,7 @@
 		80630D29177B1736002AA0BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D28177B1736002AA0BC /* User.m */; };
 		8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */; };
 		8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */; };
+		8063D2CE1799486500C01D92 /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2CD1799486500C01D92 /* shadow.png */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
 		809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */; };
@@ -526,6 +527,7 @@
 		8063D2C817991BE500C01D92 /* SDUserProfilePlayerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfilePlayerHeaderView.h; sourceTree = "<group>"; };
 		8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfilePlayerHeaderView.m; sourceTree = "<group>"; };
 		8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfilePlayerHeaderView.xib; sourceTree = "<group>"; };
+		8063D2CD1799486500C01D92 /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.png; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileKeyAttributesButton@2x.png"; sourceTree = "<group>"; };
@@ -1230,6 +1232,14 @@
 			path = ActivityFeedControllers;
 			sourceTree = "<group>";
 		};
+		8063D2CF1799486E00C01D92 /* DeleteReplace */ = {
+			isa = PBXGroup;
+			children = (
+				8063D2CD1799486500C01D92 /* shadow.png */,
+			);
+			name = DeleteReplace;
+			sourceTree = "<group>";
+		};
 		808CEA98178E937A0098AD5D /* CameraViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1283,6 +1293,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8063D2CF1799486E00C01D92 /* DeleteReplace */,
 				809DF8F617955AC5001F37B3 /* UserProfileViewImages */,
 				80F259061773411900D3B85E /* ActivityFeedImages */,
 				7B4628891765DC4600091954 /* Chat */,
@@ -1603,6 +1614,7 @@
 				80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */,
 				80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */,
 				8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */,
+				8063D2CE1799486500C01D92 /* shadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

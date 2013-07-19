@@ -60,9 +60,9 @@
 - (void)setupInfoWithUser:(User *)user
 {
     _namelabel.text = user.name;
-//    [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
-//        _userImageView.image = image;
-//    }];
+    [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
+        _userImageView.image = image;
+    }];
 }
 
 - (void)hideBuzzButtonView:(BOOL)hide

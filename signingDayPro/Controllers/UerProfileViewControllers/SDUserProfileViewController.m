@@ -46,9 +46,10 @@
     [super viewDidLoad];
     
     //chechking if user is view his own profile, depending on this we show or remove buzz button view
-    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
-        _isMasterProfile = YES;
-    }
+#warning FIXME logic for all profiles
+//    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+//        _isMasterProfile = YES;
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -110,6 +111,7 @@
  
         // Load headerview
         NSArray *topLevelObjects = nil;
+#warning FIXME logic for all profiles
 //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
         topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
         for(id currentObject in topLevelObjects){
