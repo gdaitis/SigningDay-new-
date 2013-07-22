@@ -9,6 +9,8 @@
 #import "SDUserProfilePlayerHeaderView.h"
 #import "User.h"
 #import "SDImageService.h"
+#import "SDStarsRatingView.h"
+#import "SDBaseScoreView.h"
 
 @interface SDUserProfilePlayerHeaderView ()
 
@@ -28,6 +30,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *weightlabel;
 @property (nonatomic, weak) IBOutlet UILabel *classlabel;
 @property (nonatomic, weak) IBOutlet UILabel *classNumberlabel;
+@property (weak, nonatomic) IBOutlet SDStarsRatingView *starsRatingView;
+@property (weak, nonatomic) IBOutlet SDBaseScoreView *baseScoreView;
 
 @end
 
@@ -62,6 +66,9 @@
     _namelabel.text = user.name;
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
         _userImageView.image = image;
+#warning hardcoded for testing
+        self.starsRatingView.starsCount = 4;
+        self.baseScoreView.baseScore = 87.69;
     }];
 }
 
