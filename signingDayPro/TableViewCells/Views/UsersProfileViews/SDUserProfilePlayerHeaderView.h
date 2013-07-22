@@ -7,17 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDUserProfileSlidingButtonView.h"
-#import "SDBuzzButtonView.h"
+#import "SDBaseProfileHeaderView.h"
 
 @class User;
 
-@interface SDUserProfilePlayerHeaderView : UIView
+@interface SDUserProfilePlayerHeaderView : SDBaseProfileHeaderView
 
-@property (nonatomic, strong) IBOutlet SDUserProfileSlidingButtonView *slidingButtonView;
-@property (nonatomic, strong) IBOutlet SDBuzzButtonView *buzzButtonView;
-
-- (void)setupInfoWithUser:(User *)user;
-- (void)hideBuzzButtonView:(BOOL)hide;
 
 @end

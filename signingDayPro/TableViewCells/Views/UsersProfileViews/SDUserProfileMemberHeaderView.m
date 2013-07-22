@@ -7,9 +7,23 @@
 //
 
 #import "SDUserProfileMemberHeaderView.h"
-#import "User.h"
-#import "SDUserProfileSlidingButtonView.h"
-#import "SDImageService.h"
+
+@interface SDUserProfileMemberHeaderView ()
+
+//headerView labels
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *profileTypeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *favoriteTeamLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *favoriteTeamImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *userImageView;
+@property (nonatomic, weak) IBOutlet UILabel *memberSinceLabel;
+@property (nonatomic, weak) IBOutlet UILabel *memberSinceDateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *postsLabel;
+@property (nonatomic, weak) IBOutlet UILabel *postsCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel *uploadsLabel;
+@property (nonatomic, weak) IBOutlet UILabel *uploadsCountLabel;
+
+@end
 
 @implementation SDUserProfileMemberHeaderView
 
@@ -40,20 +54,12 @@
 
 - (void)setupInfoWithUser:(User *)user
 {
+    [super setupInfoWithUser:user];
+    
     _nameLabel.text = user.name;
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
         _userImageView.image = image;
     }];
-}
-
-- (void)hideBuzzButtonView:(BOOL)hide
-{
-    if (hide) {
-        _buzzButtonView.hidden = YES;
-    }
-    else {
-        _buzzButtonView.hidden = NO;
-    }
 }
 
 /*

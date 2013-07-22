@@ -12,6 +12,8 @@
 #import "SDUserProfileMemberHeaderView.h"
 #import "SDUserProfilePlayerHeaderView.h"
 #import "SDTableView.h"
+#import "SDUserProfileCoachHeaderView.h"
+#import "SDUserProfileTeamHeaderView.h"
 #import "User.h"
 #import "SDActivityFeedService.h"
 #import "SDUtils.h"
@@ -111,12 +113,19 @@
  
         // Load headerview
         NSArray *topLevelObjects = nil;
+        
 #warning FIXME logic for all profiles
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
+//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
+        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
+//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileTeamHeaderView" owner:nil options:nil];
+//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileCoachHeaderView" owner:nil options:nil];
+        
+        
         for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
-//            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
+//            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
+//            if([currentObject isKindOfClass:[SDUserProfileCoachHeaderView class]]) {
+//            if([currentObject isKindOfClass:[SDUserProfileTeamHeaderView class]]) {
+            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
                 self.headerView = currentObject;
                 break;
             }

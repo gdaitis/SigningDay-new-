@@ -7,8 +7,6 @@
 //
 
 #import "SDUserProfilePlayerHeaderView.h"
-#import "User.h"
-#import "SDImageService.h"
 #import "SDStarsRatingView.h"
 #import "SDBaseScoreView.h"
 
@@ -63,6 +61,8 @@
 
 - (void)setupInfoWithUser:(User *)user
 {
+    [super setupInfoWithUser:user];
+    
     _namelabel.text = user.name;
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
         _userImageView.image = image;
@@ -72,15 +72,7 @@
     }];
 }
 
-- (void)hideBuzzButtonView:(BOOL)hide
-{
-    if (hide) {
-        _buzzButtonView.hidden = YES;
-    }
-    else {
-        _buzzButtonView.hidden = NO;
-    }
-}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

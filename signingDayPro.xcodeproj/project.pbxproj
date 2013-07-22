@@ -189,6 +189,7 @@
 		8063D2E1179D507800C01D92 /* SDUserProfileCoachHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2DC179D507800C01D92 /* SDUserProfileCoachHeaderView.xib */; };
 		8063D2E2179D507800C01D92 /* SDUserProfileTeamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2DE179D507800C01D92 /* SDUserProfileTeamHeaderView.m */; };
 		8063D2E3179D507800C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */; };
+		8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
 		809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */; };
@@ -554,6 +555,8 @@
 		8063D2DD179D507800C01D92 /* SDUserProfileTeamHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileTeamHeaderView.h; sourceTree = "<group>"; };
 		8063D2DE179D507800C01D92 /* SDUserProfileTeamHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileTeamHeaderView.m; sourceTree = "<group>"; };
 		8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileTeamHeaderView.xib; sourceTree = "<group>"; };
+		8063D2E4179D706000C01D92 /* SDBaseProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProfileHeaderView.h; sourceTree = "<group>"; };
+		8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProfileHeaderView.m; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileKeyAttributesButton@2x.png"; sourceTree = "<group>"; };
@@ -1362,15 +1365,17 @@
 				8063D2C817991BE500C01D92 /* SDUserProfilePlayerHeaderView.h */,
 				8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */,
 				8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */,
-				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
-				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
-				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
 				8063D2DA179D507800C01D92 /* SDUserProfileCoachHeaderView.h */,
 				8063D2DB179D507800C01D92 /* SDUserProfileCoachHeaderView.m */,
 				8063D2DC179D507800C01D92 /* SDUserProfileCoachHeaderView.xib */,
 				8063D2DD179D507800C01D92 /* SDUserProfileTeamHeaderView.h */,
 				8063D2DE179D507800C01D92 /* SDUserProfileTeamHeaderView.m */,
 				8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */,
+				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
+				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
+				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
+				8063D2E4179D706000C01D92 /* SDBaseProfileHeaderView.h */,
+				8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */,
 				80D1F39D179680C50051E8E1 /* SDBuzzButtonView.h */,
 				80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */,
 				80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */,
@@ -1797,6 +1802,7 @@
 				7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */,
 				8063D2E0179D507800C01D92 /* SDUserProfileCoachHeaderView.m in Sources */,
 				8063D2E2179D507800C01D92 /* SDUserProfileTeamHeaderView.m in Sources */,
+				8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

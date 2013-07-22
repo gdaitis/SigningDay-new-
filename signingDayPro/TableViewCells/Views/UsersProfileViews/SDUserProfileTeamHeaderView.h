@@ -7,17 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDBaseProfileHeaderView.h"
 
-@interface SDUserProfileTeamHeaderView : UIView
+@interface SDUserProfileTeamHeaderView : SDBaseProfileHeaderView    
 
-@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *universityLabel;
-@property (nonatomic, weak) IBOutlet UILabel *conferenceLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *conferenceImageView;
-
-@property (nonatomic, weak) IBOutlet UILabel *conferenceRankingLabel;
-@property (nonatomic, weak) IBOutlet UILabel *conferenceRankingNumberLabel;
-
-@property (nonatomic, weak) IBOutlet UILabel *headCoachLabel;
-@property (nonatomic, weak) IBOutlet UILabel *headCoachNameLabel;
 @end
