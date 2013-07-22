@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B2D9AAA1799504600B1D660 /* SDStarsRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D9AA91799504600B1D660 /* SDStarsRatingView.m */; };
+		7B2D9AAD1799524700B1D660 /* UserProfileStarActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B2D9AAB1799524700B1D660 /* UserProfileStarActive@2x.png */; };
+		7B2D9AAE1799524700B1D660 /* UserProfileStarFaded@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B2D9AAC1799524700B1D660 /* UserProfileStarFaded@2x.png */; };
 		7B3031B0177ADB97006EF25B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3031AF177ADB97006EF25B /* libxml2.dylib */; };
 		7B3031C9177AFB12006EF25B /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3031AC177ADB3D006EF25B /* HTMLNode.m */; };
 		7B3031CA177AFB12006EF25B /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3031AE177ADB3D006EF25B /* HTMLParser.m */; };
@@ -28,6 +31,10 @@
 		7B73652A175F84F2007A338E /* send_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736528175F84F2007A338E /* send_button@2x.png */; };
 		7B755488177C574E00CBE6A3 /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */; };
 		7B75548B177C578900CBE6A3 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B75548A177C578900CBE6A3 /* ImageData.m */; };
+		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
+		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
+		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
+		7BFE1FE9179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE6179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png */; };
 		801088BB1795794A002EF1EB /* SDAddTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088AF1795794A002EF1EB /* SDAddTagsCell.m */; };
 		801088BC1795794A002EF1EB /* SDAddTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801088B01795794A002EF1EB /* SDAddTagsCell.xib */; };
 		801088BD1795794A002EF1EB /* SDAddTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088B21795794A002EF1EB /* SDAddTagsViewController.m */; };
@@ -248,6 +255,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B2D9AA81799504600B1D660 /* SDStarsRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStarsRatingView.h; sourceTree = "<group>"; };
+		7B2D9AA91799504600B1D660 /* SDStarsRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStarsRatingView.m; sourceTree = "<group>"; };
+		7B2D9AAB1799524700B1D660 /* UserProfileStarActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileStarActive@2x.png"; sourceTree = "<group>"; };
+		7B2D9AAC1799524700B1D660 /* UserProfileStarFaded@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileStarFaded@2x.png"; sourceTree = "<group>"; };
 		7B3031AB177ADB3D006EF25B /* HTMLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
 		7B3031AC177ADB3D006EF25B /* HTMLNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
 		7B3031AD177ADB3D006EF25B /* HTMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
@@ -277,6 +288,11 @@
 		7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
 		7B755489177C578900CBE6A3 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
 		7B75548A177C578900CBE6A3 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
+		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
+		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
+		7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarFull@2x.png"; sourceTree = "<group>"; };
+		7BFE1FE6179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarHalfFull@2x.png"; sourceTree = "<group>"; };
 		801088AE1795794A002EF1EB /* SDAddTagsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAddTagsCell.h; sourceTree = "<group>"; };
 		801088AF1795794A002EF1EB /* SDAddTagsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAddTagsCell.m; sourceTree = "<group>"; };
 		801088B01795794A002EF1EB /* SDAddTagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDAddTagsCell.xib; sourceTree = "<group>"; };
@@ -1264,6 +1280,11 @@
 				809DF8FE17955AC5001F37B3 /* UserProfilePhotosButton@2x.png */,
 				809DF90017955AC5001F37B3 /* UserProfileProspectsButton@2x.png */,
 				809DF90217955AC5001F37B3 /* UserProfileVideoButton@2x.png */,
+				7B2D9AAB1799524700B1D660 /* UserProfileStarActive@2x.png */,
+				7B2D9AAC1799524700B1D660 /* UserProfileStarFaded@2x.png */,
+				7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */,
+				7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */,
+				7BFE1FE6179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png */,
 			);
 			path = UserProfileViewImages;
 			sourceTree = "<group>";
@@ -1337,6 +1358,10 @@
 				80D1F39D179680C50051E8E1 /* SDBuzzButtonView.h */,
 				80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */,
 				80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */,
+				7B2D9AA81799504600B1D660 /* SDStarsRatingView.h */,
+				7B2D9AA91799504600B1D660 /* SDStarsRatingView.m */,
+				7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */,
+				7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */,
 			);
 			path = UsersProfileViews;
 			sourceTree = "<group>";
@@ -1615,6 +1640,11 @@
 				80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */,
 				8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */,
 				8063D2CE1799486500C01D92 /* shadow.png in Resources */,
+				7B2D9AAD1799524700B1D660 /* UserProfileStarActive@2x.png in Resources */,
+				7B2D9AAE1799524700B1D660 /* UserProfileStarFaded@2x.png in Resources */,
+				7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */,
+				7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */,
+				7BFE1FE9179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1745,6 +1775,8 @@
 				80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */,
 				80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */,
 				8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */,
+				7B2D9AAA1799504600B1D660 /* SDStarsRatingView.m in Sources */,
+				7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
