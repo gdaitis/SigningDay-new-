@@ -47,9 +47,9 @@
     
     //chechking if user is view his own profile, depending on this we show or remove buzz button view
 #warning FIXME logic for all profiles
-//    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
-//        _isMasterProfile = YES;
-//    }
+    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        _isMasterProfile = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -85,7 +85,7 @@
 - (void)setupHeaderView
 {
     if (_isMasterProfile) {
-        [_headerView hideBuzzButtonView:NO];
+        [_headerView hideBuzzButtonView:YES];
     }
     else {
         [_headerView hideBuzzButtonView:NO];
@@ -112,11 +112,11 @@
         // Load headerview
         NSArray *topLevelObjects = nil;
 #warning FIXME logic for all profiles
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
+        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
+//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
         for(id currentObject in topLevelObjects){
-//            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
-            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
+            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
+//            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
                 self.headerView = currentObject;
                 break;
             }

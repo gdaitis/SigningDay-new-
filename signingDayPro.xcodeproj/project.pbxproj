@@ -178,6 +178,10 @@
 		8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */; };
 		8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */; };
 		8063D2CE1799486500C01D92 /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2CD1799486500C01D92 /* shadow.png */; };
+		8063D2D2179D23F400C01D92 /* SDUserProfileCoachHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2D1179D23F400C01D92 /* SDUserProfileCoachHeaderView.m */; };
+		8063D2D4179D242A00C01D92 /* SDUserProfileCoachHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2D3179D242A00C01D92 /* SDUserProfileCoachHeaderView.xib */; };
+		8063D2D6179D48EB00C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2D5179D48EA00C01D92 /* SDUserProfileTeamHeaderView.xib */; };
+		8063D2D9179D48FF00C01D92 /* SDUserProfileTeamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2D8179D48FF00C01D92 /* SDUserProfileTeamHeaderView.m */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
 		809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */; };
@@ -528,6 +532,12 @@
 		8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfilePlayerHeaderView.m; sourceTree = "<group>"; };
 		8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfilePlayerHeaderView.xib; sourceTree = "<group>"; };
 		8063D2CD1799486500C01D92 /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.png; sourceTree = "<group>"; };
+		8063D2D0179D23F400C01D92 /* SDUserProfileCoachHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileCoachHeaderView.h; sourceTree = "<group>"; };
+		8063D2D1179D23F400C01D92 /* SDUserProfileCoachHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileCoachHeaderView.m; sourceTree = "<group>"; };
+		8063D2D3179D242A00C01D92 /* SDUserProfileCoachHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileCoachHeaderView.xib; sourceTree = "<group>"; };
+		8063D2D5179D48EA00C01D92 /* SDUserProfileTeamHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileTeamHeaderView.xib; sourceTree = "<group>"; };
+		8063D2D7179D48FE00C01D92 /* SDUserProfileTeamHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileTeamHeaderView.h; sourceTree = "<group>"; };
+		8063D2D8179D48FF00C01D92 /* SDUserProfileTeamHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileTeamHeaderView.m; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileKeyAttributesButton@2x.png"; sourceTree = "<group>"; };
@@ -1328,9 +1338,15 @@
 				80CCAE631793E6C30015429A /* SDUserProfileMemberHeaderView.h */,
 				80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */,
 				80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */,
+				8063D2D0179D23F400C01D92 /* SDUserProfileCoachHeaderView.h */,
+				8063D2D1179D23F400C01D92 /* SDUserProfileCoachHeaderView.m */,
+				8063D2D3179D242A00C01D92 /* SDUserProfileCoachHeaderView.xib */,
 				8063D2C817991BE500C01D92 /* SDUserProfilePlayerHeaderView.h */,
 				8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */,
 				8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */,
+				8063D2D7179D48FE00C01D92 /* SDUserProfileTeamHeaderView.h */,
+				8063D2D8179D48FF00C01D92 /* SDUserProfileTeamHeaderView.m */,
+				8063D2D5179D48EA00C01D92 /* SDUserProfileTeamHeaderView.xib */,
 				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
 				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
 				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
@@ -1615,6 +1631,8 @@
 				80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */,
 				8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */,
 				8063D2CE1799486500C01D92 /* shadow.png in Resources */,
+				8063D2D4179D242A00C01D92 /* SDUserProfileCoachHeaderView.xib in Resources */,
+				8063D2D6179D48EB00C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1745,6 +1763,8 @@
 				80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */,
 				80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */,
 				8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */,
+				8063D2D2179D23F400C01D92 /* SDUserProfileCoachHeaderView.m in Sources */,
+				8063D2D9179D48FF00C01D92 /* SDUserProfileTeamHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

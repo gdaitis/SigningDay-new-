@@ -397,6 +397,14 @@
     return result;
 }
 
+#pragma mark - TableView delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    User *user = [self.dataArray objectAtIndex:indexPath.row];
+    NSLog(@"user id = %d",[user.identifier intValue]);
+}
+
 #pragma mark - Following actions
 
 - (void)followButtonPressed:(UIButton *)sender
