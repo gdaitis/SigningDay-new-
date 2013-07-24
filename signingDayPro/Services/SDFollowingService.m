@@ -19,6 +19,7 @@
 #import "MBProgressHUD.h"
 #import "SDErrorService.h"
 #import "NSString+HTML.h"
+#import "SDUtils.h"
 
 @interface SDFollowingService ()
 
@@ -146,7 +147,7 @@
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
                                         
-                                        user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                        user.followingRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                     }
                                     [context MR_save];
                                     
@@ -200,7 +201,7 @@
                                             user.followedBy = nil;
                                         }
                                         
-                                        user.followerRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                        user.followerRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                     }
                                     [context MR_save];
                                     
@@ -290,7 +291,7 @@
                                          user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                          user.name = [userInfo valueForKey:@"DisplayName"];
                                          
-                                         user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                         user.followingRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
                                      [context MR_save];
                                      
@@ -342,7 +343,7 @@
                                              //not following
                                              user.followedBy = nil;
                                          }
-                                         user.followerRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                         user.followerRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
                                      [context MR_save];
                                      
@@ -399,32 +400,6 @@
     }
 }
 
-+ (NSDate *)dateFromString:(NSString *)dateString
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
-    
-    NSDate *date = [dateFormatter dateFromString:dateString];
-    
-    if (!date) {
-        
-        NSArray *dateFormatterList = [NSArray arrayWithObjects:@"yyyy-MM-dd'T'HH:mm:ss.SSS",
-                                      @"yyyy-MM-dd'T'HH:mm:ss", @"yyyy-MM-dd'T'HH:mm:ss.SS", @"yyyy-MM-dd'T'HH:mm:ss.S", nil];//include all possible dateformats here
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        
-        for (NSString *dateFormatterString in dateFormatterList) {
-            
-            [dateFormatter setDateFormat:dateFormatterString];
-            NSDate *originalDate = [dateFormatter dateFromString:dateString];
-            
-            if (originalDate) {
-                date = originalDate;
-                break;
-            }
-        }
-    }
-    
-    return date;
-}
+
 
 @end

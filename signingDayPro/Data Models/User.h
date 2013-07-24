@@ -2,7 +2,7 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/4/13.
+//  Created by Lukas Kekys on 7/23/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) NSString * avatarUrl;
 @property (nonatomic, retain) NSString * bio;
+@property (nonatomic, retain) NSDate * followerRelationshipCreated;
+@property (nonatomic, retain) NSDate * followingRelationshipCreated;
 @property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * numberOfFollowers;
@@ -22,8 +24,6 @@
 @property (nonatomic, retain) NSNumber * numberOfPhotos;
 @property (nonatomic, retain) NSNumber * numberOfVideos;
 @property (nonatomic, retain) NSString * username;
-@property (nonatomic, retain) NSDate * followingRelationshipCreated;
-@property (nonatomic, retain) NSDate * followerRelationshipCreated;
 @property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) NSSet *authorOf;
 @property (nonatomic, retain) NSSet *comments;
@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
 @property (nonatomic, retain) NSSet *messages;
+@property (nonatomic, retain) ActivityStory *activityStoriesFromOtherUsers;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

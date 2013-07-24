@@ -15,7 +15,8 @@
 @interface SDActivityFeedService : NSObject
 
 + (void)getActivityStoriesForUser:(User *)user
-                 withSuccessBlock:(void (^)(void))successBlock
+                         withDate:(NSDate *)date
+                 withSuccessBlock:(void (^)(int resultCount))successBlock
                      failureBlock:(void (^)(void))failureBlock;
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody
                             successBlock:(void (^)(void))successBlock

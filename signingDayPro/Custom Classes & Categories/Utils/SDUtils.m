@@ -62,7 +62,7 @@
                           constrainedToSize:CGSizeMake(278, CGFLOAT_MAX)
                               lineBreakMode:NSLineBreakByWordWrapping];
     
-    if ([activityStory.imagePath length] > 0) {
+    if ([activityStory.mediaType isEqualToString:@"videos"] || [activityStory.mediaType isEqualToString:@"photos"]) {
         result = size.height + 10/*offset*/ + 150;/*imageView size*/
     }
     else {
@@ -134,6 +134,51 @@
             }
         }
     }
+    return result;
+}
+
++ (NSDate *)dateFromString:(NSString *)dateString
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
+    
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    
+    if (!date) {
+        
+        NSString *formatedDateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0 range:NSMakeRange([dateString length]-4, 3)];
+        NSArray *dateFormatterList = [NSArray arrayWithObjects:@"yyyy-MM-dd'T'HH:mm:ss.SSS",
+                                      @"yyyy-MM-dd'T'HH:mm:ss", @"yyyy-MM-dd'T'HH:mm:ss.SS", @"yyyy-MM-dd'T'HH:mm:ss.S", @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ", @"yyyy-MM-dd'T'HH:mm:ssZZZ", nil];//include all possible dateformats here
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        for (NSString *dateFormatterString in dateFormatterList) {
+            
+            [dateFormatter setDateFormat:dateFormatterString];
+            NSDate *originalDate = [dateFormatter dateFromString:formatedDateString];
+            
+            if (originalDate) {
+                date = originalDate;
+                break;
+            }
+        }
+    }
+    
+    return date;
+}
+
++ (NSString *)formatedDateStringFromDate:(NSDate *)date
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit |NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date toDate:[NSDate date] options:nil];
+    
+    NSInteger year = [components year];
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    NSInteger second = [components second];
+    
+    NSString *result = [NSString stringWithFormat:@"%d/%d/%d %d:%d:%d",month,day,year,hour,minute,second];
+    
     return result;
 }
     

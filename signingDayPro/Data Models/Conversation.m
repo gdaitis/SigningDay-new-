@@ -2,7 +2,7 @@
 //  Conversation.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/4/13.
+//  Created by Lukas Kekys on 7/23/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 

@@ -97,10 +97,15 @@
 
 - (void)checkServer
 {
-    [SDActivityFeedService getActivityStoriesForUser:[self getMasterUser]
-                                    withSuccessBlock:^{
-                                        [self loadData];
-                                        [self endRefreshing];
+    [SDActivityFeedService getActivityStoriesForUser:nil withDate:nil withSuccessBlock:^(int resultCount){
+                                        
+#warning check if solved a crash!
+                                        if ([self respondsToSelector:@selector(loadData)]) {
+                                            [self loadData];
+                                        }
+                                        if ([self respondsToSelector:@selector(endRefreshing)]) {
+                                            [self endRefreshing];
+                                        }
                                     } failureBlock:^{
                                         //
                                     }];
@@ -114,7 +119,7 @@
     ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
     
     int contentHeight = [SDUtils heightForActivityStory:activityStory];
-    int result = 120/*buttons images etc..*/ + contentHeight;
+    int result = 112/*buttons images etc..*/ + contentHeight;
     
     return result;
 }

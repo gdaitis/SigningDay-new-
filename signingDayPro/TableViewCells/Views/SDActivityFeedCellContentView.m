@@ -33,13 +33,12 @@
     return self;
 }
 
-
 - (void)setupView
 {
     //creating content label
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.bounds.size.width-20, self.bounds.size.height-20)];
     self.contentLabel = label;
-    _contentLabel.font = [UIFont systemFontOfSize:15.0f];
+    _contentLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0f];
     _contentLabel.numberOfLines = 0;
     [self addSubview:_contentLabel];
     
@@ -77,7 +76,7 @@
     
     [_imageView cancelImageRequestOperation];
     
-    if ([activityStory.imagePath length] > 0) {
+    if ([activityStory.thumbnailUrl length] > 0) {
         
         //calculate position for photo
         frame = _imageView.frame;
@@ -85,7 +84,7 @@
         _imageView.frame = frame;
         
         _imageView.hidden = NO;
-        NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.imagePath];
+        NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.thumbnailUrl];
         [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
     }
     else {
@@ -93,15 +92,5 @@
         _imageView.image = nil;
     }
 }
-
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end

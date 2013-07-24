@@ -2,7 +2,7 @@
 //  ActivityStory.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/4/13.
+//  Created by Lukas Kekys on 7/23/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -22,10 +22,18 @@
 @property (nonatomic, retain) NSString * imagePath;
 @property (nonatomic, retain) NSDate * lastUpdateDate;
 @property (nonatomic, retain) NSString * storyTypeId;
+@property (nonatomic, retain) NSNumber * shouldBeDeleted;
+@property (nonatomic, retain) NSNumber * likedByMaster;
+@property (nonatomic, retain) NSNumber * likesCount;
+@property (nonatomic, retain) NSNumber * commentCount;
+@property (nonatomic, retain) NSString * mediaType;
+@property (nonatomic, retain) NSString * thumbnailUrl;
+@property (nonatomic, retain) NSString * mediaUrl;
 @property (nonatomic, retain) User *author;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
+@property (nonatomic, retain) User *postedToUser;
 @end
 
 @interface ActivityStory (CoreDataGeneratedAccessors)
