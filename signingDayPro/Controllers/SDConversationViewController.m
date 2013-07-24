@@ -462,7 +462,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     
     NSString *myUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     if ([message.user.username isEqual:myUsername]) {
-        cell.backgroundView.backgroundColor = [UIColor colorWithRed:223.0f/255.0f green:223.0f/255.0f blue:223.0f/255.0f alpha:1];
+        cell.backgroundView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
     } else {
         cell.backgroundView.backgroundColor = [UIColor whiteColor];
     }

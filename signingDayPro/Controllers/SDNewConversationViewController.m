@@ -19,6 +19,7 @@
 #import "MBProgressHUD.h"
 #import "SDConversationViewController.h"
 #import "SDFollowingService.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDNewConversationViewController ()
 
@@ -59,6 +60,24 @@
     [imageView setFrame:self.tableView.bounds];
     [self.tableView setBackgroundColor:[UIColor colorWithRed:121.0f/255.0f green:121.0f/255.0f blue:121.0f/255.0f alpha:1.0f]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // Search bar customization
+    _searchBar.tintColor = [UIColor colorWithRed:219.0f/255.0f green:219.0f/255.0f blue:218.0f/255.0f alpha:1.0f];
+
+    CGColorRef upperBorderColor = [UIColor lightGrayColor].CGColor;
+    CGColorRef lowerBorderColor = [UIColor lightGrayColor].CGColor;
+    
+    CALayer *upperBorderLayer = [CALayer layer];
+    upperBorderLayer.frame = CGRectMake(0, -1, 320, 1);
+    upperBorderLayer.borderWidth = 1;
+    upperBorderLayer.borderColor = upperBorderColor;
+    [_tableView.layer addSublayer:upperBorderLayer];
+    
+    CALayer *lowerBorderLayer = [CALayer layer];
+    lowerBorderLayer.frame = CGRectMake(0, _searchBar.frame.size.height, 320, 1);
+    lowerBorderLayer.borderWidth = 1;
+    lowerBorderLayer.borderColor = lowerBorderColor;
+    [_searchBar.layer addSublayer:lowerBorderLayer];
 }
 
 - (void)viewWillAppear:(BOOL)animated

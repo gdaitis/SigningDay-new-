@@ -15,6 +15,7 @@
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
 #import "UIImage+Crop.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDFollowingViewController ()
 
@@ -93,11 +94,27 @@
     followingbtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [followingbtn addTarget:self action:@selector(followTypeChanged:) forControlEvents:UIControlEventTouchUpInside];
     
-    
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     self.searchBar = searchBar;
     _searchBar.delegate = self;
     [_searchBar sizeToFit];
+    _searchBar.tintColor = [UIColor colorWithRed:219.0f/255.0f green:219.0f/255.0f blue:218.0f/255.0f alpha:1.0f];
+    
+    // Add lines
+    CGColorRef upperBorderColor = [UIColor lightGrayColor].CGColor;
+    CGColorRef lowerBorderColor = [UIColor lightGrayColor].CGColor;
+    
+    CALayer *upperBorderLayer = [CALayer layer];
+    upperBorderLayer.frame = CGRectMake(0, -1, 320, 1);
+    upperBorderLayer.borderWidth = 1;
+    upperBorderLayer.borderColor = upperBorderColor;
+    [self.tableView.layer addSublayer:upperBorderLayer];
+
+    CALayer *lowerBorderLayer = [CALayer layer];
+    lowerBorderLayer.frame = CGRectMake(0, _searchBar.frame.size.height, 320, 1);
+    lowerBorderLayer.borderWidth = 1;
+    lowerBorderLayer.borderColor = lowerBorderColor;
+    [_searchBar.layer addSublayer:lowerBorderLayer];
     
     UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
                                                           initWithSearchBar:_searchBar contentsController:self];
