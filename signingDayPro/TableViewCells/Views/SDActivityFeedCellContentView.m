@@ -44,7 +44,7 @@
     [self addSubview:_contentLabel];
     
     //creating imageView if cell will not have image this will be hidden
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 150)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 161)];
     self.imageView = imageView;
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.clipsToBounds = YES;

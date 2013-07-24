@@ -88,13 +88,14 @@
     UIView *result = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kHeaderSize)];
     result.backgroundColor = [UIColor clearColor];
     SDMenuLabel *lbl = [[SDMenuLabel alloc] initWithFrame:CGRectMake(10, 5, result.frame.size.width-20, result.frame.size.height)];
-    lbl.textColor = [UIColor colorWithRed:0.31f green:0.31f blue:0.31f alpha:1.0f];
+    lbl.textColor = [UIColor colorWithRed:98.0f/255.0f green:98.0f/255.0f blue:98.0f/255.0f alpha:1.0f];
     lbl.font = [UIFont fontWithName:@"Helvetica-Bold" size:11.0];
+    lbl.shadowColor = [UIColor clearColor];
     [result addSubview:lbl];
     
     //adding bottom gray line
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 38, 254, 2)];
-    lineView.backgroundColor = [UIColor colorWithRed:0.31f green:0.31f blue:0.31f alpha:1.0f];
+    lineView.backgroundColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
     [result addSubview:lineView];
     
     if (section == 0) {
@@ -167,16 +168,25 @@
         }
         cell.txtLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
         cell.txtLabel.textColor = [UIColor colorWithRed:228.0f/255.0f green:196.0f/255.0f blue:21.0f/255.0f alpha:1.0f];
+        
+        cell.bottomLineView.backgroundColor = [UIColor clearColor];
     }
     else if (indexPath.section == 1) {
         cell.txtLabel.text = [[_menuItems objectAtIndex:indexPath.row] valueForKey:@"Title"];
         cell.imgView.image = [UIImage imageNamed:[[_menuItems objectAtIndex:indexPath.row] valueForKey:@"Image"]];
         cell.txtLabel.textColor = [UIColor whiteColor];
+        
+        if (indexPath.row == [_menuItems count] - 1)
+            cell.bottomLineView.backgroundColor = [UIColor clearColor];
+        else
+            cell.bottomLineView.backgroundColor = [UIColor colorWithRed:37.0f/255.0f green:37.0f/255.0f blue:37.0f/255.0f alpha:1];
     }
     else {
         cell.txtLabel.text = @"Settings";
         cell.txtLabel.textColor = [UIColor whiteColor];
         cell.imgView.image = [UIImage imageNamed:@"SettingsIcon.png"];
+        
+        cell.bottomLineView.backgroundColor = [UIColor clearColor];
     }
 }
 

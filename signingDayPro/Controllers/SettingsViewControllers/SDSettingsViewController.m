@@ -130,9 +130,9 @@
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(20, 3, 300, 30);
     label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor colorWithRed:73.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1];
-    label.shadowColor = [UIColor colorWithRed:169.0/255.0 green:169.0/255.0 blue:169.0/255.0 alpha:1];
-    label.shadowOffset = CGSizeMake(0.0, 1.0);
+    label.textColor = [UIColor colorWithRed:136.0/255.0 green:136.0/255.0 blue:136.0/255.0 alpha:1];
+    //label.shadowColor = [UIColor colorWithRed:169.0/255.0 green:169.0/255.0 blue:169.0/255.0 alpha:1];
+    //label.shadowOffset = CGSizeMake(0.0, 1.0);
     label.font = [UIFont boldSystemFontOfSize:16];
     label.text = sectionTitle;
     

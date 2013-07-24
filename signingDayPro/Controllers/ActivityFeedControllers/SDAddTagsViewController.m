@@ -16,6 +16,7 @@
 #import "SDAddTagsCell.h"
 #import "AFNetworking.h"
 #import "SDFollowingService.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDAddTagsViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
 
@@ -74,6 +75,24 @@
     [button addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = barButton;
+    
+    // Search bar customization
+    _searchBar.tintColor = [UIColor colorWithRed:219.0f/255.0f green:219.0f/255.0f blue:218.0f/255.0f alpha:1.0f];
+    
+    CGColorRef upperBorderColor = [UIColor lightGrayColor].CGColor;
+    CGColorRef lowerBorderColor = [UIColor lightGrayColor].CGColor;
+    
+    CALayer *upperBorderLayer = [CALayer layer];
+    upperBorderLayer.frame = CGRectMake(0, -1, 320, 1);
+    upperBorderLayer.borderWidth = 1;
+    upperBorderLayer.borderColor = upperBorderColor;
+    [self.tableView.layer addSublayer:upperBorderLayer];
+    
+    CALayer *lowerBorderLayer = [CALayer layer];
+    lowerBorderLayer.frame = CGRectMake(0, _searchBar.frame.size.height, 320, 1);
+    lowerBorderLayer.borderWidth = 1;
+    lowerBorderLayer.borderColor = lowerBorderColor;
+    [_searchBar.layer addSublayer:lowerBorderLayer];
     
     image = [UIImage imageNamed:@"MenuButtonDone.png"];
     frame = CGRectMake(0, 0, image.size.width, image.size.height);

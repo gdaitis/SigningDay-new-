@@ -155,7 +155,7 @@
 									<object class="IBUIView" id="498045917">
 										<reference key="NSNextResponder" ref="135121088"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{1, 46}, {298, 134}}</string>
+										<string key="NSFrame">{{1, 46}, {298, 132}}</string>
 										<reference key="NSSuperview" ref="135121088"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="509642059"/>
@@ -275,7 +275,7 @@
 												</object>
 											</object>
 										</array>
-										<string key="NSFrame">{{10, 190}, {130, 33}}</string>
+										<string key="NSFrame">{{10, 188}, {130, 33}}</string>
 										<reference key="NSSuperview" ref="135121088"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="567221277"/>
@@ -318,7 +318,6 @@
 												<string key="NSFrame">{{93, 10}, {23, 14}}</string>
 												<reference key="NSSuperview" ref="189128668"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIOpaque">NO</bool>
 												<bool key="IBUIClipsSubviews">YES</bool>
@@ -374,7 +373,7 @@
 												<reference key="IBUIFont" ref="837549786"/>
 											</object>
 										</array>
-										<string key="NSFrame">{{160, 190}, {130, 33}}</string>
+										<string key="NSFrame">{{160, 188}, {130, 33}}</string>
 										<reference key="NSSuperview" ref="135121088"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="780649070"/>
@@ -708,7 +707,7 @@
 								<int key="secondAttribute">4</int>
 								<float key="multiplier">1</float>
 								<object class="IBLayoutConstant" key="constant">
-									<double key="value">7</double>
+									<double key="value">9</double>
 								</object>
 								<float key="priority">1000</float>
 								<reference key="containingView" ref="135121088"/>
@@ -2016,7 +2015,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1312</int>
+			<int key="maxID">1314</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

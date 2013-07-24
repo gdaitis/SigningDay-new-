@@ -14,5 +14,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *imgView;
 @property (nonatomic, weak) IBOutlet SDMenuLabel *txtLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomLineView;
+
 
 @end
