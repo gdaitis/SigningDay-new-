@@ -241,8 +241,6 @@
     [parameters setValue:[NSString stringWithFormat:@"%d", [conversation.master.identifier integerValue]] forKey:@"ParticipantId"];
     [parameters setValue:@"true" forKey:@"IsRead"];
     
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    
     NSString *apiKey = [STKeychain getPasswordForUsername:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]
                                            andServiceName:@"SigningDayPro"
                                                     error:nil];
