@@ -242,7 +242,7 @@
     [parameters setValue:@"true" forKey:@"IsRead"];
     
     NSString *apiKey = [STKeychain getPasswordForUsername:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]
-                                           andServiceName:@"SigningDay"
+                                           andServiceName:@"SigningDayPro"
                                                     error:nil];
     [httpClient setDefaultHeader:@"Rest-User-Token" value:apiKey];
     [httpClient postPath:@"sd/conversations.json"
