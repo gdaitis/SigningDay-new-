@@ -76,11 +76,8 @@
                                         activityStory.likesCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"LikesCount"] intValue]];
                                         activityStory.commentCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]];
                                         activityStory.likedByMaster = [NSNumber numberWithBool:[[activityStoryDictionary valueForKey:@"LikeFlag"] boolValue]];
-<<<<<<< HEAD
-=======
                                         if (![[activityStoryDictionary valueForKey:@"MessageText"] isKindOfClass:[NSNull class]])
                                             activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
->>>>>>> Vyto
                                         activityStory.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         
                                         if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
