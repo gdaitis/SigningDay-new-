@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import "SDErrorService.h"
 #import "User.h"
+#import "SDActivityFeedService.h"
 
 NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUserDidLogoutNotificationName";
 
@@ -124,6 +125,9 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
     master.facebookSharingOn = [NSNumber numberWithBool:NO];
     [context MR_saveToPersistentStoreAndWait];
+    
+    //delete all activityStories
+    [SDActivityFeedService deleteAllActivityStories];
     
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedIn"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];

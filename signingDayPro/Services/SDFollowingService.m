@@ -362,18 +362,18 @@
 
 + (void)deleteUnnecessaryUsers
 {
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
-    NSPredicate *masterUsernamePredicate = [NSPredicate predicateWithFormat:@"master.username like %@", username];
-    NSArray *userArray = [User MR_findAllSortedBy:@"username" ascending:YES withPredicate:masterUsernamePredicate inContext:context];
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
+    NSArray *userArray = [User MR_findAllInContext:context];
     
     for (User *user in userArray) {
         if (!user.followedBy && !user.following) {
             
             if ([user.conversations count] == 0) {
                 //user doesn't have mutual conversation, and is not being followed or following master user, so it is going to be deleted
-                if (![[user.username lowercaseString] isEqualToString:[username lowercaseString]]) {
+                if (![user.identifier isEqualToNumber:master.identifier]) {
                     //not master user can delete
                     NSLog(@"User deleted: %@",user.name);
                     [context deleteObject:user];
@@ -383,6 +383,7 @@
     }
     [context MR_saveToPersistentStoreAndWait];
 }
+
 
 + (void)removeFollowing:(BOOL)removeFollowing andFollowed:(BOOL)removeFollowed
 {

@@ -154,14 +154,15 @@
 		80431E5C17A006B3002F6E3D /* MagicalRecord+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E3E17A006B3002F6E3D /* MagicalRecord+Setup.m */; };
 		80431E5D17A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E4017A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m */; };
 		80431E5E17A006B3002F6E3D /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E4217A006B3002F6E3D /* MagicalRecord.m */; };
-		80431E6117A01BF6002F6E3D /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E6017A01BF6002F6E3D /* Master.m */; };
-		80431E6417A01BF6002F6E3D /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E6317A01BF6002F6E3D /* Message.m */; };
-		80431E6717A01BF7002F6E3D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E6617A01BF7002F6E3D /* User.m */; };
-		80431E6A17A01BF8002F6E3D /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E6917A01BF8002F6E3D /* ActivityStory.m */; };
-		80431E6D17A01BF8002F6E3D /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E6C17A01BF8002F6E3D /* Like.m */; };
-		80431E7017A01BF8002F6E3D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E6F17A01BF8002F6E3D /* Comment.m */; };
-		80431E7317A01BF8002F6E3D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E7217A01BF8002F6E3D /* Conversation.m */; };
-		80431E7617A01BF9002F6E3D /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E7517A01BF9002F6E3D /* ImageData.m */; };
+		80431E7B17A1459E002F6E3D /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E7A17A1459E002F6E3D /* ImageData.m */; };
+		80431E7E17A1459E002F6E3D /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E7D17A1459E002F6E3D /* Master.m */; };
+		80431E8117A1459F002F6E3D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8017A1459F002F6E3D /* Comment.m */; };
+		80431E8417A145A0002F6E3D /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8317A145A0002F6E3D /* Like.m */; };
+		80431E8717A145A0002F6E3D /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8617A145A0002F6E3D /* ActivityStory.m */; };
+		80431E8A17A145A0002F6E3D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8917A145A0002F6E3D /* Conversation.m */; };
+		80431E8D17A145A1002F6E3D /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8C17A145A1002F6E3D /* Message.m */; };
+		80431E9017A145A2002F6E3D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8F17A145A2002F6E3D /* User.m */; };
+		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
 		805598C2174CE8200040631D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C1174CE8200040631D /* UIKit.framework */; };
 		805598C4174CE8200040631D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C3174CE8200040631D /* Foundation.framework */; };
 		805598C6174CE8200040631D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C5174CE8200040631D /* CoreGraphics.framework */; };
@@ -493,22 +494,23 @@
 		80431E4217A006B3002F6E3D /* MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalRecord.m; sourceTree = "<group>"; };
 		80431E4317A006B3002F6E3D /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		80431E4417A006B3002F6E3D /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
-		80431E5F17A01BF6002F6E3D /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
-		80431E6017A01BF6002F6E3D /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
-		80431E6217A01BF6002F6E3D /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		80431E6317A01BF6002F6E3D /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		80431E6517A01BF7002F6E3D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		80431E6617A01BF7002F6E3D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		80431E6817A01BF8002F6E3D /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
-		80431E6917A01BF8002F6E3D /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
-		80431E6B17A01BF8002F6E3D /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
-		80431E6C17A01BF8002F6E3D /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
-		80431E6E17A01BF8002F6E3D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		80431E6F17A01BF8002F6E3D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		80431E7117A01BF8002F6E3D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		80431E7217A01BF8002F6E3D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		80431E7417A01BF9002F6E3D /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
-		80431E7517A01BF9002F6E3D /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		80431E7917A1459E002F6E3D /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
+		80431E7A17A1459E002F6E3D /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		80431E7C17A1459E002F6E3D /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
+		80431E7D17A1459E002F6E3D /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
+		80431E7F17A1459F002F6E3D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		80431E8017A1459F002F6E3D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		80431E8217A145A0002F6E3D /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
+		80431E8317A145A0002F6E3D /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		80431E8517A145A0002F6E3D /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
+		80431E8617A145A0002F6E3D /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
+		80431E8817A145A0002F6E3D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		80431E8917A145A0002F6E3D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		80431E8B17A145A0002F6E3D /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		80431E8C17A145A1002F6E3D /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		80431E8E17A145A2002F6E3D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		80431E8F17A145A2002F6E3D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		80431E9117A152B7002F6E3D /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
 		805598BD174CE8200040631D /* signingDayPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = signingDayPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		805598C1174CE8200040631D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		805598C3174CE8200040631D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -930,23 +932,23 @@
 			children = (
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
+				80431E7917A1459E002F6E3D /* ImageData.h */,
+				80431E8E17A145A2002F6E3D /* User.h */,
+				80431E8F17A145A2002F6E3D /* User.m */,
+				80431E8B17A145A0002F6E3D /* Message.h */,
+				80431E8C17A145A1002F6E3D /* Message.m */,
+				80431E8817A145A0002F6E3D /* Conversation.h */,
+				80431E8917A145A0002F6E3D /* Conversation.m */,
+				80431E8517A145A0002F6E3D /* ActivityStory.h */,
+				80431E8617A145A0002F6E3D /* ActivityStory.m */,
+				80431E8217A145A0002F6E3D /* Like.h */,
+				80431E8317A145A0002F6E3D /* Like.m */,
+				80431E7F17A1459F002F6E3D /* Comment.h */,
+				80431E8017A1459F002F6E3D /* Comment.m */,
+				80431E7C17A1459E002F6E3D /* Master.h */,
+				80431E7D17A1459E002F6E3D /* Master.m */,
+				80431E7A17A1459E002F6E3D /* ImageData.m */,
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
-				80431E7417A01BF9002F6E3D /* ImageData.h */,
-				80431E7517A01BF9002F6E3D /* ImageData.m */,
-				80431E7117A01BF8002F6E3D /* Conversation.h */,
-				80431E7217A01BF8002F6E3D /* Conversation.m */,
-				80431E6E17A01BF8002F6E3D /* Comment.h */,
-				80431E6F17A01BF8002F6E3D /* Comment.m */,
-				80431E6B17A01BF8002F6E3D /* Like.h */,
-				80431E6C17A01BF8002F6E3D /* Like.m */,
-				80431E6817A01BF8002F6E3D /* ActivityStory.h */,
-				80431E6917A01BF8002F6E3D /* ActivityStory.m */,
-				80431E6517A01BF7002F6E3D /* User.h */,
-				80431E6617A01BF7002F6E3D /* User.m */,
-				80431E6217A01BF6002F6E3D /* Message.h */,
-				80431E6317A01BF6002F6E3D /* Message.m */,
-				80431E5F17A01BF6002F6E3D /* Master.h */,
-				80431E6017A01BF6002F6E3D /* Master.m */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -1115,6 +1117,7 @@
 				7B6B1EB61760A87100BC878A /* app_icon.png */,
 				7B6B1EB41760A86B00BC878A /* app_icon@2x.png */,
 				805598C9174CE8200040631D /* signingDayPro-Info.plist */,
+				80431E9117A152B7002F6E3D /* Notes.rtf */,
 				80A0614D17529DB3005FE319 /* MenuItemList.plist */,
 				805598CA174CE8200040631D /* InfoPlist.strings */,
 				805598CD174CE8200040631D /* main.m */,
@@ -1668,6 +1671,7 @@
 				7BDDAB93179FC457003F6AD7 /* SettingsIcon@2x.png in Resources */,
 				7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */,
 				80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */,
+				80431E9217A152B7002F6E3D /* Notes.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1795,14 +1799,14 @@
 				80431E5C17A006B3002F6E3D /* MagicalRecord+Setup.m in Sources */,
 				80431E5D17A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m in Sources */,
 				80431E5E17A006B3002F6E3D /* MagicalRecord.m in Sources */,
-				80431E6117A01BF6002F6E3D /* Master.m in Sources */,
-				80431E6417A01BF6002F6E3D /* Message.m in Sources */,
-				80431E6717A01BF7002F6E3D /* User.m in Sources */,
-				80431E6A17A01BF8002F6E3D /* ActivityStory.m in Sources */,
-				80431E6D17A01BF8002F6E3D /* Like.m in Sources */,
-				80431E7017A01BF8002F6E3D /* Comment.m in Sources */,
-				80431E7317A01BF8002F6E3D /* Conversation.m in Sources */,
-				80431E7617A01BF9002F6E3D /* ImageData.m in Sources */,
+				80431E7B17A1459E002F6E3D /* ImageData.m in Sources */,
+				80431E7E17A1459E002F6E3D /* Master.m in Sources */,
+				80431E8117A1459F002F6E3D /* Comment.m in Sources */,
+				80431E8417A145A0002F6E3D /* Like.m in Sources */,
+				80431E8717A145A0002F6E3D /* ActivityStory.m in Sources */,
+				80431E8A17A145A0002F6E3D /* Conversation.m in Sources */,
+				80431E8D17A145A1002F6E3D /* Message.m in Sources */,
+				80431E9017A145A2002F6E3D /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

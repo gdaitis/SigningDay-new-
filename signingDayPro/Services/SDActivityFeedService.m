@@ -47,11 +47,14 @@
         }
     }
     
-#warning mark unneded stories for deletion
-    
     [[SDAPIClient sharedClient] getPath:@"sd/story.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
+                                    //no date provided that means we are downloading first page, old stories should be deleted
+                                    if (!date) {
+                                        [self markAllStoriesForDeletion];
+                                    }
                                     
                                     int resultCount = [[JSON valueForKey:@"TotalCount"] intValue];
                                     
@@ -100,32 +103,18 @@
                                             activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"MediaUrl"];
                                         }
                                         
-                                        //parse users in this activity story
+                                        //parse users(actors/authors) in this activity story
                                         NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
                                         for (NSDictionary *userDictionary in userArray) {
                                             
-                                            NSNumber *authorIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Id"] intValue]];
-                                            User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
-                                            if (!user) {
-                                                user = [User MR_createInContext:context];
-                                                user.identifier = authorIdentifier;
-                                            }
-                                            user.username = [userDictionary valueForKey:@"Username"];
-                                            user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
-                                            user.name = [userDictionary valueForKey:@"DisplayName"];
-                                            
-                                            if ([[userDictionary valueForKey:@"Verb"] isEqualToString:@"From"]) {
-                                                //this user created this post, assign it as author
-                                                NSLog(@"activity story user = %@",user.name);
-                                                activityStory.author = user;
-                                            }
-                                            if ([[userDictionary valueForKey:@"Verb"] isEqualToString:@"For"]) {
-                                                //this is a wall post, activityStory posted on this users wall
-                                                activityStory.postedToUser = user;
-                                            }   
+                                            //cycle through array and creates updates users
+                                            [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
                                         }
                                     }
                                     [context MR_saveToPersistentStoreAndWait];
+                                    
+                                    //returns only after deleting
+                                    [self deleteAllMarkedStories];
                                     if (successBlock) {
                                         successBlock(resultCount);
                                     }
@@ -134,6 +123,94 @@
                                     failureBlock();
                                 }];
     
+}
+
++ (void)createUpdateUserFromDictionary:(NSDictionary *)dictionary withActivityStory:(ActivityStory *)activityStory inContext:(NSManagedObjectContext *)context
+{
+    NSNumber *authorIdentifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"Id"] intValue]];
+    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
+    if (!user) {
+        user = [User MR_createInContext:context];
+        user.identifier = authorIdentifier;
+    }
+    user.username = [dictionary valueForKey:@"Username"];
+    user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
+    user.name = [dictionary valueForKey:@"DisplayName"];
+    
+    if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"From"]) {
+        //this user created this post, assign it as author
+        activityStory.author = user;
+    }
+    if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"For"]) {
+        //this is a wall post, activityStory posted on this users wall
+        activityStory.postedToUser = user;
+    }
+    
+    
+    
+    //check user type and save info depending on this type
+    int userTypeId = [[dictionary valueForKey:@"UserTypeId"] intValue];
+    
+    if (userTypeId == 1) {
+        //user type: Player
+        user.userType = @"Player";
+        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
+        
+        if (attributeDictionary) {
+            if ([attributeDictionary valueForKey:@"Position"] != [NSNull null]) {
+                user.position = [attributeDictionary valueForKey:@"Position"];
+            }
+            if ([attributeDictionary valueForKey:@"Class"] != [NSNull null]) {
+                user.userClass = [[attributeDictionary valueForKey:@"Class"] stringValue];
+            }
+        }
+    }
+    else if (userTypeId == 2) {
+        //user type: TEAM
+        user.userType = @"Team";
+        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
+        
+        if (attributeDictionary) {
+            if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
+                user.position = [attributeDictionary valueForKey:@"CityName"];
+            }
+            if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
+                user.userClass = [NSString stringWithFormat:@"%d",[[attributeDictionary valueForKey:@"StateCode"] intValue]];
+            }
+        }
+    }
+    else if (userTypeId == 3) {
+        //user type: Coach
+        user.userType = @"Coach";
+        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
+        
+        if (attributeDictionary) {
+            if ([attributeDictionary valueForKey:@"Institution"] != [NSNull null]) {
+                user.institution = [attributeDictionary valueForKey:@"Institution"];
+            }
+        }
+    }
+    else if (userTypeId == 4) {
+ 
+        //user type: HighSchool
+        user.userType = @"HighSchool";
+        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
+        
+        if (attributeDictionary) {
+            if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
+                user.position = [attributeDictionary valueForKey:@"CityName"];
+            }
+            if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
+                user.userClass = [NSString stringWithFormat:@"%d",[[attributeDictionary valueForKey:@"StateCode"] intValue]];
+            }
+        }
+    }
+    else {
+        //user type: Member
+        user.userType = @"HighSchool";
+        
+        //member doesn't have attributes so nothing to do here
+    }
 }
 
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody
@@ -315,6 +392,42 @@
     user.name = [userDictionary valueForKey:@"DisplayName"];
     like.user = user;
     [likesContext MR_saveToPersistentStoreAndWait];
+}
+
+
++ (void)deleteAllActivityStories
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSArray *activityStoryArray = [ActivityStory MR_findAllInContext:context];
+    
+    for (ActivityStory *story in activityStoryArray) {
+        [context deleteObject:story];
+    }
+    [context MR_saveToPersistentStoreAndWait];
+}
+
++ (void)markAllStoriesForDeletion
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSArray *allStories = [ActivityStory MR_findAllInContext:context];
+    
+    for (ActivityStory *story in allStories) {
+        story.shouldBeDeleted = [NSNumber numberWithBool:YES];
+    }
+    [context MR_saveToPersistentStoreAndWait];
+}
+
++ (void)deleteAllMarkedStories
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSArray *allStories = [ActivityStory MR_findAllInContext:context];
+    
+    for (ActivityStory *story in allStories) {
+        if ([story.shouldBeDeleted boolValue]) {
+            [context deleteObject:story];
+        }
+    }
+    [context MR_saveToPersistentStoreAndWait];
 }
 
 @end

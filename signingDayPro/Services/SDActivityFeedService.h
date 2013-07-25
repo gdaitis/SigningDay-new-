@@ -35,4 +35,7 @@
          successBlock:(void (^)(void))successBlock
          failureBlock:(void (^)(void))failureBlock;
 
+//delete all stories
++ (void)deleteAllActivityStories;
+
 @end
