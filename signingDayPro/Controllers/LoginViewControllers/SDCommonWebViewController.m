@@ -12,7 +12,7 @@
 
 @implementation SDCommonWebViewController
 
-@synthesize webView;
+@synthesize webView = _webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,15 +44,13 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.window animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:webView animated:YES];
     hud.labelText = @"Loading";
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
+    [MBProgressHUD hideAllHUDsForView:webView animated:YES];
 }
 
 @end

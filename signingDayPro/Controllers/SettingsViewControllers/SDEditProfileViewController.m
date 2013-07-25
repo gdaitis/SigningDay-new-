@@ -88,7 +88,7 @@
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier inContext:context];
     if (![self.nameTextView.text isEqualToString:user.name] || ![self.bioTextView.text isEqualToString:user.bio]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Saving";
         
         [self saveData];
@@ -99,16 +99,16 @@
 
 - (void)checkServer
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Loading";
     
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     [SDProfileService getProfileInfoForUserIdentifier:master.identifier completionBlock:^{
-        [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         [self loadData];
     } failureBlock:^{
-        [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }];
 }
 
@@ -131,10 +131,10 @@
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     if (master) {
         [SDProfileService postNewProfileFieldsForUserWithIdentifier:master.identifier name:self.nameTextView.text bio:self.bioTextView.text completionBlock:^{
-            [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         } failureBlock:^{
-            [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         }];
     }
 }
