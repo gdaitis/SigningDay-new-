@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDBaseViewController.h"
 
 @class SDNewConversationViewController;
 @class User;
@@ -17,7 +18,7 @@
 
 @end
 
-@interface SDNewConversationViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface SDNewConversationViewController : SDBaseViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) id <SDNewConversationViewControllerDelegate> delegate;
 

@@ -50,7 +50,7 @@
         
         NSDictionary *authorDictionary = [conversationDictionary valueForKey:@"CreatedUser"];
         NSNumber *authorIdentifier = [NSNumber numberWithInt:[[authorDictionary valueForKey:@"Id"] intValue]];
-        User *author = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier];
+        User *author = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
         if (!author) {
             author = [User MR_createInContext:context];
             author.identifier = authorIdentifier;
@@ -85,7 +85,7 @@
         conversation.isRead = [NSNumber numberWithBool:[[conversationDictionary valueForKey:@"HasRead"] boolValue]];
     }
     
-    [context MR_save];
+    [context MR_saveToPersistentStoreAndWait];
 }
 
 + (void)getConversationsForPage:(int)pageNumber withSuccessBlock:(void (^)(int totalConversationCount))block failureBlock:(void (^)(void))failureBlock
@@ -153,11 +153,11 @@
                                         message.text = [[messageDictionary objectForKey:@"Body"] stringByConvertingHTMLToPlainText];
                                     }
                                     
-                                    [context MR_save];
-                                    
+                                    [context MR_saveToPersistentStoreAndWait];
                                     if (block) {
                                         block(totalMessages);
                                     }
+                                    
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
@@ -208,10 +208,11 @@
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
                                     }
-                                    [context MR_save];
-                                    
-                                    if (completionBlock)
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (completionBlock) {
                                         completionBlock();
+                                    }
+                                    
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SDErrorService handleError:error withOperation:operation];
                                 }];
@@ -249,13 +250,15 @@
               parameters:parameters
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      conversation.isRead = [NSNumber numberWithBool:YES];
-                     [[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
+                     
+                     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+                     if (completionBlock) {
+                         completionBlock();
+                     }
                      int badgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber];
                      if (badgeNumber > 0)
                          [[UIApplication sharedApplication] setApplicationIconBadgeNumber:(badgeNumber - 1)];
                      
-                     if (completionBlock)
-                         completionBlock();
                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      [SDErrorService handleError:error withOperation:operation];
                  }];
@@ -291,10 +294,12 @@
                                         user.followedBy = master;
                                         
                                     }
-                                    [context MR_save];
-                                    
-                                    if (completionBlock)
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (completionBlock) {
                                         completionBlock();
+                                    }
+                                    
+                                    
                                     
                                     [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -315,20 +320,20 @@
         conversation.shouldBeDeleted = [NSNumber numberWithBool:YES];
     }
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    [context MR_save];
+    [context MR_saveToPersistentStoreAndWait];
 }
 
 + (void)deleteMarkedConversations
 {
-    NSArray *conversationsToBeDeleted = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"shouldBeDeleted == %@", [NSNumber numberWithBool:YES]]];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSArray *conversationsToBeDeleted = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"shouldBeDeleted == %@", [NSNumber numberWithBool:YES]] inContext:context];
     for (Conversation *conversation in conversationsToBeDeleted) {
         [conversation MR_deleteEntity];
     }
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    [context MR_save];
+    [context MR_saveToPersistentStoreAndWait];
     
     //setup badge on left unread conversations
-    NSArray *unreadConversations = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"isRead == %@", [NSNumber numberWithBool:NO]]];
+    NSArray *unreadConversations = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"isRead == %@", [NSNumber numberWithBool:NO]] inContext:context];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadConversations count]];
 }
 
@@ -338,7 +343,7 @@
         message.shouldBeDeleted = [NSNumber numberWithBool:YES];
     }
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    [context MR_save];
+    [context MR_saveToPersistentStoreAndWait];
 }
 
 + (void)deleteMarkedMessagesForConversation:(Conversation *)conversation
@@ -351,7 +356,7 @@
             [mesage MR_deleteInContext:context];
         }
     }
-    [context MR_save];
+    [context MR_saveToPersistentStoreAndWait];
 }
 
 @end

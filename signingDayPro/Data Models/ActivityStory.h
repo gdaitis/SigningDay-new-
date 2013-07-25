@@ -2,7 +2,7 @@
 //  ActivityStory.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/23/13.
+//  Created by Lukas Kekys on 7/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -15,20 +15,20 @@
 
 @property (nonatomic, retain) NSString * activityDescription;
 @property (nonatomic, retain) NSString * activityTitle;
+@property (nonatomic, retain) NSNumber * commentCount;
 @property (nonatomic, retain) NSString * contentId;
 @property (nonatomic, retain) NSString * contentTypeId;
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSString * imagePath;
 @property (nonatomic, retain) NSDate * lastUpdateDate;
-@property (nonatomic, retain) NSString * storyTypeId;
-@property (nonatomic, retain) NSNumber * shouldBeDeleted;
 @property (nonatomic, retain) NSNumber * likedByMaster;
 @property (nonatomic, retain) NSNumber * likesCount;
-@property (nonatomic, retain) NSNumber * commentCount;
 @property (nonatomic, retain) NSString * mediaType;
-@property (nonatomic, retain) NSString * thumbnailUrl;
 @property (nonatomic, retain) NSString * mediaUrl;
+@property (nonatomic, retain) NSNumber * shouldBeDeleted;
+@property (nonatomic, retain) NSString * storyTypeId;
+@property (nonatomic, retain) NSString * thumbnailUrl;
 @property (nonatomic, retain) User *author;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *likes;

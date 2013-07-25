@@ -129,7 +129,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
     return [_dataArray count];
-}
+} 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -195,7 +195,7 @@
 
 - (void)loadData
 {
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO];
+    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     [self.tableView reloadData];
 }
 

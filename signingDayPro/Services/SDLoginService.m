@@ -74,7 +74,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                      [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:apiKey];
                                      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"loggedIn"];
                                      [[NSUserDefaults standardUserDefaults] synchronize];
-                                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:anUsername];
+                                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:anUsername inContext:context];
                                      if (!master) {
                                          master = [Master MR_createInContext:context];
                                          master.username = anUsername;
@@ -84,7 +84,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                          
                                      }
                                      
-                                     User *user = [User MR_findFirstByAttribute:@"username" withValue:anUsername];
+                                     User *user = [User MR_findFirstByAttribute:@"username" withValue:anUsername inContext:context];
                                      if (!user) {
                                          user = [User MR_createInContext:context];
                                          user.identifier = @([JSON[@"User"][@"Id"] intValue]);
@@ -100,10 +100,10 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                      else
                                          master.facebookSharingOn = [NSNumber numberWithBool:NO];
                                      
-                                     [context MR_save];
-                                                                          
-                                     if (block)
+                                     [context MR_saveToPersistentStoreAndWait];
+                                     if (block) {
                                          block();
+                                     }
                                  } 
                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
@@ -123,7 +123,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
     master.facebookSharingOn = [NSNumber numberWithBool:NO];
-    [context MR_save];
+    [context MR_saveToPersistentStoreAndWait];
     
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedIn"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];

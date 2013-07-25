@@ -76,16 +76,18 @@
                 NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
                 if (status == FBSessionStateOpen) {
                     master.facebookSharingOn = [NSNumber numberWithBool:YES];
-                    [context MR_save];
+                    [context MR_saveToPersistentStoreAndWait];
                     [tableView reloadData];
+                    
                 }
             }];
         } else {
             [appDelegate.fbSession close];
             
             master.facebookSharingOn = [NSNumber numberWithBool:NO];
-            [context MR_save];
+            [context MR_saveToPersistentStoreAndWait];
             [tableView reloadData];
+            
         }
     } else if (indexPath.row == 1) { // Twitter
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
@@ -102,14 +104,14 @@
                                       NSLog(@"User rejected access to the account.");
                                      
                                      master.twitterSharingOn = [NSNumber numberWithBool:NO];
-                                     [context MR_save];
+                                     [context MR_saveToPersistentStoreAndWait];
                                      
                                      dispatch_async(dispatch_get_main_queue(), ^{
                                          [tableView reloadData];
                                      });
                                  } else {
                                      master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                     [context MR_save];
+                                     [context MR_saveToPersistentStoreAndWait];
                                      
                                       NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
                                      if ([twitterAccounts count] > 0) {
@@ -124,8 +126,9 @@
                              }];
         } else {
             master.twitterSharingOn = [NSNumber numberWithBool:NO];
-            [context MR_save];
+            [context MR_saveToPersistentStoreAndWait];
             [tableView reloadData];
+            
         }
     }
     

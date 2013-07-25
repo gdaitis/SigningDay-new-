@@ -129,7 +129,7 @@
 - (void)updateInfoAndShowActivityIndicator:(BOOL)showActivityIndicator
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     
     if (showActivityIndicator) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
@@ -163,19 +163,21 @@
     NSPredicate *masterUsernamePredicate = [NSPredicate predicateWithFormat:@"followedBy.username like %@", username];
     int fetchLimit = (_currentFollowingPage +1) *kMaxItemsPerPage;
     
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
     if ([searchText isEqual:@""]) {
         //seting fetch limit for pagination
-        NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate];
+        NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate inContext:context];
         [request setFetchLimit:fetchLimit];
         //set sort descriptor
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
         [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-        self.searchResults = [User MR_executeFetchRequest:request];
+        self.searchResults = [User MR_executeFetchRequest:request inContext:context];
     } else {
         NSPredicate *usernameSearchPredicate = [NSPredicate predicateWithFormat:@"username contains[cd] %@ OR name contains[cd] %@", searchText, searchText];
         NSArray *predicatesArray = [NSArray arrayWithObjects:masterUsernamePredicate, usernameSearchPredicate, nil];
         NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
-        self.searchResults = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:predicate];
+        self.searchResults = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:predicate inContext:context];
     }
     [self reloadTableView];
 }
@@ -369,7 +371,7 @@
     [self filterContentForSearchText:searchString];
     
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     
     if ((_currentFollowingPage+1)*kMaxItemsPerPage < _totalFollowings ) { //if all users are already downloaded we do not need additional call to webservice
         

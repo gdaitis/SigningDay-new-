@@ -70,12 +70,40 @@ NSString * const kMagicalRecordPSCDidCompleteiCloudSetupNotification = @"kMagica
     [self MR_createPathToStoreFileIfNeccessary:url];
     
     NSPersistentStore *store = [self addPersistentStoreWithType:NSSQLiteStoreType
-                                                 configuration:nil
-                                                           URL:url
-                                                       options:options
-                                                         error:&error];
-    if (!store) 
+                                                  configuration:nil
+                                                            URL:url
+                                                        options:options
+                                                          error:&error];
+    
+    if (!store && [MagicalRecord shouldDeleteStoreOnModelMismatch])
     {
+        BOOL isMigrationError = [error code] == NSPersistentStoreIncompatibleVersionHashError || [error code] == NSMigrationMissingSourceModelError;
+        if ([[error domain] isEqualToString:NSCocoaErrorDomain] && isMigrationError)
+        {
+            // Could not open the database, so... kill it! (AND WAL bits)
+            NSString *rawURL = [url absoluteString];
+            NSURL *shmSidecar = [NSURL URLWithString:[rawURL stringByAppendingString:@"-shm"]];
+            NSURL *walSidecar = [NSURL URLWithString:[rawURL stringByAppendingString:@"-wal"]];
+            [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+            [[NSFileManager defaultManager] removeItemAtURL:shmSidecar error:nil];
+            [[NSFileManager defaultManager] removeItemAtURL:walSidecar error:nil];
+            
+
+            MRLog(@"Removed incompatible model version: %@", [url lastPathComponent]);
+            
+            // Try one more time to create the store
+            store = [self addPersistentStoreWithType:NSSQLiteStoreType
+                                       configuration:nil
+                                                 URL:url
+                                             options:options
+                                               error:&error];
+            if (store)
+            {
+                // If we successfully added a store, remove the error that was initially created
+                error = nil;
+            }
+        }
+                
         [MagicalRecord handleErrors:error];
     }
     return store;
@@ -101,9 +129,14 @@ NSString * const kMagicalRecordPSCDidCompleteiCloudSetupNotification = @"kMagica
 
 + (NSDictionary *) MR_autoMigrationOptions;
 {
+    // Adding the journalling mode recommended by apple
+    NSMutableDictionary *sqliteOptions = [NSMutableDictionary dictionary];
+    [sqliteOptions setObject:@"WAL" forKey:@"journal_mode"];
+    
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+                             sqliteOptions, NSSQLitePragmasOption,
                              nil];
     return options;
 }
@@ -234,7 +267,7 @@ NSString * const kMagicalRecordPSCDidCompleteiCloudSetupNotification = @"kMagica
     return psc;
 }
 
-+ (NSPersistentStoreCoordinator *) MR_coordinatorWithPersitentStore:(NSPersistentStore *)persistentStore;
++ (NSPersistentStoreCoordinator *) MR_coordinatorWithPersistentStore:(NSPersistentStore *)persistentStore;
 {
     NSManagedObjectModel *model = [NSManagedObjectModel MR_defaultManagedObjectModel];
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];

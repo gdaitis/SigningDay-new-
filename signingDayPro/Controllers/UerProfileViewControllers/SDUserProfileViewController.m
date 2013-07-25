@@ -77,9 +77,9 @@
 
 -(void)reloadActivityData
 {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
+    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     [self.tableView reloadData];
-    
-    NSLog(@"tableview height = %f",self.tableView.frame.size.height);
 }
 
 #pragma mark - TableView datasource
@@ -97,8 +97,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate];
     return [_dataArray count];
 }
 

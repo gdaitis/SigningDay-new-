@@ -59,10 +59,10 @@
                                         user.name = [userInfo valueForKey:@"DisplayName"];
                                         
                                     }
-                                    [context MR_save];
-                                    
-                                    if (completionBlock)
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (completionBlock) {
                                         completionBlock(totalUserCount);
+                                    }
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
@@ -101,10 +101,10 @@
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
                                     }
-                                    [context MR_save];
-                                    
-                                    if (completionBlock)
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (completionBlock) {
                                         completionBlock(totalUserCount);
+                                    }
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
@@ -149,10 +149,10 @@
                                         
                                         user.followingRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                     }
-                                    [context MR_save];
-                                    
-                                    if (completionBlock)
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (completionBlock) {
                                         completionBlock(totalUserCount);
+                                    }
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
@@ -180,7 +180,7 @@
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"UserId"];
                                         NSLog(@"followingsUserIdentifier = %@",followersUserIdentifier);
                                         
-                                        User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followersUserIdentifier];
+                                        User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followersUserIdentifier inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];
                                             user.identifier = followersUserIdentifier;
@@ -203,10 +203,10 @@
                                         
                                         user.followerRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                     }
-                                    [context MR_save];
-                                    
-                                    if (completionBlock)
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (completionBlock) {
                                         completionBlock(totalUserCount);
+                                    }
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SDErrorService handleError:error withOperation:operation];
                                     if (failureBlock)
@@ -219,7 +219,7 @@
 + (void)unfollowUserWithIdentifier:(NSNumber *)identifier withCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kSDAPIBaseURLString]];
     NSString *apiKey = [STKeychain getPasswordForUsername:username andServiceName:@"SigningDay" error:nil];
@@ -243,7 +243,7 @@
 + (void)followUserWithIdentifier:(NSNumber *)identifier withCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setValue:[identifier stringValue] forKey:@"FollowingId"];
     
@@ -279,7 +279,7 @@
                                      for (NSDictionary *userInfo in results) {
                                          
                                          NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier];
+                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier inContext:context];
                                          
                                          if (!user) {
                                              user = [User MR_createInContext:context];
@@ -293,10 +293,11 @@
                                          
                                          user.followingRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
-                                     [context MR_save];
-                                     
-                                     if (completionBlock)
+                                     [context MR_saveToPersistentStoreAndWait];
+                                     if (completionBlock) {
                                          completionBlock();
+                                     }
+                                     
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [SDErrorService handleError:error withOperation:operation];
                                      if (failureBlock)
@@ -322,7 +323,7 @@
                                      for (NSDictionary *userInfo in results) {
                                          
                                          NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier];
+                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier inContext:context];
                                          
                                          if (!user) {
                                              user = [User MR_createInContext:context];
@@ -345,10 +346,10 @@
                                          }
                                          user.followerRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
-                                     [context MR_save];
-                                     
-                                     if (completionBlock)
+                                     [context MR_saveToPersistentStoreAndWait];
+                                     if (completionBlock) {
                                          completionBlock();
+                                     }
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [SDErrorService handleError:error withOperation:operation];
                                      if (failureBlock)
@@ -365,7 +366,7 @@
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
     NSPredicate *masterUsernamePredicate = [NSPredicate predicateWithFormat:@"master.username like %@", username];
-    NSArray *userArray = [User MR_findAllSortedBy:@"username" ascending:YES withPredicate:masterUsernamePredicate];
+    NSArray *userArray = [User MR_findAllSortedBy:@"username" ascending:YES withPredicate:masterUsernamePredicate inContext:context];
     
     for (User *user in userArray) {
         if (!user.followedBy && !user.following) {
@@ -380,13 +381,13 @@
             }
         }
     }
-    [context MR_save];
+    [context MR_saveToPersistentStoreAndWait];
 }
 
 + (void)removeFollowing:(BOOL)removeFollowing andFollowed:(BOOL)removeFollowed
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     
     if (master) {
         if (removeFollowed) {

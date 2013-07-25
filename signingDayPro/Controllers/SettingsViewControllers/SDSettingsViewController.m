@@ -239,7 +239,7 @@
                     NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
                     if (status == FBSessionStateOpen) {
                         master.facebookSharingOn = [NSNumber numberWithBool:YES];
-                        [context MR_save];
+                        [context MR_saveToPersistentStoreAndWait];
                     }
                 }];
                 
@@ -275,9 +275,7 @@
     } else if (actionSheet.tag == 104) {
         if (buttonIndex == 0) {
             // send image to server
-            NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-            Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
-            
+            Master *master = [self getMaster];
             [SDProfileService uploadAvatar:self.capturedImage forUserIdentifier:master.identifier completionBlock:^{
                 NSLog(@"Avatar updates successfully");
             }];

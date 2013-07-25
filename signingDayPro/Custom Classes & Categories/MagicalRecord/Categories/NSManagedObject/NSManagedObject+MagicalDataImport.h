@@ -1,6 +1,5 @@
 //
 //  NSManagedObject+JSONHelpers.h
-//  Gathering
 //
 //  Created by Saul Mora on 6/28/11.
 //  Copyright 2011 Magical Panda Software LLC. All rights reserved.
@@ -26,5 +25,13 @@ extern NSString * const kMagicalRecordImportRelationshipTypeKey;
 
 + (NSArray *) MR_importFromArray:(NSArray *)listOfObjectData;
 + (NSArray *) MR_importFromArray:(NSArray *)listOfObjectData inContext:(NSManagedObjectContext *)context;
+
+@end
+
+@interface NSManagedObject (MagicalRecord_DataImportControls)
+
+- (BOOL) shouldImport:(id)data;
+- (void) willImport:(id)data;
+- (void) didImport:(id)data;
 
 @end

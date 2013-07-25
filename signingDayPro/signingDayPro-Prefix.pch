@@ -11,9 +11,9 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import <CoreData/CoreData.h>
 //    #define MR_ENABLE_ACTIVE_RECORD_LOGGING 0
-    #import "CoreData+MagicalRecord.h"
+#import "CoreData+MagicalRecord.h"
+    #import <CoreData/CoreData.h>
 
 #define kUserUpdatedNotification @"UserUpdatedNotification"
 #define kMaxItemsPerPage    100      //max 100 more info on http://telligent.com/community/developers/w/developer7/29725.list-following-rest-endpoint.aspx

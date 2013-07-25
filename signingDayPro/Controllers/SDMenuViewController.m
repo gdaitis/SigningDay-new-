@@ -150,9 +150,7 @@
 - (void)setupCell:(SDMenuItemCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-        Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
-        User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier];
+        User *user = [self getMasterUser];
         
         if (user) {
             cell.txtLabel.text = user.name;

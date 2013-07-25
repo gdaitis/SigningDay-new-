@@ -47,6 +47,8 @@
         }
     }
     
+#warning mark unneded stories for deletion
+    
     [[SDAPIClient sharedClient] getPath:@"sd/story.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
@@ -74,11 +76,13 @@
                                         activityStory.likesCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"LikesCount"] intValue]];
                                         activityStory.commentCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]];
                                         activityStory.likedByMaster = [NSNumber numberWithBool:[[activityStoryDictionary valueForKey:@"LikeFlag"] boolValue]];
-                                        activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
                                         activityStory.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         
                                         if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
                                             activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
+                                        }
+                                        if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
+                                            activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
                                         }
                                         
                                         NSString *createdDateString = [activityStoryDictionary objectForKey:@"CreatedDate"];
@@ -101,7 +105,7 @@
                                         for (NSDictionary *userDictionary in userArray) {
                                             
                                             NSNumber *authorIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Id"] intValue]];
-                                            User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier];
+                                            User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
                                             if (!user) {
                                                 user = [User MR_createInContext:context];
                                                 user.identifier = authorIdentifier;
@@ -112,6 +116,7 @@
                                             
                                             if ([[userDictionary valueForKey:@"Verb"] isEqualToString:@"From"]) {
                                                 //this user created this post, assign it as author
+                                                NSLog(@"activity story user = %@",user.name);
                                                 activityStory.author = user;
                                             }
                                             if ([[userDictionary valueForKey:@"Verb"] isEqualToString:@"For"]) {
@@ -120,14 +125,10 @@
                                             }   
                                         }
                                     }
-                                    [context MR_save];
-                                    successBlock(resultCount);
-                                    
-//                                    [backgroundContext MR_saveInBackgroundCompletion:^{
-//                                        //returning count to keep track of this specific paging system
-//                                        successBlock(resultCount);
-#warning save in background doesn't work!!
-//                                    }];
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (successBlock) {
+                                        successBlock(resultCount);
+                                    }
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     failureBlock();
@@ -176,8 +177,11 @@
                                        
                                        NSManagedObjectContext *deletionContext = [NSManagedObjectContext MR_contextForCurrentThread];
                                        [activityStory MR_deleteEntity];
-                                       [deletionContext MR_save];
-                                       successBlock();
+                                       [deletionContext MR_saveToPersistentStoreAndWait];
+                                       if (successBlock) {
+                                           successBlock();
+                                       }
+                                       
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        failureBlock();
                                    }];
@@ -209,8 +213,11 @@
                                    success:^(AFHTTPRequestOperation *operation, id JSON) {
                                        NSManagedObjectContext *deletionContext = [NSManagedObjectContext MR_contextForCurrentThread];
                                        [comment MR_deleteEntity];
-                                       [deletionContext MR_save];
-                                       successBlock();
+                                       [deletionContext MR_saveToPersistentStoreAndWait];
+                                       if (successBlock) {
+                                           successBlock();
+                                       }
+                                       
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        failureBlock();
                                    }];
@@ -266,7 +273,7 @@
     NSDate *updatedDate = [dateFormatter dateFromString:updatedDateString];
     comment.updatedDate = updatedDate;
     
-    [commentsContext MR_save];
+    [commentsContext MR_saveToPersistentStoreAndWait];
 }
 
 + (void)createLikeFromDictionary:(NSDictionary *)likeDictionary
@@ -307,7 +314,7 @@
     user.username = [userDictionary valueForKey:@"Username"];
     user.name = [userDictionary valueForKey:@"DisplayName"];
     like.user = user;
-    [likesContext MR_save];
+    [likesContext MR_saveToPersistentStoreAndWait];
 }
 
 @end

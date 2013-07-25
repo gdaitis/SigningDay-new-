@@ -271,8 +271,8 @@ static CGFloat const kChatBarHeight4    = 104.0f;
         NSString *username = [(User *)[[self.conversation.users allObjects] objectAtIndex:0] username];
         [SDChatService startNewConversationWithUsername:username text:rightTrimmedMessage completionBlock:^(NSString *identifier) {
             self.conversation.identifier = identifier;
-            [[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
             
+            [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
             [self checkServer];
         }];
     } else {

@@ -49,7 +49,7 @@
                                     user.bio = [[userDictionary valueForKey:@"Bio"] stringByConvertingHTMLToPlainText];
                                     user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
                                     
-                                    [context MR_save];
+                                    [context MR_saveToPersistentStoreAndWait];
                                     
                                     NSString *followingPath = [NSString stringWithFormat:@"users/%d/following.json", [identifier integerValue]];
                                     [[SDAPIClient sharedClient] getPath:followingPath
@@ -60,7 +60,7 @@
                                                                     user.numberOfFollowing = [NSNumber numberWithInteger:[[JSON valueForKey:@"TotalCount"] integerValue]];
                                                                     NSLog(@"Following: %@", user.numberOfFollowing);
                                                                     
-                                                                    [context MR_save];
+                                                                    [context MR_saveToPersistentStoreAndWait];
                                                                     
                                                                     NSString *followersPath = [NSString stringWithFormat:@"users/%d/followers.json", [identifier integerValue]];
                                                                     [[SDAPIClient sharedClient] getPath:followersPath
@@ -72,7 +72,7 @@
                                                                                                     user.numberOfFollowers = [JSON valueForKey:@"TotalCount"];
                                                                                                     NSLog(@"Followers: %@", user.numberOfFollowers);
                                                                                                     
-                                                                                                    [context MR_save];
+                                                                                                    [context MR_saveToPersistentStoreAndWait];
                                                                                                     
                                                                                                     NSString *photosCountPath = [[[NSString stringWithFormat:@"search.json?pagesize=1&filters=type::file||section::4||user::%d", [identifier integerValue]] stringByReplacingOccurrencesOfString:@":" withString:@"%3A"] stringByReplacingOccurrencesOfString:@"|" withString:@"%7C"];
 
@@ -85,7 +85,7 @@
                                                                                                                                     user.numberOfPhotos = [JSON valueForKey:@"TotalCount"];
                                                                                                                                     NSLog(@"Photos: %@", user.numberOfPhotos);
                                                                                                                                     
-                                                                                                                                    [context MR_save];
+                                                                                                                                    [context MR_saveToPersistentStoreAndWait];
                                                                                                                                     
                                                                                                                                     NSString *videosCountPath = [[[NSString stringWithFormat:@"search.json?pagesize=1&filters=type::file||section::5||user::%d", [identifier integerValue]] stringByReplacingOccurrencesOfString:@":" withString:@"%3A"] stringByReplacingOccurrencesOfString:@"|" withString:@"%7C"];
                                                                                                                                     [[SDAPIClient sharedClient] getPath:videosCountPath
@@ -97,7 +97,7 @@
                                                                                                                                                                     user.numberOfVideos = [JSON valueForKey:@"TotalCount"];
                                                                                                                                                                     NSLog(@"Videos: %@", user.numberOfVideos);
                                                                                                                                                                     
-                                                                                                                                                                    [context MR_save];
+                                                                                                                                                                    [context MR_saveToPersistentStoreAndWait];
                                                                                                                                                                     
                                                                                                                                                                     if (completionBlock)
                                                                                                                                                                         completionBlock();
@@ -159,12 +159,14 @@
                      NSString *bio = [[userDictionary valueForKey:@"Bio"] stringByConvertingHTMLToPlainText];
                      
                      NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
-                     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier];
+                     
+                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
+                     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier inContext:context];
                      user.name = displayName;
                      user.bio = bio;
-                     [[NSManagedObjectContext MR_contextForCurrentThread] MR_save];
                      
+                     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
                      if (completionBlock)
                          completionBlock();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -264,7 +266,9 @@
                 NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                 Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
                 master.facebookSharingOn = [NSNumber numberWithBool:YES];
-                [context MR_save];
+                
+                [context MR_saveOnlySelfWithCompletion:^(BOOL success, NSError *error) {
+                }];
                 
                 NSString *fbToken = [appDelegate.fbSession accessToken];
                 NSString *path = [NSString stringWithFormat:@"me/picture/?access_token=%@", fbToken];
@@ -338,8 +342,9 @@
 + (void)updateLoggedInUserWithCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
-    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
+    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier inContext:context];
     
     NSString *path = [NSString stringWithFormat:@"sd/following.json"];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",[user.identifier intValue]] ,@"Id", nil];
@@ -356,7 +361,7 @@
                                      for (NSDictionary *userInfo in results) {
                                          
                                          NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier];
+                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier inContext:context];
                                          
                                          if (!user) {
                                              user = [User MR_createInContext:context];
@@ -370,10 +375,10 @@
                                          
 //                                         user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
-                                     [context MR_save];
-                                     
+                                     [context MR_saveToPersistentStoreAndWait];
                                      if (completionBlock)
                                          completionBlock();
+                                     
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [SDErrorService handleError:error withOperation:operation];
                                      if (failureBlock)

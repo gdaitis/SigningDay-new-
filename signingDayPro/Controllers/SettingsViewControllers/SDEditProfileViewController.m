@@ -83,8 +83,10 @@
     [self.bioTextView resignFirstResponder];
     
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
-    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
+    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier inContext:context];
     if (![self.nameTextView.text isEqualToString:user.name] || ![self.bioTextView.text isEqualToString:user.bio]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         hud.labelText = @"Saving";
@@ -101,7 +103,7 @@
     hud.labelText = @"Loading";
     
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     [SDProfileService getProfileInfoForUserIdentifier:master.identifier completionBlock:^{
         [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
         [self loadData];
@@ -113,8 +115,10 @@
 - (void)loadData
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
-    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier];
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
+    User *user = [User MR_findFirstByAttribute:@"identifier" withValue:master.identifier inContext:context];
     if (user) {
         self.nameTextView.text = user.name;
         self.bioTextView.text = user.bio;
@@ -124,7 +128,7 @@
 - (void)saveData
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     if (master) {
         [SDProfileService postNewProfileFieldsForUserWithIdentifier:master.identifier name:self.nameTextView.text bio:self.bioTextView.text completionBlock:^{
             [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];

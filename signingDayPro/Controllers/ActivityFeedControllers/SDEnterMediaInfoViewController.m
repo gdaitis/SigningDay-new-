@@ -135,9 +135,11 @@
                     NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
                     if (status == FBSessionStateOpen) {
                         master.facebookSharingOn = [NSNumber numberWithBool:YES];
-                        [context MR_save];
                         
+                        [context MR_saveToPersistentStoreAndWait];
                         [self.tableView reloadData];
+                        
+                        
                     }
                     
                 }];
@@ -154,7 +156,7 @@
                                          NSLog(@"User rejected access to the account.");
                                      } else {
                                          master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                         [context MR_save];
+                                         [context MR_saveToPersistentStoreAndWait];
                                          
                                          NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
                                          if ([twitterAccounts count] > 0) {

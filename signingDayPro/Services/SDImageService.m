@@ -45,7 +45,7 @@
         imageData = [ImageData MR_createInContext:context];
         imageData.updateDate = [NSDate date];
         imageData.urlString = urlString;
-        [context MR_save];
+        [context MR_saveToPersistentStoreAndWait];
         [self downloadAndSaveImageWithUrlString:imageData.urlString
                                         success:successBlock];
         return;
@@ -56,7 +56,7 @@
     float timePassed = timeInterval / secondsInOneHour;
     if (timePassed > kUpdateIntervalInHours) {
         imageData.updateDate = [NSDate date];
-        [context MR_save];
+        [context MR_saveToPersistentStoreAndWait];
         [self downloadAndSaveImageWithUrlString:imageData.urlString
                                         success:successBlock];
         return;
@@ -74,13 +74,13 @@
                                                                                            success:^(UIImage *image) {
                                                                                                NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                                                                                ImageData *imageData = [ImageData MR_findFirstByAttribute:@"urlString"
-                                                                                                                                               withValue:urlString];
+                                                                                                                                               withValue:urlString inContext:context];
                                                                                                imageData.image = image;
-                                                                                               [context MR_save];
-                                                                                               
+                                                                                               [context MR_saveToPersistentStoreAndWait];
                                                                                                if (successBlock) {
                                                                                                    successBlock(image);
                                                                                                }
+                                                                                               
                                                                                            }];
     [operation start];
 }

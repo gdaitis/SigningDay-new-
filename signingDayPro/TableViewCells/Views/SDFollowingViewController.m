@@ -169,8 +169,7 @@
 
 - (void)updateInfoAndShowActivityIndicator:(BOOL)showActivityIndicator
 {
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [self getMaster];
     
     if (showActivityIndicator) {
         [self showProgressHudInView:self.tableView withText:@"Updating list"];
@@ -220,6 +219,7 @@
     NSPredicate *masterUsernamePredicate = nil;
     int fetchLimit = 0;
     
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
         masterUsernamePredicate = [NSPredicate predicateWithFormat:@"following.username like %@", username];
         fetchLimit = (_currentFollowersPage +1) *kMaxItemsPerPage;
@@ -238,7 +238,7 @@
     
     if ([searchText isEqual:@""]) {
         //seting fetch limit for pagination
-        NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate];
+        NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate inContext:context];
         [request setFetchLimit:fetchLimit];
         //set sort descriptor
         
@@ -252,11 +252,11 @@
         
         NSSortDescriptor *followingSortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortingKey ascending:NO selector:@selector(compare:)];
         [request setSortDescriptors:[NSArray arrayWithObjects:followingSortDescriptor, /*nameSortDescriptor,*/ nil]];
-        self.dataArray = [User MR_executeFetchRequest:request];
+        self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     }
     else {
         
-        NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate];
+        NSFetchRequest *request = [User MR_requestAllWithPredicate:masterUsernamePredicate inContext:context];
         [request setFetchLimit:fetchLimit];
         //set sort descriptor
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
@@ -267,7 +267,7 @@
         NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
         [request setPredicate:predicate];
         
-        self.dataArray = [User MR_executeFetchRequest:request];
+        self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     }
     [self reloadTableView];
 }
@@ -367,8 +367,7 @@
                                            }];
         
         //check for following
-        NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-        Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+        Master *master = [self getMaster];
         
         if ([user.followedBy isEqual:master]) {
             cell.followButton.selected = YES;
@@ -511,8 +510,7 @@
     //filter users in local DB
     [self filterContentForSearchText:searchString];
     
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username];
+    Master *master = [self getMaster];
     
     if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
         

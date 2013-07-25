@@ -2,7 +2,7 @@
 //  ActivityStory.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/23/13.
+//  Created by Lukas Kekys on 7/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -17,20 +17,20 @@
 
 @dynamic activityDescription;
 @dynamic activityTitle;
+@dynamic commentCount;
 @dynamic contentId;
 @dynamic contentTypeId;
 @dynamic createdDate;
 @dynamic identifier;
 @dynamic imagePath;
 @dynamic lastUpdateDate;
-@dynamic storyTypeId;
-@dynamic shouldBeDeleted;
 @dynamic likedByMaster;
 @dynamic likesCount;
-@dynamic commentCount;
 @dynamic mediaType;
-@dynamic thumbnailUrl;
 @dynamic mediaUrl;
+@dynamic shouldBeDeleted;
+@dynamic storyTypeId;
+@dynamic thumbnailUrl;
 @dynamic author;
 @dynamic comments;
 @dynamic likes;
