@@ -9,6 +9,10 @@
 #import "SDActivityFeedCell.h"
 #import "SDActivityFeedCellContentView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ActivityStory.h"
+#import "User.h"
+#import "AFNetworking.h"
+#import "SDUtils.h"
 
 @interface SDActivityFeedCell ()
 
@@ -72,6 +76,25 @@
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
+}
+
+- (void)setupCellWithActivityStory:(ActivityStory *)activityStory atIndexPath:(NSIndexPath *)indexPath
+{
+    [self.thumbnailImageView cancelImageRequestOperation];
+    self.likeButton.tag = indexPath.row;
+    self.commentButton.tag = indexPath.row;
+    
+    self.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likes count]];
+    self.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.comments count]];
+    self.nameLabel.text =activityStory.author.name;
+    [self.resizableActivityFeedView setActivityStory:activityStory];
+    
+    if ([activityStory.author.avatarUrl length] > 0) {
+        [self.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
+    }
+    
+    self.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
+    self.yearLabel.text = @"- DE, 2014";
 }
 
 #pragma mark - like/comment button pressed
