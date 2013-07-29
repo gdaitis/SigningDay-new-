@@ -36,7 +36,8 @@
     //if user provided, add parameter with user id to get only this users activity stories
     if (user) {
         params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[user.identifier stringValue], @"UserId", nil];
-    }    
+    }
+    
     if (date) {
         NSString *formatedDateString = [SDUtils formatedDateStringFromDate:date];
         if (params == nil) {
@@ -46,7 +47,6 @@
             [params setObject:formatedDateString forKey:@"EndDate"];
         }
     }
-    
     //test with this date you can get activityStory that is a wallpost
 //    if (params == nil) {
 //        params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"7/22/2013 07:56:13"], @"EndDate", nil];
