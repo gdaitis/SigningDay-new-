@@ -67,7 +67,7 @@
 
 - (void)loadActivityFeedInfo
 {
-    [SDActivityFeedService getActivityStoriesForUser:_currentUser withDate:nil withSuccessBlock:^(int resultCount){
+    [SDActivityFeedService getActivityStoriesForUser:_currentUser withDate:nil withSuccessBlock:^(NSDictionary *results){
         [self reloadActivityData];
         [self endRefreshing];
     } failureBlock:^{

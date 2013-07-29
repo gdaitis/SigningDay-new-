@@ -43,6 +43,11 @@
 @property (nonatomic, strong) NSURL *capturedVideoURL;
 @property (nonatomic, strong) NSString *mediaType;
 
+//paging properties
+@property (nonatomic, assign) int activityStoryCount;
+@property (nonatomic, strong) NSDate *lastActivityStoryDate;
+@property (nonatomic, assign) BOOL endReached;
+
 - (void)checkServer;
 
 @end
@@ -64,10 +69,6 @@
 	// Do any additional setup after loading the view.
     
     self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
-        
-//    UINib *rowCellNib = [UINib nibWithNibName:@"SDActivityFeedCell" bundle:[NSBundle mainBundle]];
-//    [self.tableView registerNib:rowCellNib forCellReuseIdentifier:@"ActivityFeedCellId"];
-    
     self.headerView.clipsToBounds = NO;
     
     // Add shadow
@@ -85,7 +86,11 @@
 {
     [super viewDidAppear:animated];
     
-    [self beginRefreshing];
+    self.activityStoryCount = 0;
+    self.lastActivityStoryDate = nil;
+    self.endReached = NO;
+    
+    //    [self beginRefreshing];
     [self checkServer];
 }
 
@@ -97,18 +102,26 @@
 
 - (void)checkServer
 {
-    [SDActivityFeedService getActivityStoriesForUser:nil withDate:nil withSuccessBlock:^(int resultCount){
-                                        
-#warning check if solved a crash!
-                                        if ([self respondsToSelector:@selector(loadData)]) {
-                                            [self loadData];
-                                        }
-                                        if ([self respondsToSelector:@selector(endRefreshing)]) {
-                                            [self endRefreshing];
-                                        }
-                                    } failureBlock:^{
-                                        //
-                                    }];
+    
+    NSLog(@"LOADING items for date = %@",self.lastActivityStoryDate);
+    [SDActivityFeedService getActivityStoriesForUser:nil withDate:self.lastActivityStoryDate withSuccessBlock:^(NSDictionary *results){
+        
+        int resultCount = [[results objectForKey:@"ResultCount"] intValue]; 
+        self.activityStoryCount += resultCount;
+        self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
+        if (resultCount == 0) {
+            self.endReached = YES;
+            NSLog(@"END REACHED");
+        }
+        if ([self respondsToSelector:@selector(loadData)]) {
+            [self loadData];
+        }
+        if ([self respondsToSelector:@selector(endRefreshing)]) {
+            [self endRefreshing];
+        }
+    } failureBlock:^{
+        
+    }];
 }
 
 #pragma mark - TableView datasource
@@ -116,46 +129,72 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
-    
-    int contentHeight = [SDUtils heightForActivityStory:activityStory];
-    int result = 114/*buttons images etc..*/ + contentHeight;
-    
-    return result;
+    if (indexPath.row != [self.dataArray count]) {
+        ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
+        
+        int contentHeight = [SDUtils heightForActivityStory:activityStory];
+        int result = 114/*buttons images etc..*/ + contentHeight;
+        
+        return result;
+    }
+    else {
+        return 60;
+    }
 }
 
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return [_dataArray count];
-} 
+    if (!self.endReached) {
+        return [self.dataArray count] +1;
+    }
+    else {
+        return [self.dataArray count];
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SDActivityFeedCell *cell = nil;
-    NSString *cellIdentifier = @"ActivityFeedCellId";
-    
-    cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        // Load cell
-        NSArray *topLevelObjects = nil;
+    if (indexPath.row != [self.dataArray count]) {
         
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
-        // Grab cell reference which was set during nib load:
-        for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
-                cell = currentObject;
-                break;
+        SDActivityFeedCell *cell = nil;
+        NSString *cellIdentifier = @"ActivityFeedCellId";
+        cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            // Load cell
+            NSArray *topLevelObjects = nil;
+            
+            topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
+            // Grab cell reference which was set during nib load:
+            for(id currentObject in topLevelObjects){
+                if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
+                    cell = currentObject;
+                    break;
+                }
             }
+            //[self setupCell:cell];
         }
-        //[self setupCell:cell];
+        
+        ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
+        [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
+        
+        return cell;
     }
-    
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
-    [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
-    
-    return cell;
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleWhite;
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
+        activityView.center = cell.center;
+        [cell addSubview:activityView];
+        [activityView startAnimating];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [self checkServer];
+        
+        return cell;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -180,6 +219,7 @@
 - (void)loadData
 {
     self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    NSLog(@"FETCHED DATA COUNT = %d",[self.dataArray count]);
     [self.tableView reloadData];
 }
 
@@ -261,7 +301,7 @@
                                                               [self presentViewController:modalNavigationController
                                                                                  animated:YES
                                                                                completion:nil];
-            }];
+                                                          }];
             
         } else if (buttonIndex == 1 && !self.isFromLibrary) {
             if ([self.mediaType isEqual:@"public.movie"])

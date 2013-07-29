@@ -371,10 +371,14 @@
             
             if ([user.conversations count] == 0) {
                 //user doesn't have mutual conversation, and is not being followed or following master user, so it is going to be deleted
-                if (![user.identifier isEqualToNumber:master.identifier]) {
-                    //not master user can delete
-                    NSLog(@"User deleted: %@",user.name);
-                    [context deleteObject:user];
+                
+                // if user doesn't have any activityStories
+                if (user.activityStories == nil && user.activityStoriesFromOtherUsers == nil) {
+                    if (![user.identifier isEqualToNumber:master.identifier]) {
+                        //not master user can delete
+                        NSLog(@"User deleted: %@",user.name);
+                        [context deleteObject:user];
+                    }
                 }
             }
         }

@@ -7,13 +7,39 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "signingDayPro/TableViewCells/SDActivityFeedCell.m"
-         timestampString = "396781458.996951"
+         filePath = "signingDayPro/Controllers/ActivityFeedControllers/SDActivityFeedViewController.m"
+         timestampString = "396799862.411456"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "164"
-         endingLineNumber = "164"
-         landmarkName = "-setupNameLabelForActivityStory:"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
+         landmarkName = "-checkServer"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "signingDayPro/Controllers/ActivityFeedControllers/SDActivityFeedViewController.m"
+         timestampString = "396791194.268364"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "106"
+         endingLineNumber = "106"
+         landmarkName = "-checkServer"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "signingDayPro/Controllers/ActivityFeedControllers/SDActivityFeedViewController.m"
+         timestampString = "396799862.411456"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
+         landmarkName = "-checkServer"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -21,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "signingDayPro/Services/SDActivityFeedService.m"
-         timestampString = "396787478.025058"
+         timestampString = "396800129.259287"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "95"
-         endingLineNumber = "95"
+         startingLineNumber = "132"
+         endingLineNumber = "132"
          landmarkName = "+getActivityStoriesForUser:withDate:withSuccessBlock:failureBlock:"
          landmarkType = "5">
       </FileBreakpoint>

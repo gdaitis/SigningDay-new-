@@ -167,7 +167,36 @@
     return date;
 }
 
-+ (NSString *)formatedDateStringFromDate:(NSDate *)date
++ (NSDate *)notLocalizedDateFromString:(NSString *)dateString
+{
+    //ignores timezone
+    NSString *clippedDate = [dateString substringToIndex:[dateString length]-6];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
+    
+    NSDate *date = [dateFormatter dateFromString:clippedDate];
+    
+    if (!date) {
+        
+        NSArray *dateFormatterList = [NSArray arrayWithObjects:@"yyyy-MM-dd'T'HH:mm:ss.SSS",
+                                      @"yyyy-MM-dd'T'HH:mm:ss", @"yyyy-MM-dd'T'HH:mm:ss.SS", @"yyyy-MM-dd'T'HH:mm:ss.S", @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ", @"yyyy-MM-dd'T'HH:mm:ssZZZ", nil];//include all possible dateformats here
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        for (NSString *dateFormatterString in dateFormatterList) {
+            [dateFormatter setDateFormat:dateFormatterString];
+            NSDate *originalDate = [dateFormatter dateFromString:clippedDate];
+            
+            if (originalDate) {
+                date = originalDate;
+                break;
+            }
+        }
+    }
+    
+    return date;
+}
+
++ (NSString *)formatedDateStringFromDateToNow:(NSDate *)date
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit |NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date toDate:[NSDate date] options:nil];
     
@@ -179,6 +208,22 @@
     NSInteger second = [components second];
     
     NSString *result = [NSString stringWithFormat:@"%d/%d/%d %d:%d:%d",month,day,year,hour,minute,second];
+    
+    return result;
+}
+
++ (NSString *)formatedDateStringFromDate:(NSDate *)date
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit |NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
+    
+    NSInteger year = [components year];
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    NSInteger second = [components second];
+    
+    NSString *result = [NSString stringWithFormat:@"%d/%d/%d %02d:%02d:%02d",month,day,year,hour,minute,second];
     
     return result;
 }

@@ -28,7 +28,7 @@
 
 + (void)getActivityStoriesForUser:(User *)user
                          withDate:(NSDate *)date
-                 withSuccessBlock:(void (^)(int resultCount))successBlock
+                 withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock
 {
     NSMutableDictionary *params = nil;
@@ -69,6 +69,7 @@
                                     
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
+                                    NSDictionary *resultsDictionary = nil;
                                     
                                     for (int i = 0; i < [activityStories count]; i++) {
                                         NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
@@ -126,13 +127,20 @@
                                             //cycle through array and creates updates users
                                             [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
                                         }
+                                        
+                                        if (i+1 == resultCount) {
+                                            NSDate *lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
+                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount", nil];
+                                        }
                                     }
                                     [context MR_saveToPersistentStoreAndWait];
                                     
                                     //returns only after deleting
-                                    [self deleteAllMarkedStories];
+                                    if (!date) {
+                                        [self deleteAllMarkedStories];
+                                    }
                                     if (successBlock) {
-                                        successBlock(resultCount);
+                                        successBlock(resultsDictionary);
                                     }
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -161,7 +169,6 @@
         //this is a wall post, activityStory posted on this users wall
         activityStory.postedToUser = user;
     }
-    
     
     
     //check user type and save info depending on this type
