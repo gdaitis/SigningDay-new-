@@ -133,7 +133,6 @@
                                     
                                     for (NSDictionary *userInfo in followings) {
                                         NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                        NSLog(@"followingsUserIdentifier = %@",followingsUserIdentifier);
                                         
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followingsUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
@@ -178,7 +177,6 @@
                                     NSArray *followers = [JSON objectForKey:@"Results"];
                                     for (NSDictionary *userInfo in followers) {
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                        NSLog(@"followingsUserIdentifier = %@",followersUserIdentifier);
                                         
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followersUserIdentifier inContext:context];
                                         if (!user) {

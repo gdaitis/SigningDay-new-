@@ -2,7 +2,7 @@
 //  Comment.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/25/13.
+//  Created by Lukas Kekys on 7/26/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 

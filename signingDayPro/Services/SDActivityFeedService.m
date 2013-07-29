@@ -36,7 +36,7 @@
     //if user provided, add parameter with user id to get only this users activity stories
     if (user) {
         params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[user.identifier stringValue], @"UserId", nil];
-    }
+    }    
     if (date) {
         NSString *formatedDateString = [SDUtils formatedDateStringFromDate:date];
         if (params == nil) {
@@ -47,6 +47,15 @@
         }
     }
     
+    //test with this date you can get activityStory that is a wallpost
+//    if (params == nil) {
+//        params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"7/22/2013 07:56:13"], @"EndDate", nil];
+//    }
+//    else {
+//        [params setObject:[NSString stringWithFormat:@"7/22/2013 07:56:13"] forKey:@"EndDate"];
+//    }
+    //testing end
+
     [[SDAPIClient sharedClient] getPath:@"sd/story.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
@@ -76,6 +85,11 @@
                                         activityStory.storyTypeId = [activityStoryDictionary valueForKey:@"StoryTypeId"];
                                         activityStory.contentId = [activityStoryDictionary valueForKey:@"ContentId"];
                                         activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"ContentTypeId"];
+                                        
+                                        if ([activityStory.identifier isEqualToString:@"b495a16b-4977-4fd9-80e5-a54e357bec08"]) {
+                                            //comment count = 2
+                                            NSLog(@"comment count = %d",[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]);
+                                        }
                                         activityStory.likesCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"LikesCount"] intValue]];
                                         activityStory.commentCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]];
                                         activityStory.likedByMaster = [NSNumber numberWithBool:[[activityStoryDictionary valueForKey:@"LikeFlag"] boolValue]];
@@ -152,6 +166,9 @@
     
     //check user type and save info depending on this type
     int userTypeId = [[dictionary valueForKey:@"UserTypeId"] intValue];
+    if (userTypeId > 0) {
+        user.userTypeId = [NSNumber numberWithInt:userTypeId];
+    }
     
     if (userTypeId == 1) {
         //user type: Player
@@ -174,10 +191,10 @@
         
         if (attributeDictionary) {
             if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
-                user.position = [attributeDictionary valueForKey:@"CityName"];
+                user.cityName = [attributeDictionary valueForKey:@"CityName"];
             }
             if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
-                user.userClass = [NSString stringWithFormat:@"%d",[[attributeDictionary valueForKey:@"StateCode"] intValue]];
+                user.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
     }
@@ -200,16 +217,16 @@
         
         if (attributeDictionary) {
             if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
-                user.position = [attributeDictionary valueForKey:@"CityName"];
+                user.cityName = [attributeDictionary valueForKey:@"CityName"];
             }
             if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
-                user.userClass = [NSString stringWithFormat:@"%d",[[attributeDictionary valueForKey:@"StateCode"] intValue]];
+                user.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
     }
     else {
         //user type: Member
-        user.userType = @"HighSchool";
+        user.userType = @"Member";
         
         //member doesn't have attributes so nothing to do here
     }

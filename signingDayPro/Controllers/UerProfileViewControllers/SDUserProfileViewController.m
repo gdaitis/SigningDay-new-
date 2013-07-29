@@ -162,26 +162,9 @@
                 break;
             }
         }
-    } else {
-        [cell.thumbnailImageView cancelImageRequestOperation];
     }
-    
-    cell.likeButton.tag = indexPath.row;
-    cell.commentButton.tag = indexPath.row;
-    
-    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-    
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likes count]];
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.comments count]];
-    cell.nameLabel.text =activityStory.author.name;
-    [cell.resizableActivityFeedView setActivityStory:activityStory];
-    
-    if ([activityStory.author.avatarUrl length] > 0) {
-        [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
-    }
-    
-    cell.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
-    cell.yearLabel.text = @"- DE, 2014";
+    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
+    [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
     
     return cell;
 }

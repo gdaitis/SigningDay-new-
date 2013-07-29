@@ -154,15 +154,15 @@
 		80431E5C17A006B3002F6E3D /* MagicalRecord+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E3E17A006B3002F6E3D /* MagicalRecord+Setup.m */; };
 		80431E5D17A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E4017A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m */; };
 		80431E5E17A006B3002F6E3D /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E4217A006B3002F6E3D /* MagicalRecord.m */; };
-		80431E7B17A1459E002F6E3D /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E7A17A1459E002F6E3D /* ImageData.m */; };
-		80431E7E17A1459E002F6E3D /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E7D17A1459E002F6E3D /* Master.m */; };
-		80431E8117A1459F002F6E3D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8017A1459F002F6E3D /* Comment.m */; };
-		80431E8417A145A0002F6E3D /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8317A145A0002F6E3D /* Like.m */; };
-		80431E8717A145A0002F6E3D /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8617A145A0002F6E3D /* ActivityStory.m */; };
-		80431E8A17A145A0002F6E3D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8917A145A0002F6E3D /* Conversation.m */; };
-		80431E8D17A145A1002F6E3D /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8C17A145A1002F6E3D /* Message.m */; };
-		80431E9017A145A2002F6E3D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E8F17A145A2002F6E3D /* User.m */; };
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
+		80431EAD17A26C64002F6E3D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EAC17A26C64002F6E3D /* Comment.m */; };
+		80431EB017A26C65002F6E3D /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EAF17A26C65002F6E3D /* Message.m */; };
+		80431EB317A26C65002F6E3D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EB217A26C65002F6E3D /* Conversation.m */; };
+		80431EB617A26C66002F6E3D /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EB517A26C66002F6E3D /* Like.m */; };
+		80431EB917A26C66002F6E3D /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EB817A26C66002F6E3D /* Master.m */; };
+		80431EBC17A26C67002F6E3D /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EBB17A26C67002F6E3D /* ActivityStory.m */; };
+		80431EBF17A26C67002F6E3D /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EBE17A26C67002F6E3D /* ImageData.m */; };
+		80431EC217A26C67002F6E3D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431EC117A26C67002F6E3D /* User.m */; };
 		805598C2174CE8200040631D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C1174CE8200040631D /* UIKit.framework */; };
 		805598C4174CE8200040631D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C3174CE8200040631D /* Foundation.framework */; };
 		805598C6174CE8200040631D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C5174CE8200040631D /* CoreGraphics.framework */; };
@@ -494,23 +494,23 @@
 		80431E4217A006B3002F6E3D /* MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalRecord.m; sourceTree = "<group>"; };
 		80431E4317A006B3002F6E3D /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		80431E4417A006B3002F6E3D /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
-		80431E7917A1459E002F6E3D /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
-		80431E7A17A1459E002F6E3D /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
-		80431E7C17A1459E002F6E3D /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
-		80431E7D17A1459E002F6E3D /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
-		80431E7F17A1459F002F6E3D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		80431E8017A1459F002F6E3D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		80431E8217A145A0002F6E3D /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
-		80431E8317A145A0002F6E3D /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
-		80431E8517A145A0002F6E3D /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
-		80431E8617A145A0002F6E3D /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
-		80431E8817A145A0002F6E3D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		80431E8917A145A0002F6E3D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		80431E8B17A145A0002F6E3D /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		80431E8C17A145A1002F6E3D /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		80431E8E17A145A2002F6E3D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		80431E8F17A145A2002F6E3D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		80431E9117A152B7002F6E3D /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
+		80431EAB17A26C64002F6E3D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		80431EAC17A26C64002F6E3D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		80431EAE17A26C64002F6E3D /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		80431EAF17A26C65002F6E3D /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		80431EB117A26C65002F6E3D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		80431EB217A26C65002F6E3D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		80431EB417A26C65002F6E3D /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
+		80431EB517A26C66002F6E3D /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		80431EB717A26C66002F6E3D /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
+		80431EB817A26C66002F6E3D /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
+		80431EBA17A26C67002F6E3D /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
+		80431EBB17A26C67002F6E3D /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
+		80431EBD17A26C67002F6E3D /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
+		80431EBE17A26C67002F6E3D /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		80431EC017A26C67002F6E3D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		80431EC117A26C67002F6E3D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		805598BD174CE8200040631D /* signingDayPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = signingDayPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		805598C1174CE8200040631D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		805598C3174CE8200040631D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -932,23 +932,23 @@
 			children = (
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
-				80431E7917A1459E002F6E3D /* ImageData.h */,
-				80431E8E17A145A2002F6E3D /* User.h */,
-				80431E8F17A145A2002F6E3D /* User.m */,
-				80431E8B17A145A0002F6E3D /* Message.h */,
-				80431E8C17A145A1002F6E3D /* Message.m */,
-				80431E8817A145A0002F6E3D /* Conversation.h */,
-				80431E8917A145A0002F6E3D /* Conversation.m */,
-				80431E8517A145A0002F6E3D /* ActivityStory.h */,
-				80431E8617A145A0002F6E3D /* ActivityStory.m */,
-				80431E8217A145A0002F6E3D /* Like.h */,
-				80431E8317A145A0002F6E3D /* Like.m */,
-				80431E7F17A1459F002F6E3D /* Comment.h */,
-				80431E8017A1459F002F6E3D /* Comment.m */,
-				80431E7C17A1459E002F6E3D /* Master.h */,
-				80431E7D17A1459E002F6E3D /* Master.m */,
-				80431E7A17A1459E002F6E3D /* ImageData.m */,
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
+				80431EC017A26C67002F6E3D /* User.h */,
+				80431EC117A26C67002F6E3D /* User.m */,
+				80431EBD17A26C67002F6E3D /* ImageData.h */,
+				80431EBE17A26C67002F6E3D /* ImageData.m */,
+				80431EBA17A26C67002F6E3D /* ActivityStory.h */,
+				80431EBB17A26C67002F6E3D /* ActivityStory.m */,
+				80431EB717A26C66002F6E3D /* Master.h */,
+				80431EB817A26C66002F6E3D /* Master.m */,
+				80431EB417A26C65002F6E3D /* Like.h */,
+				80431EB517A26C66002F6E3D /* Like.m */,
+				80431EB117A26C65002F6E3D /* Conversation.h */,
+				80431EB217A26C65002F6E3D /* Conversation.m */,
+				80431EAE17A26C64002F6E3D /* Message.h */,
+				80431EAF17A26C65002F6E3D /* Message.m */,
+				80431EAB17A26C64002F6E3D /* Comment.h */,
+				80431EAC17A26C64002F6E3D /* Comment.m */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -1799,14 +1799,14 @@
 				80431E5C17A006B3002F6E3D /* MagicalRecord+Setup.m in Sources */,
 				80431E5D17A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m in Sources */,
 				80431E5E17A006B3002F6E3D /* MagicalRecord.m in Sources */,
-				80431E7B17A1459E002F6E3D /* ImageData.m in Sources */,
-				80431E7E17A1459E002F6E3D /* Master.m in Sources */,
-				80431E8117A1459F002F6E3D /* Comment.m in Sources */,
-				80431E8417A145A0002F6E3D /* Like.m in Sources */,
-				80431E8717A145A0002F6E3D /* ActivityStory.m in Sources */,
-				80431E8A17A145A0002F6E3D /* Conversation.m in Sources */,
-				80431E8D17A145A1002F6E3D /* Message.m in Sources */,
-				80431E9017A145A2002F6E3D /* User.m in Sources */,
+				80431EAD17A26C64002F6E3D /* Comment.m in Sources */,
+				80431EB017A26C65002F6E3D /* Message.m in Sources */,
+				80431EB317A26C65002F6E3D /* Conversation.m in Sources */,
+				80431EB617A26C66002F6E3D /* Like.m in Sources */,
+				80431EB917A26C66002F6E3D /* Master.m in Sources */,
+				80431EBC17A26C67002F6E3D /* ActivityStory.m in Sources */,
+				80431EBF17A26C67002F6E3D /* ImageData.m in Sources */,
+				80431EC217A26C67002F6E3D /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
