@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class SDActivityFeedCellContentView;
+@class ActivityStory;
 
 @interface SDActivityFeedCell : UITableViewCell
 

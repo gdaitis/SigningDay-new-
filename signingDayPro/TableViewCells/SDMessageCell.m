@@ -18,14 +18,6 @@
 
 @implementation SDMessageCell
 
-@synthesize userImageView = _userImageView;
-@synthesize usernameLabel = _usernameLabel;
-@synthesize dateLabel = _dateLabel;
-@synthesize messageTextLabel = _messageTextLabel;
-@synthesize message = _message;
-@synthesize bottomLineView = _bottomLineView;
-@synthesize userImageUrlString = _userImageUrlString;
-
 - (void)awakeFromNib
 {
     UIView *cellBackgroundView = [[UIView alloc] init];
@@ -43,20 +35,13 @@
     
     self.backgroundView.frame = self.bounds;
     
-    CGSize size = [self.message.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13] constrainedToSize:CGSizeMake(242, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize size = [self.messageTextLabel.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13] constrainedToSize:CGSizeMake(242, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     self.messageTextLabel.frame = CGRectMake(64, 31, size.width + 5, size.height);
-    CGFloat height = size.height + 30 + 12;
+    CGFloat height = size.height + 31 + 12;
     if (height < 67) {
         height = 67;
     }
     self.bottomLineView.frame = CGRectMake(0, height, 320, 1);
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 
 @end

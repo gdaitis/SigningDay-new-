@@ -28,6 +28,7 @@
 #import "SDPublishVideoTableViewController.h"
 #import "SDModalNavigationController.h"
 #import "SDBuzzSomethingViewController.h"
+#import "SDCommentsViewController.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -174,7 +175,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UIStoryboard *commentsViewStoryboard = [UIStoryboard storyboardWithName:@"CommentsViewStoryboard"
+                                                                     bundle:nil];
+    SDCommentsViewController *commentsViewController = [commentsViewStoryboard instantiateViewControllerWithIdentifier:@"CommentsViewController"];
+    commentsViewController.activityStory = [self.dataArray objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:commentsViewController
+                                         animated:YES];
 }
 
 - (void)loadData

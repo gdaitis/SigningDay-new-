@@ -7,84 +7,32 @@
 //
 
 #import "SDConversationViewController.h"
-#import "SDAppDelegate.h"
 #import "Message.h"
 #import "User.h"
 #import "SDChatService.h"
+
 #import "NSString+Additions.h"
 #import "SDMessageCell.h"
-#import "ShadowedTableView.h"
 #import "MBProgressHUD.h"
-#import "SDImageService.h"
-#import "PSYBlockTimer.h"
-#import "UIImage+Crop.h"
-#import "SDBaseToolbarItemViewController.h"
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
 
-#define VIEW_Y  84
-#define VIEW_WIDTH    self.containerView.frame.size.width
-#define VIEW_HEIGHT    self.containerView.frame.size.height
-
-#define RESET_CHAT_BAR_HEIGHT    SET_CHAT_BAR_HEIGHT(kChatBarHeight1)
-#define EXPAND_CHAT_BAR_HEIGHT    SET_CHAT_BAR_HEIGHT(kChatBarHeight4)
-
-#define    SET_CHAT_BAR_HEIGHT(HEIGHT)\
-CGRect chatContentFrame = self.tableView.frame;\
-chatContentFrame.size.height = VIEW_HEIGHT - HEIGHT - VIEW_Y;\
-[UIView beginAnimations:nil context:NULL];\
-[UIView setAnimationDuration:0.1f];\
-self.tableView.frame = chatContentFrame;\
-self.chatBar.frame = CGRectMake(self.chatBar.frame.origin.x, chatContentFrame.size.height + VIEW_Y,\
-VIEW_WIDTH, HEIGHT);\
-[UIView commitAnimations]
-
-#define BAR_BUTTON(TITLE, SELECTOR) [[UIBarButtonItem alloc] initWithTitle:TITLE\
-style:UIBarButtonItemStylePlain target:self action:SELECTOR]
-
 #define ClearConversationButtonIndex 0
-
-static CGFloat const kMessageFontSize   = 14.0f;
-static CGFloat const kMessageTextWidth  = 242.0f;
-static CGFloat const kContentHeightMax  = 104.0f;
-static CGFloat const kChatBarHeight1    = 50.0f;
-static CGFloat const kChatBarHeight4    = 104.0f;
 
 @interface SDConversationViewController ()
 
-//@property (nonatomic, weak) IBOutlet SDTableView *tableView;
-@property (nonatomic, weak) IBOutlet UIImageView *chatBar;
-@property (nonatomic, weak) IBOutlet UIButton *sendButton;
-@property (nonatomic, weak) IBOutlet UITextView *enterMessageTextView;
-@property (weak, nonatomic) IBOutlet UIImageView *textViewBackgroundImageView;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UILabel *namesHeaderLabel;
-@property (weak, nonatomic) IBOutlet UIView *headerView;
-@property (nonatomic, strong) NSArray *messages;
-@property (nonatomic, assign) CGFloat previousContentHeight;
 @property BOOL firstLoad;
-
 @property (nonatomic, assign) int totalMessages;
 @property (nonatomic, assign) int currentMessagesPage;
-
-- (void)checkServer;
-- (void)reload;
-- (void)clearChatInput;
-- (void)scrollToBottomAnimated:(BOOL)animated;
-- (void)resizeViewWithOptions:(NSDictionary *)options;
-- (void)enableSendButton;
-- (void)disableSendButton;
-- (void)resetSendButton;
 
 @end
 
 @implementation SDConversationViewController
 
-//@synthesize tableView = _tableView;
 @synthesize enterMessageTextView = _enterMessageTextView;
 @synthesize textViewBackgroundImageView = _textViewBackgroundImageView;
 @synthesize conversation = _conversation;
-@synthesize messages = _messages;
+@synthesize dataArray = _dataArray;
 @synthesize chatBar = _chatBar;
 @synthesize previousContentHeight = _previousContentHeight;
 @synthesize sendButton = _sendButton;
@@ -99,71 +47,6 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     
     self.firstLoad = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInBackgroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInForegroundNotification object:nil];
-    
-    UIImage *image = [UIImage imageNamed:@"back_nav_button.png"];
-    CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    UIButton *button = [[UIButton alloc] initWithFrame:frame];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    [button addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.leftBarButtonItem = barButton;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    
-    [self.refreshControl removeFromSuperview];
-    
-    self.tableView.clearsContextBeforeDrawing = NO;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    UIGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeKeyboard)];
-    [self.tableView addGestureRecognizer:recognizer];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg.png"]];
-    [imageView setFrame:self.tableView.bounds];
-    [self.tableView setBackgroundView:imageView];
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
-    
-    self.chatBar.frame = CGRectMake(0.0f, self.containerView.frame.size.height-kChatBarHeight1, self.containerView.frame.size.width, kChatBarHeight1);
-    self.chatBar.clearsContextBeforeDrawing = NO;
-    self.chatBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
-    self.chatBar.userInteractionEnabled = YES;
-    
-    self.enterMessageTextView.frame = CGRectMake(10, 10, 230, 30);
-    
-    self.textViewBackgroundImageView.image = [[UIImage imageNamed:@"chat_box_text_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-    self.textViewBackgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.textViewBackgroundImageView.frame = self.enterMessageTextView.frame;
-    
-    self.enterMessageTextView.delegate = self;
-    self.enterMessageTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.enterMessageTextView.scrollEnabled = NO; // not initially
-    self.enterMessageTextView.clearsContextBeforeDrawing = NO;
-    self.enterMessageTextView.font = [UIFont systemFontOfSize:kMessageFontSize];
-    self.enterMessageTextView.dataDetectorTypes = UIDataDetectorTypeAll;
-    self.enterMessageTextView.backgroundColor = [UIColor clearColor];
-    self.previousContentHeight = self.enterMessageTextView.contentSize.height;
-    
-    [self.chatBar addSubview:self.textViewBackgroundImageView];
-    [self.chatBar addSubview:self.enterMessageTextView];
-    
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-    line.backgroundColor = [UIColor blackColor];
-    line.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    line.clearsContextBeforeDrawing = NO;
-    [self.chatBar addSubview:line];
-    
-    self.sendButton.clearsContextBeforeDrawing = NO;
-    self.sendButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [self.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
-    self.sendButton.frame = CGRectMake(250, 10, self.sendButton.frame.size.width, self.sendButton.frame.size.height);
-    [self resetSendButton]; // disable initially
-    [self.chatBar addSubview:self.sendButton];
-    
     NSArray *users = [self.conversation.users allObjects];
     NSMutableArray *usernames = [[NSMutableArray alloc] init];
     NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
@@ -174,9 +57,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     
     NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
-    SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
-    contentHeaderView.textLabel.text = [sortedUsernames componentsJoinedByString:@", "];
-    [self.view addSubview:contentHeaderView];
+    self.contentHeaderView.textLabel.text = [sortedUsernames componentsJoinedByString:@", "];
     
     [self reload];
 }
@@ -184,7 +65,6 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self scrollToBottomAnimated:NO];
     
     //reset messages
     _currentMessagesPage = _totalMessages = 0;
@@ -250,13 +130,13 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 {
     NSArray *unsortedMessages = [self.conversation.messages allObjects];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
-    self.messages = [unsortedMessages sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    self.dataArray = [unsortedMessages sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     NSLog(@"Messages array is reloading");
     
     [self.tableView reloadData];
 }
 
-- (void)sendMessage
+- (void)send
 {
     NSString *rightTrimmedMessage = [self.enterMessageTextView.text stringByTrimmingTrailingWhitespaceAndNewlineCharacters];
     
@@ -284,51 +164,6 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     [self scrollToBottomAnimated:YES];
 }
 
-- (void)clearChatInput
-{
-    self.enterMessageTextView.text = @"";
-    if (self.previousContentHeight > 22.0f) {
-        RESET_CHAT_BAR_HEIGHT;
-        [self scrollToBottomAnimated:YES];
-    }
-}
-
-- (void)scrollToBottomAnimated:(BOOL)animated
-{
-    NSInteger bottomRow = [self.messages count] - 1;
-    if (bottomRow >= 0) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bottomRow inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
-    }
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [self.enterMessageTextView resignFirstResponder];
-    [super viewDidDisappear:animated];
-}
-
-- (void)viewDidUnload
-{
-    [self setTableView:nil];
-    [self setEnterMessageTextView:nil];
-    [self setChatBar:nil];
-    [self setSendButton:nil];
-    [self setTextViewBackgroundImageView:nil];
-    [self setContainerView:nil];
-    [self setNamesHeaderLabel:nil];
-    [self setHeaderView:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
-
 - (void)didReceiveMemoryWarning
 {
     int count = [self.tableView numberOfRowsInSection:0];
@@ -338,95 +173,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
     }
 }
 
-- (void)setConversation:(Conversation *)conversation
-{
-    _conversation = conversation;
-    
-    NSArray *users = [conversation.users allObjects];
-    NSMutableArray *usernames = [[NSMutableArray alloc] init];
-    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    for (User *user in users) {
-        if (![user.username isEqual:masterUsername])
-            [usernames addObject:user.name];
-    }
-    NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    self.title = [sortedUsernames componentsJoinedByString:@", "];
-}
-
-#pragma mark - Keyboard methods
-
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-    [self resizeViewWithOptions:[notification userInfo]];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    [self resizeViewWithOptions:[notification userInfo]];
-}
-
-- (void)resizeViewWithOptions:(NSDictionary *)options
-{
-    NSTimeInterval animationDuration;
-    UIViewAnimationCurve animationCurve;
-    CGRect keyboardEndFrame;
-    [[options objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    [[options objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [[options objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationCurve:animationCurve];
-    [UIView setAnimationDuration:animationDuration];
-    CGRect viewFrame = self.containerView.frame;
-    
-    CGRect keyboardFrameEndRelative = [self.view convertRect:keyboardEndFrame fromView:nil];
-    
-    viewFrame.size.height =  keyboardFrameEndRelative.origin.y;
-    self.containerView.frame = viewFrame;
-    [UIView commitAnimations];
-    
-    [self scrollToBottomAnimated:YES];
-}
-
-- (void)closeKeyboard
-{
-    [self.enterMessageTextView resignFirstResponder];
-}
-
-#pragma mark ChatViewController
-
-- (void)enableSendButton
-{
-    if (self.sendButton.enabled == NO) {
-        self.sendButton.enabled = YES;
-    }
-}
-
-- (void)disableSendButton
-{
-    if (self.sendButton.enabled == YES) {
-        [self resetSendButton];
-    }
-}
-
-- (void)resetSendButton
-{
-    self.sendButton.enabled = NO;
-}
-
 #pragma mark - UITableView data source and delegate methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [self.messages count];
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -441,8 +188,7 @@ static CGFloat const kChatBarHeight4    = 104.0f;
         [cell.userImageView cancelImageRequestOperation];
     }
     
-    Message *message = [self.messages objectAtIndex:indexPath.row];
-    cell.message = message;
+    Message *message = [self.dataArray objectAtIndex:indexPath.row];
     cell.usernameLabel.text = message.user.name;
     cell.messageTextLabel.text = message.text;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -485,72 +231,16 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Message *message = [self.messages objectAtIndex:indexPath.row];
+    Message *message = [self.dataArray objectAtIndex:indexPath.row];
     
     CGSize size = [message.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13]
                            constrainedToSize:CGSizeMake(kMessageTextWidth, CGFLOAT_MAX)
                                lineBreakMode:NSLineBreakByWordWrapping];
-    CGFloat height = size.height + 30 + 13;
+    CGFloat height = size.height + 31 + 13;
     if (height < 68) {
         height = 68;
     }
     return height;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark UITextViewDelegate
-
-- (void)textViewDidChange:(UITextView *)textView
-{
-    CGFloat contentHeight = textView.contentSize.height;
-    NSString *rightTrimmedText = @"";
-    
-    if ([textView hasText]) {
-        rightTrimmedText = [textView.text stringByTrimmingTrailingWhitespaceAndNewlineCharacters];
-        
-        if (contentHeight != self.previousContentHeight) {
-            if (contentHeight <= kContentHeightMax) {
-                if (contentHeight == 32) {
-                    RESET_CHAT_BAR_HEIGHT;
-                } else {
-                    CGFloat chatBarHeight = contentHeight + 16;
-                    SET_CHAT_BAR_HEIGHT(chatBarHeight);
-                }
-                if (self.previousContentHeight > kContentHeightMax) {
-                    textView.scrollEnabled = NO;
-                }
-               // textView.contentOffset = CGPointMake(0.0f, 6.0f);
-                [self scrollToBottomAnimated:YES];
-            } else if (self.previousContentHeight <= kContentHeightMax) {
-                textView.scrollEnabled = YES;
-                textView.contentOffset = CGPointMake(0.0f, contentHeight-63.0f);
-                if (self.previousContentHeight < kContentHeightMax) {
-                    EXPAND_CHAT_BAR_HEIGHT;
-                    [self scrollToBottomAnimated:YES];
-                }
-            }
-        }
-    } else {
-        if (self.previousContentHeight > 22.0f) {
-            RESET_CHAT_BAR_HEIGHT;
-            if (self.previousContentHeight > kContentHeightMax) {
-                textView.scrollEnabled = NO;
-            }
-        }
-    }
-    
-    if (rightTrimmedText.length > 0) {
-        [self enableSendButton];
-    } else {
-        [self disableSendButton];
-    }
-    
-    self.previousContentHeight = contentHeight;
-}
-
 
 @end

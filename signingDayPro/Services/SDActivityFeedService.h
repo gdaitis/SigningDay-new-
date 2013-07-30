@@ -34,6 +34,9 @@
 + (void)removeComment:(Comment *)comment
          successBlock:(void (^)(void))successBlock
          failureBlock:(void (^)(void))failureBlock;
++ (void)getCommentsForActivityStory:(ActivityStory *)activityStory
+                   withSuccessBlock:(void (^)(void))successBlock
+                       failureBlock:(void (^)(void))failureBlock;
 
 //delete all stories
 + (void)deleteAllActivityStories;

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Conversation.h"
-#import "SDBaseViewController.h"
+#import "SDBaseChatViewController.h"
 
-@interface SDConversationViewController : SDBaseViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface SDConversationViewController : SDBaseChatViewController
 
 @property (nonatomic, strong) Conversation *conversation;
 @property BOOL isNewConversation;

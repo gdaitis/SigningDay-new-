@@ -1,15 +1,14 @@
 //
-//  SDMessageCell.h
-//  SigningDay
+//  SDCommentCell.h
+//  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 8/1/12.
-//
+//  Created by Vytautas Gudaitis on 7/29/13.
+//  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Message.h"
 
-@interface SDMessageCell : UITableViewCell
+@interface SDCommentCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIView *bottomLineView;
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;

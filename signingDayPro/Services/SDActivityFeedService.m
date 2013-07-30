@@ -15,6 +15,14 @@
 #import "HTMLParser.h"
 #import "SDUtils.h"
 
+typedef enum {
+    SDUserTypePlayer = 1,
+    SDUserTypeTeam = 2,
+    SDUserTypeCoach = 3,
+    SDUserTypeHighSchool = 4,
+    SDUserTypeMember = 5
+} SDUserType;
+
 @interface SDActivityFeedService ()
 
 + (void)createCommentFromDictionary:(NSDictionary *)commentDictionary;
@@ -124,7 +132,6 @@
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     failureBlock();
                                 }];
-    
 }
 
 + (void)createUpdateUserFromDictionary:(NSDictionary *)dictionary withActivityStory:(ActivityStory *)activityStory inContext:(NSManagedObjectContext *)context
@@ -151,9 +158,9 @@
     
     
     //check user type and save info depending on this type
-    int userTypeId = [[dictionary valueForKey:@"UserTypeId"] intValue];
+    SDUserType userTypeId = [[dictionary valueForKey:@"UserTypeId"] intValue];
     
-    if (userTypeId == 1) {
+    if (userTypeId == SDUserTypePlayer) {
         //user type: Player
         user.userType = @"Player";
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
@@ -167,7 +174,7 @@
             }
         }
     }
-    else if (userTypeId == 2) {
+    else if (userTypeId == SDUserTypeTeam) {
         //user type: TEAM
         user.userType = @"Team";
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
@@ -181,7 +188,7 @@
             }
         }
     }
-    else if (userTypeId == 3) {
+    else if (userTypeId == SDUserTypeCoach) {
         //user type: Coach
         user.userType = @"Coach";
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
@@ -192,7 +199,7 @@
             }
         }
     }
-    else if (userTypeId == 4) {
+    else if (userTypeId == SDUserTypeHighSchool) {
  
         //user type: HighSchool
         user.userType = @"HighSchool";
@@ -207,9 +214,9 @@
             }
         }
     }
-    else {
+    else if (userTypeId == SDUserTypeMember){
         //user type: Member
-        user.userType = @"HighSchool";
+        user.userType = @"Member";
         
         //member doesn't have attributes so nothing to do here
     }
@@ -300,6 +307,26 @@
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        failureBlock();
                                    }];
+}
+
++ (void)getCommentsForActivityStory:(ActivityStory *)activityStory
+                   withSuccessBlock:(void (^)(void))successBlock
+                       failureBlock:(void (^)(void))failureBlock
+{
+    [[SDAPIClient sharedClient] getPath:@"comments.json"
+                             parameters:@{@"ContentId":/*activityStory.contentId*/@"7a8c6ec0-02be-4f35-a2ba-fb4430534646"}
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    NSArray *commentsArray = [JSON valueForKey:@"Comments"];
+                                    for (NSDictionary *commentDictionary in commentsArray) {
+                                        [self createCommentFromDictionary:commentDictionary];
+                                    }
+                                    successBlock();
+                                    
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSLog(@"Comments parse failed");
+                                    
+                                    failureBlock();
+                                }];
 }
 
 #pragma mark - Private methods

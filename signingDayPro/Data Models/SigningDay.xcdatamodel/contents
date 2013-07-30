@@ -107,7 +107,7 @@
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
         <element name="Conversation" positionX="198" positionY="135" width="128" height="178"/>
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
-        <element name="Like" positionX="207" positionY="-180" width="128" height="88"/>
+        <element name="Like" positionX="180" positionY="-124" width="128" height="88"/>
         <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
         <element name="User" positionX="585" positionY="-198" width="128" height="448"/>
