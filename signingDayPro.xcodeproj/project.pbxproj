@@ -34,6 +34,8 @@
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
 		7BAF6ED817A93FB000F7C6B3 /* SDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */; };
 		7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */; };
+		7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */; };
+		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
 		7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */; };
 		7BDDAB91179FC457003F6AD7 /* HighSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */; };
@@ -306,6 +308,9 @@
 		7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommentCell.m; sourceTree = "<group>"; };
 		7BAF6ED917A93FC100F7C6B3 /* SDCommentsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsHeaderView.h; sourceTree = "<group>"; };
 		7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommentsHeaderView.m; sourceTree = "<group>"; };
+		7BAF6EDC17A94DBD00F7C6B3 /* SDLikesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLikesViewController.h; sourceTree = "<group>"; };
+		7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLikesViewController.m; sourceTree = "<group>"; };
+		7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentsViewStoryboard.storyboard; sourceTree = "<group>"; };
 		7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityFeedIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoachesIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HighSchoolsIcon@2x.png"; sourceTree = "<group>"; };
@@ -1116,9 +1121,10 @@
 				80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */,
 				7B736520175F8249007A338E /* MessagesStoryboard.storyboard */,
 				805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */,
-				8055990C174CEE620040631D /* Controllers */,
+				7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */,
 				8032F0971755F9AF00C92AAC /* Data Models */,
 				8032EFCE1755EEDE00C92AAC /* Services */,
+				8055990C174CEE620040631D /* Controllers */,
 				805CF34F174E07DA0046E6A5 /* TableViewCells */,
 				809E7284175735FE004840D3 /* Views */,
 				80559904174CEDDE0040631D /* Custom Classes & Categories */,
@@ -1270,8 +1276,6 @@
 		805F725F1771AE9C00BDA30F /* ActivityFeedControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */,
-				7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */,
 				805F72651771AF9900BDA30F /* SDActivityFeedViewController.h */,
 				805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */,
 				80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */,
@@ -1287,6 +1291,10 @@
 				801088B81795794A002EF1EB /* SDPublishPhotoTableViewController.m */,
 				801088B91795794A002EF1EB /* SDPublishVideoTableViewController.h */,
 				801088BA1795794A002EF1EB /* SDPublishVideoTableViewController.m */,
+				7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */,
+				7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */,
+				7BAF6EDC17A94DBD00F7C6B3 /* SDLikesViewController.h */,
+				7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */,
 			);
 			path = ActivityFeedControllers;
 			sourceTree = "<group>";
@@ -1704,6 +1712,7 @@
 				7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */,
 				80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */,
 				80431E9217A152B7002F6E3D /* Notes.rtf in Resources */,
+				7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1845,6 +1854,7 @@
 				7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */,
 				7BAF6ED817A93FB000F7C6B3 /* SDCommentCell.m in Sources */,
 				7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */,
+				7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
