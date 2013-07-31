@@ -22,6 +22,7 @@
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="activityStory" inverseEntity="Like" syncable="YES"/>
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="activityStories" inverseEntity="Master" syncable="YES"/>
         <relationship name="postedToUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="activityStoriesFromOtherUsers" inverseEntity="User" syncable="YES"/>
+        <relationship name="webPreview" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WebPreview" inverseName="activityStory" inverseEntity="WebPreview" syncable="YES"/>
     </entity>
     <entity name="Comment" representedClassName="Comment" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
@@ -87,10 +88,11 @@
         <attribute name="numberOfPhotos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="numberOfVideos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="statusCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userClass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userTypeId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="activityStories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="author" inverseEntity="ActivityStory" syncable="YES"/>
         <relationship name="activityStoriesFromOtherUsers" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="postedToUser" inverseEntity="ActivityStory" syncable="YES"/>
         <relationship name="authorOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="author" inverseEntity="Conversation" syncable="YES"/>
@@ -102,14 +104,23 @@
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
     </entity>
+    <entity name="WebPreview" representedClassName="WebPreview" syncable="YES">
+        <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="siteName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="webPreviewTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activityStory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="webPreview" inverseEntity="ActivityStory" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="ActivityStory" positionX="-47" positionY="-504" width="128" height="358"/>
+        <element name="ActivityStory" positionX="-47" positionY="-504" width="128" height="373"/>
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
         <element name="Conversation" positionX="198" positionY="135" width="128" height="178"/>
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
         <element name="Like" positionX="180" positionY="-124" width="128" height="88"/>
         <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
-        <element name="User" positionX="585" positionY="-198" width="128" height="448"/>
+        <element name="User" positionX="585" positionY="-198" width="128" height="465"/>
+        <element name="WebPreview" positionX="117" positionY="-405" width="128" height="133"/>
     </elements>
 </model>

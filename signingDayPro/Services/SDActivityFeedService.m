@@ -8,6 +8,7 @@
 
 #import "SDActivityFeedService.h"
 #import "SDAPIClient.h"
+#import "WebPreview.h"
 #import "ActivityStory.h"
 #import "User.h"
 #import "Like.h"
@@ -36,7 +37,7 @@ typedef enum {
 
 + (void)getActivityStoriesForUser:(User *)user
                          withDate:(NSDate *)date
-                 withSuccessBlock:(void (^)(int resultCount))successBlock
+                 withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock
 {
     NSMutableDictionary *params = nil;
@@ -45,6 +46,7 @@ typedef enum {
     if (user) {
         params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[user.identifier stringValue], @"UserId", nil];
     }
+    
     if (date) {
         NSString *formatedDateString = [SDUtils formatedDateStringFromDate:date];
         if (params == nil) {
@@ -54,7 +56,15 @@ typedef enum {
             [params setObject:formatedDateString forKey:@"EndDate"];
         }
     }
-    
+    //test with this date you can get activityStory that is a wallpost
+//    if (params == nil) {
+//        params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"7/22/2013 07:56:13"], @"EndDate", nil];
+//    }
+//    else {
+//        [params setObject:[NSString stringWithFormat:@"7/22/2013 07:56:13"] forKey:@"EndDate"];
+//    }
+    //testing end
+
     [[SDAPIClient sharedClient] getPath:@"sd/story.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
@@ -65,9 +75,12 @@ typedef enum {
                                     }
                                     
                                     int resultCount = [[JSON valueForKey:@"TotalCount"] intValue];
+                                    //indicates if a list has changes
+                                    BOOL listChanged = NO;
                                     
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
+                                    NSDictionary *resultsDictionary = nil;
                                     
                                     for (int i = 0; i < [activityStories count]; i++) {
                                         NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
@@ -79,6 +92,7 @@ typedef enum {
                                         if (!activityStory) {
                                             activityStory = [ActivityStory MR_createInContext:context];
                                             activityStory.identifier = identifier;
+                                            listChanged = YES;
                                         }
                                         
                                         activityStory.storyTypeId = [activityStoryDictionary valueForKey:@"StoryTypeId"];
@@ -87,9 +101,12 @@ typedef enum {
                                         activityStory.likesCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"LikesCount"] intValue]];
                                         activityStory.commentCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]];
                                         activityStory.likedByMaster = [NSNumber numberWithBool:[[activityStoryDictionary valueForKey:@"LikeFlag"] boolValue]];
-                                        if (![[activityStoryDictionary valueForKey:@"MessageText"] isKindOfClass:[NSNull class]])
-                                            activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
                                         activityStory.shouldBeDeleted = [NSNumber numberWithBool:NO];
+                                        NSString *createdDateString = [activityStoryDictionary objectForKey:@"CreatedDate"];
+                                        NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
+                                        activityStory.createdDate = [SDUtils dateFromString:createdDateString];
+                                        activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
+                                        
                                         
                                         if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
                                             activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
@@ -97,12 +114,6 @@ typedef enum {
                                         if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
                                             activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
                                         }
-                                        
-                                        NSString *createdDateString = [activityStoryDictionary objectForKey:@"CreatedDate"];
-                                        NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
-                                        activityStory.createdDate = [SDUtils dateFromString:createdDateString];
-                                        activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
-
                                         if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
                                             activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
                                         }
@@ -113,6 +124,11 @@ typedef enum {
                                             activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"MediaUrl"];
                                         }
                                         
+                                        //if has a webpreview then this story contains a link, parse and save this object
+                                        if ([activityStoryDictionary valueForKey:@"WebPreview"] != [NSNull null]) {
+                                            [self createUpdateWebPreviewObjectFromDictionary:[activityStoryDictionary valueForKey:@"WebPreview"] withStory:activityStory inContext:context];
+                                        }
+                                        
                                         //parse users(actors/authors) in this activity story
                                         NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
                                         for (NSDictionary *userDictionary in userArray) {
@@ -120,18 +136,54 @@ typedef enum {
                                             //cycle through array and creates updates users
                                             [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
                                         }
+                                        
+                                        if (i+1 == resultCount) {
+                                            NSDate *lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
+                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount",[NSNumber numberWithBool:listChanged], @"ListChanged", nil];
+                                        }
                                     }
                                     [context MR_saveToPersistentStoreAndWait];
                                     
                                     //returns only after deleting
-                                    [self deleteAllMarkedStories];
+                                    if (!date) {
+                                        [self deleteAllMarkedStories];
+                                    }
                                     if (successBlock) {
-                                        successBlock(resultCount);
+                                        successBlock(resultsDictionary);
                                     }
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     failureBlock();
                                 }];
+}
+
++ (void)createUpdateWebPreviewObjectFromDictionary:(NSDictionary *)dictionary withStory:(ActivityStory *)story inContext:(NSManagedObjectContext *)context
+{
+    NSString *webPreviewLink = nil;
+    
+    if ([dictionary objectForKey:@"Link"] != [NSNull null]) {
+        webPreviewLink = [dictionary objectForKey:@"Link"];
+        
+        WebPreview *webPreview = [WebPreview MR_findFirstByAttribute:@"link" withValue:webPreviewLink inContext:context];
+        if (!story.webPreview) {
+            webPreview = [WebPreview MR_createInContext:context];
+        }
+        
+        webPreview.link = webPreviewLink;
+        if ([dictionary objectForKey:@"Title"] != [NSNull null]) {
+            webPreview.webPreviewTitle = [dictionary objectForKey:@"Title"];
+        }
+        if ([dictionary objectForKey:@"SiteName"] != [NSNull null]) {
+            webPreview.siteName = [dictionary objectForKey:@"SiteName"];
+        }
+        if ([dictionary objectForKey:@"Excerpt"] != [NSNull null]) {
+            webPreview.excerpt = [dictionary objectForKey:@"Excerpt"];
+        }
+        if ([dictionary objectForKey:@"ImageUrl"] != [NSNull null]) {
+            webPreview.imageUrl = [dictionary objectForKey:@"ImageUrl"];
+        }
+        story.webPreview = webPreview;
+    }
 }
 
 + (void)createUpdateUserFromDictionary:(NSDictionary *)dictionary withActivityStory:(ActivityStory *)activityStory inContext:(NSManagedObjectContext *)context
@@ -156,9 +208,12 @@ typedef enum {
     }
     
     
-    
     //check user type and save info depending on this type
+    
     SDUserType userTypeId = [[dictionary valueForKey:@"UserTypeId"] intValue];
+    if (userTypeId > 0) {
+        user.userTypeId = [NSNumber numberWithInt:userTypeId];
+    }
     
     if (userTypeId == SDUserTypePlayer) {
         //user type: Player
@@ -181,10 +236,10 @@ typedef enum {
         
         if (attributeDictionary) {
             if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
-                user.position = [attributeDictionary valueForKey:@"CityName"];
+                user.cityName = [attributeDictionary valueForKey:@"CityName"];
             }
             if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
-                user.userClass = [NSString stringWithFormat:@"%d",[[attributeDictionary valueForKey:@"StateCode"] intValue]];
+                user.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
     }
@@ -207,10 +262,10 @@ typedef enum {
         
         if (attributeDictionary) {
             if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
-                user.position = [attributeDictionary valueForKey:@"CityName"];
+                user.cityName = [attributeDictionary valueForKey:@"CityName"];
             }
             if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
-                user.userClass = [NSString stringWithFormat:@"%d",[[attributeDictionary valueForKey:@"StateCode"] intValue]];
+                user.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
     }

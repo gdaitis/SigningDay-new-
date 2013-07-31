@@ -2,7 +2,7 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/25/13.
+//  Created by Lukas Kekys on 7/30/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -15,21 +15,22 @@
 
 @property (nonatomic, retain) NSString * avatarUrl;
 @property (nonatomic, retain) NSString * bio;
+@property (nonatomic, retain) NSString * cityName;
 @property (nonatomic, retain) NSDate * followerRelationshipCreated;
 @property (nonatomic, retain) NSDate * followingRelationshipCreated;
 @property (nonatomic, retain) NSNumber * identifier;
+@property (nonatomic, retain) NSString * institution;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * numberOfFollowers;
 @property (nonatomic, retain) NSNumber * numberOfFollowing;
 @property (nonatomic, retain) NSNumber * numberOfPhotos;
 @property (nonatomic, retain) NSNumber * numberOfVideos;
+@property (nonatomic, retain) NSString * position;
+@property (nonatomic, retain) NSString * stateCode;
+@property (nonatomic, retain) NSString * userClass;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * userType;
-@property (nonatomic, retain) NSString * position;
-@property (nonatomic, retain) NSString * userClass;
-@property (nonatomic, retain) NSString * cityName;
-@property (nonatomic, retain) NSString * statusCode;
-@property (nonatomic, retain) NSString * institution;
+@property (nonatomic, retain) NSNumber * userTypeId;
 @property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) ActivityStory *activityStoriesFromOtherUsers;
 @property (nonatomic, retain) NSSet *authorOf;

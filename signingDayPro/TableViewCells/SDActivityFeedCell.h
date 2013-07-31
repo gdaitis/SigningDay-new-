@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *containerView;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
 @property (weak, nonatomic) IBOutlet UIView *buttonsBackgroundView;
 @property (weak, nonatomic) IBOutlet SDActivityFeedCellContentView *resizableActivityFeedView;

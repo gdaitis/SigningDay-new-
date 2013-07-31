@@ -16,7 +16,7 @@
 
 + (void)getActivityStoriesForUser:(User *)user
                          withDate:(NSDate *)date
-                 withSuccessBlock:(void (^)(int resultCount))successBlock
+                 withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock;
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody
                             successBlock:(void (^)(void))successBlock

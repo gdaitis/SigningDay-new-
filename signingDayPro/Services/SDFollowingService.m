@@ -133,7 +133,6 @@
                                     
                                     for (NSDictionary *userInfo in followings) {
                                         NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                        NSLog(@"followingsUserIdentifier = %@",followingsUserIdentifier);
                                         
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followingsUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
@@ -178,7 +177,6 @@
                                     NSArray *followers = [JSON objectForKey:@"Results"];
                                     for (NSDictionary *userInfo in followers) {
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                        NSLog(@"followingsUserIdentifier = %@",followersUserIdentifier);
                                         
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followersUserIdentifier inContext:context];
                                         if (!user) {
@@ -373,10 +371,14 @@
             
             if ([user.conversations count] == 0) {
                 //user doesn't have mutual conversation, and is not being followed or following master user, so it is going to be deleted
-                if (![user.identifier isEqualToNumber:master.identifier]) {
-                    //not master user can delete
-                    NSLog(@"User deleted: %@",user.name);
-                    [context deleteObject:user];
+                
+                // if user doesn't have any activityStories
+                if (user.activityStories == nil && user.activityStoriesFromOtherUsers == nil) {
+                    if (![user.identifier isEqualToNumber:master.identifier]) {
+                        //not master user can delete
+                        NSLog(@"User deleted: %@",user.name);
+                        [context deleteObject:user];
+                    }
                 }
             }
         }

@@ -2,7 +2,7 @@
 //  Like.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/25/13.
+//  Created by Lukas Kekys on 7/30/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 

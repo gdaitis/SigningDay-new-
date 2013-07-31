@@ -2,7 +2,7 @@
 //  ActivityStory.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/25/13.
+//  Created by Lukas Kekys on 7/30/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "Like.h"
 #import "Master.h"
 #import "User.h"
+#import "WebPreview.h"
 
 
 @implementation ActivityStory
@@ -36,5 +37,6 @@
 @dynamic likes;
 @dynamic master;
 @dynamic postedToUser;
+@dynamic webPreview;
 
 @end

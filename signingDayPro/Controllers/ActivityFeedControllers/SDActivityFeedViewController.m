@@ -27,24 +27,22 @@
 #import "SDPublishPhotoTableViewController.h"
 #import "SDPublishVideoTableViewController.h"
 #import "SDModalNavigationController.h"
+#import "SDActivityFeedTableView.h"
 #import "SDBuzzSomethingViewController.h"
 #import "SDCommentsViewController.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
-@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate>
+@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate,SDActivityFeedTableViewDelegate>
 
-//@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, weak) IBOutlet SDActivityFeedTableView *tableView;
 @property (nonatomic, weak) IBOutlet SDActivityFeedHeaderView *headerView;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property BOOL isFromLibrary;
 @property (nonatomic, strong) UIImage *capturedImage;
 @property (nonatomic, strong) NSURL *capturedVideoURL;
 @property (nonatomic, strong) NSString *mediaType;
-
-- (void)checkServer;
 
 @end
 
@@ -65,10 +63,6 @@
 	// Do any additional setup after loading the view.
     
     self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
-        
-//    UINib *rowCellNib = [UINib nibWithNibName:@"SDActivityFeedCell" bundle:[NSBundle mainBundle]];
-//    [self.tableView registerNib:rowCellNib forCellReuseIdentifier:@"ActivityFeedCellId"];
-    
     self.headerView.clipsToBounds = NO;
     
     // Add shadow
@@ -86,9 +80,14 @@
 {
     [super viewDidAppear:animated];
     
-    [self beginRefreshing];
-    [self checkServer];
+    self.tableView.activityStoryCount = 0;
+    self.tableView.lastActivityStoryDate = nil;
+    self.tableView.endReached = NO;
+    self.tableView.tableDelegate = self;
+    
+    [self.tableView checkServer];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -98,95 +97,14 @@
 
 - (void)checkServer
 {
-    [SDActivityFeedService getActivityStoriesForUser:nil withDate:nil withSuccessBlock:^(int resultCount){
-                                        
-#warning check if solved a crash!
-                                        if ([self respondsToSelector:@selector(loadData)]) {
-                                            [self loadData];
-                                        }
-                                        if ([self respondsToSelector:@selector(endRefreshing)]) {
-                                            [self endRefreshing];
-                                        }
-                                    } failureBlock:^{
-                                        //
-                                    }];
+    [self.tableView checkNewStories];
 }
 
-#pragma mark - TableView datasource
+#pragma mark - refreshing
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)shouldEndRefreshing
 {
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
-    
-    int contentHeight = [SDUtils heightForActivityStory:activityStory];
-    int result = 123/*buttons images etc..*/ + contentHeight;
-    
-    return result;
-}
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
-    return [_dataArray count];
-} 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SDActivityFeedCell *cell = nil;
-    NSString *cellIdentifier = @"ActivityFeedCellId";
-    
-    cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        // Load cell
-        NSArray *topLevelObjects = nil;
-        
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
-        // Grab cell reference which was set during nib load:
-        for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
-                cell = currentObject;
-                break;
-            }
-        }
-        //[self setupCell:cell];
-    }
-    
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
-    [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
-    
-    return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 6)];
-    
-    return headerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 6;
-}
-
-#pragma mark - TableView delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UIStoryboard *commentsViewStoryboard = [UIStoryboard storyboardWithName:@"CommentsViewStoryboard"
-                                                                     bundle:nil];
-    SDCommentsViewController *commentsViewController = [commentsViewStoryboard instantiateViewControllerWithIdentifier:@"CommentsViewController"];
-    commentsViewController.activityStory = [self.dataArray objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:commentsViewController
-                                         animated:YES];
-}
-
-- (void)loadData
-{
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    [self.tableView reloadData];
+    [self endRefreshing];
 }
 
 #pragma mark - SDActivityFeedHeaderViewDelegate methods
@@ -267,7 +185,7 @@
                                                               [self presentViewController:modalNavigationController
                                                                                  animated:YES
                                                                                completion:nil];
-            }];
+                                                          }];
             
         } else if (buttonIndex == 1 && !self.isFromLibrary) {
             if ([self.mediaType isEqual:@"public.movie"])

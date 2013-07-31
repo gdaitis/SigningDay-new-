@@ -21,18 +21,19 @@
 #import "ActivityStory.h"
 #import "SDActivityFeedCellContentView.h"
 #import "SDImageService.h"
+#import "SDActivityFeedTableView.h"
 #import "AFNetworking.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
 
 
-@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate>
+@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate,SDActivityFeedTableViewDelegate>
 {
     BOOL _isMasterProfile;
 }
 
-@property (nonatomic, strong) IBOutlet SDTableView *tableView;
+@property (nonatomic, strong) IBOutlet SDActivityFeedTableView *tableView;
 @property (atomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) id headerView;    //may be different depending on user
 
@@ -52,37 +53,63 @@
     if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
         _isMasterProfile = YES;
     }
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self beginRefreshing];
-    [self loadActivityFeedInfo];
+    self.tableView.activityStoryCount = 0;
+    self.tableView.lastActivityStoryDate = nil;
+    self.tableView.endReached = NO;
+    self.tableView.user = self.currentUser;
+    self.tableView.tableDelegate = self;
+    [self setupTableViewHeader];
 }
 
+#pragma mark - refreshing
 
-#pragma mark - ActivityStories data loading/displaying
-
-- (void)loadActivityFeedInfo
+- (void)checkServer
 {
-    [SDActivityFeedService getActivityStoriesForUser:_currentUser withDate:nil withSuccessBlock:^(int resultCount){
-        [self reloadActivityData];
-        [self endRefreshing];
-    } failureBlock:^{
-        [self endRefreshing];
-    }];
-}
-
--(void)reloadActivityData
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    [self.tableView reloadData];
+    [self.tableView checkNewStories];
 }
 
 #pragma mark - TableView datasource
+
+- (void)setupTableViewHeader
+{
+    if (!_headerView) {
+        
+        // Load headerview
+        NSArray *topLevelObjects = nil;
+        
+#warning FIXME logic for all profiles
+        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
+        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
+        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileTeamHeaderView" owner:nil options:nil];
+        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileCoachHeaderView" owner:nil options:nil];
+        
+        
+        for(id currentObject in topLevelObjects){
+            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
+                //            if([currentObject isKindOfClass:[SDUserProfileCoachHeaderView class]]) {
+                //            if([currentObject isKindOfClass:[SDUserProfileTeamHeaderView class]]) {
+                //            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
+                
+                SDUserProfileMemberHeaderView* memberHeaderView = (id)currentObject;
+                memberHeaderView.delegate = self;
+                self.headerView = memberHeaderView;
+
+                break;
+            }
+        }
+        self.tableView.headerInfoDownloading = YES;
+        [self setupHeaderView];
+    }
+    self.tableView.customHeaderView = self.headerView;
+}
 
 - (void)setupHeaderView
 {
@@ -95,103 +122,23 @@
     [_headerView setupInfoWithUser:_currentUser];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+#pragma mark - header data loading delegates
+
+- (void)dataLoadingFinishedInHeaderView:(id)headerView
 {
-    return [_dataArray count];
+    self.tableView.headerInfoDownloading = NO;
+    [self.tableView checkServer];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (void)dataLoadingFailedInHeaderView:(id)headerView
 {
-    return _isMasterProfile ? kUserProfileHeaderHeight : kUserProfileHeaderHeightWithBuzzButtonView;
+    self.tableView.headerInfoDownloading = NO;
+    [self.tableView checkServer];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (void)shouldEndRefreshing
 {
-    if (!_headerView) {
- 
-        // Load headerview
-        NSArray *topLevelObjects = nil;
-        
-#warning FIXME logic for all profiles
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileTeamHeaderView" owner:nil options:nil];
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileCoachHeaderView" owner:nil options:nil];
-        
-        
-        for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
-//            if([currentObject isKindOfClass:[SDUserProfileCoachHeaderView class]]) {
-//            if([currentObject isKindOfClass:[SDUserProfileTeamHeaderView class]]) {
-//            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
-                self.headerView = currentObject;
-                break;
-            }
-        }
-        [self setupHeaderView];
-    }
-    
-    return _headerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-    
-    int contentHeight = [SDUtils heightForActivityStory:activityStory];
-    int result = 120/*buttons images etc..*/ + contentHeight;
-    
-    return result;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SDActivityFeedCell *cell = nil;
-    NSString *cellIdentifier = @"ActivityFeedCellId";
-    
-    cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        // Load cell
-        NSArray *topLevelObjects = nil;
-        
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
-        // Grab cell reference which was set during nib load:
-        for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
-                cell = currentObject;
-                break;
-            }
-        }
-    } else {
-        [cell.thumbnailImageView cancelImageRequestOperation];
-    }
-    
-    cell.likeButton.tag = indexPath.row;
-    cell.commentButton.tag = indexPath.row;
-    
-    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-    
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likes count]];
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.comments count]];
-    cell.nameLabel.text =activityStory.author.name;
-    [cell.resizableActivityFeedView setActivityStory:activityStory];
-    
-    if ([activityStory.author.avatarUrl length] > 0) {
-        [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
-    }
-    
-    cell.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
-    cell.yearLabel.text = @"- DE, 2014";
-    
-    return cell;
-}
-
-#pragma mark - refresh
-
-- (void)checkServer
-{
-    [super checkServer];
-    [self loadActivityFeedInfo];
+    [self endRefreshing];
 }
 
 @end

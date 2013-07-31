@@ -8,6 +8,7 @@
 
 #import "SDUtils.h"
 #import "ActivityStory.h"
+#import "User.h"
 
 @interface SDUtils()
 
@@ -166,7 +167,36 @@
     return date;
 }
 
-+ (NSString *)formatedDateStringFromDate:(NSDate *)date
++ (NSDate *)notLocalizedDateFromString:(NSString *)dateString
+{
+    //ignores timezone
+    NSString *clippedDate = [dateString substringToIndex:[dateString length]-6];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
+    
+    NSDate *date = [dateFormatter dateFromString:clippedDate];
+    
+    if (!date) {
+        
+        NSArray *dateFormatterList = [NSArray arrayWithObjects:@"yyyy-MM-dd'T'HH:mm:ss.SSS",
+                                      @"yyyy-MM-dd'T'HH:mm:ss", @"yyyy-MM-dd'T'HH:mm:ss.SS", @"yyyy-MM-dd'T'HH:mm:ss.S", @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ", @"yyyy-MM-dd'T'HH:mm:ssZZZ", nil];//include all possible dateformats here
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        for (NSString *dateFormatterString in dateFormatterList) {
+            [dateFormatter setDateFormat:dateFormatterString];
+            NSDate *originalDate = [dateFormatter dateFromString:clippedDate];
+            
+            if (originalDate) {
+                date = originalDate;
+                break;
+            }
+        }
+    }
+    
+    return date;
+}
+
++ (NSString *)formatedDateStringFromDateToNow:(NSDate *)date
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit |NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date toDate:[NSDate date] options:nil];
     
@@ -180,6 +210,121 @@
     NSString *result = [NSString stringWithFormat:@"%d/%d/%d %d:%d:%d",month,day,year,hour,minute,second];
     
     return result;
+}
+
++ (NSString *)formatedDateStringFromDate:(NSDate *)date
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit |NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
+    
+    NSInteger year = [components year];
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    NSInteger second = [components second];
+    
+    NSString *result = [NSString stringWithFormat:@"%d/%d/%d %02d:%02d:%02d",month,day,year,hour,minute,second];
+    
+    return result;
+}
+
++ (NSAttributedString *)attributedStringWithText:(NSString *)firstText firstColor:(UIColor *)firstColor andSecondText:(NSString *)secondText andSecondColor:(UIColor *)secondColor andFirstFont:(UIFont *)firstFont andSecondFont:(UIFont *)secondFont
+{
+    NSString *str = [NSString stringWithFormat:@"%@ %@",firstText,secondText];
+    
+    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc] initWithString:str];
+    NSInteger firstLength = [firstText length];
+    NSInteger secondLength = [secondText length];
+    
+    [attString addAttribute:NSFontAttributeName value:firstFont range:NSMakeRange(0, firstLength+1)];
+    [attString addAttribute:NSFontAttributeName value:secondFont range:NSMakeRange(firstLength+1, secondLength)];
+    [attString addAttribute:NSForegroundColorAttributeName value:firstColor range:NSMakeRange(0, firstLength+1 )];
+    [attString addAttribute:NSForegroundColorAttributeName value:secondColor range:NSMakeRange(firstLength+1, secondLength)];
+    
+    return (NSAttributedString *)attString;
+}
+
+//+ (NSAttributedString *)attributedWallpostStringWithText:(NSString *)firstText firstColor:(UIColor *)firstColor andSecondText:(NSString *)secondText andSecondColor:(UIColor *)secondColor andFirstFont:(UIFont *)firstFont andSecondFont:(UIFont *)secondFont
+//{
+//    NSString *str = [NSString stringWithFormat:@"%@ \u25B6 %@",firstText,secondText];
+//    
+//    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc] initWithString:str];
+//    NSInteger firstLength = [firstText length];
+//    NSInteger secondLength = [secondText length];
+//    
+//    [attString addAttribute:NSFontAttributeName value:firstFont range:NSMakeRange(0, firstLength+1)];
+//    [attString addAttribute:NSFontAttributeName value:secondFont range:NSMakeRange(firstLength+3, secondLength)];
+//    [attString addAttribute:NSForegroundColorAttributeName value:firstColor range:NSMakeRange(0, firstLength+1 )];
+//    [attString addAttribute:NSForegroundColorAttributeName value:secondColor range:NSMakeRange(firstLength+3, secondLength)];
+//    
+//    return (NSAttributedString *)attString;
+//}
+
++ (NSAttributedString *)attributedStringWithText:(NSString *)text andColor:(UIColor *)color andFont:(UIFont *)font
+{
+    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc] initWithString:text];
+    NSInteger length = [text length];
+    
+    [attString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, length)];
+    [attString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, length)];
+    
+    return (NSAttributedString *)attString;
+}
+
++ (NSString *)attributeStringForUser:(User *)user
+{
+    int userTypeId = [user.userTypeId intValue];
+    if (userTypeId > 0) {
+        
+        NSMutableString *result = [[NSMutableString alloc] initWithString:@"-"];
+        if (userTypeId == 1) {
+            if (user.position) {
+                [result appendFormat:@" %@",user.position];
+            }
+            if (user.userClass) {
+                if (![result isEqualToString:@"-"]) {
+                    [result appendFormat:@","];
+                }
+                [result appendFormat:@" %@",user.userClass];
+            }
+        }
+        else if (userTypeId == 2) {
+            if (user.cityName) {
+                [result appendFormat:@" %@",user.cityName];
+            }
+            if (user.stateCode) {
+                if (![result isEqualToString:@"-"]) {
+                    [result appendFormat:@","];
+                }
+                [result appendFormat:@" %@",user.stateCode];
+            }
+        }
+        else if (userTypeId == 3) {
+            if (user.institution) {
+                [result appendFormat:@" %@",user.institution];
+            }
+        }
+        else {
+            if (user.cityName) {
+                [result appendFormat:@" %@",user.cityName];
+            }
+            if (user.stateCode) {
+                if (![result isEqualToString:@"-"]) {
+                    [result appendFormat:@","];
+                }
+                [result appendFormat:@" %@",user.stateCode];
+            }
+        }
+        if ([result isEqualToString:@"-"]) {
+            return nil;
+        }
+        else {
+            return result;
+        }
+    }
+    else {
+        return nil;
+    }
 }
     
 

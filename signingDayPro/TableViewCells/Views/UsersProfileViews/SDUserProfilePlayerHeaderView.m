@@ -69,6 +69,9 @@
 #warning hardcoded for testing
         self.starsRatingView.starsCount = 4;
         self.baseScoreView.baseScore = 87.69;
+        
+        //delegate about data loading finish
+        [self.delegate dataLoadingFinishedInHeaderView:self];
     }];
 }
 
