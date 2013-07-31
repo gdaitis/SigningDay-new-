@@ -33,7 +33,7 @@
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
-@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate>
+@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate,SDActivityFeedTableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet SDActivityFeedTableView *tableView;
 @property (nonatomic, weak) IBOutlet SDActivityFeedHeaderView *headerView;
@@ -82,6 +82,7 @@
     self.tableView.activityStoryCount = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
+    self.tableView.tableDelegate = self;
     
     [self.tableView checkServer];
 }
@@ -93,17 +94,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - refreshing
-
-- (void)beginRefreshing
+- (void)checkServer
 {
-    [super beginRefreshing];
     [self.tableView checkNewStories];
 }
 
-- (void)endRefreshing
+#pragma mark - refreshing
+
+- (void)shouldEndRefreshing
 {
-    [super endRefreshing];
+    [self endRefreshing];
 }
 
 #pragma mark - SDActivityFeedHeaderViewDelegate methods

@@ -25,9 +25,15 @@
 {
     if (hide) {
         _buzzButtonView.hidden = YES;
+        CGRect frame = self.frame;
+        frame.size.height = self.slidingButtonView.frame.origin.y + self.slidingButtonView.frame.size.height;
+        self.frame = frame;
     }
     else {
         _buzzButtonView.hidden = NO;
+        CGRect frame = self.frame;
+        frame.size.height = self.buzzButtonView.frame.origin.y + self.buzzButtonView.frame.size.height;
+        self.frame = frame;
     }
 }
 

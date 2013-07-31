@@ -11,5 +11,6 @@
 @protocol SDUserProfileHeaderDelegate <NSObject>
 
 - (void)dataLoadingFinishedInHeaderView:(id)headerView;
+- (void)dataLoadingFailedInHeaderView:(id)headerView;
 
 @end

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SDTableView.h"
-#import "SDActivityFeedDataSource.h"
 
 @class SDActivityFeedTableView;
 
@@ -20,12 +19,15 @@
 
 @class User;
 
-@interface SDActivityFeedTableView : SDTableView <UITableViewDataSource,UITableViewDelegate,SDActivityFeedDataSourceDelegate>
+@interface SDActivityFeedTableView : SDTableView <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSDate *lastActivityStoryDate;
 @property (nonatomic, assign) BOOL endReached;
+@property (nonatomic, assign) BOOL headerInfoDownloading;
 @property (nonatomic, assign) int activityStoryCount;
+
+@property (nonatomic, strong) UIView *customHeaderView;
 
 @property (nonatomic, strong) id <SDActivityFeedTableViewDelegate> tableDelegate;
 

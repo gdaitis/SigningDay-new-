@@ -28,7 +28,7 @@
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
 
 
-@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate>
+@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate,SDActivityFeedTableViewDelegate>
 {
     BOOL _isMasterProfile;
 }
@@ -53,34 +53,27 @@
     if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
         _isMasterProfile = YES;
     }
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self beginRefreshing];
-    
     self.tableView.activityStoryCount = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
     self.tableView.user = self.currentUser;
+    self.tableView.tableDelegate = self;
     [self setupTableViewHeader];
-    
-    [self.tableView checkServer];
 }
 
 #pragma mark - refreshing
 
-- (void)beginRefreshing
+- (void)checkServer
 {
-    [super beginRefreshing];
     [self.tableView checkNewStories];
-}
-
-- (void)endRefreshing
-{
-    [super endRefreshing];
 }
 
 #pragma mark - TableView datasource
@@ -104,13 +97,18 @@
                 //            if([currentObject isKindOfClass:[SDUserProfileCoachHeaderView class]]) {
                 //            if([currentObject isKindOfClass:[SDUserProfileTeamHeaderView class]]) {
                 //            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
-                self.headerView = currentObject;
+                
+                SDUserProfileMemberHeaderView* memberHeaderView = (id)currentObject;
+                memberHeaderView.delegate = self;
+                self.headerView = memberHeaderView;
+
                 break;
             }
         }
+        self.tableView.headerInfoDownloading = YES;
         [self setupHeaderView];
     }
-    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.customHeaderView = self.headerView;
 }
 
 - (void)setupHeaderView
@@ -127,6 +125,18 @@
 #pragma mark - header data loading delegates
 
 - (void)dataLoadingFinishedInHeaderView:(id)headerView
+{
+    self.tableView.headerInfoDownloading = NO;
+    [self.tableView checkServer];
+}
+
+- (void)dataLoadingFailedInHeaderView:(id)headerView
+{
+    self.tableView.headerInfoDownloading = NO;
+    [self.tableView checkServer];
+}
+
+- (void)shouldEndRefreshing
 {
     [self endRefreshing];
 }

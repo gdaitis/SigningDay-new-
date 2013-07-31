@@ -230,7 +230,6 @@
 		80DF59BC17A7CF62004F5246 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DF59BB17A7CF62004F5246 /* Like.m */; };
 		80DF59BF17A7CF62004F5246 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DF59BE17A7CF62004F5246 /* User.m */; };
 		80DF59C217A7E81E004F5246 /* SDActivityFeedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */; };
-		80DF59C517A7EF8B004F5246 /* SDActivityFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DF59C417A7EF8B004F5246 /* SDActivityFeedDataSource.m */; };
 		80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E31BA81758AF990013545C /* SDFollowingCell.m */; };
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
 		80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BAF1758B8590013545C /* FollowingSelected@2x.png */; };
@@ -613,8 +612,6 @@
 		80DF59BE17A7CF62004F5246 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedTableView.h; sourceTree = "<group>"; };
 		80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedTableView.m; sourceTree = "<group>"; };
-		80DF59C317A7EF8B004F5246 /* SDActivityFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedDataSource.h; sourceTree = "<group>"; };
-		80DF59C417A7EF8B004F5246 /* SDActivityFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedDataSource.m; sourceTree = "<group>"; };
 		80DF59C617A9003F004F5246 /* SDUserProfileHeaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHeaderDelegate.h; sourceTree = "<group>"; };
 		80E31BA71758AF990013545C /* SDFollowingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDFollowingCell.h; sourceTree = "<group>"; };
 		80E31BA81758AF990013545C /* SDFollowingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDFollowingCell.m; sourceTree = "<group>"; };
@@ -1259,8 +1256,6 @@
 			children = (
 				805F72651771AF9900BDA30F /* SDActivityFeedViewController.h */,
 				805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */,
-				80DF59C317A7EF8B004F5246 /* SDActivityFeedDataSource.h */,
-				80DF59C417A7EF8B004F5246 /* SDActivityFeedDataSource.m */,
 				80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */,
 				80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */,
 				801088AE1795794A002EF1EB /* SDAddTagsCell.h */,
@@ -1826,7 +1821,6 @@
 				80DF59BC17A7CF62004F5246 /* Like.m in Sources */,
 				80DF59BF17A7CF62004F5246 /* User.m in Sources */,
 				80DF59C217A7E81E004F5246 /* SDActivityFeedTableView.m in Sources */,
-				80DF59C517A7EF8B004F5246 /* SDActivityFeedDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
