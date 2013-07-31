@@ -27,6 +27,7 @@
 #import "SDPublishPhotoTableViewController.h"
 #import "SDPublishVideoTableViewController.h"
 #import "SDModalNavigationController.h"
+#import "SDActivityFeedTableView.h"
 #import "SDBuzzSomethingViewController.h"
 
 #define kButtonImageViewTag 999
@@ -34,21 +35,13 @@
 
 @interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate>
 
-//@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, weak) IBOutlet SDActivityFeedTableView *tableView;
 @property (nonatomic, weak) IBOutlet SDActivityFeedHeaderView *headerView;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property BOOL isFromLibrary;
 @property (nonatomic, strong) UIImage *capturedImage;
 @property (nonatomic, strong) NSURL *capturedVideoURL;
 @property (nonatomic, strong) NSString *mediaType;
-
-//paging properties
-@property (nonatomic, assign) int activityStoryCount;
-@property (nonatomic, strong) NSDate *lastActivityStoryDate;
-@property (nonatomic, assign) BOOL endReached;
-
-- (void)checkServer;
 
 @end
 
@@ -86,13 +79,13 @@
 {
     [super viewDidAppear:animated];
     
-    self.activityStoryCount = 0;
-    self.lastActivityStoryDate = nil;
-    self.endReached = NO;
+    self.tableView.activityStoryCount = 0;
+    self.tableView.lastActivityStoryDate = nil;
+    self.tableView.endReached = NO;
     
-    //    [self beginRefreshing];
-    [self checkServer];
+    [self.tableView checkServer];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -100,127 +93,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)checkServer
+#pragma mark - refreshing
+
+- (void)beginRefreshing
 {
-    
-    NSLog(@"LOADING items for date = %@",self.lastActivityStoryDate);
-    [SDActivityFeedService getActivityStoriesForUser:nil withDate:self.lastActivityStoryDate withSuccessBlock:^(NSDictionary *results){
-        
-        int resultCount = [[results objectForKey:@"ResultCount"] intValue]; 
-        self.activityStoryCount += resultCount;
-        self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
-        if (resultCount == 0) {
-            self.endReached = YES;
-            NSLog(@"END REACHED");
-        }
-        if ([self respondsToSelector:@selector(loadData)]) {
-            [self loadData];
-        }
-        if ([self respondsToSelector:@selector(endRefreshing)]) {
-            [self endRefreshing];
-        }
-    } failureBlock:^{
-        
-    }];
+    [super beginRefreshing];
+    [self.tableView checkNewStories];
 }
 
-#pragma mark - TableView datasource
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)endRefreshing
 {
-    if (indexPath.row != [self.dataArray count]) {
-        ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-        
-        int contentHeight = [SDUtils heightForActivityStory:activityStory];
-        int result = 114/*buttons images etc..*/ + contentHeight;
-        
-        return result;
-    }
-    else {
-        return 60;
-    }
-}
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
-    if (!self.endReached) {
-        return [self.dataArray count] +1;
-    }
-    else {
-        return [self.dataArray count];
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row != [self.dataArray count]) {
-        
-        SDActivityFeedCell *cell = nil;
-        NSString *cellIdentifier = @"ActivityFeedCellId";
-        cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            // Load cell
-            NSArray *topLevelObjects = nil;
-            
-            topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
-            // Grab cell reference which was set during nib load:
-            for(id currentObject in topLevelObjects){
-                if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
-                    cell = currentObject;
-                    break;
-                }
-            }
-            //[self setupCell:cell];
-        }
-        
-        ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-        [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
-        
-        return cell;
-    }
-    else {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleWhite;
-        
-        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
-        activityView.center = cell.center;
-        [cell addSubview:activityView];
-        [activityView startAnimating];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [self checkServer];
-        
-        return cell;
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 6)];
-    
-    return headerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 6;
-}
-
-#pragma mark - TableView delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
-- (void)loadData
-{
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    NSLog(@"FETCHED DATA COUNT = %d",[self.dataArray count]);
-    [self.tableView reloadData];
+    [super endRefreshing];
 }
 
 #pragma mark - SDActivityFeedHeaderViewDelegate methods

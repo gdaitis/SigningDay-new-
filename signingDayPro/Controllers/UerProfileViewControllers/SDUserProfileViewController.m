@@ -21,6 +21,7 @@
 #import "ActivityStory.h"
 #import "SDActivityFeedCellContentView.h"
 #import "SDImageService.h"
+#import "SDActivityFeedTableView.h"
 #import "AFNetworking.h"
 
 #define kUserProfileHeaderHeight 360
@@ -32,7 +33,7 @@
     BOOL _isMasterProfile;
 }
 
-@property (nonatomic, strong) IBOutlet SDTableView *tableView;
+@property (nonatomic, strong) IBOutlet SDActivityFeedTableView *tableView;
 @property (atomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) id headerView;    //may be different depending on user
 
@@ -59,30 +60,58 @@
     [super viewDidAppear:animated];
     
     [self beginRefreshing];
-    [self loadActivityFeedInfo];
+    
+    self.tableView.activityStoryCount = 0;
+    self.tableView.lastActivityStoryDate = nil;
+    self.tableView.endReached = NO;
+    self.tableView.user = self.currentUser;
+    [self setupTableViewHeader];
+    
+    [self.tableView checkServer];
 }
 
+#pragma mark - refreshing
 
-#pragma mark - ActivityStories data loading/displaying
-
-- (void)loadActivityFeedInfo
+- (void)beginRefreshing
 {
-    [SDActivityFeedService getActivityStoriesForUser:_currentUser withDate:nil withSuccessBlock:^(NSDictionary *results){
-        [self reloadActivityData];
-        [self endRefreshing];
-    } failureBlock:^{
-        [self endRefreshing];
-    }];
+    [super beginRefreshing];
+    [self.tableView checkNewStories];
 }
 
--(void)reloadActivityData
+- (void)endRefreshing
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", _currentUser];
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    [self.tableView reloadData];
+    [super endRefreshing];
 }
 
 #pragma mark - TableView datasource
+
+- (void)setupTableViewHeader
+{
+    if (!_headerView) {
+        
+        // Load headerview
+        NSArray *topLevelObjects = nil;
+        
+#warning FIXME logic for all profiles
+        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
+        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
+        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileTeamHeaderView" owner:nil options:nil];
+        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileCoachHeaderView" owner:nil options:nil];
+        
+        
+        for(id currentObject in topLevelObjects){
+            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
+                //            if([currentObject isKindOfClass:[SDUserProfileCoachHeaderView class]]) {
+                //            if([currentObject isKindOfClass:[SDUserProfileTeamHeaderView class]]) {
+                //            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
+                self.headerView = currentObject;
+                break;
+            }
+        }
+        [self setupHeaderView];
+    }
+    self.tableView.tableHeaderView = self.headerView;
+}
 
 - (void)setupHeaderView
 {
@@ -95,86 +124,11 @@
     [_headerView setupInfoWithUser:_currentUser];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_dataArray count];
-}
+#pragma mark - header data loading delegates
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (void)dataLoadingFinishedInHeaderView:(id)headerView
 {
-    return _isMasterProfile ? kUserProfileHeaderHeight : kUserProfileHeaderHeightWithBuzzButtonView;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (!_headerView) {
- 
-        // Load headerview
-        NSArray *topLevelObjects = nil;
-        
-#warning FIXME logic for all profiles
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileTeamHeaderView" owner:nil options:nil];
-//        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileCoachHeaderView" owner:nil options:nil];
-        
-        
-        for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
-//            if([currentObject isKindOfClass:[SDUserProfileCoachHeaderView class]]) {
-//            if([currentObject isKindOfClass:[SDUserProfileTeamHeaderView class]]) {
-//            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
-                self.headerView = currentObject;
-                break;
-            }
-        }
-        [self setupHeaderView];
-    }
-    
-    return _headerView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-    
-    int contentHeight = [SDUtils heightForActivityStory:activityStory];
-    int result = 120/*buttons images etc..*/ + contentHeight;
-    
-    return result;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SDActivityFeedCell *cell = nil;
-    NSString *cellIdentifier = @"ActivityFeedCellId";
-    
-    cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        // Load cell
-        NSArray *topLevelObjects = nil;
-        
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
-        // Grab cell reference which was set during nib load:
-        for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
-                cell = currentObject;
-                break;
-            }
-        }
-    }
-    ActivityStory *activityStory = [_dataArray objectAtIndex:indexPath.row];
-    [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
-    
-    return cell;
-}
-
-#pragma mark - refresh
-
-- (void)checkServer
-{
-    [super checkServer];
-    [self loadActivityFeedInfo];
+    [self endRefreshing];
 }
 
 @end

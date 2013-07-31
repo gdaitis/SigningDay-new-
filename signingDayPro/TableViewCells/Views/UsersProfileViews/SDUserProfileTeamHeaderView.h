@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SDBaseProfileHeaderView.h"
+#import "SDUserProfileHeaderDelegate.h"
+
 
 @interface SDUserProfileTeamHeaderView : SDBaseProfileHeaderView    
+
+@property (nonatomic, strong) id <SDUserProfileHeaderDelegate> delegate;
 
 @end

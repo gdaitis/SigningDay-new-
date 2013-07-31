@@ -59,6 +59,9 @@
     _nameLabel.text = user.name;
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
         _userImageView.image = image;
+        
+        //delegate about data loading finish
+        [self.delegate dataLoadingFinishedInHeaderView:self];
     }];
 }
 

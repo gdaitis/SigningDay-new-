@@ -8,6 +8,7 @@
 
 #import "SDActivityFeedService.h"
 #import "SDAPIClient.h"
+#import "WebPreview.h"
 #import "ActivityStory.h"
 #import "User.h"
 #import "Like.h"
@@ -66,6 +67,8 @@
                                     }
                                     
                                     int resultCount = [[JSON valueForKey:@"TotalCount"] intValue];
+                                    //indicates if a list has changes
+                                    BOOL listChanged = NO;
                                     
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
@@ -81,22 +84,21 @@
                                         if (!activityStory) {
                                             activityStory = [ActivityStory MR_createInContext:context];
                                             activityStory.identifier = identifier;
+                                            listChanged = YES;
                                         }
                                         
                                         activityStory.storyTypeId = [activityStoryDictionary valueForKey:@"StoryTypeId"];
                                         activityStory.contentId = [activityStoryDictionary valueForKey:@"ContentId"];
                                         activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"ContentTypeId"];
-                                        
-                                        if ([activityStory.identifier isEqualToString:@"b495a16b-4977-4fd9-80e5-a54e357bec08"]) {
-                                            //comment count = 2
-                                            NSLog(@"comment count = %d",[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]);
-                                        }
                                         activityStory.likesCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"LikesCount"] intValue]];
                                         activityStory.commentCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]];
                                         activityStory.likedByMaster = [NSNumber numberWithBool:[[activityStoryDictionary valueForKey:@"LikeFlag"] boolValue]];
-                                        if (![[activityStoryDictionary valueForKey:@"MessageText"] isKindOfClass:[NSNull class]])
-                                            activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
                                         activityStory.shouldBeDeleted = [NSNumber numberWithBool:NO];
+                                        NSString *createdDateString = [activityStoryDictionary objectForKey:@"CreatedDate"];
+                                        NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
+                                        activityStory.createdDate = [SDUtils dateFromString:createdDateString];
+                                        activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
+                                        
                                         
                                         if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
                                             activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
@@ -104,12 +106,6 @@
                                         if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
                                             activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
                                         }
-                                        
-                                        NSString *createdDateString = [activityStoryDictionary objectForKey:@"CreatedDate"];
-                                        NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
-                                        activityStory.createdDate = [SDUtils dateFromString:createdDateString];
-                                        activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
-
                                         if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
                                             activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
                                         }
@@ -118,6 +114,11 @@
                                         }
                                         if ([activityStoryDictionary valueForKey:@"MediaUrl"] != [NSNull null]) {
                                             activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"MediaUrl"];
+                                        }
+                                        
+                                        //if has a webpreview then this story contains a link, parse and save this object
+                                        if ([activityStoryDictionary valueForKey:@"WebPreview"] != [NSNull null]) {
+                                            [self createUpdateWebPreviewObjectFromDictionary:[activityStoryDictionary valueForKey:@"WebPreview"] withStory:activityStory inContext:context];
                                         }
                                         
                                         //parse users(actors/authors) in this activity story
@@ -130,7 +131,7 @@
                                         
                                         if (i+1 == resultCount) {
                                             NSDate *lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
-                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount", nil];
+                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount",[NSNumber numberWithBool:listChanged], @"ListChanged", nil];
                                         }
                                     }
                                     [context MR_saveToPersistentStoreAndWait];
@@ -147,6 +148,35 @@
                                     failureBlock();
                                 }];
     
+}
+
++ (void)createUpdateWebPreviewObjectFromDictionary:(NSDictionary *)dictionary withStory:(ActivityStory *)story inContext:(NSManagedObjectContext *)context
+{
+    NSString *webPreviewLink = nil;
+    
+    if ([dictionary objectForKey:@"Link"] != [NSNull null]) {
+        webPreviewLink = [dictionary objectForKey:@"Link"];
+        
+        WebPreview *webPreview = [WebPreview MR_findFirstByAttribute:@"link" withValue:webPreviewLink inContext:context];
+        if (!story.webPreview) {
+            webPreview = [WebPreview MR_createInContext:context];
+        }
+        
+        webPreview.link = webPreviewLink;
+        if ([dictionary objectForKey:@"Title"] != [NSNull null]) {
+            webPreview.webPreviewTitle = [dictionary objectForKey:@"Title"];
+        }
+        if ([dictionary objectForKey:@"SiteName"] != [NSNull null]) {
+            webPreview.siteName = [dictionary objectForKey:@"SiteName"];
+        }
+        if ([dictionary objectForKey:@"Excerpt"] != [NSNull null]) {
+            webPreview.excerpt = [dictionary objectForKey:@"Excerpt"];
+        }
+        if ([dictionary objectForKey:@"ImageUrl"] != [NSNull null]) {
+            webPreview.imageUrl = [dictionary objectForKey:@"ImageUrl"];
+        }
+        story.webPreview = webPreview;
+    }
 }
 
 + (void)createUpdateUserFromDictionary:(NSDictionary *)dictionary withActivityStory:(ActivityStory *)activityStory inContext:(NSManagedObjectContext *)context

@@ -2,14 +2,14 @@
 //  ActivityStory.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/26/13.
+//  Created by Lukas Kekys on 7/30/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Comment, Like, Master, User;
+@class Comment, Like, Master, User, WebPreview;
 
 @interface ActivityStory : NSManagedObject
 
@@ -34,6 +34,7 @@
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
 @property (nonatomic, retain) User *postedToUser;
+@property (nonatomic, retain) WebPreview *webPreview;
 @end
 
 @interface ActivityStory (CoreDataGeneratedAccessors)
