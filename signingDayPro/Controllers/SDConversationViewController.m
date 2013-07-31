@@ -57,6 +57,9 @@
     
     NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
+    self.contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
+    [self.view addSubview:self.contentHeaderView];
+    
     self.contentHeaderView.textLabel.text = [sortedUsernames componentsJoinedByString:@", "];
     
     [self reload];

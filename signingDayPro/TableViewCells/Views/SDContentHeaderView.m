@@ -18,12 +18,6 @@
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
         
-        self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        self.textLabel.textAlignment = NSTextAlignmentCenter;
-        self.textLabel.textColor = [UIColor blackColor];
-        self.textLabel.font = [UIFont boldSystemFontOfSize:15];
-        self.textLabel.backgroundColor = [UIColor whiteColor];
-        
         [self addSubview:self.textLabel];
         
         UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 1, frame.size.width, 1)];
@@ -42,13 +36,23 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (UILabel *)textLabel
 {
-    // Drawing code
+    if (_textLabel)
+        return _textLabel;
+    
+    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+    _textLabel.textAlignment = NSTextAlignmentCenter;
+    _textLabel.textColor = [UIColor blackColor];
+    _textLabel.font = [UIFont boldSystemFontOfSize:15];
+    _textLabel.backgroundColor = [UIColor whiteColor];
+    
+    return _textLabel;
 }
-*/
+
+- (void)setTextLabel:(UILabel *)textLabel
+{
+    _textLabel = textLabel;
+}
 
 @end

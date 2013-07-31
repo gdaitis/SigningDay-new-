@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface SDContentHeaderView : UIView
+{
+    UILabel *_textLabel;
+}
 
-@property (nonatomic, strong) UILabel *textLabel;
+- (UILabel *)textLabel;
+- (void)setTextLabel:(UILabel *)textLabel;
 
 @end

@@ -25,6 +25,7 @@
     self.userImageView.clipsToBounds = YES;
 }
 
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];

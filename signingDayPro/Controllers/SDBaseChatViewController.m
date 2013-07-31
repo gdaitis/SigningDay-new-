@@ -82,9 +82,6 @@
     self.sendButton.frame = CGRectMake(250, 10, self.sendButton.frame.size.width, self.sendButton.frame.size.height);
     [self resetSendButton]; // disable initially
     [self.chatBar addSubview:self.sendButton];
-    
-    self.contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
-    [self.view addSubview:self.contentHeaderView];
 }
 
 - (void)viewWillAppear:(BOOL)animated

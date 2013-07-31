@@ -14,8 +14,11 @@
 #import "User.h"
 #import "ActivityStory.h"
 #import "SDActivityFeedService.h"
+#import "SDCommentsHeaderView.h"
 
 @interface SDCommentsViewController ()
+
+@property (nonatomic, strong) SDCommentsHeaderView *contentHeaderView;
 
 @end
 
@@ -25,6 +28,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.contentHeaderView = [[SDCommentsHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
+    UIGestureRecognizer *gestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerClicked)];
+    [self.contentHeaderView addGestureRecognizer:gestureRecogniser];
+    self.contentHeaderView.likesCount = 45;
+    [self.view addSubview:self.contentHeaderView];
     
     [self reload];
 }
@@ -42,23 +51,28 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    // no [super viewWillAppear:animated] since it would scroll the view down - we don't need that
     
     [self checkServer];
 }
 
 - (void)checkServer
 {
-    [self beginRefreshing];
+    [self showProgressHudInView:self.tableView
+                       withText:@"Loading Comments"];
     [SDActivityFeedService getCommentsForActivityStory:self.activityStory
                                       withSuccessBlock:^{
-                                          [self endRefreshing];
                                           [self reload];
+                                          [self hideProgressHudInView:self.tableView];
                                       } failureBlock:^{
-                                          [self endRefreshing];
-                                          
+                                          [self hideProgressHudInView:self.tableView];
                                           NSLog(@"Error loading comments");
                                       }];
+}
+
+- (void)headerClicked
+{
+    NSLog(@"Header touched");
 }
 
 #pragma mark - UITableView data source and delegate methods
@@ -94,13 +108,6 @@
     
     cell.dateLabel.text = [dateFormatter stringFromDate:comment.updatedDate];
     
-    NSString *myUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    if ([comment.user.username isEqual:myUsername]) {
-        cell.backgroundView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1];
-    } else {
-        cell.backgroundView.backgroundColor = [UIColor whiteColor];
-    }
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:comment.user.avatarUrl]];
     [cell.userImageView setImageWithURLRequest:request
                               placeholderImage:nil
@@ -128,6 +135,7 @@
     if (height < 68) {
         height = 68;
     }
+    
     return height;
 }
 
