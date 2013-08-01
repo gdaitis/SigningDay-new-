@@ -78,7 +78,6 @@
 		801088F1179579DC002EF1EB /* MenuButtonClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 801088EF179579DC002EF1EB /* MenuButtonClose@2x.png */; };
 		801088F2179579DC002EF1EB /* MenuButtonDone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 801088F0179579DC002EF1EB /* MenuButtonDone@2x.png */; };
 		801088F717957A0E002EF1EB /* SDActivityFeedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F417957A0E002EF1EB /* SDActivityFeedHeaderView.m */; };
-		801088FB17957C36002EF1EB /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088FA17957C36002EF1EB /* SDSimplifiedCameraOverlayView.m */; };
 		8013F477174CF36100BA313B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8013F476174CF36100BA313B /* QuartzCore.framework */; };
 		8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */; };
 		8013F47E174CF96400BA313B /* SDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47D174CF96400BA313B /* SDBaseViewController.m */; };
@@ -322,9 +321,9 @@
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarFull@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE6179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarHalfFull@2x.png"; sourceTree = "<group>"; };
-		801088AE1795794A002EF1EB /* SDAddTagsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAddTagsCell.h; sourceTree = "<group>"; };
-		801088AF1795794A002EF1EB /* SDAddTagsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAddTagsCell.m; sourceTree = "<group>"; };
-		801088B01795794A002EF1EB /* SDAddTagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDAddTagsCell.xib; sourceTree = "<group>"; };
+		801088AE1795794A002EF1EB /* SDAddTagsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDAddTagsCell.h; path = ../Controllers/ActivityFeedControllers/SDAddTagsCell.h; sourceTree = "<group>"; };
+		801088AF1795794A002EF1EB /* SDAddTagsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDAddTagsCell.m; path = ../Controllers/ActivityFeedControllers/SDAddTagsCell.m; sourceTree = "<group>"; };
+		801088B01795794A002EF1EB /* SDAddTagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SDAddTagsCell.xib; path = ../Controllers/ActivityFeedControllers/SDAddTagsCell.xib; sourceTree = "<group>"; };
 		801088B11795794A002EF1EB /* SDAddTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAddTagsViewController.h; sourceTree = "<group>"; };
 		801088B21795794A002EF1EB /* SDAddTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAddTagsViewController.m; sourceTree = "<group>"; };
 		801088B31795794A002EF1EB /* SDCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDCameraOverlayView.h; path = ../../../Controllers/ActivityFeedControllers/SDCameraOverlayView.h; sourceTree = "<group>"; };
@@ -362,15 +361,13 @@
 		801088F0179579DC002EF1EB /* MenuButtonDone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButtonDone@2x.png"; sourceTree = "<group>"; };
 		801088F317957A0E002EF1EB /* SDActivityFeedHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedHeaderView.h; sourceTree = "<group>"; };
 		801088F417957A0E002EF1EB /* SDActivityFeedHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedHeaderView.m; sourceTree = "<group>"; };
-		801088F517957A0E002EF1EB /* SDSimplifiedCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSimplifiedCameraOverlayView.h; sourceTree = "<group>"; };
-		801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSimplifiedCameraOverlayView.m; sourceTree = "<group>"; };
-		801088F917957C36002EF1EB /* SDSimplifiedCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSimplifiedCameraOverlayView.h; sourceTree = "<group>"; };
-		801088FA17957C36002EF1EB /* SDSimplifiedCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSimplifiedCameraOverlayView.m; sourceTree = "<group>"; };
+		801088F517957A0E002EF1EB /* SDSimplifiedCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDSimplifiedCameraOverlayView.h; path = ../SDSimplifiedCameraOverlayView.h; sourceTree = "<group>"; };
+		801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDSimplifiedCameraOverlayView.m; path = ../SDSimplifiedCameraOverlayView.m; sourceTree = "<group>"; };
 		8013F476174CF36100BA313B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8013F479174CF6E800BA313B /* SDInitialSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInitialSlidingViewController.h; sourceTree = "<group>"; };
 		8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDInitialSlidingViewController.m; sourceTree = "<group>"; };
-		8013F47C174CF96400BA313B /* SDBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseViewController.h; sourceTree = "<group>"; };
-		8013F47D174CF96400BA313B /* SDBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseViewController.m; sourceTree = "<group>"; };
+		8013F47C174CF96400BA313B /* SDBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDBaseViewController.h; path = "../Custom Classes & Categories/SDBaseViewController.h"; sourceTree = "<group>"; };
+		8013F47D174CF96400BA313B /* SDBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDBaseViewController.m; path = "../Custom Classes & Categories/SDBaseViewController.m"; sourceTree = "<group>"; };
 		8013F47F174CF9B000BA313B /* SDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuViewController.h; sourceTree = "<group>"; };
 		8013F480174CF9B000BA313B /* SDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuViewController.m; sourceTree = "<group>"; };
 		80180D34178C272100C24398 /* SDNewConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNewConversationViewController.h; sourceTree = "<group>"; };
@@ -758,13 +755,51 @@
 			name = Messages;
 			sourceTree = "<group>";
 		};
+		7BBFBBDE17AA4ED300BF45A5 /* Custom classes */ = {
+			isa = PBXGroup;
+			children = (
+				80F3015E1753A01B00134FF4 /* UINavigationController */,
+				805CF348174E02E40046E6A5 /* UISearchBar */,
+				80236152174D1B4C00595432 /* UILabel */,
+				8032F0601755F98E00C92AAC /* Utils */,
+			);
+			name = "Custom classes";
+			sourceTree = "<group>";
+		};
+		7BBFBBDF17AA4F3D00BF45A5 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				805CF3F61754FF59004C69E5 /* SDTableView.h */,
+				805CF3F71754FF59004C69E5 /* SDTableView.m */,
+				80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */,
+				80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */,
+			);
+			name = TableViews;
+			sourceTree = "<group>";
+		};
+		7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */ = {
+			isa = PBXGroup;
+			children = (
+				801088F317957A0E002EF1EB /* SDActivityFeedHeaderView.h */,
+				801088F417957A0E002EF1EB /* SDActivityFeedHeaderView.m */,
+				80CE109B1779788A005D2281 /* SDActivityFeedButtonView.h */,
+				80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */,
+				80630D0F177B15B9002AA0BC /* SDActivityFeedCellContentView.h */,
+				80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */,
+				7BAF6ED917A93FC100F7C6B3 /* SDCommentsHeaderView.h */,
+				7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */,
+			);
+			name = ActivityFeed;
+			sourceTree = "<group>";
+		};
 		80236152174D1B4C00595432 /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
 				80236156174D1B6800595432 /* SDMenuLabel.h */,
 				80236157174D1B6800595432 /* SDMenuLabel.m */,
 			);
-			path = UILabel;
+			name = UILabel;
+			path = "Custom Classes & Categories/UILabel";
 			sourceTree = "<group>";
 		};
 		8032EFCE1755EEDE00C92AAC /* Services */ = {
@@ -948,7 +983,8 @@
 				8032F0611755F98E00C92AAC /* SDUtils.h */,
 				8032F0621755F98E00C92AAC /* SDUtils.m */,
 			);
-			path = Utils;
+			name = Utils;
+			path = "Custom Classes & Categories/Utils";
 			sourceTree = "<group>";
 		};
 		8032F0971755F9AF00C92AAC /* Data Models */ = {
@@ -1127,7 +1163,8 @@
 				8055990C174CEE620040631D /* Controllers */,
 				805CF34F174E07DA0046E6A5 /* TableViewCells */,
 				809E7284175735FE004840D3 /* Views */,
-				80559904174CEDDE0040631D /* Custom Classes & Categories */,
+				7BBFBBDE17AA4ED300BF45A5 /* Custom classes */,
+				80559904174CEDDE0040631D /* 3rd party classes */,
 				805598C8174CE8200040631D /* Supporting Files */,
 			);
 			path = signingDayPro;
@@ -1153,7 +1190,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		80559904174CEDDE0040631D /* Custom Classes & Categories */ = {
+		80559904174CEDDE0040631D /* 3rd party classes */ = {
 			isa = PBXGroup;
 			children = (
 				7B3031AA177ADB2C006EF25B /* HTMLParser */,
@@ -1171,14 +1208,9 @@
 				8032F05A1755F98E00C92AAC /* UIImage+fixOrientation */,
 				8032F05D1755F98E00C92AAC /* UIPlaceHolderTextView */,
 				80CCAE6D179411AF0015429A /* UIView+NibLoading */,
-				8032F0601755F98E00C92AAC /* Utils */,
-				80F3015E1753A01B00134FF4 /* UINavigationController */,
-				805CF348174E02E40046E6A5 /* UISearchBar */,
-				80236152174D1B4C00595432 /* UILabel */,
 				805CF3CD1754CAB9004C69E5 /* ViewDeck */,
-				8013F47C174CF96400BA313B /* SDBaseViewController.h */,
-				8013F47D174CF96400BA313B /* SDBaseViewController.m */,
 			);
+			name = "3rd party classes";
 			path = "Custom Classes & Categories";
 			sourceTree = "<group>";
 		};
@@ -1193,6 +1225,8 @@
 				80EEF5DE175614D900A7C803 /* UserProfileViewControllers */,
 				805CF3ED1754EAFD004C69E5 /* SettingsViewControllers */,
 				805F686E178EFBF100ED186B /* WebViewControllers */,
+				8013F47C174CF96400BA313B /* SDBaseViewController.h */,
+				8013F47D174CF96400BA313B /* SDBaseViewController.m */,
 				8013F47F174CF9B000BA313B /* SDMenuViewController.h */,
 				8013F480174CF9B000BA313B /* SDMenuViewController.m */,
 				8013F479174CF6E800BA313B /* SDInitialSlidingViewController.h */,
@@ -1209,12 +1243,16 @@
 				805CF34C174E03040046E6A5 /* SDSearchBar.h */,
 				805CF34D174E03040046E6A5 /* SDSearchBar.m */,
 			);
-			path = UISearchBar;
+			name = UISearchBar;
+			path = "Custom Classes & Categories/UISearchBar";
 			sourceTree = "<group>";
 		};
 		805CF34F174E07DA0046E6A5 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				801088AE1795794A002EF1EB /* SDAddTagsCell.h */,
+				801088AF1795794A002EF1EB /* SDAddTagsCell.m */,
+				801088B01795794A002EF1EB /* SDAddTagsCell.xib */,
 				7BAF6ED617A93FB000F7C6B3 /* SDCommentCell.h */,
 				7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */,
 				809E729F175779FB004840D3 /* SDConversationCell.h */,
@@ -1280,9 +1318,6 @@
 				805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */,
 				80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */,
 				80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */,
-				801088AE1795794A002EF1EB /* SDAddTagsCell.h */,
-				801088AF1795794A002EF1EB /* SDAddTagsCell.m */,
-				801088B01795794A002EF1EB /* SDAddTagsCell.xib */,
 				801088B11795794A002EF1EB /* SDAddTagsViewController.h */,
 				801088B21795794A002EF1EB /* SDAddTagsViewController.m */,
 				801088B51795794A002EF1EB /* SDEnterMediaInfoViewController.h */,
@@ -1310,10 +1345,10 @@
 		808CEA98178E937A0098AD5D /* CameraViews */ = {
 			isa = PBXGroup;
 			children = (
+				801088F517957A0E002EF1EB /* SDSimplifiedCameraOverlayView.h */,
+				801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */,
 				801088B31795794A002EF1EB /* SDCameraOverlayView.h */,
 				801088B41795794A002EF1EB /* SDCameraOverlayView.m */,
-				801088F917957C36002EF1EB /* SDSimplifiedCameraOverlayView.h */,
-				801088FA17957C36002EF1EB /* SDSimplifiedCameraOverlayView.m */,
 			);
 			path = CameraViews;
 			sourceTree = "<group>";
@@ -1344,24 +1379,12 @@
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */,
+				7BBFBBDF17AA4F3D00BF45A5 /* TableViews */,
 				80CCAE601793E66B0015429A /* UsersProfileViews */,
 				808CEA98178E937A0098AD5D /* CameraViews */,
 				7B6B1EC11760C86900BC878A /* SDContentHeaderView.h */,
 				7B6B1EC21760C86900BC878A /* SDContentHeaderView.m */,
-				801088F317957A0E002EF1EB /* SDActivityFeedHeaderView.h */,
-				801088F417957A0E002EF1EB /* SDActivityFeedHeaderView.m */,
-				801088F517957A0E002EF1EB /* SDSimplifiedCameraOverlayView.h */,
-				801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */,
-				80CE109B1779788A005D2281 /* SDActivityFeedButtonView.h */,
-				80CE109C1779788A005D2281 /* SDActivityFeedButtonView.m */,
-				805CF3F61754FF59004C69E5 /* SDTableView.h */,
-				805CF3F71754FF59004C69E5 /* SDTableView.m */,
-				80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */,
-				80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */,
-				80630D0F177B15B9002AA0BC /* SDActivityFeedCellContentView.h */,
-				80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */,
-				7BAF6ED917A93FC100F7C6B3 /* SDCommentsHeaderView.h */,
-				7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */,
 			);
 			name = Views;
 			path = TableViewCells/Views;
@@ -1525,7 +1548,8 @@
 				80F301611753A05900134FF4 /* SDNavigationController.h */,
 				80F301621753A05900134FF4 /* SDNavigationController.m */,
 			);
-			path = UINavigationController;
+			name = UINavigationController;
+			path = "Custom Classes & Categories/UINavigationController";
 			sourceTree = "<group>";
 		};
 		80F301641753A85E00134FF4 /* TopToolbar */ = {
@@ -1805,7 +1829,6 @@
 				801088C11795794A002EF1EB /* SDPublishVideoTableViewController.m in Sources */,
 				801088C41795798A002EF1EB /* SDModalNavigationController.m in Sources */,
 				801088F717957A0E002EF1EB /* SDActivityFeedHeaderView.m in Sources */,
-				801088FB17957C36002EF1EB /* SDSimplifiedCameraOverlayView.m in Sources */,
 				80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */,
 				80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */,
 				8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */,
