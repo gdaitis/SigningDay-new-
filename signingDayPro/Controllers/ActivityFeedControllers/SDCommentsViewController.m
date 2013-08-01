@@ -15,6 +15,7 @@
 #import "ActivityStory.h"
 #import "SDActivityFeedService.h"
 #import "SDCommentsHeaderView.h"
+#import "SDLikesViewController.h"
 
 @interface SDCommentsViewController ()
 
@@ -72,7 +73,12 @@
 
 - (void)headerClicked
 {
-    NSLog(@"Header touched");
+    UIStoryboard *commentsStoryboard = [UIStoryboard storyboardWithName:@"CommentsViewStoryboard"
+                                                                 bundle:nil];
+    SDLikesViewController *likesViewController = [commentsStoryboard instantiateViewControllerWithIdentifier:@"LikesViewController"];
+    likesViewController.activityStory = self.activityStory;
+    [self.navigationController pushViewController:likesViewController
+                                         animated:YES];
 }
 
 #pragma mark - UITableView data source and delegate methods

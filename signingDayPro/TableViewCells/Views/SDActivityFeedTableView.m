@@ -12,6 +12,8 @@
 #import "SDActivityFeedCell.h"
 #import "ActivityStory.h"
 #import "User.h"
+#import "AFNetworking.h"
+#import "SDActivityFeedCellContentView.h"
 
 @interface SDActivityFeedTableView ()
 
@@ -145,8 +147,26 @@
             }
         }
         
+        [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+        
         ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-        [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
+
+        [cell.thumbnailImageView cancelImageRequestOperation];
+        cell.likeButton.tag = indexPath.row;
+        cell.commentButton.tag = indexPath.row;
+        
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likesCount intValue]];
+        cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.commentCount intValue]];
+        [cell.resizableActivityFeedView setActivityStory:activityStory];
+        
+        if ([activityStory.author.avatarUrl length] > 0) {
+            [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
+        }
+        
+        cell.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
+        [cell setupNameLabelForActivityStory:activityStory];
         
         return cell;
     }
@@ -191,7 +211,7 @@
     }
 }
 
-#pragma mark - TableView delegate
+#pragma mark - 
 
 - (void)loadData
 {
@@ -199,14 +219,17 @@
     [self reloadTable];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+#pragma mark - like/comment button pressed
+
+- (void)likeButtonPressed:(UIButton *)sender
 {
-    // Drawing code
+    NSLog(@"TAG: %i", sender.tag);
 }
-*/
+
+- (void)commentButtonPressed:(UIButton *)sender
+{
+    NSLog(@"TAG: %i", sender.tag);
+}
 
 
 
