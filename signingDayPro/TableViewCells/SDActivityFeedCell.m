@@ -57,9 +57,6 @@
     
     self.thumbnailImageView.layer.cornerRadius = 4.0f;
     self.thumbnailImageView.clipsToBounds = YES;
-    
-    [self.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -141,7 +138,7 @@
         
         //apend name to the result
         [authorName appendAttributedString:secondUserName];
-                                                                                                
+        
     }
     else {
         //simple post
@@ -160,19 +157,6 @@
         }
     }
     self.nameLabel.attributedText = authorName;
-}
-
-
-#pragma mark - like/comment button pressed
-
-- (void)likeButtonPressed:(UIButton *)sender
-{
-    
-}
-
-- (void)commentButtonPressed:(UIButton *)sender
-{
-    
 }
 
 @end

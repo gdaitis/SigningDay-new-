@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="g9o-fd-bLW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Likes View Controller-->
+        <scene sceneID="4xk-FI-z2r">
+            <objects>
+                <viewController storyboardIdentifier="LikesViewController" id="yAz-nr-duZ" customClass="SDLikesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2PE-uc-UNS">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="s2I-0s-8P9" customClass="SDTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yAz-nr-duZ" id="OTZ-Hl-pXJ"/>
+                                    <outlet property="delegate" destination="yAz-nr-duZ" id="LfR-VW-BUa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bei-qK-0Xq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="464" y="374"/>
+        </scene>
         <!--Comments View Controller-->
         <scene sceneID="wW0-Kb-h6w">
             <objects>
@@ -160,6 +185,9 @@
         </class>
         <class className="SDCommentsViewController" superclassName="SDBaseChatViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDCommentsViewController.h"/>
+        </class>
+        <class className="SDLikesViewController" superclassName="SDBaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDLikesViewController.h"/>
         </class>
         <class className="SDTableView" superclassName="UITableView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDTableView.h"/>

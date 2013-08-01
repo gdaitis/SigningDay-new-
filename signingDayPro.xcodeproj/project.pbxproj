@@ -36,6 +36,7 @@
 		7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */; };
 		7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
+		7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
 		7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */; };
 		7BDDAB91179FC457003F6AD7 /* HighSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */; };
@@ -1747,6 +1748,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */,
 				7B3031C9177AFB12006EF25B /* HTMLNode.m in Sources */,
 				7B3031CA177AFB12006EF25B /* HTMLParser.m in Sources */,
 				7B73651D175F7ADE007A338E /* SDMessageCell.m in Sources */,

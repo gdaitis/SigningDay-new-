@@ -31,5 +31,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentCountLabel;
 
 - (void)setupCellWithActivityStory:(ActivityStory *)activityStory atIndexPath:(NSIndexPath *)indexPath;
+- (void)setupNameLabelForActivityStory:(ActivityStory *)activityStory;
 
 @end
