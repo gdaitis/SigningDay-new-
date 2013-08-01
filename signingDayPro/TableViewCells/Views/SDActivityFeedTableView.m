@@ -57,13 +57,11 @@
 
 - (void)checkServer
 {
-    [SDActivityFeedService getActivityStoriesForUser:nil withDate:self.lastActivityStoryDate withSuccessBlock:^(NSDictionary *results){
+    [SDActivityFeedService getActivityStoriesForUser:self.user withDate:self.lastActivityStoryDate shouldDeleteOld:YES withSuccessBlock:^(NSDictionary *results){
         
-        int resultCount = [[results objectForKey:@"ResultCount"] intValue];
-        self.activityStoryCount += resultCount;
         self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
         
-        if (resultCount == 0) {
+        if ([[results objectForKey:@"ResultCount"] intValue] == 0) {
             self.endReached = YES;
         }
         [self loadData];
@@ -75,14 +73,10 @@
 
 - (void)checkNewStories
 {
-    [SDActivityFeedService getActivityStoriesForUser:nil withDate:nil withSuccessBlock:^(NSDictionary *results){
+    [SDActivityFeedService getActivityStoriesForUser:self.user withDate:nil shouldDeleteOld:NO withSuccessBlock:^(NSDictionary *results){
         
         BOOL listChanged = [[results valueForKey:@"ListChanged"] boolValue];
         if (listChanged) {
-            
-            self.activityStoryCount = [[results objectForKey:@"ResultCount"] intValue];
-            self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
-            self.endReached = NO;
             [self loadData];
             [self.tableDelegate shouldEndRefreshing];
         }
@@ -152,7 +146,7 @@
     }
     else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleWhite;
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
         
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
         activityView.center = cell.center;
@@ -195,7 +189,14 @@
 
 - (void)loadData
 {
-    self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    if (self.user) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", self.user];
+        self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    }
+    else {
+        self.dataArray = [ActivityStory MR_findAllSortedBy:@"createdDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    }
+
     [self reloadTable];
 }
 

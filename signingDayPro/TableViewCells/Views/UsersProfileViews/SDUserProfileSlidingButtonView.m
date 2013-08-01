@@ -8,8 +8,11 @@
 
 #import "SDUserProfileSlidingButtonView.h"
 #import "UIView+NibLoading.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDUserProfileSlidingButtonView ()
+
+@property (nonatomic, weak) CAGradientLayer *shadowLayer;
 
 @property (nonatomic, weak) IBOutlet UILabel *followersTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *followingTitleLabel;
@@ -55,6 +58,29 @@
 - (void)layoutSubviews
 {
     [self setupView];
+    
+    UIView *lineView = [self.bottomView viewWithTag:999];
+    if (lineView) {
+        [lineView removeFromSuperview];
+    }
+    
+    UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bottomView.frame.size.width, 1)];
+    bottomLineView.backgroundColor = [UIColor lightGrayColor];
+    bottomLineView.tag = 999;
+    [self.bottomView addSubview:bottomLineView];
+    
+    CGColorRef darkColor = [[UIColor blackColor] colorWithAlphaComponent:.10f].CGColor;
+    CGColorRef lightColor = [UIColor clearColor].CGColor;
+    
+    
+    if (!self.shadowLayer) {
+        CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
+        newShadow.frame = CGRectMake(0, 1, self.bottomView.frame.size.width, 4);
+        newShadow.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
+        self.shadowLayer = newShadow;
+        [self.bottomView.layer addSublayer:self.shadowLayer];
+    }
+    
     [super layoutSubviews];
     _scrollView.contentSize = CGSizeMake(375, 10);
 }

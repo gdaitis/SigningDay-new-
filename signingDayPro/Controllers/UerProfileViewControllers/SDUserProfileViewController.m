@@ -54,7 +54,11 @@
         _isMasterProfile = YES;
     }
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
+    UIColor *backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
+    self.tableView.backgroundColor = backgroundColor;
+    self.view.backgroundColor = backgroundColor;
+    
+    self.tableView.user = self.currentUser;
 }
 
 - (void)viewDidAppear:(BOOL)animated

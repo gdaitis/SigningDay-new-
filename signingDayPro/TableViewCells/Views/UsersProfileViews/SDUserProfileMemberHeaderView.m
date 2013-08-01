@@ -50,6 +50,8 @@
     _memberSinceLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
     _postsLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
     _uploadsLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    
+//    self.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
 }
 
 - (void)setupInfoWithUser:(User *)user
