@@ -100,11 +100,17 @@
     [self.tableView checkNewStories];
 }
 
-#pragma mark - refreshing
+#pragma mark - SDActivityFeedTableView delegate methods
 
-- (void)shouldEndRefreshing
+- (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView
 {
     [self endRefreshing];
+}
+
+- (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView
+    wantsNavigateToController:(UIViewController *)viewController
+{
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - SDActivityFeedHeaderViewDelegate methods

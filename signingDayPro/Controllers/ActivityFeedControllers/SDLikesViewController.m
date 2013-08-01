@@ -13,6 +13,8 @@
 #import "Master.h"
 #import "SDFollowingService.h"
 #import "ActivityStory.h"
+#import "SDActivityFeedService.h"
+#import "Like.h"
 
 @interface SDLikesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -25,19 +27,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height)
+                                                  style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.refreshControl = nil;
+    
+    [self reload];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self loadInfo];
+    [self checkServer];
 }
 
-- (void)loadInfo
+- (void)checkServer
 {
-    // load from core data
-    // check server
+    [self showProgressHudInView:self.tableView
+                       withText:@"Updating list"];
+
+    [SDActivityFeedService getLikesForActivityStory:self.activityStory
+                                   withSuccessBlock:^{
+                                       [self reload];
+                                       [self hideProgressHudInView:self.tableView];
+                                   } failureBlock:^{
+                                       [self hideProgressHudInView:self.tableView];
+                                       NSLog(@"Error loading likes");
+                                   }];
+}
+
+- (void)reload
+{
+    NSArray *unsortedComments = [self.activityStory.likes allObjects];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate"
+                                                                     ascending:YES];
+    self.dataArray = [unsortedComments sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -67,7 +97,8 @@
     
     cell.followButton.tag = indexPath.row;
     
-    User *user = [self.dataArray objectAtIndex:indexPath.row];
+    Like *like = [self.dataArray objectAtIndex:indexPath.row];
+    User *user = like.user;
     cell.usernameTitle.text = user.name;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
@@ -111,7 +142,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    User *user = [self.dataArray objectAtIndex:indexPath.row];
+    Like *like = [self.dataArray objectAtIndex:indexPath.row];
+    User *user = like.user;
     NSLog(@"user id = %d",[user.identifier intValue]);
 }
 
@@ -119,15 +151,16 @@
 
 - (void)followButtonPressed:(UIButton *)sender
 {
-    [self showProgressHudInView:self.tableView withText:@"Updating following list"];
+    [self showProgressHudInView:self.tableView withText:@"Updating list"];
     
-    User *user = [self.dataArray objectAtIndex:sender.tag];
+    Like *like = [self.dataArray objectAtIndex:sender.tag];
+    User *user = like.user;
     
     if (!sender.selected) {
         //following action
         [SDFollowingService followUserWithIdentifier:user.identifier withCompletionBlock:^{
-            [self hideProgressHudInView:self.tableView];
-            [self loadInfo];
+            //[self hideProgressHudInView:self.tableView];
+            [self checkServer];
         } failureBlock:^{
             [self hideProgressHudInView:self.tableView];
         }];
@@ -135,8 +168,8 @@
     else {
         //unfollowing action
         [SDFollowingService unfollowUserWithIdentifier:user.identifier withCompletionBlock:^{
-            [self hideProgressHudInView:self.tableView];
-            [self loadInfo];
+            //[self hideProgressHudInView:self.tableView];
+            [self checkServer];
         } failureBlock:^{
             [self hideProgressHudInView:self.tableView];
         }];

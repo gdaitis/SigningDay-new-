@@ -37,6 +37,9 @@
 + (void)getCommentsForActivityStory:(ActivityStory *)activityStory
                    withSuccessBlock:(void (^)(void))successBlock
                        failureBlock:(void (^)(void))failureBlock;
++ (void)getLikesForActivityStory:(ActivityStory *)activityStory
+                withSuccessBlock:(void (^)(void))successBlock
+                    failureBlock:(void (^)(void))failureBlock;
 
 //delete all stories
 + (void)deleteAllActivityStories;

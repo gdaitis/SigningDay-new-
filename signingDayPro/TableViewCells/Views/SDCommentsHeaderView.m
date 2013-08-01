@@ -15,13 +15,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CommentsHeaderRightArrow.png"]];
+        self.arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CommentsHeaderRightArrow.png"]];
         UIImageView *likeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CommentsHeaderLike.png"]];
         
-        arrowImageView.frame = CGRectMake(303, 12, arrowImageView.frame.size.width, arrowImageView.frame.size.height);
+        self.arrowImageView.frame = CGRectMake(303, 12, self.arrowImageView.frame.size.width, self.arrowImageView.frame.size.height);
         likeImageView.frame = CGRectMake(10, 12, likeImageView.frame.size.width, likeImageView.frame.size.height);
         
-        [self addSubview:arrowImageView];
+        [self addSubview:self.arrowImageView];
         [self addSubview:likeImageView];
     }
     return self;

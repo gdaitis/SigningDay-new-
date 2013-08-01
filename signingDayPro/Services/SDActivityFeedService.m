@@ -369,7 +369,7 @@ typedef enum {
                        failureBlock:(void (^)(void))failureBlock
 {
     [[SDAPIClient sharedClient] getPath:@"comments.json"
-                             parameters:@{@"ContentId":/*activityStory.contentId*/@"7a8c6ec0-02be-4f35-a2ba-fb4430534646"}
+                             parameters:@{@"ContentId":activityStory.contentId}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSArray *commentsArray = [JSON valueForKey:@"Comments"];
                                     for (NSDictionary *commentDictionary in commentsArray) {
@@ -380,6 +380,23 @@ typedef enum {
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Comments parse failed");
                                     
+                                    failureBlock();
+                                }];
+}
+
++ (void)getLikesForActivityStory:(ActivityStory *)activityStory
+                withSuccessBlock:(void (^)(void))successBlock
+                    failureBlock:(void (^)(void))failureBlock
+{
+    [[SDAPIClient sharedClient] getPath:@"likes.json"
+                             parameters:@{@"ContentId": activityStory.contentId}
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    NSArray *likesArray = [JSON valueForKey:@"Likes"];
+                                    for (NSDictionary *likeDictionary in likesArray) {
+                                        [self createLikeFromDictionary:likeDictionary];
+                                    }
+                                    successBlock();
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     failureBlock();
                                 }];
 }
