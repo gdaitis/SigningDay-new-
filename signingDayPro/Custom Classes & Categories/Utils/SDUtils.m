@@ -9,6 +9,8 @@
 #import "SDUtils.h"
 #import "ActivityStory.h"
 #import "User.h"
+#import "WebPreview.h"
+#import "SDActivityFeedService.h"
 
 @interface SDUtils()
 
@@ -53,12 +55,31 @@
     int result = 0;
     
     NSMutableString *contentText = [[NSMutableString alloc] init];
-    if ([activityStory.activityTitle length] > 0) {
-        [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+    if (activityStory.webPreview) {
+        
+        if ([activityStory.webPreview.link length] > 0) {
+            [contentText appendFormat:@"%@\n\n",activityStory.webPreview.link];
+        }
+        if ([activityStory.webPreview.siteName length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.siteName];
+        }
+        if ([activityStory.webPreview.webPreviewTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.webPreviewTitle];
+        }
+        if ([activityStory.webPreview.excerpt length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.excerpt];
+        }
     }
-    if ([activityStory.activityDescription length] > 0) {
-        [contentText appendString:activityStory.activityDescription];
+    else {
+        if ([activityStory.activityTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+        }
+        if ([activityStory.activityDescription length] > 0) {
+            [contentText appendString:activityStory.activityDescription];
+        }
     }
+    
+    
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(278, CGFLOAT_MAX)
                               lineBreakMode:NSLineBreakByWordWrapping];
@@ -244,22 +265,6 @@
     return (NSAttributedString *)attString;
 }
 
-//+ (NSAttributedString *)attributedWallpostStringWithText:(NSString *)firstText firstColor:(UIColor *)firstColor andSecondText:(NSString *)secondText andSecondColor:(UIColor *)secondColor andFirstFont:(UIFont *)firstFont andSecondFont:(UIFont *)secondFont
-//{
-//    NSString *str = [NSString stringWithFormat:@"%@ \u25B6 %@",firstText,secondText];
-//    
-//    NSMutableAttributedString *attString=[[NSMutableAttributedString alloc] initWithString:str];
-//    NSInteger firstLength = [firstText length];
-//    NSInteger secondLength = [secondText length];
-//    
-//    [attString addAttribute:NSFontAttributeName value:firstFont range:NSMakeRange(0, firstLength+1)];
-//    [attString addAttribute:NSFontAttributeName value:secondFont range:NSMakeRange(firstLength+3, secondLength)];
-//    [attString addAttribute:NSForegroundColorAttributeName value:firstColor range:NSMakeRange(0, firstLength+1 )];
-//    [attString addAttribute:NSForegroundColorAttributeName value:secondColor range:NSMakeRange(firstLength+3, secondLength)];
-//    
-//    return (NSAttributedString *)attString;
-//}
-
 + (NSAttributedString *)attributedStringWithText:(NSString *)text andColor:(UIColor *)color andFont:(UIFont *)font
 {
     NSMutableAttributedString *attString=[[NSMutableAttributedString alloc] initWithString:text];
@@ -277,7 +282,7 @@
     if (userTypeId > 0) {
         
         NSMutableString *result = [[NSMutableString alloc] initWithString:@"-"];
-        if (userTypeId == 1) {
+        if (userTypeId == SDUserTypePlayer) {
             if (user.position) {
                 [result appendFormat:@" %@",user.position];
             }
@@ -288,7 +293,7 @@
                 [result appendFormat:@" %@",user.userClass];
             }
         }
-        else if (userTypeId == 2) {
+        else if (userTypeId == SDUserTypeTeam) {
             if (user.cityName) {
                 [result appendFormat:@" %@",user.cityName];
             }
@@ -299,12 +304,16 @@
                 [result appendFormat:@" %@",user.stateCode];
             }
         }
-        else if (userTypeId == 3) {
+        else if (userTypeId == SDUserTypeCoach) {
             if (user.institution) {
                 [result appendFormat:@" %@",user.institution];
             }
         }
+        else if (userTypeId == SDUserTypeMember) {
+            
+        }
         else {
+            //SDUserTypeHighSchool
             if (user.cityName) {
                 [result appendFormat:@" %@",user.cityName];
             }

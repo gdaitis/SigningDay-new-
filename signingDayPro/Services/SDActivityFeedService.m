@@ -17,14 +17,6 @@
 #import "SDUtils.h"
 #import "SDErrorService.h"
 
-typedef enum {
-    SDUserTypePlayer = 1,
-    SDUserTypeTeam = 2,
-    SDUserTypeCoach = 3,
-    SDUserTypeHighSchool = 4,
-    SDUserTypeMember = 5
-} SDUserType;
-
 @interface SDActivityFeedService ()
 
 + (void)createCommentFromDictionary:(NSDictionary *)commentDictionary;
@@ -38,6 +30,7 @@ typedef enum {
 
 + (void)getActivityStoriesForUser:(User *)user
                          withDate:(NSDate *)date
+                  shouldDeleteOld:(BOOL)deleteOld
                  withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock
 {
@@ -71,7 +64,7 @@ typedef enum {
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     
                                     //no date provided that means we are downloading first page, old stories should be deleted
-                                    if (!date) {
+                                    if (!date && deleteOld) {
                                         [self markAllStoriesForDeletion];
                                     }
                                     
@@ -146,7 +139,7 @@ typedef enum {
                                     [context MR_saveToPersistentStoreAndWait];
                                     
                                     //returns only after deleting
-                                    if (!date) {
+                                    if (!date && deleteOld) {
                                         [self deleteAllMarkedStories];
                                     }
                                     if (successBlock) {
@@ -218,7 +211,6 @@ typedef enum {
     
     if (userTypeId == SDUserTypePlayer) {
         //user type: Player
-        user.userType = @"Player";
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
@@ -232,7 +224,6 @@ typedef enum {
     }
     else if (userTypeId == SDUserTypeTeam) {
         //user type: TEAM
-        user.userType = @"Team";
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
@@ -246,7 +237,6 @@ typedef enum {
     }
     else if (userTypeId == SDUserTypeCoach) {
         //user type: Coach
-        user.userType = @"Coach";
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
@@ -258,7 +248,6 @@ typedef enum {
     else if (userTypeId == SDUserTypeHighSchool) {
  
         //user type: HighSchool
-        user.userType = @"HighSchool";
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
@@ -269,12 +258,6 @@ typedef enum {
                 user.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
-    }
-    else if (userTypeId == SDUserTypeMember){
-        //user type: Member
-        user.userType = @"Member";
-        
-        //member doesn't have attributes so nothing to do here
     }
 }
 

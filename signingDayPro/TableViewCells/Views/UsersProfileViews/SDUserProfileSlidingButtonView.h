@@ -14,6 +14,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *followingCountLabel;
 @property (nonatomic, weak) IBOutlet UIButton *followButton;
 
+@property (nonatomic, weak) IBOutlet UIView *backgroundView;
+@property (nonatomic, weak) IBOutlet UIView *bottomView;
+
 
 //sliding menu buttons
 @property (nonatomic, weak) IBOutlet UIButton *changingButton;   //this button changes depending on profile type
