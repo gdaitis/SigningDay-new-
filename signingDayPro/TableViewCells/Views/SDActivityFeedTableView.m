@@ -14,6 +14,7 @@
 #import "User.h"
 #import "AFNetworking.h"
 #import "SDActivityFeedCellContentView.h"
+#import "SDCommentsViewController.h"
 
 @interface SDActivityFeedTableView ()
 
@@ -67,9 +68,9 @@
             self.endReached = YES;
         }
         [self loadData];
-        [self.tableDelegate shouldEndRefreshing];
+        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
     } failureBlock:^{
-        [self.tableDelegate shouldEndRefreshing];
+        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
     }];
 }
 
@@ -80,13 +81,13 @@
         BOOL listChanged = [[results valueForKey:@"ListChanged"] boolValue];
         if (listChanged) {
             [self loadData];
-            [self.tableDelegate shouldEndRefreshing];
+            [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
         }
         else {
-            [self.tableDelegate shouldEndRefreshing];
+            [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
         }
     } failureBlock:^{
-        [self.tableDelegate shouldEndRefreshing];
+        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
     }];
 }
 
@@ -224,12 +225,19 @@
 
 - (void)likeButtonPressed:(UIButton *)sender
 {
-    NSLog(@"TAG: %i", sender.tag);
+    
 }
 
 - (void)commentButtonPressed:(UIButton *)sender
 {
-    NSLog(@"TAG: %i", sender.tag);
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:sender.tag];
+    UIStoryboard *commentsViewStoryboard = [UIStoryboard storyboardWithName:@"CommentsViewStoryboard"
+                                                                     bundle:nil];
+    SDCommentsViewController *commentsViewController = [commentsViewStoryboard instantiateViewControllerWithIdentifier:@"CommentsViewController"];
+    commentsViewController.activityStory = activityStory;
+    
+    [self.tableDelegate activityFeedTableView:self
+                    wantsNavigateToController:commentsViewController];
 }
 
 

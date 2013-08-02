@@ -11,5 +11,6 @@
 @interface SDCommentsHeaderView : SDContentHeaderView
 
 @property (nonatomic) NSInteger likesCount;
+@property (nonatomic, strong) UIImageView *arrowImageView;
 
 @end

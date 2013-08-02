@@ -31,9 +31,16 @@
 	// Do any additional setup after loading the view.
     
     self.contentHeaderView = [[SDCommentsHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
-    UIGestureRecognizer *gestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerClicked)];
-    [self.contentHeaderView addGestureRecognizer:gestureRecogniser];
-    self.contentHeaderView.likesCount = 45;
+    
+    int likesCount = [self.activityStory.likesCount intValue];
+    self.contentHeaderView.likesCount = likesCount;
+    if (likesCount != 0) {
+        UIGestureRecognizer *gestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerClicked)];
+        [self.contentHeaderView addGestureRecognizer:gestureRecogniser];
+    } else {
+        self.contentHeaderView.arrowImageView.hidden = YES;
+    }
+    
     [self.view addSubview:self.contentHeaderView];
     
     [self reload];
@@ -73,9 +80,7 @@
 
 - (void)headerClicked
 {
-    UIStoryboard *commentsStoryboard = [UIStoryboard storyboardWithName:@"CommentsViewStoryboard"
-                                                                 bundle:nil];
-    SDLikesViewController *likesViewController = [commentsStoryboard instantiateViewControllerWithIdentifier:@"LikesViewController"];
+    SDLikesViewController *likesViewController = [[SDLikesViewController alloc] init];
     likesViewController.activityStory = self.activityStory;
     [self.navigationController pushViewController:likesViewController
                                          animated:YES];

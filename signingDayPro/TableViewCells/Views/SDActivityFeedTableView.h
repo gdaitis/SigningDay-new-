@@ -13,7 +13,11 @@
 
 @protocol SDActivityFeedTableViewDelegate
 
-- (void)shouldEndRefreshing;
+- (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView;
+
+@optional
+
+- (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView wantsNavigateToController:(UIViewController *)viewController;
 
 @end
 
