@@ -9,6 +9,7 @@
 #import "SDUtils.h"
 #import "ActivityStory.h"
 #import "User.h"
+#import "WebPreview.h"
 #import "SDActivityFeedService.h"
 
 @interface SDUtils()
@@ -54,12 +55,31 @@
     int result = 0;
     
     NSMutableString *contentText = [[NSMutableString alloc] init];
-    if ([activityStory.activityTitle length] > 0) {
-        [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+    if (activityStory.webPreview) {
+        
+        if ([activityStory.webPreview.link length] > 0) {
+            [contentText appendFormat:@"%@\n\n",activityStory.webPreview.link];
+        }
+        if ([activityStory.webPreview.siteName length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.siteName];
+        }
+        if ([activityStory.webPreview.webPreviewTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.webPreviewTitle];
+        }
+        if ([activityStory.webPreview.excerpt length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.excerpt];
+        }
     }
-    if ([activityStory.activityDescription length] > 0) {
-        [contentText appendString:activityStory.activityDescription];
+    else {
+        if ([activityStory.activityTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+        }
+        if ([activityStory.activityDescription length] > 0) {
+            [contentText appendString:activityStory.activityDescription];
+        }
     }
+    
+    
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(278, CGFLOAT_MAX)
                               lineBreakMode:NSLineBreakByWordWrapping];

@@ -11,6 +11,7 @@
 #import "ActivityStory.h"
 #import "SDAPIClient.h"
 #import "AFNetworking.h"
+#import "WebPreview.h"
 
 @interface SDActivityFeedCellContentView ()
 
@@ -58,11 +59,29 @@
 - (void)recalculateSizeForActivityStory:(ActivityStory *)activityStory
 {
     NSMutableString *contentText = [[NSMutableString alloc] init];
-    if ([activityStory.activityTitle length] > 0) {
-        [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+    
+    if (activityStory.webPreview) {
+        
+        if ([activityStory.webPreview.link length] > 0) {
+            [contentText appendFormat:@"%@\n\n",activityStory.webPreview.link];
+        }
+        if ([activityStory.webPreview.siteName length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.siteName];
+        }
+        if ([activityStory.webPreview.webPreviewTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.webPreviewTitle];
+        }
+        if ([activityStory.webPreview.excerpt length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.excerpt];
+        }
     }
-    if ([activityStory.activityDescription length] > 0) {
-        [contentText appendString:activityStory.activityDescription];
+    else {
+        if ([activityStory.activityTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+        }
+        if ([activityStory.activityDescription length] > 0) {
+            [contentText appendString:activityStory.activityDescription];
+        }
     }
     
     CGSize size = [contentText sizeWithFont:_contentLabel.font
@@ -76,7 +95,7 @@
     
     [_imageView cancelImageRequestOperation];
     
-    if ([activityStory.thumbnailUrl length] > 0) {
+    if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0) {
         
         //calculate position for photo
         frame = _imageView.frame;
@@ -84,8 +103,53 @@
         _imageView.frame = frame;
         
         _imageView.hidden = NO;
-        NSString *fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.thumbnailUrl];
-        [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
+        
+#warning not optimized must not set background color and user normal images
+        _imageView.image = nil;
+        _imageView.backgroundColor = [UIColor clearColor];
+        UIView *playView = [_imageView viewWithTag:888];
+        if (playView) {
+            [playView removeFromSuperview];
+        }
+        
+        
+        
+        NSString *fullUrl = nil;
+        if ([activityStory.thumbnailUrl length] >0) {
+            
+            
+            if ([activityStory.thumbnailUrl rangeOfString:@"youtube"].location != NSNotFound) {
+                //yuotube link
+                fullUrl = [NSString stringWithFormat:@"http:%@",activityStory.thumbnailUrl];
+                
+#warning needs optimizations
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.imageView.bounds];
+                imageView.image = [UIImage imageNamed:@"playImage.png"];
+                imageView.contentMode = UIViewContentModeScaleAspectFill;
+                imageView.tag = 888;
+                [self.imageView addSubview:imageView];
+                NSLog(@"YOUTUBE url = %@",fullUrl);
+            }
+            else {
+                fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.thumbnailUrl];
+            }
+            [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
+        }
+        else {
+            fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.webPreview.imageUrl];
+            [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
+        }
+    }
+    else if ([activityStory.mediaType isEqualToString:@"videos"]) {
+        //no image for video
+        
+        frame = _imageView.frame;
+        frame.origin.y = _contentLabel.frame.size.height + _contentLabel.frame.origin.y +10/*offset betwen label and photo*/;
+        _imageView.frame = frame;
+        
+        _imageView.hidden = NO;
+        _imageView.backgroundColor = [UIColor blackColor];
+        _imageView.image = [UIImage imageNamed:@"playImage@2x.png"];
     }
     else {
         _imageView.hidden = YES;
