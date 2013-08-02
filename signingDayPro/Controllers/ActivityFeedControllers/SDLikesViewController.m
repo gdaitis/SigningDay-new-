@@ -90,12 +90,13 @@
                 break;
             }
         }
-        [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        /*[cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];*/
     } else {
         [cell.userImageView cancelImageRequestOperation];
     }
     
-    cell.followButton.tag = indexPath.row;
+    /*cell.followButton.tag = indexPath.row;*/
+    cell.followButton.hidden = YES; // following disabled
     
     Like *like = [self.dataArray objectAtIndex:indexPath.row];
     User *user = like.user;
@@ -111,7 +112,7 @@
                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                            //
                                        }];
-    
+    /*
     //check for following
     Master *master = [self getMaster];
     
@@ -121,6 +122,7 @@
     else {
         cell.followButton.selected = NO;
     }
+    */
     
     return cell;
 }
@@ -147,6 +149,7 @@
     NSLog(@"user id = %d",[user.identifier intValue]);
 }
 
+/*
 #pragma mark - Following actions
 
 - (void)followButtonPressed:(UIButton *)sender
@@ -175,5 +178,6 @@
         }];
     }
 }
+ */
 
 @end

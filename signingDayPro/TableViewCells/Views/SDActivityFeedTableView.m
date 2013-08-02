@@ -224,7 +224,13 @@
 
 - (void)likeButtonPressed:(UIButton *)sender
 {
-    
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:sender.tag];
+    [SDActivityFeedService likeActivityStory:activityStory
+                                successBlock:^{
+                                    [self checkServer];
+                                } failureBlock:^{
+                                    NSLog(@"Liking failed");
+                                }];
 }
 
 - (void)commentButtonPressed:(UIButton *)sender

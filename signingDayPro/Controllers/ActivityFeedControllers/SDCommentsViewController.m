@@ -66,12 +66,19 @@
 
 - (void)checkServer
 {
+    [self checkServerWithScrollingDownAfterLoading:NO];
+}
+
+- (void)checkServerWithScrollingDownAfterLoading:(BOOL)scrollDownAfterLoading
+{
     [self showProgressHudInView:self.tableView
                        withText:@"Loading Comments"];
     [SDActivityFeedService getCommentsForActivityStory:self.activityStory
                                       withSuccessBlock:^{
                                           [self reload];
                                           [self hideProgressHudInView:self.tableView];
+                                          if (scrollDownAfterLoading)
+                                              [self scrollToBottomAnimated:YES];
                                       } failureBlock:^{
                                           [self hideProgressHudInView:self.tableView];
                                           NSLog(@"Error loading comments");
@@ -84,6 +91,27 @@
     likesViewController.activityStory = self.activityStory;
     [self.navigationController pushViewController:likesViewController
                                          animated:YES];
+}
+
+- (void)send
+{
+    NSString *rightTrimmedMessage = [self.enterMessageTextView.text stringByTrimmingTrailingWhitespaceAndNewlineCharacters];
+    
+    if (rightTrimmedMessage.length == 0) {
+        [self clearChatInput];
+        return;
+    }
+    
+    [self clearChatInput];
+    
+    [SDActivityFeedService addCommentToActivityStory:self.activityStory
+                                                text:rightTrimmedMessage
+                                        successBlock:^{
+                                            [self checkServerWithScrollingDownAfterLoading:YES];
+                                            
+                                        } failureBlock:^{
+                                            NSLog(@"Commentig failed");
+                                        }];
 }
 
 #pragma mark - UITableView data source and delegate methods

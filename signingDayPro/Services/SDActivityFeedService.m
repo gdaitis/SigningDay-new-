@@ -15,6 +15,7 @@
 #import "Comment.h"
 #import "HTMLParser.h"
 #import "SDUtils.h"
+#import "SDErrorService.h"
 
 typedef enum {
     SDUserTypePlayer = 1,
@@ -304,6 +305,7 @@ typedef enum {
                                      [self createLikeFromDictionary:likeDictionary];
                                      successBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     [SDErrorService handleError:error withOperation:operation];
                                      failureBlock();
                                  }];
 }
