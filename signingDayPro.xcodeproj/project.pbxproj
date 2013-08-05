@@ -769,17 +769,6 @@
 			name = "Custom classes";
 			sourceTree = "<group>";
 		};
-		7BBFBBDF17AA4F3D00BF45A5 /* TableViews */ = {
-			isa = PBXGroup;
-			children = (
-				805CF3F61754FF59004C69E5 /* SDTableView.h */,
-				805CF3F71754FF59004C69E5 /* SDTableView.m */,
-				80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */,
-				80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */,
-			);
-			name = TableViews;
-			sourceTree = "<group>";
-		};
 		7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +780,8 @@
 				80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */,
 				7BAF6ED917A93FC100F7C6B3 /* SDCommentsHeaderView.h */,
 				7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */,
+				80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */,
+				80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */,
 			);
 			name = ActivityFeed;
 			sourceTree = "<group>";
@@ -1384,11 +1375,12 @@
 			isa = PBXGroup;
 			children = (
 				7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */,
-				7BBFBBDF17AA4F3D00BF45A5 /* TableViews */,
 				80CCAE601793E66B0015429A /* UsersProfileViews */,
 				808CEA98178E937A0098AD5D /* CameraViews */,
 				7B6B1EC11760C86900BC878A /* SDContentHeaderView.h */,
 				7B6B1EC21760C86900BC878A /* SDContentHeaderView.m */,
+				805CF3F61754FF59004C69E5 /* SDTableView.h */,
+				805CF3F71754FF59004C69E5 /* SDTableView.m */,
 			);
 			name = Views;
 			path = TableViewCells/Views;

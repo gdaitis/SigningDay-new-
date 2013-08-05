@@ -8,10 +8,12 @@
 
 #import "SDActivityFeedService.h"
 #import "SDAPIClient.h"
+#import "AFNetworking.h"
 #import "WebPreview.h"
 #import "ActivityStory.h"
 #import "User.h"
 #import "Like.h"
+#import "Master.h"
 #import "Comment.h"
 #import "HTMLParser.h"
 #import "SDUtils.h"
@@ -115,7 +117,7 @@
                                             activityStory.thumbnailUrl = [activityStoryDictionary valueForKey:@"ThumbnailUrl"];
                                         }
                                         if ([activityStoryDictionary valueForKey:@"MediaUrl"] != [NSNull null]) {
-                                            activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"MediaUrl"];
+                                            activityStory.mediaUrl = [activityStoryDictionary valueForKey:@"MediaUrl"];
                                         }
                                         
                                         //if has a webpreview then this story contains a link, parse and save this object
@@ -284,12 +286,12 @@
     [[SDAPIClient sharedClient] postPath:@"likes.json"
                               parameters:@{@"ContentId":activityStory.contentId, @"ContentTypeId":activityStory.contentTypeId}
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                     NSDictionary *likeDictionary = [JSON valueForKey:@"Like"];
-                                     [self createLikeFromDictionary:likeDictionary];
-                                     successBlock();
+                                     if (successBlock)
+                                         successBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [SDErrorService handleError:error withOperation:operation];
-                                     failureBlock();
+                                     if (failureBlock)
+                                         failureBlock();
                                  }];
 }
 
@@ -297,20 +299,22 @@
                successBlock:(void (^)(void))successBlock
                failureBlock:(void (^)(void))failureBlock
 {
-    [[SDAPIClient sharedClient] deletePath:@"like.json"
-                                parameters:@{@"ContentId":activityStory.contentId}
-                                   success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                       
-                                       NSManagedObjectContext *deletionContext = [NSManagedObjectContext MR_contextForCurrentThread];
-                                       [activityStory MR_deleteEntity];
-                                       [deletionContext MR_saveToPersistentStoreAndWait];
-                                       if (successBlock) {
-                                           successBlock();
-                                       }
-                                       
-                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                       failureBlock();
-                                   }];
+    NSMutableURLRequest *request = [[SDAPIClient sharedClient] requestWithMethod:@"POST"
+                                                                            path:@"like.json"
+                                                                      parameters:@{@"ContentId":activityStory.contentId}];
+    [request addValue:@"DELETE" forHTTPHeaderField:@"Rest-Method"];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id JSON) {
+        
+        if (successBlock) {
+            successBlock();
+        } 
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SDErrorService handleError:error withOperation:operation];
+        failureBlock();
+    }];
+    
+    [operation start];
 }
 
 + (void)addCommentToActivityStory:(ActivityStory *)activityStory
@@ -376,6 +380,10 @@
     [[SDAPIClient sharedClient] getPath:@"likes.json"
                              parameters:@{@"ContentId": activityStory.contentId}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
+                                    // Synchronization: deletion and re-creation
+                                    [self deleteAllLikesFromActivityStory:activityStory];
+                                    
                                     NSArray *likesArray = [JSON valueForKey:@"Likes"];
                                     for (NSDictionary *likeDictionary in likesArray) {
                                         [self createLikeFromDictionary:likeDictionary];
@@ -513,6 +521,19 @@
             [context deleteObject:story];
         }
     }
+    [context MR_saveToPersistentStoreAndWait];
+}
+
++ (void)deleteAllLikesFromActivityStory:(ActivityStory *)activityStory
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSArray *likesArray = [Like MR_findByAttribute:@"activityStory.identifier"
+                                         withValue:activityStory.identifier
+                                         inContext:context];
+    for (Like *like in likesArray) {
+        [context deleteObject:like];
+    }
+    
     [context MR_saveToPersistentStoreAndWait];
 }
 

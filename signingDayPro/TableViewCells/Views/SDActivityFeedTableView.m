@@ -153,6 +153,10 @@
         cell.commentButton.tag = indexPath.row;
         
         cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likesCount intValue]];
+        if ([activityStory.likedByMaster boolValue])
+            cell.likeCountLabel.textColor = [UIColor redColor];
+        else
+            cell.likeCountLabel.textColor = [UIColor grayColor];
         cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.commentCount intValue]];
         [cell.resizableActivityFeedView setActivityStory:activityStory];
         
@@ -225,13 +229,43 @@
 
 - (void)likeButtonPressed:(UIButton *)sender
 {
-    ActivityStory *activityStory = [self.dataArray objectAtIndex:sender.tag];
-    [SDActivityFeedService likeActivityStory:activityStory
-                                successBlock:^{
-                                    [self checkServer];
-                                } failureBlock:^{
-                                    NSLog(@"Liking failed");
-                                }];
+    ActivityStory *activityStoryFromArray = [self.dataArray objectAtIndex:sender.tag];
+    NSManagedObjectContext *activityStoryContext = [NSManagedObjectContext MR_contextForCurrentThread];
+    ActivityStory *activityStoryInContext = [activityStoryFromArray MR_inContext:activityStoryContext];
+    
+    BOOL likeStatus;
+    int likeInt;
+    if ([activityStoryInContext.likedByMaster boolValue]) {
+        likeStatus = NO;
+        likeInt = -1;
+    } else {
+        likeStatus = YES;
+        likeInt = +1;
+    }
+    activityStoryInContext.likedByMaster = [NSNumber numberWithBool:likeStatus];
+    NSNumber *newNumberOfLikes = [NSNumber numberWithInt:([activityStoryInContext.likesCount integerValue] + likeInt)];
+    activityStoryInContext.likesCount = newNumberOfLikes;
+    
+    [activityStoryContext MR_saveOnlySelfAndWait];
+    
+    [self loadData];
+    
+    if (likeStatus) {
+        [SDActivityFeedService likeActivityStory:activityStoryInContext
+                                    successBlock:^{
+                                        [self checkServer];
+                                    } failureBlock:^{
+                                        NSLog(@"Liking failed");
+                                    }];
+    } else {
+        [SDActivityFeedService unlikeActivityStory:activityStoryInContext
+                                      successBlock:^{
+                                          [self checkServer];
+                                      } failureBlock:^{
+                                          NSLog(@"Unliking failed");
+                                      }];
+    }
+    
 }
 
 - (void)commentButtonPressed:(UIButton *)sender
