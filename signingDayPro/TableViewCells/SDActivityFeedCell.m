@@ -100,6 +100,9 @@
     if (!activityStory)
         return;
     
+    UIColor *firstColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0 alpha:1.0f];
+    UIColor *secondColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    
     NSMutableAttributedString *authorName = nil;
     if (activityStory.postedToUser) {
         //this is a wall post
@@ -109,8 +112,7 @@
         User *user = activityStory.author;
         NSString *userName = [NSString stringWithFormat:@"%@ ",user.name];
         NSString *attributes = [SDUtils attributeStringForUser:user];
-        UIColor *firstColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0 alpha:1.0f];
-        UIColor *secondColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        
         if (attributes) {
             authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName firstColor:firstColor andSecondText:attributes andSecondColor:secondColor andFirstFont:[UIFont boldSystemFontOfSize:12] andSecondFont:[UIFont systemFontOfSize:12]]];
         }
@@ -146,8 +148,6 @@
         NSString *userName = [NSString stringWithFormat:@"%@ ",user.name];
         
         NSString *attributes = [SDUtils attributeStringForUser:user];
-        UIColor *firstColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0 alpha:1.0f];
-        UIColor *secondColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         if (attributes) {
             authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName firstColor:firstColor andSecondText:attributes andSecondColor:secondColor andFirstFont:[UIFont boldSystemFontOfSize:12] andSecondFont:[UIFont systemFontOfSize:12]]];
         }

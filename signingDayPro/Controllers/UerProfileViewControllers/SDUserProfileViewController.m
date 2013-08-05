@@ -126,6 +126,14 @@
     [_headerView setupInfoWithUser:_currentUser];
 }
 
+
+#pragma mark - SDActivityFeedTableView delegate methods
+
+- (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView
+{
+    [self endRefreshing];
+}
+
 #pragma mark - header data loading delegates
 
 - (void)dataLoadingFinishedInHeaderView:(id)headerView

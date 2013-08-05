@@ -11,10 +11,12 @@
 #import "SDUtils.h"
 #import "SDActivityFeedCell.h"
 #import "ActivityStory.h"
+#import "WebPreview.h"
 #import "User.h"
 #import "AFNetworking.h"
 #import "SDActivityFeedCellContentView.h"
 #import "SDCommentsViewController.h"
+#import "SDUserProfileViewController.h"
 
 @interface SDActivityFeedTableView ()
 
@@ -144,6 +146,7 @@
         
         [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.playerNameButton addTarget:self action:@selector(playerNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
         
         ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
@@ -206,6 +209,16 @@
     }
 }
 
+#pragma mark - tableview delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
+    if (activityStory.webPreview) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
+    }
+}
+
 #pragma mark - 
 
 - (void)loadData
@@ -244,6 +257,18 @@
     
     [self.tableDelegate activityFeedTableView:self
                     wantsNavigateToController:commentsViewController];
+}
+
+- (void)playerNameButtonPressed:(UIButton *)sender
+{
+    User *user = nil;
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                     bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self.tableDelegate activityFeedTableView:self
+                    wantsNavigateToController:userProfileViewController];
 }
 
 

@@ -345,11 +345,10 @@
                     break;
                 }
             }
-            [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         } else {
             [cell.userImageView cancelImageRequestOperation];
         }
-        
+        [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         cell.followButton.tag = indexPath.row;
         
         User *user = [self.dataArray objectAtIndex:indexPath.row];

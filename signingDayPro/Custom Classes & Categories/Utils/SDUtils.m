@@ -54,6 +54,8 @@
 {
     int result = 0;
     
+
+    
     NSMutableString *contentText = [[NSMutableString alloc] init];
     if (activityStory.webPreview) {
         
