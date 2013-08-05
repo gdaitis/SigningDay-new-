@@ -74,11 +74,6 @@
     newShadow.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
     
     [self.view.layer addSublayer:newShadow];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
     
     self.tableView.activityStoryCount = 0;
     self.tableView.lastActivityStoryDate = nil;
@@ -86,6 +81,11 @@
     self.tableView.tableDelegate = self;
     
     [self.tableView checkServer];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,7 +96,10 @@
 
 - (void)checkServer
 {
-    [self.tableView checkNewStories];
+    self.tableView.activityStoryCount = 0;
+    self.tableView.lastActivityStoryDate = nil;
+    self.tableView.endReached = NO;
+    [self.tableView checkServer];
 }
 
 #pragma mark - SDActivityFeedTableView delegate methods

@@ -25,7 +25,6 @@ typedef enum {
 
 + (void)getActivityStoriesForUser:(User *)user
                          withDate:(NSDate *)date
-                  shouldDeleteOld:(BOOL)deleteOld
                  withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock;
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody

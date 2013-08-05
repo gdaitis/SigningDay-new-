@@ -32,7 +32,6 @@
 
 + (void)getActivityStoriesForUser:(User *)user
                          withDate:(NSDate *)date
-                  shouldDeleteOld:(BOOL)deleteOld
                  withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock
 {
@@ -52,21 +51,13 @@
             [params setObject:formatedDateString forKey:@"EndDate"];
         }
     }
-    //test with this date you can get activityStory that is a wallpost
-//    if (params == nil) {
-//        params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"7/22/2013 07:56:13"], @"EndDate", nil];
-//    }
-//    else {
-//        [params setObject:[NSString stringWithFormat:@"7/22/2013 07:56:13"] forKey:@"EndDate"];
-//    }
-    //testing end
 
     [[SDAPIClient sharedClient] getPath:@"sd/story.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     
                                     //no date provided that means we are downloading first page, old stories should be deleted
-                                    if (!date && deleteOld) {
+                                    if (!date) {
                                         [self markAllStoriesForDeletion];
                                     }
                                     
@@ -141,7 +132,7 @@
                                     [context MR_saveToPersistentStoreAndWait];
                                     
                                     //returns only after deleting
-                                    if (!date && deleteOld) {
+                                    if (!date) {
                                         [self deleteAllMarkedStories];
                                     }
                                     if (successBlock) {

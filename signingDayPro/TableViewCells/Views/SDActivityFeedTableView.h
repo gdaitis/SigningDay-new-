@@ -36,6 +36,5 @@
 @property (nonatomic, strong) id <SDActivityFeedTableViewDelegate> tableDelegate;
 
 - (void)checkServer;
-- (void)checkNewStories;
 
 @end

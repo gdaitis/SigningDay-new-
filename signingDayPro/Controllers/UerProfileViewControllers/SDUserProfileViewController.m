@@ -77,7 +77,10 @@
 
 - (void)checkServer
 {
-    [self.tableView checkNewStories];
+    self.tableView.activityStoryCount = 0;
+    self.tableView.lastActivityStoryDate = nil;
+    self.tableView.endReached = NO;
+    [self.tableView checkServer];
 }
 
 #pragma mark - TableView datasource

@@ -62,7 +62,9 @@
 
 - (void)checkServer
 {
-    [SDActivityFeedService getActivityStoriesForUser:self.user withDate:self.lastActivityStoryDate shouldDeleteOld:YES withSuccessBlock:^(NSDictionary *results){
+    [SDActivityFeedService getActivityStoriesForUser:self.user
+                                            withDate:self.lastActivityStoryDate
+                                    withSuccessBlock:^(NSDictionary *results){
         
         self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
         
@@ -71,23 +73,6 @@
         }
         [self loadData];
         [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
-    } failureBlock:^{
-        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
-    }];
-}
-
-- (void)checkNewStories
-{
-    [SDActivityFeedService getActivityStoriesForUser:self.user withDate:nil shouldDeleteOld:NO withSuccessBlock:^(NSDictionary *results){
-        
-        BOOL listChanged = [[results valueForKey:@"ListChanged"] boolValue];
-        if (listChanged) {
-            [self loadData];
-            [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
-        }
-        else {
-            [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
-        }
     } failureBlock:^{
         [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
     }];
