@@ -88,7 +88,6 @@
     [self.tableView checkServer];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
