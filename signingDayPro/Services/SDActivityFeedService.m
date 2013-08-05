@@ -355,12 +355,17 @@
                                     for (NSDictionary *commentDictionary in commentsArray) {
                                         [self createCommentFromDictionary:commentDictionary];
                                     }
-                                    successBlock();
+                                    NSManagedObjectContext *activityStoryContext = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    ActivityStory *activityStoryInContext = [activityStory MR_inContext:activityStoryContext];
+                                    activityStoryInContext.commentCount = [NSNumber numberWithInt:[commentsArray count]];
+                                    [activityStoryContext MR_saveToPersistentStoreAndWait];
+                                    if (successBlock)
+                                        successBlock();
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Comments parse failed");
-                                    
-                                    failureBlock();
+                                    if (failureBlock)
+                                        failureBlock();
                                 }];
 }
 
