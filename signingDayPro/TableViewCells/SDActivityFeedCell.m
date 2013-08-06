@@ -14,6 +14,8 @@
 #import "AFNetworking.h"
 #import "SDUtils.h"
 
+#define kMaxNamesSymbolSize 38
+
 @interface SDActivityFeedCell ()
 
 @end
@@ -108,11 +110,17 @@
         //this is a wall post
         
         
-        //form first user name and attributes
+        //get first and second usernames with attributes
         User *user = activityStory.author;
         NSString *userName = [NSString stringWithFormat:@"%@ ",user.name];
         NSString *attributes = [SDUtils attributeStringForUser:user];
         
+        NSMutableAttributedString *secondUserName = nil;
+        User *secondUser = activityStory.postedToUser;
+        NSString *secondUserAttributes = [SDUtils attributeStringForUser:secondUser];
+        
+        
+        //form first user name and attributes
         if (attributes) {
             authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName firstColor:firstColor andSecondText:attributes andSecondColor:secondColor andFirstFont:[UIFont boldSystemFontOfSize:12] andSecondFont:[UIFont systemFontOfSize:12]]];
         }
@@ -121,15 +129,8 @@
             authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName andColor:firstColor andFont:[UIFont boldSystemFontOfSize:12]]];
         }
         
-        //append arrow
-        NSAttributedString *arrowString = [[NSAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:@" \u25B8 " andColor:secondColor andFont:[UIFont systemFontOfSize:12]]];
-        [authorName appendAttributedString:arrowString];
-        
         
         //form second user name
-        NSMutableAttributedString *secondUserName = nil;
-        User *secondUser = activityStory.postedToUser;
-        NSString *secondUserAttributes = [SDUtils attributeStringForUser:secondUser];
         if (secondUserAttributes) {
             secondUserName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:secondUser.name firstColor:firstColor andSecondText:secondUserAttributes andSecondColor:secondColor andFirstFont:[UIFont boldSystemFontOfSize:12] andSecondFont:[UIFont systemFontOfSize:12]]];
         }
@@ -137,6 +138,36 @@
             //nsattributed string just for name
             secondUserName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:secondUser.name andColor:firstColor andFont:[UIFont boldSystemFontOfSize:12]]];
         }
+        
+        //flags to determin if name was clipped, if yes then we add "..." in the end
+        BOOL firstStringClipped = NO;
+        BOOL secondStringClipped = NO;
+        
+        //substring names to needed sizes
+        while (authorName.mutableString.length + secondUserName.mutableString.length + 3 > kMaxNamesSymbolSize) {
+            if (authorName.mutableString.length > secondUserName.mutableString.length) {
+                authorName = (NSMutableAttributedString *)[authorName attributedSubstringFromRange:NSMakeRange(0, authorName.length-1)];
+                firstStringClipped = YES;
+            }
+            else {
+                secondStringClipped = YES;
+                secondUserName = (NSMutableAttributedString *)[secondUserName attributedSubstringFromRange:NSMakeRange(0, secondUserName.length-1)];
+            }
+        }
+        
+        
+        NSAttributedString *tripleDotString = [[NSAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:@"..." andColor:secondColor andFont:[UIFont systemFontOfSize:12]]];
+        
+        if (firstStringClipped) {
+            [authorName appendAttributedString:tripleDotString];
+        }
+        if (secondStringClipped) {
+            [secondUserName appendAttributedString:tripleDotString];
+        }
+        
+        //append arrow
+        NSAttributedString *arrowString = [[NSAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:@" \u25B8 " andColor:secondColor andFont:[UIFont systemFontOfSize:12]]];
+        [authorName appendAttributedString:arrowString];
         
         //apend name to the result
         [authorName appendAttributedString:secondUserName];

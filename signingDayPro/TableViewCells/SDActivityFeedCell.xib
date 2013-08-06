@@ -64,7 +64,6 @@
 										<string key="NSFrame">{{46, 13}, {240, 16}}</string>
 										<reference key="NSSuperview" ref="135121088"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<object class="NSColor" key="IBUIBackgroundColor" id="460437431">
 											<int key="NSColorSpace">3</int>
@@ -89,6 +88,7 @@
 													<int key="NSfFlags">16</int>
 												</object>
 												<object class="NSMutableParagraphStyle" key="NSParagraphStyle">
+													<int key="NSLineBreakMode">4</int>
 													<nil key="NSTabStops"/>
 												</object>
 											</dictionary>
@@ -2093,7 +2093,6 @@
 						<string key="playerNameButton">UIButton</string>
 						<string key="postDateLabel">UILabel</string>
 						<string key="resizableActivityFeedView">SDActivityFeedCellContentView</string>
-						<string key="secondNameLabel">UILabel</string>
 						<string key="thumbnailImageView">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -2152,10 +2151,6 @@
 						<object class="IBToOneOutletInfo" key="resizableActivityFeedView">
 							<string key="name">resizableActivityFeedView</string>
 							<string key="candidateClassName">SDActivityFeedCellContentView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="secondNameLabel">
-							<string key="name">secondNameLabel</string>
-							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="thumbnailImageView">
 							<string key="name">thumbnailImageView</string>
