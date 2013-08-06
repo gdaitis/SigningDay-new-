@@ -86,7 +86,7 @@
                           constrainedToSize:CGSizeMake(278, CGFLOAT_MAX)
                               lineBreakMode:NSLineBreakByWordWrapping];
     
-    if ([activityStory.mediaType isEqualToString:@"videos"] || [activityStory.mediaType isEqualToString:@"photos"]) {
+    if (activityStory.mediaType) {
         result = size.height + 10/*offset*/ + 150;/*imageView size*/
     }
     else {

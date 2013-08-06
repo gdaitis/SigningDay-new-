@@ -4,67 +4,15 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "signingDayPro/Services/SDFollowingService.m"
-         timestampString = "397135854.012214"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "242"
-         endingLineNumber = "242"
-         landmarkName = "+followUserWithIdentifier:withCompletionBlock:failureBlock:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "signingDayPro/Services/SDFollowingService.m"
-         timestampString = "397135870.052025"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "218"
-         endingLineNumber = "218"
-         landmarkName = "+unfollowUserWithIdentifier:withCompletionBlock:failureBlock:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "signingDayPro/TableViewCells/Views/SDFollowingViewController.m"
-         timestampString = "397138253.51921"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "418"
-         endingLineNumber = "418"
-         landmarkName = "-tableView:didSelectRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "signingDayPro/TableViewCells/Views/SDFollowingViewController.m"
-         timestampString = "397138253.51921"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "426"
-         endingLineNumber = "426"
-         landmarkName = "-followButtonPressed:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "signingDayPro/TableViewCells/SDActivityFeedCell.m"
-         timestampString = "397467690.980311"
+         timestampString = "397489417.824432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
+         startingLineNumber = "176"
+         endingLineNumber = "176"
          landmarkName = "-setupNameLabelForActivityStory:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,24 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "signingDayPro/TableViewCells/SDActivityFeedCell.m"
-         timestampString = "397467690.980311"
+         timestampString = "397489417.824432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
-         landmarkName = "-setupNameLabelForActivityStory:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "signingDayPro/TableViewCells/SDActivityFeedCell.m"
-         timestampString = "397467690.980311"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
          landmarkName = "-setupNameLabelForActivityStory:"
          landmarkType = "5">
       </FileBreakpoint>

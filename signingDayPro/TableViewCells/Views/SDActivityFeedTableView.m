@@ -127,13 +127,13 @@
                     break;
                 }
             }
+            [cell.playerNameButton addTarget:self action:@selector(firstUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.secondPlayerNameButton addTarget:self action:@selector(secondUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.playerNameButton addTarget:self action:@selector(playerNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
-        
+        cell.playerNameButton.tag = cell.secondPlayerNameButton.tag = indexPath.row;
         ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
 
         [cell.thumbnailImageView cancelImageRequestOperation];
@@ -278,13 +278,25 @@
                     wantsNavigateToController:commentsViewController];
 }
 
-- (void)playerNameButtonPressed:(UIButton *)sender
+- (void)firstUserNameButtonPressed:(UIButton *)sender
 {
-    User *user = nil;
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:sender.tag];
     UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                      bundle:nil];
     SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-    userProfileViewController.currentUser = user;
+    userProfileViewController.currentUser = activityStory.author;
+    
+    [self.tableDelegate activityFeedTableView:self
+                    wantsNavigateToController:userProfileViewController];
+}
+
+- (void)secondUserNameButtonPressed:(UIButton *)sender
+{
+    ActivityStory *activityStory = [self.dataArray objectAtIndex:sender.tag];
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = activityStory.postedToUser;
     
     [self.tableDelegate activityFeedTableView:self
                     wantsNavigateToController:userProfileViewController];

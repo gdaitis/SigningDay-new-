@@ -161,6 +161,19 @@
         if (firstStringClipped) {
             [authorName appendAttributedString:tripleDotString];
         }
+        
+        //assign size for the player name buttons
+        CGRect firstNameSize = [authorName boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+        
+        int buttonWidth = ceil(firstNameSize.size.width) + 40; //offset from photo; hardcoded for performance
+
+        for (NSLayoutConstraint *constraint in self.playerNameButton.constraints) {
+            if (constraint.firstAttribute == NSLayoutAttributeWidth) {
+                constraint.constant = buttonWidth;
+                break;
+            }
+        }
+        
         if (secondStringClipped) {
             [secondUserName appendAttributedString:tripleDotString];
         }
@@ -185,6 +198,14 @@
         else {
             //nsattributed string just for name
             authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName andColor:firstColor andFont:[UIFont boldSystemFontOfSize:12]]];
+        }
+        
+        //only one user, player name button size cell.width
+        for (NSLayoutConstraint *constraint in self.playerNameButton.constraints) {
+            if (constraint.firstAttribute == NSLayoutAttributeWidth) {
+                constraint.constant = 286;
+                break;
+            }
         }
     }
     self.nameLabel.attributedText = authorName;
