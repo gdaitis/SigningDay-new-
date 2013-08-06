@@ -60,10 +60,11 @@
 
 #pragma mark - check server
 
-- (void)checkServer
+- (void)checkServerAndDeleteOld:(BOOL)deleteOld
 {
     [SDActivityFeedService getActivityStoriesForUser:self.user
                                             withDate:self.lastActivityStoryDate
+                                        andDeleteOld:deleteOld
                                     withSuccessBlock:^(NSDictionary *results){
         
         self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
@@ -168,7 +169,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if (!self.headerInfoDownloading) {
-            [self checkServer];
+            [self checkServerAndDeleteOld:NO];
         }
         
         return cell;
@@ -219,7 +220,7 @@
     else {
         self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     }
-
+    NSLog(@"%@     DATA_ARRAY_COUNT = %d",self,[self.dataArray count]);
     [self reloadTable];
 }
 
@@ -251,14 +252,14 @@
     if (likeStatus) {
         [SDActivityFeedService likeActivityStory:activityStoryInContext
                                     successBlock:^{
-                                        [self checkServer];
+                                        [self checkServerAndDeleteOld:NO];
                                     } failureBlock:^{
                                         NSLog(@"Liking failed");
                                     }];
     } else {
         [SDActivityFeedService unlikeActivityStory:activityStoryInContext
                                       successBlock:^{
-                                          [self checkServer];
+                                          [self checkServerAndDeleteOld:NO];
                                       } failureBlock:^{
                                           NSLog(@"Unliking failed");
                                       }];

@@ -33,6 +33,7 @@
 
 + (void)getActivityStoriesForUser:(User *)user
                          withDate:(NSDate *)date
+                     andDeleteOld:(BOOL)deleteOld
                  withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock
 {
@@ -58,7 +59,7 @@
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     
                                     //no date provided that means we are downloading first page, old stories should be deleted
-                                    if (!date) {
+                                    if (deleteOld) {
                                         [self markAllStoriesForDeletion];
                                     }
                                     
@@ -133,7 +134,7 @@
                                     [context MR_saveToPersistentStoreAndWait];
                                     
                                     //returns only after deleting
-                                    if (!date) {
+                                    if (deleteOld) {
                                         [self deleteAllMarkedStories];
                                     }
                                     if (successBlock) {

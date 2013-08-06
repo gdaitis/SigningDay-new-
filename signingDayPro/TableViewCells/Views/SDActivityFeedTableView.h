@@ -35,7 +35,7 @@
 
 @property (nonatomic, strong) id <SDActivityFeedTableViewDelegate> tableDelegate;
 
-- (void)checkServer;
+- (void)checkServerAndDeleteOld:(BOOL)deleteOld;
 - (void)loadData;
 
 @end

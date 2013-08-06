@@ -377,12 +377,8 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="748341456"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<object class="NSColor" key="IBUIBackgroundColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjYgMAA</bytes>
-										</object>
+										<reference key="IBUIBackgroundColor" ref="460437431"/>
 										<bool key="IBUIOpaque">NO</bool>
-										<float key="IBUIAlpha">0.30000001192092896</float>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
@@ -403,12 +399,8 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="509642059"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<object class="NSColor" key="IBUIBackgroundColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC45MDE5NjA3ODQzIDAuNzY4NjI3NDUxIDAuMTIxNTY4NjI3NQA</bytes>
-										</object>
+										<reference key="IBUIBackgroundColor" ref="460437431"/>
 										<bool key="IBUIOpaque">NO</bool>
-										<float key="IBUIAlpha">0.20000000298023224</float>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>

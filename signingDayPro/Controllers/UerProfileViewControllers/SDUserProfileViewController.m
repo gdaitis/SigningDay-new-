@@ -81,7 +81,7 @@
     self.tableView.activityStoryCount = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:NO];
 }
 
 #pragma mark - TableView datasource
@@ -143,13 +143,13 @@
 - (void)dataLoadingFinishedInHeaderView:(id)headerView
 {
     self.tableView.headerInfoDownloading = NO;
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:NO];
 }
 
 - (void)dataLoadingFailedInHeaderView:(id)headerView
 {
     self.tableView.headerInfoDownloading = NO;
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:NO];
 }
 
 - (void)shouldEndRefreshing
