@@ -18,6 +18,7 @@
 #import "HTMLParser.h"
 #import "SDUtils.h"
 #import "SDErrorService.h"
+#import "NSString+HTML.h"
 
 @interface SDActivityFeedService ()
 
@@ -355,12 +356,17 @@
                                     for (NSDictionary *commentDictionary in commentsArray) {
                                         [self createCommentFromDictionary:commentDictionary];
                                     }
-                                    successBlock();
+                                    NSManagedObjectContext *activityStoryContext = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    ActivityStory *activityStoryInContext = [activityStory MR_inContext:activityStoryContext];
+                                    activityStoryInContext.commentCount = [NSNumber numberWithInt:[commentsArray count]];
+                                    [activityStoryContext MR_saveToPersistentStoreAndWait];
+                                    if (successBlock)
+                                        successBlock();
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Comments parse failed");
-                                    
-                                    failureBlock();
+                                    if (failureBlock)
+                                        failureBlock();
                                 }];
 }
 
@@ -405,15 +411,14 @@
         dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
         NSDate *createdDate = [dateFormatter dateFromString:createdDateString];
         comment.createdDate = createdDate;
-        
-        ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"contentId"
-                                                                    withValue:contentId
-                                                                    inContext:commentsContext];
-        comment.activityStory = activityStory;
     }
+    ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"contentId"
+                                                                withValue:contentId
+                                                                inContext:commentsContext];
+    comment.activityStory = activityStory;
     
     NSString *commentBody = [commentDictionary valueForKey:@"Body"];
-    comment.body = commentBody;
+    comment.body = [commentBody stringByConvertingHTMLToPlainText];
     
     NSDictionary *userDictionary = [commentDictionary valueForKey:@"User"];
     NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Id"] intValue]];

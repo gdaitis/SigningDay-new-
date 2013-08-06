@@ -86,6 +86,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self.tableView loadData];
 }
 
 - (void)didReceiveMemoryWarning

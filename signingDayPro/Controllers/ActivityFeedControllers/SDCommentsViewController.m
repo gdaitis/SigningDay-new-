@@ -71,8 +71,6 @@
 
 - (void)checkServerWithScrollingDownAfterLoading:(BOOL)scrollDownAfterLoading
 {
-    [self showProgressHudInView:self.tableView
-                       withText:@"Loading Comments"];
     [SDActivityFeedService getCommentsForActivityStory:self.activityStory
                                       withSuccessBlock:^{
                                           [self reload];
@@ -104,6 +102,8 @@
     
     [self clearChatInput];
     
+    [self showProgressHudInView:self.tableView
+                       withText:@"Loading Comments"];
     [SDActivityFeedService addCommentToActivityStory:self.activityStory
                                                 text:rightTrimmedMessage
                                         successBlock:^{
