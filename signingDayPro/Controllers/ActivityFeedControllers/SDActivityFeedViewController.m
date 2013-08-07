@@ -80,7 +80,7 @@
     self.tableView.endReached = NO;
     self.tableView.tableDelegate = self;
     
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -101,7 +101,7 @@
     self.tableView.activityStoryCount = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:YES];
 }
 
 #pragma mark - SDActivityFeedTableView delegate methods

@@ -59,18 +59,19 @@
     self.view.backgroundColor = backgroundColor;
     
     self.tableView.user = self.currentUser;
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
     self.tableView.activityStoryCount = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
     self.tableView.user = self.currentUser;
     self.tableView.tableDelegate = self;
     [self setupTableViewHeader];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.tableView loadData];
 }
 
 #pragma mark - refreshing
@@ -80,7 +81,7 @@
     self.tableView.activityStoryCount = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:NO];
 }
 
 #pragma mark - TableView datasource
@@ -142,13 +143,13 @@
 - (void)dataLoadingFinishedInHeaderView:(id)headerView
 {
     self.tableView.headerInfoDownloading = NO;
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:NO];
 }
 
 - (void)dataLoadingFailedInHeaderView:(id)headerView
 {
     self.tableView.headerInfoDownloading = NO;
-    [self.tableView checkServer];
+    [self.tableView checkServerAndDeleteOld:NO];
 }
 
 - (void)shouldEndRefreshing
