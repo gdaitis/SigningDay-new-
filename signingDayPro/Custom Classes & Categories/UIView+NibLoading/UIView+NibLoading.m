@@ -23,4 +23,17 @@
     return result;
 }
 
++ (UIView *)loadInstanceFromClass:(id)objectClass
+{
+    UIView *result = nil;
+    NSArray* elements = [[NSBundle mainBundle] loadNibNamed: NSStringFromClass(objectClass) owner: nil options: nil];
+    for (id anObject in elements) {
+        if ([anObject isKindOfClass:objectClass]){
+            result = anObject;
+            break;
+        }
+    }
+    return result;
+}
+
 @end
