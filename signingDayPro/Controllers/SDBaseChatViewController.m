@@ -90,10 +90,9 @@
     [self scrollToBottomAnimated:NO];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [self.enterMessageTextView resignFirstResponder];
-    [super viewDidDisappear:animated];
+    [self closeKeyboard];
 }
 
 - (void)viewDidUnload
