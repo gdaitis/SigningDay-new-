@@ -12,11 +12,14 @@
 #import "SDImageService.h"
 #import "SDBuzzButtonView.h"
 #import "SDUserProfileSlidingButtonView.h"
+#import "SDUserProfileHeaderDelegate.h"
 
 @interface SDBaseProfileHeaderView : UIView <SDBuzzButtonViewDelegate>
 
 @property (nonatomic, strong) IBOutlet SDUserProfileSlidingButtonView *slidingButtonView;
 @property (nonatomic, strong) IBOutlet SDBuzzButtonView *buzzButtonView;
+
+@property (nonatomic, strong) id <SDUserProfileHeaderDelegate> delegate;
 
 - (void)setupInfoWithUser:(User *)user;
 - (void)hideBuzzButtonView:(BOOL)hide;

@@ -7,7 +7,7 @@
 //
 
 #import "SDBaseProfileHeaderView.h"
-
+#import "UIView+NibLoading.h"
 
 
 @implementation SDBaseProfileHeaderView

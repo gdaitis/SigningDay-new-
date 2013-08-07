@@ -13,22 +13,24 @@
 #import "SDUserProfilePlayerHeaderView.h"
 #import "SDTableView.h"
 #import "SDUserProfileCoachHeaderView.h"
+#import "SDUserProfileHighSchoolHeaderView.h"
 #import "SDUserProfileTeamHeaderView.h"
 #import "User.h"
 #import "SDActivityFeedService.h"
 #import "SDUtils.h"
-#import "SDActivityFeedCell.h"
 #import "ActivityStory.h"
 #import "SDActivityFeedCellContentView.h"
 #import "SDImageService.h"
 #import "SDActivityFeedTableView.h"
 #import "AFNetworking.h"
+#import "UIView+NibLoading.h"
+#import "SDBuzzButtonView.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
 
 
-@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate,SDActivityFeedTableViewDelegate>
+@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate,SDActivityFeedTableViewDelegate,SDBuzzButtonViewDelegate>
 {
     BOOL _isMasterProfile;
 }
@@ -48,8 +50,7 @@
 {
     [super viewDidLoad];
     
-    //chechking if user is view his own profile, depending on this we show or remove buzz button view
-#warning FIXME logic for all profiles
+    //chechking if user is viewing his own profile, depending on this we show or remove buzz button view
     if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
         _isMasterProfile = YES;
     }
@@ -91,28 +92,38 @@
     if (!_headerView) {
         
         // Load headerview
-        NSArray *topLevelObjects = nil;
-        
-#warning FIXME logic for all profiles
-        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileMemberHeaderView" owner:nil options:nil];
-        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfilePlayerHeaderView" owner:nil options:nil];
-        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileTeamHeaderView" owner:nil options:nil];
-        //        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDUserProfileCoachHeaderView" owner:nil options:nil];
-        
-        
-        for(id currentObject in topLevelObjects){
-            if([currentObject isKindOfClass:[SDUserProfileMemberHeaderView class]]) {
-                //            if([currentObject isKindOfClass:[SDUserProfileCoachHeaderView class]]) {
-                //            if([currentObject isKindOfClass:[SDUserProfileTeamHeaderView class]]) {
-                //            if([currentObject isKindOfClass:[SDUserProfilePlayerHeaderView class]]) {
-                
-                SDUserProfileMemberHeaderView* memberHeaderView = (id)currentObject;
-                memberHeaderView.delegate = self;
-                self.headerView = memberHeaderView;
-
+        id view = nil;
+        switch ([self.currentUser.userTypeId intValue]) {
+            case SDUserTypePlayer:
+                view = [UIView loadInstanceFromClass:[SDUserProfilePlayerHeaderView class]];
+                ((SDUserProfilePlayerHeaderView *)view).delegate = self;
+                ((SDUserProfilePlayerHeaderView *)view).buzzButtonView.delegate = self;
                 break;
-            }
+            case SDUserTypeHighSchool:
+                view = [UIView loadInstanceFromClass:[SDUserProfileHighSchoolHeaderView class]];
+                ((SDUserProfileHighSchoolHeaderView *)view).delegate = self;
+                ((SDUserProfileHighSchoolHeaderView *)view).buzzButtonView.delegate = self;
+                break;
+            case SDUserTypeTeam:
+                view = [UIView loadInstanceFromClass:[SDUserProfileTeamHeaderView class]];
+                ((SDUserProfileTeamHeaderView *)view).delegate = self;
+                ((SDUserProfileTeamHeaderView *)view).buzzButtonView.delegate = self;
+                break;
+            case SDUserTypeMember:
+                view = [UIView loadInstanceFromClass:[SDUserProfileMemberHeaderView class]];
+                ((SDUserProfileMemberHeaderView *)view).delegate = self;
+                ((SDUserProfileMemberHeaderView *)view).buzzButtonView.delegate = self;
+                break;
+            case SDUserTypeCoach:
+                view = [UIView loadInstanceFromClass:[SDUserProfileCoachHeaderView class]];
+                ((SDUserProfileCoachHeaderView *)view).delegate = self;
+                ((SDUserProfileCoachHeaderView *)view).buzzButtonView.delegate = self;
+                break;
+            default:
+                break;
         }
+        
+        self.headerView = view;
         self.tableView.headerInfoDownloading = YES;
         [self setupHeaderView];
     }
@@ -130,12 +141,17 @@
     [_headerView setupInfoWithUser:_currentUser];
 }
 
-
 #pragma mark - SDActivityFeedTableView delegate methods
 
 - (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView
 {
     [self endRefreshing];
+}
+
+- (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView
+    wantsNavigateToController:(UIViewController *)viewController
+{
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - header data loading delegates
@@ -155,6 +171,18 @@
 - (void)shouldEndRefreshing
 {
     [self endRefreshing];
+}
+
+#pragma mark - Buzz buttonView delegates
+
+- (void)buzzSomethingButtonPressedInButtonView:(SDBuzzButtonView *)buzzButtonView
+{
+    
+}
+
+- (void)messageButtonPressedInButtonView:(SDBuzzButtonView *)buzzButtonView
+{
+    
 }
 
 @end
