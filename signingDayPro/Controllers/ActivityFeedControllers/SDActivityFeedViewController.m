@@ -132,9 +132,11 @@
 
 - (void)activityFeedHeaderViewDidClickOnBuzzSomething:(SDActivityFeedHeaderView *)activityFeedHeaderView
 {
-    SDModalNavigationController *buzzSomethingModalNavigationViewController = [[UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"BuzzSomethingModalNavigationController"];
-    buzzSomethingModalNavigationViewController.myDelegate = self;
-    [self presentViewController:buzzSomethingModalNavigationViewController
+    SDModalNavigationController *modalNavigationViewController = [[SDModalNavigationController alloc] init];
+    modalNavigationViewController.myDelegate = self;
+    SDBuzzSomethingViewController *buzzSomethingViewController = [[UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"BuzzSomethingViewController"];
+    [modalNavigationViewController addChildViewController:buzzSomethingViewController];
+    [self presentViewController:modalNavigationViewController
                        animated:YES
                      completion:nil];
 }
@@ -369,7 +371,9 @@
 - (void)modalNavigationControllerWantsToClose:(SDModalNavigationController *)modalNavigationController
 {
     [self dismissViewControllerAnimated:YES
-                             completion:nil];
+                             completion:^{
+                                 [self checkServer];
+                             }];
 }
 
 

@@ -85,16 +85,28 @@
 
 - (void)postButtonPressed
 {
+    void (^successBlock)(void) = ^{
+        [self hideProgressHudInView:self.contentView];
+        [self closeButtonPressed];
+    };
+    
+    void (^failureBlock)(void) = ^{
+        NSLog(@"ERROR WHILE POSTING");
+        [self hideProgressHudInView:self.contentView];
+        [self closeButtonPressed];
+    };
+    
     [self showProgressHudInView:self.contentView withText:@"Posting"];
-    [SDActivityFeedService postActivityStoryWithMessageBody:self.textView.text
-                                               successBlock:^{
-                                                   [self hideProgressHudInView:self.contentView];
-                                                   [self closeButtonPressed];
-                                               } failureBlock:^{
-                                                   NSLog(@"ERROR WHILE POSTING");
-                                                   [self hideProgressHudInView:self.contentView];
-                                                   [self closeButtonPressed];
-                                               }];
+    if (self.user) {
+        [SDActivityFeedService postActivityStoryWithMessageBody:self.textView.text
+                                                        forUser:self.user
+                                                   successBlock:successBlock
+                                                   failureBlock:failureBlock];
+    } else {
+        [SDActivityFeedService postActivityStoryWithMessageBody:self.textView.text
+                                                   successBlock:successBlock
+                                                   failureBlock:failureBlock];
+    }
 }
 
 @end

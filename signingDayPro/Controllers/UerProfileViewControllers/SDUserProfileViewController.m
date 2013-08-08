@@ -25,12 +25,14 @@
 #import "AFNetworking.h"
 #import "UIView+NibLoading.h"
 #import "SDBuzzButtonView.h"
+#import "SDModalNavigationController.h"
+#import "SDBuzzSomethingViewController.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
 
 
-@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate,SDActivityFeedTableViewDelegate,SDBuzzButtonViewDelegate>
+@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate, SDActivityFeedTableViewDelegate, SDBuzzButtonViewDelegate, SDModalNavigationControllerDelegate>
 {
     BOOL _isMasterProfile;
 }
@@ -177,12 +179,29 @@
 
 - (void)buzzSomethingButtonPressedInButtonView:(SDBuzzButtonView *)buzzButtonView
 {
-    
+    SDModalNavigationController *modalNavigationViewController = [[SDModalNavigationController alloc] init];
+    modalNavigationViewController.myDelegate = self;
+    SDBuzzSomethingViewController *buzzSomethingViewController = [[UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"BuzzSomethingViewController"];
+    buzzSomethingViewController.user = self.currentUser;
+    [modalNavigationViewController addChildViewController:buzzSomethingViewController];
+    [self presentViewController:modalNavigationViewController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)messageButtonPressedInButtonView:(SDBuzzButtonView *)buzzButtonView
 {
     
+}
+
+#pragma mark - SDModalNavigationController myDelegate methods
+
+- (void)modalNavigationControllerWantsToClose:(SDModalNavigationController *)modalNavigationController
+{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 [self checkServer];
+                             }];
 }
 
 @end

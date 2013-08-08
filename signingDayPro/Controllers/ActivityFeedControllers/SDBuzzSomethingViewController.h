@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
+@class User;
+
 @interface SDBuzzSomethingViewController : SDBaseViewController
+
+@property (nonatomic, strong) User *user;
 
 @end

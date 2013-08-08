@@ -260,11 +260,30 @@
                             successBlock:(void (^)(void))successBlock
                             failureBlock:(void (^)(void))failureBlock
 {
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    [self postActivityStoryWithMessageBody:messageBody
+                                   forUser:nil
+                              successBlock:successBlock
+                              failureBlock:failureBlock];
+}
+
++ (void)postActivityStoryWithMessageBody:(NSString *)messageBody
+                                 forUser:(User *)user
+                            successBlock:(void (^)(void))successBlock
+                            failureBlock:(void (^)(void))failureBlock
+{
+    NSString *username;
+    NSDictionary *parameters;
+    if (!user) {
+        //username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+        //parameters = @{@"Username": username, @"MessageBody":messageBody};
+    } else {
+        username = [NSString stringWithFormat:@"%d", [user.identifier integerValue]];
+        parameters = @{@"UserId": username, @"MessageBody":messageBody};
+    }
     
     NSString *path = [NSString stringWithFormat:@"users/%@/statuses.json", username];
     [[SDAPIClient sharedClient] postPath:path
-                              parameters:@{@"Username": username, @"MessageBody":messageBody}
+                              parameters:parameters
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
                                      successBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

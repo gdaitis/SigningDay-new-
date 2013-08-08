@@ -31,6 +31,10 @@ typedef enum {
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody
                             successBlock:(void (^)(void))successBlock
                             failureBlock:(void (^)(void))failureBlock;
++ (void)postActivityStoryWithMessageBody:(NSString *)messageBody
+                                 forUser:(User *)user
+                            successBlock:(void (^)(void))successBlock
+                            failureBlock:(void (^)(void))failureBlock;
 + (void)likeActivityStory:(ActivityStory *)activityStory
              successBlock:(void (^)(void))successBlock
              failureBlock:(void (^)(void))failureBlock;
