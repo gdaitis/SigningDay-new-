@@ -52,7 +52,6 @@
     self.containerView.backgroundColor = [UIColor clearColor];
     self.containerView.image = cellBackgroundImage;
     
-    self.likeButtonView.image = image;
     self.likeButtonView.backgroundColor = [UIColor clearColor];
     self.commentButtonView.image = image;
     self.commentButtonView.backgroundColor = [UIColor clearColor];

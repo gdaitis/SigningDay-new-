@@ -30,6 +30,9 @@
 		7B736525175F84B3007A338E /* chat_send_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736523175F84B3007A338E /* chat_send_message_bg@2x.png */; };
 		7B73652A175F84F2007A338E /* send_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736528175F84F2007A338E /* send_button@2x.png */; };
 		7B755488177C574E00CBE6A3 /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */; };
+		7B90F1CA17B3AF4A00F9702F /* LikeImageOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1C917B3AF4A00F9702F /* LikeImageOrange@2x.png */; };
+		7B90F1CE17B3B35300F9702F /* strechableBorderedImageOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CD17B3B35300F9702F /* strechableBorderedImageOrange@2x.png */; };
+		7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
 		7BAF6ED817A93FB000F7C6B3 /* SDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */; };
@@ -303,6 +306,9 @@
 		7B736528175F84F2007A338E /* send_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_button@2x.png"; sourceTree = "<group>"; };
 		7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToDataTransformer.h; sourceTree = "<group>"; };
 		7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
+		7B90F1C917B3AF4A00F9702F /* LikeImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeImageOrange@2x.png"; sourceTree = "<group>"; };
+		7B90F1CD17B3B35300F9702F /* strechableBorderedImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableBorderedImageOrange@2x.png"; sourceTree = "<group>"; };
+		7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderLike@2x.png"; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
 		7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommentsViewController.m; sourceTree = "<group>"; };
 		7BAF6ED317A93F7500F7C6B3 /* SDBaseChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseChatViewController.h; sourceTree = "<group>"; };
@@ -1515,6 +1521,7 @@
 		80F259061773411900D3B85E /* ActivityFeedImages */ = {
 			isa = PBXGroup;
 			children = (
+				7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */,
 				80FA04EC177C6F8500CE1ED5 /* strechableCellBg@2x.png */,
 				801088C5179579BE002EF1EB /* activity_feed_header_bg@2x.png */,
 				801088C6179579BE002EF1EB /* add_media_button@2x.png */,
@@ -1540,6 +1547,8 @@
 				80F259081773411900D3B85E /* commentImage@2x.png */,
 				80FA04E9177C461000CE1ED5 /* strechableBorderedImage@2x.png */,
 				80F2590A1773411900D3B85E /* LikeImage@2x.png */,
+				7B90F1C917B3AF4A00F9702F /* LikeImageOrange@2x.png */,
+				7B90F1CD17B3B35300F9702F /* strechableBorderedImageOrange@2x.png */,
 			);
 			path = ActivityFeedImages;
 			sourceTree = "<group>";
@@ -1743,6 +1752,9 @@
 				7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */,
 				8096974517AA90CF00970E73 /* playImage@2x.png in Resources */,
 				80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */,
+				7B90F1CA17B3AF4A00F9702F /* LikeImageOrange@2x.png in Resources */,
+				7B90F1CE17B3B35300F9702F /* strechableBorderedImageOrange@2x.png in Resources */,
+				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

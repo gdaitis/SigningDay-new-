@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *playerNameButton;
 @property (weak, nonatomic) IBOutlet UIButton *secondPlayerNameButton;
 @property (weak, nonatomic) IBOutlet UIImageView *likeButtonView;
+@property (weak, nonatomic) IBOutlet UIImageView *likeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *commentButtonView;
 @property (weak, nonatomic) IBOutlet UILabel *likeTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentTextLabel;

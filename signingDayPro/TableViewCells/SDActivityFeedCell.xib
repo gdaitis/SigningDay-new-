@@ -217,10 +217,6 @@
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIUserInteractionEnabled">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-												<object class="NSCustomResource" key="IBUIImage">
-													<string key="NSClassName">NSImage</string>
-													<string key="NSResourceName">LikeImage.png</string>
-												</object>
 											</object>
 											<object class="IBUIButton" id="567221277">
 												<reference key="NSNextResponder" ref="509642059"/>
@@ -298,7 +294,6 @@
 												<string key="NSFrame">{{93, 10}, {23, 14}}</string>
 												<reference key="NSSuperview" ref="189128668"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIOpaque">NO</bool>
 												<bool key="IBUIClipsSubviews">YES</bool>
@@ -571,6 +566,14 @@
 						<reference key="destination" ref="47718283"/>
 					</object>
 					<int key="connectionID">1388</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">likeImageView</string>
+						<reference key="source" ref="1034049420"/>
+						<reference key="destination" ref="23714176"/>
+					</object>
+					<int key="connectionID">1404</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2198,7 +2201,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1403</int>
+			<int key="maxID">1404</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2223,6 +2226,7 @@
 						<string key="likeButton">UIButton</string>
 						<string key="likeButtonView">UIImageView</string>
 						<string key="likeCountLabel">UILabel</string>
+						<string key="likeImageView">UIImageView</string>
 						<string key="likeTextLabel">UILabel</string>
 						<string key="nameLabel">UILabel</string>
 						<string key="playerNameButton">UIButton</string>
@@ -2267,6 +2271,10 @@
 						<object class="IBToOneOutletInfo" key="likeCountLabel">
 							<string key="name">likeCountLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="likeImageView">
+							<string key="name">likeImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="likeTextLabel">
 							<string key="name">likeTextLabel</string>
@@ -2316,10 +2324,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="LikeImage.png">{18, 15}</string>
-			<string key="commentImage.png">{18, 15}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">commentImage.png</string>
+			<string key="NS.object.0">{18, 15}</string>
+		</object>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

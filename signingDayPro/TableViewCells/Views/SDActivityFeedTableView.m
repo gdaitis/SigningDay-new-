@@ -142,10 +142,26 @@
         cell.commentButton.tag = indexPath.row;
         
         cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likesCount intValue]];
-        if ([activityStory.likedByMaster boolValue])
-            cell.likeCountLabel.textColor = [UIColor redColor];
-        else
-            cell.likeCountLabel.textColor = [UIColor grayColor];
+        
+        UIImage *buttonBackgroundImage;
+        UIImage *likeImage;
+        
+        if ([activityStory.likedByMaster boolValue]) {
+            cell.likeCountLabel.textColor = [UIColor colorWithRed:183.0f/255.0f green:158.0f/255.0f blue:15.0f/255.0f alpha:1.0f];
+            cell.likeTextLabel.text = @"Unlike";
+            cell.likeTextLabel.textColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
+            likeImage = [UIImage imageNamed:@"LikeImageOrange"];
+            buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImageOrange"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        } else {
+            cell.likeCountLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            cell.likeTextLabel.text = @"Like";
+            cell.likeTextLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            likeImage = [UIImage imageNamed:@"LikeImage"];
+            buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImage"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        }
+        cell.likeButtonView.image = buttonBackgroundImage;
+        cell.likeImageView.image = likeImage;
+        
         cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.commentCount intValue]];
         [cell.resizableActivityFeedView setActivityStory:activityStory];
         
