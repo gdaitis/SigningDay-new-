@@ -13,6 +13,7 @@
 #import "Master.h"
 #import "SDFollowingService.h"
 #import "ActivityStory.h"
+#import "SDUserProfileViewController.h"
 #import "SDActivityFeedService.h"
 #import "Like.h"
 
@@ -146,7 +147,12 @@
 {
     Like *like = [self.dataArray objectAtIndex:indexPath.row];
     User *user = like.user;
-    NSLog(@"user id = %d",[user.identifier intValue]);
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 /*

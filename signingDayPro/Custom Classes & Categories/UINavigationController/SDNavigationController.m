@@ -11,7 +11,7 @@
 
 #import "SDMessageViewController.h"
 #import "SDConversationViewController.h"
-#import "SDFollowingViewController.h"
+#import "SDUserProfileViewController.h"
 #import "SDFollowingService.h"
 #import "SDBaseViewController.h"
 
@@ -275,6 +275,7 @@
     if (!_followingVC) {
         SDFollowingViewController *sdfollowingVC = [[SDFollowingViewController alloc] init];
         sdfollowingVC.view.frame = self.contentView.bounds;
+        sdfollowingVC.delegate = self;
         [SDFollowingService removeFollowing:YES andFollowed:YES];
         self.followingVC = sdfollowingVC;
     }
@@ -399,6 +400,25 @@
     }
 }
 
+- (void)pushViewController:(id)controller
+{
+    [self pushViewController:controller animated:YES];
+}
+
+#pragma mark - SDFollowingViewController delegate methods
+
+- (void)followingViewController:(SDFollowingViewController *)followingViewController didSelectUser:(User *)user
+{
+    [self hideFollowersAndRemoveContentView:YES];
+    
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self performSelector:@selector(pushViewController:) withObject:userProfileViewController afterDelay:0.2f];
+}
+
 #pragma mark - SDMessageViewController delegate methods
 
 - (void)messageViewController:(SDMessageViewController *)messageViewController
@@ -417,8 +437,8 @@
                                                          bundle:nil];
     SDConversationViewController *conversationViewController = (SDConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ConversationViewController"];
     conversationViewController.conversation = conversation;
-    [self pushViewController:conversationViewController
-                    animated:YES];
+    
+    [self performSelector:@selector(pushViewController:) withObject:conversationViewController afterDelay:0.2f];
 }
 
 - (void)didStartNewConversationInMessageViewController:(SDMessageViewController *)messageViewController

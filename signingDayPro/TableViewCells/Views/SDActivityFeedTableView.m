@@ -220,7 +220,6 @@
     else {
         self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     }
-    NSLog(@"%@     DATA_ARRAY_COUNT = %d",self,[self.dataArray count]);
     [self reloadTable];
 }
 

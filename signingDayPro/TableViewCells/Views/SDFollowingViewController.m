@@ -16,6 +16,7 @@
 #import "AFNetworking.h"
 #import "UIImage+Crop.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SDUserProfileViewController.h"
 
 @interface SDFollowingViewController ()
 
@@ -417,7 +418,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     User *user = [self.dataArray objectAtIndex:indexPath.row];
-    NSLog(@"user id = %d",[user.identifier intValue]);
+    [self.delegate followingViewController:self didSelectUser:user];
 }
 
 #pragma mark - Following actions

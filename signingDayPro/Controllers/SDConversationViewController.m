@@ -48,14 +48,20 @@
     self.firstLoad = YES;
     
     NSArray *users = [self.conversation.users allObjects];
-    NSMutableArray *usernames = [[NSMutableArray alloc] init];
-    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    NSNumber *masterIdentifier = [self getMasterIdentifier];
     for (User *user in users) {
-        if (![user.username isEqual:masterUsername])
-            [usernames addObject:user.username];
+        if (![user.identifier isEqualToNumber:masterIdentifier])
+            [names addObject:user.name];
     }
     
-    NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    //check if user hasn't writen a message to himself (was able in the previous versions of the app)
+    if ([names count] == 0) {
+        User *masterUser = [self getMasterUser];
+        [names addObject:masterUser.name];
+    }
+    
+    NSArray *sortedUsernames = [names sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     self.contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
     [self.view addSubview:self.contentHeaderView];
