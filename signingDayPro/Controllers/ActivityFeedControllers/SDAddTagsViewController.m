@@ -137,7 +137,7 @@
     }
     
         //get list of followings
-        [SDFollowingService getAlphabeticallySortedListOfFollowingsForUserWithIdentifier:master.identifier forPage:_currentFollowingPage withCompletionBlock:^(int totalFollowingCount) {
+        [SDFollowingService getListOfFollowersForUserWithIdentifier:master.identifier forPage:_currentFollowingPage withCompletionBlock:^(int totalFollowingCount) {
             //refresh the view
             _totalFollowings = totalFollowingCount;
             [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];

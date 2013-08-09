@@ -78,6 +78,8 @@
     lowerBorderLayer.borderWidth = 1;
     lowerBorderLayer.borderColor = lowerBorderColor;
     [_searchBar.layer addSublayer:lowerBorderLayer];
+    
+    [SDFollowingService removeFollowing:YES andFollowed:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,7 +98,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [SDFollowingService removeFollowing:YES andFollowed:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,7 +139,7 @@
     }
     
     //get list of followers
-    [SDFollowingService getAlphabeticallySortedListOfFollowersForUserWithIdentifier:master.identifier forPage:_currentFollowersPage withCompletionBlock:^(int totalFollowerCount) {
+    [SDFollowingService getListOfFollowersForUserWithIdentifier:master.identifier forPage:_currentFollowersPage withCompletionBlock:^(int totalFollowerCount) {
         _totalFollowers = totalFollowerCount; //set the count to know how much we should send
         [MBProgressHUD hideAllHUDsForView:self.navigationController.view animated:YES];
         [self reloadView];
@@ -264,6 +265,8 @@
         
         User *user = [self.searchResults objectAtIndex:indexPath.row];
         cell.usernameTitle.text = user.name;
+        
+        NSLog(@"username = %@",user.username);
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
         [cell.userImageView setImageWithURLRequest:request
