@@ -291,6 +291,7 @@
 
 - (void)showFollowers
 {
+    [SDFollowingService removeFollowing:YES andFollowed:YES];
     _selectedMenuType = BARBUTTONTYPE_FOLLOWERS;
     if (!_followingVC) {
         SDFollowingViewController *sdfollowingVC = [[SDFollowingViewController alloc] init];

@@ -161,6 +161,7 @@
                                         if (userTypeId > 0) {
                                             user.userTypeId = [NSNumber numberWithInt:userTypeId];
                                         }
+                                        user.following = nil;
                                         user.followedBy = master;
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
@@ -196,10 +197,6 @@
                                     NSArray *followers = [JSON objectForKey:@"Results"];
                                     for (NSDictionary *userInfo in followers) {
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"UserId"];
-                                        
-                                        if ([[userInfo valueForKey:@"UserName"] isEqualToString:@"eric"]) {
-                                            NSLog(@"eric");
-                                        }
                                         
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followersUserIdentifier inContext:context];
                                         if (!user) {
