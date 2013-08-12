@@ -11,11 +11,20 @@
 
 #import "SDMessageViewController.h"
 #import "SDConversationViewController.h"
-#import "SDFollowingViewController.h"
+#import "SDUserProfileViewController.h"
 #import "SDFollowingService.h"
 #import "SDBaseViewController.h"
 
 #import "SDNewConversationViewController.h"
+
+@interface SDNavigationController ()
+
+//properties for presenting toolbar menus on navigating back
+@property (nonatomic, strong) UIViewController *lastControllerForToolbarItems;
+@property (nonatomic, assign) BarButtonType lastSelectedType;
+
+
+@end
 
 @implementation SDNavigationController
 
@@ -82,6 +91,17 @@
 }
 
 #pragma mark - Navigation
+
+- (void)rememberCurrentControllerForButtonType:(BarButtonType)barButtonType
+{
+    self.lastControllerForToolbarItems = [self.viewControllers lastObject];
+    self.lastSelectedType = barButtonType;
+}
+- (void)forgetLastController
+{
+    self.lastControllerForToolbarItems = nil;
+    self.lastSelectedType = BARBUTTONTYPE_NONE;
+}
 
 - (void)popViewController
 {
@@ -271,10 +291,12 @@
 
 - (void)showFollowers
 {
+    [SDFollowingService removeFollowing:YES andFollowed:YES];
     _selectedMenuType = BARBUTTONTYPE_FOLLOWERS;
     if (!_followingVC) {
         SDFollowingViewController *sdfollowingVC = [[SDFollowingViewController alloc] init];
         sdfollowingVC.view.frame = self.contentView.bounds;
+        sdfollowingVC.delegate = self;
         [SDFollowingService removeFollowing:YES andFollowed:YES];
         self.followingVC = sdfollowingVC;
     }
@@ -399,6 +421,28 @@
     }
 }
 
+- (void)pushViewController:(id)controller
+{
+    [self pushViewController:controller animated:YES];
+}
+
+#pragma mark - SDFollowingViewController delegate methods
+
+- (void)followingViewController:(SDFollowingViewController *)followingViewController didSelectUser:(User *)user
+{
+    [self hideFollowersAndRemoveContentView:YES];
+    
+    //remember in which controller we will need to open following view
+    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_FOLLOWERS];
+    
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self performSelector:@selector(pushViewController:) withObject:userProfileViewController afterDelay:0.2f];
+}
+
 #pragma mark - SDMessageViewController delegate methods
 
 - (void)messageViewController:(SDMessageViewController *)messageViewController
@@ -411,18 +455,25 @@
             return;
         }
     }
+    
+    //remember in which controller we will need to open following view
+    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_CONVERSATIONS];
+    
     [self hideConversationsAndRemoveContentView:YES];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
                                                          bundle:nil];
     SDConversationViewController *conversationViewController = (SDConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ConversationViewController"];
     conversationViewController.conversation = conversation;
-    [self pushViewController:conversationViewController
-                    animated:YES];
+    
+    [self performSelector:@selector(pushViewController:) withObject:conversationViewController afterDelay:0.2f];
 }
 
 - (void)didStartNewConversationInMessageViewController:(SDMessageViewController *)messageViewController
 {
+    //remember in which controller we will need to open following view
+    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_CONVERSATIONS];
+    
     [self hideConversationsAndRemoveContentView:YES];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
                                                          bundle:nil];
@@ -442,5 +493,36 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+#pragma mark - navigation
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    if (self.lastControllerForToolbarItems) {
+        if ([self.lastControllerForToolbarItems isEqual:[self.viewControllers objectAtIndex:[self.viewControllers count]-2]]) {
+            //found right controller, show proper view (following, conversations or notifications)
+            if (self.lastSelectedType == BARBUTTONTYPE_CONVERSATIONS) {
+                [self performSelector:@selector(showConversations) withObject:nil afterDelay:0.2f];
+                //                [self showConversations];
+            }
+            else if (self.lastSelectedType == BARBUTTONTYPE_FOLLOWERS) {
+                [self performSelector:@selector(showFollowers) withObject:nil afterDelay:0.2f];
+                //                [self showFollowers];
+            }
+            else if (self.lastSelectedType == BARBUTTONTYPE_NOTIFICATIONS) {
+                
+            }
+            else {
+                //do nothing if the button type == BARBUTTONTYPE_NONE
+            }
+            [self forgetLastController];
+        }
+    }
+    
+    [super popViewControllerAnimated:animated];
+    return [self.viewControllers lastObject];
+}
+
 
 @end

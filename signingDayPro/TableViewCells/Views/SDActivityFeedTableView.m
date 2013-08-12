@@ -230,13 +230,13 @@
 - (void)loadData
 {
     if (self.user) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@", self.user];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@ OR postedToUser == %@", self.user,self.user];
         self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     }
     else {
         self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     }
-    NSLog(@"%@     DATA_ARRAY_COUNT = %d",self,[self.dataArray count]);
     [self reloadTable];
 }
 

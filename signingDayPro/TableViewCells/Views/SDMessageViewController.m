@@ -190,15 +190,21 @@
     cell.messageTextLabel.text = conversation.lastMessageText;
     
     NSArray *users = [conversation.users allObjects];
-    NSMutableArray *usernames = [[NSMutableArray alloc] init];
-    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    NSNumber *masterNumber = [self getMasterIdentifier];
     for (User *user in users) {
-        if (![user.username isEqual:masterUsername])
-            [usernames addObject:user.username];
+        if (![user.identifier isEqualToNumber:masterNumber])
+            [names addObject:user.name];
     }
     
-    NSArray *sortedUsernames = [usernames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    cell.usernameLabel.text = [sortedUsernames componentsJoinedByString:@", "];
+    //check if user hasn't writen a message to himself (was able in the previous versions of the app)
+    if ([names count] == 0) {
+        User *masterUser = [self getMasterUser];
+        [names addObject:masterUser.name];  
+    }
+    
+    NSArray *sortedNames = [names sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    cell.usernameLabel.text = [sortedNames componentsJoinedByString:@", "];
     
     User *conversationUser;
     if ([users count] == 1)

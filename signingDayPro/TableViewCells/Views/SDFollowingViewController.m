@@ -16,6 +16,7 @@
 #import "AFNetworking.h"
 #import "UIImage+Crop.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SDUserProfileViewController.h"
 
 @interface SDFollowingViewController ()
 
@@ -172,7 +173,7 @@
     Master *master = [self getMaster];
     
     if (showActivityIndicator) {
-        [self showProgressHudInView:self.tableView withText:@"Updating list"];
+        [self showProgressHudInView:self.view withText:@"Updating list"];
     }
     
     if (_controllerType == CONTROLLER_TYPE_FOLLOWING) {
@@ -180,20 +181,20 @@
         [SDFollowingService getListOfFollowingsForUserWithIdentifier:master.identifier forPage:_currentFollowingPage withCompletionBlock:^(int totalFollowingCount) {
             //refresh the view
             _totalFollowings = totalFollowingCount;
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
             [self reloadView];
         } failureBlock:^{
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
         }];
     }
     else {
         //get list of followers
         [SDFollowingService getListOfFollowersForUserWithIdentifier:master.identifier forPage:_currentFollowersPage withCompletionBlock:^(int totalFollowerCount) {
             _totalFollowers = totalFollowerCount; //set the count to know how much we should send
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
             [self reloadView];
         } failureBlock:^{
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
         }];
     }
 }
@@ -417,14 +418,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     User *user = [self.dataArray objectAtIndex:indexPath.row];
-    NSLog(@"user id = %d",[user.identifier intValue]);
+    [self.delegate followingViewController:self didSelectUser:user];
 }
 
 #pragma mark - Following actions
 
 - (void)followButtonPressed:(UIButton *)sender
 {
-    [self showProgressHudInView:self.tableView withText:@"Updating following list"];
+    [self hideKeyboard];
+    [self showProgressHudInView:self.view withText:@"Updating following list"];
     
     User *user = [self.dataArray objectAtIndex:sender.tag];
     [self.userSet addObject:user.identifier];
@@ -432,19 +434,21 @@
     if (!sender.selected) {
         //following action
         [SDFollowingService followUserWithIdentifier:user.identifier withCompletionBlock:^{
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
+            sender.selected = !sender.selected;
             [self loadInfo];
         } failureBlock:^{
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
         }];
     }
     else {
         //unfollowing action
         [SDFollowingService unfollowUserWithIdentifier:user.identifier withCompletionBlock:^{
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
+            sender.selected = !sender.selected;
             [self loadInfo];
         } failureBlock:^{
-            [self hideProgressHudInView:self.tableView];
+            [self hideProgressHudInView:self.view];
         }];
     }
 }

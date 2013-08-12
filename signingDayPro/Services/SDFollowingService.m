@@ -14,6 +14,7 @@
 #import "Message.h"
 #import "AFHTTPRequestOperation.h"
 #import "STKeychain.h"
+#import "SDActivityFeedService.h"
 
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
@@ -45,15 +46,23 @@
                                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
                                     
                                     for (NSDictionary *userInfo in followings) {
+                                        
                                         NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"Id"];
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followingsUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
                                         if (!user) {
                                             user = [User MR_createInContext:context];
                                             user.identifier = followingsUserIdentifier;
-                                            user.username = [userInfo valueForKey:@"Username"];
-                                            user.master = master;
                                         }
+                                        
+                                        user.username = [userInfo valueForKey:@"UserName"];
+                                        user.master = master;
+                                        
+                                        SDUserType userTypeId = [[userInfo valueForKey:@"UserTypeId"] intValue];
+                                        if (userTypeId > 0) {
+                                            user.userTypeId = [NSNumber numberWithInt:userTypeId];
+                                        }
+                                        
                                         user.followedBy = master;
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
@@ -94,8 +103,13 @@
                                         if (!user) {
                                             user = [User MR_createInContext:context];
                                             user.identifier = followersUserIdentifier;
-                                            user.username = [userInfo valueForKey:@"Username"];
-                                            user.master = master;
+                                        }
+                                        user.username = [userInfo valueForKey:@"UserName"];
+                                        user.master = master;
+                                        
+                                        SDUserType userTypeId = [[userInfo valueForKey:@"UserTypeId"] intValue];
+                                        if (userTypeId > 0) {
+                                            user.userTypeId = [NSNumber numberWithInt:userTypeId];
                                         }
                                         user.following = master;
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
@@ -139,9 +153,15 @@
                                         if (!user) {
                                             user = [User MR_createInContext:context];
                                             user.identifier = followingsUserIdentifier;
-                                            user.username = [userInfo valueForKey:@"Username"];
-                                            user.master = master;
                                         }
+                                        user.username = [userInfo valueForKey:@"UserName"];
+                                        user.master = master;
+                                        
+                                        SDUserType userTypeId = [[userInfo valueForKey:@"UserTypeId"] intValue];
+                                        if (userTypeId > 0) {
+                                            user.userTypeId = [NSNumber numberWithInt:userTypeId];
+                                        }
+                                        user.following = nil;
                                         user.followedBy = master;
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
@@ -182,8 +202,13 @@
                                         if (!user) {
                                             user = [User MR_createInContext:context];
                                             user.identifier = followersUserIdentifier;
-                                            user.username = [userInfo valueForKey:@"Username"];
-                                            user.master = master;
+                                        }
+                                        user.username = [userInfo valueForKey:@"UserName"];
+                                        user.master = master;
+                                        
+                                        SDUserType userTypeId = [[userInfo valueForKey:@"UserTypeId"] intValue];
+                                        if (userTypeId > 0) {
+                                            user.userTypeId = [NSNumber numberWithInt:userTypeId];
                                         }
                                         user.following = master;
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
@@ -282,12 +307,16 @@
                                          if (!user) {
                                              user = [User MR_createInContext:context];
                                              user.identifier = followingsUserIdentifier;
-                                             user.username = [userInfo valueForKey:@"Username"];
+                                             user.username = [userInfo valueForKey:@"UserName"];
                                          }
                                          user.master = master;
                                          user.followedBy = master;
                                          user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                          user.name = [userInfo valueForKey:@"DisplayName"];
+                                         SDUserType userTypeId = [[userInfo valueForKey:@"UserTypeId"] intValue];
+                                         if (userTypeId > 0) {
+                                             user.userTypeId = [NSNumber numberWithInt:userTypeId];
+                                         }
                                          
                                          user.followingRelationshipCreated = [SDUtils dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
@@ -326,7 +355,11 @@
                                          if (!user) {
                                              user = [User MR_createInContext:context];
                                              user.identifier = followingsUserIdentifier;
-                                             user.username = [userInfo valueForKey:@"Username"];
+                                             user.username = [userInfo valueForKey:@"UserName"];
+                                         }
+                                         SDUserType userTypeId = [[userInfo valueForKey:@"UserTypeId"] intValue];
+                                         if (userTypeId > 0) {
+                                             user.userTypeId = [NSNumber numberWithInt:userTypeId];
                                          }
                                          
                                          user.master = master;

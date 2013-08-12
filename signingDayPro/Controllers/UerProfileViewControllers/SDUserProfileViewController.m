@@ -74,7 +74,7 @@
 {
     [super viewDidAppear:animated];
     
-    [self.tableView loadData];
+//    [self.tableView loadData];
 }
 
 #pragma mark - refreshing
@@ -91,7 +91,7 @@
 
 - (void)setupTableViewHeader
 {
-    if (!_headerView) {
+    if (!self.headerView) {
         
         // Load headerview
         id view = nil;
@@ -122,6 +122,9 @@
                 ((SDUserProfileCoachHeaderView *)view).buzzButtonView.delegate = self;
                 break;
             default:
+                view = [UIView loadInstanceFromClass:[SDUserProfileMemberHeaderView class]];
+                ((SDUserProfileMemberHeaderView *)view).delegate = self;
+                ((SDUserProfileMemberHeaderView *)view).buzzButtonView.delegate = self;
                 break;
         }
         

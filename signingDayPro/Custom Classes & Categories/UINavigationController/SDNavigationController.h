@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SDMessageViewController.h"
+#import "SDFollowingViewController.h"
 
-@class SDFollowingViewController;
 
 typedef enum {
     BARBUTTONTYPE_NOTIFICATIONS = 0,
@@ -21,7 +21,7 @@ typedef enum {
 #define kTriangleViewTag 999
 #define kTopToolbarHeight 44
 
-@interface SDNavigationController : UINavigationController <SDMessageViewControllerDelegate>
+@interface SDNavigationController : UINavigationController <SDMessageViewControllerDelegate,SDFollowingViewControllerDelegate>
 
 @property (nonatomic, weak) UIButton *menuButton;
 
