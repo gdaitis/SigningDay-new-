@@ -12,6 +12,11 @@
 #import "WebPreview.h"
 #import "ActivityStory.h"
 #import "User.h"
+#import "Player.h"
+#import "Team.h"
+#import "Coach.h"
+#import "HighSchool.h"
+#import "Member.h"
 #import "Like.h"
 #import "Master.h"
 #import "Comment.h"
@@ -19,6 +24,7 @@
 #import "SDUtils.h"
 #import "SDErrorService.h"
 #import "NSString+HTML.h"
+#import "SDProfileService.h"
 
 @interface SDActivityFeedService ()
 
@@ -146,7 +152,9 @@
                                 }];
 }
 
-+ (void)createUpdateWebPreviewObjectFromDictionary:(NSDictionary *)dictionary withStory:(ActivityStory *)story inContext:(NSManagedObjectContext *)context
++ (void)createUpdateWebPreviewObjectFromDictionary:(NSDictionary *)dictionary
+                                         withStory:(ActivityStory *)story
+                                         inContext:(NSManagedObjectContext *)context
 {
     NSString *webPreviewLink = nil;
     
@@ -175,7 +183,9 @@
     }
 }
 
-+ (void)createUpdateUserFromDictionary:(NSDictionary *)dictionary withActivityStory:(ActivityStory *)activityStory inContext:(NSManagedObjectContext *)context
++ (void)createUpdateUserFromDictionary:(NSDictionary *)dictionary
+                     withActivityStory:(ActivityStory *)activityStory
+                             inContext:(NSManagedObjectContext *)context
 {
     NSNumber *authorIdentifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"Id"] intValue]];
     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
@@ -209,11 +219,13 @@
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
+            if (!user.thePlayer)
+                user.thePlayer = [Player MR_createInContext:context];
             if ([attributeDictionary valueForKey:@"Position"] != [NSNull null]) {
-                user.position = [attributeDictionary valueForKey:@"Position"];
+                user.thePlayer.position = [attributeDictionary valueForKey:@"Position"];
             }
             if ([attributeDictionary valueForKey:@"Class"] != [NSNull null]) {
-                user.userClass = [[attributeDictionary valueForKey:@"Class"] stringValue];
+                user.thePlayer.userClass = [[attributeDictionary valueForKey:@"Class"] stringValue];
             }
         }
     }
@@ -222,11 +234,13 @@
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
+            if (!user.theTeam)
+                user.theTeam = [Team MR_createInContext:context];
             if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
-                user.cityName = [attributeDictionary valueForKey:@"CityName"];
+                user.theTeam.location = [attributeDictionary valueForKey:@"CityName"];
             }
             if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
-                user.stateCode = [attributeDictionary valueForKey:@"StateCode"];
+                user.theTeam.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
     }
@@ -235,8 +249,11 @@
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
+            if (!user.theCoach)
+                user.theCoach = [Coach MR_createInContext:context];
             if ([attributeDictionary valueForKey:@"Institution"] != [NSNull null]) {
-                user.institution = [attributeDictionary valueForKey:@"Institution"];
+                if (user.theCoach.team)
+                    user.theCoach.team.theUser.name = [attributeDictionary valueForKey:@"Institution"];
             }
         }
     }
@@ -246,14 +263,18 @@
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
         if (attributeDictionary) {
+            if (!user.theHighSchool)
+                user.theHighSchool = [HighSchool MR_createInContext:context];
             if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
-                user.cityName = [attributeDictionary valueForKey:@"CityName"];
+                user.theHighSchool.address = [attributeDictionary valueForKey:@"CityName"];
             }
             if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
-                user.stateCode = [attributeDictionary valueForKey:@"StateCode"];
+                user.theHighSchool.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
     }
+    
+    [context MR_saveOnlySelfAndWait];
 }
 
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody

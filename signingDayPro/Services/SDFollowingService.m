@@ -15,7 +15,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "STKeychain.h"
 #import "SDActivityFeedService.h"
-
+#import "SDProfileService.h"
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
 #import "SDErrorService.h"
@@ -307,8 +307,8 @@
                                          if (!user) {
                                              user = [User MR_createInContext:context];
                                              user.identifier = followingsUserIdentifier;
-                                             user.username = [userInfo valueForKey:@"UserName"];
                                          }
+                                         user.username = [userInfo valueForKey:@"UserName"];
                                          user.master = master;
                                          user.followedBy = master;
                                          user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
@@ -355,8 +355,8 @@
                                          if (!user) {
                                              user = [User MR_createInContext:context];
                                              user.identifier = followingsUserIdentifier;
-                                             user.username = [userInfo valueForKey:@"UserName"];
                                          }
+                                         user.username = [userInfo valueForKey:@"UserName"];
                                          SDUserType userTypeId = [[userInfo valueForKey:@"UserTypeId"] intValue];
                                          if (userTypeId > 0) {
                                              user.userTypeId = [NSNumber numberWithInt:userTypeId];

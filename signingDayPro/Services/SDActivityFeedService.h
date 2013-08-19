@@ -8,15 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-typedef enum {
-    SDUserTypePlayer = 1,
-    SDUserTypeTeam = 2,
-    SDUserTypeCoach = 3,
-    SDUserTypeHighSchool = 4,
-    SDUserTypeMember = 5
-} SDUserType;
-
 @class ActivityStory;
 @class Comment;
 @class User;

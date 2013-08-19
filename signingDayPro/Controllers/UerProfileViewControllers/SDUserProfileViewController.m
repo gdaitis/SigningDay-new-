@@ -75,6 +75,13 @@
     [super viewDidAppear:animated];
     
 //    [self.tableView loadData];
+    
+    [SDProfileService getProfileInfoForUser:self.currentUser
+                            completionBlock:^{
+                                //
+                            } failureBlock:^{
+                                //
+                            }];
 }
 
 #pragma mark - refreshing
@@ -85,6 +92,13 @@
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
     [self.tableView checkServerAndDeleteOld:NO];
+    
+    [SDProfileService getProfileInfoForUser:self.currentUser
+                            completionBlock:^{
+                                //
+                            } failureBlock:^{
+                                //
+                            }];
 }
 
 #pragma mark - TableView datasource

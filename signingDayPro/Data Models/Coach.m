@@ -1,20 +1,21 @@
 //
-//  Like.m
+//  Coach.m
 //  signingDayPro
 //
 //  Created by Vytautas Gudaitis on 8/14/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "Like.h"
-#import "ActivityStory.h"
+#import "Coach.h"
+#import "Team.h"
 #import "User.h"
 
 
-@implementation Like
+@implementation Coach
 
-@dynamic createdDate;
-@dynamic activityStory;
-@dynamic user;
+@dynamic location;
+@dynamic position;
+@dynamic team;
+@dynamic theUser;
 
 @end

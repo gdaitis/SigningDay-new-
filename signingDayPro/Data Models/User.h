@@ -2,32 +2,27 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 7/30/13.
+//  Created by Vytautas Gudaitis on 8/14/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Comment, Conversation, Like, Master, Message;
+@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, Member, Message, Player, Team;
 
 @interface User : NSManagedObject
 
 @property (nonatomic, retain) NSString * avatarUrl;
 @property (nonatomic, retain) NSString * bio;
-@property (nonatomic, retain) NSString * cityName;
 @property (nonatomic, retain) NSDate * followerRelationshipCreated;
 @property (nonatomic, retain) NSDate * followingRelationshipCreated;
 @property (nonatomic, retain) NSNumber * identifier;
-@property (nonatomic, retain) NSString * institution;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * numberOfFollowers;
 @property (nonatomic, retain) NSNumber * numberOfFollowing;
 @property (nonatomic, retain) NSNumber * numberOfPhotos;
 @property (nonatomic, retain) NSNumber * numberOfVideos;
-@property (nonatomic, retain) NSString * position;
-@property (nonatomic, retain) NSString * stateCode;
-@property (nonatomic, retain) NSString * userClass;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSNumber * userTypeId;
@@ -41,6 +36,11 @@
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
 @property (nonatomic, retain) NSSet *messages;
+@property (nonatomic, retain) Player *thePlayer;
+@property (nonatomic, retain) Team *theTeam;
+@property (nonatomic, retain) Coach *theCoach;
+@property (nonatomic, retain) HighSchool *theHighSchool;
+@property (nonatomic, retain) Member *theMember;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

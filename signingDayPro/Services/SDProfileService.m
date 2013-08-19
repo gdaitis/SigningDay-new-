@@ -18,16 +18,221 @@
 #import "MBProgressHUD.h"
 #import "SDErrorService.h"
 #import "NSString+HTML.h"
+#import "Player.h"
+#import "Coach.h"
+#import "Team.h"
+#import "Member.h"
+#import "HighSchool.h"
+#import "NSDictionary+NullConverver.h"
 
 @interface SDProfileService ()
 
-+ (void)uploadAvatarForUserIdentifier:(NSNumber *)identifier verbMethod:(NSString *)verbMethod constructingBodyWithBlock:(void (^)(id <AFMultipartFormData>formData))block completionBlock:(void (^)(void))completionBlock;
++ (void)uploadAvatarForUserIdentifier:(NSNumber *)identifier
+                           verbMethod:(NSString *)verbMethod
+            constructingBodyWithBlock:(void (^)(id <AFMultipartFormData>formData))block
+                      completionBlock:(void (^)(void))completionBlock;
 
 @end
 
 @implementation SDProfileService
 
-+ (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier completionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
++ (void)getProfileInfoForUser:(User *)theUser
+              completionBlock:(void (^)(void))completionBlock
+                 failureBlock:(void (^)(void))failureBlock
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://dev.signingday.com/services/UserService.asmx/GetUserInfo"]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    NSString *body = [NSString stringWithFormat:@"{userId:%d}", [theUser.identifier integerValue]];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+                                                             options:kNilOptions
+                                                               error:nil] dictionaryByReplacingNullsWithStrings];
+        NSDictionary *userDictionary = [JSON valueForKey:@"d"];
+        
+        NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserId"] intValue]];
+        NSString *username = [userDictionary valueForKey:@"UserName"];
+        NSManagedObjectContext *userContext = [NSManagedObjectContext MR_contextForCurrentThread];
+        User *user = [User MR_findFirstByAttribute:@"identifier"
+                                         withValue:identifier
+                                         inContext:userContext];
+        if (!user) {
+            user = [User MR_findFirstByAttribute:@"username"
+                                       withValue:username
+                                       inContext:userContext];
+        }
+        if (!user) {
+            user = [User MR_createInContext:userContext];
+            user.identifier = identifier;
+        }
+        user.username = username;
+        user.name = [userDictionary valueForKey:@"DisplayName"];
+        user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+        user.numberOfFollowers = [NSNumber numberWithInt:[[userDictionary valueForKey:@"FollowersCount"] intValue]];
+        user.numberOfFollowing = [NSNumber numberWithInt:[[userDictionary valueForKey:@"FollowingCount"] intValue]];
+        
+        NSDictionary *derivedUserDictionary = [userDictionary valueForKey:@"DerivedUser"];
+        
+        SDUserType userTypeId = [[userDictionary valueForKey:@"UserTypeId"] intValue];
+        
+        switch (userTypeId) {
+            case SDUserTypePlayer: {
+                if (!user.thePlayer)
+                    user.thePlayer = [Player MR_createInContext:userContext];
+                user.thePlayer.positionRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"PosinionRanking"] intValue]];
+                user.thePlayer.stateRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"StateRanking"] intValue]];
+                user.thePlayer.height = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"Height"] intValue]];
+                user.thePlayer.weight = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"Weight"] intValue]];
+                user.thePlayer.userClass = [derivedUserDictionary valueForKey:@"Class"];
+                user.thePlayer.position = [derivedUserDictionary valueForKey:@"Posinion"];
+                user.thePlayer.baseScore = [NSNumber numberWithFloat:[[derivedUserDictionary valueForKey:@"BaseScore"] floatValue]];
+                user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"NationalRanking"] intValue]];
+                user.thePlayer.starsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"StarsCount"] intValue]];
+                
+                NSDictionary *highSchoolDictionary = [derivedUserDictionary valueForKey:@"HighSchool"];
+                NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[highSchoolDictionary valueForKey:@"HighSchoolId"] intValue]];
+                User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
+                                                           withValue:highSchoolIdentifier
+                                                           inContext:userContext];
+                if (!highSchoolUser) {
+                    highSchoolUser = [User MR_createInContext:userContext];
+                    highSchoolUser.identifier = highSchoolIdentifier;
+                }
+                highSchoolUser.name = [highSchoolDictionary valueForKey:@"Name"];
+                highSchoolUser.avatarUrl = [highSchoolDictionary valueForKey:@"AvatarUrl"];
+                if (!highSchoolUser.theHighSchool)
+                    highSchoolUser.theHighSchool = [HighSchool MR_createInContext:userContext];
+                highSchoolUser.theHighSchool.mascot = [highSchoolDictionary valueForKey:@"Mascot"];
+                highSchoolUser.theHighSchool.headCoachName = [highSchoolDictionary valueForKey:@"HeadCoach"];
+                highSchoolUser.theHighSchool.address = [highSchoolDictionary valueForKey:@"Address"];
+                
+                user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+            }
+                break;
+                
+            case SDUserTypeTeam: {
+                if (!user.theTeam)
+                    user.theTeam = [Team MR_createInContext:userContext];
+                NSDictionary *conferenceDictionary = [derivedUserDictionary valueForKey:@"Conference"];
+                user.theTeam.conferenceName = [conferenceDictionary valueForKey:@"Name"];
+                user.theTeam.conferenceLogoUrl = [conferenceDictionary valueForKey:@"LogoUrl"];
+                user.theTeam.conferenceLogoUrlBlack = [conferenceDictionary valueForKey:@"LogoUrlBlack"];
+                user.theTeam.location = [derivedUserDictionary valueForKey:@"Location"];
+                user.theTeam.universityName = [derivedUserDictionary valueForKey:@"UniversityName"];
+                user.theTeam.conferenceRankingString = [derivedUserDictionary valueForKey:@"ConferenceRanking"];
+                user.theTeam.nationalRankingString = [derivedUserDictionary valueForKey:@"NationalRanking"];
+                
+                NSDictionary *coachDictionary = [derivedUserDictionary valueForKey:@"Coach"];
+                NSNumber *coachIdentifier = [NSNumber numberWithInt:[[coachDictionary valueForKey:@"CoachId"] intValue]];
+                User *coachUser = [User MR_findFirstByAttribute:@"identifier"
+                                                      withValue:coachIdentifier
+                                                      inContext:userContext];
+                if (!coachUser) {
+                    coachUser = [User MR_createInContext:userContext];
+                    coachUser.identifier = coachIdentifier;
+                }
+                if (!coachUser.theCoach)
+                    coachUser.theCoach = [Coach MR_createInContext:userContext];
+                coachUser.theCoach.location = [coachDictionary valueForKey:@"Location"];
+                coachUser.theCoach.position = [coachDictionary valueForKey:@"Position"];
+                
+                user.theTeam.headCoach = coachUser.theCoach;
+            }
+                break;
+                
+            case SDUserTypeCoach: {
+                if (!user.theCoach)
+                    user.theCoach = [Coach MR_createInContext:userContext];
+                user.theCoach.location = [derivedUserDictionary valueForKey:@"Location"];
+                user.theCoach.position = [derivedUserDictionary valueForKey:@"Position"];
+                
+                NSDictionary *teamDictionary = [derivedUserDictionary valueForKey:@"Team"];
+                NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
+                User *teamUser = [User MR_findFirstByAttribute:@"identifier"
+                                                     withValue:teamIdentifier
+                                                     inContext:userContext];
+                if (!teamUser) {
+                    teamUser = [User MR_createInContext:userContext];
+                    teamUser.identifier = teamIdentifier;
+                }
+                teamUser.avatarUrl = [teamDictionary valueForKey:@"AvatarUrl"];
+                if (!teamUser.theTeam)
+                    teamUser.theTeam = [Team MR_createInContext:userContext];
+                NSDictionary *conferenceDictionary = [teamDictionary valueForKey:@"Conference"];
+                teamUser.theTeam.conferenceName = [conferenceDictionary valueForKey:@"Name"];
+                teamUser.theTeam.conferenceLogoUrl = [conferenceDictionary valueForKey:@"LogoUrl"];
+                teamUser.theTeam.conferenceLogoUrlBlack = [conferenceDictionary valueForKey:@"LogoUrlBlack"];
+                teamUser.theTeam.location = [teamDictionary valueForKey:@"Location"];
+                teamUser.theTeam.universityName = [teamDictionary valueForKey:@"UniversityName"];
+                teamUser.theTeam.conferenceRankingString = [teamDictionary valueForKey:@"ConferenceRanking"];
+                teamUser.theTeam.nationalRankingString = [teamUser valueForKey:@"NationalRanking"];
+                
+                user.theCoach.team = teamUser.theTeam;
+            }
+                break;
+                
+            case SDUserTypeHighSchool: {
+                if (!user.theHighSchool)
+                    user.theHighSchool = [HighSchool MR_createInContext:userContext];
+                user.theHighSchool.mascot = [derivedUserDictionary valueForKey:@"Mascot"];
+                user.theHighSchool.headCoachName = [derivedUserDictionary valueForKey:@"HeadCoach"];
+                user.theHighSchool.address = [derivedUserDictionary valueForKey:@"Address"];
+            }
+                break;
+                
+            case SDUserTypeMember: {
+                if (!user.theMember)
+                    user.theMember = [Member MR_createInContext:userContext];
+                user.theMember.uploadsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"UploadsCount"] intValue]];
+                user.theMember.postsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"PostsCount"] intValue]];
+                user.theMember.memberSince = [derivedUserDictionary valueForKey:@"MemberSince"];
+                
+                NSDictionary *teamDictionary = [derivedUserDictionary valueForKey:@"FavoriteTeam"];
+                NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
+                User *teamUser = [User MR_findFirstByAttribute:@"identifier"
+                                                     withValue:teamIdentifier
+                                                     inContext:userContext];
+                if (!teamUser) {
+                    teamUser = [User MR_createInContext:userContext];
+                    teamUser.identifier = teamIdentifier;
+                }
+                teamUser.avatarUrl = [teamDictionary valueForKey:@"AvatarUrl"];
+                if (!teamUser.theTeam)
+                    teamUser.theTeam = [Team MR_createInContext:userContext];
+                NSDictionary *conferenceDictionary = [teamDictionary valueForKey:@"Conference"];
+                teamUser.theTeam.conferenceName = [conferenceDictionary valueForKey:@"Name"];
+                teamUser.theTeam.conferenceLogoUrl = [conferenceDictionary valueForKey:@"LogoUrl"];
+                teamUser.theTeam.conferenceLogoUrlBlack = [conferenceDictionary valueForKey:@"LogoUrlBlack"];
+                teamUser.theTeam.location = [teamDictionary valueForKey:@"Location"];
+                teamUser.theTeam.universityName = [teamDictionary valueForKey:@"UniversityName"];
+                teamUser.theTeam.conferenceRankingString = [teamDictionary valueForKey:@"ConferenceRanking"];
+                teamUser.theTeam.nationalRankingString = [teamDictionary valueForKey:@"NationalRanking"];
+                
+                user.theMember.favoriteTeam = teamUser.theTeam;
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        [userContext MR_saveOnlySelfAndWait];
+        
+        completionBlock();
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock();
+    }];
+    [operation start];
+}
+
++ (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier
+                        completionBlock:(void (^)(void))completionBlock
+                           failureBlock:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"users/%d.json", [identifier integerValue]];
     [[SDAPIClient sharedClient] getPath:path
@@ -42,8 +247,8 @@
                                     if (!user) {
                                         user = [User MR_createInContext:context];
                                         user.identifier = identifier;
-                                        user.username = username;
                                     }
+                                    user.username = username;
                                     NSDictionary *userDictionary = [JSON valueForKey:@"User"];
                                     user.name = [userDictionary valueForKey:@"DisplayName"];
                                     user.bio = [[userDictionary valueForKey:@"Bio"] stringByConvertingHTMLToPlainText];
@@ -366,8 +571,8 @@
                                          if (!user) {
                                              user = [User MR_createInContext:context];
                                              user.identifier = followingsUserIdentifier;
-                                             user.username = [userInfo valueForKey:@"Username"];
                                          }
+                                         user.username = [userInfo valueForKey:@"Username"];
                                          user.master = master;
                                          user.followedBy = master;
                                          user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];

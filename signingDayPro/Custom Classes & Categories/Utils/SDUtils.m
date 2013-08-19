@@ -10,7 +10,12 @@
 #import "ActivityStory.h"
 #import "User.h"
 #import "WebPreview.h"
-#import "SDActivityFeedService.h"
+#import "SDProfileService.h"
+#import "Player.h"
+#import "Team.h"
+#import "Coach.h"
+#import "HighSchool.h"
+#import "Member.h"
 
 @interface SDUtils()
 
@@ -285,45 +290,44 @@
         
         NSMutableString *result = [[NSMutableString alloc] initWithString:@"-"];
         if (userTypeId == SDUserTypePlayer) {
-            if (user.position) {
-                [result appendFormat:@" %@",user.position];
+            if (user.thePlayer.position) {
+                [result appendFormat:@" %@", user.thePlayer.position];
             }
-            if (user.userClass) {
+            if (user.thePlayer.userClass) {
                 if (![result isEqualToString:@"-"]) {
                     [result appendFormat:@","];
                 }
-                [result appendFormat:@" %@",user.userClass];
+                [result appendFormat:@" %@", user.thePlayer.userClass];
             }
         }
         else if (userTypeId == SDUserTypeTeam) {
-            if (user.cityName) {
-                [result appendFormat:@" %@",user.cityName];
+            if (user.theTeam.location) {
+                [result appendFormat:@" %@", user.theTeam.location];
             }
-            if (user.stateCode) {
+            if (user.theTeam.stateCode) {
                 if (![result isEqualToString:@"-"]) {
                     [result appendFormat:@","];
                 }
-                [result appendFormat:@" %@",user.stateCode];
+                [result appendFormat:@" %@", user.theTeam.stateCode];
             }
         }
         else if (userTypeId == SDUserTypeCoach) {
-            if (user.institution) {
-                [result appendFormat:@" %@",user.institution];
+            if (user.theCoach.team) {
+                [result appendFormat:@" %@", user.theCoach.team.theUser.name];
             }
         }
         else if (userTypeId == SDUserTypeMember) {
             
         }
-        else {
-            //SDUserTypeHighSchool
-            if (user.cityName) {
-                [result appendFormat:@" %@",user.cityName];
+        else  if (userTypeId == SDUserTypeHighSchool) {
+            if (user.theHighSchool.address) {
+                [result appendFormat:@" %@", user.theHighSchool.address];
             }
-            if (user.stateCode) {
+            if (user.theHighSchool.stateCode) {
                 if (![result isEqualToString:@"-"]) {
                     [result appendFormat:@","];
                 }
-                [result appendFormat:@" %@",user.stateCode];
+                [result appendFormat:@" %@", user.theHighSchool.stateCode];
             }
         }
         if ([result isEqualToString:@"-"]) {

@@ -201,9 +201,9 @@
                                         if (!user) {
                                             user = [User MR_createInContext:context];
                                             user.identifier = [NSNumber numberWithInt:[[userInfo valueForKey:@"Id"] integerValue]];
-                                            user.username = [userInfo valueForKey:@"Username"];
-                                            user.master = master;
                                         }
+                                        user.username = [userInfo valueForKey:@"Username"];
+                                        user.master = master;
                                         user.following = master;
                                         user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                         user.name = [userInfo valueForKey:@"DisplayName"];
@@ -287,8 +287,8 @@
                                         if (!user) {
                                             user = [User MR_createInContext:context];
                                             user.identifier = identifier;
-                                            user.username = [followingUserDictionary valueForKey:@"Username"];
                                         }
+                                        user.username = [followingUserDictionary valueForKey:@"Username"];
                                         user.avatarUrl = [followingUserDictionary valueForKey:@"AvatarUrl"];
                                         user.name = [followingUserDictionary valueForKey:@"DisplayName"];
                                         user.followedBy = master;

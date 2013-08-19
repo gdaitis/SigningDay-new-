@@ -24,6 +24,12 @@
         <relationship name="postedToUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="activityStoriesFromOtherUsers" inverseEntity="User" syncable="YES"/>
         <relationship name="webPreview" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WebPreview" inverseName="activityStory" inverseEntity="WebPreview" syncable="YES"/>
     </entity>
+    <entity name="Coach" representedClassName="Coach" syncable="YES">
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="team" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="headCoach" inverseEntity="Team" syncable="YES"/>
+        <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theCoach" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Comment" representedClassName="Comment" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentId" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,6 +48,14 @@
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="conversations" inverseEntity="Master" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="conversation" inverseEntity="Message" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="conversations" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="HighSchool" representedClassName="HighSchool" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="headCoachName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mascot" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="highSchool" inverseEntity="Player" syncable="YES"/>
+        <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theHighSchool" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="ImageData" representedClassName="ImageData" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Transformable" valueTransformerName="ImageToDataTransformer" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
@@ -66,6 +80,13 @@
         <relationship name="following" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="followedBy" inverseEntity="User" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="master" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Member" representedClassName="Member" syncable="YES">
+        <attribute name="memberSince" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uploadsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="favoriteTeam" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="favoritedBy" inverseEntity="Team" syncable="YES"/>
+        <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theMember" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Message" representedClassName="Message" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
@@ -74,22 +95,43 @@
         <relationship name="conversation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="messages" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="baseScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="nationalRanking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="positionRanking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="starsCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="stateRanking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userClass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="highSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="players" inverseEntity="HighSchool" syncable="YES"/>
+        <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thePlayer" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Team" representedClassName="Team" syncable="YES">
+        <attribute name="conferenceLogoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conferenceLogoUrlBlack" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conferenceName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conferenceRankingString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nationalRankingString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="universityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="favoritedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Member" inverseName="favoriteTeam" inverseEntity="Member" syncable="YES"/>
+        <relationship name="headCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theTeam" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="cityName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="followerRelationshipCreated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="followingRelationshipCreated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="institution" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfFollowers" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="numberOfFollowing" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="numberOfPhotos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="numberOfVideos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userClass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userTypeId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -103,6 +145,11 @@
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="user" inverseEntity="Like" syncable="YES"/>
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
+        <relationship name="theCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="theUser" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="theHighSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="theUser" inverseEntity="HighSchool" syncable="YES"/>
+        <relationship name="theMember" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Member" inverseName="theUser" inverseEntity="Member" syncable="YES"/>
+        <relationship name="thePlayer" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="theUser" inverseEntity="Player" syncable="YES"/>
+        <relationship name="theTeam" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="theUser" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="WebPreview" representedClassName="WebPreview" syncable="YES">
         <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
@@ -113,14 +160,19 @@
         <relationship name="activityStory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="webPreview" inverseEntity="ActivityStory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ActivityStory" positionX="-47" positionY="-504" width="128" height="373"/>
+        <element name="ActivityStory" positionX="-83" positionY="-567" width="128" height="373"/>
+        <element name="Coach" positionX="1042" positionY="-148" width="128" height="103"/>
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
-        <element name="Conversation" positionX="198" positionY="135" width="128" height="178"/>
+        <element name="Conversation" positionX="153" positionY="137" width="128" height="178"/>
+        <element name="HighSchool" positionX="1024" positionY="2" width="128" height="133"/>
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
         <element name="Like" positionX="180" positionY="-124" width="128" height="88"/>
         <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
+        <element name="Member" positionX="844" positionY="224" width="128" height="118"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
-        <element name="User" positionX="585" positionY="-198" width="128" height="465"/>
-        <element name="WebPreview" positionX="117" positionY="-405" width="128" height="133"/>
+        <element name="Player" positionX="747" positionY="-460" width="128" height="208"/>
+        <element name="Team" positionX="1008" positionY="-423" width="128" height="208"/>
+        <element name="User" positionX="585" positionY="-198" width="128" height="463"/>
+        <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
     </elements>
 </model>
