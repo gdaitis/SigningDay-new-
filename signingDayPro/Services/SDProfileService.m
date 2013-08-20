@@ -40,7 +40,8 @@
               completionBlock:(void (^)(void))completionBlock
                  failureBlock:(void (^)(void))failureBlock
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://dev.signingday.com/services/UserService.asmx/GetUserInfo"]];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/UserService.asmx/GetUserInfo", kSDBaseSigningDayURLString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
@@ -83,12 +84,12 @@
             case SDUserTypePlayer: {
                 if (!user.thePlayer)
                     user.thePlayer = [Player MR_createInContext:userContext];
-                user.thePlayer.positionRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"PosinionRanking"] intValue]];
+                user.thePlayer.positionRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"PositionRanking"] intValue]];
                 user.thePlayer.stateRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"StateRanking"] intValue]];
                 user.thePlayer.height = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"Height"] intValue]];
                 user.thePlayer.weight = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"Weight"] intValue]];
-                user.thePlayer.userClass = [derivedUserDictionary valueForKey:@"Class"];
-                user.thePlayer.position = [derivedUserDictionary valueForKey:@"Posinion"];
+                user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[derivedUserDictionary valueForKey:@"Class"] intValue]];
+                user.thePlayer.position = [derivedUserDictionary valueForKey:@"Position"];
                 user.thePlayer.baseScore = [NSNumber numberWithFloat:[[derivedUserDictionary valueForKey:@"BaseScore"] floatValue]];
                 user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"NationalRanking"] intValue]];
                 user.thePlayer.starsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"StarsCount"] intValue]];
@@ -135,6 +136,7 @@
                     coachUser = [User MR_createInContext:userContext];
                     coachUser.identifier = coachIdentifier;
                 }
+                // reikia dar ir coach name is serviso
                 if (!coachUser.theCoach)
                     coachUser.theCoach = [Coach MR_createInContext:userContext];
                 coachUser.theCoach.location = [coachDictionary valueForKey:@"Location"];
@@ -169,7 +171,7 @@
                 teamUser.theTeam.location = [teamDictionary valueForKey:@"Location"];
                 teamUser.theTeam.universityName = [teamDictionary valueForKey:@"UniversityName"];
                 teamUser.theTeam.conferenceRankingString = [teamDictionary valueForKey:@"ConferenceRanking"];
-                teamUser.theTeam.nationalRankingString = [teamUser valueForKey:@"NationalRanking"];
+                teamUser.theTeam.nationalRankingString = [teamDictionary valueForKey:@"NationalRanking"];
                 
                 user.theCoach.team = teamUser.theTeam;
             }

@@ -7,6 +7,10 @@
 //
 
 #import "SDUserProfileMemberHeaderView.h"
+#import "Member.h"
+#import "Team.h"
+#import "AFNetworking.h"
+#import "SDAPIClient.h"
 
 @interface SDUserProfileMemberHeaderView ()
 
@@ -46,10 +50,10 @@
 - (void)setupFonts
 {
     //since bebasneue isn't native font, we need to specify it by code
-    _favoriteTeamLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _memberSinceLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _postsLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _uploadsLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.favoriteTeamLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.memberSinceLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.postsLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.uploadsLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
     
 //    self.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
 }
@@ -58,13 +62,30 @@
 {
     [super setupInfoWithUser:user];
     
-    _nameLabel.text = user.name;
-    [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
-        _userImageView.image = image;
-        
-        //delegate about data loading finish
-        [self.delegate dataLoadingFinishedInHeaderView:self];
-    }];
+    self.nameLabel.text = user.name;
+    self.profileTypeLabel.text = @"Member";
+    self.memberSinceDateLabel.text = user.theMember.memberSince;
+    self.postsCountLabel.text = [NSString stringWithFormat:@"%d", [user.theMember.postsCount intValue]];
+    self.uploadsCountLabel.text = [NSString stringWithFormat:@"%d", [user.theMember.uploadsCount intValue]];
+    
+    NSMutableArray *operationsArray = [[NSMutableArray alloc] init];
+    NSURLRequest *userAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
+    AFImageRequestOperation *userAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:userAvatarRequest
+                                                                                                     success:^(UIImage *image) {
+                                                                                                         self.userImageView.image = image;
+                                                                                                     }];
+    [operationsArray addObject:userAvatarOperation];
+    NSURLRequest *favoriteTeamAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.theMember.favoriteTeam.theUser.avatarUrl]];
+    AFImageRequestOperation *favoriteTeamAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:favoriteTeamAvatarRequest
+                                                                                                             success:^(UIImage *image) {
+                                                                                                                 self.favoriteTeamImageView.image = image;
+                                                                                                             }];
+    [operationsArray addObject:favoriteTeamAvatarOperation];
+    [[SDAPIClient sharedClient] enqueueBatchOfHTTPRequestOperations:operationsArray
+                                                      progressBlock:nil
+                                                    completionBlock:^(NSArray *operations) {
+                                                        [self.delegate dataLoadingFinishedInHeaderView:self];
+                                                    }];
 }
 
 /*

@@ -78,7 +78,7 @@
     
     [SDProfileService getProfileInfoForUser:self.currentUser
                             completionBlock:^{
-                                //
+                                [self setupHeaderView];
                             } failureBlock:^{
                                 //
                             }];
@@ -95,7 +95,7 @@
     
     [SDProfileService getProfileInfoForUser:self.currentUser
                             completionBlock:^{
-                                //
+                                [self setupHeaderView];
                             } failureBlock:^{
                                 //
                             }];

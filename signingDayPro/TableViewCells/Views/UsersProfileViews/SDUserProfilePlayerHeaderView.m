@@ -9,6 +9,9 @@
 #import "SDUserProfilePlayerHeaderView.h"
 #import "SDStarsRatingView.h"
 #import "SDBaseScoreView.h"
+#import "Player.h"
+#import "HighSchool.h"
+#import "User.h"
 
 @interface SDUserProfilePlayerHeaderView ()
 
@@ -54,21 +57,28 @@
 - (void)setupFonts
 {
     //since bebasneue isn't native font, we need to specify it by code
-    _baseScorelabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _rankingslabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _infolabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.baseScorelabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.rankingslabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.infolabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
 }
 
 - (void)setupInfoWithUser:(User *)user
 {
     [super setupInfoWithUser:user];
     
-    _namelabel.text = user.name;
+    self.namelabel.text = user.name;
+    self.schoolNamelabel.text = user.thePlayer.highSchool.theUser.name;
+    self.starsRatingView.starsCount = [user.thePlayer.starsCount intValue];
+    self.baseScoreView.baseScore = [user.thePlayer.baseScore floatValue];
+    self.positionNumberlabel.text = [NSString stringWithFormat:@"%d", [user.thePlayer.positionRanking intValue]];
+    self.nationalNumberlabel.text = [NSString stringWithFormat:@"%d", [user.thePlayer.nationalRanking intValue]];
+    self.stateNumberlabel.text = [NSString stringWithFormat:@"%d", [user.thePlayer.stateRanking intValue]];
+    #warning height in inches
+    self.postionAndHeightlabel.text = [NSString stringWithFormat:@"%@ %d", user.thePlayer.position, [user.thePlayer.height intValue]];
+    self.classNumberlabel.text = user.thePlayer.userClass;
+    
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
-        _userImageView.image = image;
-#warning hardcoded for testing
-        self.starsRatingView.starsCount = 4;
-        self.baseScoreView.baseScore = 87.69;
+        self.userImageView.image = image;
         
         //delegate about data loading finish
         [self.delegate dataLoadingFinishedInHeaderView:self];

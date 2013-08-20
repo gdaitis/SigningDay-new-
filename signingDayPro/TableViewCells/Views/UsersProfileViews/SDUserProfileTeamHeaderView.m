@@ -7,6 +7,11 @@
 //
 
 #import "SDUserProfileTeamHeaderView.h"
+#import "Team.h"
+#import "Coach.h"
+#import "User.h"
+#import "AFNetworking.h"
+#import "SDAPIClient.h"
 
 @interface SDUserProfileTeamHeaderView ()
 
@@ -45,24 +50,39 @@
 - (void)setupFonts
 {
     //since bebasneue isn't native font, we need to specify it by code
-    _conferenceLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _conferenceRankingLabel.text = @"CONFERENCE RANKING:";
-    _headCoachLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _conferenceRankingLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.conferenceLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.conferenceRankingLabel.text = @"CONFERENCE RANKING:";
+    self.headCoachLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.conferenceRankingLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
 }
 
 - (void)setupInfoWithUser:(User *)user
 {
     [super setupInfoWithUser:user];
     
-    _nameLabel.text = user.name;
-    [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
-        _conferenceImageView.image = image;
-        _userImageView.image = image;
-        
-        //delegate about data loading finish
-        [self.delegate dataLoadingFinishedInHeaderView:self];
-    }];
+    self.nameLabel.text = user.name;
+    self.universityLabel.text = user.theTeam.location;
+    self.conferenceRankingNumberLabel.text = user.theTeam.conferenceRankingString;
+    self.headCoachNameLabel.text = user.theTeam.headCoach.theUser.name;
+    
+    NSMutableArray *operationsArray = [[NSMutableArray alloc] init];
+    NSURLRequest *userAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
+    AFImageRequestOperation *userAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:userAvatarRequest
+                                                                                                     success:^(UIImage *image) {
+                                                                                                         self.userImageView.image = image;
+                                                                                                     }];
+    [operationsArray addObject:userAvatarOperation];
+    NSURLRequest *conferenceAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.theTeam.conferenceLogoUrl]];
+    AFImageRequestOperation *conferenceAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:conferenceAvatarRequest
+                                                                                                          success:^(UIImage *image) {
+                                                                                                              self.conferenceImageView.image = image;
+                                                                                                          }];
+    [operationsArray addObject:conferenceAvatarOperation];
+    [[SDAPIClient sharedClient] enqueueBatchOfHTTPRequestOperations:operationsArray
+                                                      progressBlock:nil
+                                                    completionBlock:^(NSArray *operations) {
+                                                        [self.delegate dataLoadingFinishedInHeaderView:self];
+                                                    }];
 }
 
 /*

@@ -7,6 +7,7 @@
 //
 
 #import "SDUserProfileHighSchoolHeaderView.h"
+#import "HighSchool.h"
 
 @interface SDUserProfileHighSchoolHeaderView ()
 
@@ -43,8 +44,8 @@
 - (void)setupFonts
 {
     //since bebasneue isn't native font, we need to specify it by code
-    _headCoachLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
-    _addressLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.headCoachLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    self.addressLabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
     
     //    self.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
 }
@@ -53,9 +54,14 @@
 {
     [super setupInfoWithUser:user];
     
-    _nameLabel.text = user.name;
-    [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
-        _userImageView.image = image;
+    self.nameLabel.text = user.name;
+    self.mascotLabel.text = [NSString stringWithFormat:@"Mascot: %@", user.theHighSchool.mascot];
+    self.headCoachNameLabel.text = user.theHighSchool.headCoachName;
+    self.addressNameLabel.text = user.theHighSchool.address;
+    
+    [[SDImageService sharedService] getImageWithURLString:user.avatarUrl
+                                                  success:^(UIImage *image) {
+        self.userImageView.image = image;
         
         //delegate about data loading finish
         [self.delegate dataLoadingFinishedInHeaderView:self];

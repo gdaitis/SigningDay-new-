@@ -8,7 +8,7 @@
 
 #import "SDBaseProfileHeaderView.h"
 #import "UIView+NibLoading.h"
-
+#import "User.h"
 
 @implementation SDBaseProfileHeaderView
 
@@ -39,7 +39,8 @@
 
 - (void)setupInfoWithUser:(User *)user
 {
-    
+    self.slidingButtonView.followersCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowers intValue]];
+    self.slidingButtonView.followingCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowing intValue]];
 }
 
 /*
