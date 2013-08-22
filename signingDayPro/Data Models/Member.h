@@ -2,7 +2,7 @@
 //  Member.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 8/14/13.
+//  Created by Vytautas Gudaitis on 8/22/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 
 @interface Member : NSManagedObject
 
-@property (nonatomic, retain) NSString * memberSince;
+@property (nonatomic, retain) NSDate * memberSince;
 @property (nonatomic, retain) NSNumber * postsCount;
 @property (nonatomic, retain) NSNumber * uploadsCount;
 @property (nonatomic, retain) Team *favoriteTeam;

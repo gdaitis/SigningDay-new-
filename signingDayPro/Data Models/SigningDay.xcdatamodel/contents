@@ -81,7 +81,7 @@
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="master" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Member" representedClassName="Member" syncable="YES">
-        <attribute name="memberSince" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberSince" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="postsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="uploadsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="favoriteTeam" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="favoritedBy" inverseEntity="Team" syncable="YES"/>

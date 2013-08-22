@@ -64,7 +64,14 @@
     
     self.nameLabel.text = user.name;
     self.profileTypeLabel.text = @"Member";
-    self.memberSinceDateLabel.text = user.theMember.memberSince;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MMM dd, yyyy";
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    dateFormatter.locale = usLocale;
+    NSString *memberSinceString = [dateFormatter stringFromDate:user.theMember.memberSince];
+    self.memberSinceDateLabel.text = memberSinceString;
+    
     self.postsCountLabel.text = [NSString stringWithFormat:@"%d", [user.theMember.postsCount intValue]];
     self.uploadsCountLabel.text = [NSString stringWithFormat:@"%d", [user.theMember.uploadsCount intValue]];
     

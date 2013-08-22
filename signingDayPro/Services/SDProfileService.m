@@ -110,7 +110,7 @@
                 highSchoolUser.theHighSchool.mascot = [highSchoolDictionary valueForKey:@"Mascot"];
                 highSchoolUser.theHighSchool.headCoachName = [highSchoolDictionary valueForKey:@"HeadCoach"];
                 highSchoolUser.theHighSchool.address = [highSchoolDictionary valueForKey:@"Address"];
-                
+                                
                 user.thePlayer.highSchool = highSchoolUser.theHighSchool;
             }
                 break;
@@ -139,6 +139,7 @@
                 // reikia dar ir coach name is serviso
                 if (!coachUser.theCoach)
                     coachUser.theCoach = [Coach MR_createInContext:userContext];
+                coachUser.name = [coachDictionary valueForKey:@"CoachName"];
                 coachUser.theCoach.location = [coachDictionary valueForKey:@"Location"];
                 coachUser.theCoach.position = [coachDictionary valueForKey:@"Position"];
                 
@@ -191,7 +192,14 @@
                     user.theMember = [Member MR_createInContext:userContext];
                 user.theMember.uploadsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"UploadsCount"] intValue]];
                 user.theMember.postsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"PostsCount"] intValue]];
-                user.theMember.memberSince = [derivedUserDictionary valueForKey:@"MemberSince"];
+                
+                NSString *memmberSinceString = [derivedUserDictionary valueForKey:@"MemberSince"];
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                dateFormatter.dateFormat = @"MMMM dd, yyyy";
+                NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+                dateFormatter.locale = usLocale;
+                NSDate *memberSinceDate = [dateFormatter dateFromString:memmberSinceString];
+                user.theMember.memberSince = memberSinceDate;
                 
                 NSDictionary *teamDictionary = [derivedUserDictionary valueForKey:@"FavoriteTeam"];
                 NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
