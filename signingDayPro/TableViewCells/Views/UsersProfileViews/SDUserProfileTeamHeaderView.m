@@ -72,7 +72,13 @@
                                                                                                          self.userImageView.image = image;
                                                                                                      }];
     [operationsArray addObject:userAvatarOperation];
-    NSURLRequest *conferenceAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.theTeam.conferenceLogoUrl]];
+    
+    NSString *logoUrl;
+    if (![user.theTeam.conferenceLogoUrlBlack isEqual:@""])
+        logoUrl = user.theTeam.conferenceLogoUrlBlack;
+    else
+        logoUrl = user.theTeam.conferenceLogoUrl;
+    NSURLRequest *conferenceAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:logoUrl]];
     AFImageRequestOperation *conferenceAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:conferenceAvatarRequest
                                                                                                           success:^(UIImage *image) {
                                                                                                               self.conferenceImageView.image = image;

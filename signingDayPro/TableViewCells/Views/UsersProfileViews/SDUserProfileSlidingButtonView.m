@@ -99,6 +99,9 @@
 - (void)followButtonPressed:(UIButton *)sender
 {
     sender.selected = !sender.selected;
+    
+    [self.delegate userProfileSlidingButtonView:self
+                                 isNowFollowing:sender.selected];
 }
 
 - (void)bioButtonPressed:(id)sender

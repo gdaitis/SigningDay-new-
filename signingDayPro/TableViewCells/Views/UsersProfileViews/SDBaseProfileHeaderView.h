@@ -14,7 +14,7 @@
 #import "SDUserProfileSlidingButtonView.h"
 #import "SDUserProfileHeaderDelegate.h"
 
-@interface SDBaseProfileHeaderView : UIView <SDBuzzButtonViewDelegate>
+@interface SDBaseProfileHeaderView : UIView <SDBuzzButtonViewDelegate, SDUserProfileSlidingButtonViewDelegate>
 
 @property (nonatomic, strong) IBOutlet SDUserProfileSlidingButtonView *slidingButtonView;
 @property (nonatomic, strong) IBOutlet SDBuzzButtonView *buzzButtonView;

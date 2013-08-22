@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class SDUserProfileSlidingButtonView;
+
+@protocol SDUserProfileSlidingButtonViewDelegate <NSObject>
+
+@optional
+
+- (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+                      isNowFollowing:(BOOL)isFollowing;
+
+@end
+
 @interface SDUserProfileSlidingButtonView : UIView
 
 @property (nonatomic, weak) IBOutlet UILabel *followersCountLabel;
@@ -27,7 +38,7 @@
 //sliding meniu label
 @property (nonatomic, weak) IBOutlet UILabel *keyAttributesLabel;
 
-
+@property (nonatomic, weak) id <SDUserProfileSlidingButtonViewDelegate> delegate;
 
 - (void)setupView;
 

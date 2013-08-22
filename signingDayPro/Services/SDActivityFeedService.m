@@ -292,24 +292,29 @@
                             successBlock:(void (^)(void))successBlock
                             failureBlock:(void (^)(void))failureBlock
 {
-    NSString *username;
-    NSDictionary *parameters;
     if (!user) {
-        //username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-        //parameters = @{@"Username": username, @"MessageBody":messageBody};
+        NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+        NSDictionary *parameters  = @{@"Username": username,
+                                      @"MessageBody": messageBody};
+        
+        NSString *path = [NSString stringWithFormat:@"users/%@/statuses.json", username];
+        [[SDAPIClient sharedClient] postPath:path
+                                  parameters:parameters
+                                     success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                         successBlock();
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         failureBlock();
+                                     }];
     } else {
-        username = [NSString stringWithFormat:@"%d", [user.identifier integerValue]];
-        parameters = @{@"UserId": username, @"MessageBody":messageBody};
+        NSString *identifierString = [NSString stringWithFormat:@"%d", [user.identifier integerValue]];
+        [[SDAPIClient sharedClient] postPath:@"sd/wallpost.json"
+                                  parameters:@{@"ForUserID": identifierString, @"MessageBody": messageBody}
+                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         successBlock();
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         failureBlock();
+                                     }];
     }
-    
-    NSString *path = [NSString stringWithFormat:@"users/%@/statuses.json", username];
-    [[SDAPIClient sharedClient] postPath:path
-                              parameters:parameters
-                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                     successBlock();
-                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     failureBlock();
-                                 }];
 }
 
 + (void)likeActivityStory:(ActivityStory *)activityStory

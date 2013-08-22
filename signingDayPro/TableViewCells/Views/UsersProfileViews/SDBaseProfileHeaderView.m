@@ -9,6 +9,14 @@
 #import "SDBaseProfileHeaderView.h"
 #import "UIView+NibLoading.h"
 #import "User.h"
+#import "Master.h"
+#import "SDFollowingService.h"
+
+@interface SDBaseProfileHeaderView ()
+
+@property (nonatomic, strong) User *user;
+
+@end
 
 @implementation SDBaseProfileHeaderView
 
@@ -39,17 +47,37 @@
 
 - (void)setupInfoWithUser:(User *)user
 {
+    self.user = user;
+    
+    self.slidingButtonView.delegate = self;
     self.slidingButtonView.followersCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowers intValue]];
     self.slidingButtonView.followingCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowing intValue]];
+    
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    Master *master = [Master MR_findFirstByAttribute:@"username"
+                                           withValue:username
+                                           inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    
+    if ([self.user.followedBy isEqual:master]) 
+        self.slidingButtonView.followButton.selected = YES;
+    else 
+        self.slidingButtonView.followButton.selected = NO;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+#pragma mark - SDUserProfileSlidingButtonViewDelegate methods
+
+- (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+                      isNowFollowing:(BOOL)isFollowing
 {
-    // Drawing code
+    if (isFollowing) {
+        [SDFollowingService followUserWithIdentifier:self.user.identifier
+                                 withCompletionBlock:nil
+                                        failureBlock:nil];
+    } else {
+        [SDFollowingService unfollowUserWithIdentifier:self.user.identifier
+                                   withCompletionBlock:nil
+                                          failureBlock:nil];
+    }
 }
-*/
 
 @end
