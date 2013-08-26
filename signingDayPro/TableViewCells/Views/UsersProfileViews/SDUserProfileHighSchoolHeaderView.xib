@@ -182,7 +182,7 @@
 					<object class="IBUILabel" id="915361950">
 						<reference key="NSNextResponder" ref="218155309"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{100, 207}, {157, 21}}</string>
+						<string key="NSFrame">{{100, 207}, {137, 21}}</string>
 						<reference key="NSSuperview" ref="218155309"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="357145623"/>
@@ -236,7 +236,7 @@
 					<object class="IBUILabel" id="533039991">
 						<reference key="NSNextResponder" ref="218155309"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{139, 189}, {79, 18}}</string>
+						<string key="NSFrame">{{129, 189}, {79, 18}}</string>
 						<reference key="NSSuperview" ref="218155309"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1035578580"/>
@@ -267,7 +267,7 @@
 					<object class="IBUILabel" id="987025688">
 						<reference key="NSNextResponder" ref="218155309"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{15, 188}, {115, 19}}</string>
+						<string key="NSFrame">{{15, 188}, {105, 19}}</string>
 						<reference key="NSSuperview" ref="218155309"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="533039991"/>
@@ -278,7 +278,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">HEADE COACH:</string>
+						<string key="IBUIText">HEAD COACH:</string>
 						<reference key="IBUITextColor" ref="372622528"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>

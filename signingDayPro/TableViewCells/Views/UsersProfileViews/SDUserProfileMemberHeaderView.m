@@ -11,6 +11,7 @@
 #import "Team.h"
 #import "AFNetworking.h"
 #import "SDAPIClient.h"
+#import "UIImage+Resize.h"
 
 @interface SDUserProfileMemberHeaderView ()
 
@@ -85,7 +86,8 @@
     NSURLRequest *favoriteTeamAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.theMember.favoriteTeam.theUser.avatarUrl]];
     AFImageRequestOperation *favoriteTeamAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:favoriteTeamAvatarRequest
                                                                                                              success:^(UIImage *image) {
-                                                                                                                 self.favoriteTeamImageView.image = image;
+                                                                                                                 
+                                                                                                                 self.favoriteTeamImageView.image = [image resizeImage:image withWidth:self.favoriteTeamImageView.frame.size.width withHeight:self.favoriteTeamImageView.frame.size.height];
                                                                                                              }];
     [operationsArray addObject:favoriteTeamAvatarOperation];
     [[SDAPIClient sharedClient] enqueueBatchOfHTTPRequestOperations:operationsArray

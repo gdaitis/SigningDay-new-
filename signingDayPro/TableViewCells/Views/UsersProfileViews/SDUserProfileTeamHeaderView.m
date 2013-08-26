@@ -12,6 +12,7 @@
 #import "User.h"
 #import "AFNetworking.h"
 #import "SDAPIClient.h"
+#import "UIImage+Resize.h"
 
 @interface SDUserProfileTeamHeaderView ()
 
@@ -81,7 +82,8 @@
     NSURLRequest *conferenceAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:logoUrl]];
     AFImageRequestOperation *conferenceAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:conferenceAvatarRequest
                                                                                                           success:^(UIImage *image) {
-                                                                                                              self.conferenceImageView.image = image;
+                                                                                                              
+                                                                                                              self.conferenceImageView.image = [image resizeImage:image withWidth:self.conferenceImageView.frame.size.width withHeight:self.conferenceImageView.frame.size.height];
                                                                                                           }];
     [operationsArray addObject:conferenceAvatarOperation];
     [[SDAPIClient sharedClient] enqueueBatchOfHTTPRequestOperations:operationsArray
@@ -90,6 +92,9 @@
                                                         [self.delegate dataLoadingFinishedInHeaderView:self];
                                                     }];
 }
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -12,6 +12,7 @@
 #import "User.h"
 #import "AFNetworking.h"
 #import "SDAPIClient.h"
+#import "UIImage+Resize.h"
 
 @interface SDUserProfileCoachHeaderView ()
 
@@ -69,7 +70,8 @@
     NSURLRequest *teamAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.theCoach.team.theUser.avatarUrl]];
     AFImageRequestOperation *teamAvatarOperation = [AFImageRequestOperation imageRequestOperationWithRequest:teamAvatarRequest
                                                                                                      success:^(UIImage *image) {
-                                                                                                         self.teamImageView.image = image;
+                                                                                                         
+                                                                                                         self.teamImageView.image = [image resizeImage:image withWidth:self.teamImageView.frame.size.width withHeight:self.teamImageView.frame.size.height];
                                                                                                      }];
     [operationsArray addObject:teamAvatarOperation];
     [[SDAPIClient sharedClient] enqueueBatchOfHTTPRequestOperations:operationsArray

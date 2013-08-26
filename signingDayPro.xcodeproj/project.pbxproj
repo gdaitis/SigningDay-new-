@@ -248,6 +248,7 @@
 		80D1F39C17967FF20051E8E1 /* MessageIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D1F39817967FF20051E8E1 /* MessageIcon@2x.png */; };
 		80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */; };
 		80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */; };
+		80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */; };
 		80DF59C217A7E81E004F5246 /* SDActivityFeedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */; };
 		80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E31BA81758AF990013545C /* SDFollowingCell.m */; };
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
@@ -658,6 +659,8 @@
 		80D1F39D179680C50051E8E1 /* SDBuzzButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzButtonView.h; sourceTree = "<group>"; };
 		80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzButtonView.m; sourceTree = "<group>"; };
 		80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBuzzButtonView.xib; sourceTree = "<group>"; };
+		80D59A8D17CB61CC00CB494D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedTableView.h; sourceTree = "<group>"; };
 		80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedTableView.m; sourceTree = "<group>"; };
 		80DF59C617A9003F004F5246 /* SDUserProfileHeaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHeaderDelegate.h; sourceTree = "<group>"; };
@@ -989,6 +992,8 @@
 			children = (
 				8032F0581755F98E00C92AAC /* UIImage+Crop.h */,
 				8032F0591755F98E00C92AAC /* UIImage+Crop.m */,
+				80D59A8D17CB61CC00CB494D /* UIImage+Resize.h */,
+				80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */,
 			);
 			path = "UIImage+Crop";
 			sourceTree = "<group>";
@@ -1946,6 +1951,7 @@
 				7B33A59F17BBAD3B002A994F /* Team.m in Sources */,
 				7B33A5A317BBC849002A994F /* NSDictionary+NullConverver.m in Sources */,
 				7BA60DC617C6487B00960C87 /* Member.m in Sources */,
+				80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
