@@ -71,6 +71,7 @@
 
 - (void)checkServerWithScrollingDownAfterLoading:(BOOL)scrollDownAfterLoading
 {
+    [self showProgressHudInView:self.tableView withText:@"Loading comments"];
     [SDActivityFeedService getCommentsForActivityStory:self.activityStory
                                       withSuccessBlock:^{
                                           [self reload];

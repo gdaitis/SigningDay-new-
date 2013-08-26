@@ -136,7 +136,6 @@
                     coachUser = [User MR_createInContext:userContext];
                     coachUser.identifier = coachIdentifier;
                 }
-                // reikia dar ir coach name is serviso
                 if (!coachUser.theCoach)
                     coachUser.theCoach = [Coach MR_createInContext:userContext];
                 coachUser.name = [coachDictionary valueForKey:@"CoachName"];
