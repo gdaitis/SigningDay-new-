@@ -51,8 +51,8 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
         NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
-                                                             options:kNilOptions
-                                                               error:nil] dictionaryByReplacingNullsWithStrings];
+                                                              options:kNilOptions
+                                                                error:nil] dictionaryByReplacingNullsWithStrings];
         NSDictionary *userDictionary = [JSON valueForKey:@"d"];
         
         NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserId"] intValue]];
@@ -110,7 +110,7 @@
                 highSchoolUser.theHighSchool.mascot = [highSchoolDictionary valueForKey:@"Mascot"];
                 highSchoolUser.theHighSchool.headCoachName = [highSchoolDictionary valueForKey:@"HeadCoach"];
                 highSchoolUser.theHighSchool.address = [highSchoolDictionary valueForKey:@"Address"];
-                                
+                
                 user.thePlayer.highSchool = highSchoolUser.theHighSchool;
             }
                 break;
@@ -201,27 +201,31 @@
                 user.theMember.memberSince = memberSinceDate;
                 
                 NSDictionary *teamDictionary = [derivedUserDictionary valueForKey:@"FavoriteTeam"];
-                NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
-                User *teamUser = [User MR_findFirstByAttribute:@"identifier"
-                                                     withValue:teamIdentifier
-                                                     inContext:userContext];
-                if (!teamUser) {
-                    teamUser = [User MR_createInContext:userContext];
-                    teamUser.identifier = teamIdentifier;
+                if ([[teamDictionary class] isSubclassOfClass:[NSDictionary class]]) {
+                    if ([teamDictionary objectForKey:@"TeamId"]) {
+                        NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
+                        User *teamUser = [User MR_findFirstByAttribute:@"identifier"
+                                                             withValue:teamIdentifier
+                                                             inContext:userContext];
+                        if (!teamUser) {
+                            teamUser = [User MR_createInContext:userContext];
+                            teamUser.identifier = teamIdentifier;
+                        }
+                        teamUser.avatarUrl = [teamDictionary valueForKey:@"AvatarUrl"];
+                        if (!teamUser.theTeam)
+                            teamUser.theTeam = [Team MR_createInContext:userContext];
+                        NSDictionary *conferenceDictionary = [teamDictionary valueForKey:@"Conference"];
+                        teamUser.theTeam.conferenceName = [conferenceDictionary valueForKey:@"Name"];
+                        teamUser.theTeam.conferenceLogoUrl = [conferenceDictionary valueForKey:@"LogoUrl"];
+                        teamUser.theTeam.conferenceLogoUrlBlack = [conferenceDictionary valueForKey:@"LogoUrlBlack"];
+                        teamUser.theTeam.location = [teamDictionary valueForKey:@"Location"];
+                        teamUser.theTeam.universityName = [teamDictionary valueForKey:@"UniversityName"];
+                        teamUser.theTeam.conferenceRankingString = [teamDictionary valueForKey:@"ConferenceRanking"];
+                        teamUser.theTeam.nationalRankingString = [teamDictionary valueForKey:@"NationalRanking"];
+                        
+                        user.theMember.favoriteTeam = teamUser.theTeam;
+                    }
                 }
-                teamUser.avatarUrl = [teamDictionary valueForKey:@"AvatarUrl"];
-                if (!teamUser.theTeam)
-                    teamUser.theTeam = [Team MR_createInContext:userContext];
-                NSDictionary *conferenceDictionary = [teamDictionary valueForKey:@"Conference"];
-                teamUser.theTeam.conferenceName = [conferenceDictionary valueForKey:@"Name"];
-                teamUser.theTeam.conferenceLogoUrl = [conferenceDictionary valueForKey:@"LogoUrl"];
-                teamUser.theTeam.conferenceLogoUrlBlack = [conferenceDictionary valueForKey:@"LogoUrlBlack"];
-                teamUser.theTeam.location = [teamDictionary valueForKey:@"Location"];
-                teamUser.theTeam.universityName = [teamDictionary valueForKey:@"UniversityName"];
-                teamUser.theTeam.conferenceRankingString = [teamDictionary valueForKey:@"ConferenceRanking"];
-                teamUser.theTeam.nationalRankingString = [teamDictionary valueForKey:@"NationalRanking"];
-                
-                user.theMember.favoriteTeam = teamUser.theTeam;
             }
                 break;
                 
@@ -289,7 +293,7 @@
                                                                                                     [context MR_saveToPersistentStoreAndWait];
                                                                                                     
                                                                                                     NSString *photosCountPath = [[[NSString stringWithFormat:@"search.json?pagesize=1&filters=type::file||section::4||user::%d", [identifier integerValue]] stringByReplacingOccurrencesOfString:@":" withString:@"%3A"] stringByReplacingOccurrencesOfString:@"|" withString:@"%7C"];
-
+                                                                                                    
                                                                                                     [[SDAPIClient sharedClient] getPath:photosCountPath
                                                                                                                              parameters:nil
                                                                                                                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
@@ -336,11 +340,11 @@
                                                                         failureBlock();
                                                                 }];
                                     
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SDErrorService handleError:error withOperation:operation];
-        if (failureBlock)
-            failureBlock();
-    }];
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    [SDErrorService handleError:error withOperation:operation];
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
 }
 
 + (void)postNewProfileFieldsForUserWithIdentifier:(NSNumber *)identifier
@@ -383,11 +387,11 @@
                      [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
                      if (completionBlock)
                          completionBlock();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SDErrorService handleError:error withOperation:operation];
-        if (failureBlock)
-            failureBlock();
-    }];
+                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     [SDErrorService handleError:error withOperation:operation];
+                     if (failureBlock)
+                         failureBlock();
+                 }];
 }
 
 + (void)uploadAvatarForUserIdentifier:(NSNumber *)identifier
@@ -398,11 +402,11 @@
     
     NSString *path = [NSString stringWithFormat:@"users/%@/avatar.json", identifier];
     NSMutableURLRequest *request = [[SDAPIClient sharedClient] multipartFormRequestWithMethod:@"POST"
-                                                                         path:path
-                                                                   parameters:nil
-                                                    constructingBodyWithBlock:block];
+                                                                                         path:path
+                                                                                   parameters:nil
+                                                                    constructingBodyWithBlock:block];
     [request addValue:@"PUT" forHTTPHeaderField:@"Rest-Method"];
-
+    
     SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.window animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
@@ -418,8 +422,8 @@
         if (completionBlock)
             completionBlock();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@", operation.request.allHTTPHeaderFields);
-//        NSLog(@"%@", operation.responseString);
+        //        NSLog(@"%@", operation.request.allHTTPHeaderFields);
+        //        NSLog(@"%@", operation.responseString);
         if (error.code == -1011) {
             [self uploadAvatarForUserIdentifier:identifier
                                      verbMethod:@"POST"
@@ -441,19 +445,19 @@
                              verbMethod:@"POST"
               constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                   
-                                 NSDate *todayDateObj = [NSDate date];
-                                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-                                 [dateFormat setDateFormat:@"ddMMyyyyHHmmss"];
-                                 NSString *fileName = [NSString stringWithFormat:@"avatar%@.jpg", [dateFormat stringFromDate:todayDateObj]];
+                  NSDate *todayDateObj = [NSDate date];
+                  NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                  [dateFormat setDateFormat:@"ddMMyyyyHHmmss"];
+                  NSString *fileName = [NSString stringWithFormat:@"avatar%@.jpg", [dateFormat stringFromDate:todayDateObj]];
                   
-                                 UIImage *fixedImage = [avatar fixOrientation];
-                                 NSData *imageData = UIImageJPEGRepresentation(fixedImage, 1);
-                                 
-                                 [formData appendPartWithFileData:imageData
-                                                             name:@"avatar"
-                                                         fileName:fileName
-                                                         mimeType:@"image/jpeg"];
-                             }
+                  UIImage *fixedImage = [avatar fixOrientation];
+                  NSData *imageData = UIImageJPEGRepresentation(fixedImage, 1);
+                  
+                  [formData appendPartWithFileData:imageData
+                                              name:@"avatar"
+                                          fileName:fileName
+                                          mimeType:@"image/jpeg"];
+              }
                         completionBlock:completionBlock];
 }
 
@@ -463,7 +467,7 @@
     NSURL *baseUrl = [NSURL URLWithString:baseUrlString];
     AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:baseUrl];
     SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.window animated:YES];
     hud.labelText = @"Connecting to Facebook";
     
@@ -486,7 +490,7 @@
                 
                 NSString *fbToken = [appDelegate.fbSession accessToken];
                 NSString *path = [NSString stringWithFormat:@"me/picture/?access_token=%@", fbToken];
-                                
+                
                 [client getPath:path
                      parameters:nil
                         success:^(AFHTTPRequestOperation *operation, NSData *avatarData) {
@@ -551,7 +555,7 @@
 
 
 
-#pragma mark 
+#pragma mark
 
 + (void)updateLoggedInUserWithCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
@@ -587,7 +591,7 @@
                                          user.avatarUrl = [userInfo valueForKey:@"AvatarUrl"];
                                          user.name = [userInfo valueForKey:@"DisplayName"];
                                          
-//                                         user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
+                                         //                                         user.followingRelationshipCreated = [self dateFromString:[userInfo valueForKey:@"CreatedDate"]];
                                      }
                                      [context MR_saveToPersistentStoreAndWait];
                                      if (completionBlock)
