@@ -67,6 +67,8 @@
     NSString *password = self.passwordTextField.text;
     [SDLoginService loginWithUsername:username password:password facebookToken:nil successBlock:^{
         [self.delegate loginViewControllerDidFinishLoggingIn:self];
+    } failBlock:^{
+        
     }];
 }
 
@@ -86,7 +88,9 @@
             [SDLoginService loginWithUsername:nil password:nil facebookToken:[appDelegate.fbSession accessToken] successBlock:^{
                 [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                 [self.delegate loginViewControllerDidFinishLoggingIn:self];
-            }];
+            }failBlock:^{
+                 
+             }];
         }
     }];
 }

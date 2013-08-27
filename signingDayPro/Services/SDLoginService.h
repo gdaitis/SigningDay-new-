@@ -12,7 +12,7 @@ extern NSString * const kSDLoginServiceUserDidLogoutNotification;
 
 @interface SDLoginService : NSObject
 
-+ (void)loginWithUsername:(NSString *)username password:(NSString *)password facebookToken:(NSString *)facebookToken successBlock:(void (^)(void))block;
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password facebookToken:(NSString *)facebookToken successBlock:(void (^)(void))successBlock failBlock:(void (^)(void))failBlock;
 + (void)logout;
 
 @end

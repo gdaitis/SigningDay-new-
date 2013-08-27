@@ -13,6 +13,7 @@
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
 #import "SDErrorService.h"
+#import "SDProfileService.h"
 #import "User.h"
 #import "SDActivityFeedService.h"
 
@@ -20,7 +21,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
 
 @implementation SDLoginService
 
-+ (void)loginWithUsername:(NSString *)username password:(NSString *)password facebookToken:(NSString *)facebookToken successBlock:(void (^)(void))block
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password facebookToken:(NSString *)facebookToken successBlock:(void (^)(void))successBlock failBlock:(void (^)(void))failBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     if (username)
@@ -102,14 +103,20 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                          master.facebookSharingOn = [NSNumber numberWithBool:NO];
                                      
                                      [context MR_saveToPersistentStoreAndWait];
-                                     if (block) {
-                                         block();
-                                     }
+                                     
+                                     [SDProfileService getProfileInfoForUser:user completionBlock:^{
+                                         if (successBlock) {
+                                             successBlock();
+                                         }
+                                     } failureBlock:^{
+                                         failBlock();
+                                     }];
                                  } 
                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                                      
                                      [SDErrorService handleError:error withOperation:operation];
+                                     failBlock();
                                  }];
 }
 
