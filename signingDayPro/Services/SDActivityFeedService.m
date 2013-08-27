@@ -64,7 +64,7 @@
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     
-                                    //no date provided that means we are downloading first page, old stories should be deleted
+                                    //check for old stories to be deleted. Usually on pull to refresh
                                     if (deleteOld) {
                                         [self markAllStoriesForDeletion];
                                     }
@@ -206,7 +206,6 @@
         activityStory.postedToUser = user;
     }
     
-    
     //check user type and save info depending on this type
     
     SDUserType userTypeId = [[dictionary valueForKey:@"UserTypeId"] intValue];
@@ -252,8 +251,7 @@
             if (!user.theCoach)
                 user.theCoach = [Coach MR_createInContext:context];
             if ([attributeDictionary valueForKey:@"Institution"] != [NSNull null]) {
-                if (user.theCoach.team)
-                    user.theCoach.team.theUser.name = [attributeDictionary valueForKey:@"Institution"];
+                    user.theCoach.institution = [attributeDictionary valueForKey:@"Institution"];
             }
         }
     }

@@ -25,6 +25,7 @@
         <relationship name="webPreview" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WebPreview" inverseName="activityStory" inverseEntity="WebPreview" syncable="YES"/>
     </entity>
     <entity name="Coach" representedClassName="Coach" syncable="YES">
+        <attribute name="institution" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="team" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="headCoach" inverseEntity="Team" syncable="YES"/>
@@ -161,7 +162,7 @@
     </entity>
     <elements>
         <element name="ActivityStory" positionX="-83" positionY="-567" width="128" height="373"/>
-        <element name="Coach" positionX="1042" positionY="-148" width="128" height="103"/>
+        <element name="Coach" positionX="1042" positionY="-148" width="128" height="118"/>
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
         <element name="Conversation" positionX="153" positionY="137" width="128" height="178"/>
         <element name="HighSchool" positionX="1024" positionY="2" width="128" height="133"/>

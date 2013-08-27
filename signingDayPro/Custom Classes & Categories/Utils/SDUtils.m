@@ -312,8 +312,8 @@
             }
         }
         else if (userTypeId == SDUserTypeCoach) {
-            if (user.theCoach.team) {
-                [result appendFormat:@" %@", user.theCoach.team.theUser.name];
+            if (user.theCoach) {
+                [result appendFormat:@" %@", user.theCoach.institution];
             }
         }
         else if (userTypeId == SDUserTypeMember) {

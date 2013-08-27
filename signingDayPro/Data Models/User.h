@@ -2,7 +2,7 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 8/14/13.
+//  Created by Lukas Kekys on 8/27/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -36,11 +36,11 @@
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
 @property (nonatomic, retain) NSSet *messages;
-@property (nonatomic, retain) Player *thePlayer;
-@property (nonatomic, retain) Team *theTeam;
 @property (nonatomic, retain) Coach *theCoach;
 @property (nonatomic, retain) HighSchool *theHighSchool;
 @property (nonatomic, retain) Member *theMember;
+@property (nonatomic, retain) Player *thePlayer;
+@property (nonatomic, retain) Team *theTeam;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

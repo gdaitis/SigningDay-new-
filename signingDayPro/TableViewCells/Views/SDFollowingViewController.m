@@ -435,7 +435,6 @@
         //following action
         [SDFollowingService followUserWithIdentifier:user.identifier withCompletionBlock:^{
             [self hideProgressHudInView:self.view];
-            sender.selected = !sender.selected;
             [self loadInfo];
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
@@ -445,12 +444,12 @@
         //unfollowing action
         [SDFollowingService unfollowUserWithIdentifier:user.identifier withCompletionBlock:^{
             [self hideProgressHudInView:self.view];
-            sender.selected = !sender.selected;
             [self loadInfo];
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
         }];
     }
+//    sender.selected = !sender.selected;
 }
 
 - (void)followTypeChanged:(UIButton *)btn

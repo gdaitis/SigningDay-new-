@@ -2,7 +2,7 @@
 //  Message.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 8/14/13.
+//  Created by Lukas Kekys on 8/27/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
