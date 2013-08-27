@@ -242,7 +242,12 @@
 + (void)unfollowUserWithIdentifier:(NSNumber *)identifier withCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
+    User *unfollowedUser = [User MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
+    unfollowedUser.followedBy = nil;
+    [context MR_saveToPersistentStoreAndWait];
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kSDAPIBaseURLString]];
     NSString *apiKey = [STKeychain getPasswordForUsername:username andServiceName:@"SigningDayPro" error:nil];
@@ -250,6 +255,7 @@
     
     NSString *path = [NSString stringWithFormat:@"users/%d/following/%d.json", [master.identifier integerValue], [identifier integerValue]];
     [httpClient setDefaultHeader:@"Rest-Method" value:@"DELETE"];
+    
     
     [httpClient postPath:path
               parameters:nil
@@ -266,9 +272,15 @@
 + (void)followUserWithIdentifier:(NSNumber *)identifier withCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setValue:[identifier stringValue] forKey:@"FollowingId"];
+    
+    User *followedUser = [User MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
+    followedUser.followedBy = master;
+    [context MR_saveToPersistentStoreAndWait];
     
     NSString *path = [NSString stringWithFormat:@"users/%d/following.json", [master.identifier integerValue]];
     [[SDAPIClient sharedClient] postPath:path
