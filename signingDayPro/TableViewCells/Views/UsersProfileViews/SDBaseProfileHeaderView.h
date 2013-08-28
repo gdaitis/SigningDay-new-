@@ -23,5 +23,6 @@
 
 - (void)setupInfoWithUser:(User *)user;
 - (void)hideBuzzButtonView:(BOOL)hide;
+- (void)updateFollowingInfo;
 
 @end

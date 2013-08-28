@@ -28,6 +28,8 @@
 #import "SDModalNavigationController.h"
 #import "SDBuzzSomethingViewController.h"
 
+#import "SDBaseProfileHeaderView.h"
+
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
 
@@ -39,7 +41,7 @@
 
 @property (nonatomic, strong) IBOutlet SDActivityFeedTableView *tableView;
 @property (atomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) id headerView;    //may be different depending on user
+@property (nonatomic, strong) SDBaseProfileHeaderView *headerView;    //may be different depending on user
 
 @end
 
@@ -74,14 +76,24 @@
 {
     [super viewDidAppear:animated];
     
-//    [self.tableView loadData];
-    
     [SDProfileService getProfileInfoForUser:self.currentUser
                             completionBlock:^{
                                 [self setupHeaderView];
                             } failureBlock:^{
                                 //
                             }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(followingUpdated) name:@"FollowingUpdated" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FollowingUpdated" object:nil];
 }
 
 #pragma mark - refreshing
@@ -219,6 +231,13 @@
                              completion:^{
                                  [self checkServer];
                              }];
+}
+
+#pragma mark - NSNotificationCenter
+
+-(void)followingUpdated
+{
+    [self.headerView updateFollowingInfo];
 }
 
 @end

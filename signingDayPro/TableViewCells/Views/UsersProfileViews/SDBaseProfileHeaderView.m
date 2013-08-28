@@ -53,15 +53,7 @@
     self.slidingButtonView.followersCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowers intValue]];
     self.slidingButtonView.followingCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowing intValue]];
     
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username"
-                                           withValue:username
-                                           inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    
-    if ([self.user.followedBy isEqual:master]) 
-        self.slidingButtonView.followButton.selected = YES;
-    else 
-        self.slidingButtonView.followButton.selected = NO;
+    [self updateFollowingInfo];
 }
 
 #pragma mark - SDUserProfileSlidingButtonViewDelegate methods
@@ -71,13 +63,31 @@
 {
     if (isFollowing) {
         [SDFollowingService followUserWithIdentifier:self.user.identifier
-                                 withCompletionBlock:nil
-                                        failureBlock:nil];
+                                 withCompletionBlock:^{
+                                 } failureBlock:^{
+                                     
+                                 }];
+        
     } else {
         [SDFollowingService unfollowUserWithIdentifier:self.user.identifier
-                                   withCompletionBlock:nil
-                                          failureBlock:nil];
+                                   withCompletionBlock:^{
+                                       
+                                   } failureBlock:^{
+                                       
+                                   }];
     }
 }
 
+- (void)updateFollowingInfo
+{
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    Master *master = [Master MR_findFirstByAttribute:@"username"
+                                           withValue:username
+                                           inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    
+    if ([self.user.followedBy isEqual:master])
+        self.slidingButtonView.followButton.selected = YES;
+    else
+        self.slidingButtonView.followButton.selected = NO;
+}
 @end

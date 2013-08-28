@@ -436,6 +436,7 @@
         [SDFollowingService followUserWithIdentifier:user.identifier withCompletionBlock:^{
             [self hideProgressHudInView:self.view];
             [self loadInfo];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"FollowingUpdated" object:nil];
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
         }];
@@ -445,11 +446,11 @@
         [SDFollowingService unfollowUserWithIdentifier:user.identifier withCompletionBlock:^{
             [self hideProgressHudInView:self.view];
             [self loadInfo];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"FollowingUpdated" object:nil];
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
         }];
     }
-//    sender.selected = !sender.selected;
 }
 
 - (void)followTypeChanged:(UIButton *)btn
