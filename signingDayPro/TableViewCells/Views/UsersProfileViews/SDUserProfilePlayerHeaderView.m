@@ -70,9 +70,10 @@
     self.schoolNamelabel.text = user.thePlayer.highSchool.theUser.name;
     self.starsRatingView.starsCount = [user.thePlayer.starsCount intValue];
     self.baseScoreView.baseScore = [user.thePlayer.baseScore floatValue];
-    self.positionNumberlabel.text = [NSString stringWithFormat:@"%d", [user.thePlayer.positionRanking intValue]];
-    self.nationalNumberlabel.text = [NSString stringWithFormat:@"%d", [user.thePlayer.nationalRanking intValue]];
-    self.stateNumberlabel.text = [NSString stringWithFormat:@"%d", [user.thePlayer.stateRanking intValue]];
+    self.positionNumberlabel.text = [user.thePlayer.positionRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.positionRanking intValue]] : @"N/A";
+    self.nationalNumberlabel.text = [user.thePlayer.nationalRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.nationalRanking intValue]] : @"N/A";
+    self.stateNumberlabel.text = [user.thePlayer.stateRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.stateRanking intValue]] : @"N/A";
+    
     #warning height in inches
     self.postionAndHeightlabel.text = [NSString stringWithFormat:@"%@ %d", user.thePlayer.position, [user.thePlayer.height intValue]];
     self.classNumberlabel.text = user.thePlayer.userClass;
