@@ -12,6 +12,7 @@
 #import "Player.h"
 #import "HighSchool.h"
 #import "User.h"
+#import "SDUtils.h"
 
 @interface SDUserProfilePlayerHeaderView ()
 
@@ -75,7 +76,9 @@
     self.stateNumberlabel.text = [user.thePlayer.stateRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.stateRanking intValue]] : @"N/A";
     
     #warning height in inches
-    self.postionAndHeightlabel.text = [NSString stringWithFormat:@"%@ %d", user.thePlayer.position, [user.thePlayer.height intValue]];
+    self.postionAndHeightlabel.text = [NSString stringWithFormat:@"%@ %@", user.thePlayer.position, [SDUtils stringHeightFromInches:[user.thePlayer.height intValue]]];
+    self.weightlabel.text = [NSString stringWithFormat:@"%d lbs",[user.thePlayer.weight intValue]];
+    
     self.classNumberlabel.text = user.thePlayer.userClass;
     
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {

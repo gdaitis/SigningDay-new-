@@ -341,6 +341,14 @@
         return nil;
     }
 }
+
++ (NSString *)stringHeightFromInches:(int)inches
+{
+    int feet = floor(inches/12);
+    int inch = inches - feet*12;
     
+    NSString *result = [NSString stringWithFormat:@"%d'%d\"",feet,inch];
+    return result;
+}
 
 @end

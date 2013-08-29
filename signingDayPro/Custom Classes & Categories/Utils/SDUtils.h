@@ -25,4 +25,7 @@
 
 + (NSString *)attributeStringForUser:(User *)user;
 
+//E.g returns 5'6"
++ (NSString *)stringHeightFromInches:(int)inches;
+
 @end
