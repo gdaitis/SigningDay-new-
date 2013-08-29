@@ -150,7 +150,7 @@
                                         dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
                                         NSDate *date = [dateFormatter dateFromString:dateString];
                                         message.date = date;
-                                        message.text = [[messageDictionary objectForKey:@"Body"] stringByConvertingHTMLToPlainText];
+                                        message.text = /*[*/[messageDictionary objectForKey:@"Body"]/* stringByConvertingHTMLToPlainText]*/;
                                     }
                                     
                                     [context MR_saveToPersistentStoreAndWait];

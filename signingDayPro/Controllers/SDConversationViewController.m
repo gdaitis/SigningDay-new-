@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
+#import "DTCoreText.h"
 
 #define ClearConversationButtonIndex 0
 
@@ -198,8 +199,16 @@
     }
     
     Message *message = [self.dataArray objectAtIndex:indexPath.row];
+    
+    NSData *HTMLData = [message.text dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *builderOptions = @{DTDefaultFontFamily: @"Helvetica"};
+    DTHTMLAttributedStringBuilder *attributedStringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:HTMLData
+                                                                                                         options:builderOptions
+                                                                                              documentAttributes:nil];
+    
+    cell.messageTextLabel.attributedText = [attributedStringBuilder generatedAttributedString];
     cell.usernameLabel.text = message.user.name;
-    cell.messageTextLabel.text = message.text;
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:message.date];
