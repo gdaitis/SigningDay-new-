@@ -29,6 +29,8 @@
 #import "SDBuzzSomethingViewController.h"
 
 #import "SDBaseProfileHeaderView.h"
+#import "SDActivityStoryViewController.h"
+#import "WebPreview.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
@@ -173,6 +175,18 @@
 }
 
 #pragma mark - SDActivityFeedTableView delegate methods
+
+- (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath withActivityStory:(ActivityStory *)activityStory
+{
+    if (activityStory.webPreview) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
+    }
+    else {
+        SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] initWithNibName:@"SDActivityStoryViewController" bundle:[NSBundle mainBundle]];
+        activityStoryViewController.activityStory = activityStory;
+        [self.navigationController pushViewController:activityStoryViewController animated:YES];
+    }
+}
 
 - (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView
 {

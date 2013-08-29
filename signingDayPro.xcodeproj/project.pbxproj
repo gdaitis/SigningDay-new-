@@ -166,6 +166,8 @@
 		80431E5D17A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E4017A006B3002F6E3D /* MagicalRecord+ShorthandSupport.m */; };
 		80431E5E17A006B3002F6E3D /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E4217A006B3002F6E3D /* MagicalRecord.m */; };
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
+		80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */; };
+		80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */; };
 		805598C2174CE8200040631D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C1174CE8200040631D /* UIKit.framework */; };
 		805598C4174CE8200040631D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C3174CE8200040631D /* Foundation.framework */; };
 		805598C6174CE8200040631D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C5174CE8200040631D /* CoreGraphics.framework */; };
@@ -532,6 +534,9 @@
 		80431E4317A006B3002F6E3D /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		80431E4417A006B3002F6E3D /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		80431E9117A152B7002F6E3D /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
+		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
+		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
+		80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
 		805598BD174CE8200040631D /* signingDayPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = signingDayPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		805598C1174CE8200040631D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		805598C3174CE8200040631D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1366,6 +1371,9 @@
 			children = (
 				805F72651771AF9900BDA30F /* SDActivityFeedViewController.h */,
 				805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */,
+				80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */,
+				80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */,
+				80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */,
 				80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */,
 				80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */,
 				801088B11795794A002EF1EB /* SDAddTagsViewController.h */,
@@ -1802,6 +1810,7 @@
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
+				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1952,6 +1961,7 @@
 				80D59AB317CC8CA500CB494D /* Member.m in Sources */,
 				80D59AB617CC8CA500CB494D /* Comment.m in Sources */,
 				80D59AB917CC8CA500CB494D /* Message.m in Sources */,
+				80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

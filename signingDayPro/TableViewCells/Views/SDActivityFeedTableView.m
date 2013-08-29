@@ -220,9 +220,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-    if (activityStory.webPreview) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
-    }
+    [self.tableDelegate activityFeedTableView:self didSelectRowAtIndexPath:indexPath withActivityStory:activityStory];
 }
 
 #pragma mark - 

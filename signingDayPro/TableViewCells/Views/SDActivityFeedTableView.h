@@ -10,10 +10,13 @@
 #import "SDTableView.h"
 
 @class SDActivityFeedTableView;
+@class ActivityStory;
 
 @protocol SDActivityFeedTableViewDelegate
 
+@required
 - (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView;
+- (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath withActivityStory:(ActivityStory *)activityStory;
 
 @optional
 

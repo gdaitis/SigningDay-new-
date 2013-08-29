@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kMaxNamesSymbolSize 38
+
 @class ActivityStory,User;
 
 @interface SDUtils : NSObject
