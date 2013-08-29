@@ -88,8 +88,52 @@
     
     
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
-                          constrainedToSize:CGSizeMake(278, CGFLOAT_MAX)
-                              lineBreakMode:NSLineBreakByWordWrapping];
+                          constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
+    
+    if (activityStory.mediaType) {
+        result = size.height + 10/*offset*/ + 150;/*imageView size*/
+    }
+    else {
+        result = size.height + 10/*offset*/;
+    }
+    
+    return result;
+}
+
++ (int)heightForActivityStory:(ActivityStory *)activityStory forUITextView:(UITextView *)textView
+{
+    int result = 0;
+    
+    
+    NSMutableString *contentText = [[NSMutableString alloc] init];
+    if (activityStory.webPreview) {
+        
+        if ([activityStory.webPreview.link length] > 0) {
+            [contentText appendFormat:@"%@\n\n",activityStory.webPreview.link];
+        }
+        if ([activityStory.webPreview.siteName length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.siteName];
+        }
+        if ([activityStory.webPreview.webPreviewTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.webPreviewTitle];
+        }
+        if ([activityStory.webPreview.excerpt length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.webPreview.excerpt];
+        }
+    }
+    else {
+        if ([activityStory.activityTitle length] > 0) {
+            [contentText appendFormat:@"%@\n",activityStory.activityTitle];
+        }
+        if ([activityStory.activityDescription length] > 0) {
+            [contentText appendString:activityStory.activityDescription];
+        }
+    }
+    
+    
+    CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
+                          constrainedToSize:CGSizeMake(textView.bounds.size.width-10, CGFLOAT_MAX)];
+    NSLog(@"size = %f",size.height);
     
     if (activityStory.mediaType) {
         result = size.height + 10/*offset*/ + 150;/*imageView size*/

@@ -58,7 +58,7 @@
     [super viewDidAppear:animated];
     
     CGRect frame = self.resizableActivityFeedView.frame;
-    frame.size.height = [SDUtils heightForActivityStory:self.activityStory] +7;
+    frame.size.height = [SDUtils heightForActivityStory:self.activityStory forUITextView:self.resizableActivityFeedView.contentTextView]+12;
     self.resizableActivityFeedView.frame = frame;
     
 #warning hardcoded value (for testing)

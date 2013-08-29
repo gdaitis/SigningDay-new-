@@ -16,6 +16,8 @@
 
 + (void)setupCoreDataStack;
 + (int)heightForActivityStory:(ActivityStory *)activityStory;
++ (int)heightForActivityStory:(ActivityStory *)activityStory forUITextView:(UITextView *)textView;
+
 + (NSString *)formatedTimeForDate:(NSDate *)date;
 + (NSString *)formatedDateStringFromDateToNow:(NSDate *)date;
 + (NSString *)formatedDateStringFromDate:(NSDate *)date;
