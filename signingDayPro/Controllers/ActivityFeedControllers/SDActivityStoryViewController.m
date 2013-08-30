@@ -105,7 +105,6 @@
     if (activityStory.postedToUser) {
         //this is a wall post
         
-        
         //get first and second usernames with attributes
         User *user = activityStory.author;
         NSString *userName = [NSString stringWithFormat:@"%@ ",user.name];

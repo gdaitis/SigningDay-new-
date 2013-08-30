@@ -88,7 +88,7 @@
         ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
         
         int contentHeight = [SDUtils heightForActivityStory:activityStory];
-        int result = 109/*buttons images etc..*/ + contentHeight;
+        int result = 119/*buttons images etc..*/ + contentHeight;
         
         return result;
     }

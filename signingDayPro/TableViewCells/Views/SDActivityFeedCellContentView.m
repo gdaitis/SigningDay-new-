@@ -41,10 +41,7 @@
     self.contentTextView = textView;
     self.contentTextView.editable = NO;
     self.contentTextView.font = [UIFont systemFontOfSize:15.0f];
-//    self.contentTextView.contentInset = UIEdgeInsetsMake(0,0,0,0);
     
-    self.backgroundColor = [UIColor blueColor];
-    self.contentTextView.backgroundColor = [UIColor yellowColor];
 
     [self addSubview:self.contentTextView];
     
@@ -112,7 +109,7 @@
         
         //calculate position for photo
         CGRect frame = _imageView.frame;
-        frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y;
+        frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10;
         _imageView.frame = frame;
         
         _imageView.hidden = NO;
