@@ -86,17 +86,8 @@
         }
     }
     
-//    CGSize size = [contentText sizeWithFont:self.contentTextView.font
-//                          constrainedToSize:CGSizeMake(self.contentTextView.bounds.size.width-30, CGFLOAT_MAX)];
-//    CGSize size = [contentText sizeWithFont:self.contentTextView.font
-//                           constrainedToSize:CGSizeMake(288, FLT_MAX)
-//                               lineBreakMode:NSLineBreakByTruncatingTail];
-    
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
-    
-    NSLog(@"activity story text height = %f",size.height);
-    NSLog(@"content text = %@",contentText);
     
     CGRect frame = self.contentTextView.frame;
     frame.size.height = size.height +10;
@@ -106,12 +97,11 @@
     [_imageView cancelImageRequestOperation];
     
     if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0) {
-        
+
         //calculate position for photo
         CGRect frame = _imageView.frame;
         frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10;
         _imageView.frame = frame;
-        
         _imageView.hidden = NO;
         
 #warning not optimized must not set background color and user normal images
@@ -122,11 +112,8 @@
             [playView removeFromSuperview];
         }
         
-        
-        
         NSString *fullUrl = nil;
         if ([activityStory.thumbnailUrl length] >0) {
-            
             
             if ([activityStory.thumbnailUrl rangeOfString:@"youtube"].location != NSNotFound) {
                 //yuotube link
