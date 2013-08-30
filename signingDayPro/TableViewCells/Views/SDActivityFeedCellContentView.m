@@ -41,7 +41,10 @@
     self.contentTextView = textView;
     self.contentTextView.editable = NO;
     self.contentTextView.font = [UIFont systemFontOfSize:15.0f];
-    self.contentTextView.contentInset = UIEdgeInsetsMake(0,0,0,0);
+//    self.contentTextView.contentInset = UIEdgeInsetsMake(0,0,0,0);
+    
+    self.backgroundColor = [UIColor blueColor];
+    self.contentTextView.backgroundColor = [UIColor yellowColor];
 
     [self addSubview:self.contentTextView];
     
@@ -86,11 +89,20 @@
         }
     }
     
-    CGSize size = [contentText sizeWithFont:self.contentTextView.font
-                          constrainedToSize:CGSizeMake(self.contentTextView.bounds.size.width, CGFLOAT_MAX)];
+//    CGSize size = [contentText sizeWithFont:self.contentTextView.font
+//                          constrainedToSize:CGSizeMake(self.contentTextView.bounds.size.width-30, CGFLOAT_MAX)];
+//    CGSize size = [contentText sizeWithFont:self.contentTextView.font
+//                           constrainedToSize:CGSizeMake(288, FLT_MAX)
+//                               lineBreakMode:NSLineBreakByTruncatingTail];
+    
+    CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
+                          constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
+    
+    NSLog(@"activity story text height = %f",size.height);
+    NSLog(@"content text = %@",contentText);
     
     CGRect frame = self.contentTextView.frame;
-    frame.size.height = size.height+40;
+    frame.size.height = size.height +10;
     self.contentTextView.frame = frame;
     self.contentTextView.text = contentText;
     
@@ -99,7 +111,7 @@
     if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0) {
         
         //calculate position for photo
-        frame = _imageView.frame;
+        CGRect frame = _imageView.frame;
         frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y;
         _imageView.frame = frame;
         
@@ -144,7 +156,7 @@
     else if ([activityStory.mediaType isEqualToString:@"videos"]) {
         //no image for video
         
-        frame = _imageView.frame;
+        CGRect frame = _imageView.frame;
         frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10/*offset betwen label and photo*/;
         _imageView.frame = frame;
         

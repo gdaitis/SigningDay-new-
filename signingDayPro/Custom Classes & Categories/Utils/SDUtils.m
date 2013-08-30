@@ -97,6 +97,9 @@
         result = size.height + 10/*offset*/;
     }
     
+    NSLog(@"activity story text height = %f",size.height);
+    NSLog(@"content text = %@",contentText);
+    
     return result;
 }
 
