@@ -1,96 +1,95 @@
 //
-//  SDActivityFeedCell.m
+//  SDActivityStoryViewController.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 6/19/13.
+//  Created by Lukas Kekys on 8/29/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "SDActivityFeedCell.h"
-#import "SDActivityFeedCellContentView.h"
-#import <QuartzCore/QuartzCore.h>
+#import "SDActivityStoryViewController.h"
 #import "ActivityStory.h"
 #import "User.h"
-#import "AFNetworking.h"
 #import "SDUtils.h"
+#import "AFNetworking.h"
+#import "SDActivityFeedCellContentView.h"
+#import "SDUserProfileViewController.h"
 
-@interface SDActivityFeedCell ()
+@interface SDActivityStoryViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet SDActivityFeedCellContentView *resizableActivityFeedView;
+
+@property (weak, nonatomic) IBOutlet UIButton *playerNameButton;
+@property (weak, nonatomic) IBOutlet UIButton *secondPlayerNameButton;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 
 @end
 
-@implementation SDActivityFeedCell
+@implementation SDActivityStoryViewController
 
-- (void)awakeFromNib
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [super awakeFromNib];
-    
-    for (NSLayoutConstraint *cellConstraint in self.constraints)
-    {
-        [self removeConstraint:cellConstraint];
-        
-        id firstItem = cellConstraint.firstItem == self ? self.contentView : cellConstraint.firstItem;
-        id seccondItem = cellConstraint.secondItem == self ? self.contentView : cellConstraint.secondItem;
-        
-        NSLayoutConstraint* contentViewConstraint = [NSLayoutConstraint constraintWithItem:firstItem
-                                                                                 attribute:cellConstraint.firstAttribute
-                                                                                 relatedBy:cellConstraint.relation
-                                                                                    toItem:seccondItem
-                                                                                 attribute:cellConstraint.secondAttribute
-                                                                                multiplier:cellConstraint.multiplier
-                                                                                  constant:cellConstraint.constant];
-        
-        [self.contentView addConstraint:contentViewConstraint];
-    }
-    
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    UIImage *image = [[UIImage imageNamed:@"strechableBorderedImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    UIImage *cellBackgroundImage = [[UIImage imageNamed:@"strechableCellBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 55, 10)];
-    
-    self.containerView.backgroundColor = [UIColor clearColor];
-    self.containerView.image = cellBackgroundImage;
-    
-    self.likeButtonView.backgroundColor = [UIColor clearColor];
-    self.commentButtonView.image = image;
-    self.commentButtonView.backgroundColor = [UIColor clearColor];
-    
-    self.thumbnailImageView.layer.cornerRadius = 4.0f;
-    self.thumbnailImageView.clipsToBounds = YES;
-}
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code
+        // Custom initialization
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
 }
 
-- (void)setupCellWithActivityStory:(ActivityStory *)activityStory atIndexPath:(NSIndexPath *)indexPath
+- (void)viewWillAppear:(BOOL)animated
 {
-    [self.thumbnailImageView cancelImageRequestOperation];
-    self.likeButton.tag = indexPath.row;
-    self.commentButton.tag = indexPath.row;
+    [super viewWillAppear:animated];
     
-    self.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likesCount intValue]];
-    self.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.commentCount intValue]];
-    [self.resizableActivityFeedView setActivityStory:activityStory];
+    [self setupView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    if ([activityStory.author.avatarUrl length] > 0) {
-        [self.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
+    CGRect frame = self.resizableActivityFeedView.frame;
+    frame.size.height = [SDUtils heightForActivityStory:self.activityStory forUITextView:self.resizableActivityFeedView.contentTextView]+12;
+    self.resizableActivityFeedView.frame = frame;
+    
+#warning hardcoded value (for testing)
+    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, frame.size.height + 50);
+    //[self updateView];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - View Setup
+
+- (void)setupView
+{
+    [self.playerNameButton addTarget:self action:@selector(firstUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.secondPlayerNameButton addTarget:self action:@selector(secondUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.resizableActivityFeedView setActivityStory:self.activityStory];
+    
+    if ([self.activityStory.author.avatarUrl length] > 0) {
+        [self.thumbnailImageView setImageWithURL:[NSURL URLWithString:self.activityStory.author.avatarUrl]];
     }
     
-    self.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
-    [self setupNameLabelForActivityStory:activityStory];
+    self.postDateLabel.text = [SDUtils formatedTimeForDate:self.activityStory.createdDate];
+    [self setupNameLabelForActivityStory:self.activityStory];
 }
+
+
 
 - (void)setupNameLabelForActivityStory:(ActivityStory *)activityStory
 {
@@ -105,7 +104,6 @@
     NSMutableAttributedString *authorName = nil;
     if (activityStory.postedToUser) {
         //this is a wall post
-        
         
         //get first and second usernames with attributes
         User *user = activityStory.author;
@@ -163,7 +161,7 @@
         CGRect firstNameSize = [authorName boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
         
         int buttonWidth = ceil(firstNameSize.size.width) + 40; //offset from photo; hardcoded for performance
-
+        
         for (NSLayoutConstraint *constraint in self.playerNameButton.constraints) {
             if (constraint.firstAttribute == NSLayoutAttributeWidth) {
                 constraint.constant = buttonWidth;
@@ -206,6 +204,27 @@
         }
     }
     self.nameLabel.attributedText = authorName;
+}
+
+
+- (void)firstUserNameButtonPressed:(id)sender
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = self.activityStory.author;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
+}
+
+- (void)secondUserNameButtonPressed:(id)sender
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = self.activityStory.postedToUser;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 @end

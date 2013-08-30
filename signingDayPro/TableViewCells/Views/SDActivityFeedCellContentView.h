@@ -12,7 +12,7 @@
 
 @interface SDActivityFeedCellContentView : UIView
 
-@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) UITextView *contentTextView;
 @property (nonatomic, strong) UIImageView *imageView;
 
 - (void)setActivityStory:(ActivityStory *)activityStory;

@@ -88,7 +88,7 @@
         ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
         
         int contentHeight = [SDUtils heightForActivityStory:activityStory];
-        int result = 114/*buttons images etc..*/ + contentHeight;
+        int result = 119/*buttons images etc..*/ + contentHeight;
         
         return result;
     }
@@ -220,9 +220,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-    if (activityStory.webPreview) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
-    }
+    [self.tableDelegate activityFeedTableView:self didSelectRowAtIndexPath:indexPath withActivityStory:activityStory];
 }
 
 #pragma mark - 

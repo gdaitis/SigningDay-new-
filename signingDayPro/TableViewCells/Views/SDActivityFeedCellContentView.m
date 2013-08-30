@@ -37,11 +37,13 @@
 - (void)setupView
 {
     //creating content label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.bounds.size.width-20, self.bounds.size.height-20)];
-    self.contentLabel = label;
-    _contentLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0f];
-    _contentLabel.numberOfLines = 0;
-    [self addSubview:_contentLabel];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+    self.contentTextView = textView;
+    self.contentTextView.editable = NO;
+    self.contentTextView.font = [UIFont systemFontOfSize:15.0f];
+    
+
+    [self addSubview:self.contentTextView];
     
     //creating imageView if cell will not have image this will be hidden
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 152)];
@@ -84,22 +86,30 @@
         }
     }
     
-    CGSize size = [contentText sizeWithFont:_contentLabel.font
-                          constrainedToSize:CGSizeMake(_contentLabel.bounds.size.width, CGFLOAT_MAX)
-                              lineBreakMode:NSLineBreakByWordWrapping];
+//    CGSize size = [contentText sizeWithFont:self.contentTextView.font
+//                          constrainedToSize:CGSizeMake(self.contentTextView.bounds.size.width-30, CGFLOAT_MAX)];
+//    CGSize size = [contentText sizeWithFont:self.contentTextView.font
+//                           constrainedToSize:CGSizeMake(288, FLT_MAX)
+//                               lineBreakMode:NSLineBreakByTruncatingTail];
     
-    CGRect frame = _contentLabel.frame;
-    frame.size.height = size.height;
-    _contentLabel.frame = frame;
-    _contentLabel.text = contentText;
+    CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
+                          constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
+    
+    NSLog(@"activity story text height = %f",size.height);
+    NSLog(@"content text = %@",contentText);
+    
+    CGRect frame = self.contentTextView.frame;
+    frame.size.height = size.height +10;
+    self.contentTextView.frame = frame;
+    self.contentTextView.text = contentText;
     
     [_imageView cancelImageRequestOperation];
     
     if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0) {
         
         //calculate position for photo
-        frame = _imageView.frame;
-        frame.origin.y = _contentLabel.frame.size.height + _contentLabel.frame.origin.y +10/*offset betwen label and photo*/;
+        CGRect frame = _imageView.frame;
+        frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10;
         _imageView.frame = frame;
         
         _imageView.hidden = NO;
@@ -143,8 +153,8 @@
     else if ([activityStory.mediaType isEqualToString:@"videos"]) {
         //no image for video
         
-        frame = _imageView.frame;
-        frame.origin.y = _contentLabel.frame.size.height + _contentLabel.frame.origin.y +10/*offset betwen label and photo*/;
+        CGRect frame = _imageView.frame;
+        frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10/*offset betwen label and photo*/;
         _imageView.frame = frame;
         
         _imageView.hidden = NO;

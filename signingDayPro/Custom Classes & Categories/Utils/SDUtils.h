@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#define kMaxNamesSymbolSize 38
+
 @class ActivityStory,User;
 
 @interface SDUtils : NSObject
 
 + (void)setupCoreDataStack;
 + (int)heightForActivityStory:(ActivityStory *)activityStory;
++ (int)heightForActivityStory:(ActivityStory *)activityStory forUITextView:(UITextView *)textView;
+
 + (NSString *)formatedTimeForDate:(NSDate *)date;
 + (NSString *)formatedDateStringFromDateToNow:(NSDate *)date;
 + (NSString *)formatedDateStringFromDate:(NSDate *)date;

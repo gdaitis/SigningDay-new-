@@ -30,6 +30,9 @@
 #import "SDActivityFeedTableView.h"
 #import "SDBuzzSomethingViewController.h"
 #import "SDCommentsViewController.h"
+#import "WebPreview.h"
+
+#import "SDActivityStoryViewController.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -105,6 +108,18 @@
 }
 
 #pragma mark - SDActivityFeedTableView delegate methods
+
+- (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath withActivityStory:(ActivityStory *)activityStory
+{
+    if (activityStory.webPreview) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
+    }
+    else {
+        SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] initWithNibName:@"SDActivityStoryViewController" bundle:[NSBundle mainBundle]];
+        activityStoryViewController.activityStory = activityStory;
+        [self.navigationController pushViewController:activityStoryViewController animated:YES];
+    }
+}
 
 - (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView
 {
