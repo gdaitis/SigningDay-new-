@@ -14,6 +14,8 @@
 #import "SDActivityFeedCellContentView.h"
 #import "SDUserProfileViewController.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+
 @interface SDActivityStoryViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
@@ -24,7 +26,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *playerNameButton;
 @property (weak, nonatomic) IBOutlet UIButton *secondPlayerNameButton;
 
+@property (strong, nonatomic) MPMoviePlayerViewController *player;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+- (IBAction)mediaButtonPressed:(id)sender;
 
 
 @end
@@ -226,5 +232,59 @@
     
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
+
+#pragma mark - view selection
+
+- (IBAction)mediaButtonPressed:(id)sender
+{
+    NSLog(@"self.activityStory.mediaType = %@",self.activityStory.mediaType);
+    if (self.activityStory.mediaType) {
+        if ([self.activityStory.mediaType isEqualToString:@"photos"]) {
+            //photos
+            //show enlarged image view
+        }
+        else {
+            //videos
+            [self playVideo];
+        }
+    }
+}
+
+- (void)playVideo
+{
+    NSURL *url = [NSURL URLWithString:self.activityStory.mediaUrl];
+    
+    self.player = [[MPMoviePlayerViewController alloc] init];
+    [self.player.moviePlayer setContentURL:url];
+    self.player.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+    [self.player.moviePlayer prepareToPlay];
+    
+    [self presentMoviePlayerViewControllerAnimated:self.player];
+    [self.player.moviePlayer play];
+}
+
+- (void) moviePlayBackDonePressed:(NSNotification*)notification
+{
+    [self.player.moviePlayer stop];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
+    
+    
+    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
+    {
+        [self.player.moviePlayer.view removeFromSuperview];
+    }
+    self.player = nil;
+}
+
+//- (void) moviePlayBackDidFinish:(NSNotification*)notification
+//{
+//    [self.player.moviePlayer stop];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
+//    
+//    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
+//    {
+//        [self.player.moviePlayer.view removeFromSuperview];
+//    }
+//}
 
 @end

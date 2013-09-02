@@ -41,10 +41,6 @@
 		7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */; };
 		7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
-		7BB4373D17CF6A7E0064DBEB /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373417CF6A610064DBEB /* libDTCoreText.a */; };
-		7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */; };
-		7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374017CF6A9B0064DBEB /* CoreText.framework */; };
-		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
 		7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
 		7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */; };
@@ -52,7 +48,6 @@
 		7BDDAB92179FC457003F6AD7 /* PlayersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8C179FC457003F6AD7 /* PlayersIcon@2x.png */; };
 		7BDDAB93179FC457003F6AD7 /* SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8D179FC457003F6AD7 /* SettingsIcon@2x.png */; };
 		7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */; };
-		7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
@@ -290,58 +285,6 @@
 		80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04EC177C6F8500CE1ED5 /* strechableCellBg@2x.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7BB4372F17CF6A610064DBEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
-			remoteInfo = DemoApp;
-		};
-		7BB4373117CF6A610064DBEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A70F119B14863198009202BF;
-			remoteInfo = "Static Framework";
-		};
-		7BB4373317CF6A610064DBEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A70F11DE148632CD009202BF;
-			remoteInfo = "Static Library";
-		};
-		7BB4373517CF6A610064DBEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A788CA681486456100E1AFD9;
-			remoteInfo = UnitTest;
-		};
-		7BB4373717CF6A610064DBEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A7949A5814CC456000A8CCDE;
-			remoteInfo = MacUnitTest;
-		};
-		7BB4373917CF6A610064DBEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A7F7EFCD1573603100F5A4D0;
-			remoteInfo = "Static Library (no DTFoundation)";
-		};
-		7BB4373B17CF6A610064DBEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E2262DC61638331500BFDAD7;
-			remoteInfo = "Mac Framework";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		7B1F638B17B8D22300B755B2 /* LikeImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeImageOrange@2x.png"; sourceTree = "<group>"; };
 		7B1F638C17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableBorderedImageOrange@2x.png"; sourceTree = "<group>"; };
@@ -391,17 +334,12 @@
 		7BAF6EDC17A94DBD00F7C6B3 /* SDLikesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLikesViewController.h; sourceTree = "<group>"; };
 		7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLikesViewController.m; sourceTree = "<group>"; };
 		7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentsViewStoryboard.storyboard; sourceTree = "<group>"; };
-		7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
-		7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		7BB4374017CF6A9B0064DBEB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityFeedIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoachesIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HighSchoolsIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8C179FC457003F6AD7 /* PlayersIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayersIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8D179FC457003F6AD7 /* SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WarRoomIcon@2x.png"; sourceTree = "<group>"; };
-		7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DTCoreTextFontOverrides.plist; path = ../Externals/DTCoreText/Demo/Resources/DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
@@ -777,12 +715,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */,
-				7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */,
-				7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */,
 				80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */,
 				7B3031B0177ADB97006EF25B /* libxml2.dylib in Frameworks */,
-				7BB4373D17CF6A7E0064DBEB /* libDTCoreText.a in Frameworks */,
 				80EEF5D817560D0500A7C803 /* libsqlite3.dylib in Frameworks */,
 				8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */,
 				8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */,
@@ -873,28 +807,6 @@
 				7B736518175F6D0B007A338E /* SDConversationViewController.m */,
 			);
 			name = Messages;
-			sourceTree = "<group>";
-		};
-		7BB4372217CF6A4D0064DBEB /* Externals */ = {
-			isa = PBXGroup;
-			children = (
-				7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */,
-			);
-			name = Externals;
-			sourceTree = "<group>";
-		};
-		7BB4372417CF6A600064DBEB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7BB4373017CF6A610064DBEB /* RTDemoApp.app */,
-				7BB4373217CF6A610064DBEB /* DTCoreText.framework */,
-				7BB4373417CF6A610064DBEB /* libDTCoreText.a */,
-				7BB4373617CF6A610064DBEB /* UnitTest.octest */,
-				7BB4373817CF6A610064DBEB /* MacUnitTest.octest */,
-				7BB4373A17CF6A610064DBEB /* libDTCoreText_no_DTFoundation.a */,
-				7BB4373C17CF6A610064DBEB /* DTCoreText.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7BBFBBDE17AA4ED300BF45A5 /* Custom classes */ = {
@@ -1257,7 +1169,6 @@
 				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				805598C7174CE8200040631D /* signingDayPro */,
 				805598C0174CE8200040631D /* Frameworks */,
-				7BB4372217CF6A4D0064DBEB /* Externals */,
 				805598BE174CE8200040631D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1273,9 +1184,6 @@
 		805598C0174CE8200040631D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */,
-				7BB4374017CF6A9B0064DBEB /* CoreText.framework */,
-				7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */,
 				7B3031AF177ADB97006EF25B /* libxml2.dylib */,
 				80EEF5D717560D0500A7C803 /* libsqlite3.dylib */,
 				8032F0A81755FA6400C92AAC /* CoreData.framework */,
@@ -1325,7 +1233,6 @@
 			children = (
 				80A0612A17529C84005FE319 /* Images */,
 				805CF357174E0B740046E6A5 /* BebasNeue.otf */,
-				7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */,
 				7B6B1EB21760A7EF00BC878A /* Default@2x.png */,
 				7B6B1EB01760A7EC00BC878A /* Default.png */,
 				7B6B1EAE1760A7E900BC878A /* Default-568h@2x.png */,
@@ -1777,70 +1684,12 @@
 			mainGroup = 805598B2174CE8200040631D;
 			productRefGroup = 805598BE174CE8200040631D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7BB4372417CF6A600064DBEB /* Products */;
-					ProjectRef = 7BB4372317CF6A600064DBEB /* DTCoreText.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				805598BC174CE8200040631D /* signingDayPro */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		7BB4373017CF6A610064DBEB /* RTDemoApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = RTDemoApp.app;
-			remoteRef = 7BB4372F17CF6A610064DBEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB4373217CF6A610064DBEB /* DTCoreText.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DTCoreText.framework;
-			remoteRef = 7BB4373117CF6A610064DBEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB4373417CF6A610064DBEB /* libDTCoreText.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTCoreText.a;
-			remoteRef = 7BB4373317CF6A610064DBEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB4373617CF6A610064DBEB /* UnitTest.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTest.octest;
-			remoteRef = 7BB4373517CF6A610064DBEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB4373817CF6A610064DBEB /* MacUnitTest.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MacUnitTest.octest;
-			remoteRef = 7BB4373717CF6A610064DBEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB4373A17CF6A610064DBEB /* libDTCoreText_no_DTFoundation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTCoreText_no_DTFoundation.a;
-			remoteRef = 7BB4373917CF6A610064DBEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB4373C17CF6A610064DBEB /* DTCoreText.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DTCoreText.framework;
-			remoteRef = 7BB4373B17CF6A610064DBEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		805598BB174CE8200040631D /* Resources */ = {
@@ -1966,7 +1815,6 @@
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
 				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
-				7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2152,7 +2000,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2169,11 +2017,8 @@
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "262A8E67-368F-4BB8-87E3-40EF3B2211D7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;
@@ -2187,8 +2032,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2197,11 +2042,9 @@
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "262A8E67-368F-4BB8-87E3-40EF3B2211D7";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
 			};
@@ -2229,7 +2072,7 @@
 		805598E3174CE8200040631D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
