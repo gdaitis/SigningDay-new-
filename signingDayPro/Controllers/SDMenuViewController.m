@@ -211,9 +211,13 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
             centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
         }
+        else if (indexPath.row == 1) {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];
+        }
         else {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserProfileStoryboard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"SDViewNavigationController"];
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];
         }
     }
     else {

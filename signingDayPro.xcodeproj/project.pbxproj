@@ -187,6 +187,8 @@
 		8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044394617D4A8C400AADFDB /* closeBtn@2x.png */; };
 		8044395317D4AF1000AADFDB /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373417CF6A610064DBEB /* libDTCoreText.a */; };
 		8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */; };
+		8044397817D4B5E700AADFDB /* LandingPageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8044397717D4B5E700AADFDB /* LandingPageStoryBoard.storyboard */; };
+		8044397E17D4B6F300AADFDB /* SDBaseLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044397D17D4B6F300AADFDB /* SDBaseLandingPageViewController.m */; };
 		80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */; };
 		80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */; };
 		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
@@ -225,6 +227,11 @@
 		8063D2E2179D507800C01D92 /* SDUserProfileTeamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2DE179D507800C01D92 /* SDUserProfileTeamHeaderView.m */; };
 		8063D2E3179D507800C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */; };
 		8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */; };
+		808388FF17D4CA07006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 808388FC17D4CA07006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */; };
+		8083890017D4CA07006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 808388FD17D4CA07006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */; };
+		8083890A17D4CB31006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083890917D4CB31006E4FE9 /* LandingPageSearchBackground@2x.png */; };
+		8084570017D4BA7300E7CE89 /* SDPlayerLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 808456FF17D4BA7300E7CE89 /* SDPlayerLandingPageViewController.m */; };
+		8084570317D4C44900E7CE89 /* SDLandingPageSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8084570217D4C44900E7CE89 /* SDLandingPageSearchBar.m */; };
 		8096974517AA90CF00970E73 /* playImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8096974417AA90CF00970E73 /* playImage@2x.png */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
@@ -630,6 +637,9 @@
 		8044394617D4A8C400AADFDB /* closeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeBtn@2x.png"; sourceTree = "<group>"; };
 		8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageEnlargementView.h; sourceTree = "<group>"; };
 		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
+		8044397717D4B5E700AADFDB /* LandingPageStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPageStoryBoard.storyboard; sourceTree = "<group>"; };
+		8044397C17D4B6F300AADFDB /* SDBaseLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseLandingPageViewController.h; sourceTree = "<group>"; };
+		8044397D17D4B6F300AADFDB /* SDBaseLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseLandingPageViewController.m; sourceTree = "<group>"; };
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
 		80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
@@ -689,6 +699,13 @@
 		8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileTeamHeaderView.xib; sourceTree = "<group>"; };
 		8063D2E4179D706000C01D92 /* SDBaseProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProfileHeaderView.h; sourceTree = "<group>"; };
 		8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProfileHeaderView.m; sourceTree = "<group>"; };
+		808388FC17D4CA07006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageSearchBarMagnifyIcon@2x.png"; sourceTree = "<group>"; };
+		808388FD17D4CA07006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayerCellStrechableNumberImage@2x.png"; sourceTree = "<group>"; };
+		8083890917D4CB31006E4FE9 /* LandingPageSearchBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageSearchBackground@2x.png"; sourceTree = "<group>"; };
+		808456FE17D4BA7300E7CE89 /* SDPlayerLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayerLandingPageViewController.h; sourceTree = "<group>"; };
+		808456FF17D4BA7300E7CE89 /* SDPlayerLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayerLandingPageViewController.m; sourceTree = "<group>"; };
+		8084570117D4C44900E7CE89 /* SDLandingPageSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageSearchBar.h; sourceTree = "<group>"; };
+		8084570217D4C44900E7CE89 /* SDLandingPageSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageSearchBar.m; sourceTree = "<group>"; };
 		8096974417AA90CF00970E73 /* playImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playImage@2x.png"; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
@@ -1256,6 +1273,17 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		8044397117D4B54D00AADFDB /* LandingPageViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8044397C17D4B6F300AADFDB /* SDBaseLandingPageViewController.h */,
+				8044397D17D4B6F300AADFDB /* SDBaseLandingPageViewController.m */,
+				808456FE17D4BA7300E7CE89 /* SDPlayerLandingPageViewController.h */,
+				808456FF17D4BA7300E7CE89 /* SDPlayerLandingPageViewController.m */,
+			);
+			path = LandingPageViewControllers;
+			sourceTree = "<group>";
+		};
 		805598B2174CE8200040631D = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1341,7 @@
 				7B736520175F8249007A338E /* MessagesStoryboard.storyboard */,
 				805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */,
 				7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */,
+				8044397717D4B5E700AADFDB /* LandingPageStoryBoard.storyboard */,
 				8032F0971755F9AF00C92AAC /* Data Models */,
 				8032EFCE1755EEDE00C92AAC /* Services */,
 				8055990C174CEE620040631D /* Controllers */,
@@ -1374,6 +1403,7 @@
 		8055990C174CEE620040631D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8044397117D4B54D00AADFDB /* LandingPageViewControllers */,
 				805F725F1771AE9C00BDA30F /* ActivityFeedControllers */,
 				7B4628901765F34F00091954 /* Toolbar */,
 				7B73652B175F8729007A338E /* Messages */,
@@ -1399,6 +1429,8 @@
 			children = (
 				805CF34C174E03040046E6A5 /* SDSearchBar.h */,
 				805CF34D174E03040046E6A5 /* SDSearchBar.m */,
+				8084570117D4C44900E7CE89 /* SDLandingPageSearchBar.h */,
+				8084570217D4C44900E7CE89 /* SDLandingPageSearchBar.m */,
 			);
 			name = UISearchBar;
 			path = "Custom Classes & Categories/UISearchBar";
@@ -1503,6 +1535,16 @@
 			name = DeleteReplace;
 			sourceTree = "<group>";
 		};
+		808388FA17D4CA07006E4FE9 /* LandingPageImages */ = {
+			isa = PBXGroup;
+			children = (
+				8083890917D4CB31006E4FE9 /* LandingPageSearchBackground@2x.png */,
+				808388FC17D4CA07006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */,
+				808388FD17D4CA07006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */,
+			);
+			path = LandingPageImages;
+			sourceTree = "<group>";
+		};
 		808CEA98178E937A0098AD5D /* CameraViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1558,6 +1600,7 @@
 			isa = PBXGroup;
 			children = (
 				8044394617D4A8C400AADFDB /* closeBtn@2x.png */,
+				808388FA17D4CA07006E4FE9 /* LandingPageImages */,
 				8063D2CF1799486E00C01D92 /* DeleteReplace */,
 				809DF8F617955AC5001F37B3 /* UserProfileViewImages */,
 				80F259061773411900D3B85E /* ActivityFeedImages */,
@@ -1976,6 +2019,10 @@
 				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
 				7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
+				8044397817D4B5E700AADFDB /* LandingPageStoryBoard.storyboard in Resources */,
+				808388FF17D4CA07006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
+				8083890017D4CA07006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
+				8083890A17D4CB31006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2128,6 +2175,9 @@
 				8044394217D4A8A600AADFDB /* ActivityStory.m in Sources */,
 				8044394517D4A8A600AADFDB /* WebPreview.m in Sources */,
 				8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */,
+				8044397E17D4B6F300AADFDB /* SDBaseLandingPageViewController.m in Sources */,
+				8084570017D4BA7300E7CE89 /* SDPlayerLandingPageViewController.m in Sources */,
+				8084570317D4C44900E7CE89 /* SDLandingPageSearchBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
