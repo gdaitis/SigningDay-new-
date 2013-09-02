@@ -235,6 +235,7 @@
 		8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */; };
 		8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */; };
 		8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */; };
+		8083892917D4D80B006E4FE9 /* SDLandingPageSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083892817D4D80B006E4FE9 /* SDLandingPageSearchBar.m */; };
 		8096974517AA90CF00970E73 /* playImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8096974417AA90CF00970E73 /* playImage@2x.png */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
@@ -712,6 +713,8 @@
 		8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LandingPageSearchBackground@2x.png"; path = "LandingPageImages/LandingPageSearchBackground@2x.png"; sourceTree = "<group>"; };
 		8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LandingPageSearchBarMagnifyIcon@2x.png"; path = "LandingPageImages/LandingPageSearchBarMagnifyIcon@2x.png"; sourceTree = "<group>"; };
 		8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PlayerCellStrechableNumberImage@2x.png"; path = "LandingPageImages/PlayerCellStrechableNumberImage@2x.png"; sourceTree = "<group>"; };
+		8083892717D4D80B006E4FE9 /* SDLandingPageSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageSearchBar.h; sourceTree = "<group>"; };
+		8083892817D4D80B006E4FE9 /* SDLandingPageSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageSearchBar.m; sourceTree = "<group>"; };
 		8096974417AA90CF00970E73 /* playImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playImage@2x.png"; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
@@ -1446,6 +1449,8 @@
 			children = (
 				805CF34C174E03040046E6A5 /* SDSearchBar.h */,
 				805CF34D174E03040046E6A5 /* SDSearchBar.m */,
+				8083892717D4D80B006E4FE9 /* SDLandingPageSearchBar.h */,
+				8083892817D4D80B006E4FE9 /* SDLandingPageSearchBar.m */,
 			);
 			name = UISearchBar;
 			path = "Custom Classes & Categories/UISearchBar";
@@ -2198,6 +2203,7 @@
 				7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */,
 				8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */,
 				8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */,
+				8083892917D4D80B006E4FE9 /* SDLandingPageSearchBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
