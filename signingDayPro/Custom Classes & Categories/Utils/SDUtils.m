@@ -136,7 +136,6 @@
     
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(textView.bounds.size.width-10, CGFLOAT_MAX)];
-    NSLog(@"size = %f",size.height);
     
     if (activityStory.mediaType) {
         result = size.height + 10/*offset*/ + 150;/*imageView size*/

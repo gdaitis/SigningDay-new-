@@ -2,7 +2,7 @@
 //  Coach.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 8/27/13.
+//  Created by Lukas Kekys on 9/2/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -13,9 +13,9 @@
 
 @implementation Coach
 
+@dynamic institution;
 @dynamic location;
 @dynamic position;
-@dynamic institution;
 @dynamic team;
 @dynamic theUser;
 

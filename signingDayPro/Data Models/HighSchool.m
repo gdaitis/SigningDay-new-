@@ -2,7 +2,7 @@
 //  HighSchool.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 8/27/13.
+//  Created by Lukas Kekys on 9/2/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 

@@ -41,8 +41,8 @@
     self.contentTextView = textView;
     self.contentTextView.editable = NO;
     self.contentTextView.font = [UIFont systemFontOfSize:15.0f];
+    self.contentTextView.userInteractionEnabled = NO;
     
-
     [self addSubview:self.contentTextView];
     
     //creating imageView if cell will not have image this will be hidden

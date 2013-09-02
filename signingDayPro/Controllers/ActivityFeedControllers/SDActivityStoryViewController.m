@@ -13,6 +13,7 @@
 #import "AFNetworking.h"
 #import "SDActivityFeedCellContentView.h"
 #import "SDUserProfileViewController.h"
+#import "SDImageEnlargementView.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -233,7 +234,7 @@
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
-#pragma mark - view selection
+#pragma mark - Media logic
 
 - (IBAction)mediaButtonPressed:(id)sender
 {
@@ -242,12 +243,19 @@
         if ([self.activityStory.mediaType isEqualToString:@"photos"]) {
             //photos
             //show enlarged image view
+            [self showImageView];
         }
         else {
             //videos
             [self playVideo];
         }
     }
+}
+
+- (void)showImageView
+{
+    SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame andImage:self.activityStory.mediaUrl];
+    [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
 }
 
 - (void)playVideo
@@ -257,34 +265,39 @@
     self.player = [[MPMoviePlayerViewController alloc] init];
     [self.player.moviePlayer setContentURL:url];
     self.player.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+    self.player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    [self.player.view setFrame:self.view.bounds];
     [self.player.moviePlayer prepareToPlay];
-    
+
     [self presentMoviePlayerViewControllerAnimated:self.player];
     [self.player.moviePlayer play];
 }
 
-- (void) moviePlayBackDonePressed:(NSNotification*)notification
-{
-    [self.player.moviePlayer stop];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
-    
-    
-    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
-    {
-        [self.player.moviePlayer.view removeFromSuperview];
-    }
-    self.player = nil;
-}
-
-//- (void) moviePlayBackDidFinish:(NSNotification*)notification
+//- (void)moviePlayBackDonePressed:(NSNotification*)notification
 //{
 //    [self.player.moviePlayer stop];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
+//    
+////    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
 //    
 //    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
 //    {
 //        [self.player.moviePlayer.view removeFromSuperview];
 //    }
+//    self.player = nil;
 //}
+
+//- (void) moviePlayBackDidFinish:(NSNotification*)notification
+//{
+//    [self.player.moviePlayer stop];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
+//
+//    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
+//    {
+//        [self.player.moviePlayer.view removeFromSuperview];
+//    }
+//}
+
 
 @end
