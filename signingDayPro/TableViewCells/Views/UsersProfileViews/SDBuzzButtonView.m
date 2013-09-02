@@ -33,7 +33,7 @@
 - (id) awakeAfterUsingCoder:(NSCoder*)aDecoder
 {
     if ([[self subviews] count] == 0) {
-        SDBuzzButtonView* theRealThing = (id)[self loadInstanceFromNib];
+        SDBuzzButtonView* theRealThing = (id)[SDBuzzButtonView loadInstanceFromNib];
         theRealThing.frame = self.frame;
         theRealThing.autoresizingMask = self.autoresizingMask;
         theRealThing.alpha = self.alpha;

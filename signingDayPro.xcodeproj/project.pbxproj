@@ -52,6 +52,10 @@
 		7BDDAB93179FC457003F6AD7 /* SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8D179FC457003F6AD7 /* SettingsIcon@2x.png */; };
 		7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */; };
 		7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */; };
+		7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */; };
+		7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */; };
+		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
+		7BEBA8E417D4C8FC0049CA1C /* SearchButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
@@ -404,6 +408,11 @@
 		7BDDAB8D179FC457003F6AD7 /* SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WarRoomIcon@2x.png"; sourceTree = "<group>"; };
 		7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DTCoreTextFontOverrides.plist; path = ../Externals/DTCoreText/Demo/Resources/DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
+		7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayersSearchHeader.h; sourceTree = "<group>"; };
+		7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayersSearchHeader.m; sourceTree = "<group>"; };
+		7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPlayersSearchHeader.xib; sourceTree = "<group>"; };
+		7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchOptionButtonBg@2x.png"; sourceTree = "<group>"; };
+		7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
@@ -928,6 +937,25 @@
 				80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */,
 			);
 			name = ActivityFeed;
+			sourceTree = "<group>";
+		};
+		7BEBA8D217D4BCE80049CA1C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */,
+				7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */,
+				7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		7BEBA8E017D4C5A20049CA1C /* LandingPages */ = {
+			isa = PBXGroup;
+			children = (
+				7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */,
+				7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */,
+			);
+			name = LandingPages;
 			sourceTree = "<group>";
 		};
 		80236152174D1B4C00595432 /* UILabel */ = {
@@ -1540,6 +1568,7 @@
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7BEBA8D217D4BCE80049CA1C /* Search */,
 				8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */,
 				8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */,
 				7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */,
@@ -1557,6 +1586,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7BEBA8E017D4C5A20049CA1C /* LandingPages */,
 				8044394617D4A8C400AADFDB /* closeBtn@2x.png */,
 				8063D2CF1799486E00C01D92 /* DeleteReplace */,
 				809DF8F617955AC5001F37B3 /* UserProfileViewImages */,
@@ -1976,6 +2006,9 @@
 				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
 				7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
+				7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */,
+				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
+				7BEBA8E417D4C8FC0049CA1C /* SearchButtonBig@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2128,6 +2161,7 @@
 				8044394217D4A8A600AADFDB /* ActivityStory.m in Sources */,
 				8044394517D4A8A600AADFDB /* WebPreview.m in Sources */,
 				8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */,
+				7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

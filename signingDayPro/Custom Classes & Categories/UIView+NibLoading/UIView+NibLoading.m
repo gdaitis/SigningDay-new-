@@ -10,7 +10,7 @@
 
 @implementation UIView (NibLoading)
 
-- (UIView *)loadInstanceFromNib
++ (UIView *)loadInstanceFromNib
 {
     UIView *result = nil;
     NSArray* elements = [[NSBundle mainBundle] loadNibNamed: NSStringFromClass([self class]) owner: nil options: nil];

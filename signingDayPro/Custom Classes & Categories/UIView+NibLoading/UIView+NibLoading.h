@@ -10,7 +10,7 @@
 
 @interface UIView (NibLoading)
 
-- (UIView *)loadInstanceFromNib;
++ (UIView *)loadInstanceFromNib;
 + (UIView *)loadInstanceFromClass:(id)objectClass;
 
 @end
