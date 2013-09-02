@@ -260,7 +260,6 @@
 
 - (void)playVideo
 {
-    NSLog(@"self.activityStory.mediaUrl = %@",self.activityStory.mediaUrl);
     NSURL *url = [NSURL URLWithString:self.activityStory.mediaUrl];
     
     self.player = [[MPMoviePlayerViewController alloc] init];
@@ -272,7 +271,7 @@
     [self.player.moviePlayer play];
 }
 
-- (void) moviePlayBackDonePressed:(NSNotification*)notification
+- (void)moviePlayBackDonePressed:(NSNotification*)notification
 {
     [self.player.moviePlayer stop];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
@@ -285,15 +284,5 @@
     self.player = nil;
 }
 
-//- (void) moviePlayBackDidFinish:(NSNotification*)notification
-//{
-//    [self.player.moviePlayer stop];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
-//    
-//    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
-//    {
-//        [self.player.moviePlayer.view removeFromSuperview];
-//    }
-//}
 
 @end
