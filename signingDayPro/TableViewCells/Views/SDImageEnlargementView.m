@@ -8,11 +8,12 @@
 
 #import "SDImageEnlargementView.h"
 #import "AFNetworking.h"
+#import "MBProgressHUD.h"
 
 @interface SDImageEnlargementView () <UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic, weak) UIImageView *imageView;
 
 @end
 
@@ -31,16 +32,15 @@
 - (void)setupViewWithImage:(NSString *)imageUrl
 {
     //creating uiscrollview for image zooming, and adding UIImageView
-    self.scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
-    self.imageView = [[UIImageView alloc] initWithFrame:self.frame];
+    UIScrollView *scrolV = [[UIScrollView alloc] initWithFrame:self.frame];
+    self.scrollView = scrolV;
+    UIImageView *imageV = [[UIImageView alloc] initWithFrame:self.frame];
+    self.imageView = imageV;
     
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [self.imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
-    
-    
     self.scrollView.backgroundColor = [UIColor blackColor];
     self.scrollView.minimumZoomScale = 1.0;
-    self.scrollView.maximumZoomScale = 3.0;
+    self.scrollView.maximumZoomScale = 5.0;
     self.scrollView.contentSize = self.imageView.frame.size;
     self.scrollView.delegate = self;
     [self.scrollView addSubview:self.imageView];
@@ -48,10 +48,22 @@
     [self addSubview:self.scrollView];
     
     //adding closeButton
-    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    closeButton.frame = CGRectMake(self.bounds.size.width-60, 10, 50, 50); //creating button to be 10px from top and 10px from the right side
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeButton.frame = CGRectMake(self.bounds.size.width-40, -5, 50, 50); //creating button to be in the top right corner
+    [closeButton setImage:[UIImage imageNamed:@"closeBtn.png"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:closeButton];
+    
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.labelText = @"Loading";
+    
+    [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        self.imageView.image = image;
+        [MBProgressHUD hideHUDForView:self animated:YES];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        [MBProgressHUD hideHUDForView:self animated:YES];
+    }];
 }
 
 - (void)presentImageViewInView:(UIView *)containerView

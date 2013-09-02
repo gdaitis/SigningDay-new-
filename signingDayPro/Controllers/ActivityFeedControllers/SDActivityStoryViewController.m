@@ -265,24 +265,39 @@
     self.player = [[MPMoviePlayerViewController alloc] init];
     [self.player.moviePlayer setContentURL:url];
     self.player.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+    self.player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    [self.player.view setFrame:self.view.bounds];
     [self.player.moviePlayer prepareToPlay];
-    
+
     [self presentMoviePlayerViewControllerAnimated:self.player];
     [self.player.moviePlayer play];
 }
 
-- (void)moviePlayBackDonePressed:(NSNotification*)notification
-{
-    [self.player.moviePlayer stop];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
-    
-    
-    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
-    {
-        [self.player.moviePlayer.view removeFromSuperview];
-    }
-    self.player = nil;
-}
+//- (void)moviePlayBackDonePressed:(NSNotification*)notification
+//{
+//    [self.player.moviePlayer stop];
+//    
+////    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
+//    
+//    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
+//    {
+//        [self.player.moviePlayer.view removeFromSuperview];
+//    }
+//    self.player = nil;
+//}
+
+//- (void) moviePlayBackDidFinish:(NSNotification*)notification
+//{
+//    [self.player.moviePlayer stop];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
+//
+//    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
+//    {
+//        [self.player.moviePlayer.view removeFromSuperview];
+//    }
+//}
 
 
 @end

@@ -181,6 +181,7 @@
 		8044391217D4736F00AADFDB /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044391117D4736F00AADFDB /* Comment.m */; };
 		8044391517D4736F00AADFDB /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044391417D4736F00AADFDB /* Coach.m */; };
 		8044391817D4736F00AADFDB /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044391717D4736F00AADFDB /* Message.m */; };
+		8044391A17D4A3C500AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044391917D4A3C500AADFDB /* closeBtn@2x.png */; };
 		80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */; };
 		80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */; };
 		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
@@ -566,6 +567,7 @@
 		8044391417D4736F00AADFDB /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
 		8044391617D4736F00AADFDB /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		8044391717D4736F00AADFDB /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		8044391917D4A3C500AADFDB /* closeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeBtn@2x.png"; sourceTree = "<group>"; };
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
 		80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
@@ -1402,6 +1404,7 @@
 		8063D2CF1799486E00C01D92 /* DeleteReplace */ = {
 			isa = PBXGroup;
 			children = (
+				8044391917D4A3C500AADFDB /* closeBtn@2x.png */,
 				8063D2CD1799486500C01D92 /* shadow.png */,
 				8096974417AA90CF00970E73 /* playImage@2x.png */,
 			);
@@ -1820,6 +1823,7 @@
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
 				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
+				8044391A17D4A3C500AADFDB /* closeBtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
