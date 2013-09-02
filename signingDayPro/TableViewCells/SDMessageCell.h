@@ -15,7 +15,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
-@property (nonatomic, weak) IBOutlet UILabel *messageTextLabel;
+@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (nonatomic, strong) NSString *userImageUrlString;
 
 @end

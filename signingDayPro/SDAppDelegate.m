@@ -15,7 +15,7 @@
 #import "Message.h"
 #import "User.h"
 #import "Master.h"
-
+#import "DTCoreText.h"
 
 NSString * const kSDPushNotificationReceivedWhileInBackgroundNotification = @"SDPushNotificationReceivedWhileInBackgroundNotificationName";
 NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SDPushNotificationReceivedWhileInForegroundNotificationName";
@@ -43,6 +43,8 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fbSessionClosed) name:FBSessionDidBecomeClosedActiveSessionNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fbSessionOpened) name:FBSessionDidBecomeOpenActiveSessionNotification object:nil];
+    
+    [[DTCoreTextFontDescriptor alloc] init]; // <- pre-initializing the fonts required for faster loading
     
     return YES;
 }

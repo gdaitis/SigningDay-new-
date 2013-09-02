@@ -95,8 +95,8 @@
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
     
-    NSLog(@"activity story text height = %f",size.height);
-    NSLog(@"content text = %@",contentText);
+//    NSLog(@"activity story text height = %f",size.height);
+//    NSLog(@"content text = %@",contentText);
     
     CGRect frame = self.contentTextView.frame;
     frame.size.height = size.height +10;
