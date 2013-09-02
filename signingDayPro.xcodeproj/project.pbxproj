@@ -229,6 +229,12 @@
 		8063D2E2179D507800C01D92 /* SDUserProfileTeamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2DE179D507800C01D92 /* SDUserProfileTeamHeaderView.m */; };
 		8063D2E3179D507800C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */; };
 		8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */; };
+		8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */; };
+		8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */; };
+		8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */; };
+		8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */; };
+		8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */; };
+		8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */; };
 		8096974517AA90CF00970E73 /* playImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8096974417AA90CF00970E73 /* playImage@2x.png */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90617955AC5001F37B3 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */; };
@@ -698,6 +704,14 @@
 		8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileTeamHeaderView.xib; sourceTree = "<group>"; };
 		8063D2E4179D706000C01D92 /* SDBaseProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProfileHeaderView.h; sourceTree = "<group>"; };
 		8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProfileHeaderView.m; sourceTree = "<group>"; };
+		8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPageStoryBoard.storyboard; sourceTree = "<group>"; };
+		8083891817D4D78E006E4FE9 /* SDBaseLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseLandingPageViewController.h; sourceTree = "<group>"; };
+		8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseLandingPageViewController.m; sourceTree = "<group>"; };
+		8083891A17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayerLandingPageViewController.h; sourceTree = "<group>"; };
+		8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayerLandingPageViewController.m; sourceTree = "<group>"; };
+		8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LandingPageSearchBackground@2x.png"; path = "LandingPageImages/LandingPageSearchBackground@2x.png"; sourceTree = "<group>"; };
+		8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LandingPageSearchBarMagnifyIcon@2x.png"; path = "LandingPageImages/LandingPageSearchBarMagnifyIcon@2x.png"; sourceTree = "<group>"; };
+		8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PlayerCellStrechableNumberImage@2x.png"; path = "LandingPageImages/PlayerCellStrechableNumberImage@2x.png"; sourceTree = "<group>"; };
 		8096974417AA90CF00970E73 /* playImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playImage@2x.png"; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FA17955AC5001F37B3 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
@@ -954,6 +968,9 @@
 			children = (
 				7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */,
 				7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */,
+				8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */,
+				8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */,
+				8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */,
 			);
 			name = LandingPages;
 			sourceTree = "<group>";
@@ -1341,6 +1358,7 @@
 				7B736520175F8249007A338E /* MessagesStoryboard.storyboard */,
 				805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */,
 				7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */,
+				8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */,
 				8032F0971755F9AF00C92AAC /* Data Models */,
 				8032EFCE1755EEDE00C92AAC /* Services */,
 				8055990C174CEE620040631D /* Controllers */,
@@ -1402,6 +1420,7 @@
 		8055990C174CEE620040631D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8083891717D4D78E006E4FE9 /* LandingPageViewControllers */,
 				805F725F1771AE9C00BDA30F /* ActivityFeedControllers */,
 				7B4628901765F34F00091954 /* Toolbar */,
 				7B73652B175F8729007A338E /* Messages */,
@@ -1529,6 +1548,17 @@
 				8096974417AA90CF00970E73 /* playImage@2x.png */,
 			);
 			name = DeleteReplace;
+			sourceTree = "<group>";
+		};
+		8083891717D4D78E006E4FE9 /* LandingPageViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8083891817D4D78E006E4FE9 /* SDBaseLandingPageViewController.h */,
+				8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */,
+				8083891A17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.h */,
+				8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */,
+			);
+			path = LandingPageViewControllers;
 			sourceTree = "<group>";
 		};
 		808CEA98178E937A0098AD5D /* CameraViews */ = {
@@ -2009,6 +2039,10 @@
 				7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */,
 				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
 				7BEBA8E417D4C8FC0049CA1C /* SearchButtonBig@2x.png in Resources */,
+				8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */,
+				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
+				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
+				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2162,6 +2196,8 @@
 				8044394517D4A8A600AADFDB /* WebPreview.m in Sources */,
 				8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */,
 				7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */,
+				8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */,
+				8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
