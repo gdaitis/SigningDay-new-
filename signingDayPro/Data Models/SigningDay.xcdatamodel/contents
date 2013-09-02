@@ -8,7 +8,6 @@
         <attribute name="contentTypeId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="likedByMaster" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="likesCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -161,7 +160,7 @@
         <relationship name="activityStory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="webPreview" inverseEntity="ActivityStory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ActivityStory" positionX="-83" positionY="-567" width="128" height="373"/>
+        <element name="ActivityStory" positionX="-83" positionY="-567" width="128" height="360"/>
         <element name="Coach" positionX="1042" positionY="-148" width="128" height="118"/>
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
         <element name="Conversation" positionX="153" positionY="137" width="128" height="178"/>

@@ -2,7 +2,7 @@
 //  ActivityStory.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 8/27/13.
+//  Created by Lukas Kekys on 9/2/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -20,7 +20,6 @@
 @property (nonatomic, retain) NSString * contentTypeId;
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * identifier;
-@property (nonatomic, retain) NSString * imagePath;
 @property (nonatomic, retain) NSDate * lastUpdateDate;
 @property (nonatomic, retain) NSNumber * likedByMaster;
 @property (nonatomic, retain) NSNumber * likesCount;

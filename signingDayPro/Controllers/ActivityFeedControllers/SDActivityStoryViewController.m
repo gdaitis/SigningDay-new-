@@ -13,6 +13,7 @@
 #import "AFNetworking.h"
 #import "SDActivityFeedCellContentView.h"
 #import "SDUserProfileViewController.h"
+#import "SDImageEnlargementView.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -233,7 +234,7 @@
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
-#pragma mark - view selection
+#pragma mark - Media logic
 
 - (IBAction)mediaButtonPressed:(id)sender
 {
@@ -242,12 +243,20 @@
         if ([self.activityStory.mediaType isEqualToString:@"photos"]) {
             //photos
             //show enlarged image view
+            [self showImageView];
         }
         else {
             //videos
             [self playVideo];
         }
     }
+}
+
+- (void)showImageView
+{
+#warning not finished
+//    SDImageEnlargementView *imageEnlragemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame andImage:self.activityStory.mediaUrl];
+//    [imageEnlragemenetView]
 }
 
 - (void)playVideo
