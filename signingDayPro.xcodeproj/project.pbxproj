@@ -1254,7 +1254,6 @@
 		805598B2174CE8200040631D = {
 			isa = PBXGroup;
 			children = (
-				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				805598C7174CE8200040631D /* signingDayPro */,
 				805598C0174CE8200040631D /* Frameworks */,
 				7BB4372217CF6A4D0064DBEB /* Externals */,
@@ -1273,6 +1272,7 @@
 		805598C0174CE8200040631D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */,
 				7BB4374017CF6A9B0064DBEB /* CoreText.framework */,
 				7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */,
