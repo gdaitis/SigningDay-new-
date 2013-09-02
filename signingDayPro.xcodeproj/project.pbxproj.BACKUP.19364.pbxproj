@@ -777,10 +777,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */,
 				7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */,
 				7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */,
+=======
 				80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */,
+>>>>>>> master
 				7B3031B0177ADB97006EF25B /* libxml2.dylib in Frameworks */,
 				7BB4373D17CF6A7E0064DBEB /* libDTCoreText.a in Frameworks */,
 				80EEF5D817560D0500A7C803 /* libsqlite3.dylib in Frameworks */,
@@ -1254,6 +1257,7 @@
 		805598B2174CE8200040631D = {
 			isa = PBXGroup;
 			children = (
+				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				805598C7174CE8200040631D /* signingDayPro */,
 				805598C0174CE8200040631D /* Frameworks */,
 				7BB4372217CF6A4D0064DBEB /* Externals */,
@@ -1272,7 +1276,6 @@
 		805598C0174CE8200040631D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */,
 				7BB4374017CF6A9B0064DBEB /* CoreText.framework */,
 				7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */,

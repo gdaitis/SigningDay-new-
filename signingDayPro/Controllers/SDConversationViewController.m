@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
+#import "DTCoreText.h"
 
 #define ClearConversationButtonIndex 0
 
@@ -140,7 +141,6 @@
     NSArray *unsortedMessages = [self.conversation.messages allObjects];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
     self.dataArray = [unsortedMessages sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    NSLog(@"Messages array is reloading");
     
     [self.tableView reloadData];
 }
@@ -182,6 +182,17 @@
     }
 }
 
+- (NSAttributedString *)getAttributedStringForTextViewFromMessage:(Message *)message
+{
+    NSData *HTMLData = [message.text dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *builderOptions = @{DTDefaultFontFamily: @"Helvetica",
+                                     DTUseiOS6Attributes: [NSNumber numberWithBool:YES]};
+    DTHTMLAttributedStringBuilder *attributedStringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:HTMLData
+                                                                                                         options:builderOptions
+                                                                                              documentAttributes:nil];
+    return [attributedStringBuilder generatedAttributedString];
+}
+
 #pragma mark - UITableView data source and delegate methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,8 +209,10 @@
     }
     
     Message *message = [self.dataArray objectAtIndex:indexPath.row];
+    
+    cell.messageTextView.attributedText = [self getAttributedStringForTextViewFromMessage:message];
     cell.usernameLabel.text = message.user.name;
-    cell.messageTextLabel.text = message.text;
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:message.date];
@@ -242,10 +255,10 @@
 {
     Message *message = [self.dataArray objectAtIndex:indexPath.row];
     
-    CGSize size = [message.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13]
-                           constrainedToSize:CGSizeMake(kMessageTextWidth, CGFLOAT_MAX)
-                               lineBreakMode:NSLineBreakByWordWrapping];
-    CGFloat height = size.height + 31 + 13;
+    CGRect rect = [[self getAttributedStringForTextViewFromMessage:message] boundingRectWithSize:CGSizeMake(kMessageTextWidth, CGFLOAT_MAX)
+                                                                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                                         context:nil];
+    CGFloat height = rect.size.height + 31 + 13 - 16;
     if (height < 68) {
         height = 68;
     }

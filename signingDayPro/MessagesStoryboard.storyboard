@@ -140,13 +140,6 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsFontSizeToFit="NO" id="Qby-QY-1WD">
-                                                            <rect key="frame" x="64" y="31" width="247" height="14"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Hlm-3j-9c1">
                                                             <rect key="frame" x="216" y="6" width="95" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -159,13 +152,21 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </view>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="PAh-4h-rQ5">
+                                                            <rect key="frame" x="64" y="31" width="247" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <connections>
                                                     <outlet property="bottomLineView" destination="PK3-1y-ifs" id="o7L-Uv-5J4"/>
                                                     <outlet property="dateLabel" destination="Hlm-3j-9c1" id="XW8-8a-T2N"/>
-                                                    <outlet property="messageTextLabel" destination="Qby-QY-1WD" id="JvF-4L-Uxb"/>
+                                                    <outlet property="messageTextView" destination="PAh-4h-rQ5" id="JKH-Se-vQ6"/>
                                                     <outlet property="userImageView" destination="8MP-9D-Ogh" id="CpP-59-T4S"/>
                                                     <outlet property="usernameLabel" destination="RPk-8K-z2L" id="9RM-JJ-nT7"/>
                                                 </connections>
@@ -256,6 +257,16 @@
         <image name="chat_box_send_bt.png" width="60" height="30.5"/>
     </resources>
     <classes>
+        <class className="SDBaseChatViewController" superclassName="SDBaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseChatViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="chatBar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="enterMessageTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="sendButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="textViewBackgroundImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
         <class className="SDBaseToolbarItemViewController" superclassName="SDBaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseToolbarItemViewController.h"/>
             <relationships>
@@ -268,24 +279,15 @@
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="SDConversationViewController" superclassName="SDBaseViewController">
+        <class className="SDConversationViewController" superclassName="SDBaseChatViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDConversationViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="chatBar" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="enterMessageTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="namesHeaderLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sendButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="textViewBackgroundImageView" candidateClass="UIImageView"/>
-            </relationships>
         </class>
         <class className="SDMessageCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDMessageCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="bottomLineView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="messageTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="messageTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="userImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
             </relationships>
@@ -304,7 +306,7 @@
                 <relationship kind="outlet" name="usernameTitle" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SDNewConversationViewController" superclassName="UIViewController">
+        <class className="SDNewConversationViewController" superclassName="SDBaseViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SDNewConversationViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>

@@ -173,7 +173,6 @@
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
 		80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */; };
 		80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */; };
-		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
 		805598C2174CE8200040631D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C1174CE8200040631D /* UIKit.framework */; };
 		805598C4174CE8200040631D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C3174CE8200040631D /* Foundation.framework */; };
 		805598C6174CE8200040631D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C5174CE8200040631D /* CoreGraphics.framework */; };
@@ -600,7 +599,6 @@
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
 		80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
-		80522C4E17D0C67200936936 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		805598BD174CE8200040631D /* signingDayPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = signingDayPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		805598C1174CE8200040631D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		805598C3174CE8200040631D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -780,7 +778,6 @@
 				7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */,
 				7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */,
 				7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */,
-				80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */,
 				7B3031B0177ADB97006EF25B /* libxml2.dylib in Frameworks */,
 				7BB4373D17CF6A7E0064DBEB /* libDTCoreText.a in Frameworks */,
 				80EEF5D817560D0500A7C803 /* libsqlite3.dylib in Frameworks */,
@@ -1272,7 +1269,6 @@
 		805598C0174CE8200040631D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */,
 				7BB4374017CF6A9B0064DBEB /* CoreText.framework */,
 				7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */,

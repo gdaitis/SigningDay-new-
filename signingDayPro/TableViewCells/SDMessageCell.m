@@ -11,6 +11,8 @@
 #import "AFNetworking.h"
 #import "SDImageService.h"
 #import "UIImage+Crop.h"
+#import "DTCoreText.h"
+#import "SDBaseChatViewController.h"
 
 @interface SDMessageCell ()
 
@@ -25,7 +27,7 @@
     self.backgroundView = cellBackgroundView;
     
     self.dateLabel.textColor = [UIColor colorWithRed:136.0f/255.0f green:136.0f/255.0f blue:136.0f/255.0f alpha:1];
-    self.messageTextLabel.textColor = [UIColor colorWithRed:85.0f/255.0f green:85.0f/255.0f blue:85.0f/255.0f alpha:1];
+    self.messageTextView.textColor = [UIColor colorWithRed:85.0f/255.0f green:85.0f/255.0f blue:85.0f/255.0f alpha:1];
     self.bottomLineView.backgroundColor = [UIColor colorWithRed:206.0f/255.0f green:206.0f/255.0f blue:206.0f/255.0f alpha:1];
 }
 
@@ -34,10 +36,14 @@
     [super layoutSubviews];
     
     self.backgroundView.frame = self.bounds;
+    self.messageTextView.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
     
-    CGSize size = [self.messageTextLabel.text sizeWithFont:[UIFont fontWithName:@"Arial" size:13] constrainedToSize:CGSizeMake(242, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
-    self.messageTextLabel.frame = CGRectMake(64, 31, size.width + 5, size.height);
-    CGFloat height = size.height + 31 + 12;
+    CGRect rect = [self.messageTextView.attributedText boundingRectWithSize:CGSizeMake(kMessageTextWidth, CGFLOAT_MAX)
+                                                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                                    context:nil];
+    self.messageTextView.frame = CGRectMake(64, 31, kMessageTextWidth, rect.size.height);
+    CGFloat height = rect.size.height + 31 + 12 - 16;
+    
     if (height < 67) {
         height = 67;
     }
