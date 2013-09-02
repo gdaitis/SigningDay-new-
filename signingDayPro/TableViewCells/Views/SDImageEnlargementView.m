@@ -7,8 +7,9 @@
 //
 
 #import "SDImageEnlargementView.h"
+#import "AFNetworking.h"
 
-@interface SDImageEnlargementView ()
+@interface SDImageEnlargementView () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *imageView;
@@ -17,25 +18,31 @@
 
 @implementation SDImageEnlargementView
 
-- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image
+- (id)initWithFrame:(CGRect)frame andImage:(NSString *)imageUrl
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setupViewWithImage:image];
+        [self setupViewWithImage:imageUrl];
     }
     return self;
 }
 
-- (void)setupViewWithImage:(UIImage *)image
+- (void)setupViewWithImage:(NSString *)imageUrl
 {
     //creating uiscrollview for image zooming, and adding UIImageView
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.frame];
     self.imageView = [[UIImageView alloc] initWithFrame:self.frame];
     
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    self.imageView.image = image;
+    [self.imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
+    
+    
+    self.scrollView.backgroundColor = [UIColor blackColor];
+    self.scrollView.minimumZoomScale = 1.0;
+    self.scrollView.maximumZoomScale = 3.0;
     self.scrollView.contentSize = self.imageView.frame.size;
+    self.scrollView.delegate = self;
     [self.scrollView addSubview:self.imageView];
     
     [self addSubview:self.scrollView];
@@ -64,6 +71,12 @@
     } completion:^(__unused BOOL finished) {
         [self removeFromSuperview];
     }];
+}
+
+#pragma mark - uiscrollview delegate
+
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)aScrollView {
+    return self.imageView;
 }
 
 /*

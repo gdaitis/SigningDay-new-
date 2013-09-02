@@ -254,13 +254,13 @@
 
 - (void)showImageView
 {
-#warning not finished
-//    SDImageEnlargementView *imageEnlragemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame andImage:self.activityStory.mediaUrl];
-//    [imageEnlragemenetView]
+    SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame andImage:self.activityStory.mediaUrl];
+    [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
 }
 
 - (void)playVideo
 {
+    NSLog(@"self.activityStory.mediaUrl = %@",self.activityStory.mediaUrl);
     NSURL *url = [NSURL URLWithString:self.activityStory.mediaUrl];
     
     self.player = [[MPMoviePlayerViewController alloc] init];

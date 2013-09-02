@@ -10,6 +10,7 @@
 
 @interface SDImageEnlargementView : UIView
 
-- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image;
+- (id)initWithFrame:(CGRect)frame andImage:(NSString *)imageUrl;
+- (void)presentImageViewInView:(UIView *)containerView;
 
 @end

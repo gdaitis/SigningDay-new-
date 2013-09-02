@@ -35,6 +35,14 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
     
     [MagicalRecord setupCoreDataStack];
+
+    //if master user got deleted, performing logout
+    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    if (!master) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedIn"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
     // Let the device know we want to receive push notifications
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
