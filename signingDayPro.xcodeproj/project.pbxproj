@@ -41,7 +41,6 @@
 		7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDA17A93FC100F7C6B3 /* SDCommentsHeaderView.m */; };
 		7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
-		7BB4373D17CF6A7E0064DBEB /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373417CF6A610064DBEB /* libDTCoreText.a */; };
 		7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */; };
 		7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374017CF6A9B0064DBEB /* CoreText.framework */; };
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
@@ -186,6 +185,8 @@
 		8044394217D4A8A600AADFDB /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044394117D4A8A600AADFDB /* ActivityStory.m */; };
 		8044394517D4A8A600AADFDB /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044394417D4A8A600AADFDB /* WebPreview.m */; };
 		8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044394617D4A8C400AADFDB /* closeBtn@2x.png */; };
+		8044395317D4AF1000AADFDB /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373417CF6A610064DBEB /* libDTCoreText.a */; };
+		8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */; };
 		80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */; };
 		80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */; };
 		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
@@ -627,6 +628,8 @@
 		8044394317D4A8A600AADFDB /* WebPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPreview.h; sourceTree = "<group>"; };
 		8044394417D4A8A600AADFDB /* WebPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPreview.m; sourceTree = "<group>"; };
 		8044394617D4A8C400AADFDB /* closeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeBtn@2x.png"; sourceTree = "<group>"; };
+		8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageEnlargementView.h; sourceTree = "<group>"; };
+		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
 		80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
@@ -779,12 +782,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8044395317D4AF1000AADFDB /* libDTCoreText.a in Frameworks */,
 				7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */,
 				7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */,
 				7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */,
 				80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */,
 				7B3031B0177ADB97006EF25B /* libxml2.dylib in Frameworks */,
-				7BB4373D17CF6A7E0064DBEB /* libDTCoreText.a in Frameworks */,
 				80EEF5D817560D0500A7C803 /* libsqlite3.dylib in Frameworks */,
 				8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */,
 				8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */,
@@ -1537,6 +1540,8 @@
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */,
+				8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */,
 				7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */,
 				80CCAE601793E66B0015429A /* UsersProfileViews */,
 				808CEA98178E937A0098AD5D /* CameraViews */,
@@ -2122,6 +2127,7 @@
 				8044393F17D4A8A600AADFDB /* HighSchool.m in Sources */,
 				8044394217D4A8A600AADFDB /* ActivityStory.m in Sources */,
 				8044394517D4A8A600AADFDB /* WebPreview.m in Sources */,
+				8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
