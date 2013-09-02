@@ -43,7 +43,7 @@
 - (id) awakeAfterUsingCoder:(NSCoder*)aDecoder
 {
     if ([[self subviews] count] == 0) {
-        SDUserProfileSlidingButtonView* theRealThing = (id)[self loadInstanceFromNib];
+        SDUserProfileSlidingButtonView* theRealThing = (id)[SDUserProfileSlidingButtonView loadInstanceFromNib];
         theRealThing.frame = self.frame;
         theRealThing.autoresizingMask = self.autoresizingMask;
         theRealThing.alpha = self.alpha;
