@@ -9,6 +9,31 @@
 #import "SDPlayersSearchHeader.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface UIButton (AddTitle)
+
+- (void)setCustomTitle:(NSString *)title;
+
+@end
+
+@implementation UIButton (AddTitle)
+
+- (void)setCustomTitle:(NSString *)title
+{
+    [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(5, 10, 0, 0)];
+    
+    [self setTitle:title forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor colorWithRed:98.0f/255.0f
+                                        green:98.0f/255.0f
+                                         blue:98.0f/255.0f
+                                        alpha:1.0f]
+               forState:UIControlStateNormal];
+    self.titleLabel.font = [UIFont systemFontOfSize:16];
+}
+
+@end
+
 @interface SDPlayersSearchHeader ()
 
 @property (weak, nonatomic) IBOutlet UIButton *statesButton;
@@ -24,7 +49,10 @@
 {
     [super awakeFromNib];
     
-    self.backgroundColor = [UIColor colorWithRed:223.0f/255.0f green:223.0f/255.0f blue:223.0f/255.0f alpha:1.0f];
+    self.backgroundColor = [UIColor colorWithRed:223.0f/255.0f
+                                           green:223.0f/255.0f
+                                            blue:223.0f/255.0f
+                                           alpha:1.0f];
     
     // adding shadow
     CGColorRef darkColor = [[UIColor blackColor] colorWithAlphaComponent:.10f].CGColor;
@@ -38,8 +66,16 @@
     
     // bottom line
     UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 189, 320, 1)];
-    bottomLine.backgroundColor = [UIColor colorWithRed:168.0f/255.0f green:168.0f/255.0f blue:168.0f/255.0f alpha:1.0f];
+    bottomLine.backgroundColor = [UIColor colorWithRed:168.0f/255.0f
+                                                 green:168.0f/255.0f
+                                                  blue:168.0f/255.0f
+                                                 alpha:1.0f];
     [self addSubview:bottomLine];
+    
+    // titles
+    [self.statesButton setCustomTitle:@"All states"];
+    [self.yearsButton setCustomTitle:@"All years"];
+    [self.positionsButton setCustomTitle:@"All positions"];
 }
 
 - (IBAction)statesButtonClicked:(id)sender

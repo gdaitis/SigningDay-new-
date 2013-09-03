@@ -35,6 +35,7 @@
 		7B755488177C574E00CBE6A3 /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */; };
 		7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */; };
 		7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */; };
+		7BAA5A6217D5C8D8001DB55C /* SearchButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6117D5C8D8001DB55C /* SearchButtonBig@2x.png */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
 		7BAF6ED817A93FB000F7C6B3 /* SDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */; };
@@ -55,7 +56,6 @@
 		7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */; };
 		7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */; };
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
-		7BEBA8E417D4C8FC0049CA1C /* SearchButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
@@ -393,6 +393,7 @@
 		7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
 		7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderLike@2x.png"; sourceTree = "<group>"; };
 		7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderRightArrow@2x.png"; sourceTree = "<group>"; };
+		7BAA5A6117D5C8D8001DB55C /* SearchButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
 		7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommentsViewController.m; sourceTree = "<group>"; };
 		7BAF6ED317A93F7500F7C6B3 /* SDBaseChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseChatViewController.h; sourceTree = "<group>"; };
@@ -419,7 +420,6 @@
 		7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayersSearchHeader.m; sourceTree = "<group>"; };
 		7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPlayersSearchHeader.xib; sourceTree = "<group>"; };
 		7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchOptionButtonBg@2x.png"; sourceTree = "<group>"; };
-		7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
@@ -969,8 +969,8 @@
 		7BEBA8E017D4C5A20049CA1C /* LandingPages */ = {
 			isa = PBXGroup;
 			children = (
+				7BAA5A6117D5C8D8001DB55C /* SearchButtonBig@2x.png */,
 				7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */,
-				7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */,
 				8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */,
 				8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */,
 				8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */,
@@ -2043,11 +2043,11 @@
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
 				7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */,
 				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
-				7BEBA8E417D4C8FC0049CA1C /* SearchButtonBig@2x.png in Resources */,
 				8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */,
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
 				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
+				7BAA5A6217D5C8D8001DB55C /* SearchButtonBig@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
