@@ -102,6 +102,8 @@
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
 		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
+		802B793E17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */; };
+		802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */; };
 		8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC71755E83300C92AAC /* SearchFieldBg@2x.png */; };
 		8032EFDF1755EEDE00C92AAC /* SDAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032EFD01755EEDE00C92AAC /* SDAPIClient.m */; };
 		8032EFE01755EEDE00C92AAC /* SDChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032EFD21755EEDE00C92AAC /* SDChatService.m */; };
@@ -483,6 +485,9 @@
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
 		80270420178FDC8000C8F872 /* submit_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit_button@2x.png"; sourceTree = "<group>"; };
 		80270424178FE39B00C8F872 /* sign_out_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign_out_button@2x.png"; sourceTree = "<group>"; };
+		802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagePlayerCell.h; sourceTree = "<group>"; };
+		802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagePlayerCell.m; sourceTree = "<group>"; };
+		802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPagePlayerCell.xib; sourceTree = "<group>"; };
 		8032EFC71755E83300C92AAC /* SearchFieldBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchFieldBg@2x.png"; sourceTree = "<group>"; };
 		8032EFCF1755EEDE00C92AAC /* SDAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAPIClient.h; sourceTree = "<group>"; };
 		8032EFD01755EEDE00C92AAC /* SDAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAPIClient.m; sourceTree = "<group>"; };
@@ -1481,6 +1486,9 @@
 				80E31BA91758AF990013545C /* SDFollowingCell.xib */,
 				7B73651B175F7ABD007A338E /* SDMessageCell.h */,
 				7B73651C175F7ABE007A338E /* SDMessageCell.m */,
+				802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */,
+				802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */,
+				802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -2048,6 +2056,7 @@
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
 				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
+				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2204,6 +2213,7 @@
 				8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */,
 				8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */,
 				8083892917D4D80B006E4FE9 /* SDLandingPageSearchBar.m in Sources */,
+				802B793E17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
