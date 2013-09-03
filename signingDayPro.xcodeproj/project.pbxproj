@@ -36,6 +36,7 @@
 		7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */; };
 		7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */; };
 		7BAA5A6217D5C8D8001DB55C /* SearchButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6117D5C8D8001DB55C /* SearchButtonBig@2x.png */; };
+		7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
 		7BAF6ED817A93FB000F7C6B3 /* SDCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */; };
@@ -394,6 +395,8 @@
 		7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderLike@2x.png"; sourceTree = "<group>"; };
 		7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderRightArrow@2x.png"; sourceTree = "<group>"; };
 		7BAA5A6117D5C8D8001DB55C /* SearchButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchButtonBig@2x.png"; sourceTree = "<group>"; };
+		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
+		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
 		7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommentsViewController.m; sourceTree = "<group>"; };
 		7BAF6ED317A93F7500F7C6B3 /* SDBaseChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseChatViewController.h; sourceTree = "<group>"; };
@@ -1009,6 +1012,8 @@
 				8032EFDC1755EEDE00C92AAC /* SDProfileService.m */,
 				8032EFDD1755EEDE00C92AAC /* SDUploadService.h */,
 				8032EFDE1755EEDE00C92AAC /* SDUploadService.m */,
+				7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */,
+				7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2204,6 +2209,7 @@
 				8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */,
 				8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */,
 				8083892917D4D80B006E4FE9 /* SDLandingPageSearchBar.m in Sources */,
+				7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

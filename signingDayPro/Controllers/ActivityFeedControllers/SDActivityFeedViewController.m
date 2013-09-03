@@ -34,6 +34,8 @@
 
 #import "SDActivityStoryViewController.h"
 
+#import "SDLandingPagesService.h"
+
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
@@ -84,6 +86,12 @@
     self.tableView.tableDelegate = self;
     
     [self.tableView checkServerAndDeleteOld:YES];
+    
+    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:0 to:5 completionHandler:^{
+        //
+    } failureBlock:^{
+        //
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
