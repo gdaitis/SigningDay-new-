@@ -7,8 +7,14 @@
 //
 
 #import "SDPlayerLandingPageViewController.h"
+#import "SDLandingPagePlayerCell.h"
+#import "UIView+NibLoading.h"
 
 @interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic,strong) NSArray *dataArray;
+
+- (void)followButtonPressed:(UIButton *)sender;
 
 @end
 
@@ -39,7 +45,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 79;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -56,10 +62,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-	
+    NSString *identifier = @"SDLandingPagePlayerCellIdentifier";
+    SDLandingPagePlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell) {
+        cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
+        [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    cell.followButton.tag = indexPath.row;
+    User *user = [self.dataArray objectAtIndex:indexPath.row];
     // Configure the cell...
-    cell.textLabel.text = @"Testas";
+    [cell setupCellWithUser:user];
     return cell;
 }
 
@@ -69,6 +83,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+}
+
+#pragma mark - IBActions
+
+- (void)followButtonPressed:(UIButton *)sender
+{
+//    indexpath.row = sender.tag;
+    
+    sender.selected = !sender.selected;
 }
 
 @end

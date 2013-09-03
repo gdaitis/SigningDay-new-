@@ -7,8 +7,37 @@
 //
 
 #import "SDLandingPagePlayerCell.h"
+#import "User.h"
+#import "Player.h"
+#import "HighSchool.h"
+#import "AFNetworking.h"
+
+@interface SDLandingPagePlayerCell ()
+
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *schoolLabel;
+@property (nonatomic, weak) IBOutlet UILabel *positionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *positionNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *yearLabel;
+@property (nonatomic, weak) IBOutlet UILabel *yearNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *baseScoreLabel;
+@property (nonatomic, weak) IBOutlet UILabel *baseScoreNameLabel;
+
+@property (nonatomic, weak) IBOutlet UIImageView *userImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
+@property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
+
+@end
 
 @implementation SDLandingPagePlayerCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.positionNumberBackgroundImageView.image = [[UIImage imageNamed:@"PlayerCellStrechableNumberImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+}
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,5 +54,30 @@
 
     // Configure the view for the selected state
 }
+
+#pragma mark - Cell setup
+
+- (void)setupCellWithUser:(User *)user
+{
+    [self.playerPositionLabel updateConstraints];
+    
+    if (user) {
+        self.nameLabel.text = user.name;
+        self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
+        self.baseScoreNameLabel = [NSString stringWithFormat:@"%f",[user.thePlayer.baseScore floatValue]];
+        
+        //position in list number
+        self.playerPositionLabel = [NSString stringWithFormat:@"%d",[user.thePlayer.nationalRanking intValue]];
+        
+        //playing position E.g "CB"
+        self.positionNameLabel.text = user.thePlayer.position;
+        self.yearNameLabel.text = user.thePlayer.userClass;
+        
+        //cancel previous requests and set user image
+        [self.userImageView cancelImageRequestOperation];
+        [self.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
+    }
+}
+
 
 @end
