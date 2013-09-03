@@ -2,7 +2,7 @@
 //  Player.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/2/13.
+//  Created by Lukas Kekys on 9/3/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @dynamic stateRanking;
 @dynamic userClass;
 @dynamic weight;
+@dynamic accountVerified;
 @dynamic highSchool;
 @dynamic theUser;
 

@@ -96,6 +96,7 @@
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="messages" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="accountVerified" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="baseScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="nationalRanking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -170,7 +171,7 @@
         <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
         <element name="Member" positionX="844" positionY="224" width="128" height="118"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
-        <element name="Player" positionX="747" positionY="-460" width="128" height="208"/>
+        <element name="Player" positionX="747" positionY="-460" width="128" height="225"/>
         <element name="Team" positionX="999" positionY="-423" width="128" height="208"/>
         <element name="User" positionX="585" positionY="-198" width="128" height="463"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
