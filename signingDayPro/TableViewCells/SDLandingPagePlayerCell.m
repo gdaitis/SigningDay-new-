@@ -34,8 +34,19 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
+    [self initialSetup];
+}
+
+- (void)initialSetup
+{
     self.positionNumberBackgroundImageView.image = [[UIImage imageNamed:@"PlayerCellStrechableNumberImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    self.playerPositionLabel.font = [UIFont fontWithName:@"BebasNeue" size:14];
+    self.positionLabel.font = [UIFont fontWithName:@"BebasNeue" size:15];
+    self.yearLabel.font = [UIFont fontWithName:@"BebasNeue" size:15];
+    self.baseScoreLabel.font = [UIFont fontWithName:@"BebasNeue" size:15];
+    self.positionNameLabel.font = [UIFont fontWithName:@"BebasNeue" size:15];
+    self.yearNameLabel.font = [UIFont fontWithName:@"BebasNeue" size:15];
+    self.baseScoreNameLabel.font = [UIFont fontWithName:@"BebasNeue" size:15];
 }
 
 
