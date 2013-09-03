@@ -55,7 +55,6 @@
 		7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */; };
 		7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */; };
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
-		7BEBA8E417D4C8FC0049CA1C /* SearchButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
@@ -222,6 +221,7 @@
 		805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */; };
 		805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */; };
 		805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */; };
+		8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8062EE2617D6065000067B13 /* SearchButtonBig@2x.png */; };
 		80630D11177B15B9002AA0BC /* SDActivityFeedCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */; };
 		8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */; };
 		8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */; };
@@ -421,7 +421,6 @@
 		7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayersSearchHeader.m; sourceTree = "<group>"; };
 		7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPlayersSearchHeader.xib; sourceTree = "<group>"; };
 		7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchOptionButtonBg@2x.png"; sourceTree = "<group>"; };
-		7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
@@ -696,6 +695,7 @@
 		805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityFeedStoryboard.storyboard; sourceTree = "<group>"; };
 		805F72651771AF9900BDA30F /* SDActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedViewController.h; sourceTree = "<group>"; };
 		805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedViewController.m; sourceTree = "<group>"; };
+		8062EE2617D6065000067B13 /* SearchButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchButtonBig@2x.png"; sourceTree = "<group>"; };
 		80630D0F177B15B9002AA0BC /* SDActivityFeedCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedCellContentView.h; sourceTree = "<group>"; };
 		80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedCellContentView.m; sourceTree = "<group>"; };
 		8063D2C817991BE500C01D92 /* SDUserProfilePlayerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfilePlayerHeaderView.h; sourceTree = "<group>"; };
@@ -975,7 +975,7 @@
 			isa = PBXGroup;
 			children = (
 				7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */,
-				7BEBA8E317D4C8FC0049CA1C /* SearchButtonBig@2x.png */,
+				8062EE2617D6065000067B13 /* SearchButtonBig@2x.png */,
 				8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */,
 				8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */,
 				8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */,
@@ -2051,12 +2051,12 @@
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
 				7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */,
 				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
-				7BEBA8E417D4C8FC0049CA1C /* SearchButtonBig@2x.png in Resources */,
 				8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */,
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
 				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
+				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
