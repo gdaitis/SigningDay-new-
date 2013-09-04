@@ -12,7 +12,10 @@
 
 + (void)getPlayersOrderedByDescendingBaseScoreFrom:(NSInteger)pageBeginIndex
                                                 to:(NSInteger)pageEndIndex
-                                 completionHandler:(void (^)(void))completionBlock
+                                      successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;
++ (void)searchForPlayersWithString:(NSString *)searchString
+                      successBlock:(void (^)(void))successBlock
+                      failureBlock:(void (^)(void))failureBlock;
 
 @end

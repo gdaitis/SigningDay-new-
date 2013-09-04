@@ -87,11 +87,9 @@
     
     [self.tableView checkServerAndDeleteOld:YES];
     
-    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:0 to:5 completionHandler:^{
-        //
-    } failureBlock:^{
-        //
-    }];
+    [SDLandingPagesService searchForPlayersWithString:@"John F"
+                                         successBlock:nil
+                                         failureBlock:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
