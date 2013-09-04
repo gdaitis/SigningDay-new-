@@ -9,10 +9,14 @@
 #import "SDPlayerLandingPageViewController.h"
 #import "SDLandingPagePlayerCell.h"
 #import "UIView+NibLoading.h"
+#import "SDPlayersSearchHeader.h"
+#import "UIView+NibLoading.h"
+#import "SDNavigationController.h"
 
-@interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 
 @property (nonatomic,strong) NSArray *dataArray;
+@property (nonatomic, strong) SDPlayersSearchHeader *playerSearchView;
 
 - (void)followButtonPressed:(UIButton *)sender;
 
@@ -92,6 +96,68 @@
 //    indexpath.row = sender.tag;
     
     sender.selected = !sender.selected;
+}
+
+#pragma mark - Filter button actions
+
+- (void)hideFilterView
+{   
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        CGRect frame = self.playerSearchView.frame;
+        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+        self.playerSearchView.frame = frame;
+    } completion:^(__unused BOOL finished) {
+        [self.playerSearchView removeFromSuperview];
+    }];
+    
+    //we should tell that filter view was hidden by not using the filter button, so navigation controller could know the state.
+    [((SDNavigationController *)self.navigationController)  filterViewBecameHidden];
+}
+
+- (void)showFilterView
+{
+    SDPlayersSearchHeader *playerHeaderView = (SDPlayersSearchHeader *)[SDPlayersSearchHeader loadInstanceFromNib];
+    playerHeaderView.delegate = self;
+    
+    //hide SDPlayerSearchHeader under toolbar
+    CGRect frame = playerHeaderView.frame;
+    frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+    playerHeaderView.frame = frame;
+    
+    self.playerSearchView = playerHeaderView;
+    [self.view addSubview:self.playerSearchView];
+    
+    //bring searchBar view to front so the filter SDPlayerSearchHeader would be behind this view
+    [self.view bringSubviewToFront:self.searchBarBackground];
+    
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGRect frame = self.playerSearchView.frame;
+        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height;
+        self.playerSearchView.frame = frame;
+    } completion:^(__unused BOOL finished) {
+    }];
+}
+
+#pragma mark - SDPlayersSearchHeader Delegate
+
+- (void)playersSearchHeaderPressedStatesButton:(SDPlayersSearchHeader *)playersSearchHeader
+{
+    [self hideFilterView];
+}
+
+- (void)playersSearchHeaderPressedYearsButton:(SDPlayersSearchHeader *)playersSearchHeader
+{
+    [self hideFilterView];
+}
+
+- (void)playersSearchHeaderPressedPositionsButton:(SDPlayersSearchHeader *)playersSearchHeader
+{
+    [self hideFilterView];
+}
+
+- (void)playersSearchHeaderPressedSearchButton:(SDPlayersSearchHeader *)playersSearchHeader
+{
+    [self hideFilterView];
 }
 
 @end

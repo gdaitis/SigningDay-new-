@@ -41,6 +41,10 @@ typedef enum {
 - (void)popViewController;
 - (void)setupToolbar;
 - (void)showConversations;
+- (void)addFilterButton;
+- (void)removeFilterButton;
+//when filter view is hidden, not using filter button
+- (void)filterViewBecameHidden;
 - (void)revealMenu:(id)sender;
 
 - (UIBarButtonItem *)barButtonForType:(BarButtonType)type;

@@ -8,6 +8,7 @@
 
 #import "SDBaseLandingPageViewController.h"
 #import "SDLandingPageSearchBar.h"
+#import "SDNavigationController.h"
 
 #define kHideKeyboardTag 999
 
@@ -35,10 +36,19 @@
     [self.refreshControl removeFromSuperview];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showFilter:) name:kFilterButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) addFilterButton];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self removeKeyboard];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFilterButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) removeFilterButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +67,8 @@
     self.searchBar.delegate = self;
 
     [searchBackgroundView addSubview:self.searchBar];
-    [self.view addSubview:searchBackgroundView];
+    self.searchBarBackground = searchBackgroundView;
+    [self.view addSubview:self.searchBarBackground];
 }
 
 #pragma mark - UISearchBar delegate
@@ -67,7 +78,6 @@
     UIButton *hideKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
     hideKeyboardButton.frame = CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height);
     
-    NSLog(@"self.searchBar.frame.origin.y + self.searchBar.frame.size.height +10 = %f",self.searchBar.frame.origin.y + self.searchBar.frame.size.height +10);
     hideKeyboardButton.tag = kHideKeyboardTag;
     [hideKeyboardButton addTarget:self action:@selector(removeKeyboard) forControlEvents:UIControlEventTouchUpInside];
     
@@ -82,11 +92,41 @@
 
 - (void)removeKeyboard
 {
+    
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
-        UIButton *removeKeyboardButton = (UIButton *)[self.view viewWithTag:kHideKeyboardTag];
-        [removeKeyboardButton removeFromSuperview];
+        [(UIButton *)[self.view viewWithTag:kHideKeyboardTag] removeFromSuperview];
     }
+}
+
+#pragma mark - FilterButtonActions
+
+- (void)showFilter:(NSNotification *)notification
+{
+    [self removeKeyboard];
+    
+    if ([self.searchBar isFirstResponder]) {
+        UIButton *keyboardHidingButton = (UIButton *)[self.view viewWithTag:kHideKeyboardTag];
+        if (keyboardHidingButton) {
+            [self.view bringSubviewToFront:keyboardHidingButton];
+        }
+    }
+    if ([[[notification userInfo] objectForKey:@"hideFilterView"] boolValue]) {
+        [self hideFilterView];
+    }
+    else {
+        [self showFilterView];
+    }
+}
+
+- (void)hideFilterView
+{
+    
+}
+
+- (void)showFilterView
+{
+    
 }
 
 @end

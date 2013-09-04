@@ -22,6 +22,8 @@
 //properties for presenting toolbar menus on navigating back
 @property (nonatomic, strong) UIViewController *lastControllerForToolbarItems;
 @property (nonatomic, assign) BarButtonType lastSelectedType;
+@property (nonatomic, assign) BOOL showFilterButton;
+@property (nonatomic, assign) BOOL filterViewVisible;
 
 
 @end
@@ -144,10 +146,33 @@
                                         action:nil];
     fixedSmallSpace.width = 10;
     
-    UIBarButtonItem *menuBarBtnItm = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
-    
-    NSArray *btnArray = [NSArray arrayWithObjects:menuBarBtnItm, fixedSpace, [self barButtonForType:BARBUTTONTYPE_NOTIFICATIONS],fixedSmallSpace,[self barButtonForType:BARBUTTONTYPE_CONVERSATIONS],fixedSmallSpace, [self barButtonForType:BARBUTTONTYPE_FOLLOWERS], nil];
-    [_topToolBar setItems:btnArray animated:NO];
+    if (self.showFilterButton) {
+        
+        UIImage *btnImg = [UIImage imageNamed:@"TopToolbarSettingsButton.png"];
+        UIButton *filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        filterButton.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
+        [filterButton setImage:btnImg forState:UIControlStateNormal];
+        [filterButton addTarget:self action:@selector(filterButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithCustomView:filterButton];
+        filterButton.tag = 4;
+        
+        if (self.filterViewVisible) {
+            filterButton.selected = YES;
+        }
+        else {
+            filterButton.selected = NO;
+        }
+        
+        UIBarButtonItem *menuBarBtnItm = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
+        NSArray *btnArray = [NSArray arrayWithObjects:menuBarBtnItm, fixedSpace, [self barButtonForType:BARBUTTONTYPE_NOTIFICATIONS],fixedSmallSpace,[self barButtonForType:BARBUTTONTYPE_CONVERSATIONS],fixedSmallSpace, [self barButtonForType:BARBUTTONTYPE_FOLLOWERS], fixedSmallSpace, filterBarButton, nil];
+        [_topToolBar setItems:btnArray animated:NO];
+    }
+    else {
+        UIBarButtonItem *menuBarBtnItm = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
+        
+        NSArray *btnArray = [NSArray arrayWithObjects:menuBarBtnItm, fixedSpace, [self barButtonForType:BARBUTTONTYPE_NOTIFICATIONS],fixedSmallSpace,[self barButtonForType:BARBUTTONTYPE_CONVERSATIONS],fixedSmallSpace, [self barButtonForType:BARBUTTONTYPE_FOLLOWERS], nil];
+        [_topToolBar setItems:btnArray animated:NO];
+    }
 }
 
 - (UIBarButtonItem *)barButtonForType:(BarButtonType)type
@@ -239,6 +264,41 @@
     else {
         [self showFollowers];
     }
+    [self setToolbarButtons];
+}
+
+
+- (void)filterButtonSelected:(id)sender
+{
+    NSDictionary *dictionary = nil;
+    
+    if (self.filterViewVisible) {
+        dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"hideFilterView", nil];
+        self.filterViewVisible = NO;
+    }
+    else {
+        dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"hideFilterView", nil];
+        self.filterViewVisible = YES;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kFilterButtonPressedNotification object:nil userInfo:dictionary];
+    [self setToolbarButtons];
+}
+
+- (void)filterViewBecameHidden
+{
+    self.filterViewVisible = NO;
+    [self setToolbarButtons];
+}
+
+- (void)addFilterButton
+{
+    self.showFilterButton = YES;
+    [self setToolbarButtons];
+}
+
+- (void)removeFilterButton
+{
+    self.showFilterButton = NO;
     [self setToolbarButtons];
 }
 
