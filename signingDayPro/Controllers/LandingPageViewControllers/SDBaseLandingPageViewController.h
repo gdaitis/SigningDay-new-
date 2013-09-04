@@ -12,5 +12,9 @@
 @interface SDBaseLandingPageViewController : SDBaseViewController
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, weak) UIView *searchBarBackground;
+
+- (void)hideFilterView;
+- (void)showFilterView;
 
 @end

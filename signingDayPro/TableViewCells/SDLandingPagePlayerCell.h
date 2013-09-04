@@ -13,6 +13,7 @@
 @interface SDLandingPagePlayerCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIButton *followButton;
+
 - (void)setupCellWithUser:(User *)user;
 
 @end

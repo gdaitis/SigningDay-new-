@@ -222,6 +222,8 @@
 		8062EE5517D606D400067B13 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8062EE5417D606D400067B13 /* Conversation.m */; };
 		8062EE5817D606D500067B13 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8062EE5717D606D500067B13 /* ActivityStory.m */; };
 		8062EE5B17D606D500067B13 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8062EE5A17D606D500067B13 /* HighSchool.m */; };
+		8062EE5F17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8062EE5E17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png */; };
+		8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8062EE6A17D71F6700067B13 /* AccountVerifiedImage@2x.png */; };
 		80630D11177B15B9002AA0BC /* SDActivityFeedCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */; };
 		8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2C917991BE500C01D92 /* SDUserProfilePlayerHeaderView.m */; };
 		8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2CB17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib */; };
@@ -696,6 +698,8 @@
 		8062EE5717D606D500067B13 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
 		8062EE5917D606D500067B13 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
 		8062EE5A17D606D500067B13 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
+		8062EE5E17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TopToolbarSettingsButton@2x.png"; sourceTree = "<group>"; };
+		8062EE6A17D71F6700067B13 /* AccountVerifiedImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AccountVerifiedImage@2x.png"; sourceTree = "<group>"; };
 		80630D0F177B15B9002AA0BC /* SDActivityFeedCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedCellContentView.h; sourceTree = "<group>"; };
 		80630D10177B15B9002AA0BC /* SDActivityFeedCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedCellContentView.m; sourceTree = "<group>"; };
 		8063D2C817991BE500C01D92 /* SDUserProfilePlayerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfilePlayerHeaderView.h; sourceTree = "<group>"; };
@@ -974,6 +978,7 @@
 		7BEBA8E017D4C5A20049CA1C /* LandingPages */ = {
 			isa = PBXGroup;
 			children = (
+				8062EE6A17D71F6700067B13 /* AccountVerifiedImage@2x.png */,
 				7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */,
 				8062EE2617D6065000067B13 /* SearchButtonBig@2x.png */,
 				8083891F17D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png */,
@@ -1807,6 +1812,7 @@
 				809E729217575FE4004840D3 /* ToolbarItemSelectedArrow@2x.png */,
 				80F301661753A85E00134FF4 /* FollowersIcon@2x.png */,
 				80F301681753A85E00134FF4 /* FollowersIconActive@2x.png */,
+				8062EE5E17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png */,
 				805CF39F175490F0004C69E5 /* MenuButton@2x.png */,
 				805CF3A317549403004C69E5 /* MenuButtonBack@2x.png */,
 				80F3016A1753A85E00134FF4 /* MailIcon@2x.png */,
@@ -2057,6 +2063,8 @@
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
+				8062EE5F17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png in Resources */,
+				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

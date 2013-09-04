@@ -23,6 +23,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *baseScoreLabel;
 @property (nonatomic, weak) IBOutlet UILabel *baseScoreNameLabel;
 
+@property (nonatomic, weak) IBOutlet UIImageView *accountVerifiedImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
 @property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
@@ -73,6 +74,13 @@
     [self.playerPositionLabel updateConstraints];
     
     if (user) {
+        
+        if ([user.thePlayer.accountVerified boolValue]) {
+            self.accountVerifiedImageView.hidden = NO;
+        }
+        else {
+            self.accountVerifiedImageView.hidden = YES;
+        }
         self.nameLabel.text = user.name;
         self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
         self.baseScoreNameLabel = [NSString stringWithFormat:@"%f",[user.thePlayer.baseScore floatValue]];
