@@ -79,6 +79,7 @@
         NSDictionary *derivedUserDictionary = [userDictionary valueForKey:@"DerivedUser"];
         
         SDUserType userTypeId = [[userDictionary valueForKey:@"UserTypeId"] intValue];
+        user.userTypeId = [NSNumber numberWithInt:userTypeId];
         
         switch (userTypeId) {
             case SDUserTypePlayer: {
