@@ -114,7 +114,113 @@
                                            failureBlock:failureBlock];
 }
 
-+ (void)createPlayersFromResponseDataObject:(id)responseObject
++ (void)startPlayersHTTPRequestOperationWithURLString:(NSString *)URLString
+                                         successBlock:(void (^)(void))successBlock
+                                         failureBlock:(void (^)(void))failureBlock
+{
+    [self startHTTPRequestOperationWithURLString:URLString
+                           operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               [self createUsersFromResponseObject:responseObject
+                                         withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context) {
+                                             NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserId"] intValue]];
+                                             User *user = [User MR_findFirstByAttribute:@"identifier"
+                                                                              withValue:identifier
+                                                                              inContext:context];
+                                             if (!user) {
+                                                 user = [User MR_createInContext:context];
+                                                 user.identifier = identifier;
+                                             }
+                                             user.name = [userDictionary valueForKey:@"DisplayName"];
+                                             user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+                                             user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
+                                             if (!user.thePlayer)
+                                                 user.thePlayer = [Player MR_createInContext:context];
+                                             user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];
+                                             user.thePlayer.stateRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"StateRank"] intValue]];
+                                             user.thePlayer.height = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Height"] intValue]];
+                                             user.thePlayer.weight = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Weight"] intValue]];
+                                             user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[userDictionary valueForKey:@"Class"] intValue]];
+                                             user.thePlayer.position = [userDictionary valueForKey:@"Position"];
+                                             user.thePlayer.baseScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseScore"] floatValue]];
+                                             user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"NationalRank"] intValue]];
+                                             user.thePlayer.starsCount = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Stars"] intValue]];
+                                             user.thePlayer.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
+                                             
+                                             NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"HighSchoolID"] intValue]];
+                                             User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
+                                                                                        withValue:highSchoolIdentifier
+                                                                                        inContext:context];
+                                             if (!highSchoolUser) {
+                                                 highSchoolUser = [User MR_createInContext:context];
+                                                 highSchoolUser.identifier = highSchoolIdentifier;
+                                             }
+                                             highSchoolUser.name = [userDictionary valueForKey:@"HighSchoolName"];
+                                             if (!highSchoolUser.theHighSchool)
+                                                 highSchoolUser.theHighSchool = [HighSchool MR_createInContext:context];
+                                             highSchoolUser.theHighSchool.mascot = [userDictionary valueForKey:@"HighSchoolMascot"];
+                                             
+                                             user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+                                         }];
+                               if (successBlock)
+                                   successBlock();
+                           } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                               if (failureBlock)
+                                   failureBlock();
+                           }];
+}
+
+#pragma mark - Teams
+
++ (void)getTeamsOrderedByDescendingTotalScoreFrom:(NSInteger)pageBeginIndex
+                                               to:(NSInteger)pageEndIndex
+                                     successBlock:(void (^)(void))successBlock
+                                     failureBlock:(void (^)(void))failureBlock
+{
+    if (pageBeginIndex > pageEndIndex) {
+        NSLog(@"Cannot load players: end index is lower that begin index");
+        return;
+    }
+    int top = pageEndIndex - pageBeginIndex;
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/TeamsView?$orderby=TotalScore desc&$skip=%d&$top=%d&$format=json", kSDBaseSigningDayURLString, pageBeginIndex, top]; // <- TotalScore??
+    
+    [self startTeamsHTTPRequestOperationWithURLString:urlString
+                                         successBlock:successBlock
+                                         failureBlock:failureBlock];
+    
+}
+
++ (void)startTeamsHTTPRequestOperationWithURLString:(NSString *)URLString
+                                       successBlock:(void (^)(void))successBlock
+                                       failureBlock:(void (^)(void))failureBlock
+{
+
+}
+
+#pragma mark - HighSchools
+
+#pragma mark - Common methods
+
++ (void)startHTTPRequestOperationWithURLString:(NSString *)URLString
+                         operationSuccessBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))operationSuccessBlock
+                         operationFailureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))operationFailureBlock
+{
+    URLString = [[[URLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (operationSuccessBlock)
+            operationSuccessBlock(operation, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (operationFailureBlock)
+            operationFailureBlock(operation, error);
+    }];
+    [operation start];
+}
+
++ (void)createUsersFromResponseObject:(id)responseObject
+            withBlockForSpecificTypes:(void (^)(NSDictionary *userDictionary, NSManagedObjectContext *context))specificTypeOfUserCreationBlock
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
@@ -123,69 +229,10 @@
     NSArray *resultsArray = [JSON valueForKey:@"d"];
     for (NSDictionary *userDictionaryWithNulls in resultsArray) {
         NSDictionary *userDictionary = [userDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
-        NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserId"] intValue]];
-        User *user = [User MR_findFirstByAttribute:@"identifier"
-                                         withValue:identifier
-                                         inContext:context];
-        if (!user) {
-            user = [User MR_createInContext:context];
-            user.identifier = identifier;
-        }
-        user.name = [userDictionary valueForKey:@"DisplayName"];
-        user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
-        user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
-        if (!user.thePlayer)
-            user.thePlayer = [Player MR_createInContext:context];
-        user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];
-        user.thePlayer.stateRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"StateRank"] intValue]];
-        user.thePlayer.height = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Height"] intValue]];
-        user.thePlayer.weight = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Weight"] intValue]];
-        user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[userDictionary valueForKey:@"Class"] intValue]];
-        user.thePlayer.position = [userDictionary valueForKey:@"Position"];
-        user.thePlayer.baseScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseScore"] floatValue]];
-        user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"NationalRank"] intValue]];
-        user.thePlayer.starsCount = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Stars"] intValue]];
-        user.thePlayer.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
-        
-        NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"HighSchoolID"] intValue]];
-        User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
-                                                   withValue:highSchoolIdentifier
-                                                   inContext:context];
-        if (!highSchoolUser) {
-            highSchoolUser = [User MR_createInContext:context];
-            highSchoolUser.identifier = highSchoolIdentifier;
-        }
-        highSchoolUser.name = [userDictionary valueForKey:@"HighSchoolName"];
-        if (!highSchoolUser.theHighSchool)
-            highSchoolUser.theHighSchool = [HighSchool MR_createInContext:context];
-        highSchoolUser.theHighSchool.mascot = [userDictionary valueForKey:@"HighSchoolMascot"];
-        
-        user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+        if (specificTypeOfUserCreationBlock)
+            specificTypeOfUserCreationBlock(userDictionary, context);
     }
     [context MR_saveOnlySelfAndWait];
 }
-
-+ (void)startPlayersHTTPRequestOperationWithURLString:(NSString *)URLString
-                                         successBlock:(void (^)(void))successBlock
-                                         failureBlock:(void (^)(void))failureBlock
-{
-    URLString = [[[URLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
-    NSURL *URL = [NSURL URLWithString:URLString];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self createPlayersFromResponseDataObject:responseObject];
-        if (successBlock)
-            successBlock();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failureBlock)
-            failureBlock();
-    }];
-    [operation start];
-}
-
-#pragma mark - Teams
-
-#pragma mark - HighSchools
 
 @end
