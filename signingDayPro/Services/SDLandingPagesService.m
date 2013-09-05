@@ -14,6 +14,7 @@
 #import "Player.h"
 #import "HighSchool.h"
 #import "NSString+HTML.h"
+#import "SDProfileService.h"
 
 @implementation SDLandingPagesService
 
@@ -30,7 +31,7 @@
     }
     int top = pageEndIndex - pageBeginIndex;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc&skip=%d&$top=%d&$format=json", kSDBaseSigningDayURLString, pageBeginIndex, top];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc&$skip=%d&$top=%d&$format=json", kSDBaseSigningDayURLString, pageBeginIndex, top];
     
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
@@ -42,7 +43,72 @@
                       successBlock:(void (^)(void))successBlock
                       failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$filter=substringof('%@',DisplayName)&$format=json", kSDBaseSigningDayURLString, searchString];
+    [self searchForPlayersWithNameString:searchString
+                   stateCodeStringsArray:nil
+                  classYearsStringsArray:nil
+                    positionStringsArray:nil
+                            successBlock:successBlock
+                            failureBlock:failureBlock];
+}
+
++ (void)searchForPlayersWithNameString:(NSString *)searchString
+                 stateCodeStringsArray:(NSArray *)statesArray
+                classYearsStringsArray:(NSArray *)classesArray
+                  positionStringsArray:(NSArray *)positionsArray
+                          successBlock:(void (^)(void))successBlock
+                          failureBlock:(void (^)(void))failureBlock
+{
+    NSString *statesString = nil;
+    NSString *classesString = nil;
+    NSString *positionsString = nil;
+    NSString *searchRequestString = nil;
+    NSMutableArray *requestStringsArray = [[NSMutableArray alloc] init];
+
+    if (searchString) {
+        searchRequestString = [NSString stringWithFormat:@"substringof('%@',DisplayName)", searchString];
+        [requestStringsArray addObject:searchRequestString];
+    }
+    if (statesArray) {
+        statesString = @"";
+        for (int i = 0; i < [statesArray count]; i++) {
+            NSString *stateCodeString = [statesArray objectAtIndex:i];
+            statesString = [statesString stringByAppendingFormat:@"PlayerStateCode eq '%@' ", stateCodeString];
+            if (i != ([statesArray count] - 1))
+                statesString = [statesString stringByAppendingFormat:@"or "];
+        }
+        [requestStringsArray addObject:statesString];
+    }
+    if (classesArray) {
+        classesString = @"";
+        for (int i = 0; i < [classesArray count]; i++) {
+            NSString *classString = [statesArray objectAtIndex:i];
+            classesString = [classesString stringByAppendingFormat:@"Class eq %@ ", classString];
+            if (i != ([classesArray count] - 1))
+                classesString = [classesString stringByAppendingFormat:@"or "];
+        }
+        [requestStringsArray addObject:classesString];
+    }
+    if (positionsArray) {
+        positionsString = @"";
+        for (int i = 0; i < [positionsArray count]; i++) {
+            NSString *positionString = [statesArray objectAtIndex:i];
+            positionsString = [positionsString stringByAppendingFormat:@"Position eq '%@' ", positionString];
+            if (i != ([positionsArray count] - 1))
+                positionsString = [positionsString stringByAppendingFormat:@"or "];
+        }
+        [requestStringsArray addObject:positionsString];
+    }
+    
+    NSString *filterString = @"";
+    for (int i = 0; i < [requestStringsArray count]; i++) {
+        NSString *paramsString = [requestStringsArray objectAtIndex:i];
+        filterString = [filterString stringByAppendingFormat:@"(%@) ", paramsString];
+        if (i != ([requestStringsArray count] - 1))
+            filterString = [filterString stringByAppendingFormat:@"and "];
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=DisplayName asc&$format=json&$filter=(%@)", kSDBaseSigningDayURLString, filterString];
+    
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
                                            failureBlock:failureBlock];
@@ -67,6 +133,7 @@
         }
         user.name = [userDictionary valueForKey:@"DisplayName"];
         user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+        user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
         if (!user.thePlayer)
             user.thePlayer = [Player MR_createInContext:context];
         user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];
@@ -78,6 +145,7 @@
         user.thePlayer.baseScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseScore"] floatValue]];
         user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"NationalRank"] intValue]];
         user.thePlayer.starsCount = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Stars"] intValue]];
+        user.thePlayer.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
         
         NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"HighSchoolID"] intValue]];
         User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"

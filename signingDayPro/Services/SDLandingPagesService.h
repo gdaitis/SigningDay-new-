@@ -17,5 +17,11 @@
 + (void)searchForPlayersWithString:(NSString *)searchString
                       successBlock:(void (^)(void))successBlock
                       failureBlock:(void (^)(void))failureBlock;
++ (void)searchForPlayersWithNameString:(NSString *)searchString
+                 stateCodeStringsArray:(NSArray *)statesArray
+                classYearsStringsArray:(NSArray *)classesArray
+                  positionStringsArray:(NSArray *)positionsArray
+                          successBlock:(void (^)(void))successBlock
+                          failureBlock:(void (^)(void))failureBlock;
 
 @end
