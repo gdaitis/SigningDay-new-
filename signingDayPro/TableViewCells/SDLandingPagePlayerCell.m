@@ -83,10 +83,10 @@
         }
         self.nameLabel.text = user.name;
         self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
-        self.baseScoreNameLabel = [NSString stringWithFormat:@"%f",[user.thePlayer.baseScore floatValue]];
+        self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];
         
         //position in list number
-        self.playerPositionLabel = [NSString stringWithFormat:@"%d",[user.thePlayer.nationalRanking intValue]];
+        self.playerPositionLabel.text = [NSString stringWithFormat:@"%d",[user.thePlayer.nationalRanking intValue]];
         
         //playing position E.g "CB"
         self.positionNameLabel.text = user.thePlayer.position;

@@ -16,6 +16,8 @@
 
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing;
+- (void)changingButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
+
 
 @end
 

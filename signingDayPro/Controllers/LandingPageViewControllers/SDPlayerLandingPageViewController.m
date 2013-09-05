@@ -12,10 +12,13 @@
 #import "SDPlayersSearchHeader.h"
 #import "UIView+NibLoading.h"
 #import "SDNavigationController.h"
+#import "SDProfileService.h"
+#import "SDUserProfileViewController.h"
+
+#import "SDLandingPagesService.h"
 
 @interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 
-@property (nonatomic,strong) NSArray *dataArray;
 @property (nonatomic, strong) SDPlayersSearchHeader *playerSearchView;
 
 - (void)followButtonPressed:(UIButton *)sender;
@@ -37,6 +40,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount+10 successBlock:^{
+        self.currentUserCount +=10;
+        [self loadData];
+    } failureBlock:^{
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +70,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 10;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -72,6 +81,7 @@
     if (!cell) {
         cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
         [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
     cell.followButton.tag = indexPath.row;
@@ -86,7 +96,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = [self.dataArray objectAtIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 #pragma mark - IBActions
@@ -136,6 +151,26 @@
         self.playerSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
+}
+
+#pragma mark - Data loading
+
+- (void)loadData
+{    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+//    self.dataArray = [User MR_findAllSortedBy:@"thePlayer.baseScore" ascending:NO withPredicate:predicate inContext:context];
+
+    //seting fetch limit for pagination
+    NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
+    [request setFetchLimit:self.currentUserCount];
+    //set sort descriptor
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    self.dataArray = [User MR_executeFetchRequest:request inContext:context];
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate

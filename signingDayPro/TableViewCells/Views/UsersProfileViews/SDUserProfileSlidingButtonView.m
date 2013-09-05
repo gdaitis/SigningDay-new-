@@ -89,6 +89,7 @@
 {
     [_bioButton addTarget:self action:@selector(bioButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_changingButton addTarget:self action:@selector(changingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     _followersCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
     _followingCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
@@ -107,6 +108,11 @@
 - (void)bioButtonPressed:(id)sender
 {
     
+}
+
+- (void)changingButtonPressed:(id)sender
+{
+    [self.delegate changingButtonPressedInUserProfileSlidingButtonView:self];
 }
 
 /*
