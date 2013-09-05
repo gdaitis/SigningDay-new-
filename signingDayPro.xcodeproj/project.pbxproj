@@ -148,6 +148,8 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
+		804142BB17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */; };
+		804142C617D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -569,6 +571,10 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		804142B917D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolLandingPageViewController.h; sourceTree = "<group>"; };
+		804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolLandingPageViewController.m; sourceTree = "<group>"; };
+		804142C417D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollegeLandingPageViewController.h; sourceTree = "<group>"; };
+		804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollegeLandingPageViewController.m; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -1581,6 +1587,10 @@
 			children = (
 				8083891817D4D78E006E4FE9 /* SDBaseLandingPageViewController.h */,
 				8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */,
+				804142B917D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.h */,
+				804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */,
+				804142C417D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.h */,
+				804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */,
 				8083891A17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.h */,
 				8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */,
 			);
@@ -2234,6 +2244,8 @@
 				8062EE5817D606D500067B13 /* ActivityStory.m in Sources */,
 				8062EE5B17D606D500067B13 /* HighSchool.m in Sources */,
 				80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */,
+				804142BB17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m in Sources */,
+				804142C617D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
