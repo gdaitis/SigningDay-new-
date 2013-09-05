@@ -10,7 +10,6 @@
 #import "UIView+NibLoading.h"
 #import "User.h"
 #import "Master.h"
-#import "SDFollowingService.h"
 
 @interface SDBaseProfileHeaderView ()
 
@@ -49,33 +48,10 @@
 {
     self.user = user;
     
-    self.slidingButtonView.delegate = self;
     self.slidingButtonView.followersCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowers intValue]];
     self.slidingButtonView.followingCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowing intValue]];
     
     [self updateFollowingInfo];
-}
-
-#pragma mark - SDUserProfileSlidingButtonViewDelegate methods
-
-- (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
-                      isNowFollowing:(BOOL)isFollowing
-{
-    if (isFollowing) {
-        [SDFollowingService followUserWithIdentifier:self.user.identifier
-                                 withCompletionBlock:^{
-                                 } failureBlock:^{
-                                     
-                                 }];
-        
-    } else {
-        [SDFollowingService unfollowUserWithIdentifier:self.user.identifier
-                                   withCompletionBlock:^{
-                                       
-                                   } failureBlock:^{
-                                       
-                                   }];
-    }
 }
 
 - (void)updateFollowingInfo

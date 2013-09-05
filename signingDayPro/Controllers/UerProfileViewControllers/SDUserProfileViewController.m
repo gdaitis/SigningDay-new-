@@ -26,7 +26,9 @@
 #import "UIView+NibLoading.h"
 #import "SDBuzzButtonView.h"
 #import "SDModalNavigationController.h"
+#import "SDKeyAttributesViewController.h"
 #import "SDBuzzSomethingViewController.h"
+#import "SDFollowingService.h"
 
 #import "SDBaseProfileHeaderView.h"
 #import "SDActivityStoryViewController.h"
@@ -36,7 +38,7 @@
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
 
 
-@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate, SDActivityFeedTableViewDelegate, SDBuzzButtonViewDelegate, SDModalNavigationControllerDelegate>
+@interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate, SDActivityFeedTableViewDelegate, SDUserProfileSlidingButtonViewDelegate, SDBuzzButtonViewDelegate, SDModalNavigationControllerDelegate>
 {
     BOOL _isMasterProfile;
 }
@@ -128,31 +130,38 @@
                 view = [UIView loadInstanceFromClass:[SDUserProfilePlayerHeaderView class]];
                 ((SDUserProfilePlayerHeaderView *)view).delegate = self;
                 ((SDUserProfilePlayerHeaderView *)view).buzzButtonView.delegate = self;
+                ((SDUserProfilePlayerHeaderView *)view).slidingButtonView.delegate = self;
+                
                 break;
             case SDUserTypeHighSchool:
                 view = [UIView loadInstanceFromClass:[SDUserProfileHighSchoolHeaderView class]];
                 ((SDUserProfileHighSchoolHeaderView *)view).delegate = self;
                 ((SDUserProfileHighSchoolHeaderView *)view).buzzButtonView.delegate = self;
+                ((SDUserProfileHighSchoolHeaderView *)view).slidingButtonView.delegate = self;
                 break;
             case SDUserTypeTeam:
                 view = [UIView loadInstanceFromClass:[SDUserProfileTeamHeaderView class]];
                 ((SDUserProfileTeamHeaderView *)view).delegate = self;
                 ((SDUserProfileTeamHeaderView *)view).buzzButtonView.delegate = self;
+                ((SDUserProfileTeamHeaderView *)view).slidingButtonView.delegate = self;
                 break;
             case SDUserTypeMember:
                 view = [UIView loadInstanceFromClass:[SDUserProfileMemberHeaderView class]];
                 ((SDUserProfileMemberHeaderView *)view).delegate = self;
                 ((SDUserProfileMemberHeaderView *)view).buzzButtonView.delegate = self;
+                ((SDUserProfileMemberHeaderView *)view).slidingButtonView.delegate = self;
                 break;
             case SDUserTypeCoach:
                 view = [UIView loadInstanceFromClass:[SDUserProfileCoachHeaderView class]];
                 ((SDUserProfileCoachHeaderView *)view).delegate = self;
                 ((SDUserProfileCoachHeaderView *)view).buzzButtonView.delegate = self;
+                ((SDUserProfileCoachHeaderView *)view).slidingButtonView.delegate = self;
                 break;
             default:
                 view = [UIView loadInstanceFromClass:[SDUserProfileMemberHeaderView class]];
                 ((SDUserProfileMemberHeaderView *)view).delegate = self;
                 ((SDUserProfileMemberHeaderView *)view).buzzButtonView.delegate = self;
+                ((SDUserProfileMemberHeaderView *)view).slidingButtonView.delegate = self;
                 break;
         }
         
@@ -235,6 +244,61 @@
 - (void)messageButtonPressedInButtonView:(SDBuzzButtonView *)buzzButtonView
 {
     
+}
+
+#pragma mark - SlidingViewButton Delegate
+
+- (void)changingButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    //this button is different depending on types of user, different actions should be taken
+    
+    switch ([self.currentUser.userTypeId intValue]) {
+        case SDUserTypePlayer:
+        {
+            UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                                bundle:nil];
+            SDKeyAttributesViewController *keyAttributesViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"KeyAttributesViewController"];
+            [self.navigationController pushViewController:keyAttributesViewController animated:YES];
+            
+            break;
+        }
+        case SDUserTypeHighSchool:
+
+            break;
+        case SDUserTypeTeam:
+
+            break;
+        case SDUserTypeMember:
+
+            break;
+        case SDUserTypeCoach:
+
+            break;
+        default:
+
+            break;
+    }
+}
+
+- (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+                      isNowFollowing:(BOOL)isFollowing
+{
+#warning delegate moved, check for bugs!!
+    if (isFollowing) {
+        [SDFollowingService followUserWithIdentifier:self.currentUser.identifier
+                                 withCompletionBlock:^{
+                                 } failureBlock:^{
+                                     
+                                 }];
+        
+    } else {
+        [SDFollowingService unfollowUserWithIdentifier:self.currentUser.identifier
+                                   withCompletionBlock:^{
+                                       
+                                   } failureBlock:^{
+                                       
+                                   }];
+    }
 }
 
 #pragma mark - SDModalNavigationController myDelegate methods

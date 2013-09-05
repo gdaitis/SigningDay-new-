@@ -11,6 +11,8 @@
 
 @interface SDBaseLandingPageViewController : SDBaseViewController
 
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, assign) int currentUserCount;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) UIView *searchBarBackground;
 
