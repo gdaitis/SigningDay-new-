@@ -23,5 +23,9 @@
                   positionStringsArray:(NSArray *)positionsArray
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock;
++ (void)getTeamsOrderedByDescendingTotalScoreFrom:(NSInteger)pageBeginIndex
+                                               to:(NSInteger)pageEndIndex
+                                     successBlock:(void (^)(void))successBlock
+                                     failureBlock:(void (^)(void))failureBlock;
 
 @end
