@@ -37,6 +37,8 @@
 		7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */; };
 		7B99555A17D9C900009B8D01 /* SDSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555917D9C900009B8D01 /* SDSearchHeader.m */; };
 		7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */; };
+		7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */; };
+		7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */; };
 		7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
@@ -404,6 +406,10 @@
 		7B99555917D9C900009B8D01 /* SDSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchHeader.m; sourceTree = "<group>"; };
 		7B99555B17D9E6BD009B8D01 /* UIButton+AddTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AddTitle.h"; sourceTree = "<group>"; };
 		7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AddTitle.m"; sourceTree = "<group>"; };
+		7B99556217D9FED7009B8D01 /* SDTeamsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTeamsSearchHeader.h; sourceTree = "<group>"; };
+		7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTeamsSearchHeader.m; sourceTree = "<group>"; };
+		7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolsSearchHeader.h; sourceTree = "<group>"; };
+		7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolsSearchHeader.m; sourceTree = "<group>"; };
 		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -980,6 +986,10 @@
 			children = (
 				7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */,
 				7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */,
+				7B99556217D9FED7009B8D01 /* SDTeamsSearchHeader.h */,
+				7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */,
+				7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */,
+				7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */,
 				7B99555817D9C900009B8D01 /* SDSearchHeader.h */,
 				7B99555917D9C900009B8D01 /* SDSearchHeader.m */,
 				7B99555B17D9E6BD009B8D01 /* UIButton+AddTitle.h */,
@@ -2242,6 +2252,8 @@
 				80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */,
 				7B99555A17D9C900009B8D01 /* SDSearchHeader.m in Sources */,
 				7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */,
+				7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */,
+				7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

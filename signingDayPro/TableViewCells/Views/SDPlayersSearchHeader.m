@@ -31,7 +31,6 @@
                                 kSDSearchHeaderSpaceBetweenOptionButtonAndSearchButton +
                                 self.searchButtonBigImage.size.height +
                                 kSDSearchHeaderBottomMargin);
-        
         [self setupView];
     }
     return self;
@@ -65,8 +64,6 @@
                                                         title:nil];
     [self addSubview:self.searchButton];
 }
-
-#pragma mark - SDPlayersSearchHeaderDelegate methods
 
 - (void)statesButtonClicked:(id)sender
 {
