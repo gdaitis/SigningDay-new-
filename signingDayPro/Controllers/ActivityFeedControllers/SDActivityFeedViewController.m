@@ -31,10 +31,7 @@
 #import "SDBuzzSomethingViewController.h"
 #import "SDCommentsViewController.h"
 #import "WebPreview.h"
-
 #import "SDActivityStoryViewController.h"
-
-#import "SDLandingPagesService.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -86,10 +83,6 @@
     self.tableView.tableDelegate = self;
     
     [self.tableView checkServerAndDeleteOld:YES];
-    
-    [SDLandingPagesService searchForPlayersWithString:@"John F"
-                                         successBlock:nil
-                                         failureBlock:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated

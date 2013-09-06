@@ -52,7 +52,7 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fbSessionClosed) name:FBSessionDidBecomeClosedActiveSessionNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fbSessionOpened) name:FBSessionDidBecomeOpenActiveSessionNotification object:nil];
     
-    [[DTCoreTextFontDescriptor alloc] init]; // <- pre-initializing the fonts required for faster loading
+    __unused DTCoreTextFontDescriptor *descriptor = [[DTCoreTextFontDescriptor alloc] init]; // <- pre-initializing the fonts required for faster loading
     
     return YES;
 }

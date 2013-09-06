@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDSearchHeader.h"
 
 @class SDPlayersSearchHeader;
 
@@ -21,7 +22,7 @@
 
 @end
 
-@interface SDPlayersSearchHeader : UIView
+@interface SDPlayersSearchHeader : SDSearchHeader
 
 @property (nonatomic, weak) id <SDPlayersSearchHeaderDelegate> delegate;
 

@@ -131,7 +131,7 @@
 
 - (void)showFilterView
 {
-    SDPlayersSearchHeader *playerHeaderView = (SDPlayersSearchHeader *)[SDPlayersSearchHeader loadInstanceFromNib];
+    SDPlayersSearchHeader *playerHeaderView = [[SDPlayersSearchHeader alloc] init];
     playerHeaderView.delegate = self;
     
     //hide SDPlayerSearchHeader under toolbar

@@ -35,6 +35,8 @@
 		7B755488177C574E00CBE6A3 /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */; };
 		7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */; };
 		7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */; };
+		7B99555A17D9C900009B8D01 /* SDSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555917D9C900009B8D01 /* SDSearchHeader.m */; };
+		7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */; };
 		7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
@@ -54,7 +56,6 @@
 		7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */; };
 		7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */; };
 		7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */; };
-		7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */; };
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
@@ -399,6 +400,10 @@
 		7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
 		7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderLike@2x.png"; sourceTree = "<group>"; };
 		7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderRightArrow@2x.png"; sourceTree = "<group>"; };
+		7B99555817D9C900009B8D01 /* SDSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchHeader.h; sourceTree = "<group>"; };
+		7B99555917D9C900009B8D01 /* SDSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchHeader.m; sourceTree = "<group>"; };
+		7B99555B17D9E6BD009B8D01 /* UIButton+AddTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AddTitle.h"; sourceTree = "<group>"; };
+		7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AddTitle.m"; sourceTree = "<group>"; };
 		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -425,7 +430,6 @@
 		7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DTCoreTextFontOverrides.plist; path = ../Externals/DTCoreText/Demo/Resources/DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
 		7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayersSearchHeader.h; sourceTree = "<group>"; };
 		7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayersSearchHeader.m; sourceTree = "<group>"; };
-		7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPlayersSearchHeader.xib; sourceTree = "<group>"; };
 		7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchOptionButtonBg@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
@@ -976,7 +980,10 @@
 			children = (
 				7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */,
 				7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */,
-				7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */,
+				7B99555817D9C900009B8D01 /* SDSearchHeader.h */,
+				7B99555917D9C900009B8D01 /* SDSearchHeader.m */,
+				7B99555B17D9E6BD009B8D01 /* UIButton+AddTitle.h */,
+				7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -2065,7 +2072,6 @@
 				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
 				7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
-				7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */,
 				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
 				8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */,
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
@@ -2234,6 +2240,8 @@
 				8062EE5817D606D500067B13 /* ActivityStory.m in Sources */,
 				8062EE5B17D606D500067B13 /* HighSchool.m in Sources */,
 				80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */,
+				7B99555A17D9C900009B8D01 /* SDSearchHeader.m in Sources */,
+				7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
