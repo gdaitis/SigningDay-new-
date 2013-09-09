@@ -62,7 +62,6 @@
     
     if (!cell) {
         cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
-#warning DO NOT COMMIT!!!
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -127,8 +126,6 @@
 {    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    
-//    self.dataArray = [User MR_findAllSortedBy:@"thePlayer.baseScore" ascending:NO withPredicate:predicate inContext:context];
 
     //seting fetch limit for pagination
     NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];

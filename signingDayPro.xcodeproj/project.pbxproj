@@ -237,6 +237,12 @@
 		8063D2E2179D507800C01D92 /* SDUserProfileTeamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2DE179D507800C01D92 /* SDUserProfileTeamHeaderView.m */; };
 		8063D2E3179D507800C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */; };
 		8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */; };
+		8078686017DDBFD300B77789 /* SDLandingPageCollegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */; };
+		8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8078685C17DDBFD300B77789 /* SDLandingPageCollegeCell.xib */; };
+		8078686217DDBFD300B77789 /* SDLandingPageHighSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */; };
+		8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */; };
+		8078687017DDBFE600B77789 /* SDCollegeLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686D17DDBFE600B77789 /* SDCollegeLandingPageViewController.m */; };
+		8078687117DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686F17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m */; };
 		8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */; };
 		8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */; };
 		8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */; };
@@ -728,6 +734,16 @@
 		8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileTeamHeaderView.xib; sourceTree = "<group>"; };
 		8063D2E4179D706000C01D92 /* SDBaseProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProfileHeaderView.h; sourceTree = "<group>"; };
 		8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProfileHeaderView.m; sourceTree = "<group>"; };
+		8078685A17DDBFD300B77789 /* SDLandingPageCollegeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageCollegeCell.h; sourceTree = "<group>"; };
+		8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageCollegeCell.m; sourceTree = "<group>"; };
+		8078685C17DDBFD300B77789 /* SDLandingPageCollegeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPageCollegeCell.xib; sourceTree = "<group>"; };
+		8078685D17DDBFD300B77789 /* SDLandingPageHighSchoolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageHighSchoolCell.h; sourceTree = "<group>"; };
+		8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageHighSchoolCell.m; sourceTree = "<group>"; };
+		8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPageHighSchoolCell.xib; sourceTree = "<group>"; };
+		8078686C17DDBFE600B77789 /* SDCollegeLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollegeLandingPageViewController.h; sourceTree = "<group>"; };
+		8078686D17DDBFE600B77789 /* SDCollegeLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollegeLandingPageViewController.m; sourceTree = "<group>"; };
+		8078686E17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolLandingPageViewController.h; sourceTree = "<group>"; };
+		8078686F17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolLandingPageViewController.m; sourceTree = "<group>"; };
 		8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPageStoryBoard.storyboard; sourceTree = "<group>"; };
 		8083891817D4D78E006E4FE9 /* SDBaseLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseLandingPageViewController.h; sourceTree = "<group>"; };
 		8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseLandingPageViewController.m; sourceTree = "<group>"; };
@@ -1519,6 +1535,12 @@
 				802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */,
 				802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */,
 				802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */,
+				8078685A17DDBFD300B77789 /* SDLandingPageCollegeCell.h */,
+				8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */,
+				8078685C17DDBFD300B77789 /* SDLandingPageCollegeCell.xib */,
+				8078685D17DDBFD300B77789 /* SDLandingPageHighSchoolCell.h */,
+				8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */,
+				8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -1600,6 +1622,10 @@
 				8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */,
 				8083891A17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.h */,
 				8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */,
+				8078686C17DDBFE600B77789 /* SDCollegeLandingPageViewController.h */,
+				8078686D17DDBFE600B77789 /* SDCollegeLandingPageViewController.m */,
+				8078686E17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.h */,
+				8078686F17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m */,
 			);
 			path = LandingPageViewControllers;
 			sourceTree = "<group>";
@@ -2091,6 +2117,8 @@
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
 				8062EE5F17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png in Resources */,
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
+				8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */,
+				8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2254,6 +2282,10 @@
 				7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */,
 				7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */,
 				7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */,
+				8078686017DDBFD300B77789 /* SDLandingPageCollegeCell.m in Sources */,
+				8078686217DDBFD300B77789 /* SDLandingPageHighSchoolCell.m in Sources */,
+				8078687017DDBFE600B77789 /* SDCollegeLandingPageViewController.m in Sources */,
+				8078687117DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
