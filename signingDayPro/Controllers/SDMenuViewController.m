@@ -215,6 +215,18 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
             centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];
         }
+        else if (indexPath.row == 2) { //colleges
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"CollegesLandingPageViewController"];
+        }
+        else if (indexPath.row == 3) { //war room
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];
+        }
+        else if (indexPath.row == 4) { //highscool
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"HighSchoolLandingPageViewController"];
+        }
         else {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
             centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];

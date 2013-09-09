@@ -54,24 +54,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 79;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [self.dataArray count];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -80,28 +62,14 @@
     
     if (!cell) {
         cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
-        [cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+#warning DO NOT COMMIT!!!
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
-    cell.followButton.tag = indexPath.row;
     User *user = [self.dataArray objectAtIndex:indexPath.row];
     // Configure the cell...
     [cell setupCellWithUser:user];
     return cell;
-}
-
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                        bundle:nil];
-    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-    userProfileViewController.currentUser = [self.dataArray objectAtIndex:indexPath.row];
-    
-    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 #pragma mark - IBActions

@@ -150,6 +150,10 @@
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
 		804142BB17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */; };
 		804142C617D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */; };
+		804142CB17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142CA17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m */; };
+		804142D617D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142D517D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m */; };
+		804142D817D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804142D717D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib */; };
+		804142DA17D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804142D917D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -575,6 +579,12 @@
 		804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolLandingPageViewController.m; sourceTree = "<group>"; };
 		804142C417D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollegeLandingPageViewController.h; sourceTree = "<group>"; };
 		804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollegeLandingPageViewController.m; sourceTree = "<group>"; };
+		804142C917D8BCF4008CB3C7 /* SDLandingPageCollegeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageCollegeCell.h; sourceTree = "<group>"; };
+		804142CA17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageCollegeCell.m; sourceTree = "<group>"; };
+		804142D417D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageHighSchoolCell.h; sourceTree = "<group>"; };
+		804142D517D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageHighSchoolCell.m; sourceTree = "<group>"; };
+		804142D717D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPageCollegeCell.xib; sourceTree = "<group>"; };
+		804142D917D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPageHighSchoolCell.xib; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -1508,6 +1518,12 @@
 				802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */,
 				802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */,
 				802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */,
+				804142C917D8BCF4008CB3C7 /* SDLandingPageCollegeCell.h */,
+				804142CA17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m */,
+				804142D717D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib */,
+				804142D417D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.h */,
+				804142D517D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m */,
+				804142D917D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -2085,6 +2101,8 @@
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
 				8062EE5F17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png in Resources */,
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
+				804142D817D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib in Resources */,
+				804142DA17D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2246,6 +2264,8 @@
 				80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */,
 				804142BB17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m in Sources */,
 				804142C617D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m in Sources */,
+				804142CB17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m in Sources */,
+				804142D617D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
