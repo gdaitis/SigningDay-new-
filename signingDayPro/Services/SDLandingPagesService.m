@@ -16,6 +16,34 @@
 #import "NSString+HTML.h"
 #import "SDProfileService.h"
 
+@interface User (BasicUserInfoParsing)
+
++ (User *)getUserWithBasicUserInfoFromUserDictionary:(NSDictionary *)userDictionary
+                                          andContext:(NSManagedObjectContext *)context;
+
+@end
+
+@implementation User (BasicUserInfoParsing)
+
++ (User *)getUserWithBasicUserInfoFromUserDictionary:(NSDictionary *)userDictionary
+                                          andContext:(NSManagedObjectContext *)context
+{
+    NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserId"] intValue]];
+    User *user = [User MR_findFirstByAttribute:@"identifier"
+                                     withValue:identifier
+                                     inContext:context];
+    if (!user) {
+        user = [User MR_createInContext:context];
+        user.identifier = identifier;
+    }
+    user.name = [userDictionary valueForKey:@"DisplayName"];
+    user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+    
+    return user;
+}
+
+@end
+
 @implementation SDLandingPagesService
 
 #pragma mark - Players
@@ -121,17 +149,7 @@
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
                                [self createUsersFromResponseObject:responseObject
-                                         withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context) {
-                                             NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserId"] intValue]];
-                                             User *user = [User MR_findFirstByAttribute:@"identifier"
-                                                                              withValue:identifier
-                                                                              inContext:context];
-                                             if (!user) {
-                                                 user = [User MR_createInContext:context];
-                                                 user.identifier = identifier;
-                                             }
-                                             user.name = [userDictionary valueForKey:@"DisplayName"];
-                                             user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+                                         withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                                              if (!user.thePlayer)
                                                  user.thePlayer = [Player MR_createInContext:context];
@@ -171,18 +189,12 @@
 
 #pragma mark - Teams
 
-+ (void)getTeamsOrderedByDescendingTotalScoreFrom:(NSInteger)pageBeginIndex
-                                               to:(NSInteger)pageEndIndex
-                                     successBlock:(void (^)(void))successBlock
-                                     failureBlock:(void (^)(void))failureBlock
++ (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
+                                                   pageSize:(NSInteger)pageSize
+                                               successBlock:(void (^)(void))successBlock
+                                               failureBlock:(void (^)(void))failureBlock
 {
-    if (pageBeginIndex > pageEndIndex) {
-        NSLog(@"Cannot load players: end index is lower that begin index");
-        return;
-    }
-    int top = pageEndIndex - pageBeginIndex;
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/TeamsView?$orderby=TotalScore desc&$skip=%d&$top=%d&$format=json", kSDBaseSigningDayURLString, pageBeginIndex, top]; // <- TotalScore??
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%i&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, kSDLandingPagesServiceDefaultClass, pageNumber, pageSize];
     
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                          successBlock:successBlock
@@ -194,7 +206,19 @@
                                        successBlock:(void (^)(void))successBlock
                                        failureBlock:(void (^)(void))failureBlock
 {
-
+    [self startHTTPRequestOperationWithURLString:URLString
+                           operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               [self createUsersFromResponseObject:responseObject
+                                         withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
+                                             user.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
+                                             
+                                         }];
+                               if (successBlock)
+                                   successBlock();
+                           } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                               if (failureBlock)
+                                   failureBlock();
+                           }];
 }
 
 #pragma mark - HighSchools
@@ -220,7 +244,7 @@
 }
 
 + (void)createUsersFromResponseObject:(id)responseObject
-            withBlockForSpecificTypes:(void (^)(NSDictionary *userDictionary, NSManagedObjectContext *context))specificTypeOfUserCreationBlock
+            withBlockForSpecificTypes:(void (^)(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user))specificTypeOfUserCreationBlock
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
@@ -229,8 +253,10 @@
     NSArray *resultsArray = [JSON valueForKey:@"d"];
     for (NSDictionary *userDictionaryWithNulls in resultsArray) {
         NSDictionary *userDictionary = [userDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
+        User *user = [User getUserWithBasicUserInfoFromUserDictionary:userDictionary
+                                                           andContext:context];
         if (specificTypeOfUserCreationBlock)
-            specificTypeOfUserCreationBlock(userDictionary, context);
+            specificTypeOfUserCreationBlock(userDictionary, context, user);
     }
     [context MR_saveOnlySelfAndWait];
 }

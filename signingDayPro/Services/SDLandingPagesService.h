@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+int const kSDLandingPagesServiceDefaultClass = 2014;
+
 @interface SDLandingPagesService : NSObject
 
 + (void)getPlayersOrderedByDescendingBaseScoreFrom:(NSInteger)pageBeginIndex
@@ -23,9 +25,9 @@
                   positionStringsArray:(NSArray *)positionsArray
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock;
-+ (void)getTeamsOrderedByDescendingTotalScoreFrom:(NSInteger)pageBeginIndex
-                                               to:(NSInteger)pageEndIndex
-                                     successBlock:(void (^)(void))successBlock
-                                     failureBlock:(void (^)(void))failureBlock;
++ (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
+                                                   pageSize:(NSInteger)pageSize
+                                               successBlock:(void (^)(void))successBlock
+                                               failureBlock:(void (^)(void))failureBlock;
 
 @end
