@@ -1,23 +1,23 @@
 //
-//  SDPlayerLandingPageViewController.m
+//  SDHighSchoolLandingPageViewController.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/2/13.
+//  Created by Lukas Kekys on 9/5/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "SDPlayerLandingPageViewController.h"
-#import "SDLandingPagePlayerCell.h"
+#import "SDHighSchoolLandingPageViewController.h"
+#import "SDLandingPageHighSchoolCell.h"
 #import "UIView+NibLoading.h"
 #import "SDPlayersSearchHeader.h"
 #import "UIView+NibLoading.h"
 #import "SDNavigationController.h"
 #import "SDProfileService.h"
-#import "SDUserProfileViewController.h"
+
 
 #import "SDLandingPagesService.h"
 
-@interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
+@interface SDHighSchoolLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 
 @property (nonatomic, strong) SDPlayersSearchHeader *playerSearchView;
 
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation SDPlayerLandingPageViewController
+@implementation SDHighSchoolLandingPageViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,17 +54,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = @"SDLandingPagePlayerCellIdentifier";
-    SDLandingPagePlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    SDLandingPageHighSchoolCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (!cell) {
-        cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
+        cell = (id)[SDLandingPageHighSchoolCell loadInstanceFromNib];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
+    
     User *user = [self.dataArray objectAtIndex:indexPath.row];
     // Configure the cell...
     [cell setupCellWithUser:user];
@@ -75,7 +76,7 @@
 
 - (void)followButtonPressed:(UIButton *)sender
 {
-//    indexpath.row = sender.tag;
+    //    indexpath.row = sender.tag;
     
     sender.selected = !sender.selected;
 }
@@ -83,7 +84,7 @@
 #pragma mark - Filter button actions
 
 - (void)hideFilterView
-{   
+{
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGRect frame = self.playerSearchView.frame;
         frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
@@ -98,7 +99,7 @@
 
 - (void)showFilterView
 {
-    SDPlayersSearchHeader *playerHeaderView = [[SDPlayersSearchHeader alloc] init];
+    SDPlayersSearchHeader *playerHeaderView = (SDPlayersSearchHeader *)[SDPlayersSearchHeader loadInstanceFromNib];
     playerHeaderView.delegate = self;
     
     //hide SDPlayerSearchHeader under toolbar
@@ -123,10 +124,10 @@
 #pragma mark - Data loading
 
 - (void)loadData
-{    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-
+    
     //seting fetch limit for pagination
     NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
     [request setFetchLimit:self.currentUserCount];

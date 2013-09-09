@@ -70,9 +70,7 @@
 #pragma mark - Cell setup
 
 - (void)setupCellWithUser:(User *)user
-{
-    [self.playerPositionLabel updateConstraints];
-    
+{    
     if (user) {
         
         if ([user.thePlayer.accountVerified boolValue]) {
