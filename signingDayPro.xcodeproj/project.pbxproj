@@ -35,6 +35,10 @@
 		7B755488177C574E00CBE6A3 /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */; };
 		7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */; };
 		7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */; };
+		7B99555A17D9C900009B8D01 /* SDSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555917D9C900009B8D01 /* SDSearchHeader.m */; };
+		7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */; };
+		7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */; };
+		7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */; };
 		7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
@@ -54,7 +58,6 @@
 		7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */; };
 		7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */; };
 		7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */; };
-		7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */; };
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
@@ -148,12 +151,6 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
-		804142BB17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */; };
-		804142C617D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */; };
-		804142CB17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142CA17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m */; };
-		804142D617D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 804142D517D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m */; };
-		804142D817D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804142D717D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib */; };
-		804142DA17D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804142D917D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -405,6 +402,14 @@
 		7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
 		7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderLike@2x.png"; sourceTree = "<group>"; };
 		7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderRightArrow@2x.png"; sourceTree = "<group>"; };
+		7B99555817D9C900009B8D01 /* SDSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchHeader.h; sourceTree = "<group>"; };
+		7B99555917D9C900009B8D01 /* SDSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchHeader.m; sourceTree = "<group>"; };
+		7B99555B17D9E6BD009B8D01 /* UIButton+AddTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AddTitle.h"; sourceTree = "<group>"; };
+		7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AddTitle.m"; sourceTree = "<group>"; };
+		7B99556217D9FED7009B8D01 /* SDTeamsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTeamsSearchHeader.h; sourceTree = "<group>"; };
+		7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTeamsSearchHeader.m; sourceTree = "<group>"; };
+		7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolsSearchHeader.h; sourceTree = "<group>"; };
+		7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolsSearchHeader.m; sourceTree = "<group>"; };
 		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -431,7 +436,6 @@
 		7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DTCoreTextFontOverrides.plist; path = ../Externals/DTCoreText/Demo/Resources/DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
 		7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayersSearchHeader.h; sourceTree = "<group>"; };
 		7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayersSearchHeader.m; sourceTree = "<group>"; };
-		7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPlayersSearchHeader.xib; sourceTree = "<group>"; };
 		7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchOptionButtonBg@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
@@ -575,16 +579,6 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		804142B917D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolLandingPageViewController.h; sourceTree = "<group>"; };
-		804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolLandingPageViewController.m; sourceTree = "<group>"; };
-		804142C417D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollegeLandingPageViewController.h; sourceTree = "<group>"; };
-		804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollegeLandingPageViewController.m; sourceTree = "<group>"; };
-		804142C917D8BCF4008CB3C7 /* SDLandingPageCollegeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageCollegeCell.h; sourceTree = "<group>"; };
-		804142CA17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageCollegeCell.m; sourceTree = "<group>"; };
-		804142D417D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageHighSchoolCell.h; sourceTree = "<group>"; };
-		804142D517D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageHighSchoolCell.m; sourceTree = "<group>"; };
-		804142D717D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPageCollegeCell.xib; sourceTree = "<group>"; };
-		804142D917D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPageHighSchoolCell.xib; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -992,7 +986,14 @@
 			children = (
 				7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */,
 				7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */,
-				7BEBA8DE17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib */,
+				7B99556217D9FED7009B8D01 /* SDTeamsSearchHeader.h */,
+				7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */,
+				7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */,
+				7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */,
+				7B99555817D9C900009B8D01 /* SDSearchHeader.h */,
+				7B99555917D9C900009B8D01 /* SDSearchHeader.m */,
+				7B99555B17D9E6BD009B8D01 /* UIButton+AddTitle.h */,
+				7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -1518,12 +1519,6 @@
 				802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */,
 				802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */,
 				802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */,
-				804142C917D8BCF4008CB3C7 /* SDLandingPageCollegeCell.h */,
-				804142CA17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m */,
-				804142D717D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib */,
-				804142D417D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.h */,
-				804142D517D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m */,
-				804142D917D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -1603,10 +1598,6 @@
 			children = (
 				8083891817D4D78E006E4FE9 /* SDBaseLandingPageViewController.h */,
 				8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */,
-				804142B917D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.h */,
-				804142BA17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m */,
-				804142C417D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.h */,
-				804142C517D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m */,
 				8083891A17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.h */,
 				8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */,
 			);
@@ -2091,7 +2082,6 @@
 				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
 				7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
-				7BEBA8DF17D4BD4B0049CA1C /* SDPlayersSearchHeader.xib in Resources */,
 				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
 				8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */,
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
@@ -2101,8 +2091,6 @@
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
 				8062EE5F17D60BDB00067B13 /* TopToolbarSettingsButton@2x.png in Resources */,
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
-				804142D817D8BD44008CB3C7 /* SDLandingPageCollegeCell.xib in Resources */,
-				804142DA17D8BD58008CB3C7 /* SDLandingPageHighSchoolCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2262,10 +2250,10 @@
 				8062EE5817D606D500067B13 /* ActivityStory.m in Sources */,
 				8062EE5B17D606D500067B13 /* HighSchool.m in Sources */,
 				80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */,
-				804142BB17D8B90F008CB3C7 /* SDHighSchoolLandingPageViewController.m in Sources */,
-				804142C617D8BBC9008CB3C7 /* SDCollegeLandingPageViewController.m in Sources */,
-				804142CB17D8BCF4008CB3C7 /* SDLandingPageCollegeCell.m in Sources */,
-				804142D617D8BD2C008CB3C7 /* SDLandingPageHighSchoolCell.m in Sources */,
+				7B99555A17D9C900009B8D01 /* SDSearchHeader.m in Sources */,
+				7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */,
+				7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */,
+				7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
