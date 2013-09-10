@@ -73,7 +73,7 @@
 {    
     if (user) {
         
-        if ([user.thePlayer.accountVerified boolValue]) {
+        if ([user.accountVerified boolValue]) {
             self.accountVerifiedImageView.hidden = NO;
         }
         else {

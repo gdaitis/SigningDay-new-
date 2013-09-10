@@ -2,7 +2,7 @@
 //  Player.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/3/13.
+//  Created by Lukas Kekys on 9/9/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -22,7 +22,6 @@
 @property (nonatomic, retain) NSNumber * stateRanking;
 @property (nonatomic, retain) NSString * userClass;
 @property (nonatomic, retain) NSNumber * weight;
-@property (nonatomic, retain) NSNumber * accountVerified;
 @property (nonatomic, retain) HighSchool *highSchool;
 @property (nonatomic, retain) User *theUser;
 

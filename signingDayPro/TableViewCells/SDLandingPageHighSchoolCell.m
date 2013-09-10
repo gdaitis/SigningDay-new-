@@ -66,15 +66,15 @@
 {
     if (user) {
         
-//        if ([user.theHighSchool.accountVerified boolValue]) {
-//            self.accountVerifiedImageView.hidden = NO;
-//        }
-//        else {
-//            self.accountVerifiedImageView.hidden = YES;
-//        }
+        if ([user.accountVerified boolValue]) {
+            self.accountVerifiedImageView.hidden = NO;
+        }
+        else {
+            self.accountVerifiedImageView.hidden = YES;
+        }
 
         self.nameLabel.text = user.name;
-
+//        self.totalPospectsNameLabel.text = user.theHighSchool.prospects;
         
         //cancel previous requests and set user image
         [self.userImageView cancelImageRequestOperation];
