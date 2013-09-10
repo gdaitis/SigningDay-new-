@@ -10,12 +10,12 @@
 
 #import "SDLandingPageCollegeCell.h"
 #import "UIView+NibLoading.h"
-#import "SDPlayersSearchHeader.h"
+#import "SDTeamsSearchHeader.h"
 
 
-@interface SDCollegeLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
+@interface SDCollegeLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDTeamsSearchHeaderDelegate>
 
-@property (nonatomic, strong) SDPlayersSearchHeader *playerSearchView;
+@property (nonatomic, strong) SDTeamsSearchHeader *teamSearchView;
 
 - (void)followButtonPressed:(UIButton *)sender;
 
@@ -80,11 +80,11 @@
 - (void)hideFilterView
 {
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        CGRect frame = self.playerSearchView.frame;
+        CGRect frame = self.teamSearchView.frame;
         frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
-        self.playerSearchView.frame = frame;
+        self.teamSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
-        [self.playerSearchView removeFromSuperview];
+        [self.teamSearchView removeFromSuperview];
     }];
     
     //we should tell that filter view was hidden by not using the filter button, so navigation controller could know the state.
@@ -93,24 +93,24 @@
 
 - (void)showFilterView
 {
-    SDPlayersSearchHeader *playerHeaderView = (SDPlayersSearchHeader *)[SDPlayersSearchHeader loadInstanceFromNib];
-    playerHeaderView.delegate = self;
+    SDTeamsSearchHeader *teamSearchView = [[SDTeamsSearchHeader alloc] init];
+    teamSearchView.delegate = self;
     
-    //hide SDPlayerSearchHeader under toolbar
-    CGRect frame = playerHeaderView.frame;
+    //hide SDCollegeHeaderView under toolbar
+    CGRect frame = teamSearchView.frame;
     frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
-    playerHeaderView.frame = frame;
+    teamSearchView.frame = frame;
     
-    self.playerSearchView = playerHeaderView;
-    [self.view addSubview:self.playerSearchView];
+    self.teamSearchView = teamSearchView;
+    [self.view addSubview:self.teamSearchView];
     
-    //bring searchBar view to front so the filter SDPlayerSearchHeader would be behind this view
+    //bring searchBar view to front so the filter SDCollegeHeaderView would be behind this view
     [self.view bringSubviewToFront:self.searchBarBackground];
     
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-        CGRect frame = self.playerSearchView.frame;
+        CGRect frame = self.teamSearchView.frame;
         frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height;
-        self.playerSearchView.frame = frame;
+        self.teamSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
 }
@@ -133,24 +133,19 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - SDPlayersSearchHeader Delegate
+#pragma mark - SDTeamSearchHeader Delegate
 
-- (void)playersSearchHeaderPressedStatesButton:(SDPlayersSearchHeader *)playersSearchHeader
+- (void)teamsSearchHeaderPressedConferencesButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
     [self hideFilterView];
 }
 
-- (void)playersSearchHeaderPressedYearsButton:(SDPlayersSearchHeader *)playersSearchHeader
+- (void)teamsSearchHeaderPressedClassButton:(SDTeamsSearchHeader *)teamsSeachHeader;
 {
     [self hideFilterView];
 }
 
-- (void)playersSearchHeaderPressedPositionsButton:(SDPlayersSearchHeader *)playersSearchHeader
-{
-    [self hideFilterView];
-}
-
-- (void)playersSearchHeaderPressedSearchButton:(SDPlayersSearchHeader *)playersSearchHeader
+- (void)teamsSearchHeaderPressedSearchButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
     [self hideFilterView];
 }

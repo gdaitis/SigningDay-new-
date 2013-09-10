@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-float const kSDSearchHeaderSpaceBetweenOptionButtons = 9;
-float const kSDSearchHeaderSpaceBetweenOptionButtonAndSearchButton = 10;
-float const kSDSearchHeaderTopMargin = 8;
-float const kSDSearchHeaderBottomMargin = 15;
-float const kSDSearchHeaderLeftMargin = 11;
+extern const float kSDSearchHeaderSpaceBetweenOptionButtons;
+extern const float kSDSearchHeaderSpaceBetweenOptionButtonAndSearchButton;
+extern const float kSDSearchHeaderTopMargin;
+extern const float kSDSearchHeaderBottomMargin;
+extern const float kSDSearchHeaderLeftMargin;
 
 @interface SDSearchHeader : UIView
 

@@ -10,6 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIButton+AddTitle.h"
 
+const float kSDSearchHeaderSpaceBetweenOptionButtons = 9;
+const float kSDSearchHeaderSpaceBetweenOptionButtonAndSearchButton = 10;
+const float kSDSearchHeaderTopMargin = 8;
+const float kSDSearchHeaderBottomMargin = 15;
+const float kSDSearchHeaderLeftMargin = 11;
+
 @implementation SDSearchHeader
 
 - (void)setupView
