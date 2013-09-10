@@ -13,6 +13,7 @@
 #import "User.h"
 #import "Player.h"
 #import "HighSchool.h"
+#import "Team.h"
 #import "NSString+HTML.h"
 #import "SDProfileService.h"
 
@@ -36,7 +37,6 @@
         user = [User MR_createInContext:context];
         user.identifier = identifier;
     }
-    user.name = [userDictionary valueForKey:@"DisplayName"];
     user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
     
     return user;
@@ -151,6 +151,7 @@
                                [self createUsersFromResponseObject:responseObject
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
+                                             user.name = [userDictionary valueForKey:@"DisplayName"];
                                              if (!user.thePlayer)
                                                  user.thePlayer = [Player MR_createInContext:context];
                                              user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];
@@ -211,7 +212,10 @@
                                [self createUsersFromResponseObject:responseObject
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
-                                             
+                                             user.name = [userDictionary valueForKey:@"TeamName"];
+                                             if (user.theTeam)
+                                                 user.theTeam = [Team MR_createInContext:context];
+                                             user.theTeam.con
                                          }];
                                if (successBlock)
                                    successBlock();
