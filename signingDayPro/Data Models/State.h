@@ -1,5 +1,5 @@
 //
-//  ImageData.h
+//  State.h
 //  signingDayPro
 //
 //  Created by Vytautas Gudaitis on 9/10/13.
@@ -10,10 +10,10 @@
 #import <CoreData/CoreData.h>
 
 
-@interface ImageData : NSManagedObject
+@interface State : NSManagedObject
 
-@property (nonatomic, retain) id image;
-@property (nonatomic, retain) NSDate * updateDate;
-@property (nonatomic, retain) NSString * urlString;
+@property (nonatomic, retain) NSString * code;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * isInUS;
 
 @end

@@ -10,12 +10,14 @@
 #import "SDAPIClient.h"
 #import "AFNetworking.h"
 #import "NSDictionary+NullConverver.h"
+#import "NSString+HTML.h"
+#import "SDProfileService.h"
 #import "User.h"
 #import "Player.h"
 #import "HighSchool.h"
 #import "Team.h"
-#import "NSString+HTML.h"
-#import "SDProfileService.h"
+#import "Conference.h"
+#import "State.h"
 
 @interface User (BasicUserInfoParsing)
 
@@ -38,6 +40,7 @@
         user.identifier = identifier;
     }
     user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+    user.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
     
     return user;
 }
@@ -86,57 +89,32 @@
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock
 {
-    NSString *statesString = nil;
-    NSString *classesString = nil;
-    NSString *positionsString = nil;
-    NSString *searchRequestString = nil;
     NSMutableArray *requestStringsArray = [[NSMutableArray alloc] init];
 
     if (searchString) {
-        searchRequestString = [NSString stringWithFormat:@"substringof('%@',DisplayName)", searchString];
+        NSString *searchRequestString = [NSString stringWithFormat:@"substringof('%@',DisplayName)", searchString];
         [requestStringsArray addObject:searchRequestString];
     }
     if (statesArray) {
-        statesString = @"";
-        for (int i = 0; i < [statesArray count]; i++) {
-            NSString *stateCodeString = [statesArray objectAtIndex:i];
-            statesString = [statesString stringByAppendingFormat:@"PlayerStateCode eq '%@' ", stateCodeString];
-            if (i != ([statesArray count] - 1))
-                statesString = [statesString stringByAppendingFormat:@"or "];
-        }
+        NSString *statesString = [self makeRequestsStringFromRequestsArray:statesArray
+                                              withUrlEntityNameToBeEqualTo:@"PlayerStateCode"
+                                                appendingWithLogicalString:@"or "];
         [requestStringsArray addObject:statesString];
     }
     if (classesArray) {
-        classesString = @"";
-        for (int i = 0; i < [classesArray count]; i++) {
-            NSString *classString = [statesArray objectAtIndex:i];
-            classesString = [classesString stringByAppendingFormat:@"Class eq %@ ", classString];
-            if (i != ([classesArray count] - 1))
-                classesString = [classesString stringByAppendingFormat:@"or "];
-        }
+        NSString *classesString = [self makeRequestsStringFromRequestsArray:classesArray
+                                               withUrlEntityNameToBeEqualTo:@"Class"
+                                                 appendingWithLogicalString:@"or "];
         [requestStringsArray addObject:classesString];
     }
     if (positionsArray) {
-        positionsString = @"";
-        for (int i = 0; i < [positionsArray count]; i++) {
-            NSString *positionString = [statesArray objectAtIndex:i];
-            positionsString = [positionsString stringByAppendingFormat:@"Position eq '%@' ", positionString];
-            if (i != ([positionsArray count] - 1))
-                positionsString = [positionsString stringByAppendingFormat:@"or "];
-        }
+        NSString *positionsString = [self makeRequestsStringFromRequestsArray:positionsArray
+                                                 withUrlEntityNameToBeEqualTo:@"Position"
+                                                   appendingWithLogicalString:@"or "];
         [requestStringsArray addObject:positionsString];
     }
-    
-    NSString *filterString = @"";
-    for (int i = 0; i < [requestStringsArray count]; i++) {
-        NSString *paramsString = [requestStringsArray objectAtIndex:i];
-        filterString = [filterString stringByAppendingFormat:@"(%@) ", paramsString];
-        if (i != ([requestStringsArray count] - 1))
-            filterString = [filterString stringByAppendingFormat:@"and "];
-    }
-    
+    NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=DisplayName asc&$format=json&$filter=(%@)", kSDBaseSigningDayURLString, filterString];
-    
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
                                            failureBlock:failureBlock];
@@ -163,7 +141,6 @@
                                              user.thePlayer.baseScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseScore"] floatValue]];
                                              user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"NationalRank"] intValue]];
                                              user.thePlayer.starsCount = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Stars"] intValue]];
-                                             user.thePlayer.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
                                              
                                              NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"HighSchoolID"] intValue]];
                                              User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
@@ -200,7 +177,20 @@
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                          successBlock:successBlock
                                          failureBlock:failureBlock];
-    
+}
+
++ (void)searchForTeamsWithNameString:(NSString *)searchString
+                  conferenceIDString:(NSString *)conferenceString
+                         classString:(NSString *)classString
+                        successBlock:(void (^)(void))successBlock
+                        failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?conference=%@&year=%@&$format=json", kSDBaseSigningDayURLString, conferenceString, classString];
+    if (searchString)
+        [urlString stringByAppendingFormat:@"&$filter=(substringof('%@',DisplayName))", searchString];
+    [self startTeamsHTTPRequestOperationWithURLString:urlString
+                                         successBlock:successBlock
+                                         failureBlock:failureBlock];
 }
 
 + (void)startTeamsHTTPRequestOperationWithURLString:(NSString *)URLString
@@ -215,7 +205,12 @@
                                              user.name = [userDictionary valueForKey:@"TeamName"];
                                              if (user.theTeam)
                                                  user.theTeam = [Team MR_createInContext:context];
-                                             user.theTeam.con
+                                             user.theTeam.conferenceId = [NSNumber numberWithInt:[[userDictionary valueForKey:@"ConferenceID"] intValue]];
+                                             user.theTeam.universityName = [userDictionary valueForKey:@"FullInstitutionName"];
+                                             user.theTeam.location = [userDictionary valueForKey:@"TeamCity"];
+                                             user.theTeam.stateCode = [userDictionary valueForKey:@"TeamStateCode"];
+                                             user.theTeam.numberOfCommits = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Commits"] intValue]];
+                                             user.theTeam.totalScore = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Total"] intValue]];
                                          }];
                                if (successBlock)
                                    successBlock();
@@ -226,6 +221,104 @@
 }
 
 #pragma mark - HighSchools
+
+#warning TODO: more interfaces
+
++ (void)startHighSchoolsHTTPRequestOperationWithURLString:(NSString *)URLString
+                                             successBlock:(void (^)(void))successBlock
+                                             failureBlock:(void (^)(void))failureBlock
+{
+    [self startHTTPRequestOperationWithURLString:URLString
+                           operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               [self createUsersFromResponseObject:responseObject
+                                         withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
+                                             user.userTypeId = [NSNumber numberWithInt:SDUserTypeHighSchool];
+                                             user.name = [userDictionary valueForKey:@"DisplayName"];
+                                             if (user.theHighSchool)
+                                                 user.theHighSchool = [HighSchool MR_createInContext:context];
+                                             user.theHighSchool.address = [userDictionary valueForKey:@"CityAndState"];
+                                             user.theHighSchool.totalProspects = [userDictionary valueForKey:@"CurrentProspects"];
+                                         }];
+                               if (successBlock)
+                                   successBlock();
+                           } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                               if (failureBlock)
+                                   failureBlock();
+                           }];
+}
+
+#pragma mark - Conferences
+
++ (void)getAllConferencesOrderedByFullNameWithSuccessBlock:(void (^)(void))successBlock
+                                              failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Conferences?$format=json&$orderby=FullName asc", kSDBaseSigningDayURLString];
+    [self startHTTPRequestOperationWithURLString:urlString
+                           operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                               NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                                    options:kNilOptions
+                                                                                      error:nil];
+                               NSArray *resultsArray = [JSON valueForKey:@"d"];
+                               for (NSDictionary *conferenceDictionaryWithNulls in resultsArray) {
+                                   NSDictionary *conferenceDictionary = [conferenceDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
+                                   NSNumber *identifier = [NSNumber numberWithInt:[[conferenceDictionaryWithNulls valueForKey:@"ID"] intValue]];
+                                   Conference *conference = [Conference MR_findFirstByAttribute:@"indentifier"
+                                                                                      withValue:identifier
+                                                                                      inContext:context];
+                                   if (!conference) {
+                                       conference = [Conference MR_createInContext:context];
+                                       conference.identifier = identifier;
+                                   }
+                                   conference.nameShort = [conferenceDictionary valueForKey:@"Name"];
+                                   conference.nameFull = [conferenceDictionary valueForKey:@"FullName"];
+                                   conference.logoUrl = [conferenceDictionary valueForKey:@"LogoURI"];
+                                   conference.logoUrlBlack = [conferenceDictionary valueForKey:@"LogoURIBlack"];
+                                   conference.isDivision1Conference = [NSNumber numberWithBool:[[conferenceDictionary valueForKey:@"IsDivision1Conference"] boolValue]];
+                               }
+                               [context MR_saveOnlySelfAndWait];
+                               if (successBlock)
+                                   successBlock();
+                           } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                               if (failureBlock)
+                                   failureBlock();
+                           }];
+}
+
+#pragma mark - States
+
++ (void)getAllStatesOrderedByFullNameWithSuccessBlock:(void (^)(void))successBlock
+                                         failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/States?$format=json&$orderby=Name asc", kSDBaseSigningDayURLString];
+    [self startHTTPRequestOperationWithURLString:urlString
+                           operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                               NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                                    options:kNilOptions
+                                                                                      error:nil];
+                               NSArray *resultsArray = [JSON valueForKey:@"d"];
+                               for (NSDictionary *stateDictionaryWithNulls in resultsArray) {
+                                   NSDictionary *stateDictionary = [stateDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
+                                   NSString *code = [stateDictionary valueForKey:@"Code"];
+                                   State *state = [State MR_findFirstByAttribute:@"code"
+                                                                       withValue:code
+                                                                       inContext:context];
+                                   if (!state) {
+                                       state = [State MR_createInContext:context];
+                                       state.code = code;
+                                   }
+                                   state.name = [stateDictionary valueForKey:@"Name"];
+                                   state.isInUS = [stateDictionary valueForKey:@"IsInUS"];
+                               }
+                               [context MR_saveOnlySelfAndWait];
+                               if (successBlock)
+                                   successBlock();
+                           } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                               if (failureBlock)
+                                   failureBlock();
+                           }];
+}
 
 #pragma mark - Common methods
 
@@ -263,6 +356,34 @@
             specificTypeOfUserCreationBlock(userDictionary, context, user);
     }
     [context MR_saveOnlySelfAndWait];
+}
+
++ (NSString *)makeRequestsStringFromRequestsArray:(NSArray *)requestsArray
+                     withUrlEntityNameToBeEqualTo:(NSString *)entityName
+                       appendingWithLogicalString:(NSString *)logicalString
+{
+    NSString *requestsString = @"";
+    for (int i = 0; i < [requestsArray count]; i++) {
+        NSString *requestString = [requestsArray objectAtIndex:i];
+        requestsString = [requestString stringByAppendingFormat:@"%@ eq '%@' ", entityName, requestString];
+        if (logicalString) {
+            if (i != ([requestsArray count] - 1))
+                requestsString = [requestsString stringByAppendingString:logicalString];
+        }
+    }
+    return requestsString;
+}
+
++ (NSString *)makeFilterStringFromRequestStringsArray:(NSArray *)requestStringsArray
+{
+    NSString *filterString = @"";
+    for (int i = 0; i < [requestStringsArray count]; i++) {
+        NSString *paramsString = [requestStringsArray objectAtIndex:i];
+        filterString = [filterString stringByAppendingFormat:@"(%@) ", paramsString];
+        if (i != ([requestStringsArray count] - 1))
+            filterString = [filterString stringByAppendingFormat:@"and "];
+    }
+    return filterString;
 }
 
 @end

@@ -29,5 +29,12 @@ int const kSDLandingPagesServiceDefaultClass = 2014;
                                                    pageSize:(NSInteger)pageSize
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock;
++ (void)searchForTeamsWithNameString:(NSString *)searchString
+                  conferenceIDString:(NSString *)conferenceString
+                         classString:(NSString *)classString
+                        successBlock:(void (^)(void))successBlock
+                        failureBlock:(void (^)(void))failureBlock;
++ (void)getAllConferencesOrderedByFullNameWithSuccessBlock:(void (^)(void))successBlock
+                                              failureBlock:(void (^)(void))failureBlock;
 
 @end

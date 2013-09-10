@@ -1,18 +1,18 @@
 //
-//  ImageData.m
+//  State.m
 //  signingDayPro
 //
 //  Created by Vytautas Gudaitis on 9/10/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "ImageData.h"
+#import "State.h"
 
 
-@implementation ImageData
+@implementation State
 
-@dynamic image;
-@dynamic updateDate;
-@dynamic urlString;
+@dynamic code;
+@dynamic name;
+@dynamic isInUS;
 
 @end

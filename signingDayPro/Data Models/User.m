@@ -2,7 +2,7 @@
 //  User.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/9/13.
+//  Created by Vytautas Gudaitis on 9/10/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 
 @implementation User
 
+@dynamic accountVerified;
 @dynamic avatarUrl;
 @dynamic bio;
 @dynamic followerRelationshipCreated;
@@ -35,7 +36,6 @@
 @dynamic username;
 @dynamic userType;
 @dynamic userTypeId;
-@dynamic accountVerified;
 @dynamic activityStories;
 @dynamic activityStoriesFromOtherUsers;
 @dynamic authorOf;

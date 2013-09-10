@@ -2,7 +2,7 @@
 //  HighSchool.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/9/13.
+//  Created by Vytautas Gudaitis on 9/10/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -17,6 +17,8 @@
 @dynamic headCoachName;
 @dynamic mascot;
 @dynamic stateCode;
+@dynamic totalProspects;
+@dynamic city;
 @dynamic players;
 @dynamic theUser;
 
