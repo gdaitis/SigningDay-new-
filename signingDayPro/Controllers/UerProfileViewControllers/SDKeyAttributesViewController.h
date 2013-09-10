@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDBaseViewController.h"
 
-@interface SDKeyAttributesViewController : UIViewController
+@class User;
+
+@interface SDKeyAttributesViewController : SDBaseViewController
+
+- (void)setupKeyAttributesForUser:(User *)user;
 
 @end

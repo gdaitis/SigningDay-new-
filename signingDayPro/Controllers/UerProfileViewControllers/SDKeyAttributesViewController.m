@@ -7,12 +7,71 @@
 //
 
 #import "SDKeyAttributesViewController.h"
+#import "User.h"
+
 
 @interface SDKeyAttributesViewController ()
+
+//labels are different depending on user types, so using default naming
+@property (nonatomic, weak) IBOutlet UILabel *firstLabel;
+@property (nonatomic, weak) IBOutlet UILabel *secondLabel;
+@property (nonatomic, weak) IBOutlet UILabel *thirdLabel;
+@property (nonatomic, weak) IBOutlet UILabel *fourthLabel;
+@property (nonatomic, weak) IBOutlet UILabel *fifthLabel;
+
+@property (nonatomic, weak) IBOutlet UIImageView *firstImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *secondImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *thirdImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *fourthImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *fifthImageView;
+
+@property (nonatomic, assign) float firstValue;
+@property (nonatomic, assign) float secondValue;
+@property (nonatomic, assign) float thirdValue;
+@property (nonatomic, assign) float fourthValue;
+@property (nonatomic, assign) float fifthValue;
+
 
 @end
 
 @implementation SDKeyAttributesViewController
+
+#pragma mark - Setters
+
+- (void)setFirstValue:(float)firstValue
+{
+    _firstValue  = [self roundedFloatFromValue:firstValue];
+    [self setupAttributeView:self.firstImageView withFloatValue:_firstValue];
+}
+
+- (void)setSecondValue:(float)secondValue
+{
+    _secondValue  = [self roundedFloatFromValue:secondValue];
+    [self setupAttributeView:self.secondImageView withFloatValue:_secondValue];
+}
+
+- (void)setThirdValue:(float)thirdValue
+{
+    _thirdValue  = [self roundedFloatFromValue:thirdValue];
+    [self setupAttributeView:self.thirdImageView withFloatValue:_thirdValue];
+}
+
+- (void)setFourthValue:(float)fourthValue
+{
+    _fourthValue = [self roundedFloatFromValue:fourthValue];
+    [self setupAttributeView:self.fourthImageView withFloatValue:_fourthValue];
+}
+
+- (void)setFifthValue:(float)fifthValue
+{
+    _fifthValue  = [self roundedFloatFromValue:fifthValue];
+    [self setupAttributeView:self.fifthImageView withFloatValue:_fifthValue];
+}
+
+
+
+
+#pragma mark - LifeCycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,10 +93,61 @@
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+#warning testing
+    [self setFirstValue:9.01];
+    [self setSecondValue:7.0];
+    [self setThirdValue:6.0];
+    [self setFourthValue:3.0];
+    [self setFifthValue:5.0];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupKeyAttributesForUser:(User *)user
+{
+    
+}
+
+#pragma mark - helpers
+
+- (float)roundedFloatFromValue:(float)value
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setMaximumFractionDigits:1];
+    [formatter setRoundingMode: NSNumberFormatterRoundDown];
+    
+    float result = [[formatter stringFromNumber:[NSNumber numberWithFloat:value]] floatValue];
+    
+    return result;
+}
+
+- (void)setupAttributeView:(UIImageView *)imageView withFloatValue:(float)value
+{
+    //formula for calculating size
+    
+    //proportion
+    // 300 = 10;       x = (300 * value)/ 10;
+    //  x  = value;
+    
+    
+    //maximum 300
+    if (value < 0.5f)
+        imageView.hidden = YES;
+    else
+        imageView.hidden = NO;
+    
+    CGRect frame = imageView.frame;
+    frame.size.width = round((value * 300.0f) /10.0f);
+    imageView.frame = frame;
+    
 }
 
 @end

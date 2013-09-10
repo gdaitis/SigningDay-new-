@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
+#import "SDLandingPageSearchBar.h"
+#import "SDProfileService.h"
+#import "SDUserProfileViewController.h"
+#import "SDLandingPagesService.h"
+#import "SDNavigationController.h"
+#import "User.h"
 
 @interface SDBaseLandingPageViewController : SDBaseViewController
 

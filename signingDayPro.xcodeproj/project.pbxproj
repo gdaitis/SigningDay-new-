@@ -316,6 +316,8 @@
 		80F301801753A85E00134FF4 /* NotificationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301701753A85E00134FF4 /* NotificationIcon@2x.png */; };
 		80F301821753A85E00134FF4 /* NotificationIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301721753A85E00134FF4 /* NotificationIconActive@2x.png */; };
 		80F301841753A85E00134FF4 /* ToolbarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301741753A85E00134FF4 /* ToolbarBg@2x.png */; };
+		80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F9089617DF5196005DF111 /* KeyAttributesImage@2x.png */; };
+		80F9089917DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F9089717DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png */; };
 		80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04E9177C461000CE1ED5 /* strechableBorderedImage@2x.png */; };
 		80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04EC177C6F8500CE1ED5 /* strechableCellBg@2x.png */; };
 /* End PBXBuildFile section */
@@ -846,6 +848,8 @@
 		80F301701753A85E00134FF4 /* NotificationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationIcon@2x.png"; sourceTree = "<group>"; };
 		80F301721753A85E00134FF4 /* NotificationIconActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationIconActive@2x.png"; sourceTree = "<group>"; };
 		80F301741753A85E00134FF4 /* ToolbarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolbarBg@2x.png"; sourceTree = "<group>"; };
+		80F9089617DF5196005DF111 /* KeyAttributesImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KeyAttributesImage@2x.png"; sourceTree = "<group>"; };
+		80F9089717DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableKeyAttributesValueImage@2x.png"; sourceTree = "<group>"; };
 		80FA04E9177C461000CE1ED5 /* strechableBorderedImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableBorderedImage@2x.png"; sourceTree = "<group>"; };
 		80FA04EC177C6F8500CE1ED5 /* strechableCellBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableCellBg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1695,6 +1699,7 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				80F9089517DF5196005DF111 /* KeyAttributesImages */,
 				7BEBA8E017D4C5A20049CA1C /* LandingPages */,
 				8044394617D4A8C400AADFDB /* closeBtn@2x.png */,
 				8063D2CF1799486E00C01D92 /* DeleteReplace */,
@@ -1885,6 +1890,15 @@
 				80F301741753A85E00134FF4 /* ToolbarBg@2x.png */,
 			);
 			path = TopToolbar;
+			sourceTree = "<group>";
+		};
+		80F9089517DF5196005DF111 /* KeyAttributesImages */ = {
+			isa = PBXGroup;
+			children = (
+				80F9089617DF5196005DF111 /* KeyAttributesImage@2x.png */,
+				80F9089717DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png */,
+			);
+			path = KeyAttributesImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2129,6 +2143,8 @@
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
 				8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */,
 				8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */,
+				80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */,
+				80F9089917DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2332,7 +2348,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2350,7 +2366,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "D062EFDB-C6F6-4E76-B763-04322ADC05C1";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
@@ -2367,7 +2383,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2378,7 +2394,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "D062EFDB-C6F6-4E76-B763-04322ADC05C1";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "Externals/DTCoreText/Core/**";
@@ -2409,7 +2425,7 @@
 		805598E3174CE8200040631D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -225,7 +225,7 @@
         }
         else if (indexPath.row == 4) { //highscool
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"HighSchoolLandingPageViewController"];
+            centerVC = [sb instantiateViewControllerWithIdentifier:@"HighSchoolLandingPageNavigationController"];
         }
         else {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];

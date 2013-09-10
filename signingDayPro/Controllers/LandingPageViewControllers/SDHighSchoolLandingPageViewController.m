@@ -7,19 +7,15 @@
 //
 
 #import "SDHighSchoolLandingPageViewController.h"
+
 #import "SDLandingPageHighSchoolCell.h"
 #import "UIView+NibLoading.h"
-#import "SDPlayersSearchHeader.h"
-#import "UIView+NibLoading.h"
-#import "SDNavigationController.h"
-#import "SDProfileService.h"
+#import "SDHighSchoolsSearchHeader.h"
 
 
-#import "SDLandingPagesService.h"
+@interface SDHighSchoolLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDHighSchoolSearchHeaderDelegate>
 
-@interface SDHighSchoolLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
-
-@property (nonatomic, strong) SDPlayersSearchHeader *playerSearchView;
+@property (nonatomic, strong) SDHighSchoolsSearchHeader *highSchoolSearchView;
 
 - (void)followButtonPressed:(UIButton *)sender;
 
@@ -86,11 +82,11 @@
 - (void)hideFilterView
 {
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        CGRect frame = self.playerSearchView.frame;
+        CGRect frame = self.highSchoolSearchView.frame;
         frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
-        self.playerSearchView.frame = frame;
+        self.highSchoolSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
-        [self.playerSearchView removeFromSuperview];
+        [self.highSchoolSearchView removeFromSuperview];
     }];
     
     //we should tell that filter view was hidden by not using the filter button, so navigation controller could know the state.
@@ -99,24 +95,24 @@
 
 - (void)showFilterView
 {
-    SDPlayersSearchHeader *playerHeaderView = (SDPlayersSearchHeader *)[SDPlayersSearchHeader loadInstanceFromNib];
-    playerHeaderView.delegate = self;
+    SDHighSchoolsSearchHeader *highSchoolSearchView = [[SDHighSchoolsSearchHeader alloc] init];
+    highSchoolSearchView.delegate = self;
     
-    //hide SDPlayerSearchHeader under toolbar
-    CGRect frame = playerHeaderView.frame;
+    //hide SDHighSchoolHeaderView under toolbar
+    CGRect frame = highSchoolSearchView.frame;
     frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
-    playerHeaderView.frame = frame;
+    highSchoolSearchView.frame = frame;
     
-    self.playerSearchView = playerHeaderView;
-    [self.view addSubview:self.playerSearchView];
+    self.highSchoolSearchView = highSchoolSearchView;
+    [self.view addSubview:self.highSchoolSearchView];
     
-    //bring searchBar view to front so the filter SDPlayerSearchHeader would be behind this view
+    //bring searchBar view to front so the filter SDHighSchoolHeaderView would be behind this view
     [self.view bringSubviewToFront:self.searchBarBackground];
     
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-        CGRect frame = self.playerSearchView.frame;
+        CGRect frame = self.highSchoolSearchView.frame;
         frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height;
-        self.playerSearchView.frame = frame;
+        self.highSchoolSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
 }
@@ -141,22 +137,13 @@
 
 #pragma mark - SDPlayersSearchHeader Delegate
 
-- (void)playersSearchHeaderPressedStatesButton:(SDPlayersSearchHeader *)playersSearchHeader
+
+- (void)highSchoolSearchHeaderPressedStatesButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
     [self hideFilterView];
 }
 
-- (void)playersSearchHeaderPressedYearsButton:(SDPlayersSearchHeader *)playersSearchHeader
-{
-    [self hideFilterView];
-}
-
-- (void)playersSearchHeaderPressedPositionsButton:(SDPlayersSearchHeader *)playersSearchHeader
-{
-    [self hideFilterView];
-}
-
-- (void)playersSearchHeaderPressedSearchButton:(SDPlayersSearchHeader *)playersSearchHeader
+- (void)highSchoolSearchHeaderPressedSearchButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
     [self hideFilterView];
 }
