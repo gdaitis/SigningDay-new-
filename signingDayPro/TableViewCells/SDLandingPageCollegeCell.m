@@ -70,22 +70,16 @@
 {    
     if (user) {
         
-//        if ([user.thePlayer.accountVerified boolValue]) {
-//            self.accountVerifiedImageView.hidden = NO;
-//        }
-//        else {
-//            self.accountVerifiedImageView.hidden = YES;
-//        }
-//        self.nameLabel.text = user.name;
-//        self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
-//        self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];
-//        
-//        //position in list number
-//        self.playerPositionLabel.text = [NSString stringWithFormat:@"%d",[user.thePlayer.nationalRanking intValue]];
-//        
-//        //playing position E.g "CB"
-//        self.positionNameLabel.text = user.thePlayer.position;
-//        self.yearNameLabel.text = user.thePlayer.userClass;
+        if ([user.accountVerified boolValue]) {
+            self.accountVerifiedImageView.hidden = NO;
+        }
+        else {
+            self.accountVerifiedImageView.hidden = YES;
+        }
+        self.nameLabel.text = user.name;
+
+//        self.commitsNameLabel =  user.theTeam.commited;
+//        self.totalScoreNameLabel user.theTeam.totalScore;
         
         //cancel previous requests and set user image
         [self.userImageView cancelImageRequestOperation];
