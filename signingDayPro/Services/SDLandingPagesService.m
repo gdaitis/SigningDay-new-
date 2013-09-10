@@ -19,6 +19,8 @@
 #import "Conference.h"
 #import "State.h"
 
+int const kSDLandingPagesServiceDefaultClass = 2014;
+
 @interface User (BasicUserInfoParsing)
 
 + (User *)getUserWithBasicUserInfoFromUserDictionary:(NSDictionary *)userDictionary
