@@ -36,7 +36,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount+10 successBlock:^{
+    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreFrom:self.currentUserCount to:self.currentUserCount+10 successBlock:^{
         self.currentUserCount +=10;
         [self loadData];
     } failureBlock:^{
