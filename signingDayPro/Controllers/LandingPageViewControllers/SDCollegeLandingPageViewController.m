@@ -7,15 +7,11 @@
 //
 
 #import "SDCollegeLandingPageViewController.h"
+
 #import "SDLandingPageCollegeCell.h"
 #import "UIView+NibLoading.h"
 #import "SDPlayersSearchHeader.h"
-#import "UIView+NibLoading.h"
-#import "SDNavigationController.h"
-#import "SDProfileService.h"
-#import "SDUserProfileViewController.h"
 
-#import "SDLandingPagesService.h"
 
 @interface SDCollegeLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 

@@ -7,10 +7,6 @@
 //
 
 #import "SDBaseLandingPageViewController.h"
-#import "SDLandingPageSearchBar.h"
-#import "SDNavigationController.h"
-#import "SDProfileService.h"
-#import "SDUserProfileViewController.h"
 
 #define kHideKeyboardTag 999
 

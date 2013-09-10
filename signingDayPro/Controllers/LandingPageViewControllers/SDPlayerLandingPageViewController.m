@@ -7,15 +7,10 @@
 //
 
 #import "SDPlayerLandingPageViewController.h"
+
 #import "SDLandingPagePlayerCell.h"
 #import "UIView+NibLoading.h"
 #import "SDPlayersSearchHeader.h"
-#import "UIView+NibLoading.h"
-#import "SDNavigationController.h"
-#import "SDProfileService.h"
-#import "SDUserProfileViewController.h"
-
-#import "SDLandingPagesService.h"
 
 @interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 
