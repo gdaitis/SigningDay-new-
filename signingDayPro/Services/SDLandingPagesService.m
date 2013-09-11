@@ -222,7 +222,49 @@
 
 #pragma mark - HighSchools
 
-#warning TODO: more interfaces
++ (void)getAllHighSchoolsForAllStatesOrderedByNameForYearString:(NSString *)yearString
+                                                   successBlock:(void (^)(void))successBlock
+                                                   failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&$format=json", kSDBaseSigningDayURLString, yearString];
+    [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
+                                               successBlock:successBlock
+                                               failureBlock:failureBlock];
+}
+
++ (void)searchForHighSchoolsInAllStatesWithNameString:(NSString *)searchString
+                                         successBlock:(void (^)(void))successBlock
+                                         failureBlock:(void (^)(void))failureBlock
+{
+    [self searchForHighSchoolsWithNameString:searchString
+                       stateCodeStringsArray:nil
+                                successBlock:successBlock
+                                failureBlock:failureBlock];
+}
+
++ (void)searchForHighSchoolsWithNameString:(NSString *)searchString
+                     stateCodeStringsArray:(NSArray *)statesArray
+                              successBlock:(void (^)(void))successBlock
+                              failureBlock:(void (^)(void))failureBlock
+{
+    NSMutableArray *requestStringsArray = [[NSMutableArray alloc] init];
+    
+    if (searchString) {
+        NSString *searchRequestString = [NSString stringWithFormat:@"substringof('%@',DisplayName)", searchString];
+        [requestStringsArray addObject:searchRequestString];
+    }
+    if (statesArray) {
+        NSString *statesString = [self makeRequestsStringFromRequestsArray:statesArray
+                                              withUrlEntityNameToBeEqualTo:@"HighSchoolState"
+                                                appendingWithLogicalString:@"or "];
+        [requestStringsArray addObject:statesString];
+    }
+    NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools&$format=json&$filter=(%@)", kSDBaseSigningDayURLString, filterString];
+    [self startPlayersHTTPRequestOperationWithURLString:urlString
+                                           successBlock:successBlock
+                                           failureBlock:failureBlock];
+}
 
 + (void)startHighSchoolsHTTPRequestOperationWithURLString:(NSString *)URLString
                                              successBlock:(void (^)(void))successBlock
@@ -236,8 +278,9 @@
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
                                              if (user.theHighSchool)
                                                  user.theHighSchool = [HighSchool MR_createInContext:context];
-                                             user.theHighSchool.address = [userDictionary valueForKey:@"CityAndState"];
                                              user.theHighSchool.totalProspects = [userDictionary valueForKey:@"CurrentProspects"];
+                                             user.theHighSchool.city = [userDictionary valueForKey:@"HighSchoolCity"];
+                                             user.theHighSchool.stateCode = [userDictionary valueForKey:@"HighSchoolState"];
                                          }];
                                if (successBlock)
                                    successBlock();
