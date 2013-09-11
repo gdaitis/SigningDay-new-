@@ -479,7 +479,7 @@
             [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
             [SDErrorService handleFacebookError];
         } else {
-            NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+            NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
             if (status == FBSessionStateOpen) {
                 NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                 Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
@@ -488,7 +488,7 @@
                 [context MR_saveOnlySelfWithCompletion:^(BOOL success, NSError *error) {
                 }];
                 
-                NSString *fbToken = [appDelegate.fbSession accessToken];
+                NSString *fbToken = appDelegate.fbSession.accessTokenData.accessToken;
                 NSString *path = [NSString stringWithFormat:@"me/picture/?access_token=%@", fbToken];
                 
                 [client getPath:path

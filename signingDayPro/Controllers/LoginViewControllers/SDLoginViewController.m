@@ -81,11 +81,11 @@
     }
     
     [appDelegate.fbSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-        NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+        NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
         if (status == FBSessionStateOpen) {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.window animated:YES];
             hud.labelText = @"Logging in";
-            [SDLoginService loginWithUsername:nil password:nil facebookToken:[appDelegate.fbSession accessToken] successBlock:^{
+            [SDLoginService loginWithUsername:nil password:nil facebookToken:appDelegate.fbSession.accessTokenData.accessToken successBlock:^{
                 [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                 [self.delegate loginViewControllerDidFinishLoggingIn:self];
             }failBlock:^{

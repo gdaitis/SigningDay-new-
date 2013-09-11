@@ -109,7 +109,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
                 appDelegate.fbSession = [[FBSession alloc] initWithPermissions:[NSArray arrayWithObjects:@"email", @"publish_actions", nil]];
             }
             [appDelegate.fbSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+                NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
                 if (status == FBSessionStateOpen) {
                     master.facebookSharingOn = [NSNumber numberWithBool:YES];
                     [context MR_saveToPersistentStoreAndWait];
@@ -246,7 +246,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
                 appDelegate.fbSession = [[FBSession alloc] initWithPermissions:[NSArray arrayWithObjects:@"email", @"publish_actions", nil]];
             }
             [appDelegate.fbSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+                NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
                 if (status == FBSessionStateOpen) {
                     master.facebookSharingOn = [NSNumber numberWithBool:YES];
                     [context MR_saveToPersistentStoreAndWait];
