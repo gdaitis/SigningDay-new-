@@ -17,6 +17,7 @@
 		7B1DF0F917E09ADE005455D8 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0EE17E09ADE005455D8 /* AFURLConnectionOperation.m */; };
 		7B1DF0FA17E09ADE005455D8 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0F017E09ADE005455D8 /* AFXMLRequestOperation.m */; };
 		7B1DF0FB17E09ADE005455D8 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0F217E09ADE005455D8 /* UIImageView+AFNetworking.m */; };
+		7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF11217E0A1AE005455D8 /* UIImageView+Crop.m */; };
 		7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F638B17B8D22300B755B2 /* LikeImageOrange@2x.png */; };
 		7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F638C17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png */; };
 		7B2D9AAA1799504600B1D660 /* SDStarsRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D9AA91799504600B1D660 /* SDStarsRatingView.m */; };
@@ -396,6 +397,8 @@
 		7B1DF0F017E09ADE005455D8 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		7B1DF0F117E09ADE005455D8 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		7B1DF0F217E09ADE005455D8 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		7B1DF11117E0A1AE005455D8 /* UIImageView+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Crop.h"; path = "Custom Classes & Categories/UIImageView+Crop.h"; sourceTree = "<group>"; };
+		7B1DF11217E0A1AE005455D8 /* UIImageView+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Crop.m"; path = "Custom Classes & Categories/UIImageView+Crop.m"; sourceTree = "<group>"; };
 		7B1F638B17B8D22300B755B2 /* LikeImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeImageOrange@2x.png"; sourceTree = "<group>"; };
 		7B1F638C17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableBorderedImageOrange@2x.png"; sourceTree = "<group>"; };
 		7B2D9AA81799504600B1D660 /* SDStarsRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStarsRatingView.h; sourceTree = "<group>"; };
@@ -915,6 +918,15 @@
 			path = Externals/AFNetworking/AFNetworking;
 			sourceTree = SOURCE_ROOT;
 		};
+		7B1DF10817E0A187005455D8 /* UIImageView+Crop */ = {
+			isa = PBXGroup;
+			children = (
+				7B1DF11117E0A1AE005455D8 /* UIImageView+Crop.h */,
+				7B1DF11217E0A1AE005455D8 /* UIImageView+Crop.m */,
+			);
+			name = "UIImageView+Crop";
+			sourceTree = "<group>";
+		};
 		7B3031AA177ADB2C006EF25B /* HTMLParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1012,6 +1024,7 @@
 		7BBFBBDE17AA4ED300BF45A5 /* Custom classes */ = {
 			isa = PBXGroup;
 			children = (
+				7B1DF10817E0A187005455D8 /* UIImageView+Crop */,
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
 				80236152174D1B4C00595432 /* UILabel */,
@@ -2321,6 +2334,7 @@
 				7B1DF0F917E09ADE005455D8 /* AFURLConnectionOperation.m in Sources */,
 				7B1DF0FA17E09ADE005455D8 /* AFXMLRequestOperation.m in Sources */,
 				7B1DF0FB17E09ADE005455D8 /* UIImageView+AFNetworking.m in Sources */,
+				7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2417,14 +2431,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/FacebookSDK/build\"",
 					"\"$(SRCROOT)/Externals/FacebookSDK/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "signingDayPro/signingDayPro-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/signingDayPro-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SigningDay/FacebookSDK.framework/Versions/A\"";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D062EFDB-C6F6-4E76-B763-04322ADC05C1";
 				WRAPPER_EXTENSION = app;
@@ -2439,14 +2452,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/FacebookSDK/build\"",
 					"\"$(SRCROOT)/Externals/FacebookSDK/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "signingDayPro/signingDayPro-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/signingDayPro-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SigningDay/FacebookSDK.framework/Versions/A\"";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D062EFDB-C6F6-4E76-B763-04322ADC05C1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

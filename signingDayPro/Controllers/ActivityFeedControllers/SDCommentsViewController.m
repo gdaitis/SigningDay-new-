@@ -16,6 +16,7 @@
 #import "SDActivityFeedService.h"
 #import "SDCommentsHeaderView.h"
 #import "SDLikesViewController.h"
+#import "UIImageView+Crop.h"
 
 @interface SDCommentsViewController ()
 

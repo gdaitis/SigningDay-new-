@@ -86,7 +86,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Uploading image";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setUploadProgressBlock:^(NSInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         hud.progress = (float)totalBytesWritten / (float)totalBytesExpectedToWrite;
     }];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -225,7 +225,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Uploading video";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setUploadProgressBlock:^(NSInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         hud.progress = (float)totalBytesWritten / (float)totalBytesExpectedToWrite;
     }];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

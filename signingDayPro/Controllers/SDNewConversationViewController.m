@@ -20,6 +20,7 @@
 #import "SDConversationViewController.h"
 #import "SDFollowingService.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImageView+Crop.h"
 
 @interface SDNewConversationViewController ()
 

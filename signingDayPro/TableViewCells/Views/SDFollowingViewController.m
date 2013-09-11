@@ -17,6 +17,7 @@
 #import "UIImage+Crop.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SDUserProfileViewController.h"
+#import "UIImageView+Crop.h"
 
 @interface SDFollowingViewController ()
 
