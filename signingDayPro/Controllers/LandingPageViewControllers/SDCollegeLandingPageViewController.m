@@ -138,17 +138,17 @@
 
 - (void)teamsSearchHeaderPressedConferencesButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
-    [self hideFilterView];
+    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 - (void)teamsSearchHeaderPressedClassButton:(SDTeamsSearchHeader *)teamsSeachHeader;
 {
-    [self hideFilterView];
+    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 - (void)teamsSearchHeaderPressedSearchButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
-    [self hideFilterView];
+    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 @end

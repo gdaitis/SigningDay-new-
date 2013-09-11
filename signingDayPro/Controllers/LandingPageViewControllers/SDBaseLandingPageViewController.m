@@ -7,6 +7,7 @@
 //
 
 #import "SDBaseLandingPageViewController.h"
+#import "SDFilterListViewController.h"
 
 #define kHideKeyboardTag 999
 
@@ -157,6 +158,21 @@
 - (void)showFilterView
 {
     
+}
+
+#pragma mark - Filter List Presentation
+
+- (void)presentFilterListViewWithListData:(NSArray *)listData andSelectedRow:(int)selectedRow
+{
+    [self hideFilterView];
+    UIStoryboard *landingPageViewStoryboard = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard"
+                                                                        bundle:nil];
+    SDFilterListViewController *filterListViewController = [landingPageViewStoryboard instantiateViewControllerWithIdentifier:@"SDFilterListViewController"];
+    
+    filterListViewController.dataArray = listData;
+    filterListViewController.selectedRow = selectedRow; //starting from 0
+    
+    [self.navigationController pushViewController:filterListViewController animated:YES];
 }
 
 @end

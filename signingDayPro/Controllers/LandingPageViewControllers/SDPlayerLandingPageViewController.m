@@ -137,22 +137,22 @@
 
 - (void)playersSearchHeaderPressedStatesButton:(SDPlayersSearchHeader *)playersSearchHeader
 {
-    [self hideFilterView];
+    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"abc", nil] andSelectedRow:0];
 }
 
 - (void)playersSearchHeaderPressedYearsButton:(SDPlayersSearchHeader *)playersSearchHeader
 {
-    [self hideFilterView];
+    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", @"zvf", nil] andSelectedRow:1];
 }
 
 - (void)playersSearchHeaderPressedPositionsButton:(SDPlayersSearchHeader *)playersSearchHeader
 {
-    [self hideFilterView];
+    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 - (void)playersSearchHeaderPressedSearchButton:(SDPlayersSearchHeader *)playersSearchHeader
 {
-    [self hideFilterView];
+    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 @end

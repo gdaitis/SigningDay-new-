@@ -24,5 +24,6 @@
 
 - (void)hideFilterView;
 - (void)showFilterView;
+- (void)presentFilterListViewWithListData:(NSArray *)listData andSelectedRow:(int)selectedRow;
 
 @end

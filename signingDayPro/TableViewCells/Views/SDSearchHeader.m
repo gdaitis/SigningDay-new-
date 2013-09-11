@@ -36,7 +36,7 @@ const float kSDSearchHeaderLeftMargin = 11;
     [self.layer addSublayer:newShadow];
     
     // bottom line
-    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 189, 320, 1)];
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, 1)];
     bottomLine.backgroundColor = [UIColor colorWithRed:168.0f/255.0f
                                                  green:168.0f/255.0f
                                                   blue:168.0f/255.0f
