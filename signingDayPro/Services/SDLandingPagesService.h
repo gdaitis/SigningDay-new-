@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-int const kSDLandingPagesServiceDefaultClass = 2014;
+extern int const kSDLandingPagesServiceDefaultClass;
 
 @interface SDLandingPagesService : NSObject
 
