@@ -19,8 +19,6 @@
 #import "Conference.h"
 #import "State.h"
 
-int const kSDLandingPagesServiceDefaultClass = 2014;
-
 @interface User (BasicUserInfoParsing)
 
 + (User *)getUserWithBasicUserInfoFromUserDictionary:(NSDictionary *)userDictionary
@@ -171,10 +169,11 @@ int const kSDLandingPagesServiceDefaultClass = 2014;
 
 + (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
                                                    pageSize:(NSInteger)pageSize
+                                                classString:(NSString *)classString
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%i&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, kSDLandingPagesServiceDefaultClass, pageNumber, pageSize];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
     
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                          successBlock:successBlock

@@ -12,6 +12,7 @@
 #import "UIView+NibLoading.h"
 #import "SDTeamsSearchHeader.h"
 
+NSString * const kSDDefaultClass = @"2014";
 
 @interface SDCollegeLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDTeamsSearchHeaderDelegate>
 
@@ -35,14 +36,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	// Do any additional setup after loading the view.;
     
-    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount pageSize:10 successBlock:^{
-        self.currentUserCount +=10;
-        [self loadData];
-    } failureBlock:^{
-        
-    }];
+    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
+                                                                      pageSize:10
+                                                                   classString:kSDDefaultClass
+                                                                  successBlock:^{
+                                                                      self.currentUserCount +=10;
+                                                                      [self loadData];
+                                                                  } failureBlock:nil];
 }
 
 - (void)didReceiveMemoryWarning
