@@ -40,9 +40,10 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     [params setObject:status forKey:@"status"];
     
     NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
-    TWRequest *request = [[TWRequest alloc] initWithURL:url
-                                             parameters:params
-                                          requestMethod:TWRequestMethodPOST];
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodPOST
+                                                      URL:url
+                                               parameters:params];
     [request setAccount:appDelegate.twitterAccount];
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         if (!responseData) {
@@ -143,29 +144,29 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
             if (!appDelegate.twitterAccount) {
             ACAccountStore *store = [[ACAccountStore alloc] init];
             ACAccountType *twitterAccountType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-            
             [store requestAccessToAccountsWithType:twitterAccountType
-                             withCompletionHandler:^(BOOL granted, NSError *error) {
-                                 if (!granted) {
-                                     NSLog(@"User rejected access to the account.");
-                                     
-                                     master.twitterSharingOn = [NSNumber numberWithBool:NO];
-                                     [context MR_saveToPersistentStoreAndWait];
-                                 } else {
-                                     master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                     [context MR_saveToPersistentStoreAndWait];
-                                     
-                                     NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
-                                     if ([twitterAccounts count] > 0) {
-                                         
-                                         ACAccount *account = [twitterAccounts objectAtIndex:0];
-                                         appDelegate.twitterAccount = account;
-                                     }
-                                     [self postToTwitterWithTitle:title
-                                                      description:description
-                                                             link:link];
-                                 }
-                             }];
+                                           options:nil
+                                        completion:^(BOOL granted, NSError *error) {
+                                            if (!granted) {
+                                                NSLog(@"User rejected access to the account.");
+                                                
+                                                master.twitterSharingOn = [NSNumber numberWithBool:NO];
+                                                [context MR_saveToPersistentStoreAndWait];
+                                            } else {
+                                                master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                [context MR_saveToPersistentStoreAndWait];
+                                                
+                                                NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
+                                                if ([twitterAccounts count] > 0) {
+                                                    
+                                                    ACAccount *account = [twitterAccounts objectAtIndex:0];
+                                                    appDelegate.twitterAccount = account;
+                                                }
+                                                [self postToTwitterWithTitle:title
+                                                                 description:description
+                                                                        link:link];
+                                            }
+                                        }];
             } else {
                 [self postToTwitterWithTitle:title
                                  description:description
@@ -282,27 +283,28 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
                 ACAccountType *twitterAccountType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
                 
                 [store requestAccessToAccountsWithType:twitterAccountType
-                                 withCompletionHandler:^(BOOL granted, NSError *error) {
-                                     if (!granted) {
-                                         NSLog(@"User rejected access to the account.");
-                                         
-                                         master.twitterSharingOn = [NSNumber numberWithBool:NO];
-                                         [context MR_saveToPersistentStoreAndWait];
-                                     } else {
-                                         master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                         [context MR_saveToPersistentStoreAndWait];
-                                         
-                                         NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
-                                         if ([twitterAccounts count] > 0) {
-                                             
-                                             ACAccount *account = [twitterAccounts objectAtIndex:0];
-                                             appDelegate.twitterAccount = account;
-                                         }
-                                         [self postToTwitterWithTitle:title
-                                                          description:description
-                                                                 link:link];
-                                     }
-                                 }];
+                                               options:nil
+                                            completion:^(BOOL granted, NSError *error) {
+                                                if (!granted) {
+                                                    NSLog(@"User rejected access to the account.");
+                                                    
+                                                    master.twitterSharingOn = [NSNumber numberWithBool:NO];
+                                                    [context MR_saveToPersistentStoreAndWait];
+                                                } else {
+                                                    master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                    [context MR_saveToPersistentStoreAndWait];
+                                                    
+                                                    NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
+                                                    if ([twitterAccounts count] > 0) {
+                                                        
+                                                        ACAccount *account = [twitterAccounts objectAtIndex:0];
+                                                        appDelegate.twitterAccount = account;
+                                                    }
+                                                    [self postToTwitterWithTitle:title
+                                                                     description:description
+                                                                            link:link];
+                                                }
+                                            }];
             } else {
                 [self postToTwitterWithTitle:title
                                  description:description

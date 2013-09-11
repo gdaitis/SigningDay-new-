@@ -18,6 +18,7 @@
 		7B1DF0FA17E09ADE005455D8 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0F017E09ADE005455D8 /* AFXMLRequestOperation.m */; };
 		7B1DF0FB17E09ADE005455D8 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0F217E09ADE005455D8 /* UIImageView+AFNetworking.m */; };
 		7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF11217E0A1AE005455D8 /* UIImageView+Crop.m */; };
+		7B1DF11D17E0AF9D005455D8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1DF11C17E0AF9D005455D8 /* Social.framework */; };
 		7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F638B17B8D22300B755B2 /* LikeImageOrange@2x.png */; };
 		7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F638C17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png */; };
 		7B2D9AAA1799504600B1D660 /* SDStarsRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D9AA91799504600B1D660 /* SDStarsRatingView.m */; };
@@ -399,6 +400,7 @@
 		7B1DF0F217E09ADE005455D8 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		7B1DF11117E0A1AE005455D8 /* UIImageView+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Crop.h"; path = "Custom Classes & Categories/UIImageView+Crop.h"; sourceTree = "<group>"; };
 		7B1DF11217E0A1AE005455D8 /* UIImageView+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Crop.m"; path = "Custom Classes & Categories/UIImageView+Crop.m"; sourceTree = "<group>"; };
+		7B1DF11C17E0AF9D005455D8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7B1F638B17B8D22300B755B2 /* LikeImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikeImageOrange@2x.png"; sourceTree = "<group>"; };
 		7B1F638C17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableBorderedImageOrange@2x.png"; sourceTree = "<group>"; };
 		7B2D9AA81799504600B1D660 /* SDStarsRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStarsRatingView.h; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B1DF11D17E0AF9D005455D8 /* Social.framework in Frameworks */,
 				8044395317D4AF1000AADFDB /* libDTCoreText.a in Frameworks */,
 				7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */,
 				7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */,
@@ -1405,6 +1408,7 @@
 		805598C0174CE8200040631D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7B1DF11C17E0AF9D005455D8 /* Social.framework */,
 				7B1DF0DD17E09A11005455D8 /* FacebookSDK.framework */,
 				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */,
