@@ -41,9 +41,9 @@
                         successBlock:(void (^)(void))successBlock
                         failureBlock:(void (^)(void))failureBlock;
 // High Schools
-+ (void)getAllHighSchoolsForAllStatesOrderedByNameForYearString:(NSString *)yearString
-                                                   successBlock:(void (^)(void))successBlock
-                                                   failureBlock:(void (^)(void))failureBlock;
++ (void)getAllHighSchoolsForAllStatesForYearString:(NSString *)yearString
+                                      successBlock:(void (^)(void))successBlock
+                                      failureBlock:(void (^)(void))failureBlock;
 + (void)searchForHighSchoolsInAllStatesWithNameString:(NSString *)searchString
                                          successBlock:(void (^)(void))successBlock
                                          failureBlock:(void (^)(void))failureBlock;
@@ -52,9 +52,9 @@
                               successBlock:(void (^)(void))successBlock
                               failureBlock:(void (^)(void))failureBlock;
 // Conferences
-+ (void)getAllConferencesOrderedByFullNameWithSuccessBlock:(void (^)(void))successBlock
-                                              failureBlock:(void (^)(void))failureBlock;
++ (void)getAllConferencesOFullNameWithSuccessBlock:(void (^)(void))successBlock
+                                      failureBlock:(void (^)(void))failureBlock;
 // States
-+ (void)getAllStatesOrderedByFullNameWithSuccessBlock:(void (^)(void))successBlock
-                                         failureBlock:(void (^)(void))failureBlock;
++ (void)getAllStatesSuccessBlock:(void (^)(void))successBlock
+                    failureBlock:(void (^)(void))failureBlock;
 @end

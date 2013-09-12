@@ -223,9 +223,9 @@
 
 #pragma mark - HighSchools
 
-+ (void)getAllHighSchoolsForAllStatesOrderedByNameForYearString:(NSString *)yearString
-                                                   successBlock:(void (^)(void))successBlock
-                                                   failureBlock:(void (^)(void))failureBlock
++ (void)getAllHighSchoolsForAllStatesForYearString:(NSString *)yearString
+                                      successBlock:(void (^)(void))successBlock
+                                      failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&$format=json", kSDBaseSigningDayURLString, yearString];
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
@@ -293,10 +293,10 @@
 
 #pragma mark - Conferences
 
-+ (void)getAllConferencesOrderedByFullNameWithSuccessBlock:(void (^)(void))successBlock
-                                              failureBlock:(void (^)(void))failureBlock
++ (void)getAllConferencesOFullNameWithSuccessBlock:(void (^)(void))successBlock
+                                      failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Conferences?$format=json&$orderby=FullName asc", kSDBaseSigningDayURLString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/GetConferences?$format=json", kSDBaseSigningDayURLString];
     [self startHTTPRequestOperationWithURLString:urlString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
                                NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
@@ -331,10 +331,10 @@
 
 #pragma mark - States
 
-+ (void)getAllStatesOrderedByFullNameWithSuccessBlock:(void (^)(void))successBlock
-                                         failureBlock:(void (^)(void))failureBlock
++ (void)getAllStatesSuccessBlock:(void (^)(void))successBlock
+                    failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/States?$format=json&$orderby=Name asc", kSDBaseSigningDayURLString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/States?$format=json", kSDBaseSigningDayURLString];
     [self startHTTPRequestOperationWithURLString:urlString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
                                NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
