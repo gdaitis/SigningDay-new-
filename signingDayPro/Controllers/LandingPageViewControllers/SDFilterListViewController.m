@@ -43,7 +43,7 @@
         {
             //data is downloading so showing activity indicator
             [self showProgressHudInView:self.view withText:@"Loading"];
-            [SDLandingPagesService getAllStatesOrderedByFullNameWithSuccessBlock:^{
+            [SDLandingPagesService getAllStatesSuccessBlock:^{
                 [self loadStates];
             } failureBlock:^{
                 [self hideProgressHudInView:self.view];
