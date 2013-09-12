@@ -18,6 +18,7 @@
 #import "SDConversationViewController.h"
 #import "SDContentHeaderView.h"
 #import "SDAPIClient.h"
+#import "UIImageView+Crop.h"
 
 @interface SDMessageViewController ()
 

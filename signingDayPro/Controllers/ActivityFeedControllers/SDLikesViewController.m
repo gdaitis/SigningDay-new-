@@ -16,6 +16,7 @@
 #import "SDUserProfileViewController.h"
 #import "SDActivityFeedService.h"
 #import "Like.h"
+#import "UIImageView+Crop.h"
 
 @interface SDLikesViewController () <UITableViewDataSource, UITableViewDelegate>
 

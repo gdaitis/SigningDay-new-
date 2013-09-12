@@ -17,6 +17,7 @@
 #import "AFNetworking.h"
 #import "SDFollowingService.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImageView+Crop.h"
 
 @interface SDAddTagsViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
 
@@ -210,13 +211,15 @@
 
 - (void)cancelButtonPressed
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 - (void)doneButtonPressed
 {
     [self.delegate addTagsViewController:self didFinishPickingTags:self.selectedTags];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 - (void)viewDidUnload

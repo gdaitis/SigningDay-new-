@@ -40,9 +40,10 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     [params setObject:status forKey:@"status"];
     
     NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
-    TWRequest *request = [[TWRequest alloc] initWithURL:url
-                                             parameters:params
-                                          requestMethod:TWRequestMethodPOST];
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodPOST
+                                                      URL:url
+                                               parameters:params];
     [request setAccount:appDelegate.twitterAccount];
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         if (!responseData) {
@@ -86,7 +87,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Uploading image";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setUploadProgressBlock:^(NSInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         hud.progress = (float)totalBytesWritten / (float)totalBytesExpectedToWrite;
     }];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -109,7 +110,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
                 appDelegate.fbSession = [[FBSession alloc] initWithPermissions:[NSArray arrayWithObjects:@"email", @"publish_actions", nil]];
             }
             [appDelegate.fbSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+                NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
                 if (status == FBSessionStateOpen) {
                     master.facebookSharingOn = [NSNumber numberWithBool:YES];
                     [context MR_saveToPersistentStoreAndWait];
@@ -143,29 +144,29 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
             if (!appDelegate.twitterAccount) {
             ACAccountStore *store = [[ACAccountStore alloc] init];
             ACAccountType *twitterAccountType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-            
             [store requestAccessToAccountsWithType:twitterAccountType
-                             withCompletionHandler:^(BOOL granted, NSError *error) {
-                                 if (!granted) {
-                                     NSLog(@"User rejected access to the account.");
-                                     
-                                     master.twitterSharingOn = [NSNumber numberWithBool:NO];
-                                     [context MR_saveToPersistentStoreAndWait];
-                                 } else {
-                                     master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                     [context MR_saveToPersistentStoreAndWait];
-                                     
-                                     NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
-                                     if ([twitterAccounts count] > 0) {
-                                         
-                                         ACAccount *account = [twitterAccounts objectAtIndex:0];
-                                         appDelegate.twitterAccount = account;
-                                     }
-                                     [self postToTwitterWithTitle:title
-                                                      description:description
-                                                             link:link];
-                                 }
-                             }];
+                                           options:nil
+                                        completion:^(BOOL granted, NSError *error) {
+                                            if (!granted) {
+                                                NSLog(@"User rejected access to the account.");
+                                                
+                                                master.twitterSharingOn = [NSNumber numberWithBool:NO];
+                                                [context MR_saveToPersistentStoreAndWait];
+                                            } else {
+                                                master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                [context MR_saveToPersistentStoreAndWait];
+                                                
+                                                NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
+                                                if ([twitterAccounts count] > 0) {
+                                                    
+                                                    ACAccount *account = [twitterAccounts objectAtIndex:0];
+                                                    appDelegate.twitterAccount = account;
+                                                }
+                                                [self postToTwitterWithTitle:title
+                                                                 description:description
+                                                                        link:link];
+                                            }
+                                        }];
             } else {
                 [self postToTwitterWithTitle:title
                                  description:description
@@ -225,7 +226,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Uploading video";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setUploadProgressBlock:^(NSInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         hud.progress = (float)totalBytesWritten / (float)totalBytesExpectedToWrite;
     }];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -246,7 +247,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
                 appDelegate.fbSession = [[FBSession alloc] initWithPermissions:[NSArray arrayWithObjects:@"email", @"publish_actions", nil]];
             }
             [appDelegate.fbSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+                NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
                 if (status == FBSessionStateOpen) {
                     master.facebookSharingOn = [NSNumber numberWithBool:YES];
                     [context MR_saveToPersistentStoreAndWait];
@@ -282,27 +283,28 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
                 ACAccountType *twitterAccountType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
                 
                 [store requestAccessToAccountsWithType:twitterAccountType
-                                 withCompletionHandler:^(BOOL granted, NSError *error) {
-                                     if (!granted) {
-                                         NSLog(@"User rejected access to the account.");
-                                         
-                                         master.twitterSharingOn = [NSNumber numberWithBool:NO];
-                                         [context MR_saveToPersistentStoreAndWait];
-                                     } else {
-                                         master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                         [context MR_saveToPersistentStoreAndWait];
-                                         
-                                         NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
-                                         if ([twitterAccounts count] > 0) {
-                                             
-                                             ACAccount *account = [twitterAccounts objectAtIndex:0];
-                                             appDelegate.twitterAccount = account;
-                                         }
-                                         [self postToTwitterWithTitle:title
-                                                          description:description
-                                                                 link:link];
-                                     }
-                                 }];
+                                               options:nil
+                                            completion:^(BOOL granted, NSError *error) {
+                                                if (!granted) {
+                                                    NSLog(@"User rejected access to the account.");
+                                                    
+                                                    master.twitterSharingOn = [NSNumber numberWithBool:NO];
+                                                    [context MR_saveToPersistentStoreAndWait];
+                                                } else {
+                                                    master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                    [context MR_saveToPersistentStoreAndWait];
+                                                    
+                                                    NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
+                                                    if ([twitterAccounts count] > 0) {
+                                                        
+                                                        ACAccount *account = [twitterAccounts objectAtIndex:0];
+                                                        appDelegate.twitterAccount = account;
+                                                    }
+                                                    [self postToTwitterWithTitle:title
+                                                                     description:description
+                                                                            link:link];
+                                                }
+                                            }];
             } else {
                 [self postToTwitterWithTitle:title
                                  description:description

@@ -73,7 +73,7 @@
                 appDelegate.fbSession = [[FBSession alloc] initWithPermissions:[NSArray arrayWithObjects:@"email", @"publish_actions", nil]];
             }
             [appDelegate.fbSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+                NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
                 if (status == FBSessionStateOpen) {
                     master.facebookSharingOn = [NSNumber numberWithBool:YES];
                     [context MR_saveToPersistentStoreAndWait];
@@ -99,31 +99,32 @@
             ACAccountType *twitterAccountType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
             
             [store requestAccessToAccountsWithType:twitterAccountType
-                             withCompletionHandler:^(BOOL granted, NSError *error) {
-                                 if (!granted) {
-                                      NSLog(@"User rejected access to the account.");
-                                     
-                                     master.twitterSharingOn = [NSNumber numberWithBool:NO];
-                                     [context MR_saveToPersistentStoreAndWait];
-                                     
-                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                         [tableView reloadData];
-                                     });
-                                 } else {
-                                     master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                     [context MR_saveToPersistentStoreAndWait];
-                                     
-                                      NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
-                                     if ([twitterAccounts count] > 0) {
-                                         
-                                         ACAccount *account = [twitterAccounts objectAtIndex:0];
-                                         appDelegate.twitterAccount = account;                                         
-                                     }
-                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                         [tableView reloadData];
-                                     });
-                                 }
-                             }];
+                                           options:nil
+                                        completion:^(BOOL granted, NSError *error) {
+                                            if (!granted) {
+                                                NSLog(@"User rejected access to the account.");
+                                                
+                                                master.twitterSharingOn = [NSNumber numberWithBool:NO];
+                                                [context MR_saveToPersistentStoreAndWait];
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [tableView reloadData];
+                                                });
+                                            } else {
+                                                master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                [context MR_saveToPersistentStoreAndWait];
+                                                
+                                                NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
+                                                if ([twitterAccounts count] > 0) {
+                                                    
+                                                    ACAccount *account = [twitterAccounts objectAtIndex:0];
+                                                    appDelegate.twitterAccount = account;
+                                                }
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [tableView reloadData];
+                                                });
+                                            }
+                                        }];
         } else {
             master.twitterSharingOn = [NSNumber numberWithBool:NO];
             [context MR_saveToPersistentStoreAndWait];

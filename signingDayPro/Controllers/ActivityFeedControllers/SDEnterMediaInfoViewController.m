@@ -86,7 +86,7 @@
         text = @"Tags";
     else
         text = [self.tagsArray componentsJoinedByString:@", "];
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(221, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(221, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     return size.height;
 }
 
@@ -132,7 +132,7 @@
                     appDelegate.fbSession = [[FBSession alloc] initWithPermissions:[NSArray arrayWithObjects:@"email", @"publish_actions", nil]];
                 }
                 [appDelegate.fbSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-                    NSLog(@"FB access token: %@", [appDelegate.fbSession accessToken]);
+                    NSLog(@"FB access token: %@", appDelegate.fbSession.accessTokenData.accessToken);
                     if (status == FBSessionStateOpen) {
                         master.facebookSharingOn = [NSNumber numberWithBool:YES];
                         
@@ -149,26 +149,26 @@
             if (!twitter) {
                 ACAccountStore *store = [[ACAccountStore alloc] init];
                 ACAccountType *twitterAccountType = [store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-                
                 [store requestAccessToAccountsWithType:twitterAccountType
-                                 withCompletionHandler:^(BOOL granted, NSError *error) {
-                                     if (!granted) {
-                                         NSLog(@"User rejected access to the account.");
-                                     } else {
-                                         master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                         [context MR_saveToPersistentStoreAndWait];
-                                         
-                                         NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
-                                         if ([twitterAccounts count] > 0) {
-                                             
-                                             ACAccount *account = [twitterAccounts objectAtIndex:0];
-                                             appDelegate.twitterAccount = account;
-                                         }
-                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                             [self.tableView reloadData];
-                                         });
-                                     }
-                                 }];
+                                               options:nil
+                                            completion:^(BOOL granted, NSError *error) {
+                                                if (!granted) {
+                                                    NSLog(@"User rejected access to the account.");
+                                                } else {
+                                                    master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                    [context MR_saveToPersistentStoreAndWait];
+                                                    
+                                                    NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
+                                                    if ([twitterAccounts count] > 0) {
+                                                        
+                                                        ACAccount *account = [twitterAccounts objectAtIndex:0];
+                                                        appDelegate.twitterAccount = account;
+                                                    }
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        [self.tableView reloadData];
+                                                    });
+                                                }
+                                            }];
             }
         }
     }

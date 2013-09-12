@@ -18,6 +18,8 @@
 #import "AFNetworking.h"
 #import "DTCoreText.h"
 
+#import "UIImageView+Crop.h"
+
 #define ClearConversationButtonIndex 0
 
 @interface SDConversationViewController ()
