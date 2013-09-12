@@ -23,4 +23,10 @@
 #define kBaseBackgroundColor [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1];
 #define kBaseSelectedCellColor [UIColor colorWithRed:207.0f/255.0f green:181.0f/255.0f blue:21.0f/255.0f alpha:1];
 
+
+//Filter view button constants
+#define kDefaultYearFilterName @"2014"
+#define kDefaultPositionFilterName @"All positions"
+#define kDefaultStateFilterName @"All states"
+
 #endif
