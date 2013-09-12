@@ -248,6 +248,8 @@
 		8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */; };
 		8078687017DDBFE600B77789 /* SDCollegeLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686D17DDBFE600B77789 /* SDCollegeLandingPageViewController.m */; };
 		8078687117DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686F17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m */; };
+		807ACB2417E1ABF1005B8442 /* PositionsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 807ACB2317E1ABF1005B8442 /* PositionsList.plist */; };
+		807ACB2E17E1ADC1005B8442 /* YearsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 807ACB2D17E1ADC1005B8442 /* YearsList.plist */; };
 		8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */; };
 		8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */; };
 		8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083891B17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m */; };
@@ -760,6 +762,8 @@
 		8078686D17DDBFE600B77789 /* SDCollegeLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollegeLandingPageViewController.m; sourceTree = "<group>"; };
 		8078686E17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolLandingPageViewController.h; sourceTree = "<group>"; };
 		8078686F17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolLandingPageViewController.m; sourceTree = "<group>"; };
+		807ACB2317E1ABF1005B8442 /* PositionsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PositionsList.plist; sourceTree = "<group>"; };
+		807ACB2D17E1ADC1005B8442 /* YearsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YearsList.plist; sourceTree = "<group>"; };
 		8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPageStoryBoard.storyboard; sourceTree = "<group>"; };
 		8083891817D4D78E006E4FE9 /* SDBaseLandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseLandingPageViewController.h; sourceTree = "<group>"; };
 		8083891917D4D78E006E4FE9 /* SDBaseLandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseLandingPageViewController.m; sourceTree = "<group>"; };
@@ -1450,6 +1454,7 @@
 		805598C8174CE8200040631D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				807ACB2217E1ABF1005B8442 /* DataFiles */,
 				80A0612A17529C84005FE319 /* Images */,
 				805CF357174E0B740046E6A5 /* BebasNeue.otf */,
 				7BEBA71417D49DDA0049CA1C /* DTCoreTextFontOverrides.plist */,
@@ -1638,6 +1643,15 @@
 				8096974417AA90CF00970E73 /* playImage@2x.png */,
 			);
 			name = DeleteReplace;
+			sourceTree = "<group>";
+		};
+		807ACB2217E1ABF1005B8442 /* DataFiles */ = {
+			isa = PBXGroup;
+			children = (
+				807ACB2317E1ABF1005B8442 /* PositionsList.plist */,
+				807ACB2D17E1ADC1005B8442 /* YearsList.plist */,
+			);
+			path = DataFiles;
 			sourceTree = "<group>";
 		};
 		8083891717D4D78E006E4FE9 /* LandingPageViewControllers */ = {
@@ -2159,6 +2173,8 @@
 				80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */,
 				80F9089917DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png in Resources */,
 				801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */,
+				807ACB2417E1ABF1005B8442 /* PositionsList.plist in Resources */,
+				807ACB2E17E1ADC1005B8442 /* YearsList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

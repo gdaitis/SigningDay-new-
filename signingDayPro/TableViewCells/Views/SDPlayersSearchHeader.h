@@ -24,6 +24,9 @@
 
 @interface SDPlayersSearchHeader : SDSearchHeader
 
+@property (nonatomic, strong) UIButton *statesButton;
+@property (nonatomic, strong) UIButton *yearsButton;
+@property (nonatomic, strong) UIButton *positionsButton;
 @property (nonatomic, weak) id <SDPlayersSearchHeaderDelegate> delegate;
 
 @end

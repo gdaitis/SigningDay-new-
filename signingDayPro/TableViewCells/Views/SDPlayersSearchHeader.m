@@ -10,9 +10,6 @@
 
 @interface SDPlayersSearchHeader ()
 
-@property (nonatomic, strong) UIButton *statesButton;
-@property (nonatomic, strong) UIButton *yearsButton;
-@property (nonatomic, strong) UIButton *positionsButton;
 @property (nonatomic, strong) UIButton *searchButton;
 
 @end

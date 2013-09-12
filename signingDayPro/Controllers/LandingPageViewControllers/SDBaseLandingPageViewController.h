@@ -10,12 +10,14 @@
 #import "SDBaseViewController.h"
 #import "SDLandingPageSearchBar.h"
 #import "SDProfileService.h"
+#import "SDFilterListViewController.h"
 #import "SDUserProfileViewController.h"
 #import "SDLandingPagesService.h"
 #import "SDNavigationController.h"
 #import "User.h"
 
-@interface SDBaseLandingPageViewController : SDBaseViewController
+
+@interface SDBaseLandingPageViewController : SDBaseViewController <SDFilterListDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, assign) int currentUserCount;
@@ -24,6 +26,6 @@
 
 - (void)hideFilterView;
 - (void)showFilterView;
-- (void)presentFilterListViewWithListData:(NSArray *)listData andSelectedRow:(int)selectedRow;
+- (void)presentFilterListViewWithType:(FilterListType)listType andSelectedValue:(id)value;
 
 @end

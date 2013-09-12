@@ -17,8 +17,6 @@
 
 @property (nonatomic, strong) SDTeamsSearchHeader *teamSearchView;
 
-- (void)followButtonPressed:(UIButton *)sender;
-
 @end
 
 @implementation SDCollegeLandingPageViewController
@@ -65,15 +63,6 @@
     // Configure the cell...
     [cell setupCellWithUser:user];
     return cell;
-}
-
-#pragma mark - IBActions
-
-- (void)followButtonPressed:(UIButton *)sender
-{
-    //    indexpath.row = sender.tag;
-    
-    sender.selected = !sender.selected;
 }
 
 #pragma mark - Filter button actions
@@ -138,17 +127,17 @@
 
 - (void)teamsSearchHeaderPressedConferencesButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
-    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 - (void)teamsSearchHeaderPressedClassButton:(SDTeamsSearchHeader *)teamsSeachHeader;
 {
-    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 - (void)teamsSearchHeaderPressedSearchButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
-    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 @end

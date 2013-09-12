@@ -9,21 +9,32 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
+typedef enum {
+	LIST_TYPE_STATES = 0,
+	LIST_TYPE_YEARS,
+    LIST_TYPE_POSITIONS
+} FilterListType;
+
+
+
+@class State;
 @class SDFilterListViewController;
 
 @protocol SDFilterListDelegate <NSObject>
 
 @optional
-
-//needs optional methods
+- (void)stateChosen:(State *)state inFilterListController:(SDFilterListViewController *)filterListViewController;
+- (void)yearsChosen:(NSDictionary *)years inFilterListController:(SDFilterListViewController *)filterListViewController;
+- (void)positionChosen:(NSDictionary *)position inFilterListController:(SDFilterListViewController *)filterListViewController;
 
 @end
 
 @interface SDFilterListViewController : SDBaseViewController
 
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, assign) int selectedRow;
+@property (nonatomic, strong) id selectedItem;
 @property (nonatomic, weak) id <SDFilterListDelegate> delegate;
+@property (nonatomic, assign) FilterListType filterListType;
 
 @end
 

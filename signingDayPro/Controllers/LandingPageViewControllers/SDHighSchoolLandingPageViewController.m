@@ -17,8 +17,6 @@
 
 @property (nonatomic, strong) SDHighSchoolsSearchHeader *highSchoolSearchView;
 
-- (void)followButtonPressed:(UIButton *)sender;
-
 @end
 
 @implementation SDHighSchoolLandingPageViewController
@@ -66,15 +64,6 @@
     // Configure the cell...
     [cell setupCellWithUser:user];
     return cell;
-}
-
-#pragma mark - IBActions
-
-- (void)followButtonPressed:(UIButton *)sender
-{
-    //    indexpath.row = sender.tag;
-    
-    sender.selected = !sender.selected;
 }
 
 #pragma mark - Filter button actions
@@ -140,12 +129,12 @@
 
 - (void)highSchoolSearchHeaderPressedStatesButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
-    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 - (void)highSchoolSearchHeaderPressedSearchButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
-    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
 }
 
 @end
