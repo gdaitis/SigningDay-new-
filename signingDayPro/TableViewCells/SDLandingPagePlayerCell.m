@@ -24,7 +24,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *baseScoreNameLabel;
 
 @property (nonatomic, weak) IBOutlet UIImageView *accountVerifiedImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
 @property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
 
@@ -89,10 +88,6 @@
         //playing position E.g "CB"
         self.positionNameLabel.text = user.thePlayer.position;
         self.yearNameLabel.text = user.thePlayer.userClass;
-        
-        //cancel previous requests and set user image
-        [self.userImageView cancelImageRequestOperation];
-        [self.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     }
 }
 

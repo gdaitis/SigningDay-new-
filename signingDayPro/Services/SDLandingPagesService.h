@@ -57,4 +57,5 @@
 // States
 + (void)getAllStatesSuccessBlock:(void (^)(void))successBlock
                     failureBlock:(void (^)(void))failureBlock;
+
 @end
