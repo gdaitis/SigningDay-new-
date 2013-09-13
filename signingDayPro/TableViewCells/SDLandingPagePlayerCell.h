@@ -12,6 +12,8 @@
 
 @interface SDLandingPagePlayerCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UIImageView *userImageView;
+
 - (void)setupCellWithUser:(User *)user;
 
 @end

@@ -13,6 +13,7 @@
 #import "UIButton+AddTitle.h"
 #import "SDPlayersSearchHeader.h"
 #import "State.h"
+#import "AFNetworking.h"
 
 @interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 
@@ -79,6 +80,9 @@
     
     User *user = [self.dataArray objectAtIndex:indexPath.row];
     // Configure the cell...
+    //cancel previous requests and set user image
+    [cell.userImageView cancelImageRequestOperation];
+    [cell.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     [cell setupCellWithUser:user];
     return cell;
 }
