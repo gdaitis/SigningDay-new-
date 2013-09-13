@@ -606,6 +606,41 @@
 
 
 
+
+
+#warning remove when not needed!
++ (void)test
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@Services/NotificationsService.asmx/GetUserNotifications", kSDBaseSigningDayURLString];
+//    http://localhost/Services/NotificationsService.asmx/GetUserNotifications
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    
+    NSString *body = [NSString stringWithFormat:@"{pageSize:10, notificationTypeID:null}"];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:nil] dictionaryByReplacingNullsWithStrings];
+        
+        NSLog(@"Dictionary = %@",JSON);
+        NSDictionary *userDictionary = [JSON valueForKey:@"d"];
+        NSLog(@"userDictionary = %@",userDictionary);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"fail");
+    }];
+    [operation start];
+}
+
+
 @end
 
 

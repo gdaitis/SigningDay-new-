@@ -10,7 +10,6 @@
 
 @interface SDHighSchoolsSearchHeader ()
 
-@property (nonatomic, strong) UIButton *statesButton;
 @property (nonatomic, strong) UIButton *searchButton;
 
 @end

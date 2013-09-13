@@ -11,11 +11,14 @@
 #import "SDLandingPageHighSchoolCell.h"
 #import "UIView+NibLoading.h"
 #import "SDHighSchoolsSearchHeader.h"
+#import "UIButton+AddTitle.h"
+#import "State.h"
 
 
-@interface SDHighSchoolLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDHighSchoolSearchHeaderDelegate>
+@interface SDHighSchoolLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDHighSchoolSearchHeaderDelegate,SDFilterListDelegate>
 
 @property (nonatomic, strong) SDHighSchoolsSearchHeader *highSchoolSearchView;
+@property (nonatomic, strong) State *currentFilterState;
 
 @end
 
@@ -28,6 +31,12 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateFilterButtonNames];
 }
 
 - (void)viewDidLoad
@@ -84,16 +93,22 @@
 
 - (void)showFilterView
 {
-    SDHighSchoolsSearchHeader *highSchoolSearchView = [[SDHighSchoolsSearchHeader alloc] init];
-    highSchoolSearchView.delegate = self;
+    
+    if (!self.highSchoolSearchView) {
+        
+        SDHighSchoolsSearchHeader *highSchoolSearchView = [[SDHighSchoolsSearchHeader alloc] init];
+        highSchoolSearchView.delegate = self;
+        self.highSchoolSearchView = highSchoolSearchView;
+    }
     
     //hide SDHighSchoolHeaderView under toolbar
-    CGRect frame = highSchoolSearchView.frame;
+    CGRect frame = self.highSchoolSearchView.frame;
     frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
-    highSchoolSearchView.frame = frame;
+    self.highSchoolSearchView.frame = frame;
     
-    self.highSchoolSearchView = highSchoolSearchView;
     [self.view addSubview:self.highSchoolSearchView];
+    
+    [self updateFilterButtonNames];
     
     //bring searchBar view to front so the filter SDHighSchoolHeaderView would be behind this view
     [self.view bringSubviewToFront:self.searchBarBackground];
@@ -104,6 +119,18 @@
         self.highSchoolSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
+}
+
+- (void)updateFilterButtonNames
+{
+    if (self.highSchoolSearchView) {
+
+        //State button
+        if (self.currentFilterState)
+            [self.highSchoolSearchView.statesButton setCustomTitle:self.currentFilterState.name];
+        else
+            [self.highSchoolSearchView.statesButton setCustomTitle:kDefaultStateFilterName];
+    }
 }
 
 #pragma mark - Data loading
@@ -129,12 +156,19 @@
 
 - (void)highSchoolSearchHeaderPressedStatesButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
-//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+    [self presentFilterListViewWithType:LIST_TYPE_STATES andSelectedValue:self.currentFilterState];
 }
 
 - (void)highSchoolSearchHeaderPressedSearchButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
 //    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+}
+
+#pragma mark - Filter list delegates
+
+- (void)stateChosen:(State *)state inFilterListController:(SDFilterListViewController *)filterListViewController
+{
+    self.currentFilterState = state;
 }
 
 @end

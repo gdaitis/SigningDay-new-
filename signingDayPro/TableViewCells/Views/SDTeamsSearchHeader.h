@@ -23,6 +23,8 @@
 
 @interface SDTeamsSearchHeader : SDSearchHeader
 
+@property (nonatomic, strong) UIButton *conferencesButton;
+@property (nonatomic, strong) UIButton *classButton;
 @property (nonatomic, weak) id <SDTeamsSearchHeaderDelegate> delegate;
 
 @end

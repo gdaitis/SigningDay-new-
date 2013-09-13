@@ -22,6 +22,7 @@
 
 @interface SDHighSchoolsSearchHeader : SDSearchHeader
 
+@property (nonatomic, strong) UIButton *statesButton;
 @property (nonatomic, weak) id <SDHighSchoolSearchHeaderDelegate> delegate;
 
 @end

@@ -28,5 +28,6 @@
 #define kDefaultYearFilterName @"2014"
 #define kDefaultPositionFilterName @"All positions"
 #define kDefaultStateFilterName @"All states"
+#define kDefaultStateConferenceName @"All conferences"
 
 #endif

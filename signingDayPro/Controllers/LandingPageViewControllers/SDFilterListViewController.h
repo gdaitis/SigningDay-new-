@@ -12,18 +12,20 @@
 typedef enum {
 	LIST_TYPE_STATES = 0,
 	LIST_TYPE_YEARS,
-    LIST_TYPE_POSITIONS
+    LIST_TYPE_POSITIONS,
+    LIST_TYPE_CONFERENCES
 } FilterListType;
 
 
 
-@class State;
+@class State, Conference;
 @class SDFilterListViewController;
 
 @protocol SDFilterListDelegate <NSObject>
 
 @optional
 - (void)stateChosen:(State *)state inFilterListController:(SDFilterListViewController *)filterListViewController;
+- (void)conferenceChosen:(Conference *)conference inFilterListController:(SDFilterListViewController *)filterListViewController;
 - (void)yearsChosen:(NSDictionary *)years inFilterListController:(SDFilterListViewController *)filterListViewController;
 - (void)positionChosen:(NSDictionary *)position inFilterListController:(SDFilterListViewController *)filterListViewController;
 

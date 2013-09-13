@@ -11,6 +11,7 @@
 #import "UIView+NibLoading.h"
 #import "SDLandingPagesService.h"
 #import "State.h"
+#import "Conference.h"
 
 @interface SDFilterListViewController ()
 
@@ -53,6 +54,18 @@
         case LIST_TYPE_YEARS:
         {
             [self loadYears];
+            break;
+        }
+        case LIST_TYPE_CONFERENCES:
+        {
+            //data is downloading so showing activity indicator
+            [self showProgressHudInView:self.view withText:@"Loading"];
+            
+            [SDLandingPagesService getAllConferencesOFullNameWithSuccessBlock:^{
+                [self loadConferences];
+            } failureBlock:^{
+                [self hideProgressHudInView:self.view];
+            }];
             break;
         }
             
@@ -116,7 +129,7 @@
             if ([[object class] isSubclassOfClass:[NSDictionary class]])
                 cell.titleLabel.text = [NSString stringWithFormat:@"%@ (%@)",[object valueForKey:@"name"],[object valueForKey:@"shortName"]];
             else
-                cell.titleLabel.text = @"All positions";
+                cell.titleLabel.text = kDefaultPositionFilterName;
             break;
         }
         case LIST_TYPE_STATES:
@@ -124,7 +137,7 @@
             if ([[object class] isSubclassOfClass:[State class]])
                 cell.titleLabel.text = ((State *) object).name;
             else
-                cell.titleLabel.text = @"All states";
+                cell.titleLabel.text = kDefaultStateFilterName;
             
             break;
         }
@@ -132,6 +145,15 @@
         {
             if ([[object class] isSubclassOfClass:[NSDictionary class]])
                 cell.titleLabel.text = [object valueForKey:@"name"];
+            break;
+        }
+        case LIST_TYPE_CONFERENCES:
+        {
+            if ([[object class] isSubclassOfClass:[Conference class]])
+                cell.titleLabel.text = ((Conference *) object).nameFull;
+            else
+                cell.titleLabel.text = kDefaultStateConferenceName;
+            
             break;
         }
             
@@ -187,12 +209,20 @@
             
             break;
         }
+        case LIST_TYPE_CONFERENCES:
+        {
+            if (![[self.dataArray objectAtIndex:indexPath.row] isEqual:[NSNull null]])
+                [self.delegate conferenceChosen:[self.dataArray objectAtIndex:indexPath.row] inFilterListController:self];
+            else
+                [self.delegate conferenceChosen:nil inFilterListController:self];
+            break;
+        }
         default:
             break;
     }
 
     //will pop view controller after delay, so user could see what he chose
-    [self performSelector:@selector(popViewControllerAfterSelection) withObject:nil afterDelay:0.3f];
+    [self performSelector:@selector(popViewControllerAfterSelection) withObject:nil afterDelay:0.25f];
 }
 
 - (void)popViewControllerAfterSelection
@@ -232,6 +262,17 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YearsList" ofType:@"plist"];
     self.dataArray = [[NSArray alloc] initWithContentsOfFile:path];
     [self.tableView reloadData];
+}
+
+- (void)loadConferences
+{
+    self.dataArray = nil;
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithObjects:[NSNull null], nil];
+    [mutableArray addObjectsFromArray:[Conference MR_findAllSortedBy:@"nameFull" ascending:YES]];
+    
+    self.dataArray = [[NSArray alloc] initWithArray:mutableArray];
+    [self.tableView reloadData];
+    [self hideProgressHudInView:self.view];
 }
 
 @end

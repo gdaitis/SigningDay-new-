@@ -11,8 +11,9 @@
 #import "SDLandingPagePlayerCell.h"
 #import "UIView+NibLoading.h"
 #import "UIButton+AddTitle.h"
-#import "SDPlayersSearchHeader.h"
 #import "State.h"
+#import "SDPlayersSearchHeader.h"
+
 
 @interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 
@@ -38,7 +39,6 @@
 
 - (void)viewDidLoad
 {
-#warning hardcoded year constant
     //default value for the filter is 2014, assigning this to filter property
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YearsList" ofType:@"plist"];
     NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
@@ -168,6 +168,22 @@
     [self.tableView reloadData];
 }
 
+- (void)loadFilteredData
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    //seting fetch limit for pagination
+    NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
+    [request setFetchLimit:self.currentUserCount];
+    //set sort descriptor
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    self.dataArray = [User MR_executeFetchRequest:request inContext:context];
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - SDPlayersSearchHeader Delegate
 
 - (void)playersSearchHeaderPressedStatesButton:(SDPlayersSearchHeader *)playersSearchHeader
@@ -187,7 +203,16 @@
 
 - (void)playersSearchHeaderPressedSearchButton:(SDPlayersSearchHeader *)playersSearchHeader
 {
-    //    [self performSearch];
+    [self hideFilterView];
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
+#warning check if no filters or text just load simple list, else load filteredData
+    
+    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:[NSArray arrayWithObject:self.currentFilterState.code] classYearsStringsArray:[NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] positionStringsArray:[NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] successBlock:^{
+        [self loadFilteredData];
+    } failureBlock:^{
+        
+    }];
 }
 
 #pragma mark - Filter list delegates

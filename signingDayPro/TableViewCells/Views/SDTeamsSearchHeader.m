@@ -10,8 +10,6 @@
 
 @interface SDTeamsSearchHeader ()
 
-@property (nonatomic, strong) UIButton *conferencesButton;
-@property (nonatomic, strong) UIButton *classButton;
 @property (nonatomic, strong) UIButton *searchButton;
 
 @end

@@ -11,12 +11,17 @@
 #import "SDLandingPageCollegeCell.h"
 #import "UIView+NibLoading.h"
 #import "SDTeamsSearchHeader.h"
+#import "UIButton+AddTitle.h"
+#import "Conference.h"
 
 NSString * const kSDDefaultClass = @"2014";
 
 @interface SDCollegeLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDTeamsSearchHeaderDelegate>
 
 @property (nonatomic, strong) SDTeamsSearchHeader *teamSearchView;
+
+@property (nonatomic, strong) Conference *currentFilterConference;
+@property (nonatomic, strong) NSDictionary *currentFilterYearDictionary;
 
 @end
 
@@ -36,6 +41,11 @@ NSString * const kSDDefaultClass = @"2014";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.;
     
+    //default value for the filter is 2014, assigning this to filter property
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"YearsList" ofType:@"plist"];
+    NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
+    self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
+    
     [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
                                                                       pageSize:10
                                                                    classString:kSDDefaultClass
@@ -43,6 +53,12 @@ NSString * const kSDDefaultClass = @"2014";
                                                                       self.currentUserCount +=10;
                                                                       [self loadData];
                                                                   } failureBlock:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateFilterButtonNames];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,16 +101,22 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)showFilterView
 {
-    SDTeamsSearchHeader *teamSearchView = [[SDTeamsSearchHeader alloc] init];
-    teamSearchView.delegate = self;
+    
+    if (!self.teamSearchView) {
+        
+        SDTeamsSearchHeader *teamSearchView = [[SDTeamsSearchHeader alloc] init];
+        teamSearchView.delegate = self;
+        self.teamSearchView = teamSearchView;
+    }
+    
     
     //hide SDCollegeHeaderView under toolbar
-    CGRect frame = teamSearchView.frame;
+    CGRect frame = self.teamSearchView.frame;
     frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
-    teamSearchView.frame = frame;
+    self.teamSearchView.frame = frame;
     
-    self.teamSearchView = teamSearchView;
     [self.view addSubview:self.teamSearchView];
+    [self updateFilterButtonNames];
     
     //bring searchBar view to front so the filter SDCollegeHeaderView would be behind this view
     [self.view bringSubviewToFront:self.searchBarBackground];
@@ -105,6 +127,24 @@ NSString * const kSDDefaultClass = @"2014";
         self.teamSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
+}
+
+- (void)updateFilterButtonNames
+{
+    if (self.teamSearchView) {
+
+        //Year button
+        if (self.currentFilterYearDictionary)
+            [self.teamSearchView.classButton setCustomTitle:[self.currentFilterYearDictionary valueForKey:@"name"]];
+        else
+            [self.teamSearchView.classButton setCustomTitle:kDefaultYearFilterName];
+        
+        //State button
+        if (self.currentFilterConference)
+            [self.teamSearchView.conferencesButton setCustomTitle:self.currentFilterConference.nameFull];
+        else
+            [self.teamSearchView.conferencesButton setCustomTitle:kDefaultStateConferenceName];
+    }
 }
 
 #pragma mark - Data loading
@@ -129,17 +169,29 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)teamsSearchHeaderPressedConferencesButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
-//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+    [self presentFilterListViewWithType:LIST_TYPE_CONFERENCES andSelectedValue:self.currentFilterConference];
 }
 
 - (void)teamsSearchHeaderPressedClassButton:(SDTeamsSearchHeader *)teamsSeachHeader;
 {
-//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+    [self presentFilterListViewWithType:LIST_TYPE_YEARS andSelectedValue:self.currentFilterYearDictionary];
 }
 
 - (void)teamsSearchHeaderPressedSearchButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
 //    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+}
+
+#pragma mark - Filter list delegates
+
+- (void)conferenceChosen:(Conference *)conference inFilterListController:(SDFilterListViewController *)filterListViewController
+{
+    self.currentFilterConference = conference;
+}
+
+- (void)yearsChosen:(NSDictionary *)years inFilterListController:(SDFilterListViewController *)filterListViewController
+{
+    self.currentFilterYearDictionary = years;
 }
 
 @end

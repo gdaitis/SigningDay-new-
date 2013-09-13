@@ -307,7 +307,7 @@
                                for (NSDictionary *conferenceDictionaryWithNulls in resultsArray) {
                                    NSDictionary *conferenceDictionary = [conferenceDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
                                    NSNumber *identifier = [NSNumber numberWithInt:[[conferenceDictionaryWithNulls valueForKey:@"ID"] intValue]];
-                                   Conference *conference = [Conference MR_findFirstByAttribute:@"indentifier"
+                                   Conference *conference = [Conference MR_findFirstByAttribute:@"identifier"
                                                                                       withValue:identifier
                                                                                       inContext:context];
                                    if (!conference) {
