@@ -31,7 +31,10 @@
 + (User *)getUserWithBasicUserInfoFromUserDictionary:(NSDictionary *)userDictionary
                                           andContext:(NSManagedObjectContext *)context
 {
-    NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserId"] intValue]];
+    NSString *userIDString = [userDictionary valueForKey:@"UserId"];
+    if (userIDString)
+        exit(0);
+    NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"UserID"] intValue]];
     User *user = [User MR_findFirstByAttribute:@"identifier"
                                      withValue:identifier
                                      inContext:context];
