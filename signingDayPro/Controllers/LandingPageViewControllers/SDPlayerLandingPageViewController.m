@@ -97,10 +97,20 @@
         self.playerSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
         [self.playerSearchView removeFromSuperview];
+        self.playerSearchView = nil;
     }];
     
     //we should tell that filter view was hidden by not using the filter button, so navigation controller could know the state.
     [((SDNavigationController *)self.navigationController) filterViewBecameHidden];
+}
+
+- (int)heightForFilterHidingButton
+{
+    if (self.playerSearchView) {
+        return 130;
+    }
+    else
+        return 0;
 }
 
 - (void)showFilterView

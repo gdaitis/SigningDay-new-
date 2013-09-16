@@ -87,6 +87,13 @@
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if ([self.searchBar isFirstResponder]) {
+        [self removeKeyboard];
+    }
+}
+
 - (void)addSearchBar
 {
     UIView *searchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 58)];
@@ -106,7 +113,7 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     UIButton *hideKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    hideKeyboardButton.frame = CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height);
+    hideKeyboardButton.frame = CGRectMake(0, 100, self.view.bounds.size.width, [self heightForFilterHidingButton]);
     
     hideKeyboardButton.tag = kHideKeyboardTag;
     [hideKeyboardButton addTarget:self action:@selector(removeKeyboard) forControlEvents:UIControlEventTouchUpInside];
@@ -116,8 +123,12 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-//    [self performSearch];
     [self removeKeyboard];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [self removeKeyboard];
+    return YES;
 }
 
 - (void)removeKeyboard
@@ -147,6 +158,12 @@
     else {
         [self showFilterView];
     }
+}
+
+- (int)heightForFilterHidingButton
+{
+    //returning height in extended controllers
+    return 0;
 }
 
 - (void)hideFilterView

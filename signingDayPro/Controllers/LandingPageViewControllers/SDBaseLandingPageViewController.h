@@ -26,6 +26,7 @@
 
 - (void)hideFilterView;
 - (void)showFilterView;
+- (int)heightForFilterHidingButton;
 - (void)presentFilterListViewWithType:(FilterListType)listType andSelectedValue:(id)value;
 
 @end

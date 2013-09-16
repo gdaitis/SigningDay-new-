@@ -93,10 +93,20 @@ NSString * const kSDDefaultClass = @"2014";
         self.teamSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
         [self.teamSearchView removeFromSuperview];
+        self.teamSearchView = nil;
     }];
     
     //we should tell that filter view was hidden by not using the filter button, so navigation controller could know the state.
     [((SDNavigationController *)self.navigationController)  filterViewBecameHidden];
+}
+
+- (int)heightForFilterHidingButton
+{
+    if (self.teamSearchView) {
+        return 90;
+    }
+    else
+        return 0;
 }
 
 - (void)showFilterView
