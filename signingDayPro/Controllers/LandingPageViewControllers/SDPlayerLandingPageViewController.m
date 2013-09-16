@@ -46,7 +46,7 @@
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount+10 successBlock:^{
+    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount+10 forClass:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
         self.currentUserCount +=10;
         [self loadData];
     } failureBlock:^{
@@ -234,7 +234,7 @@
                                              successBlock:^{
                                                  [self loadFilteredData];
                                              } failureBlock:^{
-
+                                                 NSLog(@"failed");
                                              }];
 }
 
