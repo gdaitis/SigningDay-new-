@@ -18,9 +18,11 @@
 // Players
 + (void)getPlayersOrderedByDescendingBaseScoreFrom:(NSInteger)pageBeginIndex
                                                 to:(NSInteger)pageEndIndex
+                                          forClass:(NSString *)classString
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;
 + (void)searchForPlayersWithString:(NSString *)searchString
+                          forClass:(NSString *)classString
                       successBlock:(void (^)(void))successBlock
                       failureBlock:(void (^)(void))failureBlock;
 + (void)searchForPlayersWithNameString:(NSString *)searchString

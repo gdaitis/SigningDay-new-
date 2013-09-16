@@ -56,6 +56,7 @@
 
 + (void)getPlayersOrderedByDescendingBaseScoreFrom:(NSInteger)pageBeginIndex
                                                 to:(NSInteger)pageEndIndex
+                                          forClass:(NSString *)classString
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock
 {
@@ -65,7 +66,7 @@
     }
     int top = pageEndIndex - pageBeginIndex;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc&$skip=%d&$top=%d&$format=json", kSDBaseSigningDayURLString, pageBeginIndex, top];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc&$skip=%d&$top=%d&$format=json&$filter=(Class eq %@)", kSDBaseSigningDayURLString, pageBeginIndex, top, classString];
     
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
@@ -74,12 +75,13 @@
 }
 
 + (void)searchForPlayersWithString:(NSString *)searchString
+                          forClass:(NSString *)classString
                       successBlock:(void (^)(void))successBlock
                       failureBlock:(void (^)(void))failureBlock
 {
     [self searchForPlayersWithNameString:searchString
                    stateCodeStringsArray:nil
-                  classYearsStringsArray:nil
+                  classYearsStringsArray:[NSArray arrayWithObject:classString]
                     positionStringsArray:nil
                             successBlock:successBlock
                             failureBlock:failureBlock];
@@ -414,7 +416,7 @@
     NSString *requestsString = @"";
     for (int i = 0; i < [requestsArray count]; i++) {
         NSString *requestString = [requestsArray objectAtIndex:i];
-        requestsString = [requestString stringByAppendingFormat:@"%@ eq '%@' ", entityName, requestString];
+        requestsString = [requestsString stringByAppendingFormat:@"%@ eq '%@' ", entityName, requestString];
         if (logicalString) {
             if (i != ([requestsArray count] - 1))
                 requestsString = [requestsString stringByAppendingString:logicalString];
