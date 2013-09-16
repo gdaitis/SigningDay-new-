@@ -416,7 +416,16 @@
     NSString *requestsString = @"";
     for (int i = 0; i < [requestsArray count]; i++) {
         NSString *requestString = [requestsArray objectAtIndex:i];
-        requestsString = [requestsString stringByAppendingFormat:@"%@ eq '%@' ", entityName, requestString];
+        
+        NSDecimal decimalValue;
+        NSScanner *scanner = [NSScanner scannerWithString:requestString];
+        [scanner scanDecimal:&decimalValue];
+        BOOL isDecimal = [scanner isAtEnd];
+        
+        if (isDecimal)
+            requestsString = [requestsString stringByAppendingFormat:@"%@ eq %@ ", entityName, requestString];
+        else
+            requestsString = [requestsString stringByAppendingFormat:@"%@ eq '%@' ", entityName, requestString];
         if (logicalString) {
             if (i != ([requestsArray count] - 1))
                 requestsString = [requestsString stringByAppendingString:logicalString];
