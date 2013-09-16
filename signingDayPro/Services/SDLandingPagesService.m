@@ -127,12 +127,14 @@
                                          successBlock:(void (^)(void))successBlock
                                          failureBlock:(void (^)(void))failureBlock
 {
+    NSLog(@"url string = %@",URLString);
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
                                [self createUsersFromResponseObject:responseObject
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
+                                             NSLog(@"downloaded user with display name = %@",user.name);
                                              if (!user.thePlayer)
                                                  user.thePlayer = [Player MR_createInContext:context];
                                              user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];

@@ -25,7 +25,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *accountVerifiedImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
-@property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
+
 
 @end
 
@@ -81,9 +81,6 @@
         self.nameLabel.text = user.name;
         self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
         self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];
-        
-        //position in list number
-        self.playerPositionLabel.text = [NSString stringWithFormat:@"%d",[user.thePlayer.nationalRanking intValue]];
         
         //playing position E.g "CB"
         self.positionNameLabel.text = user.thePlayer.position;

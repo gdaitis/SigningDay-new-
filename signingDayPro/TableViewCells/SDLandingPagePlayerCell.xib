@@ -198,7 +198,6 @@
 								<string key="NSFrame">{{274, 52}, {31, 15}}</string>
 								<reference key="NSSuperview" ref="334483719"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -428,6 +427,14 @@
 						<reference key="destination" ref="495205304"/>
 					</object>
 					<int key="connectionID">580</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">accountVerifiedImageView</string>
+						<reference key="source" ref="551128599"/>
+						<reference key="destination" ref="251989445"/>
+					</object>
+					<int key="connectionID">585</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1349,7 +1356,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">584</int>
+			<int key="maxID">585</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

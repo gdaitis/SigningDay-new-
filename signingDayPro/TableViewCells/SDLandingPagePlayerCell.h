@@ -13,7 +13,7 @@
 @interface SDLandingPagePlayerCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
-
+@property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
 - (void)setupCellWithUser:(User *)user;
 
 @end

@@ -78,6 +78,7 @@
     }
     
     User *user = [self.dataArray objectAtIndex:indexPath.row];
+    cell.playerPositionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     // Configure the cell...
     //cancel previous requests and set user image
     [cell.userImageView cancelImageRequestOperation];
@@ -157,11 +158,15 @@
 
 - (void)loadData
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate]];
+    
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
     //seting fetch limit for pagination
-    NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
+    NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
+    NSLog(@"self.currentUserCount = %d",self.currentUserCount);
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
@@ -173,11 +178,18 @@
 
 - (void)loadFilteredData
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
+    
+    //also add self.currentFilterState.code and [self.currentFilterPositionDictionary objectForKey:@"shortName"]
+    NSPredicate *compoundPredicate = (self.searchBar.text.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate,nameSearchPredicate]] : [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate]];
+    
+    
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
     //seting fetch limit for pagination
-    NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
+    NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
@@ -185,6 +197,7 @@
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
     [self.tableView reloadData];
+    [self hideProgressHudInView:self.view];
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate
@@ -211,11 +224,18 @@
     
 #warning check if no filters or text just load simple list, else load filteredData
     
-    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:[NSArray arrayWithObject:self.currentFilterState.code] classYearsStringsArray:[NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] positionStringsArray:[NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] successBlock:^{
-        [self loadFilteredData];
-    } failureBlock:^{
-        
-    }];
+    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
+    NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
+    NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
+    
+    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray
+                                   classYearsStringsArray:classYearsStringsArray
+                                     positionStringsArray:positionStringsArray
+                                             successBlock:^{
+                                                 [self loadFilteredData];
+                                             } failureBlock:^{
+
+                                             }];
 }
 
 #pragma mark - Filter list delegates
