@@ -81,7 +81,7 @@
 {
     [self searchForPlayersWithNameString:searchString
                    stateCodeStringsArray:nil
-                  classYearsStringsArray:@[classString]
+                  classYearsStringsArray:[NSArray arrayWithObject:classString]
                     positionStringsArray:nil
                             successBlock:successBlock
                             failureBlock:failureBlock];
@@ -414,7 +414,7 @@
     NSString *requestsString = @"";
     for (int i = 0; i < [requestsArray count]; i++) {
         NSString *requestString = [requestsArray objectAtIndex:i];
-        requestsString = [requestString stringByAppendingFormat:@"%@ eq '%@' ", entityName, requestString];
+        requestsString = [requestsString stringByAppendingFormat:@"%@ eq '%@' ", entityName, requestString];
         if (logicalString) {
             if (i != ([requestsArray count] - 1))
                 requestsString = [requestsString stringByAppendingString:logicalString];
