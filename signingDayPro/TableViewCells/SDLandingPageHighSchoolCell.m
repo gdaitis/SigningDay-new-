@@ -78,6 +78,7 @@
         
         //cancel previous requests and set user image
         [self.userImageView cancelImageRequestOperation];
+        self.userImageView.image = nil;
         [self.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     }
 }

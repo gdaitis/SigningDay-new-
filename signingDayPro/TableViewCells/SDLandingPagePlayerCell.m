@@ -81,10 +81,16 @@
         self.nameLabel.text = user.name;
         self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
         self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];
+        self.playerPositionLabel.text = [NSString stringWithFormat:@"%d",[user.thePlayer.nationalRanking intValue]];
         
         //playing position E.g "CB"
         self.positionNameLabel.text = user.thePlayer.position;
         self.yearNameLabel.text = user.thePlayer.userClass;
+        
+        //cancel previous requests and set user image
+        [self.userImageView cancelImageRequestOperation];
+        self.userImageView.image = nil;
+        [self.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     }
 }
 

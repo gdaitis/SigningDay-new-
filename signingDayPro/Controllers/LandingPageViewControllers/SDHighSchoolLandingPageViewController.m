@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) SDHighSchoolsSearchHeader *highSchoolSearchView;
 @property (nonatomic, strong) State *currentFilterState;
+@property (nonatomic, strong) NSDictionary *currentFilterYearDictionary;
 
 @end
 
@@ -43,12 +44,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-//    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount+10 successBlock:^{
-//        self.currentUserCount +=10;
-//        [self loadData];
-//    } failureBlock:^{
-//        
-//    }];
+    //default value for the filter is 2014, assigning this to filter property
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"YearsList" ofType:@"plist"];
+    NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
+    self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
+    
+    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+        self.currentUserCount +=10;
+        [self loadData];
+    } failureBlock:^{
+        
+    }];
+    
+    self.currentUserCount +=10;
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -161,6 +170,38 @@
     [self.tableView reloadData];
 }
 
+- (void)searchFilteredData
+{
+    [self hideFilterView];
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
+    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
+#warning state predicate missing
+//    NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
+    
+    [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray successBlock:^{
+        [self loadFilteredData];
+    } failureBlock:^{
+        
+    }];
+}
+
+- (void)loadFilteredData
+{
+    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
+    //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
+    
+    //also add self.currentFilterState.code and [self.currentFilterPositionDictionary objectForKey:@"shortName"]
+    NSPredicate *compoundPredicate = (self.searchBar.text.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate,nameSearchPredicate]] : [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate]];
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
+    
+    [self.tableView reloadData];
+    [self hideProgressHudInView:self.view];
+}
+
 #pragma mark - SDPlayersSearchHeader Delegate
 
 
@@ -171,7 +212,7 @@
 
 - (void)highSchoolSearchHeaderPressedSearchButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
-//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+    [self searchFilteredData];
 }
 
 #pragma mark - Filter list delegates

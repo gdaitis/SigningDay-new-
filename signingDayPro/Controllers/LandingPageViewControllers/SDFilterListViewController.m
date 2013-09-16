@@ -108,6 +108,7 @@
     if (!cell) {
         cell = (id)[SDFilterListCell loadInstanceFromNib];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     cell.checkMarkButton.selected = NO;
     id object = [self.dataArray objectAtIndex:indexPath.row];

@@ -77,12 +77,14 @@
             self.accountVerifiedImageView.hidden = YES;
         }
         self.nameLabel.text = user.name;
+        self.playerPositionLabel.text = user.theTeam.nationalRankingString;
 
-//        self.commitsNameLabel =  user.theTeam.commited;
-//        self.totalScoreNameLabel user.theTeam.totalScore;
+        self.commitsNameLabel.text = [NSString stringWithFormat:@"%d",[user.theTeam.numberOfCommits intValue]];
+        self.totalScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.theTeam.totalScore floatValue]];
         
         //cancel previous requests and set user image
         [self.userImageView cancelImageRequestOperation];
+        self.userImageView.image = nil;
         [self.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     }
 }

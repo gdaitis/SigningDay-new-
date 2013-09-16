@@ -2,7 +2,7 @@
 //  HighSchool.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 9/10/13.
+//  Created by Lukas Kekys on 9/16/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,11 +14,11 @@
 @interface HighSchool : NSManagedObject
 
 @property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * headCoachName;
 @property (nonatomic, retain) NSString * mascot;
 @property (nonatomic, retain) NSString * stateCode;
 @property (nonatomic, retain) NSNumber * totalProspects;
-@property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSSet *players;
 @property (nonatomic, retain) User *theUser;
 @end

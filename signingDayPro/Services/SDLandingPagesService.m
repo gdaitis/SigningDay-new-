@@ -210,15 +210,16 @@
                                [self createUsersFromResponseObject:responseObject
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
-                                             user.name = [userDictionary valueForKey:@"TeamName"];
-                                             if (user.theTeam)
+                                             user.name = [userDictionary valueForKey:@"DisplayName"];
+                                             if (!user.theTeam)
                                                  user.theTeam = [Team MR_createInContext:context];
+                                             user.theTeam.teamName =[userDictionary valueForKey:@"TeamName"];
                                              user.theTeam.conferenceId = [NSNumber numberWithInt:[[userDictionary valueForKey:@"ConferenceID"] intValue]];
                                              user.theTeam.universityName = [userDictionary valueForKey:@"FullInstitutionName"];
                                              user.theTeam.location = [userDictionary valueForKey:@"TeamCity"];
                                              user.theTeam.stateCode = [userDictionary valueForKey:@"TeamStateCode"];
                                              user.theTeam.numberOfCommits = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Commits"] intValue]];
-                                             user.theTeam.totalScore = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Total"] intValue]];
+                                             user.theTeam.totalScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"Total"] floatValue]];
                                          }];
                                if (successBlock)
                                    successBlock();
@@ -284,7 +285,7 @@
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypeHighSchool];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
-                                             if (user.theHighSchool)
+                                             if (!user.theHighSchool)
                                                  user.theHighSchool = [HighSchool MR_createInContext:context];
                                              user.theHighSchool.totalProspects = [userDictionary valueForKey:@"CurrentProspects"];
                                              user.theHighSchool.city = [userDictionary valueForKey:@"HighSchoolCity"];

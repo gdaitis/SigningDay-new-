@@ -48,7 +48,7 @@ NSString * const kSDDefaultClass = @"2014";
     
     [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
                                                                       pageSize:10
-                                                                   classString:kSDDefaultClass
+                                                                   classString:[self.currentFilterYearDictionary objectForKey:@"name"]
                                                                   successBlock:^{
                                                                       self.currentUserCount +=10;
                                                                       [self loadData];
@@ -168,11 +168,39 @@ NSString * const kSDDefaultClass = @"2014";
     NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.totalScore" ascending:NO];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
     [self.tableView reloadData];
+}
+
+- (void)loadFilteredData
+{
+    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
+//    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
+    
+    //also add self.currentFilterState.code and [self.currentFilterPositionDictionary objectForKey:@"shortName"]
+    NSPredicate *compoundPredicate = (self.searchBar.text.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate,nameSearchPredicate]] : [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate]];
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
+    
+    [self.tableView reloadData];
+    [self hideProgressHudInView:self.view];
+}
+
+- (void)searchFilteredData
+{
+    [self hideFilterView];
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
+    [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+        [self loadFilteredData];
+    } failureBlock:^{
+        
+    }];
 }
 
 #pragma mark - SDTeamSearchHeader Delegate
@@ -189,7 +217,7 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)teamsSearchHeaderPressedSearchButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
-//    [self presentFilterListViewWithListData:[NSArray arrayWithObjects:@"sde", nil] andSelectedRow:0];
+    [self searchFilteredData];
 }
 
 #pragma mark - Filter list delegates

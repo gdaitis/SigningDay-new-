@@ -133,7 +133,8 @@
         <attribute name="nationalRankingString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfCommits" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="totalScore" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="teamName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalScore" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="universityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="favoritedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Member" inverseName="favoriteTeam" inverseEntity="Member" syncable="YES"/>
         <relationship name="headCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
@@ -182,6 +183,7 @@
         <element name="ActivityStory" positionX="-83" positionY="-567" width="128" height="360"/>
         <element name="Coach" positionX="1042" positionY="-148" width="128" height="118"/>
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
+        <element name="Conference" positionX="549" positionY="-493" width="128" height="133"/>
         <element name="Conversation" positionX="153" positionY="137" width="128" height="178"/>
         <element name="HighSchool" positionX="1024" positionY="2" width="128" height="163"/>
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
@@ -190,10 +192,9 @@
         <element name="Member" positionX="799" positionY="206" width="128" height="118"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
         <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
-        <element name="Team" positionX="999" positionY="-513" width="128" height="253"/>
+        <element name="State" positionX="385" positionY="-493" width="128" height="88"/>
+        <element name="Team" positionX="999" positionY="-513" width="128" height="270"/>
         <element name="User" positionX="585" positionY="-198" width="128" height="480"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
-        <element name="Conference" positionX="549" positionY="-493" width="128" height="133"/>
-        <element name="State" positionX="385" positionY="-493" width="128" height="88"/>
     </elements>
 </model>

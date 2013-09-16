@@ -2,7 +2,7 @@
 //  Team.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 9/10/13.
+//  Created by Lukas Kekys on 9/16/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,17 +14,18 @@
 
 @implementation Team
 
+@dynamic conferenceId;
 @dynamic conferenceLogoUrl;
 @dynamic conferenceLogoUrlBlack;
 @dynamic conferenceName;
 @dynamic conferenceRankingString;
 @dynamic location;
 @dynamic nationalRankingString;
-@dynamic stateCode;
-@dynamic universityName;
-@dynamic conferenceId;
 @dynamic numberOfCommits;
+@dynamic stateCode;
 @dynamic totalScore;
+@dynamic universityName;
+@dynamic teamName;
 @dynamic favoritedBy;
 @dynamic headCoach;
 @dynamic theUser;

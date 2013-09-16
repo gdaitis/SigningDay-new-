@@ -27,22 +27,6 @@
 		7B3031C9177AFB12006EF25B /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3031AC177ADB3D006EF25B /* HTMLNode.m */; };
 		7B3031CA177AFB12006EF25B /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3031AE177ADB3D006EF25B /* HTMLParser.m */; };
 		7B33A5A317BBC849002A994F /* NSDictionary+NullConverver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B33A5A217BBC849002A994F /* NSDictionary+NullConverver.m */; };
-		7B3B993D17DF134A00DC4CF7 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B993C17DF134A00DC4CF7 /* Member.m */; };
-		7B3B994017DF134A00DC4CF7 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B993F17DF134A00DC4CF7 /* Coach.m */; };
-		7B3B994317DF134A00DC4CF7 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B994217DF134A00DC4CF7 /* Player.m */; };
-		7B3B994617DF134A00DC4CF7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B994517DF134A00DC4CF7 /* User.m */; };
-		7B3B994917DF134A00DC4CF7 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B994817DF134A00DC4CF7 /* Master.m */; };
-		7B3B994C17DF134B00DC4CF7 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B994B17DF134B00DC4CF7 /* ImageData.m */; };
-		7B3B994F17DF134B00DC4CF7 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B994E17DF134B00DC4CF7 /* Conference.m */; };
-		7B3B995217DF134B00DC4CF7 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B995117DF134B00DC4CF7 /* Comment.m */; };
-		7B3B995517DF134B00DC4CF7 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B995417DF134B00DC4CF7 /* ActivityStory.m */; };
-		7B3B995817DF134B00DC4CF7 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B995717DF134B00DC4CF7 /* Team.m */; };
-		7B3B995B17DF134B00DC4CF7 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B995A17DF134B00DC4CF7 /* Like.m */; };
-		7B3B995E17DF134B00DC4CF7 /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B995D17DF134B00DC4CF7 /* WebPreview.m */; };
-		7B3B996417DF134B00DC4CF7 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B996317DF134B00DC4CF7 /* Conversation.m */; };
-		7B3B996717DF134B00DC4CF7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B996617DF134B00DC4CF7 /* Message.m */; };
-		7B3B996A17DF3DAA00DC4CF7 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B996917DF3DAA00DC4CF7 /* State.m */; };
-		7B3B997017DF5DE000DC4CF7 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3B996F17DF5DE000DC4CF7 /* HighSchool.m */; };
 		7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288A1765DC5500091954 /* chat_box_bg@2x.png */; };
 		7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */; };
 		7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */; };
@@ -172,6 +156,22 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
+		804090EF17E7269300D8EAD7 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 804090EE17E7269300D8EAD7 /* Team.m */; };
+		804090F217E7269300D8EAD7 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 804090F117E7269300D8EAD7 /* Conversation.m */; };
+		804090F517E7269300D8EAD7 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 804090F417E7269300D8EAD7 /* Comment.m */; };
+		804090F817E7269300D8EAD7 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 804090F717E7269300D8EAD7 /* HighSchool.m */; };
+		804090FB17E7269400D8EAD7 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 804090FA17E7269300D8EAD7 /* Conference.m */; };
+		804090FE17E7269400D8EAD7 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 804090FD17E7269400D8EAD7 /* Master.m */; };
+		8040910117E7269400D8EAD7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040910017E7269400D8EAD7 /* Message.m */; };
+		8040910417E7269400D8EAD7 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040910317E7269400D8EAD7 /* Like.m */; };
+		8040910717E7269400D8EAD7 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040910617E7269400D8EAD7 /* ActivityStory.m */; };
+		8040910A17E7269400D8EAD7 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040910917E7269400D8EAD7 /* ImageData.m */; };
+		8040910D17E7269400D8EAD7 /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040910C17E7269400D8EAD7 /* WebPreview.m */; };
+		8040911017E7269500D8EAD7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040910F17E7269500D8EAD7 /* User.m */; };
+		8040911317E7269500D8EAD7 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040911217E7269500D8EAD7 /* State.m */; };
+		8040911617E7269500D8EAD7 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040911517E7269500D8EAD7 /* Member.m */; };
+		8040911917E7269500D8EAD7 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040911817E7269500D8EAD7 /* Coach.m */; };
+		8040911C17E7269600D8EAD7 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040911B17E7269600D8EAD7 /* Player.m */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -415,38 +415,6 @@
 		7B3031AF177ADB97006EF25B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		7B33A5A117BBC849002A994F /* NSDictionary+NullConverver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullConverver.h"; sourceTree = "<group>"; };
 		7B33A5A217BBC849002A994F /* NSDictionary+NullConverver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullConverver.m"; sourceTree = "<group>"; };
-		7B3B993B17DF134A00DC4CF7 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
-		7B3B993C17DF134A00DC4CF7 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
-		7B3B993E17DF134A00DC4CF7 /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
-		7B3B993F17DF134A00DC4CF7 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
-		7B3B994117DF134A00DC4CF7 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		7B3B994217DF134A00DC4CF7 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		7B3B994417DF134A00DC4CF7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		7B3B994517DF134A00DC4CF7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		7B3B994717DF134A00DC4CF7 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
-		7B3B994817DF134A00DC4CF7 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
-		7B3B994A17DF134B00DC4CF7 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
-		7B3B994B17DF134B00DC4CF7 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
-		7B3B994D17DF134B00DC4CF7 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
-		7B3B994E17DF134B00DC4CF7 /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
-		7B3B995017DF134B00DC4CF7 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		7B3B995117DF134B00DC4CF7 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		7B3B995317DF134B00DC4CF7 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
-		7B3B995417DF134B00DC4CF7 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
-		7B3B995617DF134B00DC4CF7 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
-		7B3B995717DF134B00DC4CF7 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
-		7B3B995917DF134B00DC4CF7 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
-		7B3B995A17DF134B00DC4CF7 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
-		7B3B995C17DF134B00DC4CF7 /* WebPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPreview.h; sourceTree = "<group>"; };
-		7B3B995D17DF134B00DC4CF7 /* WebPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPreview.m; sourceTree = "<group>"; };
-		7B3B996217DF134B00DC4CF7 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		7B3B996317DF134B00DC4CF7 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		7B3B996517DF134B00DC4CF7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		7B3B996617DF134B00DC4CF7 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		7B3B996817DF3DAA00DC4CF7 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
-		7B3B996917DF3DAA00DC4CF7 /* State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = State.m; sourceTree = "<group>"; };
-		7B3B996E17DF5DE000DC4CF7 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
-		7B3B996F17DF5DE000DC4CF7 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
 		7B46288A1765DC5500091954 /* chat_box_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_bg@2x.png"; sourceTree = "<group>"; };
 		7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_send_bt@2x.png"; sourceTree = "<group>"; };
 		7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_text_bg@2x.png"; sourceTree = "<group>"; };
@@ -633,6 +601,38 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		804090ED17E7269300D8EAD7 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		804090EE17E7269300D8EAD7 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		804090F017E7269300D8EAD7 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		804090F117E7269300D8EAD7 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		804090F317E7269300D8EAD7 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		804090F417E7269300D8EAD7 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		804090F617E7269300D8EAD7 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
+		804090F717E7269300D8EAD7 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
+		804090F917E7269300D8EAD7 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
+		804090FA17E7269300D8EAD7 /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
+		804090FC17E7269400D8EAD7 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
+		804090FD17E7269400D8EAD7 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
+		804090FF17E7269400D8EAD7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		8040910017E7269400D8EAD7 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		8040910217E7269400D8EAD7 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
+		8040910317E7269400D8EAD7 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		8040910517E7269400D8EAD7 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
+		8040910617E7269400D8EAD7 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
+		8040910817E7269400D8EAD7 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
+		8040910917E7269400D8EAD7 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		8040910B17E7269400D8EAD7 /* WebPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPreview.h; sourceTree = "<group>"; };
+		8040910C17E7269400D8EAD7 /* WebPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPreview.m; sourceTree = "<group>"; };
+		8040910E17E7269500D8EAD7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8040910F17E7269500D8EAD7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		8040911117E7269500D8EAD7 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
+		8040911217E7269500D8EAD7 /* State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = State.m; sourceTree = "<group>"; };
+		8040911417E7269500D8EAD7 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
+		8040911517E7269500D8EAD7 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
+		8040911717E7269500D8EAD7 /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
+		8040911817E7269500D8EAD7 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
+		8040911A17E7269600D8EAD7 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		8040911B17E7269600D8EAD7 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -1264,38 +1264,38 @@
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
-				7B3B996E17DF5DE000DC4CF7 /* HighSchool.h */,
-				7B3B996F17DF5DE000DC4CF7 /* HighSchool.m */,
-				7B3B996817DF3DAA00DC4CF7 /* State.h */,
-				7B3B996917DF3DAA00DC4CF7 /* State.m */,
-				7B3B996517DF134B00DC4CF7 /* Message.h */,
-				7B3B996617DF134B00DC4CF7 /* Message.m */,
-				7B3B996217DF134B00DC4CF7 /* Conversation.h */,
-				7B3B996317DF134B00DC4CF7 /* Conversation.m */,
-				7B3B995C17DF134B00DC4CF7 /* WebPreview.h */,
-				7B3B995D17DF134B00DC4CF7 /* WebPreview.m */,
-				7B3B995917DF134B00DC4CF7 /* Like.h */,
-				7B3B995A17DF134B00DC4CF7 /* Like.m */,
-				7B3B995617DF134B00DC4CF7 /* Team.h */,
-				7B3B995717DF134B00DC4CF7 /* Team.m */,
-				7B3B995317DF134B00DC4CF7 /* ActivityStory.h */,
-				7B3B995417DF134B00DC4CF7 /* ActivityStory.m */,
-				7B3B995017DF134B00DC4CF7 /* Comment.h */,
-				7B3B995117DF134B00DC4CF7 /* Comment.m */,
-				7B3B994D17DF134B00DC4CF7 /* Conference.h */,
-				7B3B994E17DF134B00DC4CF7 /* Conference.m */,
-				7B3B994A17DF134B00DC4CF7 /* ImageData.h */,
-				7B3B994B17DF134B00DC4CF7 /* ImageData.m */,
-				7B3B994717DF134A00DC4CF7 /* Master.h */,
-				7B3B994817DF134A00DC4CF7 /* Master.m */,
-				7B3B994417DF134A00DC4CF7 /* User.h */,
-				7B3B994517DF134A00DC4CF7 /* User.m */,
-				7B3B994117DF134A00DC4CF7 /* Player.h */,
-				7B3B994217DF134A00DC4CF7 /* Player.m */,
-				7B3B993E17DF134A00DC4CF7 /* Coach.h */,
-				7B3B993F17DF134A00DC4CF7 /* Coach.m */,
-				7B3B993B17DF134A00DC4CF7 /* Member.h */,
-				7B3B993C17DF134A00DC4CF7 /* Member.m */,
+				8040911A17E7269600D8EAD7 /* Player.h */,
+				8040911B17E7269600D8EAD7 /* Player.m */,
+				8040911717E7269500D8EAD7 /* Coach.h */,
+				8040911817E7269500D8EAD7 /* Coach.m */,
+				8040911417E7269500D8EAD7 /* Member.h */,
+				8040911517E7269500D8EAD7 /* Member.m */,
+				8040911117E7269500D8EAD7 /* State.h */,
+				8040911217E7269500D8EAD7 /* State.m */,
+				8040910E17E7269500D8EAD7 /* User.h */,
+				8040910F17E7269500D8EAD7 /* User.m */,
+				8040910B17E7269400D8EAD7 /* WebPreview.h */,
+				8040910C17E7269400D8EAD7 /* WebPreview.m */,
+				8040910817E7269400D8EAD7 /* ImageData.h */,
+				8040910917E7269400D8EAD7 /* ImageData.m */,
+				8040910517E7269400D8EAD7 /* ActivityStory.h */,
+				8040910617E7269400D8EAD7 /* ActivityStory.m */,
+				8040910217E7269400D8EAD7 /* Like.h */,
+				8040910317E7269400D8EAD7 /* Like.m */,
+				804090FF17E7269400D8EAD7 /* Message.h */,
+				8040910017E7269400D8EAD7 /* Message.m */,
+				804090FC17E7269400D8EAD7 /* Master.h */,
+				804090FD17E7269400D8EAD7 /* Master.m */,
+				804090F917E7269300D8EAD7 /* Conference.h */,
+				804090FA17E7269300D8EAD7 /* Conference.m */,
+				804090F617E7269300D8EAD7 /* HighSchool.h */,
+				804090F717E7269300D8EAD7 /* HighSchool.m */,
+				804090F317E7269300D8EAD7 /* Comment.h */,
+				804090F417E7269300D8EAD7 /* Comment.m */,
+				804090F017E7269300D8EAD7 /* Conversation.h */,
+				804090F117E7269300D8EAD7 /* Conversation.m */,
+				804090ED17E7269300D8EAD7 /* Team.h */,
+				804090EE17E7269300D8EAD7 /* Team.m */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -2327,22 +2327,6 @@
 				8078686217DDBFD300B77789 /* SDLandingPageHighSchoolCell.m in Sources */,
 				8078687017DDBFE600B77789 /* SDCollegeLandingPageViewController.m in Sources */,
 				8078687117DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m in Sources */,
-				7B3B993D17DF134A00DC4CF7 /* Member.m in Sources */,
-				7B3B994017DF134A00DC4CF7 /* Coach.m in Sources */,
-				7B3B994317DF134A00DC4CF7 /* Player.m in Sources */,
-				7B3B994617DF134A00DC4CF7 /* User.m in Sources */,
-				7B3B994917DF134A00DC4CF7 /* Master.m in Sources */,
-				7B3B994C17DF134B00DC4CF7 /* ImageData.m in Sources */,
-				7B3B994F17DF134B00DC4CF7 /* Conference.m in Sources */,
-				7B3B995217DF134B00DC4CF7 /* Comment.m in Sources */,
-				7B3B995517DF134B00DC4CF7 /* ActivityStory.m in Sources */,
-				7B3B995817DF134B00DC4CF7 /* Team.m in Sources */,
-				7B3B995B17DF134B00DC4CF7 /* Like.m in Sources */,
-				7B3B995E17DF134B00DC4CF7 /* WebPreview.m in Sources */,
-				7B3B996417DF134B00DC4CF7 /* Conversation.m in Sources */,
-				7B3B996717DF134B00DC4CF7 /* Message.m in Sources */,
-				7B3B996A17DF3DAA00DC4CF7 /* State.m in Sources */,
-				7B3B997017DF5DE000DC4CF7 /* HighSchool.m in Sources */,
 				801C90EA17E0560200227D88 /* SDFilterListViewController.m in Sources */,
 				801C90F517E0589800227D88 /* SDFilterListCell.m in Sources */,
 				7B1DF0F317E09ADE005455D8 /* AFHTTPClient.m in Sources */,
@@ -2355,6 +2339,22 @@
 				7B1DF0FA17E09ADE005455D8 /* AFXMLRequestOperation.m in Sources */,
 				7B1DF0FB17E09ADE005455D8 /* UIImageView+AFNetworking.m in Sources */,
 				7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */,
+				804090EF17E7269300D8EAD7 /* Team.m in Sources */,
+				804090F217E7269300D8EAD7 /* Conversation.m in Sources */,
+				804090F517E7269300D8EAD7 /* Comment.m in Sources */,
+				804090F817E7269300D8EAD7 /* HighSchool.m in Sources */,
+				804090FB17E7269400D8EAD7 /* Conference.m in Sources */,
+				804090FE17E7269400D8EAD7 /* Master.m in Sources */,
+				8040910117E7269400D8EAD7 /* Message.m in Sources */,
+				8040910417E7269400D8EAD7 /* Like.m in Sources */,
+				8040910717E7269400D8EAD7 /* ActivityStory.m in Sources */,
+				8040910A17E7269400D8EAD7 /* ImageData.m in Sources */,
+				8040910D17E7269400D8EAD7 /* WebPreview.m in Sources */,
+				8040911017E7269500D8EAD7 /* User.m in Sources */,
+				8040911317E7269500D8EAD7 /* State.m in Sources */,
+				8040911617E7269500D8EAD7 /* Member.m in Sources */,
+				8040911917E7269500D8EAD7 /* Coach.m in Sources */,
+				8040911C17E7269600D8EAD7 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

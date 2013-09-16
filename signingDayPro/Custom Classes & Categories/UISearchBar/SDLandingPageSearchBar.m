@@ -62,7 +62,7 @@ static CGRect initialTextFieldFrame;
             [txtField setBackground:nil];
             [txtField setTextColor:[UIColor lightGrayColor]];
             [txtField setFont:[UIFont fontWithName:@"Helvetica-Regular" size:15]];
-            [txtField setReturnKeyType:UIReturnKeyDone];
+            [txtField setReturnKeyType:UIReturnKeySearch];
             UIImage *image = [UIImage imageNamed: @"LandingPageSearchBarMagnifyIcon.png"];
             UIImageView *iView = [[UIImageView alloc] initWithImage:image];
             txtField.leftView = iView;

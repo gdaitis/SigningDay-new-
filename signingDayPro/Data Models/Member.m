@@ -2,7 +2,7 @@
 //  Member.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 9/10/13.
+//  Created by Lukas Kekys on 9/16/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
