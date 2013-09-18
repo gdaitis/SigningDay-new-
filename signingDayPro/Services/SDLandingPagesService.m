@@ -149,6 +149,18 @@
                                              user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"NationalRank"] intValue]];
                                              user.thePlayer.starsCount = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Stars"] intValue]];
                                              
+                                             
+                                             //assign a state to user (this is needed for filtering in landingpagecontrollers)
+                                             NSString *code = [userDictionary valueForKey:@"PlayerStateCode"];
+                                             State *state = [State MR_findFirstByAttribute:@"code"
+                                                                                 withValue:code
+                                                                                 inContext:context];
+                                             if (!state) {
+                                                 state = [State MR_createInContext:context];
+                                                 state.code = code;
+                                             }
+                                             user.state = state;
+                                             
                                              NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"HighSchoolID"] intValue]];
                                              User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
                                                                                         withValue:highSchoolIdentifier

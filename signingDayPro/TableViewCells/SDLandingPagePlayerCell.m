@@ -68,16 +68,14 @@
 
 #pragma mark - Cell setup
 
-- (void)setupCellWithUser:(User *)user
+- (void)setupCellWithUser:(User *)user andFilteredData:(BOOL)dataIsFiltered
 {    
     if (user) {
+
+        //hiding verified image if account not verified, hide position view if list is filtered
+        self.accountVerifiedImageView.hidden = ([user.accountVerified boolValue]) ? NO : YES;
+        self.positionNumberBackgroundImageView.hidden = (dataIsFiltered) ? YES : NO;
         
-        if ([user.accountVerified boolValue]) {
-            self.accountVerifiedImageView.hidden = NO;
-        }
-        else {
-            self.accountVerifiedImageView.hidden = YES;
-        }
         self.nameLabel.text = user.name;
         self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
         self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];

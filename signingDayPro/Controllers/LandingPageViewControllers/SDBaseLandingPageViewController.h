@@ -16,6 +16,7 @@
 #import "SDNavigationController.h"
 #import "User.h"
 
+#define kPageCountForLandingPages 10
 
 @interface SDBaseLandingPageViewController : SDBaseViewController <SDFilterListDelegate>
 
@@ -24,7 +25,13 @@
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) UIView *searchBarBackground;
 
+//flags for landing page data following
+@property (nonatomic, assign) BOOL dataDownloadInProgress;
+@property (nonatomic, assign) BOOL pagingEndReached;
+@property (nonatomic, assign) BOOL dataIsFiltered;
+
 - (void)hideFilterView;
+- (void)removeKeyboard;
 - (void)showFilterView;
 - (int)heightForFilterHidingButton;
 - (void)presentFilterListViewWithType:(FilterListType)listType andSelectedValue:(id)value;

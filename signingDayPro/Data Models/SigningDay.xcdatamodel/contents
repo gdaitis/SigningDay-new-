@@ -122,6 +122,7 @@
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isInUS" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="state" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Team" representedClassName="Team" syncable="YES">
         <attribute name="conferenceId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -165,6 +166,7 @@
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="user" inverseEntity="Like" syncable="YES"/>
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
+        <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="user" inverseEntity="State" syncable="YES"/>
         <relationship name="theCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="theUser" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theHighSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="theUser" inverseEntity="HighSchool" syncable="YES"/>
         <relationship name="theMember" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Member" inverseName="theUser" inverseEntity="Member" syncable="YES"/>
@@ -192,9 +194,9 @@
         <element name="Member" positionX="799" positionY="206" width="128" height="118"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
         <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
-        <element name="State" positionX="385" positionY="-493" width="128" height="88"/>
+        <element name="State" positionX="342" positionY="-495" width="128" height="103"/>
         <element name="Team" positionX="999" positionY="-513" width="128" height="270"/>
-        <element name="User" positionX="585" positionY="-198" width="128" height="480"/>
+        <element name="User" positionX="585" positionY="-198" width="128" height="493"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
     </elements>
 </model>

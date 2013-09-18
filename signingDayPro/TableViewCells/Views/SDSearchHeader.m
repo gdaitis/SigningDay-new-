@@ -12,7 +12,7 @@
 
 const float kSDSearchHeaderSpaceBetweenOptionButtons = 9;
 const float kSDSearchHeaderSpaceBetweenOptionButtonAndSearchButton = 10;
-const float kSDSearchHeaderTopMargin = 8;
+const float kSDSearchHeaderTopMargin = 15;
 const float kSDSearchHeaderBottomMargin = 15;
 const float kSDSearchHeaderLeftMargin = 11;
 

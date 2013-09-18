@@ -71,7 +71,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.dataArray count];
+    int result = 0;
+    if (self.pagingEndReached || self.searchBar.text.length > 0) {
+        result = [self.dataArray count];
+    }
+    else {
+        result = ([self.dataArray count] == 0) ? 0 : [self.dataArray count]+1;
+    }
+    return result;
 }
 
 
@@ -79,12 +86,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                        bundle:nil];
-    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-    userProfileViewController.currentUser = [self.dataArray objectAtIndex:indexPath.row];
-    
-    [self.navigationController pushViewController:userProfileViewController animated:YES];
+    if ([self.searchBar isFirstResponder]) {
+        [self removeKeyboard];
+    }
+    else {
+        UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                            bundle:nil];
+        SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+        userProfileViewController.currentUser = [self.dataArray objectAtIndex:indexPath.row];
+        
+        [self.navigationController pushViewController:userProfileViewController animated:YES];
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -102,13 +114,18 @@
     SDLandingPageSearchBar *searchB = [[SDLandingPageSearchBar alloc] initWithFrame:CGRectMake(0, 7, 320, 44)];
     self.searchBar = searchB;
     self.searchBar.delegate = self;
-
+    
     [searchBackgroundView addSubview:self.searchBar];
     self.searchBarBackground = searchBackgroundView;
     [self.view addSubview:self.searchBarBackground];
 }
 
 #pragma mark - UISearchBar delegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self searchFilteredData];
+}
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
@@ -119,11 +136,6 @@
     [hideKeyboardButton addTarget:self action:@selector(removeKeyboard) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:hideKeyboardButton];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self removeKeyboard];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
@@ -166,6 +178,25 @@
     return 0;
 }
 
+
+
+#pragma mark - Filter List Presentation
+
+- (void)presentFilterListViewWithType:(FilterListType)listType andSelectedValue:(id)value
+{
+    //    [self hideFilterView];
+    UIStoryboard *landingPageViewStoryboard = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard"
+                                                                        bundle:nil];
+    SDFilterListViewController *filterListViewController = [landingPageViewStoryboard instantiateViewControllerWithIdentifier:@"SDFilterListViewController"];
+    filterListViewController.filterListType = listType;
+    filterListViewController.delegate = self;
+    filterListViewController.selectedItem = value;
+    
+    [self.navigationController pushViewController:filterListViewController animated:YES];
+}
+
+#pragma mark - Functions which extended classes should overide
+
 - (void)hideFilterView
 {
     
@@ -176,19 +207,9 @@
     
 }
 
-#pragma mark - Filter List Presentation
-
-- (void)presentFilterListViewWithType:(FilterListType)listType andSelectedValue:(id)value
+- (void)searchFilteredData
 {
-//    [self hideFilterView];
-    UIStoryboard *landingPageViewStoryboard = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard"
-                                                                        bundle:nil];
-    SDFilterListViewController *filterListViewController = [landingPageViewStoryboard instantiateViewControllerWithIdentifier:@"SDFilterListViewController"];
-    filterListViewController.filterListType = listType;
-    filterListViewController.delegate = self;
-    filterListViewController.selectedItem = value;
     
-    [self.navigationController pushViewController:filterListViewController animated:YES];
 }
 
 @end

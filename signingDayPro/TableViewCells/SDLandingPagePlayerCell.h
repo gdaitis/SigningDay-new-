@@ -14,6 +14,6 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
-- (void)setupCellWithUser:(User *)user;
+- (void)setupCellWithUser:(User *)user andFilteredData:(BOOL)dataIsFiltered;
 
 @end

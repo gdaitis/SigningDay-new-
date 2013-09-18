@@ -46,12 +46,7 @@
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount+10 forClass:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
-        self.currentUserCount +=10;
-        [self loadData];
-    } failureBlock:^{
-        
-    }];
+    [self checkServer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -66,32 +61,52 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - TableView datasource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"SDLandingPagePlayerCellIdentifier";
-    SDLandingPagePlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if (!cell) {
-        cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row < [self.dataArray count] || self.pagingEndReached) {
+        NSString *identifier = @"SDLandingPagePlayerCellIdentifier";
+        SDLandingPagePlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (!cell) {
+            cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        User *user = [self.dataArray objectAtIndex:indexPath.row];
+        
+        // Configure the cell...
+        [cell setupCellWithUser:user andFilteredData:self.dataIsFiltered];
+        return cell;
     }
-    
-    User *user = [self.dataArray objectAtIndex:indexPath.row];
-    
-    // Configure the cell...
-    [cell setupCellWithUser:user];
-    return cell;
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
+        activityView.center = cell.center;
+        [cell addSubview:activityView];
+        [activityView startAnimating];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (!self.dataDownloadInProgress) {
+            //data downloading not in progress, we can start downloading further pages
+            [self checkServer];
+        }
+        return cell;
+    }
 }
 
-#pragma mark - Filter button actions
+#pragma mark - Filter View handling
 
 - (void)hideFilterView
 {
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGRect frame = self.playerSearchView.frame;
-        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+        frame.origin.y = self.searchBarBackground.frame.origin.y - frame.size.height;
         self.playerSearchView.frame = frame;
+        
     } completion:^(__unused BOOL finished) {
         [self.playerSearchView removeFromSuperview];
         self.playerSearchView = nil;
@@ -120,19 +135,16 @@
     
     //hide SDPlayerSearchHeader under toolbar
     CGRect frame = self.playerSearchView.frame;
-    frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+    frame.origin.y = self.searchBarBackground.frame.origin.y - frame.size.height;
     self.playerSearchView.frame = frame;
+    [self.view addSubview:self.playerSearchView];
     
     [self updateFilterButtonNames];
     
-    [self.view addSubview:self.playerSearchView];
-    
-    //bring searchBar view to front so the filter SDPlayerSearchHeader would be behind this view
-    [self.view bringSubviewToFront:self.searchBarBackground];
     
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGRect frame = self.playerSearchView.frame;
-        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height;
+        frame.origin.y = self.searchBarBackground.frame.origin.y;
         self.playerSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
@@ -161,14 +173,36 @@
     }
 }
 
-#pragma mark - Search
+#pragma mark - Search and Data loading
+
+- (void)checkServer
+{
+    self.dataDownloadInProgress = YES;
+    [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount + kPageCountForLandingPages forClass:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+        self.currentUserCount += kPageCountForLandingPages;
+        [self loadData];
+        self.dataDownloadInProgress = NO;
+    } failureBlock:^{
+        self.dataDownloadInProgress = NO;
+        NSLog(@"Data downloading failed in :%@",[self class]);
+    }];
+}
 
 - (void)searchFilteredData
 {
+    //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
+    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (searchBarText.length == 0 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
+        self.dataIsFiltered = NO;
+        self.currentUserCount = 0;
+        [self checkServer];
+    }
+    else
+        self.dataIsFiltered = YES;
+    
+    
     [self hideFilterView];
     [self showProgressHudInView:self.view withText:@"Loading"];
-    
-#warning check if no filters or text just load simple list, else load filteredData
     
     NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
     NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
@@ -184,7 +218,7 @@
                                              }];
 }
 
-#pragma mark - Data loading
+#pragma mark - Data fetching
 
 - (void)loadData
 {
@@ -203,24 +237,47 @@
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
+    //checking if end for paging is reached
+    if ([self.dataArray count] < self.currentUserCount) {
+        self.pagingEndReached = YES;
+    }
+    
     [self.tableView reloadData];
 }
 
 - (void)loadFilteredData
 {
+    //Form and compound predicates
+    NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
+    
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
     NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-    NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
-#warning state predicate missing
+    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"state.code == %@",self.currentFilterState.code] : nil;
+    NSPredicate *userPositionPredicate = self.currentFilterPositionDictionary ? [NSPredicate predicateWithFormat:@"thePlayer.position == %@",[self.currentFilterPositionDictionary valueForKey:@"shortName"]] : nil;
     
-    //also add self.currentFilterState.code and [self.currentFilterPositionDictionary objectForKey:@"shortName"]
-    NSPredicate *compoundPredicate = (self.searchBar.text.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate,nameSearchPredicate]] : [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate]];
+    
+    [predicateArray addObject:userTypePredicate];
+    [predicateArray addObject:userYearPredicate];
+    if (userStatePredicate)
+        [predicateArray addObject:userStatePredicate];
+    if (userPositionPredicate)
+        [predicateArray addObject:userPositionPredicate];
+    
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
     
     [self.tableView reloadData];
     [self hideProgressHudInView:self.view];
+}
+
+#pragma mark - Search bar search clicked
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self removeKeyboard];
+    [self searchFilteredData];
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate
