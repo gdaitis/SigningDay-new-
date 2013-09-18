@@ -148,7 +148,7 @@
     
     if (self.showFilterButton) {
         
-        UIImage *btnImg = [UIImage imageNamed:@"TopToolbarSettingsButton.png"];
+        UIImage *btnImg = [UIImage imageNamed:@"LandingPageFilterButton.png"];
         UIButton *filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
         filterButton.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
         [filterButton setImage:btnImg forState:UIControlStateNormal];
