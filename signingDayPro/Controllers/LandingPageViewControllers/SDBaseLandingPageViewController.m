@@ -72,7 +72,7 @@
 {
     // Return the number of rows in the section.
     int result = 0;
-    if (self.pagingEndReached || self.searchBar.text.length > 0) {
+    if (self.pagingEndReached || self.searchBar.text.length > 0 || self.dataIsFiltered) {
         result = [self.dataArray count];
     }
     else {

@@ -49,6 +49,7 @@
     NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
     self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
     
+    [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
 }
 
@@ -72,8 +73,10 @@
         }
         
         User *user = [self.dataArray objectAtIndex:indexPath.row];
+        cell.userPositionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
+        
         // Configure the cell...
-        [cell setupCellWithUser:user];
+        [cell setupCellWithUser:user andFilteredData:self.dataIsFiltered];
         return cell;
     }
     else {
@@ -170,7 +173,7 @@
     NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theHighSchool.totalProspects" ascending:NO];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
@@ -180,11 +183,16 @@
 - (void)loadFilteredData
 {
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
-    //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-    NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
+    NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
+    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"state.code == %@",self.currentFilterState.code] : nil;
+    NSMutableArray *predicateArray = [[NSMutableArray alloc] initWithObjects:userTypePredicate, nil];
+    if (nameSearchPredicate)
+        [predicateArray addObject:nameSearchPredicate];
+    if (userStatePredicate)
+        [predicateArray addObject:userStatePredicate];
     
-    //also add self.currentFilterState.code and [self.currentFilterPositionDictionary objectForKey:@"shortName"]
-    NSPredicate *compoundPredicate = (self.searchBar.text.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate,nameSearchPredicate]] : [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate]];
+    
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
@@ -197,13 +205,16 @@
 
 - (void)checkServer
 {
+#warning sorting wrong! also don't need year param! (maybe default value ?)
+    
     self.dataDownloadInProgress = YES;
     [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
         self.currentUserCount +=kPageCountForLandingPages;
         self.dataDownloadInProgress = NO;
         [self loadData];
-        
+        [self hideProgressHudInView:self.view];
     } failureBlock:^{
+        [self hideProgressHudInView:self.view];
         self.dataDownloadInProgress = NO;
     }];
 }
@@ -211,17 +222,27 @@
 - (void)searchFilteredData
 {
     [self hideFilterView];
-    [self showProgressHudInView:self.view withText:@"Loading"];
+    //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
+    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
-#warning state predicate missing
-    //    NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
-    
-    [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray successBlock:^{
-        [self loadFilteredData];
-    } failureBlock:^{
-        
-    }];
+    if (searchBarText.length < 3 && self.currentFilterState == nil) {
+        self.dataIsFiltered = NO;
+        self.currentUserCount = 0;
+        [self checkServer];
+    }
+    else {
+        self.dataIsFiltered = YES;
+         [self showProgressHudInView:self.view withText:@"Loading"];
+        NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
+
+        [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray successBlock:^{
+            [self loadFilteredData];
+            [self hideProgressHudInView:self.view];
+        } failureBlock:^{
+#warning fails here!!!
+            [self hideProgressHudInView:self.view];
+        }];
+    }
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate

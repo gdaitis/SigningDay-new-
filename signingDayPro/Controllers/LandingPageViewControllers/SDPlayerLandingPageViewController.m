@@ -76,6 +76,7 @@
         
         User *user = [self.dataArray objectAtIndex:indexPath.row];
         
+        cell.playerPositionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
         // Configure the cell...
         [cell setupCellWithUser:user andFilteredData:self.dataIsFiltered];
         return cell;
@@ -180,8 +181,8 @@
     self.dataDownloadInProgress = YES;
     [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount + kPageCountForLandingPages forClass:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
         self.currentUserCount += kPageCountForLandingPages;
-        [self loadData];
         self.dataDownloadInProgress = NO;
+        [self loadData];
     } failureBlock:^{
         self.dataDownloadInProgress = NO;
         NSLog(@"Data downloading failed in :%@",[self class]);
@@ -190,18 +191,18 @@
 
 - (void)searchFilteredData
 {
+    [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
     NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if (searchBarText.length == 0 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
+    
+    if (searchBarText.length < 3 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
         self.dataIsFiltered = NO;
         self.currentUserCount = 0;
         [self checkServer];
     }
-    else
+    else {
         self.dataIsFiltered = YES;
     
-    
-    [self hideFilterView];
     [self showProgressHudInView:self.view withText:@"Loading"];
     
     NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
@@ -216,6 +217,7 @@
                                              } failureBlock:^{
                                                  NSLog(@"failed");
                                              }];
+    }
 }
 
 #pragma mark - Data fetching
@@ -254,10 +256,13 @@
     NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
     NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"state.code == %@",self.currentFilterState.code] : nil;
     NSPredicate *userPositionPredicate = self.currentFilterPositionDictionary ? [NSPredicate predicateWithFormat:@"thePlayer.position == %@",[self.currentFilterPositionDictionary valueForKey:@"shortName"]] : nil;
+    NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
     
     
     [predicateArray addObject:userTypePredicate];
     [predicateArray addObject:userYearPredicate];
+    if (nameSearchPredicate)
+        [predicateArray addObject:nameSearchPredicate];
     if (userStatePredicate)
         [predicateArray addObject:userStatePredicate];
     if (userPositionPredicate)

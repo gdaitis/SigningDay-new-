@@ -23,7 +23,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *accountVerifiedImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
-@property (nonatomic, weak) IBOutlet UILabel *userPositionLabel;
+
 
 @end
 
@@ -62,7 +62,7 @@
 
 #pragma mark - Cell setup
 
-- (void)setupCellWithUser:(User *)user
+- (void)setupCellWithUser:(User *)user andFilteredData:(BOOL)dataIsFiltered
 {
     if (user) {
         
@@ -74,7 +74,9 @@
         }
 
         self.nameLabel.text = user.name;
-//        self.totalPospectsNameLabel.text = user.theHighSchool.prospects;
+        
+        self.locationLabel.text = [NSString stringWithFormat:@"%@ (%@)",user.theHighSchool.city,user.theHighSchool.stateCode];
+        self.totalPospectsNameLabel.text = [NSString stringWithFormat:@"%d",[user.theHighSchool.totalProspects intValue]];
         
         //cancel previous requests and set user image
         [self.userImageView cancelImageRequestOperation];

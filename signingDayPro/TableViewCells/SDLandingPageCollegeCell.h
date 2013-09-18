@@ -12,6 +12,8 @@
 
 @interface SDLandingPageCollegeCell : UITableViewCell
 
-- (void)setupCellWithUser:(User *)user;
+@property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
+
+- (void)setupCellWithUser:(User *)user andFilteredData:(BOOL)dataIsFiltered;
 
 @end

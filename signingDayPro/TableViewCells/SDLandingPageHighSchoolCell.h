@@ -12,6 +12,8 @@
 
 @interface SDLandingPageHighSchoolCell : UITableViewCell
 
-- (void)setupCellWithUser:(User *)user;
+@property (nonatomic, weak) IBOutlet UILabel *userPositionLabel;
+
+- (void)setupCellWithUser:(User *)user andFilteredData:(BOOL)dataIsFiltered;
 
 @end

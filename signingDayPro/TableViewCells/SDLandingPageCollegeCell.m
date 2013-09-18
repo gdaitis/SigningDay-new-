@@ -25,7 +25,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *accountVerifiedImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
-@property (nonatomic, weak) IBOutlet UILabel *playerPositionLabel;
+
 
 @end
 
@@ -66,16 +66,14 @@
 
 #pragma mark - Cell setup
 
-- (void)setupCellWithUser:(User *)user
+- (void)setupCellWithUser:(User *)user andFilteredData:(BOOL)dataIsFiltered
 {    
     if (user) {
         
-        if ([user.accountVerified boolValue]) {
-            self.accountVerifiedImageView.hidden = NO;
-        }
-        else {
-            self.accountVerifiedImageView.hidden = YES;
-        }
+        //hiding verified image if account not verified, hide position view if list is filtered
+        self.accountVerifiedImageView.hidden = ([user.accountVerified boolValue]) ? NO : YES;
+        self.positionNumberBackgroundImageView.hidden = (dataIsFiltered) ? YES : NO;
+        
         self.nameLabel.text = user.name;
         self.playerPositionLabel.text = user.theTeam.nationalRankingString;
 
