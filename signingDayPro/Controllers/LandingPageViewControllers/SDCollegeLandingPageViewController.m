@@ -46,13 +46,7 @@ NSString * const kSDDefaultClass = @"2014";
     NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
     self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
     
-    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
-                                                                      pageSize:10
-                                                                   classString:[self.currentFilterYearDictionary objectForKey:@"name"]
-                                                                  successBlock:^{
-                                                                      self.currentUserCount +=10;
-                                                                      [self loadData];
-                                                                  } failureBlock:nil];
+    [self checkServer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -69,18 +63,36 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"SDLandingPageCollegeCellIdentifier";
-    SDLandingPageCollegeCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if (!cell) {
-        cell = (id)[SDLandingPageCollegeCell loadInstanceFromNib];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row < [self.dataArray count] || self.pagingEndReached) {
+        NSString *identifier = @"SDLandingPageCollegeCellIdentifier";
+        SDLandingPageCollegeCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (!cell) {
+            cell = (id)[SDLandingPageCollegeCell loadInstanceFromNib];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        User *user = [self.dataArray objectAtIndex:indexPath.row];
+        // Configure the cell...
+        [cell setupCellWithUser:user];
+        return cell;
     }
-    
-    User *user = [self.dataArray objectAtIndex:indexPath.row];
-    // Configure the cell...
-    [cell setupCellWithUser:user];
-    return cell;
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
+        activityView.center = cell.center;
+        [cell addSubview:activityView];
+        [activityView startAnimating];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (!self.dataDownloadInProgress) {
+            //data downloading not in progress, we can start downloading further pages
+            [self checkServer];
+        }
+        return cell;
+    }
 }
 
 #pragma mark - Filter button actions
@@ -89,7 +101,7 @@ NSString * const kSDDefaultClass = @"2014";
 {
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGRect frame = self.teamSearchView.frame;
-        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+        frame.origin.y = self.searchBarBackground.frame.origin.y - frame.size.height;
         self.teamSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
         [self.teamSearchView removeFromSuperview];
@@ -119,21 +131,17 @@ NSString * const kSDDefaultClass = @"2014";
         self.teamSearchView = teamSearchView;
     }
     
-    
     //hide SDCollegeHeaderView under toolbar
     CGRect frame = self.teamSearchView.frame;
-    frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+    frame.origin.y = self.searchBarBackground.frame.origin.y - frame.size.height;
     self.teamSearchView.frame = frame;
     
     [self.view addSubview:self.teamSearchView];
     [self updateFilterButtonNames];
     
-    //bring searchBar view to front so the filter SDCollegeHeaderView would be behind this view
-    [self.view bringSubviewToFront:self.searchBarBackground];
-    
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGRect frame = self.teamSearchView.frame;
-        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height;
+        frame.origin.y = self.searchBarBackground.frame.origin.y;
         self.teamSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
@@ -142,7 +150,7 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)updateFilterButtonNames
 {
     if (self.teamSearchView) {
-
+        
         //Year button
         if (self.currentFilterYearDictionary)
             [self.teamSearchView.classButton setCustomTitle:[self.currentFilterYearDictionary valueForKey:@"name"]];
@@ -157,7 +165,7 @@ NSString * const kSDDefaultClass = @"2014";
     }
 }
 
-#pragma mark - Data loading
+#pragma mark - Data Fetching
 
 - (void)loadData
 {
@@ -178,7 +186,7 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)loadFilteredData
 {
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
-//    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
     NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
     
     //also add self.currentFilterState.code and [self.currentFilterPositionDictionary objectForKey:@"shortName"]
@@ -189,6 +197,23 @@ NSString * const kSDDefaultClass = @"2014";
     
     [self.tableView reloadData];
     [self hideProgressHudInView:self.view];
+}
+
+#pragma mark - Data downloading
+
+- (void)checkServer
+{
+    self.dataDownloadInProgress = YES;
+    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
+                                                                      pageSize:kPageCountForLandingPages
+                                                                   classString:[self.currentFilterYearDictionary objectForKey:@"name"]
+                                                                  successBlock:^{
+                                                                      self.currentUserCount +=kPageCountForLandingPages;
+                                                                      self.dataDownloadInProgress = NO;
+                                                                      [self loadData];
+                                                                  } failureBlock:^{
+                                                                      self.dataDownloadInProgress = NO;
+                                                                  }];
 }
 
 - (void)searchFilteredData

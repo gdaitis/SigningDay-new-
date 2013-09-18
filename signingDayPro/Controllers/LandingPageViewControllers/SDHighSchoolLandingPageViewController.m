@@ -49,15 +49,7 @@
     NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
     self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
     
-    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
-        self.currentUserCount +=10;
-        [self loadData];
-    } failureBlock:^{
-        
-    }];
-    
-    self.currentUserCount +=10;
-    [self loadData];
+    [self checkServer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,18 +62,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"SDLandingPagePlayerCellIdentifier";
-    SDLandingPageHighSchoolCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if (!cell) {
-        cell = (id)[SDLandingPageHighSchoolCell loadInstanceFromNib];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row < [self.dataArray count] || self.pagingEndReached) {
+        NSString *identifier = @"SDLandingPagePlayerCellIdentifier";
+        SDLandingPageHighSchoolCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (!cell) {
+            cell = (id)[SDLandingPageHighSchoolCell loadInstanceFromNib];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        User *user = [self.dataArray objectAtIndex:indexPath.row];
+        // Configure the cell...
+        [cell setupCellWithUser:user];
+        return cell;
     }
-    
-    User *user = [self.dataArray objectAtIndex:indexPath.row];
-    // Configure the cell...
-    [cell setupCellWithUser:user];
-    return cell;
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
+        activityView.center = cell.center;
+        [cell addSubview:activityView];
+        [activityView startAnimating];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (!self.dataDownloadInProgress) {
+            //data downloading not in progress, we can start downloading further pages
+            [self checkServer];
+        }
+        return cell;
+    }
 }
 
 #pragma mark - Filter button actions
@@ -90,7 +100,7 @@
 {
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGRect frame = self.highSchoolSearchView.frame;
-        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+        frame.origin.y = self.searchBarBackground.frame.origin.y - frame.size.height;
         self.highSchoolSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
         [self.highSchoolSearchView removeFromSuperview];
@@ -122,19 +132,16 @@
     
     //hide SDHighSchoolHeaderView under toolbar
     CGRect frame = self.highSchoolSearchView.frame;
-    frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height - frame.size.height;
+    frame.origin.y = self.searchBarBackground.frame.origin.y - frame.size.height;
     self.highSchoolSearchView.frame = frame;
     
     [self.view addSubview:self.highSchoolSearchView];
     
     [self updateFilterButtonNames];
     
-    //bring searchBar view to front so the filter SDHighSchoolHeaderView would be behind this view
-    [self.view bringSubviewToFront:self.searchBarBackground];
-    
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGRect frame = self.highSchoolSearchView.frame;
-        frame.origin.y = self.searchBarBackground.frame.origin.y + self.searchBarBackground.frame.size.height;
+        frame.origin.y = self.searchBarBackground.frame.origin.y;
         self.highSchoolSearchView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
@@ -143,7 +150,7 @@
 - (void)updateFilterButtonNames
 {
     if (self.highSchoolSearchView) {
-
+        
         //State button
         if (self.currentFilterState)
             [self.highSchoolSearchView.statesButton setCustomTitle:self.currentFilterState.name];
@@ -152,7 +159,7 @@
     }
 }
 
-#pragma mark - Data loading
+#pragma mark - Data Fetching
 
 - (void)loadData
 {
@@ -170,22 +177,6 @@
     [self.tableView reloadData];
 }
 
-- (void)searchFilteredData
-{
-    [self hideFilterView];
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    
-    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
-#warning state predicate missing
-//    NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
-    
-    [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray successBlock:^{
-        [self loadFilteredData];
-    } failureBlock:^{
-        
-    }];
-}
-
 - (void)loadFilteredData
 {
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
@@ -200,6 +191,37 @@
     
     [self.tableView reloadData];
     [self hideProgressHudInView:self.view];
+}
+
+#pragma mark - Data downlaoding
+
+- (void)checkServer
+{
+    self.dataDownloadInProgress = YES;
+    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+        self.currentUserCount +=kPageCountForLandingPages;
+        self.dataDownloadInProgress = NO;
+        [self loadData];
+        
+    } failureBlock:^{
+        self.dataDownloadInProgress = NO;
+    }];
+}
+
+- (void)searchFilteredData
+{
+    [self hideFilterView];
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
+    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
+#warning state predicate missing
+    //    NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
+    
+    [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray successBlock:^{
+        [self loadFilteredData];
+    } failureBlock:^{
+        
+    }];
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate
