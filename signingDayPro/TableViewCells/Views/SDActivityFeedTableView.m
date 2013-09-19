@@ -132,6 +132,7 @@
             [cell.secondPlayerNameButton addTarget:self action:@selector(secondUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            cell.backgroundColor = [UIColor clearColor];
         }
         
         cell.playerNameButton.tag = cell.secondPlayerNameButton.tag = indexPath.row;

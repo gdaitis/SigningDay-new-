@@ -143,6 +143,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     //rounding selected cell corners

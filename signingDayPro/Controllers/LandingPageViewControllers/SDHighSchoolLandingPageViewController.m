@@ -67,6 +67,7 @@ NSString * const kSDDefaultClass = @"2014";
         if (!cell) {
             cell = (id)[SDLandingPageHighSchoolCell loadInstanceFromNib];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor clearColor];
         }
         
         User *user = [self.dataArray objectAtIndex:indexPath.row];
@@ -85,6 +86,7 @@ NSString * const kSDDefaultClass = @"2014";
         [cell addSubview:activityView];
         [activityView startAnimating];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         
         if (!self.dataDownloadInProgress) {
             //data downloading not in progress, we can start downloading further pages
@@ -170,8 +172,9 @@ NSString * const kSDDefaultClass = @"2014";
     NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theHighSchool.totalProspects" ascending:NO];
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSSortDescriptor *prospectsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theHighSchool.totalProspects" ascending:NO];
+    NSSortDescriptor *baseAverageDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theHighSchool.baseAverage" ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObjects:prospectsDescriptor,baseAverageDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
     [self.tableView reloadData];

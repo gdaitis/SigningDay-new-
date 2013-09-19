@@ -92,6 +92,7 @@
                 break;
             }
         }
+        cell.backgroundColor = [UIColor clearColor];
         /*[cell.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];*/
     } else {
         [cell.userImageView cancelImageRequestOperation];

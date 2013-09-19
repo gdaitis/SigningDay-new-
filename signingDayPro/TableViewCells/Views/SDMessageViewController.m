@@ -168,6 +168,7 @@
                 break;
             }
         }
+        cell.backgroundColor = [UIColor clearColor];
     } else {
         [cell.userImageView cancelImageRequestOperation];
     }

@@ -140,6 +140,7 @@
             }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     [self setupCell:cell forIndexPath:indexPath];

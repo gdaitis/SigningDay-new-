@@ -289,6 +289,7 @@
                     break;
                 }
             }
+            cell.backgroundColor = [UIColor clearColor];
         }
         
         User *user = [self.searchResults objectAtIndex:indexPath.row];

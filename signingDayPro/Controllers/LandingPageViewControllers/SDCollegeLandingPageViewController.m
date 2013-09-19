@@ -69,6 +69,7 @@
         if (!cell) {
             cell = (id)[SDLandingPageCollegeCell loadInstanceFromNib];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor clearColor];
         }
         
         User *user = [self.dataArray objectAtIndex:indexPath.row];
@@ -81,6 +82,7 @@
     else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
+        cell.backgroundColor = [UIColor clearColor];
         
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
         activityView.center = cell.center;

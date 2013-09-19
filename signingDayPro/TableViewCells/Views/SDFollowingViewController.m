@@ -344,6 +344,7 @@
                 if ([currentObject isKindOfClass:[UITableViewCell class]]) {
                     cell = (SDFollowingCell *) currentObject;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.backgroundColor = [UIColor clearColor];
                     break;
                 }
             }

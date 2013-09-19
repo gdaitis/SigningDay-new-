@@ -72,6 +72,7 @@
         if (!cell) {
             cell = (id)[SDLandingPagePlayerCell loadInstanceFromNib];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor clearColor];
         }
         
         User *user = [self.dataArray objectAtIndex:indexPath.row];

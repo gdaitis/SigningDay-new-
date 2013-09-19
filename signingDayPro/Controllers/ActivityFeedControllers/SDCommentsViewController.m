@@ -127,6 +127,7 @@
         cell = [[SDCommentCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
     } else {
         [cell.userImageView cancelImageRequestOperation];
     }
