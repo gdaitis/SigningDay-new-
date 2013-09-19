@@ -47,9 +47,11 @@
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;
 + (void)searchForHighSchoolsInAllStatesWithNameString:(NSString *)searchString
+                                           yearString:(NSString *)yearString
                                          successBlock:(void (^)(void))successBlock
                                          failureBlock:(void (^)(void))failureBlock;
 + (void)searchForHighSchoolsWithNameString:(NSString *)searchString
+                                yearString:(NSString *)yearString
                      stateCodeStringsArray:(NSArray *)statesArray
                               successBlock:(void (^)(void))successBlock
                               failureBlock:(void (^)(void))failureBlock;
