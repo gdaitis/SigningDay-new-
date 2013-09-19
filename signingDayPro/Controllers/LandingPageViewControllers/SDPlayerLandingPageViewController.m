@@ -179,6 +179,7 @@
 - (void)checkServer
 {
     self.dataDownloadInProgress = YES;
+    
     [SDLandingPagesService getPlayersOrderedByDescendingBaseScoreFrom:self.currentUserCount to:self.currentUserCount + kPageCountForLandingPages forClass:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
         self.currentUserCount += kPageCountForLandingPages;
         self.dataDownloadInProgress = NO;

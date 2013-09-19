@@ -14,8 +14,6 @@
 #import "UIButton+AddTitle.h"
 #import "Conference.h"
 
-NSString * const kSDDefaultClass = @"2014";
-
 @interface SDCollegeLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDTeamsSearchHeaderDelegate>
 
 @property (nonatomic, strong) SDTeamsSearchHeader *teamSearchView;
@@ -46,6 +44,7 @@ NSString * const kSDDefaultClass = @"2014";
     NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
     self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
     
+    [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
 }
 
@@ -167,6 +166,47 @@ NSString * const kSDDefaultClass = @"2014";
     }
 }
 
+#pragma mark - Data downloading
+
+- (void)checkServer
+{
+    self.dataDownloadInProgress = YES;
+    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
+                                                                      pageSize:kPageCountForLandingPages
+                                                                   classString:[self.currentFilterYearDictionary objectForKey:@"name"]
+                                                                  successBlock:^{
+                                                                      self.currentUserCount += kPageCountForLandingPages;
+                                                                      self.dataDownloadInProgress = NO;
+                                                                      [self loadData];
+                                                                  } failureBlock:^{
+                                                                      self.dataDownloadInProgress = NO;
+                                                                      NSLog(@"Data downloading failed in :%@",[self class]);
+                                                                  }];
+}
+
+- (void)searchFilteredData
+{
+    [self hideFilterView];
+    //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
+    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if (searchBarText.length < 3 && self.currentFilterConference == nil && self.currentFilterYearDictionary == nil) {
+        self.dataIsFiltered = NO;
+        self.currentUserCount = 0;
+        [self checkServer];
+    }
+    else {
+        self.dataIsFiltered = YES;
+        
+        [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+            [self loadFilteredData];
+        } failureBlock:^{
+            
+        }];
+    }
+}
+
+
 #pragma mark - Data Fetching
 
 - (void)loadData
@@ -182,11 +222,32 @@ NSString * const kSDDefaultClass = @"2014";
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
+    [self hideProgressHudInView:self.view];
     [self.tableView reloadData];
 }
 
 - (void)loadFilteredData
 {
+    //Form and compound predicates
+//    NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
+//    
+//    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
+//    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+//    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"conference.nameShort == %@",self.currentFilterConference.nameShort] : nil;
+//    NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
+//    
+//    
+//    [predicateArray addObject:userTypePredicate];
+//    [predicateArray addObject:userYearPredicate];
+//    if (nameSearchPredicate)
+//        [predicateArray addObject:nameSearchPredicate];
+//    if (userStatePredicate)
+//        [predicateArray addObject:userStatePredicate];
+//    if (userPositionPredicate)
+//        [predicateArray addObject:userPositionPredicate];
+//    
+//    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
+    
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
     //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
     NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
@@ -199,35 +260,6 @@ NSString * const kSDDefaultClass = @"2014";
     
     [self.tableView reloadData];
     [self hideProgressHudInView:self.view];
-}
-
-#pragma mark - Data downloading
-
-- (void)checkServer
-{
-    self.dataDownloadInProgress = YES;
-    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
-                                                                      pageSize:kPageCountForLandingPages
-                                                                   classString:[self.currentFilterYearDictionary objectForKey:@"name"]
-                                                                  successBlock:^{
-                                                                      self.currentUserCount +=kPageCountForLandingPages;
-                                                                      self.dataDownloadInProgress = NO;
-                                                                      [self loadData];
-                                                                  } failureBlock:^{
-                                                                      self.dataDownloadInProgress = NO;
-                                                                  }];
-}
-
-- (void)searchFilteredData
-{
-    [self hideFilterView];
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    
-    [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
-        [self loadFilteredData];
-    } failureBlock:^{
-        
-    }];
 }
 
 #pragma mark - SDTeamSearchHeader Delegate

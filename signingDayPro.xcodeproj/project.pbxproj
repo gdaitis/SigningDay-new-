@@ -54,7 +54,6 @@
 		7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */; };
 		7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */; };
 		7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */; };
-		7BA0F54717E9B58600C6DE89 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0F54617E9B58600C6DE89 /* User.m */; };
 		7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */; };
 		7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */; };
 		7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */; };
@@ -164,21 +163,6 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
-		8040912317E8759300D8EAD7 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040912217E8759300D8EAD7 /* ActivityStory.m */; };
-		8040913117E8759600D8EAD7 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913017E8759600D8EAD7 /* Player.m */; };
-		8040913417E8759600D8EAD7 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913317E8759600D8EAD7 /* State.m */; };
-		8040913717E8759700D8EAD7 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913617E8759700D8EAD7 /* Coach.m */; };
-		8040913A17E8759700D8EAD7 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913917E8759700D8EAD7 /* Master.m */; };
-		8040913D17E8759700D8EAD7 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913C17E8759700D8EAD7 /* Like.m */; };
-		8040914017E8759700D8EAD7 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913F17E8759700D8EAD7 /* Comment.m */; };
-		8040914317E8759800D8EAD7 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040914217E8759700D8EAD7 /* Conversation.m */; };
-		8040914617E8759A00D8EAD7 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040914517E8759800D8EAD7 /* Conference.m */; };
-		8040914917E8759A00D8EAD7 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040914817E8759A00D8EAD7 /* ImageData.m */; };
-		8040914C17E8759A00D8EAD7 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040914B17E8759A00D8EAD7 /* Member.m */; };
-		8040914F17E8759A00D8EAD7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040914E17E8759A00D8EAD7 /* Message.m */; };
-		8040915217E8759B00D8EAD7 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040915117E8759B00D8EAD7 /* HighSchool.m */; };
-		8040915517E8759B00D8EAD7 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040915417E8759B00D8EAD7 /* Team.m */; };
-		8040915817E8759B00D8EAD7 /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040915717E8759B00D8EAD7 /* WebPreview.m */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -282,6 +266,22 @@
 		809E72A617588B76004840D3 /* SDFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E72A517588B76004840D3 /* SDFollowingViewController.m */; };
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
+		80A2D51D17EB0E7F00A5F8A2 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D51C17EB0E7F00A5F8A2 /* ActivityStory.m */; };
+		80A2D52817EB0E8000A5F8A2 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D52717EB0E8000A5F8A2 /* Conversation.m */; };
+		80A2D52B17EB0E8000A5F8A2 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D52A17EB0E8000A5F8A2 /* Master.m */; };
+		80A2D52E17EB0E8100A5F8A2 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D52D17EB0E8000A5F8A2 /* Member.m */; };
+		80A2D53117EB0E8100A5F8A2 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D53017EB0E8100A5F8A2 /* Team.m */; };
+		80A2D53417EB0E8100A5F8A2 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D53317EB0E8100A5F8A2 /* State.m */; };
+		80A2D53717EB0E8100A5F8A2 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D53617EB0E8100A5F8A2 /* ImageData.m */; };
+		80A2D53A17EB0E8100A5F8A2 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D53917EB0E8100A5F8A2 /* Like.m */; };
+		80A2D53D17EB0E8100A5F8A2 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D53C17EB0E8100A5F8A2 /* HighSchool.m */; };
+		80A2D54017EB0E8200A5F8A2 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D53F17EB0E8100A5F8A2 /* Message.m */; };
+		80A2D54317EB0E8200A5F8A2 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D54217EB0E8200A5F8A2 /* Player.m */; };
+		80A2D54617EB0E8200A5F8A2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D54517EB0E8200A5F8A2 /* User.m */; };
+		80A2D54917EB0E8200A5F8A2 /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D54817EB0E8200A5F8A2 /* WebPreview.m */; };
+		80A2D54C17EB0E8200A5F8A2 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D54B17EB0E8200A5F8A2 /* Coach.m */; };
+		80A2D54F17EB0E8200A5F8A2 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D54E17EB0E8200A5F8A2 /* Comment.m */; };
+		80A2D55217EB0E8200A5F8A2 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A2D55117EB0E8200A5F8A2 /* Conference.m */; };
 		80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80B4DD9917B2599300352E07 /* SDUserProfileHighSchoolHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B4DD9817B2599200352E07 /* SDUserProfileHighSchoolHeaderView.m */; };
@@ -458,8 +458,6 @@
 		7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageFilterButton@2x.png"; sourceTree = "<group>"; };
 		7BA0F53917E9B1ED00C6DE89 /* NSObject+MasterUserMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+MasterUserMethods.h"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.h"; sourceTree = "<group>"; };
 		7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MasterUserMethods.m"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.m"; sourceTree = "<group>"; };
-		7BA0F54517E9B58600C6DE89 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		7BA0F54617E9B58600C6DE89 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileFullButtonBackground@2x.png"; sourceTree = "<group>"; };
 		7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfilePostButtonSmall@2x.png"; sourceTree = "<group>"; };
 		7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonBig@2x.png"; sourceTree = "<group>"; };
@@ -617,36 +615,6 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8040912117E8759300D8EAD7 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
-		8040912217E8759300D8EAD7 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
-		8040912F17E8759600D8EAD7 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		8040913017E8759600D8EAD7 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		8040913217E8759600D8EAD7 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
-		8040913317E8759600D8EAD7 /* State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = State.m; sourceTree = "<group>"; };
-		8040913517E8759600D8EAD7 /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
-		8040913617E8759700D8EAD7 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
-		8040913817E8759700D8EAD7 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
-		8040913917E8759700D8EAD7 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
-		8040913B17E8759700D8EAD7 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
-		8040913C17E8759700D8EAD7 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
-		8040913E17E8759700D8EAD7 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		8040913F17E8759700D8EAD7 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		8040914117E8759700D8EAD7 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		8040914217E8759700D8EAD7 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		8040914417E8759800D8EAD7 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
-		8040914517E8759800D8EAD7 /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
-		8040914717E8759A00D8EAD7 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
-		8040914817E8759A00D8EAD7 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
-		8040914A17E8759A00D8EAD7 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
-		8040914B17E8759A00D8EAD7 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
-		8040914D17E8759A00D8EAD7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		8040914E17E8759A00D8EAD7 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		8040915017E8759B00D8EAD7 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
-		8040915117E8759B00D8EAD7 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
-		8040915317E8759B00D8EAD7 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
-		8040915417E8759B00D8EAD7 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
-		8040915617E8759B00D8EAD7 /* WebPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPreview.h; sourceTree = "<group>"; };
-		8040915717E8759B00D8EAD7 /* WebPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPreview.m; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -810,6 +778,38 @@
 		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFollowingViewController.m; path = ../TableViewCells/Views/SDFollowingViewController.m; sourceTree = "<group>"; };
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuItemList.plist; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
+		80A2D51B17EB0E7F00A5F8A2 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
+		80A2D51C17EB0E7F00A5F8A2 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
+		80A2D52617EB0E8000A5F8A2 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		80A2D52717EB0E8000A5F8A2 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		80A2D52917EB0E8000A5F8A2 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
+		80A2D52A17EB0E8000A5F8A2 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
+		80A2D52C17EB0E8000A5F8A2 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
+		80A2D52D17EB0E8000A5F8A2 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
+		80A2D52F17EB0E8100A5F8A2 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		80A2D53017EB0E8100A5F8A2 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		80A2D53217EB0E8100A5F8A2 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
+		80A2D53317EB0E8100A5F8A2 /* State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = State.m; sourceTree = "<group>"; };
+		80A2D53517EB0E8100A5F8A2 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
+		80A2D53617EB0E8100A5F8A2 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		80A2D53817EB0E8100A5F8A2 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
+		80A2D53917EB0E8100A5F8A2 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		80A2D53B17EB0E8100A5F8A2 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
+		80A2D53C17EB0E8100A5F8A2 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
+		80A2D53E17EB0E8100A5F8A2 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		80A2D53F17EB0E8100A5F8A2 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		80A2D54117EB0E8200A5F8A2 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		80A2D54217EB0E8200A5F8A2 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		80A2D54417EB0E8200A5F8A2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		80A2D54517EB0E8200A5F8A2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		80A2D54717EB0E8200A5F8A2 /* WebPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPreview.h; sourceTree = "<group>"; };
+		80A2D54817EB0E8200A5F8A2 /* WebPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPreview.m; sourceTree = "<group>"; };
+		80A2D54A17EB0E8200A5F8A2 /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
+		80A2D54B17EB0E8200A5F8A2 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
+		80A2D54D17EB0E8200A5F8A2 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		80A2D54E17EB0E8200A5F8A2 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		80A2D55017EB0E8200A5F8A2 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
+		80A2D55117EB0E8200A5F8A2 /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
 		80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzSomethingViewController.m; sourceTree = "<group>"; };
 		80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButtonPost@2x.png"; sourceTree = "<group>"; };
@@ -1287,38 +1287,38 @@
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
-				7BA0F54517E9B58600C6DE89 /* User.h */,
-				7BA0F54617E9B58600C6DE89 /* User.m */,
-				8040915617E8759B00D8EAD7 /* WebPreview.h */,
-				8040915717E8759B00D8EAD7 /* WebPreview.m */,
-				8040915317E8759B00D8EAD7 /* Team.h */,
-				8040915417E8759B00D8EAD7 /* Team.m */,
-				8040915017E8759B00D8EAD7 /* HighSchool.h */,
-				8040915117E8759B00D8EAD7 /* HighSchool.m */,
-				8040914D17E8759A00D8EAD7 /* Message.h */,
-				8040914E17E8759A00D8EAD7 /* Message.m */,
-				8040914A17E8759A00D8EAD7 /* Member.h */,
-				8040914B17E8759A00D8EAD7 /* Member.m */,
-				8040914717E8759A00D8EAD7 /* ImageData.h */,
-				8040914817E8759A00D8EAD7 /* ImageData.m */,
-				8040914417E8759800D8EAD7 /* Conference.h */,
-				8040914517E8759800D8EAD7 /* Conference.m */,
-				8040914117E8759700D8EAD7 /* Conversation.h */,
-				8040914217E8759700D8EAD7 /* Conversation.m */,
-				8040913E17E8759700D8EAD7 /* Comment.h */,
-				8040913F17E8759700D8EAD7 /* Comment.m */,
-				8040913B17E8759700D8EAD7 /* Like.h */,
-				8040913C17E8759700D8EAD7 /* Like.m */,
-				8040913817E8759700D8EAD7 /* Master.h */,
-				8040913917E8759700D8EAD7 /* Master.m */,
-				8040913517E8759600D8EAD7 /* Coach.h */,
-				8040913617E8759700D8EAD7 /* Coach.m */,
-				8040913217E8759600D8EAD7 /* State.h */,
-				8040913317E8759600D8EAD7 /* State.m */,
-				8040912F17E8759600D8EAD7 /* Player.h */,
-				8040913017E8759600D8EAD7 /* Player.m */,
-				8040912117E8759300D8EAD7 /* ActivityStory.h */,
-				8040912217E8759300D8EAD7 /* ActivityStory.m */,
+				80A2D55017EB0E8200A5F8A2 /* Conference.h */,
+				80A2D55117EB0E8200A5F8A2 /* Conference.m */,
+				80A2D54D17EB0E8200A5F8A2 /* Comment.h */,
+				80A2D54E17EB0E8200A5F8A2 /* Comment.m */,
+				80A2D54A17EB0E8200A5F8A2 /* Coach.h */,
+				80A2D54B17EB0E8200A5F8A2 /* Coach.m */,
+				80A2D54717EB0E8200A5F8A2 /* WebPreview.h */,
+				80A2D54817EB0E8200A5F8A2 /* WebPreview.m */,
+				80A2D54417EB0E8200A5F8A2 /* User.h */,
+				80A2D54517EB0E8200A5F8A2 /* User.m */,
+				80A2D54117EB0E8200A5F8A2 /* Player.h */,
+				80A2D54217EB0E8200A5F8A2 /* Player.m */,
+				80A2D53E17EB0E8100A5F8A2 /* Message.h */,
+				80A2D53F17EB0E8100A5F8A2 /* Message.m */,
+				80A2D53B17EB0E8100A5F8A2 /* HighSchool.h */,
+				80A2D53C17EB0E8100A5F8A2 /* HighSchool.m */,
+				80A2D53817EB0E8100A5F8A2 /* Like.h */,
+				80A2D53917EB0E8100A5F8A2 /* Like.m */,
+				80A2D53517EB0E8100A5F8A2 /* ImageData.h */,
+				80A2D53617EB0E8100A5F8A2 /* ImageData.m */,
+				80A2D53217EB0E8100A5F8A2 /* State.h */,
+				80A2D53317EB0E8100A5F8A2 /* State.m */,
+				80A2D52F17EB0E8100A5F8A2 /* Team.h */,
+				80A2D53017EB0E8100A5F8A2 /* Team.m */,
+				80A2D52C17EB0E8000A5F8A2 /* Member.h */,
+				80A2D52D17EB0E8000A5F8A2 /* Member.m */,
+				80A2D52917EB0E8000A5F8A2 /* Master.h */,
+				80A2D52A17EB0E8000A5F8A2 /* Master.m */,
+				80A2D52617EB0E8000A5F8A2 /* Conversation.h */,
+				80A2D52717EB0E8000A5F8A2 /* Conversation.m */,
+				80A2D51B17EB0E7F00A5F8A2 /* ActivityStory.h */,
+				80A2D51C17EB0E7F00A5F8A2 /* ActivityStory.m */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -2372,23 +2372,23 @@
 				7B1DF0FA17E09ADE005455D8 /* AFXMLRequestOperation.m in Sources */,
 				7B1DF0FB17E09ADE005455D8 /* UIImageView+AFNetworking.m in Sources */,
 				7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */,
-				8040912317E8759300D8EAD7 /* ActivityStory.m in Sources */,
-				8040913117E8759600D8EAD7 /* Player.m in Sources */,
-				8040913417E8759600D8EAD7 /* State.m in Sources */,
-				8040913717E8759700D8EAD7 /* Coach.m in Sources */,
-				8040913A17E8759700D8EAD7 /* Master.m in Sources */,
-				8040913D17E8759700D8EAD7 /* Like.m in Sources */,
-				8040914017E8759700D8EAD7 /* Comment.m in Sources */,
-				8040914317E8759800D8EAD7 /* Conversation.m in Sources */,
-				8040914617E8759A00D8EAD7 /* Conference.m in Sources */,
-				8040914917E8759A00D8EAD7 /* ImageData.m in Sources */,
-				8040914C17E8759A00D8EAD7 /* Member.m in Sources */,
-				8040914F17E8759A00D8EAD7 /* Message.m in Sources */,
-				8040915217E8759B00D8EAD7 /* HighSchool.m in Sources */,
-				8040915517E8759B00D8EAD7 /* Team.m in Sources */,
-				8040915817E8759B00D8EAD7 /* WebPreview.m in Sources */,
 				7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */,
-				7BA0F54717E9B58600C6DE89 /* User.m in Sources */,
+				80A2D51D17EB0E7F00A5F8A2 /* ActivityStory.m in Sources */,
+				80A2D52817EB0E8000A5F8A2 /* Conversation.m in Sources */,
+				80A2D52B17EB0E8000A5F8A2 /* Master.m in Sources */,
+				80A2D52E17EB0E8100A5F8A2 /* Member.m in Sources */,
+				80A2D53117EB0E8100A5F8A2 /* Team.m in Sources */,
+				80A2D53417EB0E8100A5F8A2 /* State.m in Sources */,
+				80A2D53717EB0E8100A5F8A2 /* ImageData.m in Sources */,
+				80A2D53A17EB0E8100A5F8A2 /* Like.m in Sources */,
+				80A2D53D17EB0E8100A5F8A2 /* HighSchool.m in Sources */,
+				80A2D54017EB0E8200A5F8A2 /* Message.m in Sources */,
+				80A2D54317EB0E8200A5F8A2 /* Player.m in Sources */,
+				80A2D54617EB0E8200A5F8A2 /* User.m in Sources */,
+				80A2D54917EB0E8200A5F8A2 /* WebPreview.m in Sources */,
+				80A2D54C17EB0E8200A5F8A2 /* Coach.m in Sources */,
+				80A2D54F17EB0E8200A5F8A2 /* Comment.m in Sources */,
+				80A2D55217EB0E8200A5F8A2 /* Conference.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

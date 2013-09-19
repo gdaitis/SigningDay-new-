@@ -2,7 +2,7 @@
 //  HighSchool.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/17/13.
+//  Created by Lukas Kekys on 9/19/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * mascot;
 @property (nonatomic, retain) NSString * stateCode;
 @property (nonatomic, retain) NSNumber * totalProspects;
+@property (nonatomic, retain) NSNumber * baseAverage;
 @property (nonatomic, retain) NSSet *players;
 @property (nonatomic, retain) User *theUser;
 @end

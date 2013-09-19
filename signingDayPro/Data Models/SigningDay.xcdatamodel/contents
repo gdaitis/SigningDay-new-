@@ -59,6 +59,7 @@
     </entity>
     <entity name="HighSchool" representedClassName="HighSchool" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="baseAverage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="headCoachName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mascot" optional="YES" attributeType="String" syncable="YES"/>
@@ -134,6 +135,7 @@
         <attribute name="nationalRankingString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfCommits" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamClass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teamName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalScore" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="universityName" optional="YES" attributeType="String" syncable="YES"/>
@@ -189,7 +191,7 @@
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
         <element name="Conference" positionX="549" positionY="-493" width="128" height="133"/>
         <element name="Conversation" positionX="153" positionY="137" width="128" height="178"/>
-        <element name="HighSchool" positionX="1024" positionY="2" width="128" height="163"/>
+        <element name="HighSchool" positionX="1024" positionY="2" width="128" height="180"/>
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
         <element name="Like" positionX="180" positionY="-124" width="128" height="88"/>
         <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
@@ -197,7 +199,7 @@
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
         <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
         <element name="State" positionX="342" positionY="-495" width="128" height="103"/>
-        <element name="Team" positionX="999" positionY="-513" width="128" height="270"/>
+        <element name="Team" positionX="999" positionY="-513" width="128" height="285"/>
         <element name="User" positionX="585" positionY="-198" width="128" height="523"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
     </elements>

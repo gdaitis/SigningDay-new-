@@ -14,6 +14,7 @@
 #import "UIButton+AddTitle.h"
 #import "State.h"
 
+NSString * const kSDDefaultClass = @"2014";
 
 @interface SDHighSchoolLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDHighSchoolSearchHeaderDelegate,SDFilterListDelegate>
 
@@ -44,10 +45,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    //default value for the filter is 2014, assigning this to filter property
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"YearsList" ofType:@"plist"];
-    NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
-    self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
     
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
@@ -208,7 +205,7 @@
 #warning sorting wrong! also don't need year param! (maybe default value ?)
     
     self.dataDownloadInProgress = YES;
-    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass successBlock:^{
         self.currentUserCount +=kPageCountForLandingPages;
         self.dataDownloadInProgress = NO;
         [self loadData];
