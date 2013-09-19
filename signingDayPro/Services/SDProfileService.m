@@ -24,6 +24,7 @@
 #import "Member.h"
 #import "HighSchool.h"
 #import "NSDictionary+NullConverver.h"
+#import "NSObject+MasterUserMethods.h"
 
 @interface SDProfileService ()
 
@@ -45,7 +46,7 @@
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
-    NSString *body = [NSString stringWithFormat:@"{userId:%d}", [theUser.identifier integerValue]];
+    NSString *body = [NSString stringWithFormat:@"{userId:%d, accessingUserId:%d}", [theUser.identifier integerValue], [[self getMasterIdentifier] integerValue]];
     [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -75,6 +76,8 @@
         user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
         user.numberOfFollowers = [NSNumber numberWithInt:[[userDictionary valueForKey:@"FollowersCount"] intValue]];
         user.numberOfFollowing = [NSNumber numberWithInt:[[userDictionary valueForKey:@"FollowingCount"] intValue]];
+        user.allowBuzzMessage = [NSNumber numberWithBool:[[userDictionary valueForKey:@"AllowBuzzMessage"] boolValue]];
+        user.allowPrivateMessage = [NSNumber numberWithBool:[[userDictionary valueForKey:@"AllowPrivateMessage"] boolValue]];
         
         NSDictionary *derivedUserDictionary = [userDictionary valueForKey:@"DerivedUser"];
         

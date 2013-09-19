@@ -38,6 +38,5 @@ typedef enum {
                                                    completionHandler:(void (^)(void))completionHandler;
 + (void)deleteAvatar;
 + (void)updateLoggedInUserWithCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock;
-+ (void)test;
 
 @end

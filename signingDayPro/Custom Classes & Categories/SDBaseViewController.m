@@ -67,26 +67,6 @@
     [MBProgressHUD hideAllHUDsForView:view animated:YES];
 }
 
-- (NSNumber *)getMasterIdentifier
-{
-    Master *master = [self getMaster];
-    return master.identifier;
-}
-
-- (Master *)getMaster
-{
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    
-    return master;
-}
-
-- (User *)getMasterUser
-{
-    User *masterUser = [User MR_findFirstByAttribute:@"identifier" withValue:[self getMasterIdentifier] inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    return masterUser;
-}
-
 #pragma mark - Loader methods
 
 - (void)beginRefreshing

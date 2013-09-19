@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bd2b9b3b-5b28-4428-bd6b-f8b463b3ec88" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Externals/DTCoreText" afterPath="$PROJECT_DIR$/Externals/DTCoreText" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signingDayPro/Images/ActivityFeedImages/add_media_button@2x.png" afterPath="$PROJECT_DIR$/signingDayPro/Images/ActivityFeedImages/add_media_button@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signingDayPro/Images/ActivityFeedImages/buzz_something_button@2x.png" afterPath="$PROJECT_DIR$/signingDayPro/Images/ActivityFeedImages/buzz_something_button@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Externals/DTCoreText/DTCoreText.xcodeproj/xcshareddata/xcschemes/MacUnitTest.xcscheme" afterPath="$PROJECT_DIR$/Externals/DTCoreText/DTCoreText.xcodeproj/xcshareddata/xcschemes/MacUnitTest.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Externals/DTCoreText/DTCoreText.xcodeproj/xcshareddata/xcschemes/UnitTest.xcscheme" afterPath="$PROJECT_DIR$/Externals/DTCoreText/DTCoreText.xcodeproj/xcshareddata/xcschemes/UnitTest.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signingDayPro.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/signingDayPro.xcodeproj/project.pbxproj" />
+    </list>
+    <ignored path="newSigningDay-ios.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="bd2b9b3b-5b28-4428-bd6b-f8b463b3ec88" time="1379415119290" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_IPHONE_9ec1172239f871ea95433e0aa847c6b7a9672177" />
+  <component name="FavoritesManager">
+    <favorites_list name="signingDayPro" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1920" />
+    <option name="height" value="1016" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="DirectoryView.Xcode" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="signingDayPro" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="signingDayPro" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="signingDayPro" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="signingDayPro" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="signingDayPro" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="recentsLimit" value="5" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RunManager" selected="Application.signingDayPro">
+    <configuration default="true" type="OCUnitRunConfiguration" factoryName="OCUnit" PROJECT_NAME="DTCoreText" TARGET_NAME="UnitTest" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="signingDayPro" TARGET_NAME="signingDayPro" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="signingDayPro" RUN_TARGET_NAME="signingDayPro" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="signingDayPro" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="signingDayPro" PROJECT_NAME="signingDayPro" TARGET_NAME="signingDayPro" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="signingDayPro" RUN_TARGET_NAME="signingDayPro" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Documentation" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Documentation" PROJECT_NAME="DTFoundation" TARGET_NAME="Documentation" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Mac Framework" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Mac Framework" PROJECT_NAME="DTCoreText" TARGET_NAME="Mac Framework" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Static Framework" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Static Framework" PROJECT_NAME="DTFoundation" TARGET_NAME="Static Framework" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Static Library (no DTFoundation)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Static Library (no DTFoundation)" PROJECT_NAME="DTCoreText" TARGET_NAME="Static Library (no DTFoundation)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Static Library" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Static Library" PROJECT_NAME="DTFoundation" TARGET_NAME="Static Library" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTASN1 (iOS)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTASN1 (iOS)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTASN1 (iOS)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTAWS (iOS)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTAWS (iOS)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTAWS (iOS)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTHTMLParser (iOS)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTHTMLParser (iOS)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTHTMLParser (iOS)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTHTMLParser (Mac)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTHTMLParser (Mac)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTHTMLParser (Mac)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTReachability (iOS)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTReachability (iOS)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTReachability (iOS)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTReachability (Mac)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTReachability (Mac)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTReachability (Mac)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTReachability Demo" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTReachability Demo" PROJECT_NAME="DTFoundation" TARGET_NAME="DTReachability Demo" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="DTFoundation" RUN_TARGET_NAME="DTReachability Demo" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTSidePanels Demo" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTSidePanels Demo" PROJECT_NAME="DTFoundation" TARGET_NAME="DTSidePanels Demo" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="DTFoundation" RUN_TARGET_NAME="DTSidePanels Demo" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTSQLite (iOS)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTSQLite (iOS)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTSQLite (iOS)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTSQLite (Mac)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTSQLite (Mac)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTSQLite (Mac)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTUTI (iOS)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTUTI (iOS)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTUTI (iOS)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTUTI (Mac)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTUTI (Mac)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTUTI (Mac)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTZipArchive (iOS)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTZipArchive (iOS)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTZipArchive (iOS)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTZipArchive (Mac)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTZipArchive (Mac)" PROJECT_NAME="DTFoundation" TARGET_NAME="DTZipArchive (Mac)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="DTZipArchiveDemo" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="DTZipArchiveDemo" PROJECT_NAME="DTFoundation" TARGET_NAME="DTZipArchiveDemo" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="DTFoundation" RUN_TARGET_NAME="DTZipArchiveDemo" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Static Library (Mac)" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="Static Library (Mac)" PROJECT_NAME="DTFoundation" TARGET_NAME="Static Library (Mac)" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unit Tests" type="OCUnitRunConfiguration" factoryName="OCUnit" SCHEME_NAME="Unit Tests" PROJECT_NAME="DTFoundation" TARGET_NAME="Unit Tests" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <list size="26">
+      <item index="0" class="java.lang.String" itemvalue="Application.signingDayPro" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Documentation" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Mac Framework" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Static Framework" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Static Library (no DTFoundation)" />
+      <item index="5" class="java.lang.String" itemvalue="Application.Static Library" />
+      <item index="6" class="java.lang.String" itemvalue="Application.DemoApp" />
+      <item index="7" class="java.lang.String" itemvalue="OCUnit.MacUnitTest" />
+      <item index="8" class="java.lang.String" itemvalue="OCUnit.UnitTest" />
+      <item index="9" class="java.lang.String" itemvalue="Application.DTASN1 (iOS)" />
+      <item index="10" class="java.lang.String" itemvalue="Application.DTAWS (iOS)" />
+      <item index="11" class="java.lang.String" itemvalue="Application.DTHTMLParser (iOS)" />
+      <item index="12" class="java.lang.String" itemvalue="Application.DTHTMLParser (Mac)" />
+      <item index="13" class="java.lang.String" itemvalue="Application.DTReachability (iOS)" />
+      <item index="14" class="java.lang.String" itemvalue="Application.DTReachability (Mac)" />
+      <item index="15" class="java.lang.String" itemvalue="Application.DTReachability Demo" />
+      <item index="16" class="java.lang.String" itemvalue="Application.DTSidePanels Demo" />
+      <item index="17" class="java.lang.String" itemvalue="Application.DTSQLite (iOS)" />
+      <item index="18" class="java.lang.String" itemvalue="Application.DTSQLite (Mac)" />
+      <item index="19" class="java.lang.String" itemvalue="Application.DTUTI (iOS)" />
+      <item index="20" class="java.lang.String" itemvalue="Application.DTUTI (Mac)" />
+      <item index="21" class="java.lang.String" itemvalue="Application.DTZipArchive (iOS)" />
+      <item index="22" class="java.lang.String" itemvalue="Application.DTZipArchive (Mac)" />
+      <item index="23" class="java.lang.String" itemvalue="Application.DTZipArchiveDemo" />
+      <item index="24" class="java.lang.String" itemvalue="Application.Static Library (Mac)" />
+      <item index="25" class="java.lang.String" itemvalue="OCUnit.Unit Tests" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bd2b9b3b-5b28-4428-bd6b-f8b463b3ec88" name="Default" comment="" />
+      <created>1379415118676</created>
+      <updated>1379415118676</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1920" height="1016" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24723247" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/signingDayPro/Controllers/SDBaseChatViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/signingDayPro/Controllers/SDBaseChatViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="26" selection-start="2414" selection-end="2414" vertical-scroll-proportion="-3.4463086">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

@@ -18,7 +18,6 @@
 #import "SDAPIClient.h"
 #import "SDLoginService.h"
 #import "MBProgressHUD.h"
-
 #import "SDTermsViewController.h"
 
 @interface SDSettingsViewController () <UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate>
