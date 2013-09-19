@@ -248,6 +248,8 @@
                                       failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&$format=json", kSDBaseSigningDayURLString, yearString];
+    NSLog(@"url string = %@",urlString);
+    
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
                                                successBlock:successBlock
                                                failureBlock:failureBlock];
@@ -282,6 +284,8 @@
     }
     NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools&$format=json&$filter=(%@)", kSDBaseSigningDayURLString, filterString];
+    NSLog(@"url string = %@",urlString);
+    
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
                                            failureBlock:failureBlock];
