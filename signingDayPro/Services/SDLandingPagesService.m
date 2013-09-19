@@ -193,7 +193,7 @@
                                                failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
-    
+    NSLog(@"url string = %@",urlString);
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                          successBlock:successBlock
                                          failureBlock:failureBlock];
@@ -217,6 +217,7 @@
                                        successBlock:(void (^)(void))successBlock
                                        failureBlock:(void (^)(void))failureBlock
 {
+#warning need to save teams class, maybe get class from params (E.g  startTeamsHTTPRequestOperationWithURLString: andClass:   and save the given class)
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
                                [self createUsersFromResponseObject:responseObject
@@ -232,6 +233,7 @@
                                              user.theTeam.stateCode = [userDictionary valueForKey:@"TeamStateCode"];
                                              user.theTeam.numberOfCommits = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Commits"] intValue]];
                                              user.theTeam.totalScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"Total"] floatValue]];
+//                                             user.theTeam.teamClass = 
                                          }];
                                if (successBlock)
                                    successBlock();
@@ -248,7 +250,6 @@
                                       failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&$format=json", kSDBaseSigningDayURLString, yearString];
-    NSLog(@"url string = %@",urlString);
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
                                                successBlock:successBlock
@@ -309,6 +310,7 @@
                                              user.theHighSchool.totalProspects = [userDictionary valueForKey:@"CurrentProspects"];
                                              user.theHighSchool.city = [userDictionary valueForKey:@"HighSchoolCity"];
                                              user.theHighSchool.stateCode = [userDictionary valueForKey:@"HighSchoolState"];
+                                             user.theHighSchool.baseAverage = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseAverage"] floatValue]];
                                          }];
                                if (successBlock)
                                    successBlock();

@@ -232,11 +232,10 @@ NSString * const kSDDefaultClass = @"2014";
          [self showProgressHudInView:self.view withText:@"Loading"];
         NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
 
-        [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray successBlock:^{
+        [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text yearString:kSDDefaultClass stateCodeStringsArray:stateCodeStringsArray successBlock:^{
             [self loadFilteredData];
             [self hideProgressHudInView:self.view];
         } failureBlock:^{
-#warning fails here!!!
             [self hideProgressHudInView:self.view];
         }];
     }
