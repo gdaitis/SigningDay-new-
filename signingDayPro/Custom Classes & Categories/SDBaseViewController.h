@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SDLoginViewController.h"
-
-@class Master;
-@class User;
+#import "NSObject+MasterUserMethods.h"
 
 @interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
 
@@ -19,10 +17,6 @@
 
 - (void)beginRefreshing;
 - (void)endRefreshing;
-
-- (Master *)getMaster;
-- (NSNumber *)getMasterIdentifier;
-- (User *)getMasterUser;
 
 - (void)showLoginScreen;
 

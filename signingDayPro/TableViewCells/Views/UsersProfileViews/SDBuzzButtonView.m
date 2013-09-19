@@ -11,9 +11,6 @@
 
 @interface SDBuzzButtonView ()
 
-@property (nonatomic, weak) IBOutlet UIButton *buzzButton;
-@property (nonatomic, weak) IBOutlet UIButton *messageButton;
-
 - (IBAction)messageButtonPressed:(id)sender;
 - (IBAction)buzzButtonPressed:(id)sender;
 
@@ -33,12 +30,12 @@
 - (id) awakeAfterUsingCoder:(NSCoder*)aDecoder
 {
     if ([[self subviews] count] == 0) {
-        SDBuzzButtonView* theRealThing = (id)[SDBuzzButtonView loadInstanceFromNib];
-        theRealThing.frame = self.frame;
-        theRealThing.autoresizingMask = self.autoresizingMask;
-        theRealThing.alpha = self.alpha;
+        SDBuzzButtonView *buzzButtonView = (id)[SDBuzzButtonView loadInstanceFromNib];
+        buzzButtonView.frame = self.frame;
+        buzzButtonView.autoresizingMask = self.autoresizingMask;
+        buzzButtonView.alpha = self.alpha;
         
-        return theRealThing;
+        return buzzButtonView;
     }
     return self;
 }

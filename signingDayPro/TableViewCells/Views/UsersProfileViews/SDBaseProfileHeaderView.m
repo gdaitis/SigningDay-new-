@@ -51,6 +51,30 @@
     self.slidingButtonView.followersCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowers intValue]];
     self.slidingButtonView.followingCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowing intValue]];
     
+    BOOL userAllowsPrivateMessages = [user.allowPrivateMessage boolValue];
+    BOOL userAllowsBuzzMessages = [user.allowBuzzMessage boolValue];
+    
+    if (userAllowsPrivateMessages && userAllowsBuzzMessages) {
+        self.buzzButtonView.messageButtonBig.alpha = 0;
+        self.buzzButtonView.postButtonBig.alpha = 0;
+        self.buzzButtonView.messageButtonSmall.alpha = 1;
+        self.buzzButtonView.postButtonBig.alpha = 1;
+    } else if (userAllowsPrivateMessages && !userAllowsBuzzMessages) {
+        self.buzzButtonView.messageButtonBig.alpha = 1;
+        self.buzzButtonView.postButtonBig.alpha = 0;
+        self.buzzButtonView.messageButtonSmall.alpha = 0;
+        self.buzzButtonView.postButtonBig.alpha = 0;
+    } else if (!userAllowsPrivateMessages && userAllowsBuzzMessages) {
+        self.buzzButtonView.messageButtonBig.alpha = 0;
+        self.buzzButtonView.postButtonBig.alpha = 1;
+        self.buzzButtonView.messageButtonSmall.alpha = 0;
+        self.buzzButtonView.postButtonBig.alpha = 0;
+    } else if (!userAllowsPrivateMessages && !userAllowsBuzzMessages) {
+        [self hideBuzzButtonView:YES];
+    }
+        
+    
+    
     [self updateFollowingInfo];
 }
 

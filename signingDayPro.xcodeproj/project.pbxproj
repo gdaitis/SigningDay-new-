@@ -53,6 +53,13 @@
 		7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */; };
 		7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */; };
 		7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */; };
+		7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */; };
+		7BA0F54717E9B58600C6DE89 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0F54617E9B58600C6DE89 /* User.m */; };
+		7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */; };
+		7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */; };
+		7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */; };
+		7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */; };
+		7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */; };
 		7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
@@ -158,7 +165,6 @@
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
 		8040912317E8759300D8EAD7 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040912217E8759300D8EAD7 /* ActivityStory.m */; };
-		8040912E17E8759500D8EAD7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040912D17E8759400D8EAD7 /* User.m */; };
 		8040913117E8759600D8EAD7 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913017E8759600D8EAD7 /* Player.m */; };
 		8040913417E8759600D8EAD7 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913317E8759600D8EAD7 /* State.m */; };
 		8040913717E8759700D8EAD7 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 8040913617E8759700D8EAD7 /* Coach.m */; };
@@ -450,6 +456,15 @@
 		7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolsSearchHeader.h; sourceTree = "<group>"; };
 		7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolsSearchHeader.m; sourceTree = "<group>"; };
 		7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageFilterButton@2x.png"; sourceTree = "<group>"; };
+		7BA0F53917E9B1ED00C6DE89 /* NSObject+MasterUserMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+MasterUserMethods.h"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.h"; sourceTree = "<group>"; };
+		7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MasterUserMethods.m"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.m"; sourceTree = "<group>"; };
+		7BA0F54517E9B58600C6DE89 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7BA0F54617E9B58600C6DE89 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileFullButtonBackground@2x.png"; sourceTree = "<group>"; };
+		7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfilePostButtonSmall@2x.png"; sourceTree = "<group>"; };
+		7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonBig@2x.png"; sourceTree = "<group>"; };
+		7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfilePostButtonBig@2x.png"; sourceTree = "<group>"; };
+		7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonSmall@2x.png"; sourceTree = "<group>"; };
 		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -604,8 +619,6 @@
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8040912117E8759300D8EAD7 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
 		8040912217E8759300D8EAD7 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
-		8040912C17E8759400D8EAD7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		8040912D17E8759400D8EAD7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8040912F17E8759600D8EAD7 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		8040913017E8759600D8EAD7 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		8040913217E8759600D8EAD7 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
@@ -1006,6 +1019,15 @@
 			name = Messages;
 			sourceTree = "<group>";
 		};
+		7BA0F54417E9B1F100C6DE89 /* NSObject+MasterUserMethods */ = {
+			isa = PBXGroup;
+			children = (
+				7BA0F53917E9B1ED00C6DE89 /* NSObject+MasterUserMethods.h */,
+				7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */,
+			);
+			name = "NSObject+MasterUserMethods";
+			sourceTree = "<group>";
+		};
 		7BB4372217CF6A4D0064DBEB /* Externals */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,6 +1053,7 @@
 		7BBFBBDE17AA4ED300BF45A5 /* Custom classes */ = {
 			isa = PBXGroup;
 			children = (
+				7BA0F54417E9B1F100C6DE89 /* NSObject+MasterUserMethods */,
 				7B1DF10817E0A187005455D8 /* UIImageView+Crop */,
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
@@ -1264,6 +1287,8 @@
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
+				7BA0F54517E9B58600C6DE89 /* User.h */,
+				7BA0F54617E9B58600C6DE89 /* User.m */,
 				8040915617E8759B00D8EAD7 /* WebPreview.h */,
 				8040915717E8759B00D8EAD7 /* WebPreview.m */,
 				8040915317E8759B00D8EAD7 /* Team.h */,
@@ -1292,8 +1317,6 @@
 				8040913317E8759600D8EAD7 /* State.m */,
 				8040912F17E8759600D8EAD7 /* Player.h */,
 				8040913017E8759600D8EAD7 /* Player.m */,
-				8040912C17E8759400D8EAD7 /* User.h */,
-				8040912D17E8759400D8EAD7 /* User.m */,
 				8040912117E8759300D8EAD7 /* ActivityStory.h */,
 				8040912217E8759300D8EAD7 /* ActivityStory.m */,
 			);
@@ -1695,9 +1718,14 @@
 		809DF8F617955AC5001F37B3 /* UserProfileViewImages */ = {
 			isa = PBXGroup;
 			children = (
-				80D1F39517967FF20051E8E1 /* BuzzButtonBackground@2x.png */,
+				7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */,
+				7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */,
+				7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */,
+				7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */,
+				7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */,
 				80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */,
 				80D1F39617967FF20051E8E1 /* BuzzSomethingIcon@2x.png */,
+				80D1F39517967FF20051E8E1 /* BuzzButtonBackground@2x.png */,
 				80D1F39717967FF20051E8E1 /* MessageButtonBackground@2x.png */,
 				80D1F39817967FF20051E8E1 /* MessageIcon@2x.png */,
 				809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */,
@@ -1789,15 +1817,15 @@
 				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
 				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
 				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
-				8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */,
 				80D1F39D179680C50051E8E1 /* SDBuzzButtonView.h */,
 				80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */,
 				80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */,
 				7B2D9AA81799504600B1D660 /* SDStarsRatingView.h */,
 				7B2D9AA91799504600B1D660 /* SDStarsRatingView.m */,
 				7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */,
-				8063D2E4179D706000C01D92 /* SDBaseProfileHeaderView.h */,
 				7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */,
+				8063D2E4179D706000C01D92 /* SDBaseProfileHeaderView.h */,
+				8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */,
 			);
 			path = UsersProfileViews;
 			sourceTree = "<group>";
@@ -2184,6 +2212,11 @@
 				7B5B5FBE17E8489C00215ED4 /* add_media_button@2x.png in Resources */,
 				7B5B5FBF17E8489C00215ED4 /* buzz_something_button@2x.png in Resources */,
 				7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */,
+				7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */,
+				7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */,
+				7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */,
+				7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */,
+				7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2340,7 +2373,6 @@
 				7B1DF0FB17E09ADE005455D8 /* UIImageView+AFNetworking.m in Sources */,
 				7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */,
 				8040912317E8759300D8EAD7 /* ActivityStory.m in Sources */,
-				8040912E17E8759500D8EAD7 /* User.m in Sources */,
 				8040913117E8759600D8EAD7 /* Player.m in Sources */,
 				8040913417E8759600D8EAD7 /* State.m in Sources */,
 				8040913717E8759700D8EAD7 /* Coach.m in Sources */,
@@ -2355,6 +2387,8 @@
 				8040915217E8759B00D8EAD7 /* HighSchool.m in Sources */,
 				8040915517E8759B00D8EAD7 /* Team.m in Sources */,
 				8040915817E8759B00D8EAD7 /* WebPreview.m in Sources */,
+				7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */,
+				7BA0F54717E9B58600C6DE89 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

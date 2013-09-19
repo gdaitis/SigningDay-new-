@@ -10,14 +10,12 @@
 #import "Message.h"
 #import "User.h"
 #import "SDChatService.h"
-
 #import "NSString+Additions.h"
 #import "SDMessageCell.h"
 #import "MBProgressHUD.h"
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
 #import "DTCoreText.h"
-
 #import "UIImageView+Crop.h"
 
 #define ClearConversationButtonIndex 0

@@ -21,8 +21,10 @@
 
 @interface SDBuzzButtonView : UIView
 
-@property (nonatomic, weak) IBOutlet UILabel *buzzLabel;
-@property (nonatomic, weak) IBOutlet UILabel *messageLabel;
 @property (nonatomic, weak) IBOutlet id <SDBuzzButtonViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *postButtonSmall;
+@property (weak, nonatomic) IBOutlet UIButton *messageButtonSmall;
+@property (weak, nonatomic) IBOutlet UIButton *postButtonBig;
+@property (weak, nonatomic) IBOutlet UIButton *messageButtonBig;
 
 @end
