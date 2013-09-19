@@ -73,8 +73,10 @@ NSString * const kSDDefaultClass = @"2014";
         }
         
         User *user = [self.dataArray objectAtIndex:indexPath.row];
+        cell.playerPositionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
+        
         // Configure the cell...
-        [cell setupCellWithUser:user];
+        [cell setupCellWithUser:user andFilteredData:self.dataIsFiltered];
         return cell;
     }
     else {

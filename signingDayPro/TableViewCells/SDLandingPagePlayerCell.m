@@ -8,6 +8,7 @@
 
 #import "SDLandingPagePlayerCell.h"
 #import "User.h"
+#import "State.h"
 #import "Player.h"
 #import "HighSchool.h"
 #import "AFNetworking.h"
@@ -77,9 +78,8 @@
         self.positionNumberBackgroundImageView.hidden = (dataIsFiltered) ? YES : NO;
         
         self.nameLabel.text = user.name;
-        self.schoolLabel.text = user.thePlayer.highSchool.theUser.name;
+        self.schoolLabel.text = [NSString stringWithFormat:@"%@ (%@)",user.thePlayer.highSchool.theUser.name,user.state.code];
         self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];
-        self.playerPositionLabel.text = [NSString stringWithFormat:@"%d",[user.thePlayer.nationalRanking intValue]];
         
         //playing position E.g "CB"
         self.positionNameLabel.text = user.thePlayer.position;
