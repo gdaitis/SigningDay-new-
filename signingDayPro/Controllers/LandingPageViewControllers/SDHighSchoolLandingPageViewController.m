@@ -46,6 +46,7 @@ NSString * const kSDDefaultClass = @"2014";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self loadData];
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
 }
@@ -61,7 +62,7 @@ NSString * const kSDDefaultClass = @"2014";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row < [self.dataArray count] || self.pagingEndReached) {
-        NSString *identifier = @"SDLandingPagePlayerCellIdentifier";
+        NSString *identifier = @"SDLandingPageHighSchoolCellIdentifier";
         SDLandingPageHighSchoolCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
         if (!cell) {
@@ -177,7 +178,7 @@ NSString * const kSDDefaultClass = @"2014";
     [request setSortDescriptors:[NSArray arrayWithObjects:prospectsDescriptor,baseAverageDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
-    [self.tableView reloadData];
+    [self reloadTableView];
 }
 
 - (void)loadFilteredData
@@ -197,7 +198,7 @@ NSString * const kSDDefaultClass = @"2014";
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
     
-    [self.tableView reloadData];
+    [self reloadTableView];
     [self hideProgressHudInView:self.view];
 }
 
@@ -223,25 +224,31 @@ NSString * const kSDDefaultClass = @"2014";
 {
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
-    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    self.dataIsFiltered = YES;
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
     
-    if (searchBarText.length < 3 && self.currentFilterState == nil) {
-        self.dataIsFiltered = NO;
-        self.currentUserCount = 0;
-        [self checkServer];
-    }
-    else {
-        self.dataIsFiltered = YES;
-         [self showProgressHudInView:self.view withText:@"Loading"];
-        NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
+    [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text yearString:kSDDefaultClass stateCodeStringsArray:stateCodeStringsArray successBlock:^{
+        [self loadFilteredData];
+        [self hideProgressHudInView:self.view];
+    } failureBlock:^{
+        [self hideProgressHudInView:self.view];
+        NSLog(@"Search failed in Highschool landing page");
+    }];
+}
 
-        [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text yearString:kSDDefaultClass stateCodeStringsArray:stateCodeStringsArray successBlock:^{
-            [self loadFilteredData];
-            [self hideProgressHudInView:self.view];
-        } failureBlock:^{
-            [self hideProgressHudInView:self.view];
-        }];
-    }
+#pragma mark - Search bar search clicked
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self removeKeyboard];
+    [self searchFilteredData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    self.dataIsFiltered = NO;
+    [self loadData];
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate
@@ -262,6 +269,11 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)stateChosen:(State *)state inFilterListController:(SDFilterListViewController *)filterListViewController
 {
     self.currentFilterState = state;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SDLandingPageHighSchoolCell" bundle:nil] forCellReuseIdentifier:@"SDLandingPageHighSchoolCellIdentifier"];
 }
 
 @end

@@ -45,7 +45,9 @@
     self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
     
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    [self loadData];
+    [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
 }
 
@@ -195,14 +197,14 @@
 {
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
-    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    if (searchBarText.length < 3 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
-        self.dataIsFiltered = NO;
-        self.currentUserCount = 0;
-        [self checkServer];
-    }
-    else {
+//    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    
+//    if (searchBarText.length < 3 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
+//        self.dataIsFiltered = NO;
+//        self.currentUserCount = 0;
+//        [self checkServer];
+//    }
+//    else {
         self.dataIsFiltered = YES;
     
     [self showProgressHudInView:self.view withText:@"Loading"];
@@ -219,7 +221,7 @@
                                              } failureBlock:^{
                                                  NSLog(@"failed");
                                              }];
-    }
+//    }
 }
 
 #pragma mark - Data fetching
@@ -245,8 +247,8 @@
     if ([self.dataArray count] < self.currentUserCount) {
         self.pagingEndReached = YES;
     }
-    
-    [self.tableView reloadData];
+    [self hideProgressHudInView:self.view];
+    [self reloadTableView];
 }
 
 - (void)loadFilteredData
@@ -275,7 +277,7 @@
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
     
-    [self.tableView reloadData];
+    [self reloadTableView];
     [self hideProgressHudInView:self.view];
 }
 
@@ -285,6 +287,12 @@
 {
     [self removeKeyboard];
     [self searchFilteredData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    self.dataIsFiltered = NO;
+    [self loadData];
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate
@@ -324,6 +332,11 @@
 - (void)positionChosen:(NSDictionary *)position inFilterListController:(SDFilterListViewController *)filterListViewController
 {
     self.currentFilterPositionDictionary = position;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SDLandingPagePlayerCell" bundle:nil] forCellReuseIdentifier:@"SDLandingPagePlayerCellIdentifier"];
 }
 
 @end

@@ -193,8 +193,9 @@
                                                failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
-    NSLog(@"url string = %@",urlString);
+    NSLog(@"teams url = %@",urlString);
     [self startTeamsHTTPRequestOperationWithURLString:urlString
+                                          classString:classString
                                          successBlock:successBlock
                                          failureBlock:failureBlock];
 }
@@ -205,19 +206,28 @@
                         successBlock:(void (^)(void))successBlock
                         failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?conference=%@&year=%@&$format=json", kSDBaseSigningDayURLString, conferenceString, classString];
-    if (searchString)
-        [urlString stringByAppendingFormat:@"&$filter=(substringof('%@',DisplayName))", searchString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@", kSDBaseSigningDayURLString, classString];
+    
+    if (conferenceString)
+        urlString = [urlString stringByAppendingFormat:@"&conference=%@",conferenceString];
+    if (searchString.length > 2)
+    {
+        urlString = [urlString stringByAppendingFormat:@"&$filter=(substringof(tolower('%@'),tolower(DisplayName)))", searchString];
+    }
+    urlString = [urlString stringByAppendingString:@"&$format=json"];
+    NSLog(@"searchTeams url = %@",urlString);
+    
     [self startTeamsHTTPRequestOperationWithURLString:urlString
+                                          classString:classString
                                          successBlock:successBlock
                                          failureBlock:failureBlock];
 }
 
 + (void)startTeamsHTTPRequestOperationWithURLString:(NSString *)URLString
+                                        classString:(NSString *)classString
                                        successBlock:(void (^)(void))successBlock
                                        failureBlock:(void (^)(void))failureBlock
 {
-#warning need to save teams class, maybe get class from params (E.g  startTeamsHTTPRequestOperationWithURLString: andClass:   and save the given class)
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
                                [self createUsersFromResponseObject:responseObject
@@ -233,7 +243,7 @@
                                              user.theTeam.stateCode = [userDictionary valueForKey:@"TeamStateCode"];
                                              user.theTeam.numberOfCommits = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Commits"] intValue]];
                                              user.theTeam.totalScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"Total"] floatValue]];
-//                                             user.theTeam.teamClass = 
+                                             user.theTeam.teamClass = classString;  //need to save year(class) for team for proper coredata sorting and paging
                                          }];
                                if (successBlock)
                                    successBlock();
@@ -277,7 +287,7 @@
     NSMutableArray *requestStringsArray = [[NSMutableArray alloc] init];
     
     if (searchString) {
-        NSString *searchRequestString = [NSString stringWithFormat:@"substringof('%@',DisplayName)", searchString];
+        NSString *searchRequestString = [NSString stringWithFormat:@"substringof(tolower('%@'),tolower(DisplayName))", searchString];
         [requestStringsArray addObject:searchRequestString];
     }
     if (statesArray) {

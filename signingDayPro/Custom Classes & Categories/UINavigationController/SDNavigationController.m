@@ -59,7 +59,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-//    self.navigationBarHidden = YES;
+
     _selectedMenuType = BARBUTTONTYPE_NONE;
     _backButtonVisibleIfNeeded = YES;
     
@@ -238,7 +238,22 @@
 
 - (void)notificationsSelected:(UIButton *)btn
 {
-    btn.selected = !btn.selected;
+    if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
+        [self hideFollowersAndRemoveContentView:NO];
+        [self showNotifications];
+    }
+    else if (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) {
+        [self hideFollowersAndRemoveContentView:NO];
+        [self showNotifications];
+    }
+    else if (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) {
+        [self hideNotificationsAndRemoveContentView:YES];
+    }
+    else {
+        btn.selected = YES;
+        [self showNotifications];
+    }
+    [self setToolbarButtons];
 }
 
 - (void)conversationsSelected:(UIButton *)btn
@@ -251,14 +266,14 @@
         [self showConversations];
     }
     else if (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) {
-//        [self hideNotifications];
+        [self hideNotificationsAndRemoveContentView:NO];
+        [self showConversations];
     }
     else {
         btn.selected = YES;
         [self showConversations];
     }
     [self setToolbarButtons];
-//    [UIView setAnimationTransition:UIViewAnimationOptionTransitionFlipFromBottom forView:self.navigationController.view cache:NO];
 }
 
 - (void)followersSelected:(UIButton *)btn
@@ -271,7 +286,8 @@
         [self hideFollowersAndRemoveContentView:YES];
     }
     else if (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) {
-        //        [self hideNotifications];
+        [self hideNotificationsAndRemoveContentView:NO];
+        [self showFollowers];
     }
     else {
         [self showFollowers];
@@ -315,6 +331,51 @@
 }
 
 #pragma mark - Displaying top menu
+
+- (void)showNotifications
+{
+    _selectedMenuType = BARBUTTONTYPE_NOTIFICATIONS;
+    if (!_notificationVC) {
+        SDNotificationViewController *notificationVC = [[SDNotificationViewController alloc] init];
+//        notificationVC.delegate = self;
+        notificationVC.view.frame = self.contentView.bounds;
+        
+        self.notificationVC = notificationVC;
+    }
+    
+    if (!_contentViewVisible) {
+        [self.view addSubview:self.contentView];
+        [self addTriangleArrowForBtnType:BARBUTTONTYPE_NOTIFICATIONS];
+    }
+    else {
+        [self clearContentView];
+        [self animateTriangleArrowToBtnWithType:BARBUTTONTYPE_NOTIFICATIONS];
+    }
+    
+    [self.contentView addSubview:_notificationVC.view];
+    [self.view bringSubviewToFront:_topToolBar];
+    
+    if (!_contentViewVisible) {
+        _contentViewVisible = YES;
+        [UIView animateWithDuration:0.25f animations:^{
+            _contentView.frame = CGRectMake(0, _topToolBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_topToolBar.frame.size.height);
+        } completion:^(__unused BOOL finished) {
+        }];
+    }
+    [_notificationVC loadInfo];
+}
+
+- (void)hideNotificationsAndRemoveContentView:(BOOL)removeContentView
+{
+    if (_notificationVC) {
+        if (removeContentView) {
+            [self hideAndRemoveContentViewAnimated];
+        }
+        else {
+            [_notificationVC.view removeFromSuperview];
+        }
+    }
+}
 
 - (void)showConversations
 {
@@ -499,6 +560,24 @@
 {
     [self pushViewController:controller animated:YES];
 }
+
+#pragma mark - SDNotificationViewController delegate
+
+- (void)notificationViewController:(SDNotificationViewController *)notificationViewController didSelectUser:(User *)user //should be did select notification
+{
+    [self hideFollowersAndRemoveContentView:YES];
+    
+    //remember in which controller we will need to open following view
+    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_NOTIFICATIONS];
+    
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self performSelector:@selector(pushViewController:) withObject:userProfileViewController afterDelay:0.2f];
+}
+
 
 #pragma mark - SDFollowingViewController delegate methods
 
