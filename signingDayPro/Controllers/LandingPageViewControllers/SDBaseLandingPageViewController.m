@@ -115,6 +115,16 @@
     self.searchBar = searchB;
     self.searchBar.delegate = self;
     
+    
+    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
+                                                          initWithSearchBar:_searchBar contentsController:self];
+    
+    self.customSearchDisplayController = searchDisplayController;
+    
+    _customSearchDisplayController.delegate = self;
+    _customSearchDisplayController.searchResultsDataSource = self;
+    _customSearchDisplayController.searchResultsDelegate = self;
+    
     [searchBackgroundView addSubview:self.searchBar];
     self.searchBarBackground = searchBackgroundView;
     [self.view addSubview:self.searchBarBackground];
@@ -122,10 +132,10 @@
 
 #pragma mark - UISearchBar delegate
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    [self searchFilteredData];
-}
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+//{
+//    [self searchFilteredData];
+//}
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
@@ -149,6 +159,18 @@
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
         [(UIButton *)[self.view viewWithTag:kHideKeyboardTag] removeFromSuperview];
+    }
+}
+
+- (void)reloadTableView
+{
+    if ([_searchBar.text length] > 0) {
+        
+        //reload searchresultstableview tu update cell
+        [_customSearchDisplayController.searchResultsTableView reloadData];
+    }
+    else {
+        [self.tableView reloadData];
     }
 }
 
@@ -195,6 +217,46 @@
     [self.navigationController pushViewController:filterListViewController animated:YES];
 }
 
+#pragma mark - Searchresults controller delegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    //change text for default "No results", to my own
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        for (UIView *v in controller.searchResultsTableView.subviews) {
+            if ([v isKindOfClass:[UILabel self]]) {
+                if (searchString.length < 3) {
+                    ((UILabel *)v).text = @"Enter minimum 3 symbols";
+                }
+                else {
+                    ((UILabel *)v).text = @"No results";
+                }
+                break;
+            }
+        }
+    });
+    
+    if (searchString.length > 2) {
+        [self loadFilteredData];
+        [self searchFilteredData];
+    }
+    else {
+        self.dataArray = nil;
+        [self reloadTableView];
+    }
+    return YES;
+}
+
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    [self reloadTableView];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    return YES;
+}
+
 #pragma mark - Functions which extended classes should overide
 
 - (void)hideFilterView
@@ -208,6 +270,11 @@
 }
 
 - (void)searchFilteredData
+{
+    
+}
+
+- (void)loadFilteredData
 {
     
 }

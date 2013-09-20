@@ -44,6 +44,7 @@
     NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
     self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
     
+    [self loadData];
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
 }
@@ -173,7 +174,7 @@
 - (void)checkServer
 {
     self.dataDownloadInProgress = YES;
-    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentUserCount
+    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:(self.currentUserCount/kPageCountForLandingPages)
                                                                       pageSize:kPageCountForLandingPages
                                                                    classString:[self.currentFilterYearDictionary objectForKey:@"name"]
                                                                   successBlock:^{
@@ -190,22 +191,15 @@
 {
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
-    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    if (searchBarText.length < 3 && self.currentFilterConference == nil && self.currentFilterYearDictionary == nil) {
-        self.dataIsFiltered = NO;
-        self.currentUserCount = 0;
-        [self checkServer];
-    }
-    else {
-        self.dataIsFiltered = YES;
-        
-        [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
-            [self loadFilteredData];
-        } failureBlock:^{
-            
-        }];
-    }
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    self.dataIsFiltered = YES;
+    
+    [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+        [self loadFilteredData];
+    } failureBlock:^{
+        NSLog(@"Search failed in Collenge landing page");
+    }];
 }
 
 
@@ -214,10 +208,13 @@
 - (void)loadData
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
+    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate,userYearPredicate, nil]];
+    
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
     //seting fetch limit for pagination
-    NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
+    NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.totalScore" ascending:NO];
@@ -225,30 +222,30 @@
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
     [self hideProgressHudInView:self.view];
-    [self.tableView reloadData];
+    [self reloadTableView];
 }
 
 - (void)loadFilteredData
 {
     //Form and compound predicates
-//    NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
-//    
-//    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
-//    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-//    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"conference.nameShort == %@",self.currentFilterConference.nameShort] : nil;
-//    NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
-//    
-//    
-//    [predicateArray addObject:userTypePredicate];
-//    [predicateArray addObject:userYearPredicate];
-//    if (nameSearchPredicate)
-//        [predicateArray addObject:nameSearchPredicate];
-//    if (userStatePredicate)
-//        [predicateArray addObject:userStatePredicate];
-//    if (userPositionPredicate)
-//        [predicateArray addObject:userPositionPredicate];
-//    
-//    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
+    //    NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
+    //
+    //    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
+    //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    //    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"conference.nameShort == %@",self.currentFilterConference.nameShort] : nil;
+    //    NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
+    //
+    //
+    //    [predicateArray addObject:userTypePredicate];
+    //    [predicateArray addObject:userYearPredicate];
+    //    if (nameSearchPredicate)
+    //        [predicateArray addObject:nameSearchPredicate];
+    //    if (userStatePredicate)
+    //        [predicateArray addObject:userStatePredicate];
+    //    if (userPositionPredicate)
+    //        [predicateArray addObject:userPositionPredicate];
+    //
+    //    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
     
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
     //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
@@ -260,8 +257,22 @@
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
     
-    [self.tableView reloadData];
+    [self reloadTableView];
     [self hideProgressHudInView:self.view];
+}
+
+#pragma mark - Search bar search clicked
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self removeKeyboard];
+    [self searchFilteredData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    self.dataIsFiltered = NO;
+    [self loadData];
 }
 
 #pragma mark - SDTeamSearchHeader Delegate
@@ -291,6 +302,11 @@
 - (void)yearsChosen:(NSDictionary *)years inFilterListController:(SDFilterListViewController *)filterListViewController
 {
     self.currentFilterYearDictionary = years;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SDLandingPageCollegeCell" bundle:nil] forCellReuseIdentifier:@"SDLandingPageCollegeCellIdentifier"];
 }
 
 @end

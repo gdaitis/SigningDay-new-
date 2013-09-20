@@ -18,11 +18,14 @@
 
 #define kPageCountForLandingPages 10
 
-@interface SDBaseLandingPageViewController : SDBaseViewController <SDFilterListDelegate>
+@interface SDBaseLandingPageViewController : SDBaseViewController <SDFilterListDelegate,UITableViewDataSource,UITableViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, assign) int currentUserCount;
+
+
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) UISearchDisplayController *customSearchDisplayController;
 @property (nonatomic, weak) UIView *searchBarBackground;
 
 //flags for landing page data following
@@ -35,5 +38,7 @@
 - (void)showFilterView;
 - (int)heightForFilterHidingButton;
 - (void)presentFilterListViewWithType:(FilterListType)listType andSelectedValue:(id)value;
+- (void)reloadTableView;
+- (void)loadFilteredData;
 
 @end

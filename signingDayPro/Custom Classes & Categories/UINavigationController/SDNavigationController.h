@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SDMessageViewController.h"
 #import "SDFollowingViewController.h"
-
+#import "SDNotificationViewController.h"
 
 typedef enum {
     BARBUTTONTYPE_NOTIFICATIONS = 0,
@@ -26,10 +26,13 @@ typedef enum {
 @property (nonatomic, weak) UIButton *menuButton;
 
 @property (nonatomic, weak) UIToolbar *topToolBar;
+
 @property (nonatomic, assign) BarButtonType *barButtonType;
 
+@property (nonatomic, strong) SDNotificationViewController *notificationVC;
 @property (nonatomic, strong) SDMessageViewController *messageVC;
 @property (nonatomic, strong) SDFollowingViewController *followingVC;
+
 
 @property (nonatomic, assign) BarButtonType selectedMenuType;
 

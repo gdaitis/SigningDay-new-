@@ -75,6 +75,7 @@
         self.positionNumberBackgroundImageView.hidden = (dataIsFiltered) ? YES : NO;
         
         self.nameLabel.text = user.name;
+        self.locationLabel.text = user.theTeam.location;
 
         self.commitsNameLabel.text = [NSString stringWithFormat:@"%d",[user.theTeam.numberOfCommits intValue]];
         self.totalScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.theTeam.totalScore floatValue]];
