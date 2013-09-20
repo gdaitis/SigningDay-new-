@@ -2,14 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A8D4B677-70E2-4382-85B9-8E9DCF112621</string>
+	<string>86E3F72F-6EBD-4682-BD4F-6994B6A9CA98</string>
 	<key>IDESourceControlProjectName</key>
 	<string>signingDayPro</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>11C799D9-5640-426D-B8A4-71688859D48F</key>
 		<string>https://github.com/Seriously/SigningDay-ios.git</string>
+		<key>3F8FC2B7-544E-471B-85B3-7078833D0673</key>
+		<string>https://github.com/Cocoanetics/DTFoundation.git</string>
+		<key>DE0AFA40-FDCD-4E4C-AA87-075BA70F3106</key>
+		<string>https://github.com/Cocoanetics/DTCoreText.git</string>
+		<key>F0719D10-33FF-48E5-86A9-64A95D3A93C4</key>
+		<string>https://github.com/AFNetworking/AFNetworking.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>signingDayPro.xcodeproj/project.xcworkspace</string>
@@ -17,6 +25,12 @@
 	<dict>
 		<key>11C799D9-5640-426D-B8A4-71688859D48F</key>
 		<string>../..</string>
+		<key>3F8FC2B7-544E-471B-85B3-7078833D0673</key>
+		<string>../../Externals/DTCoreText/Core/Externals/DTFoundation</string>
+		<key>DE0AFA40-FDCD-4E4C-AA87-075BA70F3106</key>
+		<string>../../Externals/DTCoreText</string>
+		<key>F0719D10-33FF-48E5-86A9-64A95D3A93C4</key>
+		<string>../../Externals/AFNetworking</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Seriously/SigningDay-ios.git</string>
@@ -26,6 +40,30 @@
 	<string>11C799D9-5640-426D-B8A4-71688859D48F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F0719D10-33FF-48E5-86A9-64A95D3A93C4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AFNetworking</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DE0AFA40-FDCD-4E4C-AA87-075BA70F3106</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DTCoreText</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3F8FC2B7-544E-471B-85B3-7078833D0673</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DTFoundation</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

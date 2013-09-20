@@ -72,7 +72,10 @@
     CGColorRef lightColor = [UIColor clearColor].CGColor;
     
     CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
-    newShadow.frame = CGRectMake(0, 84, 320, 4);
+    float y = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        y = 20;
+    newShadow.frame = CGRectMake(0, 84 + y, 320, 4);
     newShadow.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
     
     [self.view.layer addSublayer:newShadow];

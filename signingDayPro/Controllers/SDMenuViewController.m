@@ -51,6 +51,13 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserUpdated) name:kUserUpdatedNotification object:nil];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        CALayer *sublayer = [CALayer layer];
+        sublayer.backgroundColor = [UIColor blackColor].CGColor;
+        sublayer.frame = CGRectMake(0, 0, 320, 20);
+        [self.view.layer addSublayer:sublayer];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

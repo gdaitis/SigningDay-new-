@@ -37,6 +37,8 @@
     
     CGFloat navigationBarBottom;
     navigationBarBottom = self.navigationBar.frame.origin.y + self.navigationBar.frame.size.height;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        navigationBarBottom = navigationBarBottom + 20;
     
     CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
     newShadow.frame = CGRectMake(0, navigationBarBottom, self.view.frame.size.width, 4);

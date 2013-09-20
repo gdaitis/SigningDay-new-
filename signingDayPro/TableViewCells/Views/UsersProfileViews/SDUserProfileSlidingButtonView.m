@@ -75,7 +75,10 @@
     
     if (!self.shadowLayer) {
         CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
-        newShadow.frame = CGRectMake(0, 1, self.bottomView.frame.size.width, 4);
+        float y = 0;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+            y = 20;
+        newShadow.frame = CGRectMake(0, 1 + y, self.bottomView.frame.size.width, 4);
         newShadow.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
         self.shadowLayer = newShadow;
         [self.bottomView.layer addSublayer:self.shadowLayer];

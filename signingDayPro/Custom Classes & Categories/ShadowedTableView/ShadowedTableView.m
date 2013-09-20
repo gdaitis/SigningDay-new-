@@ -27,8 +27,11 @@
 - (CAGradientLayer *)shadowAsInverse:(BOOL)inverse
 {
 	CAGradientLayer *newShadow = [[[CAGradientLayer alloc] init] autorelease];
+    float y = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        y = 20;
 	CGRect newShadowFrame =
-		CGRectMake(0, 0, self.frame.size.width,
+		CGRectMake(0, 0 + y, self.frame.size.width,
 			inverse ? SHADOW_INVERSE_HEIGHT : SHADOW_HEIGHT);
 	newShadow.frame = newShadowFrame;
 	CGColorRef darkColor =

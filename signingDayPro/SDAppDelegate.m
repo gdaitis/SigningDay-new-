@@ -30,8 +30,6 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [application setStatusBarHidden:NO];
-    application.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
     
     [MagicalRecord setupCoreDataStack];
@@ -42,6 +40,13 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     if (!master) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"loggedIn"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        [application setStatusBarStyle:UIStatusBarStyleLightContent];
+        self.window.clipsToBounds =YES;
+//        self.window.frame =  CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20);
+//        self.window.bounds = CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height);
     }
     
     // Let the device know we want to receive push notifications

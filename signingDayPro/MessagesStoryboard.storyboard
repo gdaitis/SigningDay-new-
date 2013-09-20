@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="dai-hz-wtV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="dai-hz-wtV">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -26,13 +25,14 @@
             <objects>
                 <viewController storyboardIdentifier="NewConversationViewController" id="DrX-9U-5SD" customClass="SDNewConversationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mXi-BC-q6M">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4Qr-ZY-NLX">
-                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4Qr-ZY-NLX">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="JFO-r3-U81">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -45,8 +45,8 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultsCell" rowHeight="48" id="h4x-3h-UiE" customClass="SDNewConversationCell">
                                         <rect key="frame" x="0.0" y="66" width="320" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="47"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h4x-3h-UiE" id="3eb-Ph-nRC">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Yyb-vx-gGu">
@@ -66,8 +66,7 @@
                                                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="bottomLine" destination="a8i-r0-g0e" id="hgo-s0-7o6"/>
@@ -109,11 +108,11 @@
             <objects>
                 <viewController storyboardIdentifier="ConversationViewController" id="1dA-zq-jjy" customClass="SDConversationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hOT-vL-yod">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="jki-LU-sDQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="98" sectionHeaderHeight="23" sectionFooterHeight="22" id="Z4K-c9-lYi" customClass="SDTableView">
@@ -124,8 +123,8 @@
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" rowHeight="68" id="Aou-0n-h11" customClass="SDMessageCell">
                                                 <rect key="frame" x="0.0" y="23" width="320" height="68"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aou-0n-h11" id="ISZ-Hh-frN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="8MP-9D-Ogh">
@@ -161,8 +160,7 @@
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
+                                                </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="bottomLineView" destination="PK3-1y-ifs" id="o7L-Uv-5J4"/>
                                                     <outlet property="dateLabel" destination="Hlm-3j-9c1" id="XW8-8a-T2N"/>
@@ -203,6 +201,7 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -219,20 +218,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0V4-4h-FGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2604" y="-1506"/>
+            <point key="canvasLocation" x="2621" y="-1502"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="AJC-qF-4ae">
             <objects>
                 <viewController storyboardIdentifier="messagesViewController" id="hUn-0a-brj" customClass="SDMessageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4nl-sW-e3c">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0dH-YB-4p1" customClass="SDTableView">
-                                <rect key="frame" x="0.0" y="44" width="320" height="548"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0dH-YB-4p1" customClass="SDTableView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="hUn-0a-brj" id="5Gr-FM-RxE"/>
@@ -254,69 +254,8 @@
     </scenes>
     <resources>
         <image name="chat_box_bg.png" width="320" height="50"/>
-        <image name="chat_box_send_bt.png" width="60" height="30.5"/>
+        <image name="chat_box_send_bt.png" width="60" height="30"/>
     </resources>
-    <classes>
-        <class className="SDBaseChatViewController" superclassName="SDBaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseChatViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="chatBar" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="enterMessageTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="sendButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="textViewBackgroundImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="SDBaseToolbarItemViewController" superclassName="SDBaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseToolbarItemViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="SDTableView"/>
-            </relationships>
-        </class>
-        <class className="SDBaseViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDBaseViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SDConversationViewController" superclassName="SDBaseChatViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDConversationViewController.h"/>
-        </class>
-        <class className="SDMessageCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDMessageCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomLineView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="messageTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="userImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SDMessageViewController" superclassName="SDBaseToolbarItemViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDMessageViewController.h"/>
-        </class>
-        <class className="SDNavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDNavigationController.h"/>
-        </class>
-        <class className="SDNewConversationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDNewConversationCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
-                <relationship kind="outlet" name="userImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="usernameTitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SDNewConversationViewController" superclassName="SDBaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDNewConversationViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SDTableView" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDTableView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

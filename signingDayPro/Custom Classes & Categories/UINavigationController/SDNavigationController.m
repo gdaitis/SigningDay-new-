@@ -24,7 +24,7 @@
 @property (nonatomic, assign) BarButtonType lastSelectedType;
 @property (nonatomic, assign) BOOL showFilterButton;
 @property (nonatomic, assign) BOOL filterViewVisible;
-
+@property (nonatomic, strong) UIView *ios7bar;
 
 @end
 
@@ -84,7 +84,19 @@
 - (void)setupToolbar
 {
     //creating and adding toolbar
-    UIToolbar *tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kTopToolbarHeight)];
+    float y = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        y = 20;
+        
+//        CALayer *sublayer = [CALayer layer];
+//        sublayer.backgroundColor = [UIColor blackColor].CGColor;
+//        sublayer.frame = CGRectMake(0, 0, 320, 20);
+//        [self.view.layer addSublayer:sublayer];
+        self.ios7bar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+        self.ios7bar.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:self.ios7bar];
+    }
+    UIToolbar *tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, kTopToolbarHeight)];
     self.topToolBar = tb;
     [_topToolBar setBackgroundImage:[UIImage imageNamed:@"ToolbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     [self.view addSubview:_topToolBar];
@@ -327,6 +339,7 @@
     [self.contentView addSubview:_messageVC.view];
     [self.view bringSubviewToFront:_topToolBar];
     
+    [self.view bringSubviewToFront:self.ios7bar];
     if (!_contentViewVisible) {
         _contentViewVisible = YES;
         [UIView animateWithDuration:0.25f animations:^{
@@ -373,6 +386,7 @@
     [self.contentView addSubview:_followingVC.view];
     [self.view bringSubviewToFront:_topToolBar];
     
+    [self.view bringSubviewToFront:self.ios7bar];
     if (!_contentViewVisible) {
         _contentViewVisible = YES;
         [UIView animateWithDuration:0.25f animations:^{
