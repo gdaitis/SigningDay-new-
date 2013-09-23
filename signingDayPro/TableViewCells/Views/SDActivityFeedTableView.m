@@ -184,6 +184,7 @@
         [cell addSubview:activityView];
         [activityView startAnimating];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         
         if (!self.headerInfoDownloading) {
             [self checkServerAndDeleteOld:NO];

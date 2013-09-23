@@ -19,18 +19,10 @@
 
 static CGRect initialTextFieldFrame;
 
-- (void) layoutSubviews {
-    
+- (void) layoutSubviews
+{
     [super layoutSubviews];
-    
-    // Store the initial frame for the the text field
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        initialTextFieldFrame = self.textField.frame;
-    });
-    
     [self updateTextFieldFrame];
-    
 }
 
 -(void)updateTextFieldFrame{
@@ -59,17 +51,39 @@ static CGRect initialTextFieldFrame;
             [txtField addSubview:imageView];
             [txtField sendSubviewToBack:imageView];
             
+//            txtField.backgroundColor = [UIColor whiteColor];
+//            txtField.layer.cornerRadius = 5.0f;
+//            txtField.clipsToBounds = YES;
+//            txtField.layer.borderWidth = 1.0f;
+//            txtField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+            
             [txtField setBackground:nil];
             [txtField setTextColor:[UIColor lightGrayColor]];
             [txtField setFont:[UIFont fontWithName:@"Helvetica-Regular" size:15]];
             [txtField setReturnKeyType:UIReturnKeySearch];
-            UIImage *image = [UIImage imageNamed: @"LandingPageSearchBarMagnifyIcon.png"];
-            UIImageView *iView = [[UIImageView alloc] initWithImage:image];
-            txtField.leftView = iView;
+            
+//            UIImage *image = [UIImage imageNamed: @"LandingPageSearchBarMagnifyIcon.png"];
+//            UIImageView *iView = [[UIImageView alloc] initWithImage:image];
+//            txtField.leftView = iView;
         }
         if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
         {
             [view removeFromSuperview];
+        }
+        if ([view isKindOfClass:[UIButton class]])
+        {
+            UIButton *cancelButton = (UIButton*)view;
+            cancelButton.enabled = YES;
+            [cancelButton setBackgroundImage:Nil forState:UIControlStateNormal];
+            [cancelButton setBackgroundImage:Nil forState:UIControlStateHighlighted];
+            
+            [cancelButton setTitle:@"" forState:UIControlStateHighlighted];
+            [cancelButton setTitle:@"" forState:UIControlStateNormal];
+            
+            [cancelButton setImage:nil forState:UIControlStateNormal];
+            [cancelButton setImage:nil forState:UIControlStateHighlighted];
+            cancelButton.userInteractionEnabled = NO;
+            break;
         }
     }
     

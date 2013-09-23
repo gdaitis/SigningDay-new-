@@ -296,6 +296,7 @@
         [cell addSubview:activityView];
         [activityView startAnimating];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         
         if (!_searchActive) {
             [self loadMoreData];

@@ -61,7 +61,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+//    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     _controllerType = CONTROLLER_TYPE_FOLLOWERS;
@@ -104,6 +104,11 @@
     _searchBar.delegate = self;
     [_searchBar sizeToFit];
     _searchBar.tintColor = [UIColor colorWithRed:219.0f/255.0f green:219.0f/255.0f blue:218.0f/255.0f alpha:1.0f];
+    [self.view addSubview:_searchBar];
+    
+    CGRect frame = _searchBar.frame;
+    frame.origin.y = header.frame.origin.y + header.frame.size.height;
+    _searchBar.frame = frame;
     
     // Add lines
     CGColorRef upperBorderColor = [UIColor lightGrayColor].CGColor;
@@ -126,11 +131,11 @@
     
     self.customSearchDisplayController = searchDisplayController;
     
-    _customSearchDisplayController.delegate = self;
-    _customSearchDisplayController.searchResultsDataSource = self;
-    _customSearchDisplayController.searchResultsDelegate = self;
+    self.customSearchDisplayController.delegate = self;
+    self.customSearchDisplayController.searchResultsDataSource = self;
+    self.customSearchDisplayController.searchResultsDelegate = self;
     
-    self.tableView.tableHeaderView = _searchBar;
+//    self.tableView.tableHeaderView = _searchBar;
     
     self.followingButton = nil;
     self.followingButton = followingbtn;
@@ -147,6 +152,11 @@
     [self.view addSubview:header];
     
     [self.refreshControl removeFromSuperview];
+    
+    frame = self.tableView.frame;
+    frame.origin.y = _searchBar.frame.origin.y + _searchBar.frame.size.height;
+    frame.size.height = self.view.frame.size.height - frame.origin.y;
+    self.tableView.frame = frame;
 }
 
 - (void)viewDidUnload
@@ -396,6 +406,7 @@
         [cell addSubview:activityView];
         [activityView startAnimating];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         
         if (!_searchActive) {
             [self loadMoreData];

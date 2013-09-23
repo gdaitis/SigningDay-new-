@@ -30,13 +30,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self addSearchBar];
     [self.refreshControl removeFromSuperview];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self addSearchBar];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showFilter:) name:kFilterButtonPressedNotification object:nil];
     [((SDNavigationController *)self.navigationController) addFilterButton];
 }
@@ -108,26 +108,41 @@
 
 - (void)addSearchBar
 {
-    UIView *searchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 58)];
-    searchBackgroundView.backgroundColor = [UIColor colorWithRed:223.0f/255.0f green:223.0f/255.0f blue:223.0f/255.0f alpha:1.0f];
-    
-    SDLandingPageSearchBar *searchB = [[SDLandingPageSearchBar alloc] initWithFrame:CGRectMake(0, 7, 320, 44)];
-    self.searchBar = searchB;
-    self.searchBar.delegate = self;
-    
-    
-    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
-                                                          initWithSearchBar:_searchBar contentsController:self];
-    
-    self.customSearchDisplayController = searchDisplayController;
-    
-    _customSearchDisplayController.delegate = self;
-    _customSearchDisplayController.searchResultsDataSource = self;
-    _customSearchDisplayController.searchResultsDelegate = self;
-    
-    [searchBackgroundView addSubview:self.searchBar];
-    self.searchBarBackground = searchBackgroundView;
-    [self.view addSubview:self.searchBarBackground];
+    if (!self.searchBarBackground) {
+        
+        float searchBarHeight = 44.0f;
+        
+        float y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 20.0+searchBarHeight : searchBarHeight;
+        
+        UIView *searchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, y, self.view.frame.size.width, searchBarHeight)];
+        searchBackgroundView.backgroundColor = [UIColor colorWithRed:223.0f/255.0f green:223.0f/255.0f blue:223.0f/255.0f alpha:1.0f];
+        
+        SDLandingPageSearchBar *searchB = [[SDLandingPageSearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, searchBarHeight)];
+        self.searchBar = searchB;
+        self.searchBar.delegate = self;
+        
+        UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
+                                                              initWithSearchBar:_searchBar contentsController:self];
+        
+        self.customSearchDisplayController = searchDisplayController;
+        
+        _customSearchDisplayController.delegate = self;
+        _customSearchDisplayController.searchResultsDataSource = self;
+        _customSearchDisplayController.searchResultsDelegate = self;
+        
+        [searchBackgroundView addSubview:self.searchBar];
+        self.searchBarBackground = searchBackgroundView;
+        [self.view addSubview:self.searchBarBackground];
+        
+        CGRect frame = self.tableView.frame;
+        frame.origin.y = y+searchBarHeight;
+        frame.size.height = self.view.frame.size.height - (y+searchBarHeight);
+        self.tableView.frame = frame;
+        
+        NSLog(@"table origin y = %f",searchBackgroundView.frame.origin.y + searchBackgroundView.frame.size.height);
+        NSLog(@"table height = %f",self.view.frame.size.height - (y+searchBarHeight));
+        NSLog(@"self.view.frame.size.height = %f",self.view.frame.size.height);
+    }
 }
 
 #pragma mark - UISearchBar delegate

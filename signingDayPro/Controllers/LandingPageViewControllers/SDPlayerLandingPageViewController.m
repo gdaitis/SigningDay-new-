@@ -93,6 +93,7 @@
         [cell addSubview:activityView];
         [activityView startAnimating];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         
         if (!self.dataDownloadInProgress) {
             //data downloading not in progress, we can start downloading further pages
