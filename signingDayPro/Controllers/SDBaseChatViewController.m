@@ -47,7 +47,10 @@
     [self.tableView setBackgroundView:imageView];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     
-    self.chatBar.frame = CGRectMake(0.0f, self.containerView.frame.size.height-kChatBarHeight1, self.containerView.frame.size.width, kChatBarHeight1);
+    self.chatBar.frame = CGRectMake(0.0f,
+                                    self.containerView.frame.size.height-kChatBarHeight1,
+                                    self.containerView.frame.size.width,
+                                    kChatBarHeight1);
     self.chatBar.clearsContextBeforeDrawing = NO;
     self.chatBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
     self.chatBar.userInteractionEnabled = YES;
@@ -153,7 +156,11 @@
     
     CGRect keyboardFrameEndRelative = [self.view convertRect:keyboardEndFrame fromView:nil];
     
-    viewFrame.size.height =  keyboardFrameEndRelative.origin.y;
+    float y = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        y = 20;
+    
+    viewFrame.size.height =  keyboardFrameEndRelative.origin.y - y;
     self.containerView.frame = viewFrame;
     [UIView commitAnimations];
     
@@ -220,7 +227,10 @@
 {
     NSInteger viewHeight = self.containerView.frame.size.height;
     NSInteger viewWidth = self.containerView.frame.size.width;
-    NSInteger viewY = 84;
+    float y = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        y = 20;
+    NSInteger viewY = 84 - y;
     
     CGRect chatContentFrame = self.tableView.frame;
     chatContentFrame.size.height = viewHeight - height - viewY;
@@ -257,7 +267,41 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    CGFloat contentHeight = textView.contentSize.height;
+    int contentHeight;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+        CGRect frame = textView.bounds;
+        CGSize fudgeFactor;
+        // The padding added around the text on iOS6 and iOS7 is different.
+        fudgeFactor = CGSizeMake(10.0, 16.0);
+        
+        frame.size.height -= fudgeFactor.height;
+        frame.size.width -= fudgeFactor.width;
+        
+        NSMutableAttributedString* textToMeasure;
+        if(textView.attributedText && textView.attributedText.length > 0){
+            textToMeasure = [[NSMutableAttributedString alloc] initWithAttributedString:textView.attributedText];
+        }
+        else{
+            textToMeasure = [[NSMutableAttributedString alloc] initWithString:textView.text];
+            [textToMeasure addAttribute:NSFontAttributeName value:textView.font range:NSMakeRange(0, textToMeasure.length)];
+        }
+        
+        if ([textToMeasure.string hasSuffix:@"\n"])
+        {
+            [textToMeasure appendAttributedString:[[NSAttributedString alloc] initWithString:@"-" attributes:@{NSFontAttributeName: textView.font}]];
+        }
+        
+        // NSAttributedString class method: boundingRectWithSize:options:context is
+        // available only on ios7.0 sdk.
+        CGRect size = [textToMeasure boundingRectWithSize:CGSizeMake(CGRectGetWidth(frame), MAXFLOAT)
+                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                                  context:nil];
+        
+        contentHeight = CGRectGetHeight(size) + fudgeFactor.height;
+#else
+    contentHeight = textView.contentSize.height;
+#endif
+    
     NSString *rightTrimmedText = @"";
     
     if ([textView hasText]) {
@@ -268,7 +312,7 @@
                 if (contentHeight == 32) {
                     [self resetChatBarHeight];
                 } else {
-                    CGFloat chatBarHeight = contentHeight + 16;
+                    CGFloat chatBarHeight = contentHeight + 16 + 6;
                     [self setChatBarHeight:chatBarHeight];
                 }
                 if (self.previousContentHeight > kContentHeightMax) {

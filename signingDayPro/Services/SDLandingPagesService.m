@@ -298,7 +298,6 @@
     }
     NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&$format=json&$filter=(%@)", kSDBaseSigningDayURLString, yearString, filterString];
-    NSLog(@"url string = %@",urlString);
     
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock

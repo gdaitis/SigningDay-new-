@@ -36,13 +36,21 @@
     [super layoutSubviews];
     
     self.backgroundView.frame = self.bounds;
-    self.messageTextView.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        self.messageTextView.contentInset = UIEdgeInsetsMake(-4,-4,0,0);
+    else
+        self.messageTextView.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
     
     CGRect rect = [self.messageTextView.attributedText boundingRectWithSize:CGSizeMake(kMessageTextWidth, CGFLOAT_MAX)
                                                                     options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                                     context:nil];
-    self.messageTextView.frame = CGRectMake(64, 31, kMessageTextWidth, rect.size.height);
-    CGFloat height = rect.size.height + 31 + 12 - 16;
+    int deltaHeight = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        deltaHeight = 30;
+        
+    self.messageTextView.frame = CGRectMake(64, 31, kMessageTextWidth, rect.size.height + deltaHeight);
+    
+    CGFloat height = self.messageTextView.frame.size.height + 31 + 12 - 16;
     
     if (height < 67) {
         height = 67;
