@@ -31,7 +31,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.contentHeaderView = [[SDCommentsHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
+    float y = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        y = 20;
+    self.contentHeaderView = [[SDCommentsHeaderView alloc] initWithFrame:CGRectMake(0, 44 + y, 320, 40)];
     
     int likesCount = [self.activityStory.likesCount intValue];
     self.contentHeaderView.likesCount = likesCount;
@@ -53,7 +56,6 @@
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdDate"
                                                                      ascending:YES];
     self.dataArray = [unsortedComments sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    NSLog(@"Comments array is reloading");
     
     [self.tableView reloadData];
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B09B76F17F05A480070688F /* HPGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B09B76C17F05A480070688F /* HPGrowingTextView.m */; };
+		7B09B77017F05A480070688F /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B09B76E17F05A480070688F /* HPTextViewInternal.m */; };
 		7B1DF0F317E09ADE005455D8 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E117E09ADE005455D8 /* AFHTTPClient.m */; };
 		7B1DF0F417E09ADE005455D8 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E317E09ADE005455D8 /* AFHTTPRequestOperation.m */; };
 		7B1DF0F517E09ADE005455D8 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E517E09ADE005455D8 /* AFImageRequestOperation.m */; };
@@ -388,6 +390,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B09B76B17F05A480070688F /* HPGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGrowingTextView.h; sourceTree = "<group>"; };
+		7B09B76C17F05A480070688F /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
+		7B09B76D17F05A480070688F /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
+		7B09B76E17F05A480070688F /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
 		7B1DF0E017E09ADE005455D8 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		7B1DF0E117E09ADE005455D8 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		7B1DF0E217E09ADE005455D8 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -916,6 +922,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B09B77917F05A500070688F /* HPGrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				7B09B76B17F05A480070688F /* HPGrowingTextView.h */,
+				7B09B76C17F05A480070688F /* HPGrowingTextView.m */,
+				7B09B76D17F05A480070688F /* HPTextViewInternal.h */,
+				7B09B76E17F05A480070688F /* HPTextViewInternal.m */,
+			);
+			name = HPGrowingTextView;
+			sourceTree = "<group>";
+		};
 		7B1DF0DF17E09ADE005455D8 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1524,6 +1541,7 @@
 		80559904174CEDDE0040631D /* 3rd party classes */ = {
 			isa = PBXGroup;
 			children = (
+				7B09B77917F05A500070688F /* HPGrowingTextView */,
 				7B1DF0DF17E09ADE005455D8 /* AFNetworking */,
 				7B33A5A017BBC825002A994F /* NSDictionary+NullConverter */,
 				7B3031AA177ADB2C006EF25B /* HTMLParser */,
@@ -2283,6 +2301,7 @@
 				8032F0941755F98E00C92AAC /* UIImage+fixOrientation.m in Sources */,
 				8032F0951755F98E00C92AAC /* UIPlaceHolderTextView.m in Sources */,
 				8032F0961755F98E00C92AAC /* SDUtils.m in Sources */,
+				7B09B77017F05A480070688F /* HPTextViewInternal.m in Sources */,
 				8032F0991755F9AF00C92AAC /* SigningDay.xcdatamodel in Sources */,
 				80EEF5E3175614D900A7C803 /* SDTestingViewController.m in Sources */,
 				80EEF5E4175614D900A7C803 /* SDUserProfileViewController.m in Sources */,
@@ -2367,6 +2386,7 @@
 				8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */,
 				8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */,
 				8083892917D4D80B006E4FE9 /* SDLandingPageSearchBar.m in Sources */,
+				7B09B76F17F05A480070688F /* HPGrowingTextView.m in Sources */,
 				7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */,
 				802B793E17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m in Sources */,
 				80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */,

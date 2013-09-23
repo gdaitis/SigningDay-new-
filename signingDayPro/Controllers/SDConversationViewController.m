@@ -64,7 +64,10 @@
     
     NSArray *sortedUsernames = [names sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
-    self.contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44, 320, 40)];
+    float y = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        y = 20;
+    self.contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 44 + y, 320, 40)];
     [self.view addSubview:self.contentHeaderView];
     
     self.contentHeaderView.textLabel.text = [sortedUsernames componentsJoinedByString:@", "];
@@ -259,7 +262,11 @@
     CGRect rect = [[self getAttributedStringForTextViewFromMessage:message] boundingRectWithSize:CGSizeMake(kMessageTextWidth, CGFLOAT_MAX)
                                                                                          options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                                                          context:nil];
-    CGFloat height = rect.size.height + 31 + 13 - 16;
+    int deltaHeight = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        deltaHeight = 30;
+    
+    CGFloat height = rect.size.height + 31 + 13 - 16 + deltaHeight;
     if (height < 68) {
         height = 68;
     }
