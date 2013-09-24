@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="uPB-Mw-3Kq" customClass="SDCustomNavigationToolbarView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToolbarBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="1jx-31-Qvf">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKh-df-pBH">
+                    <rect key="frame" x="10" y="20" width="33" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="ePN-ks-DgH"/>
+                        <constraint firstAttribute="width" constant="33" id="rKV-ak-ZVY"/>
+                    </constraints>
+                    <state key="normal" image="MenuButton.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57R-VX-zns">
+                    <rect key="frame" x="277" y="20" width="33" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="2g9-ny-0Bt"/>
+                        <constraint firstAttribute="width" constant="33" id="3Hx-Dx-CWF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="LandingPageFilterButton.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRn-CS-9ha">
+                    <rect key="frame" x="81" y="23" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="NotificationIcon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="NotificationIconActive.png"/>
+                </button>
+                <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtx-6f-Moo">
+                    <rect key="frame" x="141" y="23" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="MailIcon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="MailIconActive.png"/>
+                </button>
+                <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L70-Ya-yzg">
+                    <rect key="frame" x="202" y="23" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="FollowersIcon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="FollowersIconActive.png"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="1jx-31-Qvf" secondAttribute="bottom" id="Ekg-qB-Y4g"/>
+                <constraint firstAttribute="trailing" secondItem="57R-VX-zns" secondAttribute="trailing" constant="10" id="Smq-Ao-iS6"/>
+                <constraint firstAttribute="bottom" secondItem="57R-VX-zns" secondAttribute="bottom" constant="2" id="UCe-d3-tU7"/>
+                <constraint firstItem="DKh-df-pBH" firstAttribute="leading" secondItem="uPB-Mw-3Kq" secondAttribute="leading" constant="10" id="XbH-qc-uYa"/>
+                <constraint firstAttribute="bottom" secondItem="SRn-CS-9ha" secondAttribute="bottom" constant="6" id="Yvv-PU-Icz"/>
+                <constraint firstAttribute="trailing" secondItem="1jx-31-Qvf" secondAttribute="trailing" id="aj4-50-ESr"/>
+                <constraint firstAttribute="bottom" secondItem="dtx-6f-Moo" secondAttribute="bottom" constant="6" id="kKr-XS-NkW"/>
+                <constraint firstItem="1jx-31-Qvf" firstAttribute="leading" secondItem="uPB-Mw-3Kq" secondAttribute="leading" id="l6T-Ax-zf8"/>
+                <constraint firstItem="1jx-31-Qvf" firstAttribute="top" secondItem="uPB-Mw-3Kq" secondAttribute="top" id="n51-Jc-W13"/>
+                <constraint firstAttribute="bottom" secondItem="L70-Ya-yzg" secondAttribute="bottom" constant="6" id="qyf-ON-Kz9"/>
+                <constraint firstAttribute="bottom" secondItem="DKh-df-pBH" secondAttribute="bottom" id="tZD-iR-L8D"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundImageView" destination="1jx-31-Qvf" id="Xv4-bC-GJv"/>
+                <outlet property="followersButton" destination="L70-Ya-yzg" id="4ij-fh-qR7"/>
+                <outlet property="leftButton" destination="DKh-df-pBH" id="vgZ-5p-aJK"/>
+                <outlet property="messagesButton" destination="dtx-6f-Moo" id="9qG-ny-oLp"/>
+                <outlet property="notificationButton" destination="SRn-CS-9ha" id="I1r-Gp-p7W"/>
+                <outlet property="rightButton" destination="57R-VX-zns" id="yaN-mS-cVM"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="FollowersIcon.png" width="25" height="18"/>
+        <image name="FollowersIconActive.png" width="25" height="18"/>
+        <image name="LandingPageFilterButton.png" width="33" height="44"/>
+        <image name="MailIcon.png" width="25" height="17"/>
+        <image name="MailIconActive.png" width="25" height="17"/>
+        <image name="MenuButton.png" width="33" height="44"/>
+        <image name="NotificationIcon.png" width="18" height="18"/>
+        <image name="NotificationIconActive.png" width="18" height="18"/>
+        <image name="ToolbarBg.png" width="320" height="44"/>
+    </resources>
+</document>

@@ -294,6 +294,8 @@
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80B4DD9917B2599300352E07 /* SDUserProfileHighSchoolHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B4DD9817B2599200352E07 /* SDUserProfileHighSchoolHeaderView.m */; };
 		80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */; };
+		80C7EF3517F1765C000A3B3D /* SDCustomNavigationToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C7EF3417F1765C000A3B3D /* SDCustomNavigationToolbarView.m */; };
+		80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */; };
 		80CCAE651793E6C30015429A /* SDUserProfileMemberHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */; };
 		80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */; };
 		80CCAE6A179404BE0015429A /* SDUserProfileSlidingButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */; };
@@ -835,6 +837,9 @@
 		80B4DD9717B2599200352E07 /* SDUserProfileHighSchoolHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHighSchoolHeaderView.h; sourceTree = "<group>"; };
 		80B4DD9817B2599200352E07 /* SDUserProfileHighSchoolHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileHighSchoolHeaderView.m; sourceTree = "<group>"; };
 		80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileHighSchoolHeaderView.xib; sourceTree = "<group>"; };
+		80C7EF3317F1765C000A3B3D /* SDCustomNavigationToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCustomNavigationToolbarView.h; sourceTree = "<group>"; };
+		80C7EF3417F1765C000A3B3D /* SDCustomNavigationToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCustomNavigationToolbarView.m; sourceTree = "<group>"; };
+		80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCustomNavigationToolbarView.xib; sourceTree = "<group>"; };
 		80CCAE631793E6C30015429A /* SDUserProfileMemberHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileMemberHeaderView.h; sourceTree = "<group>"; };
 		80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileMemberHeaderView.m; sourceTree = "<group>"; };
 		80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileMemberHeaderView.xib; sourceTree = "<group>"; };
@@ -1985,6 +1990,9 @@
 				801088C31795798A002EF1EB /* SDModalNavigationController.m */,
 				80F301611753A05900134FF4 /* SDNavigationController.h */,
 				80F301621753A05900134FF4 /* SDNavigationController.m */,
+				80C7EF3317F1765C000A3B3D /* SDCustomNavigationToolbarView.h */,
+				80C7EF3417F1765C000A3B3D /* SDCustomNavigationToolbarView.m */,
+				80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */,
 			);
 			name = UINavigationController;
 			path = "Custom Classes & Categories/UINavigationController";
@@ -2179,6 +2187,7 @@
 				7B6B1EBA1760A8C900BC878A /* login_bg-568h@2x.png in Resources */,
 				7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */,
 				7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */,
+				80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */,
 				7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */,
 				805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */,
 				805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */,
@@ -2363,6 +2372,7 @@
 				801088F717957A0E002EF1EB /* SDActivityFeedHeaderView.m in Sources */,
 				80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */,
 				80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */,
+				80C7EF3517F1765C000A3B3D /* SDCustomNavigationToolbarView.m in Sources */,
 				8063D2CA17991BE500C01D92 /* SDUserProfilePlayerHeaderView.m in Sources */,
 				8022CC4117EC2B3F0054A1C5 /* SDNotificationViewController.m in Sources */,
 				7B2D9AAA1799504600B1D660 /* SDStarsRatingView.m in Sources */,
