@@ -11,6 +11,8 @@
 #import "SDFollowingViewController.h"
 #import "SDNotificationViewController.h"
 
+@class SDCustomNavigationToolbarView;
+
 typedef enum {
     BARBUTTONTYPE_NOTIFICATIONS = 0,
     BARBUTTONTYPE_CONVERSATIONS,
@@ -25,7 +27,7 @@ typedef enum {
 
 @property (nonatomic, weak) UIButton *menuButton;
 
-@property (nonatomic, weak) UIToolbar *topToolBar;
+@property (nonatomic, weak) SDCustomNavigationToolbarView *topToolBar;
 
 @property (nonatomic, assign) BarButtonType *barButtonType;
 
@@ -49,7 +51,5 @@ typedef enum {
 //when filter view is hidden, not using filter button
 - (void)filterViewBecameHidden;
 - (void)revealMenu:(id)sender;
-
-- (UIBarButtonItem *)barButtonForType:(BarButtonType)type;
 
 @end

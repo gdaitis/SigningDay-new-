@@ -16,6 +16,8 @@
 #import "SDBaseViewController.h"
 
 #import "SDNewConversationViewController.h"
+#import "SDCustomNavigationToolbarView.h"
+#import "UIView+NibLoading.h"
 
 @interface SDNavigationController ()
 
@@ -59,7 +61,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    
     _selectedMenuType = BARBUTTONTYPE_NONE;
     _backButtonVisibleIfNeeded = YES;
     
@@ -84,22 +86,14 @@
 - (void)setupToolbar
 {
     //creating and adding toolbar
-    float y = 0;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        y = 20;
+    float y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 20 : 0;
+    if (!self.topToolBar) {
+        SDCustomNavigationToolbarView *toolbarView = (id)[SDCustomNavigationToolbarView loadInstanceFromNib];
         
-//        CALayer *sublayer = [CALayer layer];
-//        sublayer.backgroundColor = [UIColor blackColor].CGColor;
-//        sublayer.frame = CGRectMake(0, 0, 320, 20);
-//        [self.view.layer addSublayer:sublayer];
-        self.ios7bar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-        self.ios7bar.backgroundColor = [UIColor blackColor];
-        [self.view addSubview:self.ios7bar];
+        self.topToolBar = toolbarView;
+        self.topToolBar.frame = CGRectMake(0, 0, self.view.bounds.size.width, kTopToolbarHeight+y);
+        [self.view addSubview:_topToolBar];
     }
-    UIToolbar *tb = [[UIToolbar alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, kTopToolbarHeight)];
-    self.topToolBar = tb;
-    [_topToolBar setBackgroundImage:[UIImage imageNamed:@"ToolbarBg.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-    [self.view addSubview:_topToolBar];
     
     [self setToolbarButtons];
 }
@@ -132,106 +126,45 @@
 
 - (void)setToolbarButtons
 {
-    //setting menu/Back button and other middle buttons
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //set left button actions
+    [self.topToolBar.leftButton removeTarget:nil
+                                      action:NULL
+                            forControlEvents:UIControlEventAllEvents];
+    
     UIImage *btnImg = nil;
     if ([self.viewControllers count] > 1 && _backButtonVisibleIfNeeded) {
         btnImg = [UIImage imageNamed:@"MenuButtonBack.png"];
-        [btn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+        [self.topToolBar.leftButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     }
     else {
         btnImg = [UIImage imageNamed:@"MenuButton.png"];
-        [btn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+        [self.topToolBar.leftButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     }
-    btn.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
-    self.menuButton = btn;
-    [_menuButton setImage:btnImg forState:UIControlStateNormal];
+    [self.topToolBar.leftButton setImage:btnImg forState:UIControlStateNormal];
     
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                   target:nil
-                                   action:nil];
-    fixedSpace.width = 11;
-    UIBarButtonItem *fixedSmallSpace = [[UIBarButtonItem alloc]
-                                        initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                        target:nil
-                                        action:nil];
-    fixedSmallSpace.width = 10;
+    //set midle button actions
+    [self.topToolBar.notificationButton addTarget:self action:@selector(notificationsSelected:) forControlEvents:UIControlEventTouchUpInside];
+    self.topToolBar.notificationButton.selected = (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) ? YES : NO;
     
+    [self.topToolBar.messagesButton addTarget:self action:@selector(conversationsSelected:) forControlEvents:UIControlEventTouchUpInside];
+    self.topToolBar.messagesButton.selected = (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS)? YES : NO;
+    
+    [self.topToolBar.followersButton addTarget:self action:@selector(followersSelected:) forControlEvents:UIControlEventTouchUpInside];
+    self.topToolBar.followersButton.selected = (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) ? YES : NO;
+    
+    
+    //check is filter button needed
     if (self.showFilterButton) {
-        
         UIImage *btnImg = [UIImage imageNamed:@"LandingPageFilterButton.png"];
-        UIButton *filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        filterButton.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
-        [filterButton setImage:btnImg forState:UIControlStateNormal];
-        [filterButton addTarget:self action:@selector(filterButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithCustomView:filterButton];
-        filterButton.tag = 4;
         
-        if (self.filterViewVisible) {
-            filterButton.selected = YES;
-        }
-        else {
-            filterButton.selected = NO;
-        }
-        
-        UIBarButtonItem *menuBarBtnItm = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
-        NSArray *btnArray = [NSArray arrayWithObjects:menuBarBtnItm, fixedSpace, [self barButtonForType:BARBUTTONTYPE_NOTIFICATIONS],fixedSmallSpace,[self barButtonForType:BARBUTTONTYPE_CONVERSATIONS],fixedSmallSpace, [self barButtonForType:BARBUTTONTYPE_FOLLOWERS], fixedSmallSpace, filterBarButton, nil];
-        [_topToolBar setItems:btnArray animated:NO];
+        [self.topToolBar.rightButton setImage:btnImg forState:UIControlStateNormal];
+        [self.topToolBar.rightButton addTarget:self action:@selector(filterButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
+        self.topToolBar.rightButton.selected = (self.filterViewVisible) ? YES : NO;
+        self.topToolBar.rightButton.hidden = NO;
     }
     else {
-        UIBarButtonItem *menuBarBtnItm = [[UIBarButtonItem alloc] initWithCustomView:_menuButton];
-        
-        NSArray *btnArray = [NSArray arrayWithObjects:menuBarBtnItm, fixedSpace, [self barButtonForType:BARBUTTONTYPE_NOTIFICATIONS],fixedSmallSpace,[self barButtonForType:BARBUTTONTYPE_CONVERSATIONS],fixedSmallSpace, [self barButtonForType:BARBUTTONTYPE_FOLLOWERS], nil];
-        [_topToolBar setItems:btnArray animated:NO];
+        self.topToolBar.rightButton.hidden = YES;
     }
-}
-
-- (UIBarButtonItem *)barButtonForType:(BarButtonType)type
-{
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *btnImg = nil;
-    UIImage *btnHighlightedImg = nil;
-    
-    switch (type) {
-        case BARBUTTONTYPE_NOTIFICATIONS:
-            btnImg = [UIImage imageNamed:@"NotificationIcon.png"];
-            btnHighlightedImg = [UIImage imageNamed:@"NotificationIconActive.png"];
-            [btn addTarget:self action:@selector(notificationsSelected:) forControlEvents:UIControlEventTouchUpInside];
-            btn.tag = 1;
-            if (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) {
-                btn.selected = YES;
-            }
-            break;
-        case BARBUTTONTYPE_CONVERSATIONS:
-            btnImg = [UIImage imageNamed:@"MailIcon.png"];
-            btnHighlightedImg = [UIImage imageNamed:@"MailIconActive.png"];
-            [btn addTarget:self action:@selector(conversationsSelected:) forControlEvents:UIControlEventTouchUpInside];
-            btn.tag = 2;
-            if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
-                btn.selected = YES;
-            }
-            break;
-        case BARBUTTONTYPE_FOLLOWERS:
-            btnImg = [UIImage imageNamed:@"FollowersIcon.png"];
-            btnHighlightedImg = [UIImage imageNamed:@"FollowersIconActive.png"];
-            [btn addTarget:self action:@selector(followersSelected:) forControlEvents:UIControlEventTouchUpInside];
-            btn.tag = 3;
-            if (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) {
-                btn.selected = YES;
-            }
-            break;
-            
-        default:
-            break;
-    }
-    btn.frame = CGRectMake(0, 0, 50, 40);
-    [btn setContentMode:UIViewContentModeCenter];
-    [btn setImage:btnImg forState:UIControlStateNormal];
-    [btn setImage:btnHighlightedImg forState:UIControlStateSelected];
-    
-    UIBarButtonItem *result = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    return result;
 }
 
 #pragma mark - Toolbar button actions
@@ -337,7 +270,7 @@
     _selectedMenuType = BARBUTTONTYPE_NOTIFICATIONS;
     if (!_notificationVC) {
         SDNotificationViewController *notificationVC = [[SDNotificationViewController alloc] init];
-//        notificationVC.delegate = self;
+        //        notificationVC.delegate = self;
         notificationVC.view.frame = self.contentView.bounds;
         
         self.notificationVC = notificationVC;
@@ -497,19 +430,19 @@
     //add triangle arrow to the toolbar in specific place
     switch (barBtnType) {
         case BARBUTTONTYPE_NOTIFICATIONS:
-            frame.origin.x = 87;
+            frame.origin.x = 92;
             break;
         case BARBUTTONTYPE_CONVERSATIONS:
             frame.origin.x = 152;
             break;
         case BARBUTTONTYPE_FOLLOWERS:
-            frame.origin.x = 224;
+            frame.origin.x = 215;
             break;
             
         default:
             break;
     }
-    frame.origin.y = 35;
+    frame.origin.y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 55 : 35;
     triangleImgView.frame = frame;
     
     [_topToolBar addSubview:triangleImgView];
@@ -522,20 +455,20 @@
     
     switch (barBtnType) {
         case BARBUTTONTYPE_NOTIFICATIONS:
-            frame.origin.x = 87;
+            frame.origin.x = 92;
             break;
         case BARBUTTONTYPE_CONVERSATIONS:
             frame.origin.x = 152;
             break;
         case BARBUTTONTYPE_FOLLOWERS:
-            frame.origin.x = 224;
+            frame.origin.x = 215;
             break;
             
         default:
             break;
     }
     [UIView animateWithDuration:0.25f animations:^{
-            triangleImgView.frame = frame;
+        triangleImgView.frame = frame;
     } completion:^(__unused BOOL finished) {
     }];
 }
