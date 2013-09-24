@@ -393,5 +393,13 @@
                              }];
 }
 
+#pragma mark - UINavigationController delegate methods
+
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
 
 @end
