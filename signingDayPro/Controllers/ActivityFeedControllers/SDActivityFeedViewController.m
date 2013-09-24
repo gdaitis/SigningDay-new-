@@ -86,11 +86,6 @@
     self.tableView.tableDelegate = self;
     
     [self.tableView checkServerAndDeleteOld:YES];
-    
-    UIViewController *testvc = [[UIViewController alloc] init];
-    SDCameraOverlayView *overlayView = [[SDCameraOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
-    [testvc.view addSubview:overlayView];
-    [self presentViewController:testvc animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
