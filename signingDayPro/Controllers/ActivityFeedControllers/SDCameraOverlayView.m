@@ -49,7 +49,10 @@
         }
         
         self.cameraSwitch = [UICustomSwitch switchWithLeftText:nil andRight:nil];
-        self.cameraSwitch.frame = CGRectMake(250, 13, 60, 16);
+        float y = 13;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+            y = 5;
+        self.cameraSwitch.frame = CGRectMake(250, y, 60, 16);
         [self.cameraSwitch addTarget:self action:@selector(switchCamera:) forControlEvents:UIControlEventValueChanged];
         self.cameraSwitch.on = NO;
         [self.bottomBackgroundImageView addSubview:self.cameraSwitch];
