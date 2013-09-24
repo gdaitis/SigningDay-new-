@@ -19,7 +19,7 @@
 #import "SDCustomNavigationToolbarView.h"
 #import "UIView+NibLoading.h"
 
-@interface SDNavigationController ()
+@interface SDNavigationController () <SDCustomNavigationToolbarViewDelegate>
 
 //properties for presenting toolbar menus on navigating back
 @property (nonatomic, strong) UIViewController *lastControllerForToolbarItems;
@@ -89,7 +89,7 @@
     float y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 20 : 0;
     if (!self.topToolBar) {
         SDCustomNavigationToolbarView *toolbarView = (id)[SDCustomNavigationToolbarView loadInstanceFromNib];
-        
+        toolbarView.delegate = self;
         self.topToolBar = toolbarView;
         self.topToolBar.frame = CGRectMake(0, 0, self.view.bounds.size.width, kTopToolbarHeight+y);
         [self.view addSubview:_topToolBar];
@@ -127,39 +127,19 @@
 - (void)setToolbarButtons
 {
     //set left button actions
-    [self.topToolBar.leftButton removeTarget:nil
-                                      action:NULL
-                            forControlEvents:UIControlEventAllEvents];
     
-    UIImage *btnImg = nil;
-    if ([self.viewControllers count] > 1 && _backButtonVisibleIfNeeded) {
-        btnImg = [UIImage imageNamed:@"MenuButtonBack.png"];
-        [self.topToolBar.leftButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else {
-        btnImg = [UIImage imageNamed:@"MenuButton.png"];
-        [self.topToolBar.leftButton addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    [self.topToolBar.leftButton setImage:btnImg forState:UIControlStateNormal];
+    UIImage *leftButtonImage = ([self.viewControllers count] > 1 && _backButtonVisibleIfNeeded) ? [UIImage imageNamed:@"MenuButtonBack.png"] : [UIImage imageNamed:@"MenuButton.png"];
+    [self.topToolBar setLeftButtonImage:leftButtonImage];
     
     //set midle button actions
-    [self.topToolBar.notificationButton addTarget:self action:@selector(notificationsSelected:) forControlEvents:UIControlEventTouchUpInside];
     self.topToolBar.notificationButton.selected = (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) ? YES : NO;
-    
-    [self.topToolBar.messagesButton addTarget:self action:@selector(conversationsSelected:) forControlEvents:UIControlEventTouchUpInside];
     self.topToolBar.messagesButton.selected = (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS)? YES : NO;
-    
-    [self.topToolBar.followersButton addTarget:self action:@selector(followersSelected:) forControlEvents:UIControlEventTouchUpInside];
     self.topToolBar.followersButton.selected = (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) ? YES : NO;
-    
+    self.topToolBar.rightButton.selected = (self.filterViewVisible) ? YES : NO;
     
     //check is filter button needed
     if (self.showFilterButton) {
-        UIImage *btnImg = [UIImage imageNamed:@"LandingPageFilterButton.png"];
-        
-        [self.topToolBar.rightButton setImage:btnImg forState:UIControlStateNormal];
-        [self.topToolBar.rightButton addTarget:self action:@selector(filterButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-        self.topToolBar.rightButton.selected = (self.filterViewVisible) ? YES : NO;
+        [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"LandingPageFilterButton.png"]];
         self.topToolBar.rightButton.hidden = NO;
     }
     else {
@@ -169,7 +149,7 @@
 
 #pragma mark - Toolbar button actions
 
-- (void)notificationsSelected:(UIButton *)btn
+- (void)notificationsSelected
 {
     if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
         [self hideFollowersAndRemoveContentView:NO];
@@ -183,13 +163,13 @@
         [self hideNotificationsAndRemoveContentView:YES];
     }
     else {
-        btn.selected = YES;
+//        btn.selected = YES;
         [self showNotifications];
     }
     [self setToolbarButtons];
 }
 
-- (void)conversationsSelected:(UIButton *)btn
+- (void)conversationsSelected
 {
     if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
         [self hideConversationsAndRemoveContentView:YES];
@@ -203,13 +183,13 @@
         [self showConversations];
     }
     else {
-        btn.selected = YES;
+//        btn.selected = YES;
         [self showConversations];
     }
     [self setToolbarButtons];
 }
 
-- (void)followersSelected:(UIButton *)btn
+- (void)followersSelected
 {
     if (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS) {
         [self hideConversationsAndRemoveContentView:NO];
@@ -229,7 +209,7 @@
 }
 
 
-- (void)filterButtonSelected:(id)sender
+- (void)filterButtonSelected
 {
     NSDictionary *dictionary = nil;
     
@@ -565,6 +545,36 @@
                                                          bundle:nil];
     SDNewConversationViewController *newMessageNavigationController = (SDNewConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"NewConversationViewController"];
     [self pushViewController:newMessageNavigationController animated:YES];
+}
+
+#pragma mark - Top toolbar delegate
+
+- (void)leftButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
+{
+    if ([self.viewControllers count] > 1 && _backButtonVisibleIfNeeded)
+        [self popViewController];
+    else
+        [self revealMenu:nil];
+}
+
+- (void)rightButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
+{
+    [self filterButtonSelected];
+}
+
+- (void)notificationButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
+{
+    [self notificationsSelected];
+}
+
+- (void)conversationButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
+{
+    [self conversationsSelected];
+}
+
+- (void)followerButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
+{
+    [self followersSelected];
 }
 
 #pragma mark - Orientation
