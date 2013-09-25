@@ -40,5 +40,6 @@
 - (void)presentFilterListViewWithType:(FilterListType)listType andSelectedValue:(id)value;
 - (void)reloadTableView;
 - (void)loadFilteredData;
+- (void)loadData;
 
 @end

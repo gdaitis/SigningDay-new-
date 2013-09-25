@@ -103,6 +103,11 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0;
+}
+
 #pragma mark - Filter View handling
 
 - (void)hideFilterView

@@ -31,6 +31,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self.refreshControl removeFromSuperview];
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -88,6 +94,11 @@
 {
     if ([self.searchBar isFirstResponder]) {
         [self removeKeyboard];
+        if (self.searchBar.text.length < 1) {
+            self.currentUserCount = 0;
+            self.dataIsFiltered = NO;
+            [self loadData];
+        }
     }
     else {
         UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
@@ -103,6 +114,11 @@
 {
     if ([self.searchBar isFirstResponder]) {
         [self removeKeyboard];
+        if (self.searchBar.text.length < 1) {
+            self.currentUserCount = 0;
+            self.dataIsFiltered = NO;
+            [self loadData];
+        }
     }
 }
 
@@ -112,9 +128,9 @@
         
         float searchBarHeight = 44.0f;
         
-        float y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 20.0+searchBarHeight : searchBarHeight;
+        float y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 20.0 : 0;
         
-        UIView *searchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, y, self.view.frame.size.width, searchBarHeight)];
+        UIView *searchBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, y+searchBarHeight, self.view.frame.size.width, searchBarHeight)];
         searchBackgroundView.backgroundColor = [UIColor colorWithRed:223.0f/255.0f green:223.0f/255.0f blue:223.0f/255.0f alpha:1.0f];
         
         SDLandingPageSearchBar *searchB = [[SDLandingPageSearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, searchBarHeight)];
@@ -135,13 +151,9 @@
         [self.view addSubview:self.searchBarBackground];
         
         CGRect frame = self.tableView.frame;
-        frame.origin.y = y+searchBarHeight;
-        frame.size.height = self.view.frame.size.height - (y+searchBarHeight);
+        frame.origin.y = searchBackgroundView.frame.size.height + searchBackgroundView.frame.origin.y;
+        frame.size.height = self.view.frame.size.height - searchBackgroundView.frame.size.height - searchBackgroundView.frame.origin.y;
         self.tableView.frame = frame;
-        
-        NSLog(@"table origin y = %f",searchBackgroundView.frame.origin.y + searchBackgroundView.frame.size.height);
-        NSLog(@"table height = %f",self.view.frame.size.height - (y+searchBarHeight));
-        NSLog(@"self.view.frame.size.height = %f",self.view.frame.size.height);
     }
 }
 
@@ -163,6 +175,15 @@
     [self.view addSubview:hideKeyboardButton];
 }
 
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    if (self.searchBar.text.length < 1) {
+        self.currentUserCount = 0;
+        self.dataIsFiltered = NO;
+        [self loadData];
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     [self removeKeyboard];
     return YES;
@@ -170,7 +191,6 @@
 
 - (void)removeKeyboard
 {
-    
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
         [(UIButton *)[self.view viewWithTag:kHideKeyboardTag] removeFromSuperview];
@@ -285,6 +305,11 @@
 }
 
 - (void)searchFilteredData
+{
+    
+}
+
+- (void)loadData
 {
     
 }
