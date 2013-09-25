@@ -55,25 +55,23 @@
     BOOL userAllowsBuzzMessages = [user.allowBuzzMessage boolValue];
     
     if (userAllowsPrivateMessages && userAllowsBuzzMessages) {
-        self.buzzButtonView.messageButtonBig.alpha = 0;
-        self.buzzButtonView.postButtonBig.alpha = 0;
-        self.buzzButtonView.messageButtonSmall.alpha = 1;
-        self.buzzButtonView.postButtonBig.alpha = 1;
+        self.buzzButtonView.messageButtonBig.hidden = YES;
+        self.buzzButtonView.postButtonBig.hidden = YES;
+         self.buzzButtonView.messageButtonSmall.hidden = NO;
+        self.buzzButtonView.postButtonSmall.hidden = NO;
     } else if (userAllowsPrivateMessages && !userAllowsBuzzMessages) {
-        self.buzzButtonView.messageButtonBig.alpha = 1;
-        self.buzzButtonView.postButtonBig.alpha = 0;
-        self.buzzButtonView.messageButtonSmall.alpha = 0;
-        self.buzzButtonView.postButtonBig.alpha = 0;
+        self.buzzButtonView.messageButtonBig.hidden = NO;
+        self.buzzButtonView.postButtonBig.hidden = YES;
+        self.buzzButtonView.messageButtonSmall.hidden = YES;
+        self.buzzButtonView.postButtonSmall.hidden = YES;
     } else if (!userAllowsPrivateMessages && userAllowsBuzzMessages) {
-        self.buzzButtonView.messageButtonBig.alpha = 0;
-        self.buzzButtonView.postButtonBig.alpha = 1;
-        self.buzzButtonView.messageButtonSmall.alpha = 0;
-        self.buzzButtonView.postButtonBig.alpha = 0;
+        self.buzzButtonView.messageButtonBig.hidden = YES;
+        self.buzzButtonView.postButtonBig.hidden = NO;
+        self.buzzButtonView.messageButtonSmall.hidden = YES;
+        self.buzzButtonView.postButtonSmall.hidden = YES;
     } else if (!userAllowsPrivateMessages && !userAllowsBuzzMessages) {
         [self hideBuzzButtonView:YES];
     }
-        
-    
     
     [self updateFollowingInfo];
 }
