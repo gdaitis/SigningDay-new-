@@ -183,15 +183,17 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)loadFilteredData
 {
+    NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
+                                      
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
     NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
-    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"state.code == %@",self.currentFilterState.code] : nil;
-    NSMutableArray *predicateArray = [[NSMutableArray alloc] initWithObjects:userTypePredicate, nil];
+    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"theHighSchool.state.code == %@",self.currentFilterState.code] : nil;
+
+    [predicateArray addObject:userTypePredicate];
     if (nameSearchPredicate)
         [predicateArray addObject:nameSearchPredicate];
     if (userStatePredicate)
         [predicateArray addObject:userStatePredicate];
-    
     
     NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
     
@@ -206,8 +208,6 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)checkServer
 {
-#warning sorting wrong! also don't need year param! (maybe default value ?)
-    
     self.dataDownloadInProgress = YES;
     [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass successBlock:^{
         self.currentUserCount +=kPageCountForLandingPages;
@@ -247,6 +247,7 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
+    self.currentUserCount = 0;
     self.dataIsFiltered = NO;
     [self loadData];
 }

@@ -797,7 +797,7 @@
 		809E72A217577A1B004840D3 /* SDConversationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConversationCell.xib; sourceTree = "<group>"; };
 		809E72A417588B76004840D3 /* SDFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDFollowingViewController.h; path = ../TableViewCells/Views/SDFollowingViewController.h; sourceTree = "<group>"; };
 		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFollowingViewController.m; path = ../TableViewCells/Views/SDFollowingViewController.m; sourceTree = "<group>"; };
-		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuItemList.plist; sourceTree = "<group>"; };
+		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuItemList.plist; path = ../MenuItemList.plist; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
 		80A2D51B17EB0E7F00A5F8A2 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
 		80A2D51C17EB0E7F00A5F8A2 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
@@ -1555,7 +1555,6 @@
 				7B6B1EB41760A86B00BC878A /* app_icon@2x.png */,
 				805598C9174CE8200040631D /* signingDayPro-Info.plist */,
 				80431E9117A152B7002F6E3D /* Notes.rtf */,
-				80A0614D17529DB3005FE319 /* MenuItemList.plist */,
 				805598CA174CE8200040631D /* InfoPlist.strings */,
 				805598CD174CE8200040631D /* main.m */,
 				805598CF174CE8200040631D /* signingDayPro-Prefix.pch */,
@@ -1742,6 +1741,7 @@
 			children = (
 				807ACB2317E1ABF1005B8442 /* PositionsList.plist */,
 				807ACB2D17E1ADC1005B8442 /* YearsList.plist */,
+				80A0614D17529DB3005FE319 /* MenuItemList.plist */,
 			);
 			path = DataFiles;
 			sourceTree = "<group>";
