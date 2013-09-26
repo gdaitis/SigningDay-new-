@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ActivityStory" representedClassName="ActivityStory" syncable="YES">
         <attribute name="activityDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="activityTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -89,6 +89,7 @@
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Conversation" inverseName="master" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="followedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="following" inverseEntity="User" syncable="YES"/>
         <relationship name="following" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="followedBy" inverseEntity="User" syncable="YES"/>
+        <relationship name="notificationsReceived" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="master" inverseEntity="Notification" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="master" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Member" representedClassName="Member" syncable="YES">
@@ -105,6 +106,17 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="conversation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="messages" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Notification" representedClassName="Notification" syncable="YES">
+        <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentTypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentTypeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isNew" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notificationTypeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="fromUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notificationsParticipatedIn" inverseEntity="User" syncable="YES"/>
+        <relationship name="master" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="notificationsReceived" inverseEntity="Master" syncable="YES"/>
     </entity>
     <entity name="Player" representedClassName="Player" syncable="YES">
         <attribute name="baseScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -170,6 +182,7 @@
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="user" inverseEntity="Like" syncable="YES"/>
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
+        <relationship name="notificationsParticipatedIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="fromUser" inverseEntity="Notification" syncable="YES"/>
         <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="user" inverseEntity="State" syncable="YES"/>
         <relationship name="theCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="theUser" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theHighSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="theUser" inverseEntity="HighSchool" syncable="YES"/>
@@ -189,18 +202,19 @@
         <element name="ActivityStory" positionX="-83" positionY="-567" width="128" height="360"/>
         <element name="Coach" positionX="1042" positionY="-148" width="128" height="118"/>
         <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
-        <element name="Conference" positionX="549" positionY="-493" width="128" height="133"/>
+        <element name="Conference" positionX="801" positionY="-682" width="128" height="133"/>
         <element name="Conversation" positionX="153" positionY="137" width="128" height="178"/>
-        <element name="HighSchool" positionX="1024" positionY="2" width="128" height="180"/>
+        <element name="HighSchool" positionX="1024" positionY="2" width="128" height="178"/>
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
         <element name="Like" positionX="180" positionY="-124" width="128" height="88"/>
-        <element name="Master" positionX="-360" positionY="18" width="128" height="208"/>
+        <element name="Master" positionX="-360" positionY="18" width="128" height="223"/>
         <element name="Member" positionX="799" positionY="206" width="128" height="118"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
         <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
         <element name="State" positionX="342" positionY="-495" width="128" height="103"/>
         <element name="Team" positionX="999" positionY="-513" width="128" height="285"/>
-        <element name="User" positionX="585" positionY="-198" width="128" height="523"/>
+        <element name="User" positionX="585" positionY="-198" width="128" height="538"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
+        <element name="Notification" positionX="403" positionY="-702" width="128" height="178"/>
     </elements>
 </model>

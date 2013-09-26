@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-NSString * const SDNotificationsServiceNotificationTypeNotifications;
-NSString * const SDNotificationsServiceNotificationTypeConversations;
-NSString * const SDNotificationsServiceNotificationTypeFollowers;
+NSString * const SDNotificationsServiceCountOfUnreadNotifications;
+NSString * const SDNotificationsServiceCountOfUnreadConversations;
+NSString * const SDNotificationsServiceCountOfUnreadFollowers;
 
 @interface SDNotificationsService : NSObject
+
++ (void)getNotificationsWithPageSize:(NSNumber *)pageSize
+                        successBlock:(void (^)(void))successBlock
+                        failureBlock:(void (^)(void))failureBlock;
++ (void)markAllNotificationsReadWithSuccessBlock:(void (^)(void))successBlock
+                                    failureBlock:(void (^)(void))failureBlock;
++ (void)getCountOfUnreadNotificationsWithSuccessBlock:(void (^)(NSDictionary *unreadNotificationsCountDictionary))successBlock
+                                         failureBlock:(void (^)(void))failureBlock;
 
 @end

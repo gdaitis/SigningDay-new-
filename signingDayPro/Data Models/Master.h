@@ -2,14 +2,14 @@
 //  Master.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/19/13.
+//  Created by Vytautas Gudaitis on 9/26/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Conversation, User;
+@class ActivityStory, Conversation, Notification, User;
 
 @interface Master : NSManagedObject
 
@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSSet *followedBy;
 @property (nonatomic, retain) NSSet *following;
 @property (nonatomic, retain) NSSet *users;
+@property (nonatomic, retain) NSSet *notificationsReceived;
 @end
 
 @interface Master (CoreDataGeneratedAccessors)
@@ -52,5 +53,10 @@
 - (void)removeUsersObject:(User *)value;
 - (void)addUsers:(NSSet *)values;
 - (void)removeUsers:(NSSet *)values;
+
+- (void)addNotificationsReceivedObject:(Notification *)value;
+- (void)removeNotificationsReceivedObject:(Notification *)value;
+- (void)addNotificationsReceived:(NSSet *)values;
+- (void)removeNotificationsReceived:(NSSet *)values;
 
 @end

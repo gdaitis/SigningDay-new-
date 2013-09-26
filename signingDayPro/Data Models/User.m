@@ -2,7 +2,7 @@
 //  User.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/19/13.
+//  Created by Vytautas Gudaitis on 9/26/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 #import "Master.h"
 #import "Member.h"
 #import "Message.h"
+#import "Notification.h"
 #import "Player.h"
 #import "State.h"
 #import "Team.h"
@@ -55,5 +56,6 @@
 @dynamic theMember;
 @dynamic thePlayer;
 @dynamic theTeam;
+@dynamic notificationsParticipatedIn;
 
 @end

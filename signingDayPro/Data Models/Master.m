@@ -2,13 +2,14 @@
 //  Master.m
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/19/13.
+//  Created by Vytautas Gudaitis on 9/26/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import "Master.h"
 #import "ActivityStory.h"
 #import "Conversation.h"
+#import "Notification.h"
 #import "User.h"
 
 
@@ -25,5 +26,6 @@
 @dynamic followedBy;
 @dynamic following;
 @dynamic users;
+@dynamic notificationsReceived;
 
 @end
