@@ -29,6 +29,8 @@
 #import "SDKeyAttributesViewController.h"
 #import "SDBuzzSomethingViewController.h"
 #import "SDFollowingService.h"
+#import "SDBioViewController.h"
+#import "SDCollectionViewController.h"
 
 #import "SDBaseProfileHeaderView.h"
 #import "SDActivityStoryViewController.h"
@@ -306,6 +308,34 @@
 
             break;
     }
+}
+
+- (void)photosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+#warning add user related stuff
+    SDCollectionViewController *collectionViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
+    [self.navigationController pushViewController:collectionViewController animated:YES];
+}
+
+- (void)videosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+#warning add user related stuff
+    
+    SDCollectionViewController *collectionViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
+    [self.navigationController pushViewController:collectionViewController animated:YES];
+}
+
+- (void)bioButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDBioViewController *bioViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"BioViewController"];
+    bioViewController.currentUser = self.currentUser;
+    [self.navigationController pushViewController:bioViewController animated:YES];
 }
 
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView

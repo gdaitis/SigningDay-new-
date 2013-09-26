@@ -93,7 +93,8 @@
     [_bioButton addTarget:self action:@selector(bioButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_changingButton addTarget:self action:@selector(changingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-#warning Add other button actions
+    [_photosButton addTarget:self action:@selector(photosButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_videosButton addTarget:self action:@selector(videoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     _followersCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
     _followingCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
@@ -111,12 +112,22 @@
 
 - (void)bioButtonPressed:(id)sender
 {
-    
+    [self.delegate bioButtonPressedInUserProfileSlidingButtonView:self];
 }
 
 - (void)changingButtonPressed:(id)sender
 {
     [self.delegate changingButtonPressedInUserProfileSlidingButtonView:self];
+}
+
+- (void)photosButtonPressed:(id)sender
+{
+    [self.delegate photosButtonPressedInUserProfileSlidingButtonView:self];
+}
+
+- (void)videoButtonPressed:(id)sender
+{
+    [self.delegate videosButtonPressedInUserProfileSlidingButtonView:self];
 }
 
 /*

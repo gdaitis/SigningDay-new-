@@ -20,6 +20,9 @@ typedef enum {
 
 @interface SDProfileService : NSObject
 
++ (void)getBasicProfileInfoForUserIdentifier:(NSNumber *)identifier
+                             completionBlock:(void (^)(void))completionBlock
+                                failureBlock:(void (^)(void))failureBlock;
 + (void)getProfileInfoForUser:(User *)theUser
               completionBlock:(void (^)(void))completionBlock
                  failureBlock:(void (^)(void))failureBlock;

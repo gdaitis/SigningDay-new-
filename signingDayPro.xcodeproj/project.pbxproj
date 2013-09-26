@@ -171,6 +171,10 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
+		803ECEC517F4248A0060702F /* SDBioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECEC417F4248A0060702F /* SDBioViewController.m */; };
+		803ECED017F452CE0060702F /* SDCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECECF17F452CE0060702F /* SDCollectionCell.m */; };
+		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
+		803ECED517F456BF0060702F /* SDCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECED417F456BF0060702F /* SDCollectionViewController.m */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -636,6 +640,13 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		803ECEC317F4248A0060702F /* SDBioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBioViewController.h; sourceTree = "<group>"; };
+		803ECEC417F4248A0060702F /* SDBioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBioViewController.m; sourceTree = "<group>"; };
+		803ECECE17F452CE0060702F /* SDCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionCell.h; sourceTree = "<group>"; };
+		803ECECF17F452CE0060702F /* SDCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionCell.m; sourceTree = "<group>"; };
+		803ECED117F453F60060702F /* SDCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCollectionCell.xib; sourceTree = "<group>"; };
+		803ECED317F456BF0060702F /* SDCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewController.h; sourceTree = "<group>"; };
+		803ECED417F456BF0060702F /* SDCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewController.m; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -1662,6 +1673,9 @@
 				801C90F317E0589800227D88 /* SDFilterListCell.h */,
 				801C90F417E0589800227D88 /* SDFilterListCell.m */,
 				801C90F617E058AA00227D88 /* SDFilterListCell.xib */,
+				803ECECE17F452CE0060702F /* SDCollectionCell.h */,
+				803ECECF17F452CE0060702F /* SDCollectionCell.m */,
+				803ECED117F453F60060702F /* SDCollectionCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -1915,6 +1929,10 @@
 				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
 				80E28A1417D76FD600665313 /* SDKeyAttributesViewController.h */,
 				80E28A1517D76FD600665313 /* SDKeyAttributesViewController.m */,
+				803ECEC317F4248A0060702F /* SDBioViewController.h */,
+				803ECEC417F4248A0060702F /* SDBioViewController.m */,
+				803ECED317F456BF0060702F /* SDCollectionViewController.h */,
+				803ECED417F456BF0060702F /* SDCollectionViewController.m */,
 				80EEF5DF175614D900A7C803 /* SDTestingViewController.h */,
 				80EEF5E0175614D900A7C803 /* SDTestingViewController.m */,
 			);
@@ -2227,6 +2245,7 @@
 				801088EC179579BF002EF1EB /* publish_video_button@2x.png in Resources */,
 				801088ED179579BF002EF1EB /* x_button_gray@2x.png in Resources */,
 				801088EE179579BF002EF1EB /* x_button_yellow@2x.png in Resources */,
+				803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */,
 				801088F1179579DC002EF1EB /* MenuButtonClose@2x.png in Resources */,
 				801088F2179579DC002EF1EB /* MenuButtonDone@2x.png in Resources */,
 				80D1F39917967FF20051E8E1 /* BuzzButtonBackground@2x.png in Resources */,
@@ -2298,6 +2317,7 @@
 			files = (
 				7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */,
 				7B3031C9177AFB12006EF25B /* HTMLNode.m in Sources */,
+				803ECEC517F4248A0060702F /* SDBioViewController.m in Sources */,
 				7B3031CA177AFB12006EF25B /* HTMLParser.m in Sources */,
 				7B73651D175F7ADE007A338E /* SDMessageCell.m in Sources */,
 				7B73651A175F7A49007A338E /* SDConversationViewController.m in Sources */,
@@ -2335,6 +2355,7 @@
 				8032F0941755F98E00C92AAC /* UIImage+fixOrientation.m in Sources */,
 				8032F0951755F98E00C92AAC /* UIPlaceHolderTextView.m in Sources */,
 				8032F0961755F98E00C92AAC /* SDUtils.m in Sources */,
+				803ECED017F452CE0060702F /* SDCollectionCell.m in Sources */,
 				7B09B77017F05A480070688F /* HPTextViewInternal.m in Sources */,
 				8032F0991755F9AF00C92AAC /* SigningDay.xcdatamodel in Sources */,
 				80EEF5E3175614D900A7C803 /* SDTestingViewController.m in Sources */,
@@ -2459,6 +2480,7 @@
 				80A2D54317EB0E8200A5F8A2 /* Player.m in Sources */,
 				80A2D54617EB0E8200A5F8A2 /* User.m in Sources */,
 				80A2D54917EB0E8200A5F8A2 /* WebPreview.m in Sources */,
+				803ECED517F456BF0060702F /* SDCollectionViewController.m in Sources */,
 				80A2D54C17EB0E8200A5F8A2 /* Coach.m in Sources */,
 				80A2D54F17EB0E8200A5F8A2 /* Comment.m in Sources */,
 				80A2D55217EB0E8200A5F8A2 /* Conference.m in Sources */,

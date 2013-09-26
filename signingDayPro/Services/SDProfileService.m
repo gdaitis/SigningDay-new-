@@ -247,6 +247,41 @@
     [operation start];
 }
 
++ (void)getBasicProfileInfoForUserIdentifier:(NSNumber *)identifier
+                        completionBlock:(void (^)(void))completionBlock
+                           failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"users/%d.json", [identifier integerValue]];
+    [[SDAPIClient sharedClient] getPath:path
+                             parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+                                    User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
+                                    if (!user) {
+                                        user = [User MR_createInContext:context];
+                                        user.identifier = identifier;
+                                    }
+                                    NSDictionary *userDictionary = [JSON valueForKey:@"User"];
+                                    
+                                    user.username = [userDictionary valueForKey:@"Username"];
+                                    user.name = [userDictionary valueForKey:@"DisplayName"];
+                                    user.bio = [[userDictionary valueForKey:@"Bio"] stringByConvertingHTMLToPlainText];
+                                    NSLog(@"user.bio = %@",user.bio);
+                                    user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+                                    
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    if (completionBlock)
+                                        completionBlock();
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    [SDErrorService handleError:error withOperation:operation];
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
+    
+}
+
 + (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier
                         completionBlock:(void (^)(void))completionBlock
                            failureBlock:(void (^)(void))failureBlock
