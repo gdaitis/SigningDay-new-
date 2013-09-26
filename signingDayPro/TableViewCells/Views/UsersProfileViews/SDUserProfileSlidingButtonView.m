@@ -93,6 +93,7 @@
     [_bioButton addTarget:self action:@selector(bioButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_changingButton addTarget:self action:@selector(changingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+#warning Add other button actions
     
     _followersCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
     _followingCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];

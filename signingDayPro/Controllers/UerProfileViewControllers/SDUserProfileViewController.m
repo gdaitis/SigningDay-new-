@@ -127,42 +127,70 @@
         id view = nil;
         switch ([self.currentUser.userTypeId intValue]) {
             case SDUserTypePlayer:
-                view = [UIView loadInstanceFromClass:[SDUserProfilePlayerHeaderView class]];
-                ((SDUserProfilePlayerHeaderView *)view).delegate = self;
-                ((SDUserProfilePlayerHeaderView *)view).buzzButtonView.delegate = self;
-                ((SDUserProfilePlayerHeaderView *)view).slidingButtonView.delegate = self;
-                
+            {
+                SDUserProfilePlayerHeaderView *playerView = (SDUserProfilePlayerHeaderView *)[SDUserProfilePlayerHeaderView loadInstanceFromNib];
+                playerView.delegate = self;
+                playerView.buzzButtonView.delegate = self;
+                playerView.slidingButtonView.delegate = self;
+                [playerView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileKeyAttributesButton.png"] forState:UIControlStateNormal];
+                playerView.slidingButtonView.keyAttributesLabel.text = @"Key Attributes";
+                view = playerView;
                 break;
+            }
             case SDUserTypeHighSchool:
-                view = [UIView loadInstanceFromClass:[SDUserProfileHighSchoolHeaderView class]];
-                ((SDUserProfileHighSchoolHeaderView *)view).delegate = self;
-                ((SDUserProfileHighSchoolHeaderView *)view).buzzButtonView.delegate = self;
-                ((SDUserProfileHighSchoolHeaderView *)view).slidingButtonView.delegate = self;
+            {
+                SDUserProfileHighSchoolHeaderView *highschoolView = (SDUserProfileHighSchoolHeaderView *) [SDUserProfileHighSchoolHeaderView loadInstanceFromNib];
+                highschoolView.delegate = self;
+                highschoolView.buzzButtonView.delegate = self;
+                highschoolView.slidingButtonView.delegate = self;
+                [highschoolView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileProspectsButton.png"] forState:UIControlStateNormal];
+                highschoolView.slidingButtonView.keyAttributesLabel.text = @"Prospects";
+                view = highschoolView;
                 break;
+            }
             case SDUserTypeTeam:
-                view = [UIView loadInstanceFromClass:[SDUserProfileTeamHeaderView class]];
-                ((SDUserProfileTeamHeaderView *)view).delegate = self;
-                ((SDUserProfileTeamHeaderView *)view).buzzButtonView.delegate = self;
-                ((SDUserProfileTeamHeaderView *)view).slidingButtonView.delegate = self;
+            {
+                SDUserProfileTeamHeaderView *teamView = (SDUserProfileTeamHeaderView *) [SDUserProfileTeamHeaderView loadInstanceFromNib];
+                teamView.delegate = self;
+                teamView.buzzButtonView.delegate = self;
+                teamView.slidingButtonView.delegate = self;
+                [teamView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileCommitsButton.png"] forState:UIControlStateNormal];
+                teamView.slidingButtonView.keyAttributesLabel.text = @"Commits";
+                view = teamView;
                 break;
+            }
             case SDUserTypeMember:
-                view = [UIView loadInstanceFromClass:[SDUserProfileMemberHeaderView class]];
-                ((SDUserProfileMemberHeaderView *)view).delegate = self;
-                ((SDUserProfileMemberHeaderView *)view).buzzButtonView.delegate = self;
-                ((SDUserProfileMemberHeaderView *)view).slidingButtonView.delegate = self;
+            {
+                SDUserProfileMemberHeaderView *memberView = (SDUserProfileMemberHeaderView *) [SDUserProfileMemberHeaderView loadInstanceFromNib];
+                memberView.delegate = self;
+                memberView.buzzButtonView.delegate = self;
+                memberView.slidingButtonView.delegate = self;
+                [memberView.slidingButtonView.changingButton removeFromSuperview];
+                [memberView.slidingButtonView.keyAttributesLabel removeFromSuperview];
+                view = memberView;
                 break;
+            }
             case SDUserTypeCoach:
-                view = [UIView loadInstanceFromClass:[SDUserProfileCoachHeaderView class]];
-                ((SDUserProfileCoachHeaderView *)view).delegate = self;
-                ((SDUserProfileCoachHeaderView *)view).buzzButtonView.delegate = self;
-                ((SDUserProfileCoachHeaderView *)view).slidingButtonView.delegate = self;
+            {
+                SDUserProfileCoachHeaderView *coachView = (SDUserProfileCoachHeaderView *) [SDUserProfileCoachHeaderView loadInstanceFromNib];
+                coachView.delegate = self;
+                coachView.buzzButtonView.delegate = self;
+                coachView.slidingButtonView.delegate = self;
+                [coachView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileCommitsButton.png"] forState:UIControlStateNormal];
+                coachView.slidingButtonView.keyAttributesLabel.text = @"Commits";
+                view = coachView;
                 break;
+            }
             default:
-                view = [UIView loadInstanceFromClass:[SDUserProfileMemberHeaderView class]];
-                ((SDUserProfileMemberHeaderView *)view).delegate = self;
-                ((SDUserProfileMemberHeaderView *)view).buzzButtonView.delegate = self;
-                ((SDUserProfileMemberHeaderView *)view).slidingButtonView.delegate = self;
+            {
+                SDUserProfileMemberHeaderView *memberView = (SDUserProfileMemberHeaderView *) [SDUserProfileMemberHeaderView loadInstanceFromNib];
+                memberView.delegate = self;
+                memberView.buzzButtonView.delegate = self;
+                memberView.slidingButtonView.delegate = self;
+                [memberView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileKeyAttributesButton.png"] forState:UIControlStateNormal];
+                view = memberView;
                 break;
+            }
         }
         
         self.headerView = view;
