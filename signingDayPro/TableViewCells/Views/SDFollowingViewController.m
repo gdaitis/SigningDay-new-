@@ -66,11 +66,8 @@
     
     _controllerType = CONTROLLER_TYPE_FOLLOWERS;
     _currentFollowersPage = _currentFollowingPage = 0;
-    
-    float y = 0;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
-        y = 20;
-    SDContentHeaderView *header = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, y, 320, kBaseToolbarItemViewControllerHeaderHeight)];
+
+    SDContentHeaderView *header = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, kBaseToolbarItemViewControllerHeaderHeight)];
     
     //adding gray line in the center
     UIView *middleLineview = [[UIView alloc] initWithFrame:CGRectMake(160, 0, 1, kBaseToolbarItemViewControllerHeaderHeight)];

@@ -41,10 +41,7 @@
     
     [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.84f alpha:1.0f]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    float y = 0;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
-        y = 20;
-    self.tableView.frame = CGRectMake(0, kBaseToolbarItemViewControllerHeaderHeight + y, self.view.bounds.size.width, self.view.bounds.size.height - kBaseToolbarItemViewControllerHeaderHeight);
+    self.tableView.frame = CGRectMake(0, kBaseToolbarItemViewControllerHeaderHeight, self.view.bounds.size.width, self.view.bounds.size.height - kBaseToolbarItemViewControllerHeaderHeight);
 }
 
 - (void)didReceiveMemoryWarning

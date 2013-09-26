@@ -56,10 +56,7 @@
     self.firstLoad = YES;
     _currentMessagesPage = _totalMessages = 0;
     
-    float y = 0;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
-        y = 20;
-    SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, y, 320, 40)];
+    SDContentHeaderView *contentHeaderView = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     contentHeaderView.textLabel.text = @"Conversations";
     contentHeaderView.textLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
