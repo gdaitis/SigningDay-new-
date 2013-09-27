@@ -74,20 +74,9 @@
     
 }
 
-+ (void)searchForPlayersWithString:(NSString *)searchString
-                          forClass:(NSString *)classString
-                      successBlock:(void (^)(void))successBlock
-                      failureBlock:(void (^)(void))failureBlock
-{
-    [self searchForPlayersWithNameString:searchString
-                   stateCodeStringsArray:nil
-                  classYearsStringsArray:[NSArray arrayWithObject:classString]
-                    positionStringsArray:nil
-                            successBlock:successBlock
-                            failureBlock:failureBlock];
-}
-
 + (void)searchForPlayersWithNameString:(NSString *)searchString
+                                  from:(NSInteger)pageBeginIndex
+                                    to:(NSInteger)pageEndIndex
                  stateCodeStringsArray:(NSArray *)statesArray
                 classYearsStringsArray:(NSArray *)classesArray
                   positionStringsArray:(NSArray *)positionsArray
@@ -119,7 +108,8 @@
         [requestStringsArray addObject:positionsString];
     }
     NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=DisplayName asc&$format=json&$filter=(%@)", kSDBaseSigningDayURLString, filterString];
+    int top = pageEndIndex - pageBeginIndex;
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=DisplayName asc&$format=json&$skip=%d&$top=%d&$filter=(%@)", kSDBaseSigningDayURLString, pageBeginIndex, top, filterString];
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
                                            failureBlock:failureBlock];
