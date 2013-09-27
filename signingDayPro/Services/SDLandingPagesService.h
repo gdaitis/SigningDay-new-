@@ -44,6 +44,8 @@
                         failureBlock:(void (^)(void))failureBlock;
 // High Schools
 + (void)getAllHighSchoolsForAllStatesForYearString:(NSString *)yearString
+                                        pageNumber:(NSInteger)pageNumber
+                                          pageSize:(NSInteger)pageSize
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;
 + (void)searchForHighSchoolsInAllStatesWithNameString:(NSString *)searchString
