@@ -66,7 +66,7 @@
 {
     //disabling button for some time so animations could finish
     ((UIButton *)sender).userInteractionEnabled = NO;
-    [self performSelector:@selector(enableButtonAfterDelay:) withObject:sender afterDelay:0.4];
+    [self performSelector:@selector(enableButtonAfterDelay:) withObject:sender afterDelay:0.6];
     
     int tag = ((UIButton *)sender).tag;
     switch (tag) {

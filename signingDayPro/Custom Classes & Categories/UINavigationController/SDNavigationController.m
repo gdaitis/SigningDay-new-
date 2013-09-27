@@ -26,7 +26,6 @@
 @property (nonatomic, assign) BarButtonType lastSelectedType;
 @property (nonatomic, assign) BOOL showFilterButton;
 @property (nonatomic, assign) BOOL filterViewVisible;
-@property (nonatomic, strong) UIView *ios7bar;
 
 @end
 
@@ -113,15 +112,19 @@
 
 - (void)popViewController
 {
-    [self popViewControllerAnimated:YES];
-    [self setToolbarButtons];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self popViewControllerAnimated:YES];
+        [self setToolbarButtons];
+    });
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [super pushViewController:viewController animated:animated];
-    [self.view bringSubviewToFront:_topToolBar];
-    [self setToolbarButtons];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [super pushViewController:viewController animated:animated];
+        [self.view bringSubviewToFront:_topToolBar];
+        [self setToolbarButtons];
+    });
 }
 
 - (void)setToolbarButtons
@@ -313,7 +316,6 @@
     [self.contentView addSubview:_messageVC.view];
     [self.view bringSubviewToFront:_topToolBar];
     
-    [self.view bringSubviewToFront:self.ios7bar];
     if (!_contentViewVisible) {
         _contentViewVisible = YES;
         [UIView animateWithDuration:0.25f animations:^{
@@ -360,7 +362,6 @@
     [self.contentView addSubview:_followingVC.view];
     [self.view bringSubviewToFront:_topToolBar];
     
-    [self.view bringSubviewToFront:self.ios7bar];
     if (!_contentViewVisible) {
         _contentViewVisible = YES;
         [UIView animateWithDuration:0.25f animations:^{

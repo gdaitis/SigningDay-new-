@@ -10,6 +10,7 @@
 #import "SDCollectionCell.h"
 #include <stdlib.h>
 #import "AFNetworking.h"
+#import "SDImageEnlargementView.h"
 
 @interface SDCollectionViewController ()
 
@@ -62,6 +63,33 @@
     
     return cell;
 }
+
+#pragma mark - UICollectionView delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame andImage:@"http://www.daltonstate.edu/testing-center/images/testing-center-index.jpg"];
+    [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Item deselection
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize result = CGSizeMake(100, 100);
+    return result;
+}
+
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
 
 - (void)didReceiveMemoryWarning
 {

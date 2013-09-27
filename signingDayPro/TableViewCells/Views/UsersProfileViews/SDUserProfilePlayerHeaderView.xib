@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14" customClass="SDUserProfileSlidingButtonView">
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14" customClass="SDUserProfileSlidingButtonView">
                     <rect key="frame" x="0.0" y="237" width="320" height="137"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -229,7 +229,6 @@
                 <constraint firstItem="670" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="684"/>
                 <constraint firstItem="670" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="685"/>
                 <constraint firstItem="612" firstAttribute="top" secondItem="3" secondAttribute="top" id="690"/>
-                <constraint firstAttribute="bottom" secondItem="14" secondAttribute="bottom" constant="59" id="694"/>
                 <constraint firstItem="14" firstAttribute="top" secondItem="3" secondAttribute="top" constant="237" id="695"/>
                 <constraint firstItem="15" firstAttribute="top" secondItem="3" secondAttribute="top" constant="373" id="703"/>
                 <constraint firstItem="670" firstAttribute="top" secondItem="3" secondAttribute="top" constant="158" id="711"/>
