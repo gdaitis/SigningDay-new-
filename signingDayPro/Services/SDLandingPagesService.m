@@ -256,10 +256,12 @@
 #pragma mark - HighSchools
 
 + (void)getAllHighSchoolsForAllStatesForYearString:(NSString *)yearString
+                                        pageNumber:(NSInteger)pageNumber
+                                          pageSize:(NSInteger)pageSize
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&$format=json", kSDBaseSigningDayURLString, yearString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d0&page=%d&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber];
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
                                                successBlock:successBlock
