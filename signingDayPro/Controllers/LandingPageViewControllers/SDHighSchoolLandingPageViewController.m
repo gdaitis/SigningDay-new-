@@ -209,7 +209,7 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)checkServer
 {
     self.dataDownloadInProgress = YES;
-    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass successBlock:^{
+    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass pageNumber:(self.currentUserCount/kPageCountForLandingPages) pageSize:kPageCountForLandingPages successBlock:^{
         self.currentUserCount +=kPageCountForLandingPages;
         self.dataDownloadInProgress = NO;
         [self loadData];
@@ -218,6 +218,16 @@ NSString * const kSDDefaultClass = @"2014";
         [self hideProgressHudInView:self.view];
         self.dataDownloadInProgress = NO;
     }];
+    
+//    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass successBlock:^{
+//        self.currentUserCount +=kPageCountForLandingPages;
+//        self.dataDownloadInProgress = NO;
+//        [self loadData];
+//        [self hideProgressHudInView:self.view];
+//    } failureBlock:^{
+//        [self hideProgressHudInView:self.view];
+//        self.dataDownloadInProgress = NO;
+//    }];
 }
 
 - (void)searchFilteredData
