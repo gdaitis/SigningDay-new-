@@ -21,11 +21,9 @@
                                           forClass:(NSString *)classString
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;
-+ (void)searchForPlayersWithString:(NSString *)searchString
-                          forClass:(NSString *)classString
-                      successBlock:(void (^)(void))successBlock
-                      failureBlock:(void (^)(void))failureBlock;
 + (void)searchForPlayersWithNameString:(NSString *)searchString
+                                  from:(NSInteger)pageBeginIndex
+                                    to:(NSInteger)pageEndIndex
                  stateCodeStringsArray:(NSArray *)statesArray
                 classYearsStringsArray:(NSArray *)classesArray
                   positionStringsArray:(NSArray *)positionsArray
