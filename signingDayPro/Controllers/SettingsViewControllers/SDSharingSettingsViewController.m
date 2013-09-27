@@ -152,6 +152,7 @@
     cellSelectedBackgroundView.backgroundColor = kBaseSelectedCellColor;
     CAShapeLayer * maskLayer = [CAShapeLayer layer];
     
+    BOOL osOlderThan7 = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? NO : YES;
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
@@ -159,6 +160,7 @@
     if (indexPath.row == 0) { // Facebook
         
         // round top corners
+        if (osOlderThan7)
         maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){8, 8}].CGPath;
         
         
@@ -171,6 +173,7 @@
     } else if (indexPath.row == 1) { // Twitter
         
         //round bottom corners
+        if (osOlderThan7)
         maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii: (CGSize){8, 8}].CGPath;
 
         
@@ -183,7 +186,9 @@
     }
     
     //assigning selected rounded view to cell
+    if (osOlderThan7)
     cellSelectedBackgroundView.layer.mask = maskLayer;
+    
     cell.selectedBackgroundView = cellSelectedBackgroundView;
     
     return cell;

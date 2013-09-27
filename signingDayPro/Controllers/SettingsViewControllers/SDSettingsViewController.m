@@ -84,32 +84,39 @@
     cellSelectedBackgroundView.backgroundColor = kBaseSelectedCellColor;
     CAShapeLayer * maskLayer = [CAShapeLayer layer];
     
+    BOOL osOlderThan7 = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? NO : YES;
     
     //first section text
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
                 cell.textLabel.text = @"Edit profile";
+            if (osOlderThan7)
             maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
         else {
             cell.textLabel.text = @"Sharing settings";
+            if (osOlderThan7)
             maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
     }//second section text
     else {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Terms of service";
+            if (osOlderThan7)
             maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
         else {
             cell.textLabel.text = @"Privacy Policy";
+            if (osOlderThan7)
             maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:cellSelectedBackgroundView.frame byRoundingCorners: UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii: (CGSize){8, 8}].CGPath;
         }
     }
     
     
     //assigning selected rounded view to cell
+    if (osOlderThan7)
     cellSelectedBackgroundView.layer.mask = maskLayer;
+    
     cell.selectedBackgroundView = cellSelectedBackgroundView;
     
     return cell;

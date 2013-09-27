@@ -187,7 +187,7 @@ NSString * const kSDDefaultClass = @"2014";
                                       
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
     NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
-    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"theHighSchool.state.code == %@",self.currentFilterState.code] : nil;
+    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"theHighSchool.stateCode == %@",self.currentFilterState.code] : nil;
 
     [predicateArray addObject:userTypePredicate];
     if (nameSearchPredicate)

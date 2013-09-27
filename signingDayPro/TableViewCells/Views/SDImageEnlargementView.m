@@ -47,9 +47,12 @@
     
     [self addSubview:self.scrollView];
     
+    //offset for iOS7
+    float y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 15.0 : 0;
+    
     //adding closeButton
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeButton.frame = CGRectMake(self.bounds.size.width-40, -5, 50, 50); //creating button to be in the top right corner
+    closeButton.frame = CGRectMake(self.bounds.size.width-40, -5+y, 50, 50); //creating button to be in the top right corner
     [closeButton setImage:[UIImage imageNamed:@"closeBtn.png"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:closeButton];
