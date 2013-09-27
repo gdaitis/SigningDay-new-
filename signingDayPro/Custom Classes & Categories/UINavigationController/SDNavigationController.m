@@ -19,6 +19,9 @@
 #import "SDCustomNavigationToolbarView.h"
 #import "UIView+NibLoading.h"
 
+#import "SDBadgeView.h"
+#import "SDNotificationsService.h"
+
 @interface SDNavigationController () <SDCustomNavigationToolbarViewDelegate>
 
 //properties for presenting toolbar menus on navigating back
@@ -26,6 +29,7 @@
 @property (nonatomic, assign) BarButtonType lastSelectedType;
 @property (nonatomic, assign) BOOL showFilterButton;
 @property (nonatomic, assign) BOOL filterViewVisible;
+
 
 @end
 
@@ -66,6 +70,24 @@
     
     //creates and adds buttons to the top toolbar
     [self setupToolbar];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [SDNotificationsService getCountOfUnreadNotificationsWithSuccessBlock:^(NSDictionary *unreadNotificationsCountDictionary) {
+        NSInteger *notificationsNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadNotifications] integerValue];
+        NSInteger *messagesNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadConversations] integerValue];
+        NSInteger *followersNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadFollowers] integerValue];
+        [self setupBadgesWithNotificationsNumber:notificationsNumber
+                                  messagesNumber:messagesNumber
+                                 followersNumber:followersNumber];
+    } failureBlock:^{
+        [self setupBadgesWithNotificationsNumber:0
+                                  messagesNumber:0
+                                 followersNumber:0];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,6 +170,45 @@
     else {
         self.topToolBar.rightButton.hidden = YES;
     }
+    
+}
+
+#pragma mark - Setting badges
+
+- (void)setupBadgesWithNotificationsNumber:(NSInteger)notificationsNumber
+                            messagesNumber:(NSInteger)messagesNumber
+                           followersNumber:(NSInteger)followersNumber
+{
+    for (UIView *subiew in self.topToolBar.subviews) {
+        if ([subiew isKindOfClass:[SDBadgeView class]])
+            [subiew removeFromSuperview];
+    }
+    SDBadgeView *notificationsBadge = [self createBadgeWithNumber:notificationsNumber
+                                                 forToolbarButton:self.topToolBar.notificationButton
+                                                     withSelector:@selector(notificationsSelected)];
+    SDBadgeView *messagesBadge = [self createBadgeWithNumber:messagesNumber
+                                            forToolbarButton:self.topToolBar.messagesButton
+                                                withSelector:@selector(conversationsSelected)];
+    SDBadgeView *followersBadge = [self createBadgeWithNumber:followersNumber
+                                             forToolbarButton:self.topToolBar.followersButton
+                                                 withSelector:@selector(followersSelected)];
+    [self.topToolBar addSubview:notificationsBadge];
+    [self.topToolBar addSubview:messagesBadge];
+    [self.topToolBar addSubview:followersBadge];
+}
+
+- (SDBadgeView *)createBadgeWithNumber:(NSInteger)badgeNumber
+                      forToolbarButton:(UIButton *)toolbarButton
+                          withSelector:(SEL)selector
+{
+    SDBadgeView *badgeView = [[SDBadgeView alloc] init];
+    badgeView.badgeCountNumber = badgeNumber;
+    badgeView.center = CGPointMake(toolbarButton.frame.origin.x + toolbarButton.frame.size.width - badgeView.frame.size.width / 3,
+                                   toolbarButton.frame.origin.y + badgeView.frame.size.height / 3);
+    UIGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:selector];
+    [badgeView addGestureRecognizer:gestureRecognizer];
+    return badgeView;
 }
 
 #pragma mark - Toolbar button actions
