@@ -1834,9 +1834,9 @@
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7BEBA8D217D4BCE80049CA1C /* Search */,
 				8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */,
 				8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */,
+				7BEBA8D217D4BCE80049CA1C /* Search */,
 				7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */,
 				80CCAE601793E66B0015429A /* UsersProfileViews */,
 				808CEA98178E937A0098AD5D /* CameraViews */,
