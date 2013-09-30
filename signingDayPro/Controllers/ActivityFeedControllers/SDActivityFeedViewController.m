@@ -33,6 +33,8 @@
 #import "WebPreview.h"
 #import "SDActivityStoryViewController.h"
 
+#import "SDNotificationsService.h"
+
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
@@ -86,6 +88,10 @@
     self.tableView.tableDelegate = self;
     
     [self.tableView checkServerAndDeleteOld:YES];
+    
+    [SDNotificationsService getNotificationsWithPageSize:nil
+                                            successBlock:nil
+                                            failureBlock:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated

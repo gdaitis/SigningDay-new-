@@ -219,14 +219,14 @@
     NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
     NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
     
-    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray
-                                   classYearsStringsArray:classYearsStringsArray
-                                     positionStringsArray:positionStringsArray
-                                             successBlock:^{
-                                                 [self loadFilteredData];
-                                             } failureBlock:^{
-                                                 NSLog(@"failed");
-                                             }];
+//    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray
+//                                   classYearsStringsArray:classYearsStringsArray
+//                                     positionStringsArray:positionStringsArray
+//                                             successBlock:^{
+//                                                 [self loadFilteredData];
+//                                             } failureBlock:^{
+//                                                 NSLog(@"failed");
+//                                             }];
 //    }
 }
 
