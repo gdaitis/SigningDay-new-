@@ -125,7 +125,6 @@
                 imageView.contentMode = UIViewContentModeScaleAspectFill;
                 imageView.tag = 888;
                 [self.imageView addSubview:imageView];
-                NSLog(@"YOUTUBE url = %@",fullUrl);
             }
             else {
                 fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.thumbnailUrl];

@@ -24,6 +24,8 @@
 @property (nonatomic, strong) NSDictionary *currentFilterPositionDictionary;
 @property (nonatomic, strong) NSDictionary *currentFilterYearDictionary;
 
+@property (nonatomic, assign) int currentSearchUserCount;
+
 @end
 
 @implementation SDPlayerLandingPageViewController
@@ -43,6 +45,8 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YearsList" ofType:@"plist"];
     NSArray *yearDictionaryArray = [[NSArray alloc] initWithContentsOfFile:path];
     self.currentFilterYearDictionary = [yearDictionaryArray objectAtIndex:1];
+    
+    self.currentSearchUserCount = 0;
     
     [super viewDidLoad];
     
@@ -203,14 +207,14 @@
 {
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
-//    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    
-//    if (searchBarText.length < 3 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
-//        self.dataIsFiltered = NO;
-//        self.currentUserCount = 0;
-//        [self checkServer];
-//    }
-//    else {
+    NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    if (searchBarText.length < 3 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
+        self.dataIsFiltered = NO;
+        self.currentUserCount = 0;
+        [self checkServer];
+    }
+    else {
         self.dataIsFiltered = YES;
     
     [self showProgressHudInView:self.view withText:@"Loading"];
@@ -219,15 +223,22 @@
     NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
     NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
     
-    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray
-                                   classYearsStringsArray:classYearsStringsArray
-                                     positionStringsArray:positionStringsArray
-                                             successBlock:^{
-                                                 [self loadFilteredData];
-                                             } failureBlock:^{
-                                                 NSLog(@"failed");
-                                             }];
-//    }
+#warning finish me
+    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:classYearsStringsArray positionStringsArray:positionStringsArray successBlock:^{
+        [self loadFilteredData];
+    } failureBlock:^{
+        
+    }];
+    
+//    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray
+//                                   classYearsStringsArray:classYearsStringsArray
+//                                     positionStringsArray:positionStringsArray
+//                                             successBlock:^{
+//                                                 [self loadFilteredData];
+//                                             } failureBlock:^{
+//                                                 NSLog(@"failed");
+//                                             }];
+    }
 }
 
 #pragma mark - Data fetching

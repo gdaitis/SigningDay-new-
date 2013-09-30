@@ -15,9 +15,12 @@
 #import "SDUserProfileViewController.h"
 #import "SDImageEnlargementView.h"
 
+#import "SDModalNavigationController.h"
+#import "SDYoutubePlayerViewController.h"
+
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface SDActivityStoryViewController ()
+@interface SDActivityStoryViewController () <SDModalNavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
@@ -260,18 +263,74 @@
 
 - (void)playVideo
 {
-    NSURL *url = [NSURL URLWithString:self.activityStory.mediaUrl];
+    if ([self.activityStory.mediaUrl rangeOfString:@"youtube"].location == NSNotFound) {
+        NSURL *url = [NSURL URLWithString:self.activityStory.mediaUrl];
+        [self playVideoWithUrl:url];
+    }
+    else {
+        //youtube link
+        [self showYoutubePlayerWithUrlString:self.activityStory.mediaUrl];
+    }
+}
+
+- (void)showYoutubePlayerWithUrlString:(NSString *)url
+{
+    SDYoutubePlayerViewController *youtubePlayerViewController = [[SDYoutubePlayerViewController alloc] init];
+    youtubePlayerViewController.urlLink = url;
     
+    SDModalNavigationController *modalNavigationController = [[SDModalNavigationController alloc] init];
+    [modalNavigationController addChildViewController:youtubePlayerViewController];
+    modalNavigationController.myDelegate = self;
+    [self presentViewController:modalNavigationController animated:YES completion:^{
+        
+    }];
+}
+
+#pragma mark - SDModalNavigationController myDelegate methods
+
+- (void)modalNavigationControllerWantsToClose:(SDModalNavigationController *)modalNavigationController
+{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 [self checkServer];
+                             }];
+}
+
+//- (void)embedYouTube:(NSString *)url frame:(CGRect)frame
+//{
+//    NSString* embedHTML = @"\
+//    <html><head>\
+//    <style type=\"text/css\">\
+//    body {\
+//    background-color: transparent;\
+//    color: white;\
+//    }\
+//    </style>\
+//    </head><body style=\"margin:0\">\
+//    <iframe src=\"%@\" width=\"%0.0f\" height=\"%0.0f\" frameborder=\"10\" webkitAllowFullScreen mozallowfullscreen allowFullScreen>myframe</iframe>\
+//    </body></html>";
+//    
+//    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
+//    
+//    UIWebView *videoView = [[UIWebView alloc] initWithFrame:frame];
+//    [self.view addSubview:videoView];
+//    
+//    [videoView loadHTMLString:html baseURL:nil];
+//}
+
+- (void)playVideoWithUrl:(NSURL *)url
+{
     self.player = [[MPMoviePlayerViewController alloc] init];
     [self.player.moviePlayer setContentURL:url];
     self.player.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
     self.player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
     [self.player.view setFrame:self.view.bounds];
     [self.player.moviePlayer prepareToPlay];
-
+    
     [self presentMoviePlayerViewControllerAnimated:self.player];
     [self.player.moviePlayer play];
 }
+
 
 //- (void)moviePlayBackDonePressed:(NSNotification*)notification
 //{

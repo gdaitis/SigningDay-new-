@@ -139,6 +139,7 @@
 		8022CC4117EC2B3F0054A1C5 /* SDNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */; };
 		8022CC4317EC32A20054A1C5 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
+		8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */; };
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
 		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
 		802B793E17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */; };
@@ -595,6 +596,8 @@
 		8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNotificationViewController.xib; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
+		8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDYoutubePlayerViewController.h; sourceTree = "<group>"; };
+		8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDYoutubePlayerViewController.m; sourceTree = "<group>"; };
 		80270420178FDC8000C8F872 /* submit_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit_button@2x.png"; sourceTree = "<group>"; };
 		80270424178FE39B00C8F872 /* sign_out_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign_out_button@2x.png"; sourceTree = "<group>"; };
 		802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagePlayerCell.h; sourceTree = "<group>"; };
@@ -1726,6 +1729,8 @@
 				80EEF604175627B400A7C803 /* SDCommonWebViewController.m */,
 				805F6871178EFBF100ED186B /* SDTermsViewController.h */,
 				805F6872178EFBF100ED186B /* SDTermsViewController.m */,
+				8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */,
+				8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */,
 			);
 			path = WebViewControllers;
 			sourceTree = "<group>";
@@ -2094,6 +2099,11 @@
 				CLASSPREFIX = SD;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Seriously inc.";
+				TargetAttributes = {
+					805598BC174CE8200040631D = {
+						DevelopmentTeam = 24G8XXFRSX;
+					};
+				};
 			};
 			buildConfigurationList = 805598B7174CE8200040631D /* Build configuration list for PBXProject "signingDayPro" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2473,6 +2483,7 @@
 				7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */,
 				7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */,
 				7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */,
+				8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */,
 				8078686017DDBFD300B77789 /* SDLandingPageCollegeCell.m in Sources */,
 				8078686217DDBFD300B77789 /* SDLandingPageHighSchoolCell.m in Sources */,
 				8078687017DDBFE600B77789 /* SDCollegeLandingPageViewController.m in Sources */,
@@ -2598,7 +2609,8 @@
 		805598E2174CE8200040631D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2610,7 +2622,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D062EFDB-C6F6-4E76-B763-04322ADC05C1";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2618,8 +2630,8 @@
 		805598E3174CE8200040631D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2631,7 +2643,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D062EFDB-C6F6-4E76-B763-04322ADC05C1";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};

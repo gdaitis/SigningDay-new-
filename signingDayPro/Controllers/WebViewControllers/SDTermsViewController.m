@@ -17,6 +17,12 @@
 	// Do any additional setup after loading the view.
 //    /p/terms.aspx
     
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     NSString *fullUrlString = [NSString stringWithFormat:@"%@%@", kSDBaseSigningDayURLString,_urlString];
     NSURL *url = [NSURL URLWithString:fullUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
