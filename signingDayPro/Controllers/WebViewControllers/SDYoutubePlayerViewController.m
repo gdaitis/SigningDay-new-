@@ -31,14 +31,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.title = @"Video";
-    
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-//        self.extendedLayoutIncludesOpaqueBars = NO;
-//        self.automaticallyAdjustsScrollViewInsets = NO;
-//    }
-    
     UIImage *image = [UIImage imageNamed:@"MenuButtonClose.png"];
     CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
@@ -62,33 +54,21 @@
 
 - (void)setupView
 {
-//    NSString* embedHTML = @"\
-//    <html><head>\
-//    <style type=\"text/css\">\
-//    body {\
-//    background-color: transparent;\
-//    color: white;\
-//    }\
-//    </style>\
-//    </head><body style=\"margin:0\">\
-//    <embed id=\"yt\" src=\"%@\" type=\"application/x-shockwave-flash\" \
-//    width=\"%0.0f\" height=\"%0.0f\"></embed>\
-//    </body></html>";
-//
-//    NSString* html = [NSString stringWithFormat:embedHTML, formatedUrl, frame.size.width, frame.size.height];
-    
     CGRect frame = self.view.frame;
     NSString *formatedUrl = [self getYoutubeUrlStr:self.urlLink];
-    
-//    self.webView.autoresizesSubviews = YES;
-//    self.webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
-    
-//    NSString *htmlString = [NSString stringWithFormat:@"<html><head><meta name = \"viewport\" content = \"initial-scale = 1.0, user-scalable = no, width = 212\"/></head><body style=\"background:#000000;margin-top:0px;margin-left:0px\"><div><object width=\"%0.0f\" height=\"%0.0f\"><param name=\"movie\" value=\"%@\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"%@\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"320\" height=\"480\"></embed></object></div></body></html>",frame.size.width,frame.size.height,formatedUrl,formatedUrl];
-//    [videoView loadHTMLString:htmlString baseURL:[NSURL URLWithString:@"http://www.youtube.com"]];
+
+    BOOL smallScreen = NO;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    if (!([UIScreen mainScreen].scale == 2.f && screenHeight == 568.0f)) {
+        smallScreen = YES;
+    }
     
     NSMutableString *str = [[NSMutableString alloc] init];
     [str appendFormat:@"<html><head></head><body style=\"margin-top:0px;margin-left:0px;background-color: black;color:black\">"];
-    [str appendFormat:@"<iframe width=\"%0.0f\" height=\"500\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>",frame.size.width,formatedUrl];
+    if (smallScreen)
+        [str appendFormat:@"<iframe width=\"%0.0f\" height=\"400\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>",frame.size.width,formatedUrl];
+    else
+        [str appendFormat:@"<iframe width=\"%0.0f\" height=\"500\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>",frame.size.width,formatedUrl];
     [str appendFormat:@"</div></body></html>"];
     
     [self.webView loadHTMLString:str baseURL:[NSURL URLWithString:@"http://www.youtube.com"]];
