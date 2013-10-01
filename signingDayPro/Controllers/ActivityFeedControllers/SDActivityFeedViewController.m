@@ -124,27 +124,22 @@
 
 - (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath withActivityStory:(ActivityStory *)activityStory
 {
-    SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] init];
-    activityStoryViewController.activityStory = activityStory;
-    
-    [self.navigationController pushViewController:activityStoryViewController animated:YES];
-    
-//    if (activityStory.webPreview) {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
-//    }
-//    else {
-//        if (activityStory.mediaType) {
-//            if ([activityStory.mediaType isEqualToString:@"photos"]) {
-//                //photos
-//                //show enlarged image view
-//                [self showImageViewWithActivityStory:activityStory];
-//            }
-//            else {
-//                //videos
-//                [self playVideoWithActivityStory:activityStory];
-//            }
-//        }
-//    }
+    if (activityStory.webPreview) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
+    }
+    else {
+        if (activityStory.mediaType) {
+            if ([activityStory.mediaType isEqualToString:@"photos"]) {
+                //photos
+                //show enlarged image view
+                [self showImageViewWithActivityStory:activityStory];
+            }
+            else {
+                //videos
+                [self playVideoWithActivityStory:activityStory];
+            }
+        }
+    }
 }
 
 - (void)showImageViewWithActivityStory:(ActivityStory *)activityStory
