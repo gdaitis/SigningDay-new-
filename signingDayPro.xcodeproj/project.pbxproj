@@ -140,6 +140,7 @@
 		8022CC4317EC32A20054A1C5 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */; };
+		8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */; };
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
 		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
 		802B793E17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */; };
@@ -598,6 +599,7 @@
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
 		8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDYoutubePlayerViewController.h; sourceTree = "<group>"; };
 		8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDYoutubePlayerViewController.m; sourceTree = "<group>"; };
+		8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDYoutubePlayerViewController.xib; sourceTree = "<group>"; };
 		80270420178FDC8000C8F872 /* submit_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit_button@2x.png"; sourceTree = "<group>"; };
 		80270424178FE39B00C8F872 /* sign_out_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign_out_button@2x.png"; sourceTree = "<group>"; };
 		802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagePlayerCell.h; sourceTree = "<group>"; };
@@ -1731,6 +1733,7 @@
 				805F6872178EFBF100ED186B /* SDTermsViewController.m */,
 				8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */,
 				8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */,
+				8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */,
 			);
 			path = WebViewControllers;
 			sourceTree = "<group>";
@@ -2321,6 +2324,7 @@
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
 				8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */,
 				8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */,
+				8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */,
 				80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */,
 				80F9089917DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png in Resources */,
 				801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */,

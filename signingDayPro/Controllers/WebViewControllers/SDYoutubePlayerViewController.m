@@ -11,6 +11,8 @@
 
 @interface SDYoutubePlayerViewController () <UIWebViewDelegate>
 
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
+
 @end
 
 @implementation SDYoutubePlayerViewController
@@ -78,25 +80,20 @@
     CGRect frame = self.view.frame;
     NSString *formatedUrl = [self getYoutubeUrlStr:self.urlLink];
     
-    UIWebView *videoView = [[UIWebView alloc] initWithFrame:frame];
-    videoView.autoresizesSubviews = YES;
-    
-    videoView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+//    self.webView.autoresizesSubviews = YES;
+//    self.webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
     
 //    NSString *htmlString = [NSString stringWithFormat:@"<html><head><meta name = \"viewport\" content = \"initial-scale = 1.0, user-scalable = no, width = 212\"/></head><body style=\"background:#000000;margin-top:0px;margin-left:0px\"><div><object width=\"%0.0f\" height=\"%0.0f\"><param name=\"movie\" value=\"%@\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"%@\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"320\" height=\"480\"></embed></object></div></body></html>",frame.size.width,frame.size.height,formatedUrl,formatedUrl];
 //    [videoView loadHTMLString:htmlString baseURL:[NSURL URLWithString:@"http://www.youtube.com"]];
     
     NSMutableString *str = [[NSMutableString alloc] init];
-    [str appendFormat:@"<html><head></head><body style=\"margin-top:0px;margin-left:0px\">"];
-    [str appendFormat:@"<iframe width=\"%0.0f\" height=\"%0.0f\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>",frame.size.width,frame.size.height,formatedUrl];
+    [str appendFormat:@"<html><head></head><body style=\"margin-top:0px;margin-left:0px;background-color: black;color:black\">"];
+    [str appendFormat:@"<iframe width=\"%0.0f\" height=\"500\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>",frame.size.width,formatedUrl];
     [str appendFormat:@"</div></body></html>"];
     
-    [videoView loadHTMLString:str baseURL:[NSURL URLWithString:@"http://www.youtube.com"]];
-    
-    videoView.delegate = self;
-    [self.view addSubview:videoView];
-    
-//    [videoView loadHTMLString:html baseURL:nil];
+    [self.webView loadHTMLString:str baseURL:[NSURL URLWithString:@"http://www.youtube.com"]];
+    self.webView.delegate = self;
+    [self.webView.scrollView setScrollEnabled:NO];
 }
 
 - (NSString*) getYoutubeUrlStr:(NSString*)url

@@ -275,15 +275,17 @@
 
 - (void)showYoutubePlayerWithUrlString:(NSString *)url
 {
-    SDYoutubePlayerViewController *youtubePlayerViewController = [[SDYoutubePlayerViewController alloc] init];
+    SDYoutubePlayerViewController *youtubePlayerViewController = [[SDYoutubePlayerViewController alloc] initWithNibName:@"SDYoutubePlayerViewController" bundle:[NSBundle mainBundle]];
     youtubePlayerViewController.urlLink = url;
     
-    SDModalNavigationController *modalNavigationController = [[SDModalNavigationController alloc] init];
-    [modalNavigationController addChildViewController:youtubePlayerViewController];
-    modalNavigationController.myDelegate = self;
-    [self presentViewController:modalNavigationController animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:youtubePlayerViewController animated:YES];
+    
+//    SDModalNavigationController *modalNavigationController = [[SDModalNavigationController alloc] init];
+//    [modalNavigationController addChildViewController:youtubePlayerViewController];
+//    modalNavigationController.myDelegate = self;
+//    [self presentViewController:modalNavigationController animated:YES completion:^{
+//        
+//    }];
 }
 
 #pragma mark - SDModalNavigationController myDelegate methods
