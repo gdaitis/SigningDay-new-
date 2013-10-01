@@ -16,7 +16,7 @@
 
 @interface SDBaseViewController ()
 
-@property (nonatomic, strong) SDLoginViewController *loginViewController;
+//@property (nonatomic, strong) SDLoginViewController *loginViewController;
 
 @end
 
@@ -103,21 +103,30 @@
 
 - (void)showLoginScreen
 {
-    if (!self.loginViewController) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
-        SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        self.loginViewController = loginVC;
-        [_loginViewController setModalPresentationStyle:UIModalPresentationFullScreen];
-        _loginViewController.delegate = self;
-        
-        [self presentViewController:_loginViewController animated:YES completion:^{
-            
-        }];
-    } else if (!(_loginViewController.isViewLoaded && _loginViewController.view.window)) {
-        [self presentViewController:_loginViewController animated:YES completion:^{
-            
-        }];
-    }
+//    if (!self.loginViewController) {
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
+//        SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//        self.loginViewController = loginVC;
+//        [_loginViewController setModalPresentationStyle:UIModalPresentationFullScreen];
+//        _loginViewController.delegate = self;
+//        
+//        [self presentViewController:_loginViewController animated:YES completion:^{
+//            
+//        }];
+//    } else if (!(_loginViewController.isViewLoaded && _loginViewController.view.window)) {
+//        [self presentViewController:_loginViewController animated:YES completion:^{
+//            
+//        }];
+//    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
+    SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
+    loginVC.delegate = self;
+    
+    [self presentViewController:loginVC
+                       animated:YES
+                     completion:nil];
+
 }
 
 

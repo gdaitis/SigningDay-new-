@@ -208,7 +208,7 @@
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
     NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-
+    
     if (searchBarText.length < 3 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
         self.dataIsFiltered = NO;
         self.currentUserCount = 0;
@@ -216,28 +216,19 @@
     }
     else {
         self.dataIsFiltered = YES;
-    
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    
-    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
-    NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
-    NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
-    
-#warning finish me
-    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:classYearsStringsArray positionStringsArray:positionStringsArray successBlock:^{
-        [self loadFilteredData];
-    } failureBlock:^{
         
-    }];
-    
-//    [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text stateCodeStringsArray:stateCodeStringsArray
-//                                   classYearsStringsArray:classYearsStringsArray
-//                                     positionStringsArray:positionStringsArray
-//                                             successBlock:^{
-//                                                 [self loadFilteredData];
-//                                             } failureBlock:^{
-//                                                 NSLog(@"failed");
-//                                             }];
+        [self showProgressHudInView:self.view withText:@"Loading"];
+        
+        NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
+        NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
+        NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
+        
+#warning finish me
+        [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:classYearsStringsArray positionStringsArray:positionStringsArray successBlock:^{
+            [self loadFilteredData];
+        } failureBlock:^{
+            
+        }];
     }
 }
 
