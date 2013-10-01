@@ -56,7 +56,7 @@
 {
     CGRect frame = self.view.frame;
     NSString *formatedUrl = [self getYoutubeUrlStr:self.urlLink];
-
+    
     BOOL smallScreen = NO;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     if (!([UIScreen mainScreen].scale == 2.f && screenHeight == 568.0f)) {
@@ -81,18 +81,24 @@
     if (url == nil)
         return nil;
     
-    NSString *retVal = [url stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
-    NSString *result = [NSString stringWithFormat:@"%@?rel=0",retVal];
-    return result;
+    if ([url rangeOfString:@"watch?v="].location != NSNotFound) {
+        NSString *retVal = [url stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
+        NSString *result = [NSString stringWithFormat:@"%@?rel=0",retVal];
+        
+        return result;
+    }
+    else {
+        return url;
+    }
 }
 
 //- (NSString*) getYoutubeUrlStr:(NSString*)url
 //{
 //    if (url == nil)
 //        return nil;
-//    
+//
 //    NSString *retVal = [url stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"v/"];
-//    
+//
 //    NSRange pos=[retVal rangeOfString:@"version"];
 //    if(pos.location == NSNotFound)
 //    {
@@ -126,7 +132,8 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlLink]];
 }
+
 
 @end

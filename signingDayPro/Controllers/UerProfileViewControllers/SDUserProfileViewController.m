@@ -32,8 +32,11 @@
 #import "SDBioViewController.h"
 #import "SDCollectionViewController.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+#import "SDImageEnlargementView.h"
+#import "SDYoutubePlayerViewController.h"
+
 #import "SDBaseProfileHeaderView.h"
-#import "SDActivityStoryViewController.h"
 #import "WebPreview.h"
 
 #define kUserProfileHeaderHeight 360
@@ -221,10 +224,57 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
     }
     else {
-        SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] initWithNibName:@"SDActivityStoryViewController" bundle:[NSBundle mainBundle]];
-        activityStoryViewController.activityStory = activityStory;
-        [self.navigationController pushViewController:activityStoryViewController animated:YES];
+        if (activityStory.mediaType) {
+            if ([activityStory.mediaType isEqualToString:@"photos"]) {
+                //photos
+                //show enlarged image view
+                [self showImageViewWithActivityStory:activityStory];
+            }
+            else {
+                //videos
+                [self playVideoWithActivityStory:activityStory];
+            }
+        }
     }
+}
+
+- (void)showImageViewWithActivityStory:(ActivityStory *)activityStory
+{
+    SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame andImage:activityStory.mediaUrl];
+    [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
+}
+
+- (void)playVideoWithActivityStory:(ActivityStory *)activityStory
+{
+    if ([activityStory.mediaUrl rangeOfString:@"youtube"].location == NSNotFound) {
+        NSURL *url = [NSURL URLWithString:activityStory.mediaUrl];
+        [self playVideoWithUrl:url];
+    }
+    else {
+        //youtube link
+        [self showYoutubePlayerWithUrlString:activityStory.mediaUrl];
+    }
+}
+
+- (void)showYoutubePlayerWithUrlString:(NSString *)url
+{
+    SDYoutubePlayerViewController *youtubePlayerViewController = [[SDYoutubePlayerViewController alloc] initWithNibName:@"SDYoutubePlayerViewController" bundle:[NSBundle mainBundle]];
+    youtubePlayerViewController.urlLink = url;
+    
+    [self.navigationController pushViewController:youtubePlayerViewController animated:YES];
+}
+
+- (void)playVideoWithUrl:(NSURL *)url
+{
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] init];
+    [player.moviePlayer setContentURL:url];
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    [player.view setFrame:self.view.bounds];
+    [player.moviePlayer prepareToPlay];
+    
+    [self presentMoviePlayerViewControllerAnimated:player];
+    [player.moviePlayer play];
 }
 
 - (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView

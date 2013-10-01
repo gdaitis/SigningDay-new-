@@ -15,65 +15,32 @@
 #import "SDUserProfileViewController.h"
 #import "SDImageEnlargementView.h"
 
-#import "SDModalNavigationController.h"
 #import "SDYoutubePlayerViewController.h"
+#import "SDActivityFeedCell.h"
 
+#import "SDCommentsViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "SDActivityFeedService.h"
 
-@interface SDActivityStoryViewController () <SDModalNavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
-@property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet SDActivityFeedCellContentView *resizableActivityFeedView;
-
-@property (weak, nonatomic) IBOutlet UIButton *playerNameButton;
-@property (weak, nonatomic) IBOutlet UIButton *secondPlayerNameButton;
+@interface SDActivityStoryViewController ()
 
 @property (strong, nonatomic) MPMoviePlayerViewController *player;
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-- (IBAction)mediaButtonPressed:(id)sender;
-
 
 @end
 
 @implementation SDActivityStoryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.refreshControl removeFromSuperview];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self setupView];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    CGRect frame = self.resizableActivityFeedView.frame;
-    frame.size.height = [SDUtils heightForActivityStory:self.activityStory forUITextView:self.resizableActivityFeedView.contentTextView]+12;
-    self.resizableActivityFeedView.frame = frame;
-    
-#warning hardcoded value (for testing)
-    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, frame.size.height + 50);
-    //[self updateView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,140 +49,156 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - View Setup
 
-- (void)setupView
+#pragma mark - TableView datasource
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.playerNameButton addTarget:self action:@selector(firstUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.secondPlayerNameButton addTarget:self action:@selector(secondUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    int contentHeight = [SDUtils heightForActivityStory:self.activityStory];
+    int result = 119/*buttons images etc..*/ + contentHeight;
     
-    [self.resizableActivityFeedView setActivityStory:self.activityStory];
+    return result;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SDActivityFeedCell *cell = nil;
+    NSString *cellIdentifier = @"ActivityFeedCellId";
+    cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        // Load cell
+        NSArray *topLevelObjects = nil;
+        
+        topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
+        // Grab cell reference which was set during nib load:
+        for(id currentObject in topLevelObjects){
+            if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
+                cell = currentObject;
+                break;
+            }
+        }
+        [cell.playerNameButton addTarget:self action:@selector(firstUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.secondPlayerNameButton addTarget:self action:@selector(secondUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.commentButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        cell.backgroundColor = [UIColor clearColor];
+        
+        cell.containerView.image = nil;
+    }
+    
+    cell.playerNameButton.tag = cell.secondPlayerNameButton.tag = indexPath.row;
+    
+    [cell.thumbnailImageView cancelImageRequestOperation];
+    cell.likeButton.tag = indexPath.row;
+    cell.commentButton.tag = indexPath.row;
+    
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[self.activityStory.likesCount intValue]];
+    
+    UIImage *buttonBackgroundImage;
+    UIImage *likeImage;
+    
+    if ([self.activityStory.likedByMaster boolValue]) {
+        cell.likeCountLabel.textColor = [UIColor colorWithRed:183.0f/255.0f green:158.0f/255.0f blue:15.0f/255.0f alpha:1.0f];
+        cell.likeTextLabel.text = @"Unlike";
+        cell.likeTextLabel.textColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
+        likeImage = [UIImage imageNamed:@"LikeImageOrange"];
+        buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImageOrange"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    } else {
+        cell.likeCountLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        cell.likeTextLabel.text = @"Like";
+        cell.likeTextLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        likeImage = [UIImage imageNamed:@"LikeImage"];
+        buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImage"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    }
+    cell.likeButtonView.image = buttonBackgroundImage;
+    cell.likeImageView.image = likeImage;
+    
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[self.activityStory.commentCount intValue]];
+    [cell.resizableActivityFeedView setActivityStory:self.activityStory];
     
     if ([self.activityStory.author.avatarUrl length] > 0) {
-        [self.thumbnailImageView setImageWithURL:[NSURL URLWithString:self.activityStory.author.avatarUrl]];
+        [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:self.activityStory.author.avatarUrl]];
     }
     
-    self.postDateLabel.text = [SDUtils formatedTimeForDate:self.activityStory.createdDate];
-    [self setupNameLabelForActivityStory:self.activityStory];
+    cell.postDateLabel.text = [SDUtils formatedTimeForDate:self.activityStory.createdDate];
+    [cell setupNameLabelForActivityStory:self.activityStory];
+    
+    return cell;
+    
 }
 
+#pragma mark - tableview delegate
 
-
-- (void)setupNameLabelForActivityStory:(ActivityStory *)activityStory
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //this function setups attributed user name. If user has parameters adds them, also if activityStory is a wallpost adds arrows and appends other user name
-    
-    if (!activityStory)
-        return;
-    
-    UIColor *firstColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0 alpha:1.0f];
-    UIColor *secondColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    
-    NSMutableAttributedString *authorName = nil;
-    if (activityStory.postedToUser) {
-        //this is a wall post
-        
-        //get first and second usernames with attributes
-        User *user = activityStory.author;
-        NSString *userName = [NSString stringWithFormat:@"%@ ",user.name];
-        NSString *attributes = [SDUtils attributeStringForUser:user];
-        
-        NSMutableAttributedString *secondUserName = nil;
-        User *secondUser = activityStory.postedToUser;
-        NSString *secondUserAttributes = [SDUtils attributeStringForUser:secondUser];
-        
-        
-        //form first user name and attributes
-        if (attributes) {
-            authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName firstColor:firstColor andSecondText:attributes andSecondColor:secondColor andFirstFont:[UIFont boldSystemFontOfSize:12] andSecondFont:[UIFont systemFontOfSize:12]]];
+    if (self.activityStory.mediaType) {
+        if ([self.activityStory.mediaType isEqualToString:@"photos"]) {
+            //photos
+            //show enlarged image view
+            [self showImageView];
         }
         else {
-            //nsattributed string just for name
-            authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName andColor:firstColor andFont:[UIFont boldSystemFontOfSize:12]]];
-        }
-        
-        
-        //form second user name
-        if (secondUserAttributes) {
-            secondUserName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:secondUser.name firstColor:firstColor andSecondText:secondUserAttributes andSecondColor:secondColor andFirstFont:[UIFont boldSystemFontOfSize:12] andSecondFont:[UIFont systemFontOfSize:12]]];
-        }
-        else {
-            //nsattributed string just for name
-            secondUserName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:secondUser.name andColor:firstColor andFont:[UIFont boldSystemFontOfSize:12]]];
-        }
-        
-        //flags to determin if name was clipped, if yes then we add "..." in the end
-        BOOL firstStringClipped = NO;
-        BOOL secondStringClipped = NO;
-        
-        //substring names to needed sizes
-        while (authorName.mutableString.length + secondUserName.mutableString.length + 3 > kMaxNamesSymbolSize) {
-            if (authorName.mutableString.length > secondUserName.mutableString.length) {
-                authorName = (NSMutableAttributedString *)[authorName attributedSubstringFromRange:NSMakeRange(0, authorName.length-1)];
-                firstStringClipped = YES;
-            }
-            else {
-                secondStringClipped = YES;
-                secondUserName = (NSMutableAttributedString *)[secondUserName attributedSubstringFromRange:NSMakeRange(0, secondUserName.length-1)];
-            }
-        }
-        
-        
-        NSAttributedString *tripleDotString = [[NSAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:@"..." andColor:secondColor andFont:[UIFont systemFontOfSize:12]]];
-        
-        if (firstStringClipped) {
-            [authorName appendAttributedString:tripleDotString];
-        }
-        
-        //assign size for the player name buttons
-        CGRect firstNameSize = [authorName boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-        
-        int buttonWidth = ceil(firstNameSize.size.width) + 40; //offset from photo; hardcoded for performance
-        
-        for (NSLayoutConstraint *constraint in self.playerNameButton.constraints) {
-            if (constraint.firstAttribute == NSLayoutAttributeWidth) {
-                constraint.constant = buttonWidth;
-                break;
-            }
-        }
-        
-        if (secondStringClipped) {
-            [secondUserName appendAttributedString:tripleDotString];
-        }
-        
-        //append arrow
-        NSAttributedString *arrowString = [[NSAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:@" \u25B8 " andColor:secondColor andFont:[UIFont systemFontOfSize:12]]];
-        [authorName appendAttributedString:arrowString];
-        
-        //apend name to the result
-        [authorName appendAttributedString:secondUserName];
-        
-    }
-    else {
-        //simple post
-        User *user = activityStory.author;
-        NSString *userName = [NSString stringWithFormat:@"%@ ",user.name];
-        
-        NSString *attributes = [SDUtils attributeStringForUser:user];
-        if (attributes) {
-            authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName firstColor:firstColor andSecondText:attributes andSecondColor:secondColor andFirstFont:[UIFont boldSystemFontOfSize:12] andSecondFont:[UIFont systemFontOfSize:12]]];
-        }
-        else {
-            //nsattributed string just for name
-            authorName = [[NSMutableAttributedString alloc] initWithAttributedString:[SDUtils attributedStringWithText:userName andColor:firstColor andFont:[UIFont boldSystemFontOfSize:12]]];
-        }
-        
-        //only one user, player name button size cell.width
-        for (NSLayoutConstraint *constraint in self.playerNameButton.constraints) {
-            if (constraint.firstAttribute == NSLayoutAttributeWidth) {
-                constraint.constant = 286;
-                break;
-            }
+            //videos
+            [self playVideo];
         }
     }
-    self.nameLabel.attributedText = authorName;
 }
 
+#pragma mark - like/comment button pressed
+
+- (void)likeButtonPressed:(UIButton *)sender
+{
+    NSManagedObjectContext *activityStoryContext = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    BOOL likeStatus;
+    int likeInt;
+    if ([self.activityStory.likedByMaster boolValue]) {
+        likeStatus = NO;
+        likeInt = -1;
+    } else {
+        likeStatus = YES;
+        likeInt = +1;
+    }
+    self.activityStory.likedByMaster = [NSNumber numberWithBool:likeStatus];
+    NSNumber *newNumberOfLikes = [NSNumber numberWithInt:([self.activityStory.likesCount integerValue] + likeInt)];
+    self.activityStory.likesCount = newNumberOfLikes;
+    
+    [activityStoryContext MR_saveOnlySelfAndWait];
+    
+    if (likeStatus) {
+        [SDActivityFeedService likeActivityStory:self.activityStory
+                                    successBlock:^{
+
+                                    } failureBlock:^{
+                                        NSLog(@"Liking failed");
+                                    }];
+    } else {
+        [SDActivityFeedService unlikeActivityStory:self.activityStory
+                                      successBlock:^{
+                                      } failureBlock:^{
+                                          NSLog(@"Unliking failed");
+                                      }];
+    }
+    
+}
+
+- (void)commentButtonPressed:(UIButton *)sender
+{
+    UIStoryboard *commentsViewStoryboard = [UIStoryboard storyboardWithName:@"CommentsViewStoryboard"
+                                                                     bundle:nil];
+    SDCommentsViewController *commentsViewController = [commentsViewStoryboard instantiateViewControllerWithIdentifier:@"CommentsViewController"];
+    commentsViewController.activityStory = self.activityStory;
+    
+    [self.navigationController pushViewController:commentsViewController animated:YES];
+}
+
+#pragma mark - View Setup
 
 - (void)firstUserNameButtonPressed:(id)sender
 {
@@ -235,24 +218,6 @@
     userProfileViewController.currentUser = self.activityStory.postedToUser;
     
     [self.navigationController pushViewController:userProfileViewController animated:YES];
-}
-
-#pragma mark - Media logic
-
-- (IBAction)mediaButtonPressed:(id)sender
-{
-    NSLog(@"self.activityStory.mediaType = %@",self.activityStory.mediaType);
-    if (self.activityStory.mediaType) {
-        if ([self.activityStory.mediaType isEqualToString:@"photos"]) {
-            //photos
-            //show enlarged image view
-            [self showImageView];
-        }
-        else {
-            //videos
-            [self playVideo];
-        }
-    }
 }
 
 - (void)showImageView
@@ -279,46 +244,7 @@
     youtubePlayerViewController.urlLink = url;
     
     [self.navigationController pushViewController:youtubePlayerViewController animated:YES];
-    
-//    SDModalNavigationController *modalNavigationController = [[SDModalNavigationController alloc] init];
-//    [modalNavigationController addChildViewController:youtubePlayerViewController];
-//    modalNavigationController.myDelegate = self;
-//    [self presentViewController:modalNavigationController animated:YES completion:^{
-//        
-//    }];
 }
-
-#pragma mark - SDModalNavigationController myDelegate methods
-
-- (void)modalNavigationControllerWantsToClose:(SDModalNavigationController *)modalNavigationController
-{
-    [self dismissViewControllerAnimated:YES
-                             completion:^{
-                                 [self checkServer];
-                             }];
-}
-
-//- (void)embedYouTube:(NSString *)url frame:(CGRect)frame
-//{
-//    NSString* embedHTML = @"\
-//    <html><head>\
-//    <style type=\"text/css\">\
-//    body {\
-//    background-color: transparent;\
-//    color: white;\
-//    }\
-//    </style>\
-//    </head><body style=\"margin:0\">\
-//    <iframe src=\"%@\" width=\"%0.0f\" height=\"%0.0f\" frameborder=\"10\" webkitAllowFullScreen mozallowfullscreen allowFullScreen>myframe</iframe>\
-//    </body></html>";
-//    
-//    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
-//    
-//    UIWebView *videoView = [[UIWebView alloc] initWithFrame:frame];
-//    [self.view addSubview:videoView];
-//    
-//    [videoView loadHTMLString:html baseURL:nil];
-//}
 
 - (void)playVideoWithUrl:(NSURL *)url
 {
@@ -332,33 +258,5 @@
     [self presentMoviePlayerViewControllerAnimated:self.player];
     [self.player.moviePlayer play];
 }
-
-
-//- (void)moviePlayBackDonePressed:(NSNotification*)notification
-//{
-//    [self.player.moviePlayer stop];
-//    
-////    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
-//    
-//    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
-//    {
-//        [self.player.moviePlayer.view removeFromSuperview];
-//    }
-//    self.player = nil;
-//}
-
-//- (void) moviePlayBackDidFinish:(NSNotification*)notification
-//{
-//    [self.player.moviePlayer stop];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:self.player.moviePlayer];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.player.moviePlayer];
-//
-//    if ([self.player.moviePlayer respondsToSelector:@selector(setFullscreen:animated:)])
-//    {
-//        [self.player.moviePlayer.view removeFromSuperview];
-//    }
-//}
-
 
 @end
