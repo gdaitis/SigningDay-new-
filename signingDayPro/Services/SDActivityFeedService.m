@@ -84,54 +84,13 @@
                                         ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
                                                                                                     withValue:identifier
                                                                                                     inContext:context];
-                                        if (!activityStory) {
-                                            activityStory = [ActivityStory MR_createInContext:context];
-                                            activityStory.identifier = identifier;
+                                        if (!activityStory)
                                             listChanged = YES;
-                                        }
                                         
-                                        activityStory.storyTypeId = [activityStoryDictionary valueForKey:@"StoryTypeId"];
-                                        activityStory.contentId = [activityStoryDictionary valueForKey:@"ContentId"];
-                                        activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"ContentTypeId"];
-                                        activityStory.likesCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"LikesCount"] intValue]];
-                                        activityStory.commentCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]];
-                                        activityStory.likedByMaster = [NSNumber numberWithBool:[[activityStoryDictionary valueForKey:@"LikeFlag"] boolValue]];
-                                        activityStory.shouldBeDeleted = [NSNumber numberWithBool:NO];
-                                        NSString *createdDateString = [activityStoryDictionary objectForKey:@"CreatedDate"];
+                                        [self createActivityStoryFromDictionary:activityStoryDictionary
+                                                                        context:context];
+                                        
                                         NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
-                                        activityStory.createdDate = [SDUtils dateFromString:createdDateString];
-                                        activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
-                                        
-                                        
-                                        if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
-                                            activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
-                                        }
-                                        if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
-                                            activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
-                                        }
-                                        if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
-                                            activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
-                                        }
-                                        if ([activityStoryDictionary valueForKey:@"ThumbnailUrl"] != [NSNull null]) {
-                                            activityStory.thumbnailUrl = [activityStoryDictionary valueForKey:@"ThumbnailUrl"];
-                                        }
-                                        if ([activityStoryDictionary valueForKey:@"MediaUrl"] != [NSNull null]) {
-                                            activityStory.mediaUrl = [activityStoryDictionary valueForKey:@"MediaUrl"];
-                                        }
-                                        
-                                        //if has a webpreview then this story contains a link, parse and save this object
-                                        if ([activityStoryDictionary valueForKey:@"WebPreview"] != [NSNull null]) {
-                                            [self createUpdateWebPreviewObjectFromDictionary:[activityStoryDictionary valueForKey:@"WebPreview"] withStory:activityStory inContext:context];
-                                        }
-                                        
-                                        //parse users(actors/authors) in this activity story
-                                        NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
-                                        for (NSDictionary *userDictionary in userArray) {
-                                            
-                                            //cycle through array and creates updates users
-                                            [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
-                                        }
-                                        
                                         if (i+1 == resultCount) {
                                             NSDate *lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
                                             resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount",[NSNumber numberWithBool:listChanged], @"ListChanged", nil];
@@ -148,8 +107,92 @@
                                     }
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    failureBlock();
+                                    if (failureBlock)
+                                        failureBlock();
                                 }];
+}
+
++ (void)getActivityStoryWithContentId:(NSString *)contentId
+                         successBlock:(void (^)(void))successBlock
+                         failureBlock:(void (^)(void))failureBlock
+{
+    [[SDAPIClient sharedClient] getPath:@"sd/story.json"
+                             parameters:@{@"ContentId":contentId}
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
+                                    for (int i = 0; i < [activityStories count]; i++) {
+                                        NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
+                                        NSString *activityStoryContentId = [activityStoryDictionary valueForKey:@"ContentId"];
+                                        if ([activityStoryContentId isEqual:contentId])
+                                            [self createActivityStoryFromDictionary:activityStoryDictionary
+                                                                            context:context];
+                                    }
+                                    [context MR_saveToPersistentStoreAndWait];
+                                    
+                                    if (successBlock) {
+                                        successBlock();
+                                    }
+                                    
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
+}
+
++ (void)createActivityStoryFromDictionary:(NSDictionary *)activityStoryDictionary
+                                  context:(NSManagedObjectContext *)context
+{
+    NSString *identifier = [activityStoryDictionary valueForKey:@"Id"];
+    ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
+                                                                withValue:identifier
+                                                                inContext:context];
+    if (!activityStory) {
+        activityStory = [ActivityStory MR_createInContext:context];
+        activityStory.identifier = identifier;
+    }
+    
+    activityStory.storyTypeId = [activityStoryDictionary valueForKey:@"StoryTypeId"];
+    activityStory.contentId = [activityStoryDictionary valueForKey:@"ContentId"];
+    activityStory.contentTypeId = [activityStoryDictionary valueForKey:@"ContentTypeId"];
+    activityStory.likesCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"LikesCount"] intValue]];
+    activityStory.commentCount = [NSNumber numberWithInt:[[activityStoryDictionary valueForKey:@"CommentsCount"] intValue]];
+    activityStory.likedByMaster = [NSNumber numberWithBool:[[activityStoryDictionary valueForKey:@"LikeFlag"] boolValue]];
+    activityStory.shouldBeDeleted = [NSNumber numberWithBool:NO];
+    NSString *createdDateString = [activityStoryDictionary objectForKey:@"CreatedDate"];
+    NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
+    activityStory.createdDate = [SDUtils dateFromString:createdDateString];
+    activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
+    
+    
+    if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
+        activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
+    }
+    if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
+        activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
+    }
+    if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
+        activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
+    }
+    if ([activityStoryDictionary valueForKey:@"ThumbnailUrl"] != [NSNull null]) {
+        activityStory.thumbnailUrl = [activityStoryDictionary valueForKey:@"ThumbnailUrl"];
+    }
+    if ([activityStoryDictionary valueForKey:@"MediaUrl"] != [NSNull null]) {
+        activityStory.mediaUrl = [activityStoryDictionary valueForKey:@"MediaUrl"];
+    }
+    
+    //if has a webpreview then this story contains a link, parse and save this object
+    if ([activityStoryDictionary valueForKey:@"WebPreview"] != [NSNull null]) {
+        [self createUpdateWebPreviewObjectFromDictionary:[activityStoryDictionary valueForKey:@"WebPreview"] withStory:activityStory inContext:context];
+    }
+    
+    //parse users(actors/authors) in this activity story
+    NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
+    for (NSDictionary *userDictionary in userArray) {
+        
+        //cycle through array and creates updates users
+        [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
+    }
 }
 
 + (void)createUpdateWebPreviewObjectFromDictionary:(NSDictionary *)dictionary

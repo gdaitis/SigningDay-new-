@@ -11,6 +11,7 @@
 		7B09B77017F05A480070688F /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B09B76E17F05A480070688F /* HPTextViewInternal.m */; };
 		7B0E781E17F56793001F8305 /* SDBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E781D17F56793001F8305 /* SDBadgeView.m */; };
 		7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E782717F5682A001F8305 /* badgeBg@2x.png */; };
+		7B1D143917FAEFBD00F2779B /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1D143817FAEFBD00F2779B /* Notification.m */; };
 		7B1DF0F317E09ADE005455D8 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E117E09ADE005455D8 /* AFHTTPClient.m */; };
 		7B1DF0F417E09ADE005455D8 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E317E09ADE005455D8 /* AFHTTPRequestOperation.m */; };
 		7B1DF0F517E09ADE005455D8 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E517E09ADE005455D8 /* AFImageRequestOperation.m */; };
@@ -60,6 +61,7 @@
 		7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */; };
 		7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */; };
 		7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */; };
+		7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */; };
 		7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */; };
 		7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */; };
 		7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */; };
@@ -78,6 +80,8 @@
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
 		7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */; };
 		7BC1D86517F315C800D686E6 /* SDNotificationsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1D86417F315C800D686E6 /* SDNotificationsService.m */; };
+		7BD5234017F99045007F8F67 /* SDNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD5233F17F99045007F8F67 /* SDNotificationCell.m */; };
+		7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */; };
 		7BD64D2617E1F4FD002075B3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD64D2517E1F4FD002075B3 /* FacebookSDK.framework */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
 		7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */; };
@@ -90,7 +94,6 @@
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
 		7BEFD83217F413E2008D6C74 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEFD83117F413E2008D6C74 /* Master.m */; };
 		7BEFD83517F413E2008D6C74 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEFD83417F413E2008D6C74 /* User.m */; };
-		7BEFD83817F41CBB008D6C74 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEFD83717F41CBB008D6C74 /* Notification.m */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
@@ -125,7 +128,6 @@
 		801088F1179579DC002EF1EB /* MenuButtonClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 801088EF179579DC002EF1EB /* MenuButtonClose@2x.png */; };
 		801088F2179579DC002EF1EB /* MenuButtonDone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 801088F0179579DC002EF1EB /* MenuButtonDone@2x.png */; };
 		801088F717957A0E002EF1EB /* SDActivityFeedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F417957A0E002EF1EB /* SDActivityFeedHeaderView.m */; };
-		80136B4917FB03A200ED3B64 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80136B4817FB03A100ED3B64 /* SDActivityStoryViewController.xib */; };
 		8013F477174CF36100BA313B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8013F476174CF36100BA313B /* QuartzCore.framework */; };
 		8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */; };
 		8013F47E174CF96400BA313B /* SDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47D174CF96400BA313B /* SDBaseViewController.m */; };
@@ -137,11 +139,9 @@
 		801C90F517E0589800227D88 /* SDFilterListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801C90F417E0589800227D88 /* SDFilterListCell.m */; };
 		801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801C90F617E058AA00227D88 /* SDFilterListCell.xib */; };
 		8022CC4117EC2B3F0054A1C5 /* SDNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */; };
-		8022CC4317EC32A20054A1C5 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */; };
 		8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */; };
-		8026EE2517FAE25F00A1A25D /* LandingPageFilterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8026EE2417FAE25F00A1A25D /* LandingPageFilterButton@2x.png */; };
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
 		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
 		802B793E17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */; };
@@ -216,6 +216,7 @@
 		8044395317D4AF1000AADFDB /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373417CF6A610064DBEB /* libDTCoreText.a */; };
 		8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */; };
 		80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */; };
+		80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */; };
 		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
 		805598C2174CE8200040631D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C1174CE8200040631D /* UIKit.framework */; };
 		805598C4174CE8200040631D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C3174CE8200040631D /* Foundation.framework */; };
@@ -413,6 +414,8 @@
 		7B0E781C17F56793001F8305 /* SDBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBadgeView.h; sourceTree = "<group>"; };
 		7B0E781D17F56793001F8305 /* SDBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBadgeView.m; sourceTree = "<group>"; };
 		7B0E782717F5682A001F8305 /* badgeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badgeBg@2x.png"; sourceTree = "<group>"; };
+		7B1D143717FAEFBD00F2779B /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		7B1D143817FAEFBD00F2779B /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		7B1DF0E017E09ADE005455D8 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		7B1DF0E117E09ADE005455D8 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		7B1DF0E217E09ADE005455D8 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -486,6 +489,7 @@
 		7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTeamsSearchHeader.m; sourceTree = "<group>"; };
 		7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolsSearchHeader.h; sourceTree = "<group>"; };
 		7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolsSearchHeader.m; sourceTree = "<group>"; };
+		7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageFilterButton@2x.png"; sourceTree = "<group>"; };
 		7BA0F53917E9B1ED00C6DE89 /* NSObject+MasterUserMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+MasterUserMethods.h"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.h"; sourceTree = "<group>"; };
 		7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MasterUserMethods.m"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.m"; sourceTree = "<group>"; };
 		7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileFullButtonBackground@2x.png"; sourceTree = "<group>"; };
@@ -512,6 +516,9 @@
 		7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7BC1D86317F315C800D686E6 /* SDNotificationsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationsService.h; sourceTree = "<group>"; };
 		7BC1D86417F315C800D686E6 /* SDNotificationsService.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationsService.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
+		7BD5233E17F99045007F8F67 /* SDNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationCell.h; sourceTree = "<group>"; };
+		7BD5233F17F99045007F8F67 /* SDNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SDNotificationCell.m; sourceTree = "<group>"; };
+		7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNotificationCell.xib; sourceTree = "<group>"; };
 		7BD64D2517E1F4FD002075B3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityFeedIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoachesIcon@2x.png"; sourceTree = "<group>"; };
@@ -527,8 +534,6 @@
 		7BEFD83117F413E2008D6C74 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
 		7BEFD83317F413E2008D6C74 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7BEFD83417F413E2008D6C74 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		7BEFD83617F41CBB008D6C74 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		7BEFD83717F41CBB008D6C74 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
@@ -574,7 +579,6 @@
 		801088F417957A0E002EF1EB /* SDActivityFeedHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedHeaderView.m; sourceTree = "<group>"; };
 		801088F517957A0E002EF1EB /* SDSimplifiedCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDSimplifiedCameraOverlayView.h; path = ../SDSimplifiedCameraOverlayView.h; sourceTree = "<group>"; };
 		801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDSimplifiedCameraOverlayView.m; path = ../SDSimplifiedCameraOverlayView.m; sourceTree = "<group>"; };
-		80136B4817FB03A100ED3B64 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
 		8013F476174CF36100BA313B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8013F479174CF6E800BA313B /* SDInitialSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInitialSlidingViewController.h; sourceTree = "<group>"; };
 		8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDInitialSlidingViewController.m; sourceTree = "<group>"; };
@@ -594,13 +598,11 @@
 		801C90F617E058AA00227D88 /* SDFilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDFilterListCell.xib; sourceTree = "<group>"; };
 		8022CC3F17EC2B3F0054A1C5 /* SDNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationViewController.h; sourceTree = "<group>"; };
 		8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationViewController.m; sourceTree = "<group>"; };
-		8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNotificationViewController.xib; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
 		8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDYoutubePlayerViewController.h; sourceTree = "<group>"; };
 		8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDYoutubePlayerViewController.m; sourceTree = "<group>"; };
 		8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDYoutubePlayerViewController.xib; sourceTree = "<group>"; };
-		8026EE2417FAE25F00A1A25D /* LandingPageFilterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageFilterButton@2x.png"; sourceTree = "<group>"; };
 		80270420178FDC8000C8F872 /* submit_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit_button@2x.png"; sourceTree = "<group>"; };
 		80270424178FE39B00C8F872 /* sign_out_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign_out_button@2x.png"; sourceTree = "<group>"; };
 		802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagePlayerCell.h; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
+		80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
 		80522C4E17D0C67200936936 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		805598BD174CE8200040631D /* signingDayPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = signingDayPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		805598C1174CE8200040631D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1189,7 +1192,6 @@
 			children = (
 				8022CC3F17EC2B3F0054A1C5 /* SDNotificationViewController.h */,
 				8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */,
-				8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1370,11 +1372,11 @@
 		8032F0971755F9AF00C92AAC /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
+				7B1D143717FAEFBD00F2779B /* Notification.h */,
+				7B1D143817FAEFBD00F2779B /* Notification.m */,
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
-				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
-				7BEFD83617F41CBB008D6C74 /* Notification.h */,
-				7BEFD83717F41CBB008D6C74 /* Notification.m */,
 				7BEFD83317F413E2008D6C74 /* User.h */,
 				7BEFD83417F413E2008D6C74 /* User.m */,
 				7BEFD83017F413E2008D6C74 /* Master.h */,
@@ -1696,6 +1698,9 @@
 				803ECECE17F452CE0060702F /* SDCollectionCell.h */,
 				803ECECF17F452CE0060702F /* SDCollectionCell.m */,
 				803ECED117F453F60060702F /* SDCollectionCell.xib */,
+				7BD5233E17F99045007F8F67 /* SDNotificationCell.h */,
+				7BD5233F17F99045007F8F67 /* SDNotificationCell.m */,
+				7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -1745,7 +1750,7 @@
 				805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */,
 				80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */,
 				80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */,
-				80136B4817FB03A100ED3B64 /* SDActivityStoryViewController.xib */,
+				80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */,
 				80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */,
 				80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */,
 				801088B11795794A002EF1EB /* SDAddTagsViewController.h */,
@@ -2044,7 +2049,7 @@
 		80F301641753A85E00134FF4 /* TopToolbar */ = {
 			isa = PBXGroup;
 			children = (
-				8026EE2417FAE25F00A1A25D /* LandingPageFilterButton@2x.png */,
+				7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */,
 				801088EF179579DC002EF1EB /* MenuButtonClose@2x.png */,
 				801088F0179579DC002EF1EB /* MenuButtonDone@2x.png */,
 				80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */,
@@ -2248,7 +2253,6 @@
 				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
 				80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */,
 				80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */,
-				80136B4917FB03A200ED3B64 /* SDActivityStoryViewController.xib in Resources */,
 				80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */,
 				80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */,
 				809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */,
@@ -2308,11 +2312,10 @@
 				80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */,
 				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
-				8026EE2517FAE25F00A1A25D /* LandingPageFilterButton@2x.png in Resources */,
-				8022CC4317EC32A20054A1C5 /* SDNotificationViewController.xib in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
+				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
 				7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
 				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
@@ -2333,7 +2336,9 @@
 				807ACB2E17E1ADC1005B8442 /* YearsList.plist in Resources */,
 				7B5B5FBE17E8489C00215ED4 /* add_media_button@2x.png in Resources */,
 				7B5B5FBF17E8489C00215ED4 /* buzz_something_button@2x.png in Resources */,
+				7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */,
 				7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */,
+				7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */,
 				7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */,
 				7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */,
 				7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */,
@@ -2403,6 +2408,7 @@
 				809E72A617588B76004840D3 /* SDFollowingViewController.m in Sources */,
 				80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */,
 				7B6B1EC31760C86900BC878A /* SDContentHeaderView.m in Sources */,
+				7B1D143917FAEFBD00F2779B /* Notification.m in Sources */,
 				7B652364176EEA0E002EA795 /* SDActivityFeedService.m in Sources */,
 				805F725917719BC400BDA30F /* SDActivityFeedCell.m in Sources */,
 				805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */,
@@ -2447,6 +2453,7 @@
 				80431E4C17A006B3002F6E3D /* NSManagedObject+MagicalAggregation.m in Sources */,
 				80431E4D17A006B3002F6E3D /* NSManagedObject+MagicalDataImport.m in Sources */,
 				80431E4E17A006B3002F6E3D /* NSManagedObject+MagicalFinders.m in Sources */,
+				7BD5234017F99045007F8F67 /* SDNotificationCell.m in Sources */,
 				80431E4F17A006B3002F6E3D /* NSManagedObject+MagicalRecord.m in Sources */,
 				80431E5017A006B3002F6E3D /* NSManagedObject+MagicalRequests.m in Sources */,
 				80431E5117A006B3002F6E3D /* NSManagedObjectContext+MagicalObserving.m in Sources */,
@@ -2470,7 +2477,6 @@
 				7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */,
 				7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */,
 				80B4DD9917B2599300352E07 /* SDUserProfileHighSchoolHeaderView.m in Sources */,
-				7BEFD83817F41CBB008D6C74 /* Notification.m in Sources */,
 				7B33A5A317BBC849002A994F /* NSDictionary+NullConverver.m in Sources */,
 				80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */,
 				80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */,

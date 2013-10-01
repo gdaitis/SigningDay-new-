@@ -19,6 +19,9 @@
                      andDeleteOld:(BOOL)deleteOld
                  withSuccessBlock:(void (^)(NSDictionary *results))successBlock
                      failureBlock:(void (^)(void))failureBlock;
++ (void)getActivityStoryWithContentId:(NSString *)contentId
+                         successBlock:(void (^)(void))successBlock
+                         failureBlock:(void (^)(void))failureBlock;
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody
                             successBlock:(void (^)(void))successBlock
                             failureBlock:(void (^)(void))failureBlock;

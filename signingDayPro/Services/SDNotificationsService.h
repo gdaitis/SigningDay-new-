@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    SDNotificationTypeLike = 1,
+    SDNotificationTypeComment = 2,
+    SDNotificationTypeForumReply = 3,
+    SDNotificationTypeMention = 4,
+    SDNotificationTypeForumPost = 5,
+    SDNotificationTypeFollowing = 6,
+    SDNotificationTypeBuzzBoard = 7
+} SDNotificationType;
+
 NSString * const SDNotificationsServiceCountOfUnreadNotifications;
 NSString * const SDNotificationsServiceCountOfUnreadConversations;
 NSString * const SDNotificationsServiceCountOfUnreadFollowers;

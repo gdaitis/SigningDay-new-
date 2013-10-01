@@ -314,7 +314,7 @@
     _selectedMenuType = BARBUTTONTYPE_NOTIFICATIONS;
     if (!_notificationVC) {
         SDNotificationViewController *notificationVC = [[SDNotificationViewController alloc] init];
-        //        notificationVC.delegate = self;
+        notificationVC.delegate = self;
         notificationVC.view.frame = self.contentView.bounds;
         
         self.notificationVC = notificationVC;
@@ -538,19 +538,21 @@
 
 #pragma mark - SDNotificationViewController delegate
 
-- (void)notificationViewController:(SDNotificationViewController *)notificationViewController didSelectUser:(User *)user //should be did select notification
+- (void)notificationViewController:(SDNotificationViewController *)notificationViewController
+            didSelectActivityStory:(ActivityStory *)activityStory
 {
-    [self hideFollowersAndRemoveContentView:YES];
-    
-    //remember in which controller we will need to open following view
-    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_NOTIFICATIONS];
-    
-    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                        bundle:nil];
-    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-    userProfileViewController.currentUser = user;
-    
-    [self performSelector:@selector(pushViewController:) withObject:userProfileViewController afterDelay:0.2f];
+#warning kai Lukas padaro activity story controlleri, linkinam i ji cia :)
+//    [self hideFollowersAndRemoveContentView:YES];
+//    
+//    //remember in which controller we will need to open following view
+//    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_NOTIFICATIONS];
+//    
+//    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+//                                                                        bundle:nil];
+//    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+//    userProfileViewController.currentUser = user;
+//    
+//    [self performSelector:@selector(pushViewController:) withObject:userProfileViewController afterDelay:0.2f];
 }
 
 

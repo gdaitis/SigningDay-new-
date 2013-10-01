@@ -7,21 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDBaseViewController.h"
+#import "SDBaseToolbarItemViewController.h"
 
 @class SDNotificationViewController;
-@class User;
+@class ActivityStory;
 
 @protocol SDNotificationViewControllerDelegate <NSObject>
 
 @optional
 
-- (void)notificationViewController:(SDNotificationViewController *)notificationViewController didSelectUser:(User *)user;
+- (void)notificationViewController:(SDNotificationViewController *)notificationViewController
+            didSelectActivityStory:(ActivityStory *)activityStory;
 
 @end
 
 
-@interface SDNotificationViewController : SDBaseViewController
+@interface SDNotificationViewController : SDBaseToolbarItemViewController
 
 @property (nonatomic, weak) id <SDNotificationViewControllerDelegate> delegate;
 
