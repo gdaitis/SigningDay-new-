@@ -138,6 +138,7 @@
 		801C90EA17E0560200227D88 /* SDFilterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801C90E917E0560200227D88 /* SDFilterListViewController.m */; };
 		801C90F517E0589800227D88 /* SDFilterListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801C90F417E0589800227D88 /* SDFilterListCell.m */; };
 		801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801C90F617E058AA00227D88 /* SDFilterListCell.xib */; };
+		801E8FE617FB0A9F002FFC81 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801E8FE517FB0A9F002FFC81 /* SDActivityStoryViewController.xib */; };
 		8022CC4117EC2B3F0054A1C5 /* SDNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */; };
@@ -216,7 +217,6 @@
 		8044395317D4AF1000AADFDB /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373417CF6A610064DBEB /* libDTCoreText.a */; };
 		8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */; };
 		80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */; };
-		80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */; };
 		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
 		805598C2174CE8200040631D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C1174CE8200040631D /* UIKit.framework */; };
 		805598C4174CE8200040631D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 805598C3174CE8200040631D /* Foundation.framework */; };
@@ -596,6 +596,7 @@
 		801C90F317E0589800227D88 /* SDFilterListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDFilterListCell.h; sourceTree = "<group>"; };
 		801C90F417E0589800227D88 /* SDFilterListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDFilterListCell.m; sourceTree = "<group>"; };
 		801C90F617E058AA00227D88 /* SDFilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDFilterListCell.xib; sourceTree = "<group>"; };
+		801E8FE517FB0A9F002FFC81 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
 		8022CC3F17EC2B3F0054A1C5 /* SDNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationViewController.h; sourceTree = "<group>"; };
 		8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationViewController.m; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
@@ -731,7 +732,6 @@
 		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
-		80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
 		80522C4E17D0C67200936936 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		805598BD174CE8200040631D /* signingDayPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = signingDayPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		805598C1174CE8200040631D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1750,7 +1750,7 @@
 				805F72661771AF9900BDA30F /* SDActivityFeedViewController.m */,
 				80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */,
 				80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */,
-				80522C4B17CF5E5C00936936 /* SDActivityStoryViewController.xib */,
+				801E8FE517FB0A9F002FFC81 /* SDActivityStoryViewController.xib */,
 				80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */,
 				80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */,
 				801088B11795794A002EF1EB /* SDAddTagsViewController.h */,
@@ -2253,6 +2253,7 @@
 				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
 				80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */,
 				80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */,
+				801E8FE617FB0A9F002FFC81 /* SDActivityStoryViewController.xib in Resources */,
 				80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */,
 				80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */,
 				809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */,
@@ -2315,7 +2316,6 @@
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
-				80522C4D17CF5E5C00936936 /* SDActivityStoryViewController.xib in Resources */,
 				7BEBA71517D49DDA0049CA1C /* DTCoreTextFontOverrides.plist in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
 				7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */,
