@@ -108,6 +108,7 @@
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="messages" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Notification" representedClassName="Notification" syncable="YES">
+        <attribute name="activityStoryId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentTypeId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentTypeName" optional="YES" attributeType="String" syncable="YES"/>
@@ -210,11 +211,11 @@
         <element name="Master" positionX="-360" positionY="18" width="128" height="223"/>
         <element name="Member" positionX="799" positionY="206" width="128" height="118"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
+        <element name="Notification" positionX="396" positionY="-783" width="128" height="193"/>
         <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
         <element name="State" positionX="342" positionY="-495" width="128" height="103"/>
         <element name="Team" positionX="999" positionY="-513" width="128" height="285"/>
         <element name="User" positionX="585" positionY="-198" width="128" height="538"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
-        <element name="Notification" positionX="403" positionY="-702" width="128" height="178"/>
     </elements>
 </model>

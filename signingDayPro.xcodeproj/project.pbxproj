@@ -11,6 +11,7 @@
 		7B09B77017F05A480070688F /* HPTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B09B76E17F05A480070688F /* HPTextViewInternal.m */; };
 		7B0E781E17F56793001F8305 /* SDBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E781D17F56793001F8305 /* SDBadgeView.m */; };
 		7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E782717F5682A001F8305 /* badgeBg@2x.png */; };
+		7B1D143917FAEFBD00F2779B /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1D143817FAEFBD00F2779B /* Notification.m */; };
 		7B1DF0F317E09ADE005455D8 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E117E09ADE005455D8 /* AFHTTPClient.m */; };
 		7B1DF0F417E09ADE005455D8 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E317E09ADE005455D8 /* AFHTTPRequestOperation.m */; };
 		7B1DF0F517E09ADE005455D8 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1DF0E517E09ADE005455D8 /* AFImageRequestOperation.m */; };
@@ -79,6 +80,8 @@
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
 		7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */; };
 		7BC1D86517F315C800D686E6 /* SDNotificationsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1D86417F315C800D686E6 /* SDNotificationsService.m */; };
+		7BD5234017F99045007F8F67 /* SDNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD5233F17F99045007F8F67 /* SDNotificationCell.m */; };
+		7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */; };
 		7BD64D2617E1F4FD002075B3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD64D2517E1F4FD002075B3 /* FacebookSDK.framework */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
 		7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */; };
@@ -91,7 +94,6 @@
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
 		7BEFD83217F413E2008D6C74 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEFD83117F413E2008D6C74 /* Master.m */; };
 		7BEFD83517F413E2008D6C74 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEFD83417F413E2008D6C74 /* User.m */; };
-		7BEFD83817F41CBB008D6C74 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEFD83717F41CBB008D6C74 /* Notification.m */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
@@ -137,7 +139,6 @@
 		801C90F517E0589800227D88 /* SDFilterListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801C90F417E0589800227D88 /* SDFilterListCell.m */; };
 		801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801C90F617E058AA00227D88 /* SDFilterListCell.xib */; };
 		8022CC4117EC2B3F0054A1C5 /* SDNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */; };
-		8022CC4317EC32A20054A1C5 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
 		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
@@ -411,6 +412,8 @@
 		7B0E781C17F56793001F8305 /* SDBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBadgeView.h; sourceTree = "<group>"; };
 		7B0E781D17F56793001F8305 /* SDBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBadgeView.m; sourceTree = "<group>"; };
 		7B0E782717F5682A001F8305 /* badgeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badgeBg@2x.png"; sourceTree = "<group>"; };
+		7B1D143717FAEFBD00F2779B /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		7B1D143817FAEFBD00F2779B /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		7B1DF0E017E09ADE005455D8 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		7B1DF0E117E09ADE005455D8 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		7B1DF0E217E09ADE005455D8 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -511,6 +514,9 @@
 		7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7BC1D86317F315C800D686E6 /* SDNotificationsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationsService.h; sourceTree = "<group>"; };
 		7BC1D86417F315C800D686E6 /* SDNotificationsService.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationsService.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
+		7BD5233E17F99045007F8F67 /* SDNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationCell.h; sourceTree = "<group>"; };
+		7BD5233F17F99045007F8F67 /* SDNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SDNotificationCell.m; sourceTree = "<group>"; };
+		7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNotificationCell.xib; sourceTree = "<group>"; };
 		7BD64D2517E1F4FD002075B3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityFeedIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoachesIcon@2x.png"; sourceTree = "<group>"; };
@@ -526,8 +532,6 @@
 		7BEFD83117F413E2008D6C74 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
 		7BEFD83317F413E2008D6C74 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7BEFD83417F413E2008D6C74 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		7BEFD83617F41CBB008D6C74 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		7BEFD83717F41CBB008D6C74 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
@@ -592,7 +596,6 @@
 		801C90F617E058AA00227D88 /* SDFilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDFilterListCell.xib; sourceTree = "<group>"; };
 		8022CC3F17EC2B3F0054A1C5 /* SDNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationViewController.h; sourceTree = "<group>"; };
 		8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationViewController.m; sourceTree = "<group>"; };
-		8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNotificationViewController.xib; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
 		80270420178FDC8000C8F872 /* submit_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit_button@2x.png"; sourceTree = "<group>"; };
@@ -1184,7 +1187,6 @@
 			children = (
 				8022CC3F17EC2B3F0054A1C5 /* SDNotificationViewController.h */,
 				8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */,
-				8022CC4217EC32A20054A1C5 /* SDNotificationViewController.xib */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1365,11 +1367,11 @@
 		8032F0971755F9AF00C92AAC /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
+				7B1D143717FAEFBD00F2779B /* Notification.h */,
+				7B1D143817FAEFBD00F2779B /* Notification.m */,
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
-				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
-				7BEFD83617F41CBB008D6C74 /* Notification.h */,
-				7BEFD83717F41CBB008D6C74 /* Notification.m */,
 				7BEFD83317F413E2008D6C74 /* User.h */,
 				7BEFD83417F413E2008D6C74 /* User.m */,
 				7BEFD83017F413E2008D6C74 /* Master.h */,
@@ -1691,6 +1693,9 @@
 				803ECECE17F452CE0060702F /* SDCollectionCell.h */,
 				803ECECF17F452CE0060702F /* SDCollectionCell.m */,
 				803ECED117F453F60060702F /* SDCollectionCell.xib */,
+				7BD5233E17F99045007F8F67 /* SDNotificationCell.h */,
+				7BD5233F17F99045007F8F67 /* SDNotificationCell.m */,
+				7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -2294,7 +2299,6 @@
 				80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */,
 				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
-				8022CC4317EC32A20054A1C5 /* SDNotificationViewController.xib in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
@@ -2320,6 +2324,7 @@
 				7B5B5FBF17E8489C00215ED4 /* buzz_something_button@2x.png in Resources */,
 				7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */,
 				7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */,
+				7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */,
 				7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */,
 				7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */,
 				7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */,
@@ -2389,6 +2394,7 @@
 				809E72A617588B76004840D3 /* SDFollowingViewController.m in Sources */,
 				80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */,
 				7B6B1EC31760C86900BC878A /* SDContentHeaderView.m in Sources */,
+				7B1D143917FAEFBD00F2779B /* Notification.m in Sources */,
 				7B652364176EEA0E002EA795 /* SDActivityFeedService.m in Sources */,
 				805F725917719BC400BDA30F /* SDActivityFeedCell.m in Sources */,
 				805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */,
@@ -2433,6 +2439,7 @@
 				80431E4C17A006B3002F6E3D /* NSManagedObject+MagicalAggregation.m in Sources */,
 				80431E4D17A006B3002F6E3D /* NSManagedObject+MagicalDataImport.m in Sources */,
 				80431E4E17A006B3002F6E3D /* NSManagedObject+MagicalFinders.m in Sources */,
+				7BD5234017F99045007F8F67 /* SDNotificationCell.m in Sources */,
 				80431E4F17A006B3002F6E3D /* NSManagedObject+MagicalRecord.m in Sources */,
 				80431E5017A006B3002F6E3D /* NSManagedObject+MagicalRequests.m in Sources */,
 				80431E5117A006B3002F6E3D /* NSManagedObjectContext+MagicalObserving.m in Sources */,
@@ -2456,7 +2463,6 @@
 				7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */,
 				7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */,
 				80B4DD9917B2599300352E07 /* SDUserProfileHighSchoolHeaderView.m in Sources */,
-				7BEFD83817F41CBB008D6C74 /* Notification.m in Sources */,
 				7B33A5A317BBC849002A994F /* NSDictionary+NullConverver.m in Sources */,
 				80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */,
 				80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */,

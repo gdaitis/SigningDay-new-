@@ -52,6 +52,18 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                                         notification.isNew = [NSNumber numberWithBool:[[notificationDictionary valueForKey:@"IsNew"] boolValue]];
                                         notification.notificationTypeId = [NSNumber numberWithInt:[[notificationDictionary valueForKey:@"NotificationTypeID"] intValue]];
                                         
+                                        NSString *activityStoryId = @"";
+                                        NSArray *urlContents = [[notificationDictionary valueForKey:@"Url"] componentsSeparatedByString:@"?"];
+                                        for (NSString *string in urlContents) {
+                                            if ([string hasPrefix:@"ActivityMessageID="]) {
+                                                activityStoryId = [string stringByReplacingOccurrencesOfString:@"ActivityMessageID=" withString:@""];
+                                                break;
+                                            }
+                                        }
+                                        if (![activityStoryId isEqual:@""]) {
+                                            notification.activityStoryId = activityStoryId;
+                                        }
+                                        
                                         NSNumber *masterIdentifier = [NSNumber numberWithInt:[[notificationDictionary valueForKey:@"ForUserID"] intValue]];
                                         Master *master = [Master MR_findFirstByAttribute:@"identifier"
                                                                                withValue:masterIdentifier
@@ -72,6 +84,7 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                                             fromUser.identifier = identifier;
                                         }
                                         fromUser.name = [fromUserDictionary valueForKey:@"DisplayName"];
+                                        fromUser.avatarUrl = [fromUserDictionary valueForKey:@"AvatarUrl"];
                                         notification.fromUser = fromUser;
                                     }
                                     [context MR_saveOnlySelfAndWait];
@@ -120,9 +133,9 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                              parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     NSMutableDictionary *unreadNotificationsCountDictionary = [[NSMutableDictionary alloc] init];
-                                    NSNumber *countOfUnreadConversations = [NSNumber numberWithInt:[[unreadNotificationsCountDictionary valueForKey:@"NewConversations"] intValue]];
-                                    NSNumber *countOfUnreadFollowers = [NSNumber numberWithInt:[[unreadNotificationsCountDictionary valueForKey:@"NewFollowers"] intValue]];
-                                    NSNumber *countOfUnreadNotifications = [NSNumber numberWithInt:[[unreadNotificationsCountDictionary valueForKey:@"NewNotifications"] intValue]];
+                                    NSNumber *countOfUnreadConversations = [NSNumber numberWithInt:[[responseObject valueForKey:@"NewConversations"] intValue]];
+                                    NSNumber *countOfUnreadFollowers = [NSNumber numberWithInt:[[responseObject valueForKey:@"NewFollowers"] intValue]];
+                                    NSNumber *countOfUnreadNotifications = [NSNumber numberWithInt:[[responseObject valueForKey:@"NewNotifications"] intValue]];
                                     [unreadNotificationsCountDictionary setObject:countOfUnreadConversations forKey:SDNotificationsServiceCountOfUnreadConversations];
                                     [unreadNotificationsCountDictionary setObject:countOfUnreadFollowers forKey:SDNotificationsServiceCountOfUnreadFollowers];
                                     [unreadNotificationsCountDictionary setObject:countOfUnreadNotifications forKey:SDNotificationsServiceCountOfUnreadNotifications];
