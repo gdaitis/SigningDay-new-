@@ -74,6 +74,7 @@
     
     self.tableView.user = self.currentUser;
     self.tableView.activityStoryCount = 0;
+    self.tableView.fetchLimit = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
     self.tableView.user = self.currentUser;
@@ -110,6 +111,7 @@
 - (void)checkServer
 {
     self.tableView.activityStoryCount = 0;
+    self.tableView.fetchLimit = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
     [self.tableView checkServerAndDeleteOld:NO];

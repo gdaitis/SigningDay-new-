@@ -33,6 +33,7 @@
 @property (nonatomic, assign) BOOL endReached;
 @property (nonatomic, assign) BOOL headerInfoDownloading;
 @property (nonatomic, assign) int activityStoryCount;
+@property (nonatomic, assign) int fetchLimit;
 
 @property (nonatomic, strong) UIView *customHeaderView;
 

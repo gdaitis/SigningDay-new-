@@ -167,9 +167,16 @@
     
     if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
         activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
+        if ([activityStory.activityDescription rangeOfString:@"question"].location != NSNotFound) {
+            NSLog(@"Found");
+        }
     }
     if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
         activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
+        
+        if ([activityStory.activityTitle rangeOfString:@"question"].location != NSNotFound) {
+            NSLog(@"Found");
+        }
     }
     if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
         activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
@@ -193,6 +200,7 @@
         //cycle through array and creates updates users
         [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
     }
+    [context MR_saveOnlySelfAndWait];
 }
 
 + (void)createUpdateWebPreviewObjectFromDictionary:(NSDictionary *)dictionary
@@ -234,11 +242,15 @@
     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
     if (!user) {
         user = [User MR_createInContext:context];
-        user.identifier = authorIdentifier;
     }
+    user.identifier = authorIdentifier;
     user.username = [dictionary valueForKey:@"Username"];
     user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
     user.name = [dictionary valueForKey:@"DisplayName"];
+    
+    if ([activityStory.identifier isEqualToString:@"8752ed69-6caf-47df-a0d0-5e42de1f7a3d"]) {
+        NSLog(@"found erric post to robertas");
+    }
     
     if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"From"]) {
         //this user created this post, assign it as author
@@ -314,8 +326,6 @@
             }
         }
     }
-    
-    [context MR_saveOnlySelfAndWait];
 }
 
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody
