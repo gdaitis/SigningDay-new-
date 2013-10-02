@@ -88,9 +88,7 @@
     [SDProfileService getProfileInfoForUser:self.currentUser
                             completionBlock:^{
                                 [self setupHeaderView];
-                            } failureBlock:^{
-                                //
-                            }];
+                            } failureBlock:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -214,6 +212,7 @@
         [_headerView hideBuzzButtonView:NO];
     }
     [_headerView setupInfoWithUser:_currentUser];
+    [self.tableView reloadData];
 }
 
 #pragma mark - SDActivityFeedTableView delegate methods
