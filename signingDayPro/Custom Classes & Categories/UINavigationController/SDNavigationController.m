@@ -180,6 +180,12 @@
     
 }
 
+- (void)hideKeyboardsOfUIResponders
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDKeyboardShouldHideNotification
+                                                        object:nil];
+}
+
 #pragma mark - Setting badges
 
 - (void)setupBadgesWithNotificationsNumber:(NSInteger)notificationsNumber
@@ -649,6 +655,11 @@
 - (void)followerButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
 {
     [self followersSelected];
+}
+
+- (void)anyButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
+{
+    [self hideKeyboardsOfUIResponders];
 }
 
 #pragma mark - Orientation

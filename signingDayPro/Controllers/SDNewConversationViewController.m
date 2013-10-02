@@ -128,6 +128,13 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Keyboards
+
+- (void)hideAllHeyboards
+{
+    [self.searchBar resignFirstResponder];
+}
+
 #pragma mark - filter & info update
 
 - (void)updateInfoAndShowActivityIndicator:(BOOL)showActivityIndicator

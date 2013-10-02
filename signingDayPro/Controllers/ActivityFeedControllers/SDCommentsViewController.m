@@ -118,6 +118,13 @@
                                         }];
 }
 
+#pragma mark - Keyboards
+
+- (void)hideAllHeyboards
+{
+    [self.enterMessageTextView resignFirstResponder];
+}
+
 #pragma mark - UITableView data source and delegate methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -10,6 +10,8 @@
 #import "SDLoginViewController.h"
 #import "NSObject+MasterUserMethods.h"
 
+extern NSString * const SDKeyboardShouldHideNotification;
+
 @interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

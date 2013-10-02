@@ -18,9 +18,9 @@ typedef enum {
     SDNotificationTypeBuzzBoard = 7
 } SDNotificationType;
 
-NSString * const SDNotificationsServiceCountOfUnreadNotifications;
-NSString * const SDNotificationsServiceCountOfUnreadConversations;
-NSString * const SDNotificationsServiceCountOfUnreadFollowers;
+extern NSString * const SDNotificationsServiceCountOfUnreadNotifications;
+extern NSString * const SDNotificationsServiceCountOfUnreadConversations;
+extern NSString * const SDNotificationsServiceCountOfUnreadFollowers;
 
 @interface SDNotificationsService : NSObject
 

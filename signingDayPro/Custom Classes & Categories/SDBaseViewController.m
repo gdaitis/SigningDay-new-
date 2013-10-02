@@ -14,6 +14,8 @@
 #import "SDNavigationController.h"
 #import "IIViewDeckController.h"
 
+NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotification";
+
 @interface SDBaseViewController ()
 
 //@property (nonatomic, strong) SDLoginViewController *loginViewController;
@@ -35,12 +37,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:kSDLoginServiceUserDidLogoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userDidLogout)
+                                                 name:kSDLoginServiceUserDidLogoutNotification
+                                               object:nil];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.tintColor = [UIColor grayColor];
     [self.refreshControl addTarget:self action:@selector(checkServer) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hideAllHeyboards)
+                                                 name:SDKeyboardShouldHideNotification
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,6 +75,13 @@
 - (void)hideProgressHudInView:(UIView *)view
 {
     [MBProgressHUD hideAllHUDsForView:view animated:YES];
+}
+
+#pragma mark - Keyboards
+
+- (void)hideAllHeyboards
+{
+    // override me
 }
 
 #pragma mark - Loader methods

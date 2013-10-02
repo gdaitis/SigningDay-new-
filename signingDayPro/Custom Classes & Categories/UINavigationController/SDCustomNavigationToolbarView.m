@@ -68,6 +68,7 @@
     ((UIButton *)sender).userInteractionEnabled = NO;
     [self performSelector:@selector(enableButtonAfterDelay:) withObject:sender afterDelay:0.6];
     
+    [self.delegate anyButtonPressedInToolbarView:self];
     int tag = ((UIButton *)sender).tag;
     switch (tag) {
         case 1:
