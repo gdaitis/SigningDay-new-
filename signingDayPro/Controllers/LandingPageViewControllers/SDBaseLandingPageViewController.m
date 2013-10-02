@@ -61,6 +61,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Keyboards
+
+- (void)hideAllHeyboards
+{
+    [self.searchBar resignFirstResponder];
+}
+
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

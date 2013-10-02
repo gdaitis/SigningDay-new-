@@ -148,6 +148,14 @@
     // e.g. self.myOutlet = nil;
 }
 
+#pragma mark - Keyboards
+
+- (void)hideAllHeyboards
+{
+    [self.nameTextView resignFirstResponder];
+    [self.bioTextView resignFirstResponder];
+}
+
 #pragma mark - Table view delegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

@@ -20,6 +20,7 @@
 - (void)notificationButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView;
 - (void)conversationButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView;
 - (void)followerButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView;
+- (void)anyButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView;
 
 @end
 

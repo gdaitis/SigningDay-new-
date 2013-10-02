@@ -128,6 +128,13 @@
     // override me
 }
 
+#pragma mark - Keyboards
+
+- (void)hideAllHeyboards
+{
+    [self.enterMessageTextView resignFirstResponder];
+}
+
 #pragma mark - Keyboard methods
 
 - (void)keyboardWillShow:(NSNotification *)notification

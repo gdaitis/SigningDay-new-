@@ -8,19 +8,17 @@
 
 #import "SDNavigationController.h"
 #import "IIViewDeckController.h"
-
 #import "SDMessageViewController.h"
 #import "SDConversationViewController.h"
 #import "SDUserProfileViewController.h"
 #import "SDFollowingService.h"
 #import "SDBaseViewController.h"
-
 #import "SDNewConversationViewController.h"
 #import "SDCustomNavigationToolbarView.h"
 #import "UIView+NibLoading.h"
-
 #import "SDBadgeView.h"
 #import "SDNotificationsService.h"
+#import "SDActivityStoryViewController.h"
 
 @interface SDNavigationController () <SDCustomNavigationToolbarViewDelegate>
 
@@ -76,18 +74,7 @@
 {
     [super viewWillAppear:animated];
     
-    [SDNotificationsService getCountOfUnreadNotificationsWithSuccessBlock:^(NSDictionary *unreadNotificationsCountDictionary) {
-        NSInteger *notificationsNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadNotifications] integerValue];
-        NSInteger *messagesNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadConversations] integerValue];
-        NSInteger *followersNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadFollowers] integerValue];
-        [self setupBadgesWithNotificationsNumber:notificationsNumber
-                                  messagesNumber:messagesNumber
-                                 followersNumber:followersNumber];
-    } failureBlock:^{
-        [self setupBadgesWithNotificationsNumber:0
-                                  messagesNumber:0
-                                 followersNumber:0];
-    }];
+    [self checkServer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,6 +87,24 @@
 {
     //opens side menu
     [self.viewDeckController toggleLeftViewAnimated:YES];
+}
+
+#pragma mark - Server
+
+- (void)checkServer
+{
+    [SDNotificationsService getCountOfUnreadNotificationsWithSuccessBlock:^(NSDictionary *unreadNotificationsCountDictionary) {
+        NSInteger *notificationsNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadNotifications] integerValue];
+        NSInteger *messagesNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadConversations] integerValue];
+        NSInteger *followersNumber = [[unreadNotificationsCountDictionary valueForKey:SDNotificationsServiceCountOfUnreadFollowers] integerValue];
+        [self setupBadgesWithNotificationsNumber:notificationsNumber
+                                  messagesNumber:messagesNumber
+                                 followersNumber:followersNumber];
+    } failureBlock:^{
+        [self setupBadgesWithNotificationsNumber:0
+                                  messagesNumber:0
+                                 followersNumber:0];
+    }];
 }
 
 #pragma mark - Toolbar
@@ -134,6 +139,7 @@
 
 - (void)popViewController
 {
+    [self checkServer];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [self popViewControllerAnimated:YES];
         [self setToolbarButtons];
@@ -142,6 +148,7 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    [self checkServer];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [super pushViewController:viewController animated:animated];
         [self.view bringSubviewToFront:_topToolBar];
@@ -171,6 +178,12 @@
         self.topToolBar.rightButton.hidden = YES;
     }
     
+}
+
+- (void)hideKeyboardsOfUIResponders
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDKeyboardShouldHideNotification
+                                                        object:nil];
 }
 
 #pragma mark - Setting badges
@@ -541,20 +554,23 @@
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
             didSelectActivityStory:(ActivityStory *)activityStory
 {
-#warning kai Lukas padaro activity story controlleri, linkinam i ji cia :)
-//    [self hideFollowersAndRemoveContentView:YES];
-//    
-//    //remember in which controller we will need to open following view
-//    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_NOTIFICATIONS];
-//    
-//    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-//                                                                        bundle:nil];
-//    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-//    userProfileViewController.currentUser = user;
-//    
-//    [self performSelector:@selector(pushViewController:) withObject:userProfileViewController afterDelay:0.2f];
+    [self hideNotificationsAndRemoveContentView:YES];
+    
+    //remember in which controller we will need to open following view
+    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_NOTIFICATIONS];
+    
+    SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] init];
+    activityStoryViewController.activityStory = activityStory;
+    
+    [self performSelector:@selector(pushViewController:)
+               withObject:activityStoryViewController
+               afterDelay:0.2f];
 }
 
+- (void)notificationViewControllerDidCheckForNewNotifications:(SDNotificationViewController *)notificationViewController
+{
+    [self checkServer];
+}
 
 #pragma mark - SDFollowingViewController delegate methods
 
@@ -639,6 +655,11 @@
 - (void)followerButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
 {
     [self followersSelected];
+}
+
+- (void)anyButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
+{
+    [self hideKeyboardsOfUIResponders];
 }
 
 #pragma mark - Orientation

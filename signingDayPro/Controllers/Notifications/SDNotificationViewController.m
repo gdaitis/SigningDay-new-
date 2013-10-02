@@ -87,6 +87,9 @@
                                                 successBlock:^{
                                                     [self reloadView];
                                                     [self endRefreshing];
+                                                    [SDNotificationsService markAllNotificationsReadWithSuccessBlock:^{
+                                                        [self.delegate notificationViewControllerDidCheckForNewNotifications:self];
+                                                    } failureBlock:nil];
                                                 } failureBlock:^{
                                                     [self endRefreshing];
                                                 }];
@@ -195,7 +198,7 @@
                                            //
                                        }];
     
-    if (notification.isNew)
+    if ([notification.isNew boolValue])
         cell.backgroundView.backgroundColor = [UIColor colorWithRed:236.0f/255.0f
                                                               green:232.0f/255.0f
                                                                blue:208.0f/255.0f
