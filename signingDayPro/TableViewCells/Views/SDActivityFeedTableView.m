@@ -21,6 +21,7 @@
 @interface SDActivityFeedTableView ()
 
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, assign) BOOL dataDownloadInProgress;
 
 @end
 
@@ -62,21 +63,31 @@
 
 - (void)checkServerAndDeleteOld:(BOOL)deleteOld
 {
+    self.dataDownloadInProgress = YES;
     [SDActivityFeedService getActivityStoriesForUser:self.user
                                             withDate:self.lastActivityStoryDate
                                         andDeleteOld:deleteOld
                                     withSuccessBlock:^(NSDictionary *results){
-        
-        self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
-        
-        if ([[results objectForKey:@"ResultCount"] intValue] == 0) {
-            self.endReached = YES;
-        }
-        [self loadData];
-        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
-    } failureBlock:^{
-        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
-    }];
+                                        
+                                        self.lastActivityStoryDate = [results objectForKey:@"LastDate"];
+                                        if (deleteOld) {
+                                            self.fetchLimit = 0;
+                                        }
+                                        
+                                        if ([[results objectForKey:@"ResultCount"] intValue] == 0)
+                                            self.endReached = YES;
+                                        else
+                                            self.fetchLimit += [[results objectForKey:@"ResultCount"] intValue];
+                                        
+                                        NSLog(@"Downloaded STORIES = %d",self.fetchLimit);
+                                        
+                                        self.dataDownloadInProgress = NO;
+                                        [self loadData];
+                                        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
+                                    } failureBlock:^{
+                                        [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
+                                        self.dataDownloadInProgress = NO;
+                                    }];
 }
 
 #pragma mark - TableView datasource
@@ -111,7 +122,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != [self.dataArray count]) {
+    if (indexPath.row != [self.dataArray count] && [self.dataArray count] > 0) {
         
         SDActivityFeedCell *cell = nil;
         NSString *cellIdentifier = @"ActivityFeedCellId";
@@ -137,7 +148,7 @@
         
         cell.playerNameButton.tag = cell.secondPlayerNameButton.tag = indexPath.row;
         ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-
+        
         [cell.thumbnailImageView cancelImageRequestOperation];
         cell.likeButton.tag = indexPath.row;
         cell.commentButton.tag = indexPath.row;
@@ -186,7 +197,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         
-        if (!self.headerInfoDownloading) {
+        if (!self.headerInfoDownloading && self.dataDownloadInProgress == NO) {
             [self checkServerAndDeleteOld:NO];
         }
         
@@ -225,17 +236,38 @@
     [self.tableDelegate activityFeedTableView:self didSelectRowAtIndexPath:indexPath withActivityStory:activityStory];
 }
 
-#pragma mark - 
+#pragma mark -
 
 - (void)loadData
 {
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
     if (self.user) {
-        
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@ OR postedToUser == %@", self.user,self.user];
-        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+        //        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+        
+        //seting fetch limit for pagination
+        NSFetchRequest *request = [ActivityStory MR_requestAllWithPredicate:predicate inContext:context];
+        [request setFetchLimit:self.fetchLimit];
+        NSLog(@"FETCHLIMIT = %d",self.fetchLimit);
+        //set sort descriptor
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdateDate" ascending:NO];
+        [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        self.dataArray = [ActivityStory MR_executeFetchRequest:request inContext:context];
+        
+        NSLog(@"Data count = %d",[self.dataArray count]);
     }
     else {
-        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+        //        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+        NSFetchRequest *request = [ActivityStory MR_requestAllInContext:context];
+        [request setFetchLimit:self.fetchLimit];
+        NSLog(@"FETCHLIMIT = %d",self.fetchLimit);
+        //set sort descriptor
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdateDate" ascending:NO];
+        [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+        self.dataArray = [ActivityStory MR_executeFetchRequest:request inContext:context];
+        
+        NSLog(@"Data count = %d",[self.dataArray count]);
     }
     [self reloadTable];
 }
@@ -299,7 +331,7 @@
 {
     ActivityStory *activityStory = [self.dataArray objectAtIndex:sender.tag];
     UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                     bundle:nil];
+                                                                        bundle:nil];
     SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
     userProfileViewController.currentUser = activityStory.author;
     

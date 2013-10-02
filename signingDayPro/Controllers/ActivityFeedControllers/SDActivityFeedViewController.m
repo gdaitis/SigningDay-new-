@@ -88,6 +88,7 @@
     [self.view.layer addSublayer:newShadow];
     
     self.tableView.activityStoryCount = 0;
+    self.tableView.fetchLimit = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
     self.tableView.tableDelegate = self;
@@ -115,6 +116,7 @@
 - (void)checkServer
 {
     self.tableView.activityStoryCount = 0;
+    self.tableView.fetchLimit = 0;
     self.tableView.lastActivityStoryDate = nil;
     self.tableView.endReached = NO;
     [self.tableView checkServerAndDeleteOld:YES];

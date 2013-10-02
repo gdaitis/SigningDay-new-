@@ -60,9 +60,17 @@
 {
     if (self.currentUser) {
         if (self.currentUser.bio)
-            self.textView.text = self.currentUser.bio;
-        else
+        {
+            NSString *text = [self.currentUser.bio stringByReplacingOccurrencesOfString:@" " withString:@""];
+            if (text.length > 0)
+                self.textView.text = self.currentUser.bio;
+            else
+                self.textView.text = @"N/A";
+        }
+        else {
             [self showProgressHudInView:self.view withText:@"Loading"];
+            self.textView.text = @"N/A";
+        }
         
     }
 }

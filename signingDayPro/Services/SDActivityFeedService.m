@@ -70,8 +70,6 @@
                                     }
                                     
                                     int resultCount = [[JSON valueForKey:@"TotalCount"] intValue];
-                                    //indicates if a list has changes
-                                    BOOL listChanged = NO;
                                     
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
@@ -80,20 +78,13 @@
                                     for (int i = 0; i < [activityStories count]; i++) {
                                         NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
                                         
-                                        NSString *identifier = [activityStoryDictionary valueForKey:@"Id"];
-                                        ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
-                                                                                                    withValue:identifier
-                                                                                                    inContext:context];
-                                        if (!activityStory)
-                                            listChanged = YES;
-                                        
                                         [self createActivityStoryFromDictionary:activityStoryDictionary
                                                                         context:context];
                                         
                                         NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
                                         if (i+1 == resultCount) {
                                             NSDate *lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
-                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount",[NSNumber numberWithBool:listChanged], @"ListChanged", nil];
+                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount", nil];
                                         }
                                     }
                                     [context MR_saveToPersistentStoreAndWait];
@@ -167,9 +158,16 @@
     
     if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
         activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
+        if ([activityStory.activityDescription rangeOfString:@"question"].location != NSNotFound) {
+            NSLog(@"Found");
+        }
     }
     if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
         activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
+        
+        if ([activityStory.activityTitle rangeOfString:@"question"].location != NSNotFound) {
+            NSLog(@"Found");
+        }
     }
     if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
         activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
@@ -234,11 +232,15 @@
     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
     if (!user) {
         user = [User MR_createInContext:context];
-        user.identifier = authorIdentifier;
     }
+    user.identifier = authorIdentifier;
     user.username = [dictionary valueForKey:@"Username"];
     user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
     user.name = [dictionary valueForKey:@"DisplayName"];
+    
+    if ([activityStory.identifier isEqualToString:@"8752ed69-6caf-47df-a0d0-5e42de1f7a3d"]) {
+        NSLog(@"found erric post to robertas");
+    }
     
     if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"From"]) {
         //this user created this post, assign it as author
@@ -314,8 +316,6 @@
             }
         }
     }
-    
-    [context MR_saveOnlySelfAndWait];
 }
 
 + (void)postActivityStoryWithMessageBody:(NSString *)messageBody
