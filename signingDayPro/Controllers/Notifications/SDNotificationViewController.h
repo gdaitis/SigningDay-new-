@@ -18,6 +18,7 @@
 
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
             didSelectActivityStory:(ActivityStory *)activityStory;
+- (void)notificationViewControllerDidCheckForNewNotifications:(SDNotificationViewController *)notificationViewController;
 
 @end
 
@@ -26,6 +27,6 @@
 
 @property (nonatomic, weak) id <SDNotificationViewControllerDelegate> delegate;
 
--(void)loadInfo;
+- (void)loadInfo;
 
 @end
