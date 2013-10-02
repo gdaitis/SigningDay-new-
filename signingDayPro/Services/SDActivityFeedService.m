@@ -70,8 +70,6 @@
                                     }
                                     
                                     int resultCount = [[JSON valueForKey:@"TotalCount"] intValue];
-                                    //indicates if a list has changes
-                                    BOOL listChanged = NO;
                                     
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
@@ -80,20 +78,13 @@
                                     for (int i = 0; i < [activityStories count]; i++) {
                                         NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
                                         
-                                        NSString *identifier = [activityStoryDictionary valueForKey:@"Id"];
-                                        ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
-                                                                                                    withValue:identifier
-                                                                                                    inContext:context];
-                                        if (!activityStory)
-                                            listChanged = YES;
-                                        
                                         [self createActivityStoryFromDictionary:activityStoryDictionary
                                                                         context:context];
                                         
                                         NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
                                         if (i+1 == resultCount) {
                                             NSDate *lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
-                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount",[NSNumber numberWithBool:listChanged], @"ListChanged", nil];
+                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount", nil];
                                         }
                                     }
                                     [context MR_saveToPersistentStoreAndWait];
@@ -200,7 +191,6 @@
         //cycle through array and creates updates users
         [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
     }
-    [context MR_saveOnlySelfAndWait];
 }
 
 + (void)createUpdateWebPreviewObjectFromDictionary:(NSDictionary *)dictionary
