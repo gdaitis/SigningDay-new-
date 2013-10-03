@@ -174,7 +174,7 @@
         <attribute name="userType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userTypeId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="activityStories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="author" inverseEntity="ActivityStory" syncable="YES"/>
-        <relationship name="activityStoriesFromOtherUsers" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="postedToUser" inverseEntity="ActivityStory" syncable="YES"/>
+        <relationship name="activityStoriesFromOtherUsers" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="postedToUser" inverseEntity="ActivityStory" syncable="YES"/>
         <relationship name="authorOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="author" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="user" inverseEntity="Comment" syncable="YES"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="users" inverseEntity="Conversation" syncable="YES"/>

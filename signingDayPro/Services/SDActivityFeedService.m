@@ -134,6 +134,11 @@
                                   context:(NSManagedObjectContext *)context
 {
     NSString *identifier = [activityStoryDictionary valueForKey:@"Id"];
+    
+    if ([identifier isEqualToString:@"a91806d2-444a-430a-9ff8-70e366480bcf"]) {
+        NSLog(@"FOUND post with JFK text");
+    }
+    
     ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
                                                                 withValue:identifier
                                                                 inContext:context];
@@ -157,16 +162,9 @@
     
     if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
         activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
-        if ([activityStory.activityDescription rangeOfString:@"question"].location != NSNotFound) {
-            NSLog(@"Found");
-        }
     }
     if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
         activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
-        
-        if ([activityStory.activityTitle rangeOfString:@"question"].location != NSNotFound) {
-            NSLog(@"Found");
-        }
     }
     if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
         activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
@@ -229,27 +227,23 @@
 {
     NSNumber *authorIdentifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"Id"] intValue]];
     
-    
-    
     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
     if (!user) {
         user = [User MR_createInContext:context];
+        user.identifier = authorIdentifier;
     }
-    user.identifier = authorIdentifier;
     user.username = [dictionary valueForKey:@"Username"];
     user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
     user.name = [dictionary valueForKey:@"DisplayName"];
     
-    if ([[dictionary valueForKey:@"DisplayName"] rangeOfString:@"Jabrill Peppers"].location != NSNotFound) {
-        NSLog(@"Found jabrill");
-    }
-    
     if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"From"]) {
         //this user created this post, assign it as author
+        activityStory.author = nil;
         activityStory.author = user;
     }
     if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"For"]) {
         //this is a wall post, activityStory posted on this users wall
+        activityStory.postedToUser = nil;
         activityStory.postedToUser = user;
     }
     
