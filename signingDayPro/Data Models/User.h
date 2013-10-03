@@ -30,7 +30,7 @@
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSNumber * userTypeId;
 @property (nonatomic, retain) NSSet *activityStories;
-@property (nonatomic, retain) ActivityStory *activityStoriesFromOtherUsers;
+@property (nonatomic, retain) NSSet *activityStoriesFromOtherUsers;
 @property (nonatomic, retain) NSSet *authorOf;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *conversations;
@@ -54,6 +54,11 @@
 - (void)removeActivityStoriesObject:(ActivityStory *)value;
 - (void)addActivityStories:(NSSet *)values;
 - (void)removeActivityStories:(NSSet *)values;
+
+- (void)addActivityStoriesFromOtherUsersObject:(ActivityStory *)value;
+- (void)removeActivityStoriesFromOtherUsersObject:(ActivityStory *)value;
+- (void)addActivityStoriesFromOtherUsers:(NSSet *)values;
+- (void)removeActivityStoriesFromOtherUsers:(NSSet *)values;
 
 - (void)addAuthorOfObject:(Conversation *)value;
 - (void)removeAuthorOfObject:(Conversation *)value;

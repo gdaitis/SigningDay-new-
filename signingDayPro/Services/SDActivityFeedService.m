@@ -64,14 +64,13 @@
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    
                                     //check for old stories to be deleted. Usually on pull to refresh
                                     if (deleteOld) {
-                                        [self markAllStoriesForDeletion];
+                                        [self markAllStoriesForDeletionInContext:context];
                                     }
-                                    
                                     int resultCount = [[JSON valueForKey:@"TotalCount"] intValue];
-                                    
-                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
                                     NSDictionary *resultsDictionary = nil;
                                     
@@ -87,11 +86,11 @@
                                             resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount", nil];
                                         }
                                     }
-                                    [context MR_saveToPersistentStoreAndWait];
+                                    [context MR_saveOnlySelfAndWait];
                                     
                                     //returns only after deleting
                                     if (deleteOld) {
-                                        [self deleteAllMarkedStories];
+                                        [self deleteAllMarkedStoriesInContext:context];
                                     }
                                     if (successBlock) {
                                         successBlock(resultsDictionary);
@@ -119,7 +118,7 @@
                                             [self createActivityStoryFromDictionary:activityStoryDictionary
                                                                             context:context];
                                     }
-                                    [context MR_saveToPersistentStoreAndWait];
+                                    [context MR_saveOnlySelfAndWait];
                                     
                                     if (successBlock) {
                                         successBlock();
@@ -135,6 +134,11 @@
                                   context:(NSManagedObjectContext *)context
 {
     NSString *identifier = [activityStoryDictionary valueForKey:@"Id"];
+    
+    if ([identifier isEqualToString:@"a91806d2-444a-430a-9ff8-70e366480bcf"]) {
+        NSLog(@"FOUND post with JFK text");
+    }
+    
     ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
                                                                 withValue:identifier
                                                                 inContext:context];
@@ -158,16 +162,9 @@
     
     if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
         activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
-        if ([activityStory.activityDescription rangeOfString:@"question"].location != NSNotFound) {
-            NSLog(@"Found");
-        }
     }
     if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
         activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
-        
-        if ([activityStory.activityTitle rangeOfString:@"question"].location != NSNotFound) {
-            NSLog(@"Found");
-        }
     }
     if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
         activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
@@ -229,25 +226,24 @@
                              inContext:(NSManagedObjectContext *)context
 {
     NSNumber *authorIdentifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"Id"] intValue]];
+    
     User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
     if (!user) {
         user = [User MR_createInContext:context];
+        user.identifier = authorIdentifier;
     }
-    user.identifier = authorIdentifier;
     user.username = [dictionary valueForKey:@"Username"];
     user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
     user.name = [dictionary valueForKey:@"DisplayName"];
     
-    if ([activityStory.identifier isEqualToString:@"8752ed69-6caf-47df-a0d0-5e42de1f7a3d"]) {
-        NSLog(@"found erric post to robertas");
-    }
-    
     if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"From"]) {
         //this user created this post, assign it as author
+        activityStory.author = nil;
         activityStory.author = user;
     }
     if ([[dictionary valueForKey:@"Verb"] isEqualToString:@"For"]) {
         //this is a wall post, activityStory posted on this users wall
+        activityStory.postedToUser = nil;
         activityStory.postedToUser = user;
     }
     
@@ -583,20 +579,18 @@
     [context MR_saveToPersistentStoreAndWait];
 }
 
-+ (void)markAllStoriesForDeletion
++ (void)markAllStoriesForDeletionInContext:(NSManagedObjectContext *)context
 {
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     NSArray *allStories = [ActivityStory MR_findAllInContext:context];
     
     for (ActivityStory *story in allStories) {
         story.shouldBeDeleted = [NSNumber numberWithBool:YES];
     }
-    [context MR_saveToPersistentStoreAndWait];
+    [context MR_saveOnlySelfAndWait];
 }
 
-+ (void)deleteAllMarkedStories
++ (void)deleteAllMarkedStoriesInContext:(NSManagedObjectContext *)context
 {
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     NSArray *allStories = [ActivityStory MR_findAllInContext:context];
     
     for (ActivityStory *story in allStories) {
@@ -604,7 +598,7 @@
             [context deleteObject:story];
         }
     }
-    [context MR_saveToPersistentStoreAndWait];
+    [context MR_saveOnlySelfAndWait];
 }
 
 + (void)deleteAllLikesFromActivityStory:(ActivityStory *)activityStory

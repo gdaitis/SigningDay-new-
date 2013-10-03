@@ -136,23 +136,23 @@
 		801C90F517E0589800227D88 /* SDFilterListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801C90F417E0589800227D88 /* SDFilterListCell.m */; };
 		801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801C90F617E058AA00227D88 /* SDFilterListCell.xib */; };
 		801E8FE617FB0A9F002FFC81 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801E8FE517FB0A9F002FFC81 /* SDActivityStoryViewController.xib */; };
-		801E8FF517FD5C62002FFC81 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E8FF417FD5C62002FFC81 /* Comment.m */; };
-		801E900017FD5C64002FFC81 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E8FFF17FD5C64002FFC81 /* Team.m */; };
-		801E900317FD5C65002FFC81 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E900217FD5C65002FFC81 /* Like.m */; };
-		801E900617FD5C65002FFC81 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E900517FD5C65002FFC81 /* Message.m */; };
-		801E900917FD5C65002FFC81 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E900817FD5C65002FFC81 /* HighSchool.m */; };
-		801E900C17FD5C66002FFC81 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E900B17FD5C66002FFC81 /* Conference.m */; };
-		801E900F17FD5C66002FFC81 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E900E17FD5C66002FFC81 /* Coach.m */; };
-		801E901217FD5C66002FFC81 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E901117FD5C66002FFC81 /* Conversation.m */; };
-		801E901517FD5C66002FFC81 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E901417FD5C66002FFC81 /* ImageData.m */; };
-		801E901817FD5C66002FFC81 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E901717FD5C66002FFC81 /* Member.m */; };
-		801E901B17FD5C67002FFC81 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E901A17FD5C67002FFC81 /* User.m */; };
-		801E901E17FD5C67002FFC81 /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E901D17FD5C67002FFC81 /* WebPreview.m */; };
-		801E902117FD5C67002FFC81 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E902017FD5C67002FFC81 /* Master.m */; };
-		801E902417FD5C67002FFC81 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E902317FD5C67002FFC81 /* ActivityStory.m */; };
-		801E902717FD5C67002FFC81 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E902617FD5C67002FFC81 /* Player.m */; };
-		801E902A17FD5C67002FFC81 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E902917FD5C67002FFC81 /* Notification.m */; };
-		801E902D17FD5C68002FFC81 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E902C17FD5C68002FFC81 /* State.m */; };
+		801E907117FD868A002FFC81 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E907017FD868A002FFC81 /* Team.m */; };
+		801E907417FD868A002FFC81 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E907317FD868A002FFC81 /* ActivityStory.m */; };
+		801E907717FD868A002FFC81 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E907617FD868A002FFC81 /* Message.m */; };
+		801E907A17FD868A002FFC81 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E907917FD868A002FFC81 /* ImageData.m */; };
+		801E907D17FD868B002FFC81 /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E907C17FD868B002FFC81 /* State.m */; };
+		801E908017FD868B002FFC81 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E907F17FD868B002FFC81 /* User.m */; };
+		801E908317FD868B002FFC81 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E908217FD868B002FFC81 /* Member.m */; };
+		801E908617FD868B002FFC81 /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E908517FD868B002FFC81 /* WebPreview.m */; };
+		801E908917FD868B002FFC81 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E908817FD868B002FFC81 /* Player.m */; };
+		801E908C17FD868B002FFC81 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E908B17FD868B002FFC81 /* Conversation.m */; };
+		801E908F17FD868B002FFC81 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E908E17FD868B002FFC81 /* HighSchool.m */; };
+		801E909217FD868B002FFC81 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E909117FD868B002FFC81 /* Like.m */; };
+		801E909517FD868C002FFC81 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E909417FD868C002FFC81 /* Master.m */; };
+		801E909817FD868C002FFC81 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E909717FD868C002FFC81 /* Comment.m */; };
+		801E909B17FD868C002FFC81 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E909A17FD868C002FFC81 /* Conference.m */; };
+		801E909E17FD868C002FFC81 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E909D17FD868C002FFC81 /* Coach.m */; };
+		801E90A117FD868C002FFC81 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 801E90A017FD868C002FFC81 /* Notification.m */; };
 		8022CC4117EC2B3F0054A1C5 /* SDNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
 		8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */; };
@@ -591,40 +591,40 @@
 		801C90F417E0589800227D88 /* SDFilterListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDFilterListCell.m; sourceTree = "<group>"; };
 		801C90F617E058AA00227D88 /* SDFilterListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDFilterListCell.xib; sourceTree = "<group>"; };
 		801E8FE517FB0A9F002FFC81 /* SDActivityStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityStoryViewController.xib; sourceTree = "<group>"; };
-		801E8FF317FD5C62002FFC81 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		801E8FF417FD5C62002FFC81 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
-		801E8FFE17FD5C64002FFC81 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
-		801E8FFF17FD5C64002FFC81 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
-		801E900117FD5C65002FFC81 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
-		801E900217FD5C65002FFC81 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
-		801E900417FD5C65002FFC81 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		801E900517FD5C65002FFC81 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		801E900717FD5C65002FFC81 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
-		801E900817FD5C65002FFC81 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
-		801E900A17FD5C66002FFC81 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
-		801E900B17FD5C66002FFC81 /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
-		801E900D17FD5C66002FFC81 /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
-		801E900E17FD5C66002FFC81 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
-		801E901017FD5C66002FFC81 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		801E901117FD5C66002FFC81 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		801E901317FD5C66002FFC81 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
-		801E901417FD5C66002FFC81 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
-		801E901617FD5C66002FFC81 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
-		801E901717FD5C66002FFC81 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
-		801E901917FD5C67002FFC81 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		801E901A17FD5C67002FFC81 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		801E901C17FD5C67002FFC81 /* WebPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPreview.h; sourceTree = "<group>"; };
-		801E901D17FD5C67002FFC81 /* WebPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPreview.m; sourceTree = "<group>"; };
-		801E901F17FD5C67002FFC81 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
-		801E902017FD5C67002FFC81 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
-		801E902217FD5C67002FFC81 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
-		801E902317FD5C67002FFC81 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
-		801E902517FD5C67002FFC81 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		801E902617FD5C67002FFC81 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		801E902817FD5C67002FFC81 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		801E902917FD5C67002FFC81 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
-		801E902B17FD5C68002FFC81 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
-		801E902C17FD5C68002FFC81 /* State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = State.m; sourceTree = "<group>"; };
+		801E906F17FD868A002FFC81 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		801E907017FD868A002FFC81 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		801E907217FD868A002FFC81 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
+		801E907317FD868A002FFC81 /* ActivityStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStory.m; sourceTree = "<group>"; };
+		801E907517FD868A002FFC81 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		801E907617FD868A002FFC81 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		801E907817FD868A002FFC81 /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
+		801E907917FD868A002FFC81 /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		801E907B17FD868B002FFC81 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
+		801E907C17FD868B002FFC81 /* State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = State.m; sourceTree = "<group>"; };
+		801E907E17FD868B002FFC81 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		801E907F17FD868B002FFC81 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		801E908117FD868B002FFC81 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
+		801E908217FD868B002FFC81 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
+		801E908417FD868B002FFC81 /* WebPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPreview.h; sourceTree = "<group>"; };
+		801E908517FD868B002FFC81 /* WebPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPreview.m; sourceTree = "<group>"; };
+		801E908717FD868B002FFC81 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		801E908817FD868B002FFC81 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		801E908A17FD868B002FFC81 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		801E908B17FD868B002FFC81 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		801E908D17FD868B002FFC81 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
+		801E908E17FD868B002FFC81 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
+		801E909017FD868B002FFC81 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
+		801E909117FD868B002FFC81 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		801E909317FD868C002FFC81 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
+		801E909417FD868C002FFC81 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
+		801E909617FD868C002FFC81 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		801E909717FD868C002FFC81 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		801E909917FD868C002FFC81 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
+		801E909A17FD868C002FFC81 /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
+		801E909C17FD868C002FFC81 /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
+		801E909D17FD868C002FFC81 /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
+		801E909F17FD868C002FFC81 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		801E90A017FD868C002FFC81 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		8022CC3F17EC2B3F0054A1C5 /* SDNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationViewController.h; sourceTree = "<group>"; };
 		8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationViewController.m; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
@@ -1373,40 +1373,40 @@
 			isa = PBXGroup;
 			children = (
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
-				801E902B17FD5C68002FFC81 /* State.h */,
-				801E902C17FD5C68002FFC81 /* State.m */,
-				801E902817FD5C67002FFC81 /* Notification.h */,
-				801E902917FD5C67002FFC81 /* Notification.m */,
-				801E902517FD5C67002FFC81 /* Player.h */,
-				801E902617FD5C67002FFC81 /* Player.m */,
-				801E902217FD5C67002FFC81 /* ActivityStory.h */,
-				801E902317FD5C67002FFC81 /* ActivityStory.m */,
-				801E901F17FD5C67002FFC81 /* Master.h */,
-				801E902017FD5C67002FFC81 /* Master.m */,
-				801E901C17FD5C67002FFC81 /* WebPreview.h */,
-				801E901D17FD5C67002FFC81 /* WebPreview.m */,
-				801E901917FD5C67002FFC81 /* User.h */,
-				801E901A17FD5C67002FFC81 /* User.m */,
-				801E901617FD5C66002FFC81 /* Member.h */,
-				801E901717FD5C66002FFC81 /* Member.m */,
-				801E901317FD5C66002FFC81 /* ImageData.h */,
-				801E901417FD5C66002FFC81 /* ImageData.m */,
-				801E901017FD5C66002FFC81 /* Conversation.h */,
-				801E901117FD5C66002FFC81 /* Conversation.m */,
-				801E900D17FD5C66002FFC81 /* Coach.h */,
-				801E900E17FD5C66002FFC81 /* Coach.m */,
-				801E900A17FD5C66002FFC81 /* Conference.h */,
-				801E900B17FD5C66002FFC81 /* Conference.m */,
-				801E900717FD5C65002FFC81 /* HighSchool.h */,
-				801E900817FD5C65002FFC81 /* HighSchool.m */,
-				801E900417FD5C65002FFC81 /* Message.h */,
-				801E900517FD5C65002FFC81 /* Message.m */,
-				801E900117FD5C65002FFC81 /* Like.h */,
-				801E900217FD5C65002FFC81 /* Like.m */,
-				801E8FFE17FD5C64002FFC81 /* Team.h */,
-				801E8FFF17FD5C64002FFC81 /* Team.m */,
-				801E8FF317FD5C62002FFC81 /* Comment.h */,
-				801E8FF417FD5C62002FFC81 /* Comment.m */,
+				801E909F17FD868C002FFC81 /* Notification.h */,
+				801E90A017FD868C002FFC81 /* Notification.m */,
+				801E909C17FD868C002FFC81 /* Coach.h */,
+				801E909D17FD868C002FFC81 /* Coach.m */,
+				801E909917FD868C002FFC81 /* Conference.h */,
+				801E909A17FD868C002FFC81 /* Conference.m */,
+				801E909617FD868C002FFC81 /* Comment.h */,
+				801E909717FD868C002FFC81 /* Comment.m */,
+				801E909317FD868C002FFC81 /* Master.h */,
+				801E909417FD868C002FFC81 /* Master.m */,
+				801E909017FD868B002FFC81 /* Like.h */,
+				801E909117FD868B002FFC81 /* Like.m */,
+				801E908D17FD868B002FFC81 /* HighSchool.h */,
+				801E908E17FD868B002FFC81 /* HighSchool.m */,
+				801E908A17FD868B002FFC81 /* Conversation.h */,
+				801E908B17FD868B002FFC81 /* Conversation.m */,
+				801E908717FD868B002FFC81 /* Player.h */,
+				801E908817FD868B002FFC81 /* Player.m */,
+				801E908417FD868B002FFC81 /* WebPreview.h */,
+				801E908517FD868B002FFC81 /* WebPreview.m */,
+				801E908117FD868B002FFC81 /* Member.h */,
+				801E908217FD868B002FFC81 /* Member.m */,
+				801E907E17FD868B002FFC81 /* User.h */,
+				801E907F17FD868B002FFC81 /* User.m */,
+				801E907B17FD868B002FFC81 /* State.h */,
+				801E907C17FD868B002FFC81 /* State.m */,
+				801E907817FD868A002FFC81 /* ImageData.h */,
+				801E907917FD868A002FFC81 /* ImageData.m */,
+				801E907517FD868A002FFC81 /* Message.h */,
+				801E907617FD868A002FFC81 /* Message.m */,
+				801E907217FD868A002FFC81 /* ActivityStory.h */,
+				801E907317FD868A002FFC81 /* ActivityStory.m */,
+				801E906F17FD868A002FFC81 /* Team.h */,
+				801E907017FD868A002FFC81 /* Team.m */,
 				7B755486177C574E00CBE6A3 /* ImageToDataTransformer.h */,
 				7B755487177C574E00CBE6A3 /* ImageToDataTransformer.m */,
 			);
@@ -2364,13 +2364,13 @@
 				8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */,
 				8013F47E174CF96400BA313B /* SDBaseViewController.m in Sources */,
 				8013F481174CF9B000BA313B /* SDMenuViewController.m in Sources */,
-				801E900F17FD5C66002FFC81 /* Coach.m in Sources */,
 				80236158174D1B6800595432 /* SDMenuLabel.m in Sources */,
+				801E909E17FD868C002FFC81 /* Coach.m in Sources */,
 				805CF34E174E03040046E6A5 /* SDSearchBar.m in Sources */,
-				801E902417FD5C67002FFC81 /* ActivityStory.m in Sources */,
+				801E907417FD868A002FFC81 /* ActivityStory.m in Sources */,
 				805CF354174E08320046E6A5 /* SDMenuItemCell.m in Sources */,
+				801E909217FD868B002FFC81 /* Like.m in Sources */,
 				80F301631753A05900134FF4 /* SDNavigationController.m in Sources */,
-				801E900317FD5C65002FFC81 /* Like.m in Sources */,
 				805CF3D21754CAB9004C69E5 /* IIViewDeckController.m in Sources */,
 				805CF3D31754CAB9004C69E5 /* WrapController.m in Sources */,
 				805CF3F21754EB1A004C69E5 /* SDSettingsViewController.m in Sources */,
@@ -2393,11 +2393,11 @@
 				8032F08E1755F98E00C92AAC /* STKeychain.m in Sources */,
 				8032F0921755F98E00C92AAC /* UICustomSwitch.m in Sources */,
 				8032F0931755F98E00C92AAC /* UIImage+Crop.m in Sources */,
+				801E907117FD868A002FFC81 /* Team.m in Sources */,
 				8032F0941755F98E00C92AAC /* UIImage+fixOrientation.m in Sources */,
 				8032F0951755F98E00C92AAC /* UIPlaceHolderTextView.m in Sources */,
-				801E900017FD5C64002FFC81 /* Team.m in Sources */,
-				801E901817FD5C66002FFC81 /* Member.m in Sources */,
-				801E901517FD5C66002FFC81 /* ImageData.m in Sources */,
+				801E908317FD868B002FFC81 /* Member.m in Sources */,
+				801E907A17FD868A002FFC81 /* ImageData.m in Sources */,
 				8032F0961755F98E00C92AAC /* SDUtils.m in Sources */,
 				803ECED017F452CE0060702F /* SDCollectionCell.m in Sources */,
 				7B09B77017F05A480070688F /* HPTextViewInternal.m in Sources */,
@@ -2422,8 +2422,8 @@
 				80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */,
 				80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */,
 				805F6874178EFBF100ED186B /* SDTermsViewController.m in Sources */,
-				801E902717FD5C67002FFC81 /* Player.m in Sources */,
 				805F6877178F00B200ED186B /* SDSharingSettingsViewController.m in Sources */,
+				801E908917FD868B002FFC81 /* Player.m in Sources */,
 				805F687A178F014000ED186B /* SDEditProfileViewController.m in Sources */,
 				80CCAE651793E6C30015429A /* SDUserProfileMemberHeaderView.m in Sources */,
 				80CCAE6A179404BE0015429A /* SDUserProfileSlidingButtonView.m in Sources */,
@@ -2432,10 +2432,10 @@
 				801088BD1795794A002EF1EB /* SDAddTagsViewController.m in Sources */,
 				801088BE1795794A002EF1EB /* SDCameraOverlayView.m in Sources */,
 				801088BF1795794A002EF1EB /* SDEnterMediaInfoViewController.m in Sources */,
+				801E909B17FD868C002FFC81 /* Conference.m in Sources */,
+				801E909517FD868C002FFC81 /* Master.m in Sources */,
 				801088C01795794A002EF1EB /* SDPublishPhotoTableViewController.m in Sources */,
-				801E902117FD5C67002FFC81 /* Master.m in Sources */,
 				801088C11795794A002EF1EB /* SDPublishVideoTableViewController.m in Sources */,
-				801E900C17FD5C66002FFC81 /* Conference.m in Sources */,
 				801088C41795798A002EF1EB /* SDModalNavigationController.m in Sources */,
 				801088F717957A0E002EF1EB /* SDActivityFeedHeaderView.m in Sources */,
 				80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */,
@@ -2446,10 +2446,11 @@
 				7B2D9AAA1799504600B1D660 /* SDStarsRatingView.m in Sources */,
 				7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */,
 				8063D2E0179D507800C01D92 /* SDUserProfileCoachHeaderView.m in Sources */,
-				801E902D17FD5C68002FFC81 /* State.m in Sources */,
+				801E907D17FD868B002FFC81 /* State.m in Sources */,
 				8063D2E2179D507800C01D92 /* SDUserProfileTeamHeaderView.m in Sources */,
 				8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */,
 				80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */,
+				801E909817FD868C002FFC81 /* Comment.m in Sources */,
 				80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				80431E4717A006B3002F6E3D /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				80431E4817A006B3002F6E3D /* NSNumber+MagicalDataImport.m in Sources */,
@@ -2457,7 +2458,6 @@
 				7BC1D86517F315C800D686E6 /* SDNotificationsService.m in Sources */,
 				80431E4A17A006B3002F6E3D /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				80431E4B17A006B3002F6E3D /* NSString+MagicalDataImport.m in Sources */,
-				801E8FF517FD5C62002FFC81 /* Comment.m in Sources */,
 				80431E4C17A006B3002F6E3D /* NSManagedObject+MagicalAggregation.m in Sources */,
 				80431E4D17A006B3002F6E3D /* NSManagedObject+MagicalDataImport.m in Sources */,
 				80431E4E17A006B3002F6E3D /* NSManagedObject+MagicalFinders.m in Sources */,
@@ -2468,12 +2468,12 @@
 				80431E5217A006B3002F6E3D /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				80431E5317A006B3002F6E3D /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				80431E5417A006B3002F6E3D /* NSManagedObjectContext+MagicalThreading.m in Sources */,
+				801E907717FD868A002FFC81 /* Message.m in Sources */,
 				80431E5517A006B3002F6E3D /* NSManagedObjectModel+MagicalRecord.m in Sources */,
 				80431E5617A006B3002F6E3D /* NSPersistentStore+MagicalRecord.m in Sources */,
 				80431E5717A006B3002F6E3D /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				80431E5817A006B3002F6E3D /* MagicalRecord+Actions.m in Sources */,
 				80431E5917A006B3002F6E3D /* MagicalRecord+ErrorHandling.m in Sources */,
-				801E900617FD5C65002FFC81 /* Message.m in Sources */,
 				80431E5A17A006B3002F6E3D /* MagicalRecord+iCloud.m in Sources */,
 				80431E5B17A006B3002F6E3D /* MagicalRecord+Options.m in Sources */,
 				80431E5C17A006B3002F6E3D /* MagicalRecord+Setup.m in Sources */,
@@ -2484,19 +2484,19 @@
 				7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */,
 				7BAF6ED817A93FB000F7C6B3 /* SDCommentCell.m in Sources */,
 				7BAF6EDB17A93FC100F7C6B3 /* SDCommentsHeaderView.m in Sources */,
+				801E908F17FD868B002FFC81 /* HighSchool.m in Sources */,
 				7BAF6EDE17A94DBD00F7C6B3 /* SDLikesViewController.m in Sources */,
 				80B4DD9917B2599300352E07 /* SDUserProfileHighSchoolHeaderView.m in Sources */,
 				7B33A5A317BBC849002A994F /* NSDictionary+NullConverver.m in Sources */,
 				80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */,
 				80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */,
-				801E900917FD5C65002FFC81 /* HighSchool.m in Sources */,
+				801E908617FD868B002FFC81 /* WebPreview.m in Sources */,
+				801E908C17FD868B002FFC81 /* Conversation.m in Sources */,
 				8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */,
+				801E908017FD868B002FFC81 /* User.m in Sources */,
 				7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */,
-				801E901E17FD5C67002FFC81 /* WebPreview.m in Sources */,
 				8083891C17D4D78E006E4FE9 /* SDBaseLandingPageViewController.m in Sources */,
 				8083891D17D4D78E006E4FE9 /* SDPlayerLandingPageViewController.m in Sources */,
-				801E901217FD5C66002FFC81 /* Conversation.m in Sources */,
-				801E901B17FD5C67002FFC81 /* User.m in Sources */,
 				8083892917D4D80B006E4FE9 /* SDLandingPageSearchBar.m in Sources */,
 				7B09B76F17F05A480070688F /* HPGrowingTextView.m in Sources */,
 				7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */,
@@ -2521,8 +2521,8 @@
 				7B1DF0F817E09ADE005455D8 /* AFPropertyListRequestOperation.m in Sources */,
 				7B1DF0F917E09ADE005455D8 /* AFURLConnectionOperation.m in Sources */,
 				7B1DF0FA17E09ADE005455D8 /* AFXMLRequestOperation.m in Sources */,
+				801E90A117FD868C002FFC81 /* Notification.m in Sources */,
 				7B1DF0FB17E09ADE005455D8 /* UIImageView+AFNetworking.m in Sources */,
-				801E902A17FD5C67002FFC81 /* Notification.m in Sources */,
 				7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */,
 				7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */,
 				803ECED517F456BF0060702F /* SDCollectionViewController.m in Sources */,

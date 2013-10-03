@@ -122,7 +122,11 @@
     NSLog(@"url string = %@",URLString);
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               
+                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                               
                                [self createUsersFromResponseObject:responseObject
+                                                       withContext:context
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
@@ -165,7 +169,9 @@
                                              highSchoolUser.theHighSchool.mascot = [userDictionary valueForKey:@"HighSchoolMascot"];
                                              
                                              user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+                                             
                                          }];
+                               [context MR_saveOnlySelfAndWait];
                                if (successBlock)
                                    successBlock();
                            } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -220,7 +226,11 @@
 {
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               
+                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                               
                                [self createUsersFromResponseObject:responseObject
+                                                       withContext:context
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
@@ -235,6 +245,7 @@
                                              user.theTeam.totalScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"Total"] floatValue]];
                                              user.theTeam.teamClass = classString;  //need to save year(class) for team for proper coredata sorting and paging
                                          }];
+                               [context MR_saveOnlySelfAndWait];
                                if (successBlock)
                                    successBlock();
                            } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -302,7 +313,11 @@
 {
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               
+                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                               
                                [self createUsersFromResponseObject:responseObject
+                                                       withContext:context
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypeHighSchool];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
@@ -313,6 +328,7 @@
                                              user.theHighSchool.stateCode = [userDictionary valueForKey:@"HighSchoolState"];
                                              user.theHighSchool.baseAverage = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseAverage"] floatValue]];
                                          }];
+                               [context MR_saveOnlySelfAndWait];
                                if (successBlock)
                                    successBlock();
                            } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -415,9 +431,10 @@
 }
 
 + (void)createUsersFromResponseObject:(id)responseObject
+                          withContext:(NSManagedObjectContext *)context
             withBlockForSpecificTypes:(void (^)(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user))specificTypeOfUserCreationBlock
 {
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+//    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
                                                          options:kNilOptions
                                                            error:nil];
@@ -429,7 +446,7 @@
         if (specificTypeOfUserCreationBlock)
             specificTypeOfUserCreationBlock(userDictionary, context, user);
     }
-    [context MR_saveOnlySelfAndWait];
+//    [context MR_saveOnlySelfAndWait];
 }
 
 + (NSString *)makeRequestsStringFromRequestsArray:(NSArray *)requestsArray
