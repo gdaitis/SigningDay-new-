@@ -2,7 +2,7 @@
 //  Notification.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/1/13.
+//  Created by Lukas Kekys on 10/3/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 
 @implementation Notification
 
+@dynamic activityStoryId;
 @dynamic contentId;
 @dynamic contentTypeId;
 @dynamic contentTypeName;
@@ -20,7 +21,6 @@
 @dynamic identifier;
 @dynamic isNew;
 @dynamic notificationTypeId;
-@dynamic activityStoryId;
 @dynamic fromUser;
 @dynamic master;
 

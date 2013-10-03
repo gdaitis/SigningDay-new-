@@ -2,7 +2,7 @@
 //  Team.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 9/19/13.
+//  Created by Lukas Kekys on 10/3/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -22,10 +22,10 @@
 @property (nonatomic, retain) NSString * nationalRankingString;
 @property (nonatomic, retain) NSNumber * numberOfCommits;
 @property (nonatomic, retain) NSString * stateCode;
+@property (nonatomic, retain) NSString * teamClass;
 @property (nonatomic, retain) NSString * teamName;
 @property (nonatomic, retain) NSNumber * totalScore;
 @property (nonatomic, retain) NSString * universityName;
-@property (nonatomic, retain) NSString * teamClass;
 @property (nonatomic, retain) NSSet *favoritedBy;
 @property (nonatomic, retain) Coach *headCoach;
 @property (nonatomic, retain) User *theUser;
