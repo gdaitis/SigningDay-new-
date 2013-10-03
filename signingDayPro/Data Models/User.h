@@ -2,14 +2,14 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Lukas Kekys on 10/3/13.
+//  Created by Vytautas Gudaitis on 10/3/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, Member, Message, Notification, Player, State, Team;
+@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, Member, Message, Notification, PhotoGallery, Player, State, Team, VideoGallery;
 
 @interface User : NSManagedObject
 
@@ -46,6 +46,8 @@
 @property (nonatomic, retain) Member *theMember;
 @property (nonatomic, retain) Player *thePlayer;
 @property (nonatomic, retain) Team *theTeam;
+@property (nonatomic, retain) PhotoGallery *photoGallery;
+@property (nonatomic, retain) VideoGallery *videoGallery;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

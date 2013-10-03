@@ -1,20 +1,18 @@
 //
-//  State.m
+//  VideoGallery.m
 //  signingDayPro
 //
 //  Created by Vytautas Gudaitis on 10/3/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "State.h"
+#import "VideoGallery.h"
 #import "User.h"
 
 
-@implementation State
+@implementation VideoGallery
 
-@dynamic code;
-@dynamic isInUS;
-@dynamic name;
+@dynamic identifier;
 @dynamic user;
 
 @end
