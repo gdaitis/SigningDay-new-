@@ -33,6 +33,8 @@
 @property (nonatomic, assign) int totalFollowers;
 @property (nonatomic, assign) int currentFollowersPage;
 
+@property (nonatomic, strong) UISearchDisplayController *customSearchDisplayController;
+
 - (void)filterContentForSearchText:(NSString*)searchText;
 
 @end
@@ -49,13 +51,19 @@
     
     _currentFollowersPage = 0;
     
-//    UIImage *image = [UIImage imageNamed:@"x_button_yellow.png"];
-//    CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
-//    UIButton *button = [[UIButton alloc] initWithFrame:frame];
-//    [button setBackgroundImage:image forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-//    self.navigationItem.leftBarButtonItem = barButton;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    else
+    {
+        CGRect frame = self.searchBar.frame;
+        frame.origin.y = 44;
+        self.searchBar.frame = frame;
+    }
+    
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg.png"]];
     [imageView setFrame:self.tableView.bounds];
@@ -64,7 +72,7 @@
     
     // Search bar customization
     _searchBar.tintColor = [UIColor colorWithRed:219.0f/255.0f green:219.0f/255.0f blue:218.0f/255.0f alpha:1.0f];
-
+    
     CGColorRef upperBorderColor = [UIColor lightGrayColor].CGColor;
     CGColorRef lowerBorderColor = [UIColor lightGrayColor].CGColor;
     
@@ -79,6 +87,15 @@
     lowerBorderLayer.borderWidth = 1;
     lowerBorderLayer.borderColor = lowerBorderColor;
     [_searchBar.layer addSublayer:lowerBorderLayer];
+    
+    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
+                                                          initWithSearchBar:_searchBar contentsController:self];
+    
+    self.customSearchDisplayController = searchDisplayController;
+    
+    self.customSearchDisplayController.delegate = self;
+    self.customSearchDisplayController.searchResultsDataSource = self;
+    self.customSearchDisplayController.searchResultsDelegate = self;
     
     [SDFollowingService removeFollowing:YES andFollowed:YES];
 }
@@ -318,6 +335,29 @@
     return 48;
 }
 
+#pragma mark - tableview delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    Conversation *conversation = [Conversation MR_createInContext:context];
+    User *selectedUser = [self.searchResults objectAtIndex:indexPath.row];
+    [conversation addUsersObject:selectedUser];
+    [context MR_saveToPersistentStoreAndWait];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
+                                                         bundle:nil];
+    SDConversationViewController *conversationViewController = (SDConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ConversationViewController"];
+    conversationViewController.conversation = conversation;
+    conversationViewController.isNewConversation = YES;
+    
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
+    
+    [self.navigationController pushViewController:conversationViewController animated:YES];
+}
+
 #pragma mark - UISearchDisplayController delegate methods
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -356,27 +396,6 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
     [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SDFollowingCell" bundle:nil] forCellReuseIdentifier:@"FollowingCellID"];
-}
-
-#pragma mark - Seque transitions
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqual:@"ConversationViewControllerId"]) {
-        
-        NSIndexPath * indexPath = [self.tableView indexPathForCell:sender];
-        
-        //Create conversation for user at indexPath
-        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-        Conversation *conversation = [Conversation MR_createInContext:context];
-        User *selectedUser = [self.searchResults objectAtIndex:indexPath.row];
-        [conversation addUsersObject:selectedUser];
-        [context MR_saveToPersistentStoreAndWait];
-        
-        SDConversationViewController *conversationViewController = (SDConversationViewController *)[segue destinationViewController];
-        conversationViewController.conversation = conversation;
-        conversationViewController.isNewConversation = YES;
-    }
 }
 
 @end

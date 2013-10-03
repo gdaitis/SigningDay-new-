@@ -158,16 +158,8 @@
     }
     else {
         //youtube link
-        [self showYoutubePlayerWithUrlString:activityStory.mediaUrl];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.mediaUrl]];
     }
-}
-
-- (void)showYoutubePlayerWithUrlString:(NSString *)url
-{
-    SDYoutubePlayerViewController *youtubePlayerViewController = [[SDYoutubePlayerViewController alloc] initWithNibName:@"SDYoutubePlayerViewController" bundle:[NSBundle mainBundle]];
-    youtubePlayerViewController.urlLink = url;
-    
-    [self.navigationController pushViewController:youtubePlayerViewController animated:YES];
 }
 
 - (void)playVideoWithUrl:(NSURL *)url

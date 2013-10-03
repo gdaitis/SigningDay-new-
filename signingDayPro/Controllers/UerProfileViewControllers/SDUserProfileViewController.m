@@ -259,10 +259,7 @@
 
 - (void)showYoutubePlayerWithUrlString:(NSString *)url
 {
-    SDYoutubePlayerViewController *youtubePlayerViewController = [[SDYoutubePlayerViewController alloc] initWithNibName:@"SDYoutubePlayerViewController" bundle:[NSBundle mainBundle]];
-    youtubePlayerViewController.urlLink = url;
-    
-    [self.navigationController pushViewController:youtubePlayerViewController animated:YES];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 - (void)playVideoWithUrl:(NSURL *)url

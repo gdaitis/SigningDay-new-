@@ -228,7 +228,7 @@
 
 - (void)playVideo
 {
-    if ([self.activityStory.mediaUrl rangeOfString:@"youtube"].location == NSNotFound) {
+    if ([self.activityStory.mediaUrl rangeOfString:@"youtu"].location == NSNotFound) {
         NSURL *url = [NSURL URLWithString:self.activityStory.mediaUrl];
         [self playVideoWithUrl:url];
     }
@@ -240,10 +240,7 @@
 
 - (void)showYoutubePlayerWithUrlString:(NSString *)url
 {
-    SDYoutubePlayerViewController *youtubePlayerViewController = [[SDYoutubePlayerViewController alloc] initWithNibName:@"SDYoutubePlayerViewController" bundle:[NSBundle mainBundle]];
-    youtubePlayerViewController.urlLink = url;
-    
-    [self.navigationController pushViewController:youtubePlayerViewController animated:YES];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 - (void)playVideoWithUrl:(NSURL *)url
