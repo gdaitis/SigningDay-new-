@@ -185,7 +185,7 @@
                                           NSLog(@"Unliking failed");
                                       }];
     }
-    
+    [self.tableView reloadData];
 }
 
 - (void)commentButtonPressed:(UIButton *)sender

@@ -78,7 +78,15 @@
         self.positionNumberBackgroundImageView.hidden = (dataIsFiltered) ? YES : NO;
         
         self.nameLabel.text = user.name;
-        self.schoolLabel.text = [NSString stringWithFormat:@"%@ (%@)",user.thePlayer.highSchool.theUser.name,user.state.code];
+        
+        NSMutableString *playerLocationString = [[NSMutableString alloc] initWithString:@""];
+        
+        if ([user.thePlayer.highSchool.theUser.name class] != [NSNull null] && user.thePlayer.highSchool.theUser.name != nil)
+            [playerLocationString appendString:user.thePlayer.highSchool.theUser.name];
+        if ([user.state.code class] != [NSNull null] && user.state.code != nil)
+            [playerLocationString appendFormat:@" (%@)",user.state.code];
+        
+        self.schoolLabel.text = playerLocationString;
         self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];
         
         //playing position E.g "CB"
