@@ -282,6 +282,20 @@
     
 }
 
++ (void)getPhotosForUserWithIdentifier:(NSNumber *)identifier
+                       completionBlock:(void (^)(void))completionBlock
+                          failureBlock:(void (^)(void))failureBlock
+{
+    // TODO
+}
+
++ (void)getVideosForUserWithIdentifier:(NSNumber *)identifier
+                       completionBlock:(void (^)(void))completionBlock
+                          failureBlock:(void (^)(void))failureBlock
+{
+    // TODO
+}
+
 + (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier
                         completionBlock:(void (^)(void))completionBlock
                            failureBlock:(void (^)(void))failureBlock

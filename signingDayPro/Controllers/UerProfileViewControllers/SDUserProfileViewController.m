@@ -90,6 +90,10 @@
                             completionBlock:^{
                                 [self setupHeaderView];
                             } failureBlock:nil];
+    
+    [SDProfileService getPhotosForUserWithIdentifier:self.currentUser.identifier
+                                     completionBlock:nil
+                                        failureBlock:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

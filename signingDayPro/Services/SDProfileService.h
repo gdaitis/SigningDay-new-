@@ -26,6 +26,12 @@ typedef enum {
 + (void)getProfileInfoForUser:(User *)theUser
               completionBlock:(void (^)(void))completionBlock
                  failureBlock:(void (^)(void))failureBlock;
++ (void)getPhotosForUserWithIdentifier:(NSNumber *)identifier
+                       completionBlock:(void (^)(void))completionBlock
+                          failureBlock:(void (^)(void))failureBlock;
++ (void)getVideosForUserWithIdentifier:(NSNumber *)identifier
+                       completionBlock:(void (^)(void))completionBlock
+                          failureBlock:(void (^)(void))failureBlock;
 + (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier
                         completionBlock:(void (^)(void))completionBlock
                            failureBlock:(void (^)(void))failureBlock;
