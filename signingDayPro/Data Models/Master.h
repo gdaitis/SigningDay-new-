@@ -2,7 +2,7 @@
 //  Master.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 9/26/13.
+//  Created by Lukas Kekys on 10/3/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -23,8 +23,8 @@
 @property (nonatomic, retain) NSSet *conversations;
 @property (nonatomic, retain) NSSet *followedBy;
 @property (nonatomic, retain) NSSet *following;
-@property (nonatomic, retain) NSSet *users;
 @property (nonatomic, retain) NSSet *notificationsReceived;
+@property (nonatomic, retain) NSSet *users;
 @end
 
 @interface Master (CoreDataGeneratedAccessors)
@@ -49,14 +49,14 @@
 - (void)addFollowing:(NSSet *)values;
 - (void)removeFollowing:(NSSet *)values;
 
-- (void)addUsersObject:(User *)value;
-- (void)removeUsersObject:(User *)value;
-- (void)addUsers:(NSSet *)values;
-- (void)removeUsers:(NSSet *)values;
-
 - (void)addNotificationsReceivedObject:(Notification *)value;
 - (void)removeNotificationsReceivedObject:(Notification *)value;
 - (void)addNotificationsReceived:(NSSet *)values;
 - (void)removeNotificationsReceived:(NSSet *)values;
+
+- (void)addUsersObject:(User *)value;
+- (void)removeUsersObject:(User *)value;
+- (void)addUsers:(NSSet *)values;
+- (void)removeUsers:(NSSet *)values;
 
 @end
