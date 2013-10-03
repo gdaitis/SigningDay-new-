@@ -135,10 +135,6 @@
 {
     NSString *identifier = [activityStoryDictionary valueForKey:@"Id"];
     
-    if ([identifier isEqualToString:@"a91806d2-444a-430a-9ff8-70e366480bcf"]) {
-        NSLog(@"FOUND post with JFK text");
-    }
-    
     ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
                                                                 withValue:identifier
                                                                 inContext:context];

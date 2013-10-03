@@ -96,10 +96,6 @@
 {
     //this function setups attributed user name. If user has parameters adds them, also if activityStory is a wallpost adds arrows and appends other user name
     
-    if ([activityStory.identifier isEqualToString:@"a91806d2-444a-430a-9ff8-70e366480bcf"]) {
-        NSLog(@"FOUND post with JFK text");
-    }
-    
     if (!activityStory)
         return;
     

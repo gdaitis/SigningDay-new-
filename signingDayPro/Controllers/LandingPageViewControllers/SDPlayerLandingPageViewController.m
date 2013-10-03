@@ -225,6 +225,8 @@
         
 #warning finish me
         [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:classYearsStringsArray positionStringsArray:positionStringsArray successBlock:^{
+            
+            self.currentSearchUserCount +=kPageCountForLandingPages;
             [self loadFilteredData];
         } failureBlock:^{
             
