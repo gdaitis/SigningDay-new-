@@ -37,6 +37,9 @@
         self.extendedLayoutIncludesOpaqueBars = NO;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+    
+    self.tableView.clipsToBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,7 +68,7 @@
 
 - (void)hideAllHeyboards
 {
-    [self.searchBar resignFirstResponder];
+    [self removeKeyboard];
 }
 
 #pragma mark - Table view data source
@@ -100,6 +103,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.searchBar isFirstResponder]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
         [self removeKeyboard];
         if (self.searchBar.text.length < 1) {
             self.currentUserCount = 0;
@@ -108,6 +112,7 @@
         }
     }
     else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                             bundle:nil];
         SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
@@ -166,11 +171,6 @@
 
 #pragma mark - UISearchBar delegate
 
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-//{
-//    [self searchFilteredData];
-//}
-
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     UIButton *hideKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -200,6 +200,10 @@
 {
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
+        [(UIButton *)[self.view viewWithTag:kHideKeyboardTag] removeFromSuperview];
+    }
+    if ([self.customSearchDisplayController.searchBar isFirstResponder]) {
+        [self.customSearchDisplayController.searchBar resignFirstResponder];
         [(UIButton *)[self.view viewWithTag:kHideKeyboardTag] removeFromSuperview];
     }
 }
@@ -297,6 +301,29 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
     return YES;
+}
+
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void) keyboardWillHide {
+    
+    UITableView *tableView = [[self searchDisplayController] searchResultsTableView];
+    
+    [tableView setContentInset:UIEdgeInsetsZero];
+    
+    [tableView setScrollIndicatorInsets:UIEdgeInsetsZero];
+    
 }
 
 #pragma mark - Functions which extended classes should overide
