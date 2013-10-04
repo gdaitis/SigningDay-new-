@@ -297,26 +297,14 @@
          completionBlock:(void (^)(void))completionBlock
             failureBlock:(void (^)(void))failureBlock
 {
-    [[SDAPIClient sharedClient] getPath:@"media/files.json"
-                             parameters:@{@"GalleryId": [NSString stringWithFormat:@"%d", [user.photoGallery.identifier integerValue]]}
-                                success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                    NSArray *mediaPosts = [JSON valueForKey:@"MediaPosts"];
-                                    for (__strong NSDictionary *mediaPost in mediaPosts) {
-                                        mediaPost = [mediaPost dictionaryByReplacingNullsWithStrings];
-                                    }
-                                    if (completionBlock)
-                                        completionBlock();
-                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    if (failureBlock)
-                                        failureBlock();
-                                }];
+    
 }
 
 + (void)getVideosForUser:(User *)user
          completionBlock:(void (^)(void))completionBlock
             failureBlock:(void (^)(void))failureBlock
 {
-    // TODO
+    
 }
 
 + (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier
@@ -679,35 +667,4 @@
                                  }];
 }
 
-
-
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
