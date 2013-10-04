@@ -112,6 +112,19 @@
     return 0;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    int result = 0;
+    if (self.pagingEndReached) {
+        result = [self.dataArray count];
+    }
+    else {
+        result = ([self.dataArray count] == 0) ? 0 : [self.dataArray count]+1;
+    }
+    return result;
+}
+
 #pragma mark - Filter View handling
 
 - (void)hideFilterView
@@ -206,30 +219,34 @@
 - (void)searchFilteredData
 {
     [self hideFilterView];
+    
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
     NSString *searchBarText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     if (searchBarText.length < 3 && self.currentFilterState == nil && self.currentFilterPositionDictionary == nil) {
         self.dataIsFiltered = NO;
         self.currentUserCount = 0;
+        self.pagingEndReached = NO;
         [self checkServer];
     }
     else {
         self.dataIsFiltered = YES;
+        self.dataDownloadInProgress = YES;
         
         [self showProgressHudInView:self.view withText:@"Loading"];
         
         NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
-        NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
+//        NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
         NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
         
 #warning finish me
-        [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:classYearsStringsArray positionStringsArray:positionStringsArray successBlock:^{
+        [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:nil positionStringsArray:positionStringsArray successBlock:^{
             
             self.currentSearchUserCount +=kPageCountForLandingPages;
+            self.dataDownloadInProgress = NO;
             [self loadFilteredData];
         } failureBlock:^{
-            
+            self.dataDownloadInProgress = NO;
         }];
     }
 }
@@ -240,7 +257,8 @@
 {
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
     NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate]];
+    NSPredicate *userBaseScorePredicate = [NSPredicate predicateWithFormat:@"thePlayer.baseScore > 0"];
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate, userBaseScorePredicate]];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
@@ -267,13 +285,13 @@
     NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
     
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
-    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+    NSPredicate *userYearPredicate = (self.searchBar.text.length >= 3) ? nil : [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
     NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"state.code == %@",self.currentFilterState.code] : nil;
     NSPredicate *userPositionPredicate = self.currentFilterPositionDictionary ? [NSPredicate predicateWithFormat:@"thePlayer.position == %@",[self.currentFilterPositionDictionary valueForKey:@"shortName"]] : nil;
     NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
     
-    
     [predicateArray addObject:userTypePredicate];
+    if (userYearPredicate)
     [predicateArray addObject:userYearPredicate];
     if (nameSearchPredicate)
         [predicateArray addObject:nameSearchPredicate];
@@ -287,6 +305,10 @@
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
     
+    if ([self.dataArray count] < self.currentUserCount) {
+        self.pagingEndReached = YES;
+    }
+    
     [self reloadTableView];
     [self hideProgressHudInView:self.view];
 }
@@ -296,13 +318,47 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self removeKeyboard];
+    self.currentSearchUserCount = 0;
+    self.pagingEndReached = NO;
     [self searchFilteredData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
     self.dataIsFiltered = NO;
+    self.currentSearchUserCount = 0;
+    self.pagingEndReached = NO;
     [self loadData];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    //change text for default "No results", to my own
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        for (UIView *v in controller.searchResultsTableView.subviews) {
+            if ([v isKindOfClass:[UILabel self]]) {
+                if (searchString.length < 3) {
+                    ((UILabel *)v).text = @"Enter minimum 3 symbols";
+                }
+                else {
+                    ((UILabel *)v).text = @"No results";
+                }
+                break;
+            }
+        }
+    });
+    
+    if (searchString.length > 2) {
+        [self loadFilteredData];
+        self.currentSearchUserCount = 0;
+        self.pagingEndReached = NO;
+        [self searchFilteredData];
+    }
+    else {
+        self.dataArray = nil;
+        [self reloadTableView];
+    }
+    return YES;
 }
 
 #pragma mark - SDPlayersSearchHeader Delegate
@@ -324,6 +380,8 @@
 
 - (void)playersSearchHeaderPressedSearchButton:(SDPlayersSearchHeader *)playersSearchHeader
 {
+    self.currentSearchUserCount = 0;
+    self.pagingEndReached = NO;
     [self searchFilteredData];
 }
 

@@ -66,7 +66,10 @@
     }
     int top = pageEndIndex - pageBeginIndex;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc&$skip=%d&$top=%d&$format=json&$filter=(Class eq %@)", kSDBaseSigningDayURLString, pageBeginIndex, top, classString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc&$skip=%d&$top=%d&$format=json&$filter=((Class eq %@) and (DisplayBaseScore eq true))", kSDBaseSigningDayURLString, pageBeginIndex, top, classString];
+    
+    //    &$DisplayBaseScore=true
+    NSLog(@"urlString = %@",urlString);
     
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
@@ -110,6 +113,9 @@
     NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
     int top = pageEndIndex - pageBeginIndex;
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=DisplayName asc&$format=json&$skip=%d&$top=%d&$filter=(%@)", kSDBaseSigningDayURLString, pageBeginIndex, top, filterString];
+    
+//    &$DisplayBaseScore=true
+    NSLog(@"urlString = %@",urlString);
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
                                            failureBlock:failureBlock];
