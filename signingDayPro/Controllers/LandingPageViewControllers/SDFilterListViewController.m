@@ -34,6 +34,12 @@
     [self.refreshControl removeFromSuperview];
 	// Do any additional setup after loading the view.
     
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     switch (self.filterListType) {
         case LIST_TYPE_POSITIONS:
         {

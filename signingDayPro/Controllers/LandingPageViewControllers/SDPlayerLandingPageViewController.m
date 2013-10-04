@@ -101,10 +101,25 @@
         
         if (!self.dataDownloadInProgress) {
             //data downloading not in progress, we can start downloading further pages
-            [self checkServer];
+            if (self.dataIsFiltered) {
+                if (self.searchBar.text.length >= 3) {
+                    [self searchFilteredData];
+                }
+                else {
+                    [self checkServer];
+                }
+            }
+            else {
+                [self checkServer];
+            }
         }
         return cell;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -210,9 +225,11 @@
         self.currentUserCount += kPageCountForLandingPages;
         self.dataDownloadInProgress = NO;
         [self loadData];
+        [self hideProgressHudInView:self.view];
     } failureBlock:^{
         self.dataDownloadInProgress = NO;
         NSLog(@"Data downloading failed in :%@",[self class]);
+        [self hideProgressHudInView:self.view];
     }];
 }
 
@@ -233,20 +250,19 @@
         self.dataIsFiltered = YES;
         self.dataDownloadInProgress = YES;
         
-        [self showProgressHudInView:self.view withText:@"Loading"];
         
         NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
-//        NSArray *classYearsStringsArray = [self.currentFilterYearDictionary objectForKey:@"name"] ? [NSArray arrayWithObject:[self.currentFilterYearDictionary objectForKey:@"name"]] : nil;
         NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
         
-#warning finish me
         [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:nil positionStringsArray:positionStringsArray successBlock:^{
             
             self.currentSearchUserCount +=kPageCountForLandingPages;
             self.dataDownloadInProgress = NO;
             [self loadFilteredData];
+            [self hideProgressHudInView:self.view];
         } failureBlock:^{
             self.dataDownloadInProgress = NO;
+            [self hideProgressHudInView:self.view];
         }];
     }
 }
@@ -264,7 +280,6 @@
     
     //seting fetch limit for pagination
     NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
-    NSLog(@"self.currentUserCount = %d",self.currentUserCount);
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
@@ -275,42 +290,48 @@
     if ([self.dataArray count] < self.currentUserCount) {
         self.pagingEndReached = YES;
     }
-    [self hideProgressHudInView:self.view];
+    
     [self reloadTableView];
 }
 
 - (void)loadFilteredData
 {
-    //Form and compound predicates
-    NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
-    
-    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
-    NSPredicate *userYearPredicate = (self.searchBar.text.length >= 3) ? nil : [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"state.code == %@",self.currentFilterState.code] : nil;
-    NSPredicate *userPositionPredicate = self.currentFilterPositionDictionary ? [NSPredicate predicateWithFormat:@"thePlayer.position == %@",[self.currentFilterPositionDictionary valueForKey:@"shortName"]] : nil;
-    NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
-    
-    [predicateArray addObject:userTypePredicate];
-    if (userYearPredicate)
-    [predicateArray addObject:userYearPredicate];
-    if (nameSearchPredicate)
-        [predicateArray addObject:nameSearchPredicate];
-    if (userStatePredicate)
-        [predicateArray addObject:userStatePredicate];
-    if (userPositionPredicate)
-        [predicateArray addObject:userPositionPredicate];
-    
-    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
-    
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundPredicate inContext:context];
-    
-    if ([self.dataArray count] < self.currentUserCount) {
-        self.pagingEndReached = YES;
+    if (self.currentSearchUserCount > 0) {
+        
+        //Form and compound predicates
+        NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
+        
+        NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
+        NSPredicate *userYearPredicate = (self.searchBar.text.length >= 3) ? nil : [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
+        NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"state.code == %@",self.currentFilterState.code] : nil;
+        NSPredicate *userPositionPredicate = self.currentFilterPositionDictionary ? [NSPredicate predicateWithFormat:@"thePlayer.position == %@",[self.currentFilterPositionDictionary valueForKey:@"shortName"]] : nil;
+        NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
+        
+        [predicateArray addObject:userTypePredicate];
+        if (userYearPredicate)
+            [predicateArray addObject:userYearPredicate];
+        if (nameSearchPredicate)
+            [predicateArray addObject:nameSearchPredicate];
+        if (userStatePredicate)
+            [predicateArray addObject:userStatePredicate];
+        if (userPositionPredicate)
+            [predicateArray addObject:userPositionPredicate];
+        
+        NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
+        
+        [request setFetchLimit:self.currentSearchUserCount];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+        [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        self.dataArray = [User MR_executeFetchRequest:request inContext:context];
+        
+        if ([self.dataArray count] < self.currentSearchUserCount) {
+            self.pagingEndReached = YES;
+        }
     }
     
     [self reloadTableView];
-    [self hideProgressHudInView:self.view];
 }
 
 #pragma mark - Search bar search clicked
@@ -320,6 +341,7 @@
     [self removeKeyboard];
     self.currentSearchUserCount = 0;
     self.pagingEndReached = NO;
+    [self showProgressHudInView:self.view withText:@"Loading"];
     [self searchFilteredData];
 }
 
@@ -382,6 +404,7 @@
 {
     self.currentSearchUserCount = 0;
     self.pagingEndReached = NO;
+    [self showProgressHudInView:self.view withText:@"Loading"];
     [self searchFilteredData];
 }
 

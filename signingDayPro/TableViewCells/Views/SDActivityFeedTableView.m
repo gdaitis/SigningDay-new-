@@ -255,7 +255,6 @@
         [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
         self.dataArray = [ActivityStory MR_executeFetchRequest:request inContext:context];
         
-        NSLog(@"Data count = %d",[self.dataArray count]);
     }
     else {
         //        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
@@ -266,8 +265,6 @@
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdateDate" ascending:NO];
         [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
         self.dataArray = [ActivityStory MR_executeFetchRequest:request inContext:context];
-        
-        NSLog(@"Data count = %d",[self.dataArray count]);
     }
     [self reloadTable];
 }
