@@ -31,11 +31,9 @@
 #import "SDFollowingService.h"
 #import "SDBioViewController.h"
 #import "SDCollectionViewController.h"
-
 #import <MediaPlayer/MediaPlayer.h>
 #import "SDImageEnlargementView.h"
 #import "SDYoutubePlayerViewController.h"
-
 #import "SDBaseProfileHeaderView.h"
 #import "WebPreview.h"
 
@@ -90,6 +88,10 @@
                             completionBlock:^{
                                 [self setupHeaderView];
                             } failureBlock:nil];
+    
+    [SDProfileService getPhotosForUser:self.currentUser
+                       completionBlock:nil
+                          failureBlock:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

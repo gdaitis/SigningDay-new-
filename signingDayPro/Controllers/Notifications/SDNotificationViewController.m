@@ -16,6 +16,7 @@
 #import "SDUtils.h"
 #import "SDActivityFeedService.h"
 #import "ActivityStory.h"
+#import "SDUserProfileViewController.h"
 
 @interface SDNotificationViewController ()
 
@@ -71,7 +72,7 @@
     Master *master = [self getMaster];
     NSPredicate *masterPredicate = [NSPredicate predicateWithFormat:@"master == %@", master];
     NSPredicate *notificationTypesPredicate = [NSPredicate predicateWithFormat:@"notificationTypeId == %d OR notificationTypeId == %d OR notificationTypeId == %d", SDNotificationTypeLike, SDNotificationTypeComment, SDNotificationTypeFollowing];
-    NSPredicate *contentTypeNamesPredicate = [NSPredicate predicateWithFormat:@"contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@", @"Comment", @"Wall Post", @"Status Message"];
+    NSPredicate *contentTypeNamesPredicate = [NSPredicate predicateWithFormat:@"contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@", @"Comment", @"Wall Post", @"Status Message", @"Following"];
     NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[masterPredicate, notificationTypesPredicate, contentTypeNamesPredicate]];
     self.dataArray = [Notification MR_findAllSortedBy:@"createdDate"
                                             ascending:NO
@@ -216,6 +217,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     Notification *notification = [self.dataArray objectAtIndex:indexPath.row];
+    if ([notification.notificationTypeId isEqualToNumber:[NSNumber numberWithInteger:SDNotificationTypeFollowing]]) {
+        [self.delegate notificationViewController:self
+                                    didSelectUser:notification.fromUser];
+    }
     if (notification.activityStoryId) {
         [self beginRefreshing];
         [SDActivityFeedService getActivityStoryWithContentId:notification.activityStoryId

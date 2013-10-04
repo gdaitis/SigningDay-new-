@@ -119,6 +119,10 @@
         <relationship name="fromUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notificationsParticipatedIn" inverseEntity="User" syncable="YES"/>
         <relationship name="master" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="notificationsReceived" inverseEntity="Master" syncable="YES"/>
     </entity>
+    <entity name="PhotoGallery" representedClassName="PhotoGallery" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="photoGallery" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Player" representedClassName="Player" syncable="YES">
         <attribute name="baseScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -184,12 +188,18 @@
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
         <relationship name="notificationsParticipatedIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="fromUser" inverseEntity="Notification" syncable="YES"/>
+        <relationship name="photoGallery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoGallery" inverseName="user" inverseEntity="PhotoGallery" syncable="YES"/>
         <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="user" inverseEntity="State" syncable="YES"/>
         <relationship name="theCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="theUser" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theHighSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="theUser" inverseEntity="HighSchool" syncable="YES"/>
         <relationship name="theMember" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Member" inverseName="theUser" inverseEntity="Member" syncable="YES"/>
         <relationship name="thePlayer" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="theUser" inverseEntity="Player" syncable="YES"/>
         <relationship name="theTeam" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="theUser" inverseEntity="Team" syncable="YES"/>
+        <relationship name="videoGallery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VideoGallery" inverseName="user" inverseEntity="VideoGallery" syncable="YES"/>
+    </entity>
+    <entity name="VideoGallery" representedClassName="VideoGallery" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="videoGallery" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="WebPreview" representedClassName="WebPreview" syncable="YES">
         <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
@@ -215,7 +225,9 @@
         <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
         <element name="State" positionX="342" positionY="-495" width="128" height="103"/>
         <element name="Team" positionX="999" positionY="-513" width="128" height="285"/>
-        <element name="User" positionX="585" positionY="-198" width="128" height="538"/>
+        <element name="User" positionX="585" positionY="-198" width="128" height="568"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
+        <element name="PhotoGallery" positionX="403" positionY="332" width="128" height="73"/>
+        <element name="VideoGallery" positionX="423" positionY="422" width="128" height="73"/>
     </elements>
 </model>

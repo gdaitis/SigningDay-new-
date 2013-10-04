@@ -554,22 +554,40 @@
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
             didSelectActivityStory:(ActivityStory *)activityStory
 {
-    [self hideNotificationsAndRemoveContentView:YES];
-    
-    //remember in which controller we will need to open following view
-    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_NOTIFICATIONS];
-    
     SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] init];
     activityStoryViewController.activityStory = activityStory;
     
-    [self performSelector:@selector(pushViewController:)
-               withObject:activityStoryViewController
-               afterDelay:0.2f];
+    [self pushViewCOntrollerFromNotificationsViewController:activityStoryViewController];
+}
+
+- (void)notificationViewController:(SDNotificationViewController *)notificationViewController
+                     didSelectUser:(User *)user
+{
+    
+    
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self pushViewCOntrollerFromNotificationsViewController:userProfileViewController];
 }
 
 - (void)notificationViewControllerDidCheckForNewNotifications:(SDNotificationViewController *)notificationViewController
 {
     [self checkServer];
+}
+
+- (void)pushViewCOntrollerFromNotificationsViewController:(UIViewController *)viewController
+{
+    [self hideNotificationsAndRemoveContentView:YES];
+    
+    //remember in which controller we will need to open following view
+    [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_NOTIFICATIONS];
+    
+    [self performSelector:@selector(pushViewController:)
+               withObject:viewController
+               afterDelay:0.2f];
 }
 
 #pragma mark - SDFollowingViewController delegate methods
