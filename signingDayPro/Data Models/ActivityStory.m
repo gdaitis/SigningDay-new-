@@ -2,7 +2,7 @@
 //  ActivityStory.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/3/13.
+//  Created by Vytautas Gudaitis on 10/4/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 

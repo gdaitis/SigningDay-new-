@@ -36,6 +36,7 @@
 #import "SDYoutubePlayerViewController.h"
 #import "SDBaseProfileHeaderView.h"
 #import "WebPreview.h"
+#import "MediaGallery.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
@@ -362,20 +363,21 @@
 
 - (void)photosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
 {
-    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                        bundle:nil];
-#warning add user related stuff
-    SDCollectionViewController *collectionViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
-    [self.navigationController pushViewController:collectionViewController animated:YES];
+    [self pushCollectionViewControllerWithGalleryType:SDGalleryTypePhotos];
 }
 
 - (void)videosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
 {
+    [self pushCollectionViewControllerWithGalleryType:SDGalleryTypeVideos];
+}
+
+- (void)pushCollectionViewControllerWithGalleryType:(SDGalleryType)galleryType
+{
     UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                         bundle:nil];
-#warning add user related stuff
-    
     SDCollectionViewController *collectionViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
+    collectionViewController.galleryType = galleryType;
+    collectionViewController.user = self.currentUser;
     [self.navigationController pushViewController:collectionViewController animated:YES];
 }
 

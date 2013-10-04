@@ -92,6 +92,22 @@
         <relationship name="notificationsReceived" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="master" inverseEntity="Notification" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="master" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="MediaGallery" representedClassName="MediaGallery" syncable="YES">
+        <attribute name="galleryType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="mediaItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MediaItem" inverseName="mediaGallery" inverseEntity="MediaItem" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="mediaGalleries" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="MediaItem" representedClassName="MediaItem" syncable="YES">
+        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mediaGallery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaGallery" inverseName="mediaItems" inverseEntity="MediaGallery" syncable="YES"/>
+    </entity>
     <entity name="Member" representedClassName="Member" syncable="YES">
         <attribute name="memberSince" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="postsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -118,10 +134,6 @@
         <attribute name="notificationTypeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="fromUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notificationsParticipatedIn" inverseEntity="User" syncable="YES"/>
         <relationship name="master" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="notificationsReceived" inverseEntity="Master" syncable="YES"/>
-    </entity>
-    <entity name="PhotoGallery" representedClassName="PhotoGallery" syncable="YES">
-        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="photoGallery" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Player" representedClassName="Player" syncable="YES">
         <attribute name="baseScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -186,20 +198,15 @@
         <relationship name="following" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="followedBy" inverseEntity="Master" syncable="YES"/>
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="user" inverseEntity="Like" syncable="YES"/>
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
+        <relationship name="mediaGalleries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MediaGallery" inverseName="user" inverseEntity="MediaGallery" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
         <relationship name="notificationsParticipatedIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="fromUser" inverseEntity="Notification" syncable="YES"/>
-        <relationship name="photoGallery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoGallery" inverseName="user" inverseEntity="PhotoGallery" syncable="YES"/>
         <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="user" inverseEntity="State" syncable="YES"/>
         <relationship name="theCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="theUser" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theHighSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="theUser" inverseEntity="HighSchool" syncable="YES"/>
         <relationship name="theMember" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Member" inverseName="theUser" inverseEntity="Member" syncable="YES"/>
         <relationship name="thePlayer" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="theUser" inverseEntity="Player" syncable="YES"/>
         <relationship name="theTeam" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="theUser" inverseEntity="Team" syncable="YES"/>
-        <relationship name="videoGallery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VideoGallery" inverseName="user" inverseEntity="VideoGallery" syncable="YES"/>
-    </entity>
-    <entity name="VideoGallery" representedClassName="VideoGallery" syncable="YES">
-        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="videoGallery" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="WebPreview" representedClassName="WebPreview" syncable="YES">
         <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
@@ -219,15 +226,15 @@
         <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
         <element name="Like" positionX="180" positionY="-124" width="128" height="88"/>
         <element name="Master" positionX="-360" positionY="18" width="128" height="223"/>
+        <element name="MediaItem" positionX="151" positionY="405" width="128" height="163"/>
         <element name="Member" positionX="799" positionY="206" width="128" height="118"/>
         <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
         <element name="Notification" positionX="396" positionY="-783" width="128" height="193"/>
         <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
         <element name="State" positionX="342" positionY="-495" width="128" height="103"/>
         <element name="Team" positionX="999" positionY="-513" width="128" height="285"/>
-        <element name="User" positionX="585" positionY="-198" width="128" height="568"/>
+        <element name="User" positionX="585" positionY="-198" width="128" height="553"/>
         <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
-        <element name="PhotoGallery" positionX="403" positionY="332" width="128" height="73"/>
-        <element name="VideoGallery" positionX="423" positionY="422" width="128" height="73"/>
+        <element name="MediaGallery" positionX="385" positionY="351" width="128" height="103"/>
     </elements>
 </model>

@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
+#import "SDProfileService.h"
+
+@class User;
 
 @interface SDCollectionViewController : SDBaseViewController
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic) SDGalleryType galleryType;
 
 @end

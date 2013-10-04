@@ -2,14 +2,14 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/3/13.
+//  Created by Vytautas Gudaitis on 10/4/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, Member, Message, Notification, PhotoGallery, Player, State, Team, VideoGallery;
+@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, Member, Message, Notification, Player, State, Team;
 
 @interface User : NSManagedObject
 
@@ -46,8 +46,7 @@
 @property (nonatomic, retain) Member *theMember;
 @property (nonatomic, retain) Player *thePlayer;
 @property (nonatomic, retain) Team *theTeam;
-@property (nonatomic, retain) PhotoGallery *photoGallery;
-@property (nonatomic, retain) VideoGallery *videoGallery;
+@property (nonatomic, retain) NSSet *mediaGalleries;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -91,5 +90,10 @@
 - (void)removeNotificationsParticipatedInObject:(Notification *)value;
 - (void)addNotificationsParticipatedIn:(NSSet *)values;
 - (void)removeNotificationsParticipatedIn:(NSSet *)values;
+
+- (void)addMediaGalleriesObject:(NSManagedObject *)value;
+- (void)removeMediaGalleriesObject:(NSManagedObject *)value;
+- (void)addMediaGalleries:(NSSet *)values;
+- (void)removeMediaGalleries:(NSSet *)values;
 
 @end

@@ -20,7 +20,6 @@
 #import "SDActivityFeedHeaderView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Reachability.h"
-#import "SDCameraOverlayView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import "SDEnterMediaInfoViewController.h"
@@ -43,7 +42,7 @@
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
-@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate,SDActivityFeedTableViewDelegate>
+@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate,SDActivityFeedTableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet SDActivityFeedTableView *tableView;
 @property (nonatomic, weak) IBOutlet SDActivityFeedHeaderView *headerView;
@@ -225,9 +224,9 @@
             self.isFromLibrary = NO;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             self.imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
-            self.imagePicker.cameraViewTransform = CGAffineTransformMakeScale(1.23, 1.23);
+            //self.imagePicker.cameraViewTransform = CGAffineTransformMakeScale(1.23, 1.23);
             self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
-            self.imagePicker.showsCameraControls = NO;
+            //self.imagePicker.showsCameraControls = NO;
             
             [[Reachability reachabilityForInternetConnection] startNotifier];
             NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
@@ -237,10 +236,10 @@
                 self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
             }
             
-            SDCameraOverlayView *cameraOverlayView = [[SDCameraOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
-            cameraOverlayView.delegate = self;
-            self.imagePicker.view.frame = cameraOverlayView.frame;
-            self.imagePicker.cameraOverlayView = cameraOverlayView;
+            //SDCameraOverlayView *cameraOverlayView = [[SDCameraOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+            //cameraOverlayView.delegate = self;
+            //self.imagePicker.view.frame = cameraOverlayView.frame;
+            //self.imagePicker.cameraOverlayView = cameraOverlayView;
         } else if (buttonIndex == 1) {
             self.isFromLibrary = YES;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -277,9 +276,8 @@
             [self.navigationController dismissViewControllerAnimated:YES
                                                           completion:nil];
         } else if (buttonIndex == 2 && !self.isFromLibrary) {
-            SDCameraOverlayView *cameraOverlayView = [[SDCameraOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
-            cameraOverlayView.delegate = self;
-            self.imagePicker.cameraOverlayView = cameraOverlayView;
+            [self.navigationController dismissViewControllerAnimated:YES
+                                                          completion:nil];
         }
     } else if (actionSheet.tag == 103) {
         if (buttonIndex == 0 && !self.isFromLibrary) {
@@ -292,6 +290,7 @@
                                                       completion:nil];
     }
 }
+
 
 #pragma mark - UIImagePickerController delegate methods
 
@@ -374,65 +373,6 @@
 - (UIImage *)capturedImageFromDelegate
 {
     return self.capturedImage;
-}
-
-#pragma mark - SDCameraOverlayView delegate methods
-
-- (void)cameraOverlayView:(SDCameraOverlayView *)view didSwitchTo:(BOOL)state
-{
-    if (!state)
-        [self.imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-    else
-        [self.imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
-}
-
-- (void)cameraOverlayViewDidChangeFlash:(SDCameraOverlayView *)view
-{
-    switch (self.imagePicker.cameraFlashMode) {
-        case UIImagePickerControllerCameraFlashModeAuto:
-            [view.flashButton setBackgroundImage:[UIImage imageNamed:@"flash_on_button.png"] forState:UIControlStateNormal];
-            self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
-            break;
-            
-        case UIImagePickerControllerCameraFlashModeOn:
-            [view.flashButton setBackgroundImage:[UIImage imageNamed:@"flash_off_button.png"] forState:UIControlStateNormal];
-            self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-            break;
-            
-        case UIImagePickerControllerCameraFlashModeOff:
-            [view.flashButton setBackgroundImage:[UIImage imageNamed:@"flash_auto_button.png"] forState:UIControlStateNormal];
-            self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
-            break;
-    }
-}
-
-- (void)cameraOverlayViewDidTakePicture:(SDCameraOverlayView *)view
-{
-    [self.imagePicker takePicture];
-}
-
-- (void)cameraOverlayViewDidStartCapturing:(SDCameraOverlayView *)view
-{
-    [self.imagePicker startVideoCapture];
-}
-
-- (void)cameraOverlayViewDidStopCapturing:(SDCameraOverlayView *)view
-{
-    [self.imagePicker stopVideoCapture];
-}
-
-- (void)cameraOverlayView:(SDCameraOverlayView *)view didChangeCamera:(BOOL)toPortrait
-{
-    if (toPortrait)
-        self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-    else
-        self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-}
-
-- (void)cameraOverlayViewDidCancel:(SDCameraOverlayView *)view
-{
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
 }
 
 #pragma mark - SDModalNavigationController myDelegate methods

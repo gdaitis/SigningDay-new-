@@ -16,6 +16,11 @@ typedef enum {
     SDUserTypeMember = 5
 } SDUserType;
 
+typedef enum {
+    SDGalleryTypePhotos = 1,
+    SDGalleryTypeVideos = 2
+} SDGalleryType;
+
 @class User;
 
 @interface SDProfileService : NSObject

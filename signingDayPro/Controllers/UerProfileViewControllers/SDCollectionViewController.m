@@ -11,6 +11,9 @@
 #include <stdlib.h>
 #import "AFNetworking.h"
 #import "SDImageEnlargementView.h"
+#import "MediaGallery.h"
+#import "MediaItem.h"
+#import "MBProgressHUD.h"
 
 @interface SDCollectionViewController ()
 
@@ -37,19 +40,59 @@
     UINib *cellNib = [UINib nibWithNibName:@"SDCollectionCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CollectionCellID"];
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    [self reload];
+    [self checkServer];
+}
+
+- (void)checkServer
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.collectionView
+                                              animated:YES];
+    hud.labelText = @"Loading";
+    
+    void (^completionBlock)(void) = ^(void){
+        [MBProgressHUD hideHUDForView:self.collectionView
+                             animated:YES];
+        [self reload];
+    };
+    void (^failureBlock)(void) = ^(void){
+        [MBProgressHUD hideHUDForView:self.collectionView
+                             animated:YES];
+    };
+    
+    if (self.galleryType == SDGalleryTypePhotos)
+        [SDProfileService getPhotosForUser:self.user
+                           completionBlock:completionBlock
+                              failureBlock:failureBlock];
+    if (self.galleryType == SDGalleryTypeVideos)
+        [SDProfileService getVideosForUser:self.user
+                           completionBlock:completionBlock
+                              failureBlock:failureBlock];
+}
+
+- (void)reload
+{
+    NSPredicate *mediaGalleryPredicate = [NSPredicate predicateWithFormat:@"user == %@ AND galleryType == %d", self.user, self.galleryType];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    MediaGallery *mediaGallery = [MediaGallery MR_findFirstWithPredicate:mediaGalleryPredicate
+                                                               inContext:context];
+    self.dataArray = [MediaItem MR_findAllSortedBy:@"createdDate"
+                                         ascending:NO
+                                     withPredicate:[NSPredicate predicateWithFormat:@"mediaGallery == %@", mediaGallery]
+                                         inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UIColectionView datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-//    return [_dataArray count];
-    int result = arc4random() % 9;
-    NSLog(@"cell count = %d",result);
-    return result;
+    return [self.dataArray count];
 }
 
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
+{
     return 1;
 }
 
@@ -59,7 +102,8 @@
     
     [cell.imageView cancelImageRequestOperation];
     cell.backgroundColor = [UIColor clearColor];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://www.daltonstate.edu/testing-center/images/testing-center-index.jpg"] placeholderImage:nil];
+    MediaItem *mediaItem = [self.dataArray objectAtIndex:indexPath.row];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl] placeholderImage:nil];
     
     return cell;
 }
@@ -67,7 +111,9 @@
 #pragma mark - UICollectionView delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame andImage:@"http://www.daltonstate.edu/testing-center/images/testing-center-index.jpg"];
+    MediaItem *mediaItem = [self.dataArray objectAtIndex:indexPath.row];
+    SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame
+                                                                                         andImage:mediaItem.fileUrl];
     [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
 }
 

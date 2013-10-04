@@ -25,8 +25,9 @@
 #import "HighSchool.h"
 #import "NSDictionary+NullConverver.h"
 #import "NSObject+MasterUserMethods.h"
-#import "VideoGallery.h"
-#import "PhotoGallery.h"
+#import "MediaItem.h"
+#import "MediaGallery.h"
+#import "SDUtils.h"
 
 @interface SDProfileService ()
 
@@ -72,24 +73,26 @@
                                     user.allowPrivateMessage = [NSNumber numberWithBool:[[userDictionary valueForKey:@"AllowPrivateMessage"] boolValue]];
                                     
                                     NSNumber *photoGalleryIdentifier = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"PhotoGalleryId"] integerValue]];
-                                    PhotoGallery *photoGallery = [PhotoGallery MR_findFirstByAttribute:@"identifier"
+                                    MediaGallery *photoGallery = [MediaGallery MR_findFirstByAttribute:@"identifier"
                                                                                              withValue:photoGalleryIdentifier
                                                                                              inContext:userContext];
                                     if (!photoGallery) {
-                                        photoGallery = [PhotoGallery MR_createInContext:userContext];
+                                        photoGallery = [MediaGallery MR_createInContext:userContext];
                                         photoGallery.identifier = photoGalleryIdentifier;
                                     }
-                                    user.photoGallery = photoGallery;
+                                    photoGallery.galleryType = [NSNumber numberWithInteger:SDGalleryTypePhotos];
+                                    photoGallery.user = user;
                                     
                                     NSNumber *videoGalleryIdentifier = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"VideoGalleryId"] integerValue]];
-                                    VideoGallery *videoGallery = [VideoGallery MR_findFirstByAttribute:@"identifier"
+                                    MediaGallery *videoGallery = [MediaGallery MR_findFirstByAttribute:@"identifier"
                                                                                              withValue:videoGalleryIdentifier
                                                                                              inContext:userContext];
                                     if (!videoGallery) {
-                                        videoGallery = [VideoGallery MR_createInContext:userContext];
+                                        videoGallery = [MediaGallery MR_createInContext:userContext];
                                         videoGallery.identifier = videoGalleryIdentifier;
                                     }
-                                    user.videoGallery = videoGallery;
+                                    videoGallery.galleryType = [NSNumber numberWithInteger:SDGalleryTypeVideos];
+                                    videoGallery.user = user;
                                     
                                     NSDictionary *derivedUserDictionary = [userDictionary valueForKey:@"DerivedUser"];
                                     
@@ -297,14 +300,64 @@
          completionBlock:(void (^)(void))completionBlock
             failureBlock:(void (^)(void))failureBlock
 {
-    
+    [self getMediaGalleryItemsForUser:user
+                          galleryType:SDGalleryTypePhotos
+                      completionBlock:completionBlock
+                         failureBlock:failureBlock];
 }
 
 + (void)getVideosForUser:(User *)user
          completionBlock:(void (^)(void))completionBlock
             failureBlock:(void (^)(void))failureBlock
 {
-    
+    [self getMediaGalleryItemsForUser:user
+                          galleryType:SDGalleryTypeVideos
+                      completionBlock:completionBlock
+                         failureBlock:failureBlock];
+}
+
++ (void)getMediaGalleryItemsForUser:(User *)user
+                        galleryType:(SDGalleryType)galleryType
+                    completionBlock:(void (^)(void))completionBlock
+                       failureBlock:(void (^)(void))failureBlock
+{
+    NSPredicate *mediaGalleryPredicate = [NSPredicate predicateWithFormat:@"user == %@ AND galleryType == %d", user, galleryType];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    MediaGallery *mediaGallery = [MediaGallery MR_findFirstWithPredicate:mediaGalleryPredicate
+                                                               inContext:context];
+    NSString *mediaGalleryIdString = [NSString stringWithFormat:@"%d", [mediaGallery.identifier integerValue]];
+    NSString *mediaGalleryTypeString = [NSString stringWithFormat:@"%d", galleryType];
+    [[SDAPIClient sharedClient] getPath:@"sd/media.json"
+                             parameters:@{@"MediaGalleryId": mediaGalleryIdString, @"MediaType": mediaGalleryTypeString}
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    NSArray *mediaListArray = [JSON valueForKey:@"MediaList"];
+                                    for (__strong NSDictionary *mediaItemDictionary in mediaListArray) {
+                                        mediaItemDictionary = [mediaItemDictionary dictionaryByReplacingNullsWithStrings];
+                                        NSNumber *identifier = [NSNumber numberWithInteger:[[mediaItemDictionary valueForKey:@"Id"] integerValue]];
+                                        MediaItem *mediaItem = [MediaItem MR_findFirstByAttribute:@"identifier"
+                                                                                        withValue:identifier
+                                                                                        inContext:context];
+                                        if (!mediaItem) {
+                                            mediaItem = [MediaItem MR_createInContext:context];
+                                            mediaItem.identifier = identifier;
+                                        }
+                                        mediaItem.contentType = [mediaItemDictionary valueForKey:@"ContentType"];
+                                        mediaItem.createdDate = [SDUtils dateFromString:[mediaItemDictionary valueForKey:@"CreatedDate"]];
+                                        mediaItem.fileName = [mediaItemDictionary valueForKey:@"FileItem"];
+                                        mediaItem.fileUrl = [mediaItemDictionary valueForKey:@"FileUrl"];
+                                        mediaItem.thumbnailUrl = [mediaItemDictionary valueForKey:@"ThumbnailUrl"];
+                                        mediaItem.title = [mediaItemDictionary valueForKey:@"Title"];
+                                        mediaItem.mediaGallery = mediaGallery;
+                                    }
+                                    [context MR_saveOnlySelfAndWait];
+                                    if (completionBlock) {
+                                        completionBlock();
+                                    }
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
 }
 
 + (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier

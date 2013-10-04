@@ -58,14 +58,14 @@
     [self addSubview:closeButton];
     
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.scrollView animated:YES];
     hud.labelText = @"Loading";
     
     [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         self.imageView.image = image;
-        [MBProgressHUD hideHUDForView:self animated:YES];
+        [MBProgressHUD hideHUDForView:self.scrollView animated:YES];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        [MBProgressHUD hideHUDForView:self animated:YES];
+        [MBProgressHUD hideHUDForView:self.scrollView animated:YES];
     }];
 }
 
