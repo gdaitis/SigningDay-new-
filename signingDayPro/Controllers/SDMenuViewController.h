@@ -10,6 +10,6 @@
 #import "SDBaseViewController.h"
 #import "IIViewDeckController.h"
 
-@interface SDMenuViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate,IIViewDeckControllerDelegate>
+@interface SDMenuViewController : SDBaseViewController
 
 @end

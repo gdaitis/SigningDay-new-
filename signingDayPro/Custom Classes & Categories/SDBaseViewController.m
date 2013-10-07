@@ -53,6 +53,16 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
                                                object:nil];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kSDLoginServiceUserDidLogoutNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:SDKeyboardShouldHideNotification
+                                                  object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -120,21 +130,6 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 
 - (void)showLoginScreen
 {
-//    if (!self.loginViewController) {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
-//        SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//        self.loginViewController = loginVC;
-//        [_loginViewController setModalPresentationStyle:UIModalPresentationFullScreen];
-//        _loginViewController.delegate = self;
-//        
-//        [self presentViewController:_loginViewController animated:YES completion:^{
-//            
-//        }];
-//    } else if (!(_loginViewController.isViewLoaded && _loginViewController.view.window)) {
-//        [self presentViewController:_loginViewController animated:YES completion:^{
-//            
-//        }];
-//    }
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
     SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
@@ -142,7 +137,9 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
     
     [self presentViewController:loginVC
                        animated:YES
-                     completion:nil];
+                     completion:^{
+                         [self.delegate baseViewControllerDidShowLoginViewController:self];
+                     }];
 
 }
 

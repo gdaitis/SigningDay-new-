@@ -3,30 +3,40 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>Storyboard</key>
+		<string>ActivityFeedStoryboard</string>
+		<key>ViewControllerIdentifier</key>
+		<string>SDActivityFeedNavigationController</string>
 		<key>Title</key>
 		<string>ACTIVITY FEED</string>
 		<key>Image</key>
 		<string>ActivityFeedIcon.png</string>
 	</dict>
 	<dict>
+		<key>Storyboard</key>
+		<string>LandingPageStoryBoard</string>
+		<key>ViewControllerIdentifier</key>
+		<string>PlayerLandingPageViewController</string>
 		<key>Title</key>
 		<string>PLAYERS</string>
 		<key>Image</key>
 		<string>PlayersIcon.png</string>
 	</dict>
 	<dict>
+		<key>Storyboard</key>
+		<string>LandingPageStoryBoard</string>
+		<key>ViewControllerIdentifier</key>
+		<string>CollegesLandingPageViewController</string>
 		<key>Title</key>
 		<string>COLLEGES</string>
 		<key>Image</key>
 		<string>CoachesIcon.png</string>
 	</dict>
 	<dict>
-		<key>Title</key>
-		<string>WAR ROOM</string>
-		<key>Image</key>
-		<string>WarRoomIcon.png</string>
-	</dict>
-	<dict>
+		<key>Storyboard</key>
+		<string>LandingPageStoryBoard</string>
+		<key>ViewControllerIdentifier</key>
+		<string>HighSchoolLandingPageNavigationController</string>
 		<key>Title</key>
 		<string>HIGH SCHOOLS</string>
 		<key>Image</key>

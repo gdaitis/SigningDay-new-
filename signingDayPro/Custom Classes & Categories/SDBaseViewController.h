@@ -12,10 +12,21 @@
 
 extern NSString * const SDKeyboardShouldHideNotification;
 
+@class SDBaseViewController;
+
+@protocol SDBaseViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)baseViewControllerDidShowLoginViewController:(SDBaseViewController *)baseViewController;
+
+@end
+
 @interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, weak) id <SDBaseViewControllerDelegate> delegate;
 
 - (void)beginRefreshing;
 - (void)endRefreshing;
