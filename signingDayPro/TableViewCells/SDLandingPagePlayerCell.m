@@ -12,6 +12,7 @@
 #import "Player.h"
 #import "HighSchool.h"
 #import "AFNetworking.h"
+#import "Team.h"
 
 @interface SDLandingPagePlayerCell ()
 
@@ -24,7 +25,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *baseScoreLabel;
 @property (nonatomic, weak) IBOutlet UILabel *baseScoreNameLabel;
 
-@property (nonatomic, weak) IBOutlet UIImageView *accountVerifiedImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
 
 
@@ -74,7 +74,10 @@
     if (user) {
 
         //hiding verified image if account not verified, hide position view if list is filtered
-        self.accountVerifiedImageView.hidden = ([user.accountVerified boolValue]) ? NO : YES;
+        if (self.accountVerifiedImageView) {
+            self.accountVerifiedImageView.hidden = ([user.accountVerified boolValue]) ? NO : YES;
+        }
+        
         self.positionNumberBackgroundImageView.hidden = (dataIsFiltered) ? YES : NO;
         
         self.nameLabel.text = user.name;

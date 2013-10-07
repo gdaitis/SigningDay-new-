@@ -36,10 +36,13 @@
 #import "SDYoutubePlayerViewController.h"
 #import "SDBaseProfileHeaderView.h"
 #import "WebPreview.h"
+#import "SDCommitsRostersViewController.h"
 #import "MediaGallery.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
+
+#define kDefaultYearForCommits @"2014"
 
 
 @interface SDUserProfileViewController () <NSFetchedResultsControllerDelegate, SDActivityFeedTableViewDelegate, SDUserProfileSlidingButtonViewDelegate, SDBuzzButtonViewDelegate, SDModalNavigationControllerDelegate>
@@ -152,7 +155,7 @@
                 highschoolView.buzzButtonView.delegate = self;
                 highschoolView.slidingButtonView.delegate = self;
                 [highschoolView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileProspectsButton.png"] forState:UIControlStateNormal];
-                highschoolView.slidingButtonView.keyAttributesLabel.text = @"Prospects";
+                highschoolView.slidingButtonView.keyAttributesLabel.text = @"Roster";
                 view = highschoolView;
                 break;
             }
@@ -333,6 +336,8 @@
 {
     //this button is different depending on types of user, different actions should be taken
     
+    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
+    
     switch ([self.currentUser.userTypeId intValue]) {
         case SDUserTypePlayer:
         {
@@ -340,19 +345,29 @@
                                                                                 bundle:nil];
             SDKeyAttributesViewController *keyAttributesViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"KeyAttributesViewController"];
             
-            NSString *identifier = [self.currentUser.identifier stringValue];
-            keyAttributesViewController.userIdentifierString = identifier;
+            keyAttributesViewController.userIdentifierString = currentUserIdentifier;
             
             [self.navigationController pushViewController:keyAttributesViewController animated:YES];
             
             break;
         }
         case SDUserTypeHighSchool:
-
+        {
+            SDCommitsRostersViewController *rosterViewController = [[SDCommitsRostersViewController alloc] initWithNibName:@"SDCommitsRostersViewController" bundle:[NSBundle mainBundle]];
+            rosterViewController.userIdentifier = currentUserIdentifier;
+            rosterViewController.controllerType = CONTROLLER_TYPE_ROSTERS;
+            [self.navigationController pushViewController:rosterViewController animated:YES];
             break;
+        }
         case SDUserTypeTeam:
-
+        {
+            SDCommitsRostersViewController *commitsViewController = [[SDCommitsRostersViewController alloc] initWithNibName:@"SDCommitsRostersViewController" bundle:[NSBundle mainBundle]];
+            commitsViewController.userIdentifier = currentUserIdentifier;
+            commitsViewController.controllerType = CONTROLLER_TYPE_COMMITS;
+            commitsViewController.yearString = kDefaultYearForCommits;
+            [self.navigationController pushViewController:commitsViewController animated:YES];
             break;
+        }
         case SDUserTypeMember:
 
             break;
@@ -397,7 +412,6 @@
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing
 {
-#warning delegate moved, check for bugs!!
     if (isFollowing) {
         [SDFollowingService followUserWithIdentifier:self.currentUser.identifier
                                  withCompletionBlock:^{

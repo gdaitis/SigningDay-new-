@@ -2,12 +2,13 @@
 //  Player.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/4/13.
+//  Created by Lukas Kekys on 10/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import "Player.h"
 #import "HighSchool.h"
+#import "Team.h"
 #import "User.h"
 
 
@@ -22,7 +23,11 @@
 @dynamic stateRanking;
 @dynamic userClass;
 @dynamic weight;
+@dynamic hasWatchListBadge;
+@dynamic has150Badge;
 @dynamic highSchool;
 @dynamic theUser;
+@dynamic rosterOf;
+@dynamic commitedTo;
 
 @end

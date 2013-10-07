@@ -2,13 +2,14 @@
 //  Team.m
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/4/13.
+//  Created by Lukas Kekys on 10/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import "Team.h"
 #import "Coach.h"
 #import "Member.h"
+#import "Player.h"
 #import "User.h"
 
 
@@ -30,5 +31,6 @@
 @dynamic favoritedBy;
 @dynamic headCoach;
 @dynamic theUser;
+@dynamic commits;
 
 @end

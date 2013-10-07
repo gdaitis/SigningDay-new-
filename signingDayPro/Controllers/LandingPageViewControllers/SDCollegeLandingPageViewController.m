@@ -192,14 +192,19 @@
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
     
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    self.dataIsFiltered = YES;
-    
-    [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
-        [self loadFilteredData];
-    } failureBlock:^{
-        NSLog(@"Search failed in Collenge landing page");
-    }];
+    if (self.searchBar.text.length <3 && self.currentFilterConference == nil) {
+        [self checkServer];
+    }
+    else {
+        [self showProgressHudInView:self.view withText:@"Loading"];
+        self.dataIsFiltered = YES;
+        
+        [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
+            [self loadFilteredData];
+        } failureBlock:^{
+            NSLog(@"Search failed in Collenge landing page");
+        }];
+    }
 }
 
 

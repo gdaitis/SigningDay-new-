@@ -9,6 +9,7 @@
 #import "SDUserProfileTeamHeaderView.h"
 #import "Team.h"
 #import "Coach.h"
+#import "Player.h"
 #import "User.h"
 #import "AFNetworking.h"
 #import "SDAPIClient.h"

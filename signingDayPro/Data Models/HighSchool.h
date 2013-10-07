@@ -2,7 +2,7 @@
 //  HighSchool.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/4/13.
+//  Created by Lukas Kekys on 10/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSNumber * totalProspects;
 @property (nonatomic, retain) NSSet *players;
 @property (nonatomic, retain) User *theUser;
+@property (nonatomic, retain) NSSet *rosters;
 @end
 
 @interface HighSchool (CoreDataGeneratedAccessors)
@@ -30,5 +31,10 @@
 - (void)removePlayersObject:(Player *)value;
 - (void)addPlayers:(NSSet *)values;
 - (void)removePlayers:(NSSet *)values;
+
+- (void)addRostersObject:(Player *)value;
+- (void)removeRostersObject:(Player *)value;
+- (void)addRosters:(NSSet *)values;
+- (void)removeRosters:(NSSet *)values;
 
 @end

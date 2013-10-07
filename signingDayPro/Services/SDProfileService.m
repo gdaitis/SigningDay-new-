@@ -40,35 +40,126 @@
 
 @implementation SDProfileService
 
-//
-//
-//+ (void)getProfileInfoForUser:(User *)theUser
-//              completionBlock:(void (^)(void))completionBlock
-//                 failureBlock:(void (^)(void))failureBlock
-//{
-//    NSString *urlString = [NSString stringWithFormat:@"%@services/UserService.asmx/GetUserInfo", kSDBaseSigningDayURLString];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-//    [request setHTTPMethod:@"POST"];
-//    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-//    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
-//    NSString *body = [NSString stringWithFormat:@"{userId:%d, accessingUserId:%d}", [theUser.identifier integerValue], [[self getMasterIdentifier] integerValue]];
-//    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
-//        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
-//                                                              options:kNilOptions
-//                                                                error:nil] dictionaryByReplacingNullsWithStrings];
-//        NSDictionary *userDictionary = [JSON valueForKey:@"d"];
-//        
-//        completionBlock();
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        failureBlock();
-//    }];
-//    [operation start];
-//}
-//
+
++ (void)getRostersForHighSchoolWithIdentifier:(NSString *)highSchoolIdentifier
+                              completionBlock:(void (^)(void))completionBlock
+                                 failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/HighSchoolService.asmx/GetHighSchoolRosterForMobile", kSDBaseSigningDayURLString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    NSString *body = [NSString stringWithFormat:@"{highSchoolId:%@}",highSchoolIdentifier];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:nil] dictionaryByReplacingNullsWithStrings];
+        NSArray *userInfoArray = [JSON valueForKey:@"d"];
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        
+        User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
+                                             withValue:[NSNumber numberWithInt:[highSchoolIdentifier intValue]]
+                                             inContext:context];
+        highSchoolUser.theHighSchool.rosters = nil;
+        
+        for (NSDictionary *dictionary in userInfoArray) {
+            
+            NSNumber *identifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"UserId"] intValue]];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+            User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
+            if (!user) {
+                user = [User MR_createInContext:context];
+                user.identifier = identifier;
+            }
+            user.name = [dictionary valueForKey:@"DisplayName"];
+            user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
+            
+            if (!user.thePlayer)
+                user.thePlayer = [Player MR_createInContext:context];
+            
+            user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[dictionary valueForKey:@"Class"] intValue]];
+            user.thePlayer.position = [dictionary valueForKey:@"Position"];
+            user.thePlayer.baseScore = [NSNumber numberWithFloat:[[dictionary valueForKey:@"BaseScore"] floatValue]];
+            user.thePlayer.starsCount = [NSNumber numberWithInt:[[dictionary valueForKey:@"PlayerStars"] intValue]];
+            user.thePlayer.has150Badge = [NSNumber numberWithBool:[[dictionary valueForKey:@"Has150Badge"] boolValue]];
+            user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];
+            user.thePlayer.rosterOf = highSchoolUser.theHighSchool;
+            user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+            
+            [context MR_saveToPersistentStoreAndWait];
+        }
+        
+        completionBlock();
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock();
+    }];
+    [operation start];
+}
+
++ (void)getCommitsForTeamWithIdentifier:(NSString *)teamIdentifier
+                          andYearString:(NSString *)yearString
+                              completionBlock:(void (^)(void))completionBlock
+                                 failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/TeamsService.asmx/GetTeamCommitsForMobile", kSDBaseSigningDayURLString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    NSString *body = [NSString stringWithFormat:@"{teamId:%@, year:%@}",teamIdentifier,yearString];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:nil] dictionaryByReplacingNullsWithStrings];
+        NSArray *userInfoArray = [JSON valueForKey:@"d"];
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        
+        User *teamUser = [User MR_findFirstByAttribute:@"identifier"
+                                         withValue:[NSNumber numberWithInt:[teamIdentifier intValue]]
+                                         inContext:context];
+        teamUser.theTeam.commits = nil;
+        
+        for (NSDictionary *dictionary in userInfoArray) {
+            
+            NSNumber *identifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"UserId"] intValue]];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+            User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
+            if (!user) {
+                user = [User MR_createInContext:context];
+                user.identifier = identifier;
+            }
+            user.name = [dictionary valueForKey:@"DisplayName"];
+            user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
+            
+            if (!user.thePlayer)
+                user.thePlayer = [Player MR_createInContext:context];
+            
+            user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[dictionary valueForKey:@"Class"] intValue]];
+            user.thePlayer.position = [dictionary valueForKey:@"Position"];
+            user.thePlayer.baseScore = [NSNumber numberWithFloat:[[dictionary valueForKey:@"BaseScore"] floatValue]];
+            user.thePlayer.starsCount = [NSNumber numberWithInt:[[dictionary valueForKey:@"PlayerStars"] intValue]];
+            user.thePlayer.has150Badge = [NSNumber numberWithBool:[[dictionary valueForKey:@"Has150Badge"] boolValue]];
+            user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];
+            user.thePlayer.commitedTo = teamUser.theTeam;
+            
+            [context MR_saveToPersistentStoreAndWait];
+        }
+        
+        completionBlock();
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock();
+    }];
+    [operation start];
+}
 
 
 + (void)getKeyAttributesForUserWithIdentifier:(NSString *)userIdentifier

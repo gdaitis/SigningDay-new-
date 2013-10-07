@@ -2,14 +2,14 @@
 //  Player.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/4/13.
+//  Created by Lukas Kekys on 10/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class HighSchool, User;
+@class HighSchool, Team, User;
 
 @interface Player : NSManagedObject
 
@@ -22,7 +22,11 @@
 @property (nonatomic, retain) NSNumber * stateRanking;
 @property (nonatomic, retain) NSString * userClass;
 @property (nonatomic, retain) NSNumber * weight;
+@property (nonatomic, retain) NSNumber * hasWatchListBadge;
+@property (nonatomic, retain) NSNumber * has150Badge;
 @property (nonatomic, retain) HighSchool *highSchool;
 @property (nonatomic, retain) User *theUser;
+@property (nonatomic, retain) HighSchool *rosterOf;
+@property (nonatomic, retain) Team *commitedTo;
 
 @end

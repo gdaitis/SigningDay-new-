@@ -84,6 +84,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CGRect frame = self.firstImageView.frame;
+    frame.size.width = 1;
+    self.firstImageView.frame = frame;
+    
+    frame = self.secondImageView.frame;
+    frame.size.width = 1;
+    self.secondImageView.frame = frame;
+    
+    frame = self.thirdImageView.frame;
+    frame.size.width = 1;
+    self.thirdImageView.frame = frame;
+    
+    frame = self.fourthImageView.frame;
+    frame.size.width = 1;
+    self.fourthImageView.frame = frame;
+    
+    frame = self.fifthImageView.frame;
+    frame.size.width = 1;
+    self.fifthImageView.frame = frame;
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -116,34 +137,34 @@
     for (int i = 0; i<[infoArray count]; i++) {
         NSDictionary *infoDictionary = [infoArray objectAtIndex:i];
         if (i == 0) {
-            [self setFirstValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
-            self.firstLabel.text = [infoDictionary valueForKey:@"Name"];
             self.firstLabel.hidden = NO;
             self.firstImageView.hidden = NO;
+            self.firstLabel.text = [infoDictionary valueForKey:@"Name"];
+            [self setFirstValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
         }
         else if (i ==1) {
-            [self setSecondValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
-            self.secondLabel.text = [infoDictionary valueForKey:@"Name"];
             self.secondLabel.hidden = NO;
             self.secondImageView.hidden = NO;
+            self.secondLabel.text = [infoDictionary valueForKey:@"Name"];
+            [self setSecondValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
         }
         else if (i ==2) {
-            [self setThirdValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
-            self.thirdLabel.text = [infoDictionary valueForKey:@"Name"];
             self.thirdLabel.hidden = NO;
             self.thirdImageView.hidden = NO;
+            self.thirdLabel.text = [infoDictionary valueForKey:@"Name"];
+            [self setThirdValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
         }
         else if (i ==3) {
-            [self setFourthValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
-            self.fourthLabel.text = [infoDictionary valueForKey:@"Name"];
             self.fourthLabel.hidden = NO;
             self.fourthImageView.hidden = NO;
+            self.fourthLabel.text = [infoDictionary valueForKey:@"Name"];
+            [self setFourthValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
         }
         else {
-            [self setFifthValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
-            self.fifthLabel.text = [infoDictionary valueForKey:@"Name"];
             self.fifthImageView.hidden = NO;
             self.fifthLabel.hidden = NO;
+            self.fifthLabel.text = [infoDictionary valueForKey:@"Name"];
+            [self setFifthValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
         }
     }
 }
@@ -181,9 +202,23 @@
     else
         imageView.hidden = NO;
     
-    CGRect frame = imageView.frame;
-    frame.size.width = round((value * 300.0f) /10.0f);
-    imageView.frame = frame;
+    
+    float final = round((value * 300.0f) /10.0f);
+    float preFinal = round(final *0.9);
+    
+    
+    [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        CGRect frame = imageView.frame;
+        frame.size.width = preFinal;
+        imageView.frame = frame;
+    } completion:^(__unused BOOL finished) {
+        [UIView animateWithDuration:0.8f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CGRect frame = imageView.frame;
+            frame.size.width = final;
+            imageView.frame = frame;
+        } completion:^(__unused BOOL finished) {
+        }];
+    }];
     
 }
 

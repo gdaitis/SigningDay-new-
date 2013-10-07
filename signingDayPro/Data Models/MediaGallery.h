@@ -2,7 +2,7 @@
 //  MediaGallery.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/4/13.
+//  Created by Lukas Kekys on 10/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -13,10 +13,10 @@
 
 @interface MediaGallery : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSNumber * galleryType;
-@property (nonatomic, retain) User *user;
+@property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSSet *mediaItems;
+@property (nonatomic, retain) User *user;
 @end
 
 @interface MediaGallery (CoreDataGeneratedAccessors)

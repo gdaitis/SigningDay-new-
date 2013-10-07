@@ -66,6 +66,7 @@
         <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalProspects" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="highSchool" inverseEntity="Player" syncable="YES"/>
+        <relationship name="rosters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="rosterOf" inverseEntity="Player" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theHighSchool" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="ImageData" representedClassName="ImageData" syncable="YES">
@@ -137,6 +138,8 @@
     </entity>
     <entity name="Player" representedClassName="Player" syncable="YES">
         <attribute name="baseScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="has150Badge" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasWatchListBadge" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="nationalRanking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
@@ -145,7 +148,9 @@
         <attribute name="stateRanking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userClass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="commitedTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="commits" inverseEntity="Team" syncable="YES"/>
         <relationship name="highSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="players" inverseEntity="HighSchool" syncable="YES"/>
+        <relationship name="rosterOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="rosters" inverseEntity="HighSchool" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thePlayer" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="State" representedClassName="State" syncable="YES">
@@ -168,6 +173,7 @@
         <attribute name="teamName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalScore" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="universityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="commits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="commitedTo" inverseEntity="Player" syncable="YES"/>
         <relationship name="favoritedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Member" inverseName="favoriteTeam" inverseEntity="Member" syncable="YES"/>
         <relationship name="headCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theTeam" inverseEntity="User" syncable="YES"/>
@@ -217,24 +223,24 @@
         <relationship name="activityStory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="webPreview" inverseEntity="ActivityStory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ActivityStory" positionX="-83" positionY="-567" width="128" height="360"/>
-        <element name="Coach" positionX="1042" positionY="-148" width="128" height="118"/>
-        <element name="Comment" positionX="369" positionY="-351" width="128" height="133"/>
-        <element name="Conference" positionX="801" positionY="-682" width="128" height="133"/>
-        <element name="Conversation" positionX="153" positionY="137" width="128" height="178"/>
-        <element name="HighSchool" positionX="1024" positionY="2" width="128" height="178"/>
-        <element name="ImageData" positionX="-342" positionY="-207" width="128" height="88"/>
-        <element name="Like" positionX="180" positionY="-124" width="128" height="88"/>
-        <element name="Master" positionX="-360" positionY="18" width="128" height="223"/>
-        <element name="MediaItem" positionX="151" positionY="405" width="128" height="163"/>
-        <element name="Member" positionX="799" positionY="206" width="128" height="118"/>
-        <element name="Message" positionX="-83" positionY="-124" width="128" height="133"/>
-        <element name="Notification" positionX="396" positionY="-783" width="128" height="193"/>
-        <element name="Player" positionX="747" positionY="-460" width="128" height="210"/>
-        <element name="State" positionX="342" positionY="-495" width="128" height="103"/>
-        <element name="Team" positionX="999" positionY="-513" width="128" height="285"/>
-        <element name="User" positionX="585" positionY="-198" width="128" height="553"/>
-        <element name="WebPreview" positionX="160" positionY="-423" width="128" height="133"/>
-        <element name="MediaGallery" positionX="385" positionY="351" width="128" height="103"/>
+        <element name="ActivityStory" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Coach" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Comment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Conference" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Conversation" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="HighSchool" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ImageData" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Like" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Master" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MediaGallery" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MediaItem" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Member" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Message" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Notification" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Player" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="State" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Team" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WebPreview" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

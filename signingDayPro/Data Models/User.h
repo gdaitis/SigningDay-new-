@@ -2,14 +2,14 @@
 //  User.h
 //  signingDayPro
 //
-//  Created by Vytautas Gudaitis on 10/4/13.
+//  Created by Lukas Kekys on 10/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, Member, Message, Notification, Player, State, Team;
+@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, MediaGallery, Member, Message, Notification, Player, State, Team;
 
 @interface User : NSManagedObject
 
@@ -38,6 +38,7 @@
 @property (nonatomic, retain) Master *following;
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
+@property (nonatomic, retain) NSSet *mediaGalleries;
 @property (nonatomic, retain) NSSet *messages;
 @property (nonatomic, retain) NSSet *notificationsParticipatedIn;
 @property (nonatomic, retain) State *state;
@@ -46,7 +47,6 @@
 @property (nonatomic, retain) Member *theMember;
 @property (nonatomic, retain) Player *thePlayer;
 @property (nonatomic, retain) Team *theTeam;
-@property (nonatomic, retain) NSSet *mediaGalleries;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -81,6 +81,11 @@
 - (void)addLikes:(NSSet *)values;
 - (void)removeLikes:(NSSet *)values;
 
+- (void)addMediaGalleriesObject:(MediaGallery *)value;
+- (void)removeMediaGalleriesObject:(MediaGallery *)value;
+- (void)addMediaGalleries:(NSSet *)values;
+- (void)removeMediaGalleries:(NSSet *)values;
+
 - (void)addMessagesObject:(Message *)value;
 - (void)removeMessagesObject:(Message *)value;
 - (void)addMessages:(NSSet *)values;
@@ -90,10 +95,5 @@
 - (void)removeNotificationsParticipatedInObject:(Notification *)value;
 - (void)addNotificationsParticipatedIn:(NSSet *)values;
 - (void)removeNotificationsParticipatedIn:(NSSet *)values;
-
-- (void)addMediaGalleriesObject:(NSManagedObject *)value;
-- (void)removeMediaGalleriesObject:(NSManagedObject *)value;
-- (void)addMediaGalleries:(NSSet *)values;
-- (void)removeMediaGalleries:(NSSet *)values;
 
 @end

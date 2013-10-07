@@ -13,6 +13,7 @@
 #import "HighSchool.h"
 #import "User.h"
 #import "SDUtils.h"
+#import "Team.h"
 
 @interface SDUserProfilePlayerHeaderView ()
 
