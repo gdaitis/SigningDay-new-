@@ -215,6 +215,7 @@
     Message *message = [self.dataArray objectAtIndex:indexPath.row];
     
     cell.messageTextView.attributedText = [self getAttributedStringForTextViewFromMessage:message];
+    cell.messageTextView.scrollEnabled = NO;
     cell.usernameLabel.text = message.user.name;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

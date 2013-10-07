@@ -91,12 +91,7 @@
     [SDProfileService getProfileInfoForUser:self.currentUser
                             completionBlock:^{
                                 [self setupHeaderView];
-                            } failureBlock:nil];
-    
-    [SDProfileService getPhotosForUser:self.currentUser
-                       completionBlock:nil
-                          failureBlock:nil];
-}
+                            } failureBlock:nil];}
 
 - (void)viewWillAppear:(BOOL)animated
 {

@@ -19,7 +19,7 @@
 
 #define kHeaderSize  40
 
-@interface SDMenuViewController ()
+@interface SDMenuViewController () <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate,IIViewDeckControllerDelegate, SDBaseViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *menuItems;
 @property (nonatomic, weak) IBOutlet SDSearchBar *searchBar;
@@ -202,7 +202,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIViewController *centerVC = nil;
+    SDBaseViewController *centerVC = nil;
     
     if (indexPath.section == 0) {
         //show profile view controller
@@ -214,31 +214,11 @@
     }
     else if (indexPath.section == 1) {
         //show controller depending on selection
-        
-        if (indexPath.row == 0) {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
-        }
-        else if (indexPath.row == 1) {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];
-        }
-        else if (indexPath.row == 2) { //colleges
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"CollegesLandingPageViewController"];
-        }
-        else if (indexPath.row == 3) { //war room
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];
-        }
-        else if (indexPath.row == 4) { //highscool
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"HighSchoolLandingPageNavigationController"];
-        }
-        else {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LandingPageStoryBoard" bundle:nil];
-            centerVC = [sb instantiateViewControllerWithIdentifier:@"PlayerLandingPageViewController"];
-        }
+        NSString *storyboardNameString = [[self.menuItems objectAtIndex:indexPath.row] valueForKey:@"Storyboard"];
+        NSString *viewControllerIdentifierString = [[self.menuItems objectAtIndex:indexPath.row] valueForKey:@"ViewControllerIdentifier"];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardNameString
+                                                     bundle:nil];
+        centerVC = [sb instantiateViewControllerWithIdentifier:viewControllerIdentifierString];
     }
     else {
         //show settings controller
@@ -246,34 +226,11 @@
         centerVC = [sb instantiateViewControllerWithIdentifier:@"SDSettingsNavigationController"];
     }
     
+    centerVC.delegate = self;
+    
     self.viewDeckController.centerController = centerVC;
     [self.viewDeckController showCenterView:YES];
 }
-
-#pragma mark - UISearchDisplayController delegate methods
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-//    [self filterContentForSearchText:searchString];
-    return YES;
-}
-
-- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
-{
-//    [self reloadView];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-//    [self filterContentForSearchText:[self.searchDisplayController.searchBar text]];
-    return YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
-{
-//    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SDFollowingCell" bundle:nil] forCellReuseIdentifier:@"FollowingCellID"];
-}
-
 
 #pragma mark - searchBarDelegate
 
@@ -291,9 +248,6 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self dismissKeyboard];
-    
-    //search actions
-    
 }
 
 #pragma mark - IBActions
@@ -324,6 +278,17 @@
 - (void)UserUpdated
 {
     [_tableView reloadData];
+}
+
+#pragma mark - SDBaseViewControllerDelegate methods
+
+- (void)baseViewControllerDidShowLoginViewController:(SDBaseViewController *)baseViewController
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
+    SDBaseViewController *centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
+    centerVC.delegate = self;
+    self.viewDeckController.centerController = centerVC;
+    [self.viewDeckController showCenterView:YES];
 }
 
 @end

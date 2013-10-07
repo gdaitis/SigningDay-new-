@@ -29,24 +29,11 @@
     return self;
 }
 
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
-//    
-//    [self setNeedsStatusBarAppearanceUpdate];
-//}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"])
         [self showLoginScreen];
 }
-
-//- (UIStatusBarStyle)preferredStatusBarStyle
-//{
-//    return UIStatusBarStyleLightContent;
-//}
-
 
 @end

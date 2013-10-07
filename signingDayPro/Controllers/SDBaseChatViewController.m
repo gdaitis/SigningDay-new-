@@ -214,7 +214,9 @@
     NSInteger bottomRow = [self.dataArray count] - 1;
     if (bottomRow >= 0) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:bottomRow inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+        [self.tableView scrollToRowAtIndexPath:indexPath
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:animated];
     }
 }
 
