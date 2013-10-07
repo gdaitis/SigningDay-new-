@@ -334,6 +334,10 @@
             UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                                 bundle:nil];
             SDKeyAttributesViewController *keyAttributesViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"KeyAttributesViewController"];
+            
+            NSString *identifier = [self.currentUser.identifier stringValue];
+            keyAttributesViewController.userIdentifierString = identifier;
+            
             [self.navigationController pushViewController:keyAttributesViewController animated:YES];
             
             break;

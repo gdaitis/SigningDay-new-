@@ -40,6 +40,66 @@
 
 @implementation SDProfileService
 
+//
+//
+//+ (void)getProfileInfoForUser:(User *)theUser
+//              completionBlock:(void (^)(void))completionBlock
+//                 failureBlock:(void (^)(void))failureBlock
+//{
+//    NSString *urlString = [NSString stringWithFormat:@"%@services/UserService.asmx/GetUserInfo", kSDBaseSigningDayURLString];
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+//    [request setHTTPMethod:@"POST"];
+//    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+//    NSString *body = [NSString stringWithFormat:@"{userId:%d, accessingUserId:%d}", [theUser.identifier integerValue], [[self getMasterIdentifier] integerValue]];
+//    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+//        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+//                                                              options:kNilOptions
+//                                                                error:nil] dictionaryByReplacingNullsWithStrings];
+//        NSDictionary *userDictionary = [JSON valueForKey:@"d"];
+//        
+//        completionBlock();
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        failureBlock();
+//    }];
+//    [operation start];
+//}
+//
+
+
++ (void)getKeyAttributesForUserWithIdentifier:(NSString *)userIdentifier
+                              completionBlock:(void (^)(NSArray *results))completionBlock
+                                 failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/PlayerService.asmx/GetKeyAttributesForMobile", kSDBaseSigningDayURLString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    NSString *body = [NSString stringWithFormat:@"{playerId:%@}",userIdentifier];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:nil] dictionaryByReplacingNullsWithStrings];
+        NSArray *userInfoArray = [JSON valueForKey:@"d"];
+        
+        completionBlock(userInfoArray);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock();
+    }];
+    [operation start];
+}
+
+
+
 + (void)getProfileInfoForUser:(User *)theUser
               completionBlock:(void (^)(void))completionBlock
                  failureBlock:(void (^)(void))failureBlock

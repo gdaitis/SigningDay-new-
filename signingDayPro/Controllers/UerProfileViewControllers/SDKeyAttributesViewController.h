@@ -13,6 +13,6 @@
 
 @interface SDKeyAttributesViewController : SDBaseViewController
 
-- (void)setupKeyAttributesForUser:(User *)user;
+@property (nonatomic, strong) NSString *userIdentifierString;
 
 @end

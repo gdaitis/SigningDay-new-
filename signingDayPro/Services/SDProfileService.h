@@ -25,6 +25,10 @@ typedef enum {
 
 @interface SDProfileService : NSObject
 
+
++ (void)getKeyAttributesForUserWithIdentifier:(NSString *)userIdentifier
+                              completionBlock:(void (^)(NSArray *results))completionBlock
+                                 failureBlock:(void (^)(void))failureBlock;
 + (void)getBasicProfileInfoForUserIdentifier:(NSNumber *)identifier
                              completionBlock:(void (^)(void))completionBlock
                                 failureBlock:(void (^)(void))failureBlock;

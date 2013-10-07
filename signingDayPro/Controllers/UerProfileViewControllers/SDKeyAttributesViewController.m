@@ -8,6 +8,7 @@
 
 #import "SDKeyAttributesViewController.h"
 #import "User.h"
+#import "SDProfileService.h"
 
 
 @interface SDKeyAttributesViewController ()
@@ -69,8 +70,6 @@
 }
 
 
-
-
 #pragma mark - LifeCycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -91,29 +90,68 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self loadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-#warning testing
-    [self setFirstValue:9.01];
-    [self setSecondValue:7.0];
-    [self setThirdValue:6.0];
-    [self setFourthValue:3.0];
-    [self setFifthValue:5.0];
+}
+
+- (void)loadData
+{
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    [SDProfileService getKeyAttributesForUserWithIdentifier:self.userIdentifierString completionBlock:^(NSArray *results) {
+        [self updateValuesFromArray:results];
+        [self hideProgressHudInView:self.view];
+    } failureBlock:^{
+        NSLog(@"FAILURE in keyattributes controller");
+        [self hideProgressHudInView:self.view];
+    }];
+}
+
+- (void)updateValuesFromArray:(NSArray *)infoArray
+{
+    for (int i = 0; i<[infoArray count]; i++) {
+        NSDictionary *infoDictionary = [infoArray objectAtIndex:i];
+        if (i == 0) {
+            [self setFirstValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
+            self.firstLabel.text = [infoDictionary valueForKey:@"Name"];
+            self.firstLabel.hidden = NO;
+            self.firstImageView.hidden = NO;
+        }
+        else if (i ==1) {
+            [self setSecondValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
+            self.secondLabel.text = [infoDictionary valueForKey:@"Name"];
+            self.secondLabel.hidden = NO;
+            self.secondImageView.hidden = NO;
+        }
+        else if (i ==2) {
+            [self setThirdValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
+            self.thirdLabel.text = [infoDictionary valueForKey:@"Name"];
+            self.thirdLabel.hidden = NO;
+            self.thirdImageView.hidden = NO;
+        }
+        else if (i ==3) {
+            [self setFourthValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
+            self.fourthLabel.text = [infoDictionary valueForKey:@"Name"];
+            self.fourthLabel.hidden = NO;
+            self.fourthImageView.hidden = NO;
+        }
+        else {
+            [self setFifthValue:[[infoDictionary valueForKey:@"Value"] floatValue]];
+            self.fifthLabel.text = [infoDictionary valueForKey:@"Name"];
+            self.fifthImageView.hidden = NO;
+            self.fifthLabel.hidden = NO;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setupKeyAttributesForUser:(User *)user
-{
-    
 }
 
 #pragma mark - helpers
@@ -136,7 +174,6 @@
     //proportion
     // 300 = 10;       x = (300 * value)/ 10;
     //  x  = value;
-    
     
     //maximum 300
     if (value < 0.5f)
