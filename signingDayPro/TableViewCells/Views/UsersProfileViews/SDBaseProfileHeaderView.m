@@ -10,6 +10,7 @@
 #import "UIView+NibLoading.h"
 #import "User.h"
 #import "Master.h"
+#import "NSObject+MasterUserMethods.h"
 
 @interface SDBaseProfileHeaderView ()
 
@@ -78,14 +79,13 @@
 
 - (void)updateFollowingInfo
 {
-    NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    Master *master = [Master MR_findFirstByAttribute:@"username"
-                                           withValue:username
-                                           inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-    
-    if ([self.user.followedBy isEqual:master])
-        self.slidingButtonView.followButton.selected = YES;
-    else
-        self.slidingButtonView.followButton.selected = NO;
+    if ([self.user.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        self.slidingButtonView.followButton.hidden = YES;
+    } else {
+        if ([self.user.followedBy isEqual:[self getMaster]])
+            self.slidingButtonView.followButton.selected = YES;
+        else
+            self.slidingButtonView.followButton.selected = NO;
+    }
 }
 @end
