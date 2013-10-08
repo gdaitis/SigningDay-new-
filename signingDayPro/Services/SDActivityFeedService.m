@@ -76,26 +76,35 @@
                                     BOOL endReached = YES;
                                     NSDate *lastDate = nil;
                                     
-                                    
-                                    for (int i = 0; i < [activityStories count]; i++) {
-                                        endReached = NO;
-                                        NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
+                                    if (dataCount > 0) {
                                         
-                                        BOOL activityStoryValid = [self validateActivityStory:activityStoryDictionary fromContext:context];
-                                        /*activity story is not forum activity and nflpa not involved */
                                         
-                                        if (activityStoryValid) {
-                                            [self createActivityStoryFromDictionary:activityStoryDictionary
-                                                                            context:context];
-                                            resultCount++;
-                                        }
-                                        if (i+1 == dataCount) {
-                                            NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
-                                            lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
+                                        for (int i = 0; i < [activityStories count]; i++) {
+                                            endReached = NO;
+                                            NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
+                                            
+                                            BOOL activityStoryValid = [self validateActivityStory:activityStoryDictionary fromContext:context];
+                                            /*activity story is not forum activity and nflpa not involved */
+                                            
+                                            if (activityStoryValid) {
+                                                [self createActivityStoryFromDictionary:activityStoryDictionary
+                                                                                context:context];
+                                                resultCount++;
+                                            }
+                                            if (i+1 == dataCount) {
+                                                NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
+                                                lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
+                                            }
                                         }
                                     }
                                     
-                                    NSDictionary *resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount",[NSNumber numberWithBool:endReached],@"EndReached", nil];
+                                    NSMutableDictionary *resultsDictionary = [[NSMutableDictionary alloc] init];
+                                    [resultsDictionary setObject:[NSNumber numberWithInt:resultCount] forKey:@"ResultCount"];
+                                    [resultsDictionary setObject:[NSNumber numberWithBool:endReached] forKey:@"EndReached"];
+                                    if (lastDate) {
+                                        [resultsDictionary setObject:lastDate forKey:@"LastDate"];
+                                    }
+                                                                            
                                     
                                     [context MR_saveOnlySelfAndWait];
                                     
