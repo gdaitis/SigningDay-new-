@@ -137,6 +137,7 @@
 
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"baseScore"
                                                                      ascending:YES];
+    NSLog(@"teamUser.theTeam.commits = %@",teamUser.theTeam.commits);
     self.dataArray = [[teamUser.theTeam.commits allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 }
 
