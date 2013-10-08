@@ -59,7 +59,7 @@
             [params setObject:formatedDateString forKey:@"EndDate"];
         }
     }
-
+    
     [[SDAPIClient sharedClient] getPath:@"sd/story.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
@@ -70,22 +70,42 @@
                                     if (deleteOld) {
                                         [self markAllStoriesForDeletionInContext:context];
                                     }
-                                    int resultCount = [[JSON valueForKey:@"TotalCount"] intValue];
+                                    int resultCount = 0;
+                                    int dataCount = [[JSON valueForKey:@"TotalCount"] intValue];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
-                                    NSDictionary *resultsDictionary = nil;
+                                    BOOL endReached = YES;
+                                    NSDate *lastDate = nil;
                                     
-                                    for (int i = 0; i < [activityStories count]; i++) {
-                                        NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
+                                    if (dataCount > 0) {
                                         
-                                        [self createActivityStoryFromDictionary:activityStoryDictionary
-                                                                        context:context];
                                         
-                                        NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
-                                        if (i+1 == resultCount) {
-                                            NSDate *lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
-                                            resultsDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:lastDate,@"LastDate",[NSNumber numberWithInt:resultCount],@"ResultCount", nil];
+                                        for (int i = 0; i < [activityStories count]; i++) {
+                                            endReached = NO;
+                                            NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
+                                            
+                                            BOOL activityStoryValid = [self validateActivityStory:activityStoryDictionary fromContext:context];
+                                            /*activity story is not forum activity and nflpa not involved */
+                                            
+                                            if (activityStoryValid) {
+                                                [self createActivityStoryFromDictionary:activityStoryDictionary
+                                                                                context:context];
+                                                resultCount++;
+                                            }
+                                            if (i+1 == dataCount) {
+                                                NSString *lastUpdateDateString = [activityStoryDictionary objectForKey:@"LastUpdatedDate"];
+                                                lastDate = [SDUtils notLocalizedDateFromString:lastUpdateDateString];
+                                            }
                                         }
                                     }
+                                    
+                                    NSMutableDictionary *resultsDictionary = [[NSMutableDictionary alloc] init];
+                                    [resultsDictionary setObject:[NSNumber numberWithInt:resultCount] forKey:@"ResultCount"];
+                                    [resultsDictionary setObject:[NSNumber numberWithBool:endReached] forKey:@"EndReached"];
+                                    if (lastDate) {
+                                        [resultsDictionary setObject:lastDate forKey:@"LastDate"];
+                                    }
+                                                                            
+                                    
                                     [context MR_saveOnlySelfAndWait];
                                     
                                     //returns only after deleting
@@ -100,6 +120,26 @@
                                     if (failureBlock)
                                         failureBlock();
                                 }];
+}
+
++ (BOOL)validateActivityStory:(NSDictionary *)activityStoryDictionary fromContext:(NSManagedObjectContext *)context
+{
+    BOOL valid = YES;
+    if ([activityStoryDictionary valueForKey:@"MediaType"] == [NSNull null] && [activityStoryDictionary valueForKey:@"MediaUrl"] == [NSNull null]) {
+        if ([activityStoryDictionary valueForKey:@"MessageText"] == [NSNull null] && [activityStoryDictionary valueForKey:@"DescriptionText"] == [NSNull null]) {
+            valid = NO;
+            //has no text to display and is not a picture or video
+        }
+    }
+    NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
+    for (NSDictionary *userDictionary in userArray) {
+        if ([[userDictionary valueForKey:@"UserTypeId"] intValue] == SDUserTypeNFLPA || [[userDictionary valueForKey:@"UserTypeId"] intValue] == SDUserTypeOrganization) {
+            valid = NO;
+            //currently we can't display these users
+        }
+    }
+    
+    return valid;
 }
 
 + (void)getActivityStoryWithContentId:(NSString *)contentId
@@ -288,12 +328,12 @@
             if (!user.theCoach)
                 user.theCoach = [Coach MR_createInContext:context];
             if ([attributeDictionary valueForKey:@"Institution"] != [NSNull null]) {
-                    user.theCoach.institution = [attributeDictionary valueForKey:@"Institution"];
+                user.theCoach.institution = [attributeDictionary valueForKey:@"Institution"];
             }
         }
     }
     else if (userTypeId == SDUserTypeHighSchool) {
- 
+        
         //user type: HighSchool
         NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
         
@@ -379,7 +419,7 @@
         
         if (successBlock) {
             successBlock();
-        } 
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SDErrorService handleError:error withOperation:operation];
         failureBlock();

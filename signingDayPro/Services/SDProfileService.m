@@ -144,7 +144,7 @@
             
             user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[dictionary valueForKey:@"Class"] intValue]];
             user.thePlayer.position = [dictionary valueForKey:@"Position"];
-            user.thePlayer.baseScore = [NSNumber numberWithFloat:[[dictionary valueForKey:@"BaseScore"] floatValue]];
+            user.thePlayer.baseScore = [dictionary valueForKey:@"BaseScore"] != [NSNull null] ? [NSNumber numberWithFloat:[[dictionary valueForKey:@"BaseScore"] floatValue]] : nil;
             user.thePlayer.starsCount = [NSNumber numberWithInt:[[dictionary valueForKey:@"PlayerStars"] intValue]];
             user.thePlayer.has150Badge = [NSNumber numberWithBool:[[dictionary valueForKey:@"Has150Badge"] boolValue]];
             user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];

@@ -74,7 +74,7 @@
                                             self.fetchLimit = 0;
                                         }
                                         
-                                        if ([[results objectForKey:@"ResultCount"] intValue] == 0)
+                                        if ([[results objectForKey:@"EndReached"] boolValue])
                                             self.endReached = YES;
                                         else
                                             self.fetchLimit += [[results objectForKey:@"ResultCount"] intValue];
@@ -177,6 +177,8 @@
         cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.commentCount intValue]];
         [cell.resizableActivityFeedView setActivityStory:activityStory];
         
+        [cell.thumbnailImageView cancelImageRequestOperation];
+        cell.thumbnailImageView.image = nil;
         if ([activityStory.author.avatarUrl length] > 0) {
             [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
         }

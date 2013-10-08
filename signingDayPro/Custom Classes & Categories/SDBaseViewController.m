@@ -143,5 +143,10 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 
 }
 
+- (void)showAlertWithTitle:(NSString *)title andText:(NSString *)text
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
 
 @end

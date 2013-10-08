@@ -12,6 +12,7 @@
 #import "SDAppDelegate.h"
 #import "SDFollowingCell.h"
 #import "SDFollowingService.h"
+#import "SDProfileService.h"
 #import "SDContentHeaderView.h"
 #import "AFNetworking.h"
 #import "UIImage+Crop.h"
@@ -438,7 +439,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     User *user = [self.dataArray objectAtIndex:indexPath.row];
-    [self.delegate followingViewController:self didSelectUser:user];
+    
+    if ([user.userTypeId intValue] != SDUserTypeOrganization && [user.userTypeId intValue] != SDUserTypeNFLPA && [user.userTypeId intValue] > 0) {
+        [self.delegate followingViewController:self didSelectUser:user];
+    }
+    else {
+        [self showAlertWithTitle:nil andText:@"Sorry, this profile is currently unavailable."];
+    }
 }
 
 #pragma mark - Following actions

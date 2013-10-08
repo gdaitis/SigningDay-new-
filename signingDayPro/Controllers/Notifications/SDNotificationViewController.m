@@ -17,6 +17,7 @@
 #import "SDActivityFeedService.h"
 #import "ActivityStory.h"
 #import "SDUserProfileViewController.h"
+#import "SDProfileService.h"
 
 @interface SDNotificationViewController ()
 
@@ -218,8 +219,15 @@
     
     Notification *notification = [self.dataArray objectAtIndex:indexPath.row];
     if ([notification.notificationTypeId isEqualToNumber:[NSNumber numberWithInteger:SDNotificationTypeFollowing]]) {
-        [self.delegate notificationViewController:self
-                                    didSelectUser:notification.fromUser];
+        
+        if ([notification.fromUser.userTypeId intValue] != SDUserTypeOrganization && [notification.fromUser.userTypeId intValue] != SDUserTypeNFLPA && [notification.fromUser.userTypeId intValue] > 0) {
+            //user shouldn't be from NFLPA or Organizations
+            [self.delegate notificationViewController:self
+                                        didSelectUser:notification.fromUser];
+        }
+        else {
+            [self showAlertWithTitle:nil andText:@"Sorry, this profile is currently unavailable."];
+        }
     }
     if (notification.activityStoryId) {
         [self beginRefreshing];

@@ -103,6 +103,9 @@
     [cell.imageView cancelImageRequestOperation];
     cell.backgroundColor = [UIColor clearColor];
     MediaItem *mediaItem = [self.dataArray objectAtIndex:indexPath.row];
+    
+    [cell.imageView cancelImageRequestOperation];
+    cell.imageView.image = nil;
     [cell.imageView setImageWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl] placeholderImage:nil];
     
     return cell;

@@ -38,4 +38,6 @@ extern NSString * const SDKeyboardShouldHideNotification;
 
 - (void)checkServer;
 
+- (void)showAlertWithTitle:(NSString *)title andText:(NSString *)text;
+
 @end
