@@ -59,6 +59,9 @@
                                                               options:kNilOptions
                                                                 error:nil] dictionaryByReplacingNullsWithStrings];
         NSArray *userInfoArray = [JSON valueForKey:@"d"];
+        
+        NSLog(@"userInfoArray = %@",userInfoArray);
+        
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         
         User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
@@ -77,6 +80,7 @@
             }
             user.name = [dictionary valueForKey:@"DisplayName"];
             user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
+            user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
             
             if (!user.thePlayer)
                 user.thePlayer = [Player MR_createInContext:context];
@@ -119,6 +123,9 @@
                                                               options:kNilOptions
                                                                 error:nil] dictionaryByReplacingNullsWithStrings];
         NSArray *userInfoArray = [JSON valueForKey:@"d"];
+        
+        NSLog(@"userInfoArray = %@",userInfoArray);
+        
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         
         User *teamUser = [User MR_findFirstByAttribute:@"identifier"
@@ -138,6 +145,7 @@
             }
             user.name = [dictionary valueForKey:@"DisplayName"];
             user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
+            user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
             
             if (!user.thePlayer)
                 user.thePlayer = [Player MR_createInContext:context];

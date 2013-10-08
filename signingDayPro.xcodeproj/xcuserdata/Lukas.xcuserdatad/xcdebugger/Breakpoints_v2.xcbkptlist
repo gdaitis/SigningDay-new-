@@ -6,97 +6,93 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDCollegeLandingPageViewController.m"
-            timestampString = "402929365.058367"
+            filePath = "signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
+            timestampString = "402931148.497766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "-searchBarSearchButtonClicked:"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SDCommitsRostersViewController viewDidLoad]"
+                  moduleName = "signingDayPro"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
+                  timestampString = "402931148.566432"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "594">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45-[SDCommitsRostersViewController viewDidLoad]_block_invoke"
+                  moduleName = "signingDayPro"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
+                  timestampString = "402931148.566926"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDCollegeLandingPageViewController.m"
-            timestampString = "402929365.058367"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "-searchBarCancelButtonClicked:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Services/SDProfileService.m"
-            timestampString = "402929121.476605"
+            filePath = "signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
+            timestampString = "402931149.91921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "+getRostersForHighSchoolWithIdentifier:completionBlock:failureBlock:"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Services/SDProfileService.m"
-            timestampString = "402929896.764978"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "+getCommitsForTeamWithIdentifier:andYearString:completionBlock:failureBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Services/SDProfileService.m"
-            timestampString = "402929896.764978"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "+getCommitsForTeamWithIdentifier:andYearString:completionBlock:failureBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Services/SDProfileService.m"
-            timestampString = "402929896.764978"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "+getRostersForHighSchoolWithIdentifier:completionBlock:failureBlock:"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SDCommitsRostersViewController viewDidLoad]"
+                  moduleName = "signingDayPro"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
+                  timestampString = "402931149.938813"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "1060">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45-[SDCommitsRostersViewController viewDidLoad]_block_invoke39"
+                  moduleName = "signingDayPro"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
+                  timestampString = "402931149.939124"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
