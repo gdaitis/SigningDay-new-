@@ -79,8 +79,6 @@
                                         else
                                             self.fetchLimit += [[results objectForKey:@"ResultCount"] intValue];
                                         
-                                        NSLog(@"Downloaded STORIES = %d",self.fetchLimit);
-                                        
                                         self.dataDownloadInProgress = NO;
                                         [self loadData];
                                         [self.tableDelegate activityFeedTableViewShouldEndRefreshing:self];
@@ -251,7 +249,6 @@
         //seting fetch limit for pagination
         NSFetchRequest *request = [ActivityStory MR_requestAllWithPredicate:predicate inContext:context];
         [request setFetchLimit:self.fetchLimit];
-        NSLog(@"FETCHLIMIT = %d",self.fetchLimit);
         //set sort descriptor
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdateDate" ascending:NO];
         [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
@@ -262,7 +259,6 @@
         //        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
         NSFetchRequest *request = [ActivityStory MR_requestAllInContext:context];
         [request setFetchLimit:self.fetchLimit];
-        NSLog(@"FETCHLIMIT = %d",self.fetchLimit);
         //set sort descriptor
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdateDate" ascending:NO];
         [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];

@@ -193,7 +193,6 @@
                                                failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
-    NSLog(@"teams url = %@",urlString);
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                           classString:classString
                                          successBlock:successBlock
@@ -215,7 +214,6 @@
         urlString = [urlString stringByAppendingFormat:@"&$filter=(substringof(tolower('%@'),tolower(DisplayName)))", searchString];
     }
     urlString = [urlString stringByAppendingString:@"&$format=json"];
-    NSLog(@"searchTeams url = %@",urlString);
     
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                           classString:classString
