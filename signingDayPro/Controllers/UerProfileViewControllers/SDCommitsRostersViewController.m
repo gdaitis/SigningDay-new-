@@ -11,8 +11,10 @@
 #import "SDLandingPagePlayerCell.h"
 #import "UIView+NibLoading.h"
 #import "User.h"
+#import "Player.h"
 #import "Team.h"
 #import "HighSchool.h"
+#import "SDUserProfileViewController.h"
 
 @interface SDCommitsRostersViewController ()
 
@@ -36,6 +38,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     if (self.controllerType == CONTROLLER_TYPE_ROSTERS) {
         [self loadRosters];
@@ -98,11 +105,11 @@
         [cell.accountVerifiedImageView removeFromSuperview];
     }
     
-    User *user = [self.dataArray objectAtIndex:indexPath.row];
+    Player *player = [self.dataArray objectAtIndex:indexPath.row];
     
     cell.playerPositionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     // Configure the cell...
-    [cell setupCellWithUser:user andFilteredData:NO];
+    [cell setupCellWithUser:player.theUser andFilteredData:NO];
     return cell;
 }
 
@@ -110,7 +117,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Player *player = [self.dataArray objectAtIndex:indexPath.row];
+    User *user = player.theUser;
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
     
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 #pragma mark - Roster loading

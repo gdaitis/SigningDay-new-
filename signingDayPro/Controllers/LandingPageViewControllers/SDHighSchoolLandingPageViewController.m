@@ -178,6 +178,10 @@ NSString * const kSDDefaultClass = @"2014";
     [request setSortDescriptors:[NSArray arrayWithObjects:prospectsDescriptor,baseAverageDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
+    if ([self.dataArray count] < self.currentUserCount) {
+        self.pagingEndReached = YES;
+    }
+    
     [self reloadTableView];
 }
 
@@ -252,6 +256,8 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self removeKeyboard];
+    self.currentUserCount = 0;
+    self.pagingEndReached = NO;
     [self searchFilteredData];
 }
 
@@ -259,6 +265,7 @@ NSString * const kSDDefaultClass = @"2014";
 {
     self.currentUserCount = 0;
     self.dataIsFiltered = NO;
+    self.pagingEndReached = NO;
     [self loadData];
 }
 
@@ -272,6 +279,8 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)highSchoolSearchHeaderPressedSearchButton:(SDHighSchoolsSearchHeader *)highSchoolSearchHeader
 {
+    self.currentUserCount = 0;
+    self.pagingEndReached = NO;
     [self searchFilteredData];
 }
 

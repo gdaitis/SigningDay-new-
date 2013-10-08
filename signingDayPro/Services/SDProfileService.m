@@ -89,10 +89,9 @@
             user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];
             user.thePlayer.rosterOf = highSchoolUser.theHighSchool;
             user.thePlayer.highSchool = highSchoolUser.theHighSchool;
-            
-            [context MR_saveToPersistentStoreAndWait];
         }
         
+        [context MR_saveOnlySelfAndWait];
         completionBlock();
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -127,8 +126,9 @@
                                          inContext:context];
         teamUser.theTeam.commits = nil;
         
-        for (NSDictionary *dictionary in userInfoArray) {
+        for (NSDictionary *playerDictionary in userInfoArray) {
             
+            NSDictionary *dictionary = [playerDictionary dictionaryByReplacingNullsWithStrings];
             NSNumber *identifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"UserId"] intValue]];
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
             User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
@@ -149,10 +149,9 @@
             user.thePlayer.has150Badge = [NSNumber numberWithBool:[[dictionary valueForKey:@"Has150Badge"] boolValue]];
             user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];
             user.thePlayer.commitedTo = teamUser.theTeam;
-            
-            [context MR_saveToPersistentStoreAndWait];
         }
         
+        [context MR_saveOnlySelfAndWait];
         completionBlock();
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

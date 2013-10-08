@@ -193,6 +193,7 @@
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
     
     if (self.searchBar.text.length <3 && self.currentFilterConference == nil) {
+        self.pagingEndReached = NO;
         [self checkServer];
     }
     else {
@@ -223,8 +224,13 @@
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.totalScore" ascending:NO];
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSSortDescriptor *commitsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.numberOfCommits" ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,commitsDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
+    
+    if ([self.dataArray count] < self.currentUserCount) {
+        self.pagingEndReached = YES;
+    }
     
     [self hideProgressHudInView:self.view];
     [self reloadTableView];
@@ -232,26 +238,6 @@
 
 - (void)loadFilteredData
 {
-    //Form and compound predicates
-    //    NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
-    //
-    //    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
-    //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-    //    NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"conference.nameShort == %@",self.currentFilterConference.nameShort] : nil;
-    //    NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
-    //
-    //
-    //    [predicateArray addObject:userTypePredicate];
-    //    [predicateArray addObject:userYearPredicate];
-    //    if (nameSearchPredicate)
-    //        [predicateArray addObject:nameSearchPredicate];
-    //    if (userStatePredicate)
-    //        [predicateArray addObject:userStatePredicate];
-    //    if (userPositionPredicate)
-    //        [predicateArray addObject:userPositionPredicate];
-    //
-    //    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicateArray];
-    
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
     //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
     NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
@@ -271,12 +257,16 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self removeKeyboard];
+    self.currentUserCount = 0;
+    self.pagingEndReached = NO;
     [self searchFilteredData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
     self.dataIsFiltered = NO;
+    self.currentUserCount = 0;
+    self.pagingEndReached = NO;
     [self loadData];
 }
 
@@ -294,6 +284,8 @@
 
 - (void)teamsSearchHeaderPressedSearchButton:(SDTeamsSearchHeader *)teamsSeachHeader
 {
+    self.currentUserCount = 0;
+    self.pagingEndReached = NO;
     [self searchFilteredData];
 }
 

@@ -42,7 +42,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AccountVerifiedImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="285">
-                        <rect key="frame" x="111" y="9" width="9" height="11"/>
+                        <rect key="frame" x="111" y="11" width="9" height="11"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
@@ -89,7 +89,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="465">
-                        <rect key="frame" x="66" y="6" width="42" height="17"/>
+                        <rect key="frame" x="66" y="8" width="42" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="231" id="491"/>
@@ -98,7 +98,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="527">
-                        <rect key="frame" x="66" y="25" width="33" height="14"/>
+                        <rect key="frame" x="66" y="27" width="33" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="240" id="528"/>
@@ -110,7 +110,7 @@
                 </subviews>
             </tableViewCellContentView>
             <constraints>
-                <constraint firstItem="527" firstAttribute="top" secondItem="3" secondAttribute="top" constant="25" id="00H-f5-zi4"/>
+                <constraint firstItem="527" firstAttribute="top" secondItem="3" secondAttribute="top" constant="27" id="00H-f5-zi4"/>
                 <constraint firstItem="6" firstAttribute="top" secondItem="3" secondAttribute="top" id="3YN-Ai-3bE"/>
                 <constraint firstItem="372" firstAttribute="leading" secondItem="312" secondAttribute="trailing" constant="3" id="3aW-Ka-Mzs"/>
                 <constraint firstItem="372" firstAttribute="baseline" secondItem="323" secondAttribute="baseline" id="5uY-IW-lpv"/>
@@ -125,7 +125,7 @@
                 <constraint firstItem="189" firstAttribute="top" secondItem="3" secondAttribute="top" constant="55" id="bMf-9n-0iB"/>
                 <constraint firstItem="342" firstAttribute="leading" secondItem="335" secondAttribute="trailing" constant="3" id="gBw-mu-NuG"/>
                 <constraint firstItem="527" firstAttribute="leading" secondItem="312" secondAttribute="leading" id="iyK-8t-oIt"/>
-                <constraint firstItem="465" firstAttribute="top" secondItem="3" secondAttribute="top" constant="6" id="kdW-nu-HA5"/>
+                <constraint firstItem="465" firstAttribute="top" secondItem="3" secondAttribute="top" constant="8" id="kdW-nu-HA5"/>
                 <constraint firstItem="323" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="144" id="kqx-RN-P0h"/>
                 <constraint firstItem="285" firstAttribute="leading" secondItem="465" secondAttribute="trailing" constant="3" id="mGA-hc-Vjp"/>
                 <constraint firstItem="399" firstAttribute="baseline" secondItem="335" secondAttribute="baseline" id="nqa-vS-Xm2"/>
