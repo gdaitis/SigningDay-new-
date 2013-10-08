@@ -112,12 +112,18 @@
 }
 
 #pragma mark - UICollectionView delegate
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MediaItem *mediaItem = [self.dataArray objectAtIndex:indexPath.row];
-    SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame
-                                                                                         andImage:mediaItem.fileUrl];
-    [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
+    if (self.galleryType == SDGalleryTypePhotos) {
+        SDImageEnlargementView *imageEnlargemenetView = [[SDImageEnlargementView alloc] initWithFrame:self.view.frame
+                                                                                             andImage:mediaItem.fileUrl];
+        [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
+    }
+    if (self.galleryType == SDGalleryTypeVideos) {
+        [self playVideoWithMediaFileUrlString:mediaItem.fileUrl];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath

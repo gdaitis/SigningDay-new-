@@ -13,6 +13,8 @@
 #import "SDLoginService.h"
 #import "SDNavigationController.h"
 #import "IIViewDeckController.h"
+#import "ActivityStory.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotification";
 
@@ -147,6 +149,38 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+}
+
+#pragma mark - video stuff
+
+- (void)playVideoWithActivityStory:(ActivityStory *)activityStory
+{
+    [self playVideoWithMediaFileUrlString:activityStory.mediaUrl];
+}
+
+- (void)playVideoWithMediaFileUrlString:(NSString *)urlString
+{
+    if ([urlString rangeOfString:@"youtu"].location == NSNotFound) {
+        NSURL *url = [NSURL URLWithString:urlString];
+        [self playVideoWithUrl:url];
+    }
+    else {
+        //youtube link
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+}
+
+- (void)playVideoWithUrl:(NSURL *)url
+{
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] init];
+    [player.moviePlayer setContentURL:url];
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    [player.view setFrame:self.view.bounds];
+    [player.moviePlayer prepareToPlay];
+    
+    [self presentMoviePlayerViewControllerAnimated:player];
+    [player.moviePlayer play];
 }
 
 @end

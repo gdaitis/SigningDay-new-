@@ -13,6 +13,7 @@
 extern NSString * const SDKeyboardShouldHideNotification;
 
 @class SDBaseViewController;
+@class ActivityStory;
 
 @protocol SDBaseViewControllerDelegate <NSObject>
 
@@ -39,5 +40,10 @@ extern NSString * const SDKeyboardShouldHideNotification;
 - (void)checkServer;
 
 - (void)showAlertWithTitle:(NSString *)title andText:(NSString *)text;
+
+
+- (void)playVideoWithActivityStory:(ActivityStory *)activityStory;
+- (void)playVideoWithUrl:(NSURL *)url;
+- (void)playVideoWithMediaFileUrlString:(NSString *)urlString;
 
 @end
