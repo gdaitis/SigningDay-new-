@@ -282,7 +282,10 @@
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+//    NSSortDescriptor *starsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
     NSLog(@"self.currentUserCount = %d",self.currentUserCount);
