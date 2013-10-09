@@ -27,7 +27,7 @@
 @property (nonatomic, assign) BarButtonType lastSelectedType;
 @property (nonatomic, assign) BOOL showFilterButton;
 @property (nonatomic, assign) BOOL filterViewVisible;
-
+@property (nonatomic, assign) BOOL navigationInProgress;
 
 @end
 
@@ -62,6 +62,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.delegate = self;
     
     _selectedMenuType = BARBUTTONTYPE_NONE;
     _backButtonVisibleIfNeeded = YES;
@@ -140,10 +142,12 @@
 - (void)popViewController
 {
     [self checkServer];
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        [self popViewControllerAnimated:YES];
-        [self setToolbarButtons];
-    });
+    if (!self.navigationInProgress) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self popViewControllerAnimated:YES];
+            [self setToolbarButtons];
+        });
+    }
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -723,5 +727,17 @@
     return [self.viewControllers lastObject];
 }
 
+
+#pragma mark - Navigation controller delegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    self.navigationInProgress = YES;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    self.navigationInProgress = NO;
+}
 
 @end

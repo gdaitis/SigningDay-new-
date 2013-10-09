@@ -115,7 +115,7 @@
         NSString *fullUrl = nil;
         if ([activityStory.thumbnailUrl length] >0) {
             
-            if ([activityStory.thumbnailUrl rangeOfString:@"youtube"].location != NSNotFound) {
+            if ([activityStory.thumbnailUrl rangeOfString:@"youtu"].location != NSNotFound) {
                 //yuotube link
                 fullUrl = [NSString stringWithFormat:@"http:%@",activityStory.thumbnailUrl];
                 
