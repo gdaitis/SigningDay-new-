@@ -149,31 +149,6 @@
     [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
 }
 
-- (void)playVideoWithActivityStory:(ActivityStory *)activityStory
-{
-    if ([activityStory.mediaUrl rangeOfString:@"youtu"].location == NSNotFound) {
-        NSURL *url = [NSURL URLWithString:activityStory.mediaUrl];
-        [self playVideoWithUrl:url];
-    }
-    else {
-        //youtube link
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.mediaUrl]];
-    }
-}
-
-- (void)playVideoWithUrl:(NSURL *)url
-{
-    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] init];
-    [player.moviePlayer setContentURL:url];
-    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-    [player.view setFrame:self.view.bounds];
-    [player.moviePlayer prepareToPlay];
-    
-    [self presentMoviePlayerViewControllerAnimated:player];
-    [player.moviePlayer play];
-}
-
 - (void)activityFeedTableViewShouldEndRefreshing:(SDActivityFeedTableView *)activityFeedTableView
 {
     [self endRefreshing];
