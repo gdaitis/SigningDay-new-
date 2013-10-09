@@ -50,7 +50,7 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     }
     
     // Let the device know we want to receive push notifications
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     [STKeychain storeUsername:@"initialApiKey" andPassword:@"OGQ3MzZ4c205cWNtbzhiaHAxYnlqNzVqcGwzcWRhdDY6aU9T" forServiceName:@"SigningDayPro" updateExisting:NO error:nil];
     
@@ -97,7 +97,7 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     [SDLoginService logout];
 }
 
-#pragma mark - Push Notifications
+/*#pragma mark - Push Notifications
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
@@ -127,7 +127,7 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
     }
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[userInfo valueForKey:@"badge"] intValue]];
 	NSLog(@"Received notification: %@", userInfo);
-}
+}*/
 
 #pragma mark - FBSession methods
 
