@@ -273,8 +273,7 @@
 {
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypePlayer];
     NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"thePlayer.userClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-    NSPredicate *userBaseScorePredicate = [NSPredicate predicateWithFormat:@"thePlayer.baseScore > 0"];
-    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate, userBaseScorePredicate]];
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate, userYearPredicate]];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
@@ -285,6 +284,9 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
+    
+    NSLog(@"self.currentUserCount = %d",self.currentUserCount);
+    NSLog(@"self.dataCount = %d",[self.dataArray count]);
     
     //checking if end for paging is reached
     if ([self.dataArray count] < self.currentUserCount) {
