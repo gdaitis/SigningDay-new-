@@ -247,9 +247,9 @@
         if ([dictionary objectForKey:@"SiteName"] != [NSNull null]) {
             webPreview.siteName = [dictionary objectForKey:@"SiteName"];
         }
-        if ([dictionary objectForKey:@"Excerpt"] != [NSNull null]) {
-            webPreview.excerpt = [dictionary objectForKey:@"Excerpt"];
-        }
+//        if ([dictionary objectForKey:@"Excerpt"] != [NSNull null]) {
+//            webPreview.excerpt = [dictionary objectForKey:@"Excerpt"];
+//        }
         if ([dictionary objectForKey:@"ImageUrl"] != [NSNull null]) {
             webPreview.imageUrl = [dictionary objectForKey:@"ImageUrl"];
         }

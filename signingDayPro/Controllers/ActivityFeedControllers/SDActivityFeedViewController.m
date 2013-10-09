@@ -315,12 +315,13 @@
     if (!self.isFromLibrary) {
         [[Reachability reachabilityForInternetConnection] startNotifier];
         NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
-        if (internetStatus == ReachableViaWiFi) {
-            actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Send", @"Save to Library", nil];
-            actionSheet.tag = 102;
-        } else {
+        
+        if ((internetStatus != ReachableViaWiFi) && [self.mediaType isEqual:@"public.movie"]) {
             actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Save to Library", nil];
             actionSheet.tag = 103;
+        } else {
+            actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Send", @"Save to Library", nil];
+            actionSheet.tag = 102;
         }
     } else {
         actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Send", nil];

@@ -19,6 +19,7 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) UILabel *noItemsLabel;
 
 @end
 
@@ -40,6 +41,7 @@
     UINib *cellNib = [UINib nibWithNibName:@"SDCollectionCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CollectionCellID"];
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
     
     [self reload];
     [self checkServer];

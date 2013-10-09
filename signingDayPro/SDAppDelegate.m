@@ -105,6 +105,8 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
 	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     
+    NSLog(@"device token: %@", newToken);
+    
     self.deviceToken = newToken;
 }
 
