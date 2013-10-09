@@ -28,6 +28,7 @@
 #import "MediaItem.h"
 #import "MediaGallery.h"
 #import "SDUtils.h"
+#import "State.h"
 
 @interface SDProfileService ()
 
@@ -66,7 +67,9 @@
                                              inContext:context];
         highSchoolUser.theHighSchool.rosters = nil;
         
-        for (NSDictionary *dictionary in userInfoArray) {
+        for (NSDictionary *userDictionary in userInfoArray) {
+            
+            NSDictionary *dictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
             
             NSNumber *identifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"UserId"] intValue]];
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
@@ -141,6 +144,34 @@
             user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
             user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
             
+            
+            NSNumber *highSchoolNumber = [NSNumber numberWithInt:[[dictionary valueForKey:@"HighSchoolId"] intValue]];
+            NSPredicate *highSchoolPredicate = [NSPredicate predicateWithFormat:@"identifier == %@", highSchoolNumber];
+            User *highSchoolUser = [User MR_findFirstWithPredicate:highSchoolPredicate inContext:context];
+            
+            if (!highSchoolUser) {
+                highSchoolUser = [User MR_createInContext:context];
+                highSchoolUser.identifier = highSchoolNumber;
+            }
+            
+            if (!highSchoolUser.theHighSchool)
+                highSchoolUser.theHighSchool = [HighSchool MR_createInContext:context];
+            highSchoolUser.theHighSchool.city = [dictionary valueForKey:@"HighSchoolCity"];
+            highSchoolUser.name = [dictionary valueForKey:@"HighSchoolName"];
+            
+            
+            
+            NSString *code = [dictionary valueForKey:@"HighSchoolState"];
+            State *state = [State MR_findFirstByAttribute:@"code"
+                                                withValue:code
+                                                inContext:context];
+            if (!state) {
+                state = [State MR_createInContext:context];
+                state.code = code;
+            }
+            highSchoolUser.state = state;
+            user.theHighSchool.stateCode = code;
+            
             if (!user.thePlayer)
                 user.thePlayer = [Player MR_createInContext:context];
             
@@ -151,6 +182,7 @@
             user.thePlayer.has150Badge = [NSNumber numberWithBool:[[dictionary valueForKey:@"Has150Badge"] boolValue]];
             user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];
             user.thePlayer.commitedTo = teamUser.theTeam;
+            user.thePlayer.highSchool = highSchoolUser.theHighSchool;
         }
         
         [context MR_saveOnlySelfAndWait];

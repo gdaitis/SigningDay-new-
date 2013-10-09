@@ -16,6 +16,7 @@
 #import "SDUserProfileHighSchoolHeaderView.h"
 #import "SDUserProfileTeamHeaderView.h"
 #import "User.h"
+#import "Team.h"
 #import "SDActivityFeedService.h"
 #import "SDUtils.h"
 #import "ActivityStory.h"
@@ -248,7 +249,7 @@
 
 - (void)playVideoWithActivityStory:(ActivityStory *)activityStory
 {
-    if ([activityStory.mediaUrl rangeOfString:@"youtube"].location == NSNotFound) {
+    if ([activityStory.mediaUrl rangeOfString:@"youtu"].location == NSNotFound) {
         NSURL *url = [NSURL URLWithString:activityStory.mediaUrl];
         [self playVideoWithUrl:url];
     }
@@ -359,7 +360,7 @@
             SDCommitsRostersViewController *commitsViewController = [[SDCommitsRostersViewController alloc] initWithNibName:@"SDCommitsRostersViewController" bundle:[NSBundle mainBundle]];
             commitsViewController.userIdentifier = currentUserIdentifier;
             commitsViewController.controllerType = CONTROLLER_TYPE_COMMITS;
-            commitsViewController.yearString = kDefaultYearForCommits;
+            commitsViewController.yearString = self.currentUser.theTeam.teamClass;
             [self.navigationController pushViewController:commitsViewController animated:YES];
             break;
         }

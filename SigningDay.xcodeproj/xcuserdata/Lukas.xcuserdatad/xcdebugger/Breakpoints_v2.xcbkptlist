@@ -6,93 +6,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
-            timestampString = "402931148.497766"
+            filePath = "signingDayPro/Services/SDActivityFeedService.m"
+            timestampString = "403018154.188593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "+createActivityStoryFromDictionary:context:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SDCommitsRostersViewController viewDidLoad]"
-                  moduleName = "signingDayPro"
-                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
-                  timestampString = "402931148.566432"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "594">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[SDCommitsRostersViewController viewDidLoad]_block_invoke"
-                  moduleName = "signingDayPro"
-                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
-                  timestampString = "402931148.566926"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "42">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
-            timestampString = "402931149.91921"
+            filePath = "signingDayPro/Services/SDActivityFeedService.m"
+            timestampString = "403018154.188593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "+createActivityStoryFromDictionary:context:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SDCommitsRostersViewController viewDidLoad]"
-                  moduleName = "signingDayPro"
-                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
-                  timestampString = "402931149.938813"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "1060">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[SDCommitsRostersViewController viewDidLoad]_block_invoke39"
-                  moduleName = "signingDayPro"
-                  urlString = "file://localhost/Users/Lukas/SigningDayPro_GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDCommitsRostersViewController.m"
-                  timestampString = "402931149.939124"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "42">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

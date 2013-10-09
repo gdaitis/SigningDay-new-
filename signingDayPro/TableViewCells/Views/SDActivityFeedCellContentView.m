@@ -15,6 +15,8 @@
 
 @interface SDActivityFeedCellContentView ()
 
+@property (nonatomic, weak) UIImageView *playImageView;
+
 @end
 
 @implementation SDActivityFeedCellContentView
@@ -47,10 +49,18 @@
     
     //creating imageView if cell will not have image this will be hidden
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 152)];
+    imageView.backgroundColor = [UIColor blackColor];
     self.imageView = imageView;
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.clipsToBounds = YES;
     [self addSubview:_imageView];
+    
+    
+    UIImage *playImage = [UIImage imageNamed:@"playImage.png"];
+    UIImageView *playButtonImageView = [[UIImageView alloc] initWithImage:playImage];
+    playButtonImageView.center = _imageView.center;
+    self.playImageView = playButtonImageView;
+    [self.imageView addSubview:playButtonImageView];
 }
 
 - (void)setActivityStory:(ActivityStory *)activityStory
@@ -73,9 +83,6 @@
         if ([activityStory.webPreview.webPreviewTitle length] > 0) {
             [contentText appendFormat:@"%@\n",activityStory.webPreview.webPreviewTitle];
         }
-        if ([activityStory.webPreview.excerpt length] > 0) {
-            [contentText appendFormat:@"%@\n",activityStory.webPreview.excerpt];
-        }
     }
     else {
         if ([activityStory.activityTitle length] > 0) {
@@ -97,42 +104,32 @@
     [_imageView cancelImageRequestOperation];
     
     if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0) {
-
+        
         //calculate position for photo
         CGRect frame = _imageView.frame;
         frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10;
         _imageView.frame = frame;
         _imageView.hidden = NO;
-        
-#warning not optimized must not set background color and user normal images
         _imageView.image = nil;
-        _imageView.backgroundColor = [UIColor clearColor];
-        UIView *playView = [_imageView viewWithTag:888];
-        if (playView) {
-            [playView removeFromSuperview];
-        }
-        
+
         NSString *fullUrl = nil;
         if ([activityStory.thumbnailUrl length] >0) {
             
-            if ([activityStory.thumbnailUrl rangeOfString:@"youtube"].location != NSNotFound) {
+            if ([activityStory.thumbnailUrl rangeOfString:@"youtu"].location != NSNotFound) {
                 //yuotube link
                 fullUrl = [NSString stringWithFormat:@"http:%@",activityStory.thumbnailUrl];
                 
-#warning needs optimizations
-                UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.imageView.bounds];
-                imageView.image = [UIImage imageNamed:@"playImage.png"];
-                imageView.contentMode = UIViewContentModeScaleAspectFill;
-                imageView.tag = 888;
-                [self.imageView addSubview:imageView];
+                self.playImageView.hidden = NO;
             }
             else {
                 fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.thumbnailUrl];
+                self.playImageView.hidden = YES;
             }
             [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
         }
         else {
             fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.webPreview.imageUrl];
+            self.playImageView.hidden = YES;
             [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
         }
     }
@@ -144,10 +141,10 @@
         _imageView.frame = frame;
         
         _imageView.hidden = NO;
-        _imageView.backgroundColor = [UIColor blackColor];
-        _imageView.image = [UIImage imageNamed:@"playImage@2x.png"];
+        self.playImageView.hidden = NO;
     }
     else {
+        self.playImageView.hidden = YES;
         _imageView.hidden = YES;
         _imageView.image = nil;
     }

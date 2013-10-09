@@ -23,7 +23,7 @@ typedef enum {
 #define kTriangleViewTag 999
 #define kTopToolbarHeight 44
 
-@interface SDNavigationController : UINavigationController <SDMessageViewControllerDelegate, SDFollowingViewControllerDelegate, SDNotificationViewControllerDelegate>
+@interface SDNavigationController : UINavigationController <SDMessageViewControllerDelegate, SDFollowingViewControllerDelegate, SDNotificationViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, weak) UIButton *menuButton;
 
