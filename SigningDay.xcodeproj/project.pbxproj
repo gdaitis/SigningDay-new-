@@ -728,14 +728,14 @@
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
 		80522C4E17D0C67200936936 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		805598BD174CE8200040631D /* signingDayPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = signingDayPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		805598BD174CE8200040631D /* SigningDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SigningDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		805598C1174CE8200040631D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		805598C3174CE8200040631D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		805598C5174CE8200040631D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		805598C9174CE8200040631D /* signingDayPro-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "signingDayPro-Info.plist"; sourceTree = "<group>"; };
+		805598C9174CE8200040631D /* SigningDay-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SigningDay-Info.plist"; sourceTree = "<group>"; };
 		805598CB174CE8200040631D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		805598CD174CE8200040631D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		805598CF174CE8200040631D /* signingDayPro-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "signingDayPro-Prefix.pch"; sourceTree = "<group>"; };
+		805598CF174CE8200040631D /* SigningDay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SigningDay-Prefix.pch"; sourceTree = "<group>"; };
 		805598D0174CE8200040631D /* SDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDAppDelegate.h; sourceTree = "<group>"; };
 		805598D1174CE8200040631D /* SDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDAppDelegate.m; sourceTree = "<group>"; };
 		805598DA174CE8200040631D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -1527,7 +1527,7 @@
 		805598BE174CE8200040631D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				805598BD174CE8200040631D /* signingDayPro.app */,
+				805598BD174CE8200040631D /* SigningDay.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1596,11 +1596,11 @@
 				7B6B1EAE1760A7E900BC878A /* Default-568h@2x.png */,
 				7B6B1EB61760A87100BC878A /* app_icon.png */,
 				7B6B1EB41760A86B00BC878A /* app_icon@2x.png */,
-				805598C9174CE8200040631D /* signingDayPro-Info.plist */,
+				805598C9174CE8200040631D /* SigningDay-Info.plist */,
 				80431E9117A152B7002F6E3D /* Notes.rtf */,
 				805598CA174CE8200040631D /* InfoPlist.strings */,
 				805598CD174CE8200040631D /* main.m */,
-				805598CF174CE8200040631D /* signingDayPro-Prefix.pch */,
+				805598CF174CE8200040631D /* SigningDay-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2094,9 +2094,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		805598BC174CE8200040631D /* signingDayPro */ = {
+		805598BC174CE8200040631D /* SigningDay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 805598E1174CE8200040631D /* Build configuration list for PBXNativeTarget "signingDayPro" */;
+			buildConfigurationList = 805598E1174CE8200040631D /* Build configuration list for PBXNativeTarget "SigningDay" */;
 			buildPhases = (
 				805598B9174CE8200040631D /* Sources */,
 				805598BA174CE8200040631D /* Frameworks */,
@@ -2106,9 +2106,9 @@
 			);
 			dependencies = (
 			);
-			name = signingDayPro;
+			name = SigningDay;
 			productName = signingDayPro;
-			productReference = 805598BD174CE8200040631D /* signingDayPro.app */;
+			productReference = 805598BD174CE8200040631D /* SigningDay.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2126,7 +2126,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 805598B7174CE8200040631D /* Build configuration list for PBXProject "signingDayPro" */;
+			buildConfigurationList = 805598B7174CE8200040631D /* Build configuration list for PBXProject "SigningDay" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2144,7 +2144,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				805598BC174CE8200040631D /* signingDayPro */,
+				805598BC174CE8200040631D /* SigningDay */,
 			);
 		};
 /* End PBXProject section */
@@ -2635,7 +2635,7 @@
 		805598E2174CE8200040631D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2643,11 +2643,11 @@
 					"\"$(SRCROOT)/Externals/FacebookSDK/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "signingDayPro/signingDayPro-Prefix.pch";
-				INFOPLIST_FILE = "signingDayPro/signingDayPro-Info.plist";
+				GCC_PREFIX_HEADER = "signingDayPro/SigningDay-Prefix.pch";
+				INFOPLIST_FILE = "signingDayPro/SigningDay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SigningDay;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2656,7 +2656,7 @@
 		805598E3174CE8200040631D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2664,11 +2664,11 @@
 					"\"$(SRCROOT)/Externals/FacebookSDK/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "signingDayPro/signingDayPro-Prefix.pch";
-				INFOPLIST_FILE = "signingDayPro/signingDayPro-Info.plist";
+				GCC_PREFIX_HEADER = "signingDayPro/SigningDay-Prefix.pch";
+				INFOPLIST_FILE = "signingDayPro/SigningDay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SigningDay;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -2678,7 +2678,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		805598B7174CE8200040631D /* Build configuration list for PBXProject "signingDayPro" */ = {
+		805598B7174CE8200040631D /* Build configuration list for PBXProject "SigningDay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				805598DF174CE8200040631D /* Debug */,
@@ -2687,7 +2687,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		805598E1174CE8200040631D /* Build configuration list for PBXNativeTarget "signingDayPro" */ = {
+		805598E1174CE8200040631D /* Build configuration list for PBXNativeTarget "SigningDay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				805598E2174CE8200040631D /* Debug */,
