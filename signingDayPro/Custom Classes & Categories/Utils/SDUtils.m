@@ -58,9 +58,7 @@
 + (int)heightForActivityStory:(ActivityStory *)activityStory
 {
     int result = 0;
-    
 
-    
     NSMutableString *contentText = [[NSMutableString alloc] init];
     if (activityStory.webPreview) {
         
@@ -73,9 +71,6 @@
         if ([activityStory.webPreview.webPreviewTitle length] > 0) {
             [contentText appendFormat:@"%@\n",activityStory.webPreview.webPreviewTitle];
         }
-        if ([activityStory.webPreview.excerpt length] > 0) {
-            [contentText appendFormat:@"%@\n",activityStory.webPreview.excerpt];
-        }
     }
     else {
         if ([activityStory.activityTitle length] > 0) {
@@ -86,7 +81,6 @@
         }
     }
     
-    
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
     
@@ -96,10 +90,7 @@
     else {
         result = size.height + 10/*offset*/;
     }
-    
-//    NSLog(@"activity story text height = %f",size.height);
-//    NSLog(@"content text = %@",contentText);
-    
+
     return result;
 }
 
