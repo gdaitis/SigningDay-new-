@@ -216,8 +216,8 @@
                                                 animated:YES
                                               completion:^{
                                                   if (internetStatus != ReachableViaWiFi) {
-                                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                                                                      message:@"With Wi-Fi off, you will not be able to upload videos"
+                                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wi-Fi not enabled"
+                                                                                                      message:@"In order to share videos, Wi-Fi connection needs to be established. Videos captured without a Wi-Fi connection can be saved to library"
                                                                                                      delegate:nil
                                                                                             cancelButtonTitle:@"Ok"
                                                                                             otherButtonTitles:nil];
