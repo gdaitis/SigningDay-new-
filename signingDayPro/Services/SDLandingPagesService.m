@@ -66,7 +66,7 @@
     }
     int top = pageEndIndex - pageBeginIndex;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc,DisplayName asc&$skip=%d&$top=%d&$format=json&$filter=(Class eq %@)", kSDBaseSigningDayURLString, pageBeginIndex, top, classString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc,Stars desc,DisplayName asc&$skip=%d&$top=%d&$format=json&$filter=(Class eq %@)", kSDBaseSigningDayURLString, pageBeginIndex, top, classString];
     
     //    &$DisplayBaseScore=true
     NSLog(@"urlString = %@",urlString);
@@ -135,6 +135,9 @@
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
+                                             
+                                             NSLog(@"Downloaded Player: %@",user.name);
+                                             
                                              if (!user.thePlayer)
                                                  user.thePlayer = [Player MR_createInContext:context];
                                              user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];

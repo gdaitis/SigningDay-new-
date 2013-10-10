@@ -282,14 +282,11 @@
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
-//    NSSortDescriptor *starsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
+    NSSortDescriptor *hasWatchListBadgeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     
-    [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
+    [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,hasWatchListBadgeDescriptor,nameDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
-    
-    NSLog(@"self.currentUserCount = %d",self.currentUserCount);
-    NSLog(@"self.dataCount = %d",[self.dataArray count]);
     
     //checking if end for paging is reached
     if ([self.dataArray count] < self.currentUserCount) {
