@@ -10,7 +10,7 @@
 #import "SDBaseViewController.h"
 #import "SDUserProfileHeaderDelegate.h"
 
-@interface SDUserProfileViewController : SDBaseViewController <UITableViewDataSource,UITableViewDelegate,SDUserProfileHeaderDelegate>
+@interface SDUserProfileViewController : SDBaseViewController <SDUserProfileHeaderDelegate>
 
 @property (nonatomic, strong) User *currentUser;
 

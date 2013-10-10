@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
-@interface SDActivityFeedViewController : SDBaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SDActivityFeedViewController : SDBaseViewController
  
 @end

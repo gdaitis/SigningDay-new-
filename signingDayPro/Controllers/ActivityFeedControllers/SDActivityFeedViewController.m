@@ -195,26 +195,18 @@
         self.imagePicker = [[UIImagePickerController alloc] init];
         self.imagePicker.delegate = self;
         self.imagePicker.wantsFullScreenLayout = YES;
+        [[Reachability reachabilityForInternetConnection] startNotifier];
+        NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
         if (buttonIndex == 0) {
             self.isFromLibrary = NO;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             self.imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
-            //self.imagePicker.cameraViewTransform = CGAffineTransformMakeScale(1.23, 1.23);
             self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
-            //self.imagePicker.showsCameraControls = NO;
-            
-            [[Reachability reachabilityForInternetConnection] startNotifier];
-            NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
             if (internetStatus == ReachableViaWiFi) {
                 self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
             } else {
                 self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
             }
-            
-            //SDCameraOverlayView *cameraOverlayView = [[SDCameraOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
-            //cameraOverlayView.delegate = self;
-            //self.imagePicker.view.frame = cameraOverlayView.frame;
-            //self.imagePicker.cameraOverlayView = cameraOverlayView;
         } else if (buttonIndex == 1) {
             self.isFromLibrary = YES;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -222,7 +214,16 @@
         }
         [self.navigationController presentViewController:self.imagePicker
                                                 animated:YES
-                                              completion:nil];
+                                              completion:^{
+                                                  if (internetStatus != ReachableViaWiFi) {
+                                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"
+                                                                                                      message:@"With Wi-Fi off, you will not be able to upload videos"
+                                                                                                     delegate:nil
+                                                                                            cancelButtonTitle:@"Ok"
+                                                                                            otherButtonTitles:nil];
+                                                      [alert show];
+                                                  }
+                                              }];
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
     } else if (actionSheet.tag == 102) {
         if (buttonIndex == 0) {
@@ -265,7 +266,6 @@
                                                       completion:nil];
     }
 }
-
 
 #pragma mark - UIImagePickerController delegate methods
 
@@ -320,11 +320,11 @@
             actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Save to Library", nil];
             actionSheet.tag = 103;
         } else {
-            actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Send", @"Save to Library", nil];
+            actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share", @"Save to Library", nil];
             actionSheet.tag = 102;
         }
     } else {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Send", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose an action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share", nil];
         actionSheet.tag = 102;
     }
     

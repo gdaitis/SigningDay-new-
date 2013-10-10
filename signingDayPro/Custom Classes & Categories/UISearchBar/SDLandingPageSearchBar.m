@@ -7,6 +7,7 @@
 //
 
 #import "SDLandingPageSearchBar.h"
+
 #define kSlidingViewPadding 44
 
 @interface SDLandingPageSearchBar()
@@ -16,8 +17,6 @@
 @end
 
 @implementation SDLandingPageSearchBar
-
-static CGRect initialTextFieldFrame;
 
 - (void) layoutSubviews
 {

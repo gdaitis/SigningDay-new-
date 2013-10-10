@@ -1,9 +1,0 @@
-[submodule "Externals/DTCoreText"]
-	path = Externals/DTCoreText
-	url = https://github.com/Cocoanetics/DTCoreText.git
-[submodule "Externals/FacebookSDK"]
-	path = Externals/FacebookSDK
-	url = git://github.com/facebook/facebook-ios-sdk.git
-[submodule "Externals/AFNetworking"]
-	path = Externals/AFNetworking
-	url = https://github.com/AFNetworking/AFNetworking.git

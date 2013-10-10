@@ -42,6 +42,29 @@
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CollectionCellID"];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
+    NSString *noMediaText;
+    if (self.galleryType == SDGalleryTypePhotos)
+        noMediaText = @"No photos";
+    else
+        noMediaText = @"no videos";
+    UIFont *font = [UIFont fontWithName:@"BebasNeue" size:60.0];
+    NSInteger width = 150;
+    CGSize size = [noMediaText sizeWithFont:font
+                          constrainedToSize:CGSizeMake(width, MAXFLOAT)
+                              lineBreakMode:NSLineBreakByWordWrapping];
+    self.noItemsLabel = [[UILabel alloc] init];
+    self.noItemsLabel.text = noMediaText;
+    self.noItemsLabel.font = font;
+    self.noItemsLabel.textAlignment = NSTextAlignmentCenter;
+    self.noItemsLabel.numberOfLines = 0;
+    self.noItemsLabel.backgroundColor = [UIColor clearColor];
+    self.noItemsLabel.textColor = [UIColor blackColor];
+    CGRect frame = self.noItemsLabel.frame;
+    frame.size = size;
+    self.noItemsLabel.frame = frame;
+    self.noItemsLabel.center = self.collectionView.center;
+    [self.view addSubview:self.noItemsLabel];
+    self.noItemsLabel.hidden = YES;
     
     [self reload];
     [self checkServer];
@@ -49,6 +72,7 @@
 
 - (void)checkServer
 {
+    self.noItemsLabel.hidden = YES;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.collectionView
                                               animated:YES];
     hud.labelText = @"Loading";
@@ -83,6 +107,10 @@
                                          ascending:NO
                                      withPredicate:[NSPredicate predicateWithFormat:@"mediaGallery == %@", mediaGallery]
                                          inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    if (self.dataArray.count == 0)
+        self.noItemsLabel.hidden = NO;
+    else
+        self.noItemsLabel.hidden = YES;
     [self.collectionView reloadData];
 }
 
