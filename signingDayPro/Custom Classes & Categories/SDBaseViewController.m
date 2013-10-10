@@ -140,7 +140,7 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
     [self presentViewController:loginVC
                        animated:YES
                      completion:^{
-                         [self.delegate baseViewControllerDidShowLoginViewController:self];
+                         [self.baseDelegate baseViewControllerDidShowLoginViewController:self];
                      }];
 
 }

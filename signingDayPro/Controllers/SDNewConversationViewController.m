@@ -22,7 +22,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+Crop.h"
 
-@interface SDNewConversationViewController ()
+@interface SDNewConversationViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *searchResults;
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;

@@ -97,6 +97,10 @@
     return result;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 #pragma mark - Table view delegate
 

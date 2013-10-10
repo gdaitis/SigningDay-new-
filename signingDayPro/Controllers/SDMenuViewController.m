@@ -226,7 +226,7 @@
         centerVC = [sb instantiateViewControllerWithIdentifier:@"SDSettingsNavigationController"];
     }
     
-    centerVC.delegate = self;
+    centerVC.baseDelegate = self;
     
     self.viewDeckController.centerController = centerVC;
     [self.viewDeckController showCenterView:YES];
@@ -286,7 +286,7 @@
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
     SDBaseViewController *centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
-    centerVC.delegate = self;
+    centerVC.baseDelegate = self;
     self.viewDeckController.centerController = centerVC;
     [self.viewDeckController showCenterView:YES];
 }
