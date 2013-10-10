@@ -14,7 +14,6 @@
 #import "SDMessageCell.h"
 #import "MBProgressHUD.h"
 #import "SDContentHeaderView.h"
-#import "AFNetworking.h"
 #import "DTCoreText.h"
 #import "UIImageView+Crop.h"
 

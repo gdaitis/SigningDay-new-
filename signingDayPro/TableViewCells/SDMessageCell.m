@@ -8,7 +8,6 @@
 
 #import "SDMessageCell.h"
 #import "User.h"
-#import "AFNetworking.h"
 #import "SDImageService.h"
 #import "UIImage+Crop.h"
 #import "DTCoreText.h"
