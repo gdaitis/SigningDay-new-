@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "SDCommitsRostersViewController.h"
+#import "SDCommitsRostersCoachViewController.h"
 #import "SDProfileService.h"
 #import "SDLandingPagePlayerCell.h"
 #import "UIView+NibLoading.h"
@@ -16,13 +16,13 @@
 #import "HighSchool.h"
 #import "SDUserProfileViewController.h"
 
-@interface SDCommitsRostersViewController ()
+@interface SDCommitsRostersCoachViewController ()
 
 @property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
-@implementation SDCommitsRostersViewController
+@implementation SDCommitsRostersCoachViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,10 +56,7 @@
             [self hideProgressHudInView:self.view];
         }];
     }
-    else {
-        
-        [self loadCommits];
-        [self showProgressHudInView:self.view withText:@"Loading"];
+    else if (self.controllerType == CONTROLLER_TYPE_COMMITS) {
         
         [SDProfileService getCommitsForTeamWithIdentifier:self.userIdentifier andYearString:self.yearString completionBlock:^{
             [self loadCommits];
@@ -68,6 +65,16 @@
         } failureBlock:^{
             
             [self hideProgressHudInView:self.view];
+        }];
+    }
+    else {
+        [self loadCoachingStaff];
+        [self showProgressHudInView:self.view withText:@"Loading"];
+        
+        [SDProfileService getCoachingStaffForTeamWithIdentifier:self.userIdentifier completionBlock:^{
+            
+        } failureBlock:^{
+            
         }];
     }
 }
@@ -161,6 +168,23 @@
     self.dataArray = [[teamUser.theTeam.commits allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
     
     [self.tableView reloadData];
+}
+
+- (void)loadCoachingStaff
+{
+//    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+//    User *teamUser = [User MR_findFirstByAttribute:@"identifier"
+//                                         withValue:[NSNumber numberWithInt:[self.userIdentifier intValue]]
+//                                         inContext:context];
+//    
+//    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"baseScore"
+//                                                                     ascending:NO];
+//    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"theUser.name"
+//                                                                     ascending:YES];
+//    
+//    self.dataArray = [[teamUser.theTeam.commits allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
+//    
+//    [self.tableView reloadData];
 }
 
 

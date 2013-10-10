@@ -27,7 +27,9 @@ typedef enum {
 
 @interface SDProfileService : NSObject
 
-
++ (void)getCoachingStaffForTeamWithIdentifier:(NSString *)teamIdentifier
+                              completionBlock:(void (^)(void))completionBlock
+                                 failureBlock:(void (^)(void))failureBlock;
 + (void)getRostersForHighSchoolWithIdentifier:(NSString *)highSchoolIdentifier
                               completionBlock:(void (^)(void))completionBlock
                                  failureBlock:(void (^)(void))failureBlock;

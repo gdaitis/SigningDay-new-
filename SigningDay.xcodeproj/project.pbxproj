@@ -177,6 +177,9 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
+		803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */; };
+		803CDD611806D2E800BB399F /* SDCoachingStaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */; };
+		803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */; };
 		803ECEC517F4248A0060702F /* SDBioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECEC417F4248A0060702F /* SDBioViewController.m */; };
 		803ECED017F452CE0060702F /* SDCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECECF17F452CE0060702F /* SDCollectionCell.m */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
@@ -349,8 +352,8 @@
 		80F301801753A85E00134FF4 /* NotificationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301701753A85E00134FF4 /* NotificationIcon@2x.png */; };
 		80F301821753A85E00134FF4 /* NotificationIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301721753A85E00134FF4 /* NotificationIconActive@2x.png */; };
 		80F301841753A85E00134FF4 /* ToolbarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F301741753A85E00134FF4 /* ToolbarBg@2x.png */; };
-		80F531EB1802C1030089971C /* SDCommitsRostersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F531E91802C1030089971C /* SDCommitsRostersViewController.m */; };
-		80F531EC1802C1030089971C /* SDCommitsRostersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F531EA1802C1030089971C /* SDCommitsRostersViewController.xib */; };
+		80F531EB1802C1030089971C /* SDCommitsRostersCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F531E91802C1030089971C /* SDCommitsRostersCoachViewController.m */; };
+		80F531EC1802C1030089971C /* SDCommitsRostersCoachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F531EA1802C1030089971C /* SDCommitsRostersCoachViewController.xib */; };
 		80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F9089617DF5196005DF111 /* KeyAttributesImage@2x.png */; };
 		80F9089917DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F9089717DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png */; };
 		80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FA04E9177C461000CE1ED5 /* strechableBorderedImage@2x.png */; };
@@ -659,6 +662,10 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StaffButtonImage@2x.png"; sourceTree = "<group>"; };
+		803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCoachingStaffCell.h; sourceTree = "<group>"; };
+		803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCoachingStaffCell.m; sourceTree = "<group>"; };
+		803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCoachingStaffCell.xib; sourceTree = "<group>"; };
 		803ECEC317F4248A0060702F /* SDBioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBioViewController.h; sourceTree = "<group>"; };
 		803ECEC417F4248A0060702F /* SDBioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBioViewController.m; sourceTree = "<group>"; };
 		803ECECE17F452CE0060702F /* SDCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionCell.h; sourceTree = "<group>"; };
@@ -932,9 +939,9 @@
 		80F301701753A85E00134FF4 /* NotificationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationIcon@2x.png"; sourceTree = "<group>"; };
 		80F301721753A85E00134FF4 /* NotificationIconActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationIconActive@2x.png"; sourceTree = "<group>"; };
 		80F301741753A85E00134FF4 /* ToolbarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolbarBg@2x.png"; sourceTree = "<group>"; };
-		80F531E81802C1030089971C /* SDCommitsRostersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommitsRostersViewController.h; sourceTree = "<group>"; };
-		80F531E91802C1030089971C /* SDCommitsRostersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommitsRostersViewController.m; sourceTree = "<group>"; };
-		80F531EA1802C1030089971C /* SDCommitsRostersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCommitsRostersViewController.xib; sourceTree = "<group>"; };
+		80F531E81802C1030089971C /* SDCommitsRostersCoachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommitsRostersCoachViewController.h; sourceTree = "<group>"; };
+		80F531E91802C1030089971C /* SDCommitsRostersCoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommitsRostersCoachViewController.m; sourceTree = "<group>"; };
+		80F531EA1802C1030089971C /* SDCommitsRostersCoachViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCommitsRostersCoachViewController.xib; sourceTree = "<group>"; };
 		80F9089617DF5196005DF111 /* KeyAttributesImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KeyAttributesImage@2x.png"; sourceTree = "<group>"; };
 		80F9089717DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableKeyAttributesValueImage@2x.png"; sourceTree = "<group>"; };
 		80FA04E9177C461000CE1ED5 /* strechableBorderedImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strechableBorderedImage@2x.png"; sourceTree = "<group>"; };
@@ -1702,6 +1709,9 @@
 				8078685D17DDBFD300B77789 /* SDLandingPageHighSchoolCell.h */,
 				8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */,
 				8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */,
+				803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */,
+				803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */,
+				803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */,
 				801C90F317E0589800227D88 /* SDFilterListCell.h */,
 				801C90F417E0589800227D88 /* SDFilterListCell.m */,
 				801C90F617E058AA00227D88 /* SDFilterListCell.xib */,
@@ -1897,6 +1907,7 @@
 		80A0612B17529C84005FE319 /* SlidingMenu */ = {
 			isa = PBXGroup;
 			children = (
+				803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */,
 				7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */,
 				7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */,
 				7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */,
@@ -1969,9 +1980,9 @@
 				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
 				80E28A1417D76FD600665313 /* SDKeyAttributesViewController.h */,
 				80E28A1517D76FD600665313 /* SDKeyAttributesViewController.m */,
-				80F531E81802C1030089971C /* SDCommitsRostersViewController.h */,
-				80F531E91802C1030089971C /* SDCommitsRostersViewController.m */,
-				80F531EA1802C1030089971C /* SDCommitsRostersViewController.xib */,
+				80F531E81802C1030089971C /* SDCommitsRostersCoachViewController.h */,
+				80F531E91802C1030089971C /* SDCommitsRostersCoachViewController.m */,
+				80F531EA1802C1030089971C /* SDCommitsRostersCoachViewController.xib */,
 				803ECEC317F4248A0060702F /* SDBioViewController.h */,
 				803ECEC417F4248A0060702F /* SDBioViewController.m */,
 				803ECED317F456BF0060702F /* SDCollectionViewController.h */,
@@ -2257,6 +2268,7 @@
 				80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */,
 				7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */,
 				805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */,
+				803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */,
 				805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */,
 				80F2590C1773411900D3B85E /* commentImage@2x.png in Resources */,
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
@@ -2296,11 +2308,12 @@
 				801088ED179579BF002EF1EB /* x_button_gray@2x.png in Resources */,
 				801088EE179579BF002EF1EB /* x_button_yellow@2x.png in Resources */,
 				803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */,
-				80F531EC1802C1030089971C /* SDCommitsRostersViewController.xib in Resources */,
+				80F531EC1802C1030089971C /* SDCommitsRostersCoachViewController.xib in Resources */,
 				801088F1179579DC002EF1EB /* MenuButtonClose@2x.png in Resources */,
 				801088F2179579DC002EF1EB /* MenuButtonDone@2x.png in Resources */,
 				80D1F39917967FF20051E8E1 /* BuzzButtonBackground@2x.png in Resources */,
 				80D1F39A17967FF20051E8E1 /* BuzzSomethingIcon@2x.png in Resources */,
+				803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */,
 				80D1F39B17967FF20051E8E1 /* MessageButtonBackground@2x.png in Resources */,
 				80D1F39C17967FF20051E8E1 /* MessageIcon@2x.png in Resources */,
 				80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */,
@@ -2466,6 +2479,7 @@
 				80A7DB7118059A2300D622B5 /* Coach.m in Sources */,
 				80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				80431E4717A006B3002F6E3D /* NSEntityDescription+MagicalDataImport.m in Sources */,
+				803CDD611806D2E800BB399F /* SDCoachingStaffCell.m in Sources */,
 				80431E4817A006B3002F6E3D /* NSNumber+MagicalDataImport.m in Sources */,
 				80431E4917A006B3002F6E3D /* NSObject+MagicalDataImport.m in Sources */,
 				7BC1D86517F315C800D686E6 /* SDNotificationsService.m in Sources */,
@@ -2541,7 +2555,7 @@
 				7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */,
 				7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */,
 				803ECED517F456BF0060702F /* SDCollectionViewController.m in Sources */,
-				80F531EB1802C1030089971C /* SDCommitsRostersViewController.m in Sources */,
+				80F531EB1802C1030089971C /* SDCommitsRostersCoachViewController.m in Sources */,
 				7B0E781E17F56793001F8305 /* SDBadgeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,10 +11,11 @@
 
 typedef enum {
     CONTROLLER_TYPE_ROSTERS = 0,
-    CONTROLLER_TYPE_COMMITS
+    CONTROLLER_TYPE_COMMITS,
+    CONTROLLER_TYPE_COACHINGSTAFF
 } ControllerListType;
 
-@interface SDCommitsRostersViewController : SDBaseViewController
+@interface SDCommitsRostersCoachViewController : SDBaseViewController
 
 @property (nonatomic,assign) ControllerListType controllerType;
 @property (nonatomic, strong) NSString *userIdentifier;

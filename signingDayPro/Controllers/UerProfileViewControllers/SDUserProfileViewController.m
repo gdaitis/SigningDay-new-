@@ -37,7 +37,7 @@
 #import "SDYoutubePlayerViewController.h"
 #import "SDBaseProfileHeaderView.h"
 #import "WebPreview.h"
-#import "SDCommitsRostersViewController.h"
+#import "SDCommitsRostersCoachViewController.h"
 #import "MediaGallery.h"
 
 #define kUserProfileHeaderHeight 360
@@ -349,7 +349,7 @@
         }
         case SDUserTypeHighSchool:
         {
-            SDCommitsRostersViewController *rosterViewController = [[SDCommitsRostersViewController alloc] initWithNibName:@"SDCommitsRostersViewController" bundle:[NSBundle mainBundle]];
+            SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
             rosterViewController.userIdentifier = currentUserIdentifier;
             rosterViewController.controllerType = CONTROLLER_TYPE_ROSTERS;
             [self.navigationController pushViewController:rosterViewController animated:YES];
@@ -357,7 +357,7 @@
         }
         case SDUserTypeTeam:
         {
-            SDCommitsRostersViewController *commitsViewController = [[SDCommitsRostersViewController alloc] initWithNibName:@"SDCommitsRostersViewController" bundle:[NSBundle mainBundle]];
+            SDCommitsRostersCoachViewController *commitsViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
             commitsViewController.userIdentifier = currentUserIdentifier;
             commitsViewController.controllerType = CONTROLLER_TYPE_COMMITS;
             commitsViewController.yearString = self.currentUser.theTeam.teamClass;
