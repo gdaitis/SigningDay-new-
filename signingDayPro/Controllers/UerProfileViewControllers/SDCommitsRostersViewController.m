@@ -136,8 +136,10 @@
                                          withValue:[NSNumber numberWithInt:[self.userIdentifier intValue]]
                                          inContext:context];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"baseScore"
+                                                                     ascending:NO];
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"theUser.name"
                                                                      ascending:YES];
-    self.dataArray = [[highSchoolUser.theHighSchool.rosters allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    self.dataArray = [[highSchoolUser.theHighSchool.rosters allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
     
     [self.tableView reloadData];
 }
@@ -152,8 +154,11 @@
                                          inContext:context];
 
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"baseScore"
+                                                                     ascending:NO];
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"theUser.name"
                                                                      ascending:YES];
-    self.dataArray = [[teamUser.theTeam.commits allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    self.dataArray = [[teamUser.theTeam.commits allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
     
     [self.tableView reloadData];
 }

@@ -281,9 +281,9 @@
     NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO];
     NSSortDescriptor *hasWatchListBadgeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
     
     [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,hasWatchListBadgeDescriptor,nameDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
