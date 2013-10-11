@@ -23,6 +23,12 @@ typedef enum {
     SDGalleryTypeVideos = 2
 } SDGalleryType;
 
+typedef enum {
+    SDCoachLevel1 = 1,
+    SDCoachLevel2 = 2,
+    SDCoachLevel3 = 3
+} SDCoachLevel;
+
 @class User;
 
 @interface SDProfileService : NSObject

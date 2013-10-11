@@ -1,8 +1,8 @@
 //
 //  Team.h
-//  signingDayPro
+//  SigningDay
 //
-//  Created by Lukas Kekys on 10/7/13.
+//  Created by Vytautas Gudaitis on 10/11/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -26,22 +26,27 @@
 @property (nonatomic, retain) NSString * teamName;
 @property (nonatomic, retain) NSNumber * totalScore;
 @property (nonatomic, retain) NSString * universityName;
-@property (nonatomic, retain) NSSet *favoritedBy;
-@property (nonatomic, retain) Coach *headCoach;
-@property (nonatomic, retain) User *theUser;
 @property (nonatomic, retain) NSSet *commits;
+@property (nonatomic, retain) NSSet *favoritedBy;
+@property (nonatomic, retain) NSSet *headCoaches;
+@property (nonatomic, retain) User *theUser;
 @end
 
 @interface Team (CoreDataGeneratedAccessors)
+
+- (void)addCommitsObject:(Player *)value;
+- (void)removeCommitsObject:(Player *)value;
+- (void)addCommits:(NSSet *)values;
+- (void)removeCommits:(NSSet *)values;
 
 - (void)addFavoritedByObject:(Member *)value;
 - (void)removeFavoritedByObject:(Member *)value;
 - (void)addFavoritedBy:(NSSet *)values;
 - (void)removeFavoritedBy:(NSSet *)values;
 
-- (void)addCommitsObject:(Player *)value;
-- (void)removeCommitsObject:(Player *)value;
-- (void)addCommits:(NSSet *)values;
-- (void)removeCommits:(NSSet *)values;
+- (void)addHeadCoachesObject:(Coach *)value;
+- (void)removeHeadCoachesObject:(Coach *)value;
+- (void)addHeadCoaches:(NSSet *)values;
+- (void)removeHeadCoaches:(NSSet *)values;
 
 @end

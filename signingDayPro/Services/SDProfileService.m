@@ -437,7 +437,8 @@
                                             coachUser.theCoach.location = [coachDictionary valueForKey:@"Location"];
                                             coachUser.theCoach.position = [coachDictionary valueForKey:@"Position"];
                                             
-                                            user.theTeam.headCoach = coachUser.theCoach;
+#warning set level of the coach
+                                            coachUser.theCoach.team = user.theTeam;
                                         }
                                             break;
                                             
@@ -446,6 +447,9 @@
                                                 user.theCoach = [Coach MR_createInContext:userContext];
                                             user.theCoach.location = [derivedUserDictionary valueForKey:@"Location"];
                                             user.theCoach.position = [derivedUserDictionary valueForKey:@"Position"];
+                                            
+#warning set level of the coach
+#warning set "team" only for head coach
                                             
                                             NSDictionary *teamDictionary = [derivedUserDictionary valueForKey:@"Team"];
                                             NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
