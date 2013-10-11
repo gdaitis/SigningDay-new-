@@ -29,6 +29,7 @@
 #import "MediaGallery.h"
 #import "SDUtils.h"
 #import "State.h"
+#import "NFLPA.h"
 
 @interface SDProfileService ()
 
@@ -436,7 +437,8 @@
                                             coachUser.theCoach.location = [coachDictionary valueForKey:@"Location"];
                                             coachUser.theCoach.position = [coachDictionary valueForKey:@"Position"];
                                             
-                                            user.theTeam.headCoach = coachUser.theCoach;
+#warning set level of the coach
+                                            coachUser.theCoach.team = user.theTeam;
                                         }
                                             break;
                                             
@@ -445,6 +447,9 @@
                                                 user.theCoach = [Coach MR_createInContext:userContext];
                                             user.theCoach.location = [derivedUserDictionary valueForKey:@"Location"];
                                             user.theCoach.position = [derivedUserDictionary valueForKey:@"Position"];
+                                            
+#warning set level of the coach
+#warning set "team" only for head coach
                                             
                                             NSDictionary *teamDictionary = [derivedUserDictionary valueForKey:@"Team"];
                                             NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
@@ -520,6 +525,19 @@
                                                     user.theMember.favoriteTeam = teamUser.theTeam;
                                                 }
                                             }
+                                        }
+                                            break;
+                                            
+                                        case SDUserTypeNFLPA: {
+                                            if (!user.theNFLPA)
+                                                user.theNFLPA = [NFLPA MR_createInContext:userContext];
+                                            user.theNFLPA.collegeName = [derivedUserDictionary valueForKey:@"College"];
+                                            user.theNFLPA.nflpaAvatarUrl = [derivedUserDictionary valueForKey:@"NFLPAAvatarUrl"];
+                                            user.theNFLPA.position = [derivedUserDictionary valueForKey:@"Position"];
+                                            user.theNFLPA.teamName = [derivedUserDictionary valueForKey:@"Team"];
+                                            user.theNFLPA.websiteTitle = [derivedUserDictionary valueForKey:@"Website"];
+                                            user.theNFLPA.websiteUrl = [derivedUserDictionary valueForKey:@"WebsiteURL"];
+                                            user.theNFLPA.yearsPro = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"YearsPro"] intValue]];
                                         }
                                             break;
                                             

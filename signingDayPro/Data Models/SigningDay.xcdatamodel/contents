@@ -24,10 +24,13 @@
         <relationship name="webPreview" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WebPreview" inverseName="activityStory" inverseEntity="WebPreview" syncable="YES"/>
     </entity>
     <entity name="Coach" representedClassName="Coach" syncable="YES">
+        <attribute name="coachLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="institution" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="team" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="headCoach" inverseEntity="Team" syncable="YES"/>
+        <relationship name="subCoaches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Coach" inverseName="superCoach" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="superCoach" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="subCoaches" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="team" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="headCoaches" inverseEntity="Team" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theCoach" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Comment" representedClassName="Comment" syncable="YES">
@@ -124,6 +127,16 @@
         <relationship name="conversation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="messages" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="NFLPA" representedClassName="NFLPA" syncable="YES">
+        <attribute name="collegeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nflpaAvatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="websiteTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="websiteUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="yearsPro" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="theUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theNFLPA" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Notification" representedClassName="Notification" syncable="YES">
         <attribute name="activityStoryId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
@@ -175,7 +188,7 @@
         <attribute name="universityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="commits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="commitedTo" inverseEntity="Player" syncable="YES"/>
         <relationship name="favoritedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Member" inverseName="favoriteTeam" inverseEntity="Member" syncable="YES"/>
-        <relationship name="headCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="headCoaches" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theTeam" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -211,6 +224,7 @@
         <relationship name="theCoach" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="theUser" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theHighSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="theUser" inverseEntity="HighSchool" syncable="YES"/>
         <relationship name="theMember" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Member" inverseName="theUser" inverseEntity="Member" syncable="YES"/>
+        <relationship name="theNFLPA" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NFLPA" inverseName="theUser" inverseEntity="NFLPA" syncable="YES"/>
         <relationship name="thePlayer" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="theUser" inverseEntity="Player" syncable="YES"/>
         <relationship name="theTeam" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="theUser" inverseEntity="Team" syncable="YES"/>
     </entity>
@@ -223,24 +237,25 @@
         <relationship name="activityStory" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityStory" inverseName="webPreview" inverseEntity="ActivityStory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ActivityStory" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Coach" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Comment" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Conference" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Conversation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="HighSchool" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ImageData" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Like" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Master" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MediaGallery" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MediaItem" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Member" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Message" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Notification" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Player" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="State" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Team" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="WebPreview" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ActivityStory" positionX="0" positionY="0" width="128" height="360"/>
+        <element name="Coach" positionX="1024" positionY="81" width="128" height="163"/>
+        <element name="Comment" positionX="-389" positionY="-153" width="128" height="135"/>
+        <element name="Conference" positionX="448" positionY="-270" width="128" height="135"/>
+        <element name="Conversation" positionX="-459" positionY="-18" width="128" height="180"/>
+        <element name="HighSchool" positionX="781" positionY="-195" width="128" height="193"/>
+        <element name="ImageData" positionX="36" positionY="-288" width="128" height="90"/>
+        <element name="Like" positionX="-189" positionY="-180" width="128" height="90"/>
+        <element name="Master" positionX="-261" positionY="180" width="128" height="225"/>
+        <element name="MediaGallery" positionX="43" positionY="-123" width="128" height="105"/>
+        <element name="MediaItem" positionX="250" positionY="-216" width="128" height="165"/>
+        <element name="Member" positionX="745" positionY="402" width="128" height="120"/>
+        <element name="Message" positionX="-182" positionY="0" width="128" height="135"/>
+        <element name="NFLPA" positionX="891" positionY="675" width="128" height="163"/>
+        <element name="Notification" positionX="-191" positionY="462" width="128" height="195"/>
+        <element name="Player" positionX="990" positionY="333" width="128" height="270"/>
+        <element name="State" positionX="36" positionY="453" width="128" height="105"/>
+        <element name="Team" positionX="727" positionY="27" width="128" height="298"/>
+        <element name="User" positionX="484" positionY="165" width="128" height="568"/>
+        <element name="WebPreview" positionX="367" positionY="-27" width="128" height="135"/>
     </elements>
 </model>

@@ -1,8 +1,8 @@
 //
 //  User.m
-//  signingDayPro
+//  SigningDay
 //
-//  Created by Lukas Kekys on 10/7/13.
+//  Created by Vytautas Gudaitis on 10/11/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 #import "MediaGallery.h"
 #import "Member.h"
 #import "Message.h"
+#import "NFLPA.h"
 #import "Notification.h"
 #import "Player.h"
 #import "State.h"
@@ -59,5 +60,6 @@
 @dynamic theMember;
 @dynamic thePlayer;
 @dynamic theTeam;
+@dynamic theNFLPA;
 
 @end

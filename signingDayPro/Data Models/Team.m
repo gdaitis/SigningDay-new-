@@ -1,8 +1,8 @@
 //
 //  Team.m
-//  signingDayPro
+//  SigningDay
 //
-//  Created by Lukas Kekys on 10/7/13.
+//  Created by Vytautas Gudaitis on 10/11/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -28,9 +28,9 @@
 @dynamic teamName;
 @dynamic totalScore;
 @dynamic universityName;
-@dynamic favoritedBy;
-@dynamic headCoach;
-@dynamic theUser;
 @dynamic commits;
+@dynamic favoritedBy;
+@dynamic headCoaches;
+@dynamic theUser;
 
 @end
