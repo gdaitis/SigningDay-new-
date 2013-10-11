@@ -15,24 +15,15 @@ extern NSString * const SDKeyboardShouldHideNotification;
 @class SDBaseViewController;
 @class ActivityStory;
 
-@protocol SDBaseViewControllerDelegate <NSObject>
 
-@optional
-
-- (void)baseViewControllerDidShowLoginViewController:(SDBaseViewController *)baseViewController;
-
-@end
 
 @interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, weak) id <SDBaseViewControllerDelegate> baseDelegate;
 
 - (void)beginRefreshing;
 - (void)endRefreshing;
-
-- (void)showLoginScreen;
 
 - (void)hideProgressHudInView:(UIView *)view;
 - (void)showProgressHudInView:(UIView *)view withText:(NSString *)text;

@@ -10,6 +10,7 @@
 #import "SDLoginService.h"
 #import "SDAPIClient.h"
 #import "SDLoginViewController.h"
+#import "SDMenuViewController.h"
 
 @interface SDInitialSlidingViewController ()
 
@@ -27,13 +28,6 @@
         // Add any extra init code here
     }
     return self;
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"])
-        [self showLoginScreen];
 }
 
 @end

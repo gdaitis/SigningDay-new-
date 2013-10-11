@@ -31,13 +31,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="115" customClass="SDUserProfileSlidingButtonView">
-                    <rect key="frame" x="0.0" y="237" width="320" height="137"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="115" customClass="SDUserProfileSlidingButtonView">
+                    <rect key="frame" x="0.0" y="237" width="320" height="132"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="132" id="lKZ-fu-YxK"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="116" customClass="SDBuzzButtonView">
-                    <rect key="frame" x="0.0" y="373" width="320" height="60"/>
+                    <rect key="frame" x="0.0" y="368" width="320" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -128,7 +131,7 @@
                 <constraint firstItem="362" firstAttribute="top" secondItem="104" secondAttribute="top" constant="158" id="450"/>
                 <constraint firstItem="113" firstAttribute="top" secondItem="104" secondAttribute="top" constant="145" id="458"/>
                 <constraint firstItem="114" firstAttribute="top" secondItem="104" secondAttribute="top" constant="126" id="459"/>
-                <constraint firstItem="116" firstAttribute="top" secondItem="104" secondAttribute="top" constant="373" id="461"/>
+                <constraint firstItem="116" firstAttribute="top" secondItem="104" secondAttribute="top" constant="368" id="461"/>
                 <constraint firstItem="109" firstAttribute="top" secondItem="104" secondAttribute="top" constant="193" id="492"/>
                 <constraint firstItem="105" firstAttribute="centerY" secondItem="109" secondAttribute="centerY" id="495"/>
                 <constraint firstItem="108" firstAttribute="top" secondItem="104" secondAttribute="top" constant="183" id="499"/>

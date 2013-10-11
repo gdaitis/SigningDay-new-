@@ -34,19 +34,6 @@
                         <constraint firstAttribute="height" constant="158" id="158"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="31" customClass="SDUserProfileSlidingButtonView">
-                    <rect key="frame" x="0.0" y="236" width="320" height="138"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30" customClass="SDBuzzButtonView">
-                    <rect key="frame" x="0.0" y="373" width="320" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" priority="996" constant="60" id="39"/>
-                    </constraints>
-                </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32">
                     <rect key="frame" x="15" y="116" width="290" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -114,6 +101,22 @@
                         <constraint firstAttribute="height" constant="40" id="42"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iL9-j7-sSj" customClass="SDUserProfileSlidingButtonView">
+                    <rect key="frame" x="0.0" y="237" width="320" height="132"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="132" id="Gfe-EU-kCQ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1E-2y-63N" customClass="SDBuzzButtonView">
+                    <rect key="frame" x="0.0" y="368" width="320" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" priority="999" constant="60" id="cpx-wz-t2d"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
@@ -124,11 +127,6 @@
                 <constraint firstItem="33" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="15" id="10"/>
                 <constraint firstItem="33" firstAttribute="trailing" secondItem="32" secondAttribute="trailing" id="11"/>
                 <constraint firstItem="34" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="15" id="14"/>
-                <constraint firstItem="31" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="21"/>
-                <constraint firstItem="31" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="23"/>
-                <constraint firstItem="30" firstAttribute="leading" secondItem="3" secondAttribute="leading" priority="998" id="25"/>
-                <constraint firstItem="30" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" priority="997" id="26"/>
-                <constraint firstItem="30" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" priority="996" id="27"/>
                 <constraint firstItem="34" firstAttribute="centerY" secondItem="4" secondAttribute="centerY" id="55"/>
                 <constraint firstItem="74" firstAttribute="leading" secondItem="75" secondAttribute="trailing" constant="3" id="76"/>
                 <constraint firstItem="75" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="85"/>
@@ -140,8 +138,6 @@
                 <constraint firstItem="32" firstAttribute="top" secondItem="3" secondAttribute="top" constant="116" id="247"/>
                 <constraint firstItem="33" firstAttribute="top" secondItem="3" secondAttribute="top" constant="135" id="248"/>
                 <constraint firstItem="154" firstAttribute="bottom" secondItem="29" secondAttribute="bottom" id="252"/>
-                <constraint firstItem="30" firstAttribute="top" secondItem="3" secondAttribute="top" constant="373" id="264"/>
-                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="31" secondAttribute="bottom" constant="59" id="271"/>
                 <constraint firstItem="36" firstAttribute="leading" secondItem="35" secondAttribute="trailing" constant="3" id="277"/>
                 <constraint firstItem="35" firstAttribute="baseline" secondItem="34" secondAttribute="baseline" id="283"/>
                 <constraint firstItem="36" firstAttribute="trailing" secondItem="33" secondAttribute="trailing" id="301"/>
@@ -151,10 +147,17 @@
                 <constraint firstAttribute="trailing" secondItem="36" secondAttribute="trailing" constant="15" id="335"/>
                 <constraint firstItem="36" firstAttribute="top" secondItem="3" secondAttribute="top" constant="178" id="339"/>
                 <constraint firstItem="36" firstAttribute="top" secondItem="35" secondAttribute="top" id="341"/>
+                <constraint firstItem="p1E-2y-63N" firstAttribute="leading" secondItem="iL9-j7-sSj" secondAttribute="leading" id="2tG-bW-a97"/>
+                <constraint firstAttribute="bottom" secondItem="p1E-2y-63N" secondAttribute="bottom" constant="5" id="6pE-na-kA1"/>
+                <constraint firstItem="p1E-2y-63N" firstAttribute="trailing" secondItem="iL9-j7-sSj" secondAttribute="trailing" id="Pxp-Ch-D1z"/>
+                <constraint firstItem="iL9-j7-sSj" firstAttribute="top" secondItem="154" secondAttribute="bottom" id="hbI-R0-hhy"/>
+                <constraint firstItem="p1E-2y-63N" firstAttribute="leading" secondItem="154" secondAttribute="leading" id="s5a-CR-vIG"/>
+                <constraint firstItem="p1E-2y-63N" firstAttribute="top" secondItem="3" secondAttribute="top" constant="368" id="w65-UP-NwO"/>
+                <constraint firstItem="p1E-2y-63N" firstAttribute="trailing" secondItem="154" secondAttribute="trailing" id="xDJ-lU-YrB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="buzzButtonView" destination="30" id="118"/>
+                <outlet property="buzzButtonView" destination="p1E-2y-63N" id="NMX-mb-Tlf"/>
                 <outlet property="conferenceImageView" destination="4" id="86"/>
                 <outlet property="conferenceLabel" destination="34" id="87"/>
                 <outlet property="conferenceRankingLabel" destination="35" id="57"/>
@@ -162,7 +165,7 @@
                 <outlet property="headCoachLabel" destination="75" id="88"/>
                 <outlet property="headCoachNameLabel" destination="74" id="89"/>
                 <outlet property="nameLabel" destination="32" id="44"/>
-                <outlet property="slidingButtonView" destination="31" id="119"/>
+                <outlet property="slidingButtonView" destination="iL9-j7-sSj" id="d4a-i5-Om9"/>
                 <outlet property="universityLabel" destination="33" id="90"/>
                 <outlet property="userImageView" destination="29" id="120"/>
             </connections>

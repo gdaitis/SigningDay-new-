@@ -28,13 +28,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14" customClass="SDUserProfileSlidingButtonView">
-                    <rect key="frame" x="0.0" y="237" width="320" height="137"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14" customClass="SDUserProfileSlidingButtonView">
+                    <rect key="frame" x="0.0" y="237" width="320" height="132"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="132" id="kZN-lH-qIO"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15" customClass="SDBuzzButtonView">
-                    <rect key="frame" x="0.0" y="373" width="320" height="60"/>
+                    <rect key="frame" x="0.0" y="368" width="320" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -230,7 +233,7 @@
                 <constraint firstItem="670" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="685"/>
                 <constraint firstItem="612" firstAttribute="top" secondItem="3" secondAttribute="top" id="690"/>
                 <constraint firstItem="14" firstAttribute="top" secondItem="3" secondAttribute="top" constant="237" id="695"/>
-                <constraint firstItem="15" firstAttribute="top" secondItem="3" secondAttribute="top" constant="373" id="703"/>
+                <constraint firstItem="15" firstAttribute="top" secondItem="3" secondAttribute="top" constant="368" id="703"/>
                 <constraint firstItem="670" firstAttribute="top" secondItem="3" secondAttribute="top" constant="158" id="711"/>
                 <constraint firstItem="413" firstAttribute="leading" secondItem="153" secondAttribute="leading" id="718"/>
                 <constraint firstAttribute="trailing" secondItem="273" secondAttribute="trailing" constant="15" id="776"/>

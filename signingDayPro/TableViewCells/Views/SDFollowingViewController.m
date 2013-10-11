@@ -440,7 +440,7 @@
 {
     User *user = [self.dataArray objectAtIndex:indexPath.row];
     
-    if ([user.userTypeId intValue] != SDUserTypeOrganization && [user.userTypeId intValue] != SDUserTypeNFLPA && [user.userTypeId intValue] > 0) {
+    if ([user.userTypeId intValue] != SDUserTypeOrganization && [user.userTypeId intValue] > 0) {
         [self.delegate followingViewController:self didSelectUser:user];
     }
     else {

@@ -32,22 +32,25 @@
                         <constraint firstAttribute="height" constant="158" id="205"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36" customClass="SDUserProfileSlidingButtonView">
-                    <rect key="frame" x="0.0" y="237" width="320" height="137"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36" customClass="SDUserProfileSlidingButtonView">
+                    <rect key="frame" x="0.0" y="237" width="320" height="132"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35" customClass="SDBuzzButtonView">
-                    <rect key="frame" x="0.0" y="373" width="320" height="60"/>
+                    <rect key="frame" x="0.0" y="368" width="320" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" priority="999" constant="60" id="44"/>
                     </constraints>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37">
                     <rect key="frame" x="15" y="127" width="290" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="26y-Uj-cHG"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -134,8 +137,9 @@
                 <constraint firstItem="37" firstAttribute="top" secondItem="3" secondAttribute="top" constant="127" id="199"/>
                 <constraint firstItem="38" firstAttribute="top" secondItem="3" secondAttribute="top" constant="146" id="200"/>
                 <constraint firstItem="40" firstAttribute="centerY" secondItem="106" secondAttribute="centerY" id="204"/>
-                <constraint firstItem="35" firstAttribute="top" secondItem="3" secondAttribute="top" constant="373" id="206"/>
+                <constraint firstItem="35" firstAttribute="top" secondItem="3" secondAttribute="top" constant="368" id="206"/>
                 <constraint firstItem="36" firstAttribute="top" secondItem="3" secondAttribute="top" constant="237" id="209"/>
+                <constraint firstAttribute="bottom" secondItem="36" secondAttribute="bottom" constant="64" id="I5v-pQ-aur"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

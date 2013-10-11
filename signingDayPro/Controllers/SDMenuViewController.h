@@ -10,6 +10,9 @@
 #import "SDBaseViewController.h"
 #import "IIViewDeckController.h"
 
+
 @interface SDMenuViewController : SDBaseViewController
+
+- (void)showLoginScreen;
 
 @end

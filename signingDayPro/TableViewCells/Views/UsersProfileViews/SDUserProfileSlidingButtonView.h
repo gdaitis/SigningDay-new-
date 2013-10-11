@@ -17,6 +17,7 @@
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing;
 - (void)changingButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
+- (void)staffButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
 - (void)photosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
 - (void)videosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
 - (void)bioButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
@@ -39,12 +40,15 @@
 @property (nonatomic, weak) IBOutlet UIButton *photosButton;
 @property (nonatomic, weak) IBOutlet UIButton *videosButton;
 @property (nonatomic, weak) IBOutlet UIButton *bioButton;
+@property (nonatomic, weak) IBOutlet UIButton *staffButton;
 
 //sliding meniu label
 @property (nonatomic, weak) IBOutlet UILabel *keyAttributesLabel;
+@property (nonatomic, weak) IBOutlet UILabel *staffLabel;
 
 @property (nonatomic, weak) id <SDUserProfileSlidingButtonViewDelegate> delegate;
 
 - (void)setupView;
+- (void)updateContentSize;
 
 @end

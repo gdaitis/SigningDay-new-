@@ -20,8 +20,6 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 
 @interface SDBaseViewController ()
 
-//@property (nonatomic, strong) SDLoginViewController *loginViewController;
-
 @end
 
 @implementation SDBaseViewController
@@ -39,10 +37,6 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(userDidLogout)
-                                                 name:kSDLoginServiceUserDidLogoutNotification
-                                               object:nil];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.tintColor = [UIColor grayColor];
@@ -57,9 +51,6 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kSDLoginServiceUserDidLogoutNotification
-                                                  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:SDKeyboardShouldHideNotification
                                                   object:nil];
@@ -112,37 +103,6 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 - (void)checkServer
 {
     // override this in a subclass
-}
-
-#pragma mark - SDLoginViewController login & delegate methods
-
-- (void)loginViewControllerDidFinishLoggingIn:(SDLoginViewController *)loginViewController
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdatedNotification object:nil];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
-- (void)userDidLogout
-{
-    //optionally may call some functions to clear views and some data
-    [self showLoginScreen];
-}
-
-- (void)showLoginScreen
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
-    SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
-    loginVC.delegate = self;
-    
-    [self presentViewController:loginVC
-                       animated:YES
-                     completion:^{
-                         [self.baseDelegate baseViewControllerDidShowLoginViewController:self];
-                     }];
-
 }
 
 - (void)showAlertWithTitle:(NSString *)title andText:(NSString *)text

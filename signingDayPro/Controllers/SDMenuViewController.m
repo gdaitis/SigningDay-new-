@@ -16,10 +16,12 @@
 #import "SDImageService.h"
 #import "SDUserProfileViewController.h"
 #import "UIImage+Crop.h"
+#import "SDLoginService.h"
+#import "SDSettingsViewController.h"
 
 #define kHeaderSize  40
 
-@interface SDMenuViewController () <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate,IIViewDeckControllerDelegate, SDBaseViewControllerDelegate>
+@interface SDMenuViewController () <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate,UISearchBarDelegate,IIViewDeckControllerDelegate/*, SDBaseViewControllerDelegate*/>
 
 @property (nonatomic, strong) NSArray *menuItems;
 @property (nonatomic, weak) IBOutlet SDSearchBar *searchBar;
@@ -58,6 +60,17 @@
         sublayer.frame = CGRectMake(0, 0, 320, 20);
         [self.view.layer addSublayer:sublayer];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userDidLogout)
+                                                 name:kSDLoginServiceUserDidLogoutNotification
+                                               object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kSDLoginServiceUserDidLogoutNotification
+                                                  object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,6 +78,14 @@
     [super viewWillAppear:animated];
     _keyboardHiddingButton.hidden = YES;
     self.viewDeckController.delegate = self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"])
+        [self showLoginScreen];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -226,10 +247,42 @@
         centerVC = [sb instantiateViewControllerWithIdentifier:@"SDSettingsNavigationController"];
     }
     
-    centerVC.baseDelegate = self;
-    
     self.viewDeckController.centerController = centerVC;
     [self.viewDeckController showCenterView:YES];
+}
+
+- (void)userDidLogout
+{
+    //optionally may call some functions to clear views and some data
+    [self showLoginScreen];
+}
+
+- (void)showLoginScreen
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
+    SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
+    loginVC.delegate = self;
+    
+    [self.viewDeckController presentViewController:loginVC
+                       animated:YES
+                     completion:^{
+                         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
+                         SDBaseViewController *centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
+                         self.viewDeckController.centerController = centerVC;
+                         [self.viewDeckController showCenterView:YES];
+                     }];
+    
+}
+
+#pragma mark - SDLoginViewController login & delegate methods
+
+- (void)loginViewControllerDidFinishLoggingIn:(SDLoginViewController *)loginViewController
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUserUpdatedNotification object:nil];
+    [self.viewDeckController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - searchBarDelegate
@@ -278,17 +331,6 @@
 - (void)UserUpdated
 {
     [_tableView reloadData];
-}
-
-#pragma mark - SDBaseViewControllerDelegate methods
-
-- (void)baseViewControllerDidShowLoginViewController:(SDBaseViewController *)baseViewController
-{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
-    SDBaseViewController *centerVC = [sb instantiateViewControllerWithIdentifier:@"SDActivityFeedNavigationController"];
-    centerVC.baseDelegate = self;
-    self.viewDeckController.centerController = centerVC;
-    [self.viewDeckController showCenterView:YES];
 }
 
 @end

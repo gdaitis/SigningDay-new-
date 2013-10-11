@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
-@class SDSettingsViewController;
-
 @interface SDSettingsViewController : SDBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
 @end

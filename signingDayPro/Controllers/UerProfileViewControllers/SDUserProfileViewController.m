@@ -141,6 +141,8 @@
                 playerView.slidingButtonView.delegate = self;
                 [playerView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileKeyAttributesButton.png"] forState:UIControlStateNormal];
                 playerView.slidingButtonView.keyAttributesLabel.text = @"Key Attributes";
+                [playerView.slidingButtonView.staffButton removeFromSuperview];
+                [playerView.slidingButtonView.staffLabel removeFromSuperview];
                 view = playerView;
                 break;
             }
@@ -152,6 +154,8 @@
                 highschoolView.slidingButtonView.delegate = self;
                 [highschoolView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileProspectsButton.png"] forState:UIControlStateNormal];
                 highschoolView.slidingButtonView.keyAttributesLabel.text = @"Roster";
+                [highschoolView.slidingButtonView.staffButton removeFromSuperview];
+                [highschoolView.slidingButtonView.staffLabel removeFromSuperview];
                 view = highschoolView;
                 break;
             }
@@ -174,6 +178,8 @@
                 memberView.slidingButtonView.delegate = self;
                 [memberView.slidingButtonView.changingButton removeFromSuperview];
                 [memberView.slidingButtonView.keyAttributesLabel removeFromSuperview];
+                [memberView.slidingButtonView.staffButton removeFromSuperview];
+                [memberView.slidingButtonView.staffLabel removeFromSuperview];
                 view = memberView;
                 break;
             }
@@ -185,6 +191,8 @@
                 coachView.slidingButtonView.delegate = self;
                 [coachView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileCommitsButton.png"] forState:UIControlStateNormal];
                 coachView.slidingButtonView.keyAttributesLabel.text = @"Commits";
+                [coachView.slidingButtonView.staffButton removeFromSuperview];
+                [coachView.slidingButtonView.staffLabel removeFromSuperview];
                 view = coachView;
                 break;
             }
@@ -194,7 +202,10 @@
                 memberView.delegate = self;
                 memberView.buzzButtonView.delegate = self;
                 memberView.slidingButtonView.delegate = self;
-                [memberView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileKeyAttributesButton.png"] forState:UIControlStateNormal];
+                [memberView.slidingButtonView.changingButton removeFromSuperview];
+                [memberView.slidingButtonView.keyAttributesLabel removeFromSuperview];
+                [memberView.slidingButtonView.staffButton removeFromSuperview];
+                [memberView.slidingButtonView.staffLabel removeFromSuperview];
                 view = memberView;
                 break;
             }
@@ -327,6 +338,15 @@
 }
 
 #pragma mark - SlidingViewButton Delegate
+
+- (void)staffButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
+    SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
+    rosterViewController.userIdentifier = currentUserIdentifier;
+    rosterViewController.controllerType = CONTROLLER_TYPE_COACHINGSTAFF;
+    [self.navigationController pushViewController:rosterViewController animated:YES];
+}
 
 - (void)changingButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
 {
