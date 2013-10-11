@@ -86,6 +86,7 @@
     
     [super layoutSubviews];
 //    _scrollView.contentSize = CGSizeMake(375, 10);
+    [self updateContentSize];
 }
 
 - (void)updateContentSize

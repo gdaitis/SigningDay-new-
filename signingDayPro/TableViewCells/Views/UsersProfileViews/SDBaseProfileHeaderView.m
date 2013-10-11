@@ -51,8 +51,6 @@
     self.slidingButtonView.followersCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowers intValue]];
     self.slidingButtonView.followingCountLabel.text = [NSString stringWithFormat:@"%d", [user.numberOfFollowing intValue]];
     
-    [self.slidingButtonView updateContentSize];
-    
     BOOL userAllowsPrivateMessages = [user.allowPrivateMessage boolValue];
     BOOL userAllowsBuzzMessages = [user.allowBuzzMessage boolValue];
     
