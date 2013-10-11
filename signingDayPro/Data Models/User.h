@@ -1,15 +1,15 @@
 //
 //  User.h
-//  signingDayPro
+//  SigningDay
 //
-//  Created by Lukas Kekys on 10/7/13.
+//  Created by Vytautas Gudaitis on 10/11/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, MediaGallery, Member, Message, Notification, Player, State, Team;
+@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, MediaGallery, Member, Message, NFLPA, Notification, Player, State, Team;
 
 @interface User : NSManagedObject
 
@@ -47,6 +47,7 @@
 @property (nonatomic, retain) Member *theMember;
 @property (nonatomic, retain) Player *thePlayer;
 @property (nonatomic, retain) Team *theTeam;
+@property (nonatomic, retain) NFLPA *theNFLPA;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

@@ -29,6 +29,7 @@
 #import "MediaGallery.h"
 #import "SDUtils.h"
 #import "State.h"
+#import "NFLPA.h"
 
 @interface SDProfileService ()
 
@@ -520,6 +521,19 @@
                                                     user.theMember.favoriteTeam = teamUser.theTeam;
                                                 }
                                             }
+                                        }
+                                            break;
+                                            
+                                        case SDUserTypeNFLPA: {
+                                            if (!user.theNFLPA)
+                                                user.theNFLPA = [NFLPA MR_createInContext:userContext];
+                                            user.theNFLPA.collegeName = [derivedUserDictionary valueForKey:@"College"];
+                                            user.theNFLPA.nflpaAvatarUrl = [derivedUserDictionary valueForKey:@"NFLPAAvatarUrl"];
+                                            user.theNFLPA.position = [derivedUserDictionary valueForKey:@"Position"];
+                                            user.theNFLPA.teamName = [derivedUserDictionary valueForKey:@"Team"];
+                                            user.theNFLPA.websiteTitle = [derivedUserDictionary valueForKey:@"Website"];
+                                            user.theNFLPA.websiteUrl = [derivedUserDictionary valueForKey:@"WebsiteURL"];
+                                            user.theNFLPA.yearsPro = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"YearsPro"] intValue]];
                                         }
                                             break;
                                             
