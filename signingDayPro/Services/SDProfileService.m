@@ -60,78 +60,71 @@
         NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
                                                               options:kNilOptions
                                                                 error:nil] dictionaryByReplacingNullsWithStrings];
-        NSArray *userInfoArray = [JSON valueForKey:@"d"];
+        NSDictionary *dictionary = [JSON valueForKey:@"d"];
         
-        NSLog(@"userInfoArray = %@",userInfoArray);
-//        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-//        
-//        User *teamUser = [User MR_findFirstByAttribute:@"identifier"
-//                                             withValue:[NSNumber numberWithInt:[teamIdentifier intValue]]
-//                                             inContext:context];
-//        teamUser.theTeam.commits = nil;
-//        
-//        for (NSDictionary *playerDictionary in userInfoArray) {
-//            
-//            NSDictionary *dictionary = [playerDictionary dictionaryByReplacingNullsWithStrings];
-//            NSNumber *identifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"UserId"] intValue]];
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
-//            User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
-//            if (!user) {
-//                user = [User MR_createInContext:context];
-//                user.identifier = identifier;
-//            }
-//            user.name = [dictionary valueForKey:@"DisplayName"];
-//            user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
-//            user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
-//            
-//            
-//            NSNumber *highSchoolNumber = [NSNumber numberWithInt:[[dictionary valueForKey:@"HighSchoolId"] intValue]];
-//            NSPredicate *highSchoolPredicate = [NSPredicate predicateWithFormat:@"identifier == %@", highSchoolNumber];
-//            User *highSchoolUser = [User MR_findFirstWithPredicate:highSchoolPredicate inContext:context];
-//            
-//            if (!highSchoolUser) {
-//                highSchoolUser = [User MR_createInContext:context];
-//                highSchoolUser.identifier = highSchoolNumber;
-//            }
-//            
-//            if (!highSchoolUser.theHighSchool)
-//                highSchoolUser.theHighSchool = [HighSchool MR_createInContext:context];
-//            highSchoolUser.theHighSchool.city = [dictionary valueForKey:@"HighSchoolCity"];
-//            highSchoolUser.name = [dictionary valueForKey:@"HighSchoolName"];
-//            
-//            
-//            
-//            NSString *code = [dictionary valueForKey:@"HighSchoolState"];
-//            State *state = [State MR_findFirstByAttribute:@"code"
-//                                                withValue:code
-//                                                inContext:context];
-//            if (!state) {
-//                state = [State MR_createInContext:context];
-//                state.code = code;
-//            }
-//            highSchoolUser.state = state;
-//            user.theHighSchool.stateCode = code;
-//            
-//            if (!user.thePlayer)
-//                user.thePlayer = [Player MR_createInContext:context];
-//            
-//            user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[dictionary valueForKey:@"Class"] intValue]];
-//            user.thePlayer.position = [dictionary valueForKey:@"Position"];
-//            user.thePlayer.baseScore = [dictionary valueForKey:@"BaseScore"] != [NSNull null] ? [NSNumber numberWithFloat:[[dictionary valueForKey:@"BaseScore"] floatValue]] : nil;
-//            user.thePlayer.starsCount = [NSNumber numberWithInt:[[dictionary valueForKey:@"PlayerStars"] intValue]];
-//            user.thePlayer.has150Badge = [NSNumber numberWithBool:[[dictionary valueForKey:@"Has150Badge"] boolValue]];
-//            user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];
-//            user.thePlayer.commitedTo = teamUser.theTeam;
-//            user.thePlayer.highSchool = highSchoolUser.theHighSchool;
-//        }
-//        
-//        [context MR_saveOnlySelfAndWait];
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        User *teamUser = [User MR_findFirstByAttribute:@"identifier"
+                                             withValue:[NSNumber numberWithInt:[teamIdentifier intValue]]
+                                             inContext:context];
+        teamUser.theTeam.headCoaches = nil;
+        
+        NSArray *headcoachesArray = [dictionary valueForKey:@"Level1"];
+        for (NSDictionary *playerDictionary in headcoachesArray) {
+            NSDictionary *dictionary = [playerDictionary dictionaryByReplacingNullsWithStrings];
+            [self saveCoachFromDictionary:dictionary withLevel:1 andTeam:teamUser.theTeam forCoach:nil inContext:context];
+        }
+        
+        NSArray *subcoachesArray = [dictionary valueForKey:@"Level2"];
+        for (NSDictionary *subCoachDictionary in subcoachesArray) {
+            NSDictionary *dictionary = [subCoachDictionary dictionaryByReplacingNullsWithStrings];
+            [self saveCoachFromDictionary:dictionary withLevel:2 andTeam:teamUser.theTeam forCoach:nil inContext:context];
+        }
+        
+        [context MR_saveOnlySelfAndWait];
         completionBlock();
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failureBlock();
     }];
     [operation start];
+}
+
++ (void)saveCoachFromDictionary:(NSDictionary *)dictionary withLevel:(int)level andTeam:(Team *)team forCoach:(Coach *)coach inContext:(NSManagedObjectContext *)context
+{
+    NSNumber *coachIdentifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"UserId"] intValue]];
+    User *coachUser = [User MR_findFirstByAttribute:@"identifier"
+                                          withValue:coachIdentifier
+                                          inContext:context];
+//    NSString *name = [dictionary valueForKey:@"DisplayName"] ? [dictionary valueForKey:@"DisplayName"] : [dictionary valueForKey:@"Name"];
+//    User *coachUser = [User MR_findFirstByAttribute:@"name"
+//                                          withValue:name
+//                                          inContext:context];
+    
+    if (!coachUser) {
+        coachUser = [User MR_createInContext:context];
+        coachUser.identifier = coachIdentifier;
+    }
+    if (!coachUser.theCoach)
+        coachUser.theCoach = [Coach MR_createInContext:context];
+    coachUser.name = [dictionary valueForKey:@"DisplayName"] ? [dictionary valueForKey:@"DisplayName"] : [dictionary valueForKey:@"Name"];
+    NSLog(@"Coach saved: %@",coachUser.name);
+    coachUser.accountVerified = [NSNumber numberWithInt:[[dictionary valueForKey:@"IsVerified"] intValue]];
+    coachUser.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
+    coachUser.theCoach.position = [dictionary valueForKey:@"Position"];
+    coachUser.theCoach.coachLevel = [NSNumber numberWithInt:level];
+    coachUser.userTypeId = [NSNumber numberWithInt:SDUserTypeCoach];
+    
+    [team addHeadCoachesObject:coachUser.theCoach];
+    if (coach) {
+        [coach addSubCoachesObject:coachUser.theCoach];
+    }
+    
+    if ([dictionary valueForKey:@"ChildCoaches"]) {
+        NSArray *childCoaches = [dictionary valueForKey:@"ChildCoaches"];
+        for (NSDictionary *coachDictionary in childCoaches) {
+            [self saveCoachFromDictionary:coachDictionary withLevel:3 andTeam:team forCoach:coachUser.theCoach inContext:context];
+        }
+    }
 }
 
 + (void)getRostersForHighSchoolWithIdentifier:(NSString *)highSchoolIdentifier

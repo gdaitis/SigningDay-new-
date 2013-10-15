@@ -91,9 +91,12 @@
 
 - (void)updateContentSize
 {
-    int lastButtonEndPlusOffset = _bioButton.frame.origin.y+_bioButton.frame.size.width+15;
-    self.scrollView.contentSize = CGSizeMake(lastButtonEndPlusOffset, 10);
-    NSLog(@"lastButtonEndPlusOffset = %d",lastButtonEndPlusOffset);
+    int lastButtonEndPlusOffset = 320;
+    if (_changingButton)
+        lastButtonEndPlusOffset += 55;
+    if (_staffButton)
+        lastButtonEndPlusOffset += 90;
+    _scrollView.contentSize = CGSizeMake(lastButtonEndPlusOffset, 10);
 }
 
 - (void)setupView

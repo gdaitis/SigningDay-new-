@@ -65,7 +65,23 @@
     self.nameLabel.text = user.name;
     self.universityLabel.text = user.theTeam.location;
     self.conferenceRankingNumberLabel.text = user.theTeam.conferenceRankingString;
-    self.headCoachNameLabel.text = user.theTeam.headCoach.theUser.name;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"coachLevel == %@", [NSNumber numberWithInt:1]];
+    NSArray *array = [[user.theTeam.headCoaches allObjects] filteredArrayUsingPredicate:predicate];
+    
+    self.headCoachNameLabel.text = @"";
+    if ([array count] > 0) {
+        NSMutableString *string = [[NSMutableString alloc] init];
+        
+        for (int i = 0; i < [array count]; i++) {
+            Coach *coach = [array objectAtIndex:i];
+            [string appendString:coach.theUser.name];
+            if (i+1 != [array count]) {
+                [string appendString:@", "];
+            }
+        }
+        self.headCoachNameLabel.text = string;
+    }
     
     NSMutableArray *operationsArray = [[NSMutableArray alloc] init];
     NSURLRequest *userAvatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
