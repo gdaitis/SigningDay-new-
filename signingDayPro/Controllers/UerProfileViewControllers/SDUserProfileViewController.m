@@ -16,6 +16,7 @@
 #import "SDUserProfileHighSchoolHeaderView.h"
 #import "SDUserProfileTeamHeaderView.h"
 #import "User.h"
+#import "SDUserProfileNFLPAHeaderView.h"
 #import "Team.h"
 #import "SDActivityFeedService.h"
 #import "SDUtils.h"
@@ -194,6 +195,19 @@
                 [coachView.slidingButtonView.staffButton removeFromSuperview];
                 [coachView.slidingButtonView.staffLabel removeFromSuperview];
                 view = coachView;
+                break;
+            }
+            case SDUserTypeNFLPA:
+            {
+                SDUserProfileNFLPAHeaderView *nflpaView = (SDUserProfileNFLPAHeaderView *) [SDUserProfileNFLPAHeaderView loadInstanceFromNib];
+                nflpaView.delegate = self;
+                nflpaView.buzzButtonView.delegate = self;
+                nflpaView.slidingButtonView.delegate = self;
+                [nflpaView.slidingButtonView.changingButton removeFromSuperview];
+                [nflpaView.slidingButtonView.keyAttributesLabel removeFromSuperview];
+                [nflpaView.slidingButtonView.staffButton removeFromSuperview];
+                [nflpaView.slidingButtonView.staffLabel removeFromSuperview];
+                view = nflpaView;
                 break;
             }
             default:

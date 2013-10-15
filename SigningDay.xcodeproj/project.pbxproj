@@ -320,6 +320,8 @@
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
 		80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BAF1758B8590013545C /* FollowingSelected@2x.png */; };
 		80E31BB51758B8590013545C /* FollowingUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BB11758B8590013545C /* FollowingUnselected@2x.png */; };
+		80E6CAA9180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E6CAA8180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib */; };
+		80E6CAAC180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E6CAAB180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.m */; };
 		80EEF5D817560D0500A7C803 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EEF5D717560D0500A7C803 /* libsqlite3.dylib */; };
 		80EEF5E3175614D900A7C803 /* SDTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5E0175614D900A7C803 /* SDTestingViewController.m */; };
 		80EEF5E4175614D900A7C803 /* SDUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */; };
@@ -831,6 +833,9 @@
 		80E31BA91758AF990013545C /* SDFollowingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDFollowingCell.xib; sourceTree = "<group>"; };
 		80E31BAF1758B8590013545C /* FollowingSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingSelected@2x.png"; sourceTree = "<group>"; };
 		80E31BB11758B8590013545C /* FollowingUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingUnselected@2x.png"; sourceTree = "<group>"; };
+		80E6CAA8180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileNFLPAHeaderView.xib; sourceTree = "<group>"; };
+		80E6CAAA180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileNFLPAHeaderView.h; sourceTree = "<group>"; };
+		80E6CAAB180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileNFLPAHeaderView.m; sourceTree = "<group>"; };
 		80EEF5D717560D0500A7C803 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		80EEF5DF175614D900A7C803 /* SDTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTestingViewController.h; sourceTree = "<group>"; };
 		80EEF5E0175614D900A7C803 /* SDTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTestingViewController.m; sourceTree = "<group>"; };
@@ -1800,6 +1805,9 @@
 				80CCAE631793E6C30015429A /* SDUserProfileMemberHeaderView.h */,
 				80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */,
 				80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */,
+				80E6CAAA180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.h */,
+				80E6CAAB180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.m */,
+				80E6CAA8180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib */,
 				80B4DD9717B2599200352E07 /* SDUserProfileHighSchoolHeaderView.h */,
 				80B4DD9817B2599200352E07 /* SDUserProfileHighSchoolHeaderView.m */,
 				80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */,
@@ -2100,6 +2108,7 @@
 				80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */,
 				80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */,
 				80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */,
+				80E6CAA9180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib in Resources */,
 				809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */,
 				809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */,
 				809DF90A17955AC5001F37B3 /* UserProfilePhotosButton@2x.png in Resources */,
@@ -2339,6 +2348,7 @@
 				80431E4C17A006B3002F6E3D /* NSManagedObject+MagicalAggregation.m in Sources */,
 				80431E4D17A006B3002F6E3D /* NSManagedObject+MagicalDataImport.m in Sources */,
 				80431E4E17A006B3002F6E3D /* NSManagedObject+MagicalFinders.m in Sources */,
+				80E6CAAC180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.m in Sources */,
 				7BD5234017F99045007F8F67 /* SDNotificationCell.m in Sources */,
 				80431E4F17A006B3002F6E3D /* NSManagedObject+MagicalRecord.m in Sources */,
 				80431E5017A006B3002F6E3D /* NSManagedObject+MagicalRequests.m in Sources */,

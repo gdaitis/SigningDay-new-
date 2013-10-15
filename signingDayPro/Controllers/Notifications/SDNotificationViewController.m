@@ -220,7 +220,7 @@
     Notification *notification = [self.dataArray objectAtIndex:indexPath.row];
     if ([notification.notificationTypeId isEqualToNumber:[NSNumber numberWithInteger:SDNotificationTypeFollowing]]) {
         
-        if ([notification.fromUser.userTypeId intValue] != SDUserTypeOrganization && [notification.fromUser.userTypeId intValue] != SDUserTypeNFLPA && [notification.fromUser.userTypeId intValue] > 0) {
+        if ([notification.fromUser.userTypeId intValue] != SDUserTypeOrganization && [notification.fromUser.userTypeId intValue] > 0) {
             //user shouldn't be from NFLPA or Organizations
             [self.delegate notificationViewController:self
                                         didSelectUser:notification.fromUser];

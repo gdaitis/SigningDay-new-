@@ -133,7 +133,7 @@
     }
     NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
     for (NSDictionary *userDictionary in userArray) {
-        if ([[userDictionary valueForKey:@"UserTypeId"] intValue] == SDUserTypeNFLPA || [[userDictionary valueForKey:@"UserTypeId"] intValue] == SDUserTypeOrganization) {
+        if ([[userDictionary valueForKey:@"UserTypeId"] intValue] == SDUserTypeOrganization) {
             valid = NO;
             //currently we can't display these users
         }

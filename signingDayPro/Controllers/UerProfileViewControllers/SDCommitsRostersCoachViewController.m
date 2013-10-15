@@ -47,6 +47,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+    [self.refreshControl removeFromSuperview];
+    
     if (self.controllerType == CONTROLLER_TYPE_ROSTERS) {
         [self loadRosters];
         [self showProgressHudInView:self.view withText:@"Loading"];
