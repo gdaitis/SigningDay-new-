@@ -263,7 +263,7 @@ NSString * const kSDDefaultClass = @"2014";
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
-    self.currentUserCount = 0;
+    self.currentUserCount = kPageCountForLandingPages;
     self.dataIsFiltered = NO;
     self.pagingEndReached = NO;
     [self loadData];

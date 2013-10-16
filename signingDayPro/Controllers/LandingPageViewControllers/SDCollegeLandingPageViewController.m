@@ -265,7 +265,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
     self.dataIsFiltered = NO;
-    self.currentUserCount = 0;
+    self.currentUserCount = kPageCountForLandingPages;
     self.pagingEndReached = NO;
     [self loadData];
 }

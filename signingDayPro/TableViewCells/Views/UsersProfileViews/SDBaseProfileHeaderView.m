@@ -34,7 +34,7 @@
     if (hide) {
         _buzzButtonView.hidden = YES;
         CGRect frame = self.frame;
-        frame.size.height = self.slidingButtonView.frame.origin.y + self.slidingButtonView.frame.size.height;
+        frame.size.height = self.slidingButtonView.frame.origin.y + self.slidingButtonView.frame.size.height +6;
         self.frame = frame;
     }
     else {

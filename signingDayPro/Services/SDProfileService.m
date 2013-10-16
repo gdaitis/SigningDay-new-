@@ -107,7 +107,6 @@
     if (!coachUser.theCoach)
         coachUser.theCoach = [Coach MR_createInContext:context];
     coachUser.name = [dictionary valueForKey:@"DisplayName"] ? [dictionary valueForKey:@"DisplayName"] : [dictionary valueForKey:@"Name"];
-    NSLog(@"Coach saved: %@",coachUser.name);
     coachUser.accountVerified = [NSNumber numberWithInt:[[dictionary valueForKey:@"IsVerified"] intValue]];
     coachUser.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
     coachUser.theCoach.position = [dictionary valueForKey:@"Position"];
