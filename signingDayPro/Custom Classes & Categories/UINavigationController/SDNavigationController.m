@@ -501,7 +501,7 @@
         default:
             break;
     }
-    frame.origin.y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 55 : 35;
+    frame.origin.y = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 57 : 35;
     triangleImgView.frame = frame;
     
     [_topToolBar addSubview:triangleImgView];

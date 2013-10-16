@@ -178,6 +178,7 @@
 		803ECED017F452CE0060702F /* SDCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECECF17F452CE0060702F /* SDCollectionCell.m */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
 		803ECED517F456BF0060702F /* SDCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECED417F456BF0060702F /* SDCollectionViewController.m */; };
+		804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C0180E8D1100D17D2B /* NFLPA_logo@2x.png */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -601,6 +602,7 @@
 		803ECED117F453F60060702F /* SDCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCollectionCell.xib; sourceTree = "<group>"; };
 		803ECED317F456BF0060702F /* SDCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewController.h; sourceTree = "<group>"; };
 		803ECED417F456BF0060702F /* SDCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewController.m; sourceTree = "<group>"; };
+		804299C0180E8D1100D17D2B /* NFLPA_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NFLPA_logo@2x.png"; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -1717,6 +1719,7 @@
 		809DF8F617955AC5001F37B3 /* UserProfileViewImages */ = {
 			isa = PBXGroup;
 			children = (
+				804299C0180E8D1100D17D2B /* NFLPA_logo@2x.png */,
 				7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */,
 				7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */,
 				7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */,
@@ -2165,6 +2168,7 @@
 				7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */,
 				8096974517AA90CF00970E73 /* playImage@2x.png in Resources */,
 				80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */,
+				804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */,
 				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
