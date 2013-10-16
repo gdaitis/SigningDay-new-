@@ -181,6 +181,7 @@
 		803ECED517F456BF0060702F /* SDCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 803ECED417F456BF0060702F /* SDCollectionViewController.m */; };
 		804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C0180E8D1100D17D2B /* NFLPA_logo@2x.png */; };
 		804299C3180ECD9900D17D2B /* toolbarBgIphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C2180ECD9900D17D2B /* toolbarBgIphone5@2x.png */; };
+		804299C5180ED4CA00D17D2B /* Playbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C4180ED4CA00D17D2B /* Playbg@2x.png */; };
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */; };
 		80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 80431E0F17A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -607,6 +608,7 @@
 		803ECED417F456BF0060702F /* SDCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewController.m; sourceTree = "<group>"; };
 		804299C0180E8D1100D17D2B /* NFLPA_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NFLPA_logo@2x.png"; sourceTree = "<group>"; };
 		804299C2180ECD9900D17D2B /* toolbarBgIphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbarBgIphone5@2x.png"; sourceTree = "<group>"; };
+		804299C4180ED4CA00D17D2B /* Playbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Playbg@2x.png"; sourceTree = "<group>"; };
 		80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileHeaderBg@2x.png"; sourceTree = "<group>"; };
 		80431E0C17A006B3002F6E3D /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		80431E0D17A006B3002F6E3D /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -1676,6 +1678,7 @@
 			children = (
 				8063D2CD1799486500C01D92 /* shadow.png */,
 				8096974417AA90CF00970E73 /* playImage@2x.png */,
+				804299C4180ED4CA00D17D2B /* Playbg@2x.png */,
 			);
 			name = DeleteReplace;
 			sourceTree = "<group>";
@@ -2112,6 +2115,7 @@
 				80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */,
 				80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */,
 				801E8FE617FB0A9F002FFC81 /* SDActivityStoryViewController.xib in Resources */,
+				804299C5180ED4CA00D17D2B /* Playbg@2x.png in Resources */,
 				80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */,
 				80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */,
 				80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */,

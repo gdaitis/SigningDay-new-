@@ -136,7 +136,17 @@
     
     [cell.imageView cancelImageRequestOperation];
     cell.imageView.image = nil;
-    [cell.imageView setImageWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl] placeholderImage:nil];
+    
+//    [cell.imageView setImageWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl] placeholderImage:nil];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl]];
+    [cell.imageView setImageWithURLRequest:request
+                          placeholderImage:Nil
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       cell.imageView.image = (image) ? image : [UIImage imageNamed:@"Playbg.png"];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        cell.imageView.image = [UIImage imageNamed:@"Playbg.png"];
+    }];
     
     return cell;
 }
