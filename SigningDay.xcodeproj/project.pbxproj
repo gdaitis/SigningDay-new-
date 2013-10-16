@@ -60,7 +60,6 @@
 		7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */; };
 		7BAAD0AC1808119C002C121B /* NFLPA.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAD0AB1808119C002C121B /* NFLPA.m */; };
 		7BAAD0AF1808119D002C121B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAD0AE1808119D002C121B /* User.m */; };
-		7BAAD0B218081BAD002C121B /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAD0B118081BAD002C121B /* Team.m */; };
 		7BAAD0B518081BAD002C121B /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAD0B418081BAD002C121B /* Coach.m */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
@@ -74,6 +73,8 @@
 		7BB86C4D1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */; };
 		7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F617957A0E002EF1EB /* SDSimplifiedCameraOverlayView.m */; };
 		7BC1D86517F315C800D686E6 /* SDNotificationsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1D86417F315C800D686E6 /* SDNotificationsService.m */; };
+		7BD0D15F180EBFAB00DA9A71 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0D15E180EBFAB00DA9A71 /* HighSchool.m */; };
+		7BD0D162180EC07700DA9A71 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0D161180EC07700DA9A71 /* Team.m */; };
 		7BD5234017F99045007F8F67 /* SDNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD5233F17F99045007F8F67 /* SDNotificationCell.m */; };
 		7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
@@ -282,7 +283,6 @@
 		80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
-		80A7DB4818059A1800D622B5 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7DB4718059A1800D622B5 /* HighSchool.m */; };
 		80A7DB5318059A1F00D622B5 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7DB5218059A1F00D622B5 /* Master.m */; };
 		80A7DB5618059A2000D622B5 /* MediaGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7DB5518059A2000D622B5 /* MediaGallery.m */; };
 		80A7DB5918059A2000D622B5 /* MediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7DB5818059A2000D622B5 /* MediaItem.m */; };
@@ -428,8 +428,6 @@
 		7BAAD0AB1808119C002C121B /* NFLPA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NFLPA.m; sourceTree = "<group>"; };
 		7BAAD0AD1808119D002C121B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7BAAD0AE1808119D002C121B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		7BAAD0B018081BAD002C121B /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
-		7BAAD0B118081BAD002C121B /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		7BAAD0B318081BAD002C121B /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
 		7BAAD0B418081BAD002C121B /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -449,6 +447,10 @@
 		7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
 		7BC1D86317F315C800D686E6 /* SDNotificationsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationsService.h; sourceTree = "<group>"; };
 		7BC1D86417F315C800D686E6 /* SDNotificationsService.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationsService.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
+		7BD0D15D180EBFAB00DA9A71 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
+		7BD0D15E180EBFAB00DA9A71 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
+		7BD0D160180EC07700DA9A71 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		7BD0D161180EC07700DA9A71 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		7BD5233E17F99045007F8F67 /* SDNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationCell.h; sourceTree = "<group>"; };
 		7BD5233F17F99045007F8F67 /* SDNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SDNotificationCell.m; sourceTree = "<group>"; };
 		7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNotificationCell.xib; sourceTree = "<group>"; };
@@ -768,8 +770,6 @@
 		80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzSomethingViewController.m; sourceTree = "<group>"; };
 		80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButtonPost@2x.png"; sourceTree = "<group>"; };
 		80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileCommitsButton@2x.png"; sourceTree = "<group>"; };
-		80A7DB4618059A1800D622B5 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
-		80A7DB4718059A1800D622B5 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
 		80A7DB5118059A1F00D622B5 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
 		80A7DB5218059A1F00D622B5 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
 		80A7DB5418059A2000D622B5 /* MediaGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaGallery.h; sourceTree = "<group>"; };
@@ -1267,10 +1267,12 @@
 			isa = PBXGroup;
 			children = (
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
+				7BD0D160180EC07700DA9A71 /* Team.h */,
+				7BD0D161180EC07700DA9A71 /* Team.m */,
+				7BD0D15D180EBFAB00DA9A71 /* HighSchool.h */,
+				7BD0D15E180EBFAB00DA9A71 /* HighSchool.m */,
 				7BAAD0B318081BAD002C121B /* Coach.h */,
 				7BAAD0B418081BAD002C121B /* Coach.m */,
-				7BAAD0B018081BAD002C121B /* Team.h */,
-				7BAAD0B118081BAD002C121B /* Team.m */,
 				7BAAD0AD1808119D002C121B /* User.h */,
 				7BAAD0AE1808119D002C121B /* User.m */,
 				7BAAD0AA1808119C002C121B /* NFLPA.h */,
@@ -1305,8 +1307,6 @@
 				80A7DB5518059A2000D622B5 /* MediaGallery.m */,
 				80A7DB5118059A1F00D622B5 /* Master.h */,
 				80A7DB5218059A1F00D622B5 /* Master.m */,
-				80A7DB4618059A1800D622B5 /* HighSchool.h */,
-				80A7DB4718059A1800D622B5 /* HighSchool.m */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -2243,7 +2243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BAAD0B218081BAD002C121B /* Team.m in Sources */,
 				7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */,
 				7B3031C9177AFB12006EF25B /* HTMLNode.m in Sources */,
 				803ECEC517F4248A0060702F /* SDBioViewController.m in Sources */,
@@ -2254,6 +2253,7 @@
 				7B73651D175F7ADE007A338E /* SDMessageCell.m in Sources */,
 				7B73651A175F7A49007A338E /* SDConversationViewController.m in Sources */,
 				80A7DB8018059A2500D622B5 /* Message.m in Sources */,
+				7BD0D162180EC07700DA9A71 /* Team.m in Sources */,
 				80A7DB5618059A2000D622B5 /* MediaGallery.m in Sources */,
 				80A7DB6E18059A2300D622B5 /* Member.m in Sources */,
 				805598CE174CE8200040631D /* main.m in Sources */,
@@ -2307,7 +2307,6 @@
 				80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */,
 				7B6B1EC31760C86900BC878A /* SDContentHeaderView.m in Sources */,
 				7B652364176EEA0E002EA795 /* SDActivityFeedService.m in Sources */,
-				80A7DB4818059A1800D622B5 /* HighSchool.m in Sources */,
 				805F725917719BC400BDA30F /* SDActivityFeedCell.m in Sources */,
 				805F72671771AF9900BDA30F /* SDActivityFeedViewController.m in Sources */,
 				80CE109D1779788A005D2281 /* SDActivityFeedButtonView.m in Sources */,
@@ -2343,6 +2342,7 @@
 				80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */,
 				80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				80431E4717A006B3002F6E3D /* NSEntityDescription+MagicalDataImport.m in Sources */,
+				7BD0D15F180EBFAB00DA9A71 /* HighSchool.m in Sources */,
 				803CDD611806D2E800BB399F /* SDCoachingStaffCell.m in Sources */,
 				80431E4817A006B3002F6E3D /* NSNumber+MagicalDataImport.m in Sources */,
 				80431E4917A006B3002F6E3D /* NSObject+MagicalDataImport.m in Sources */,

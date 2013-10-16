@@ -409,7 +409,7 @@
                                             user.theTeam.conferenceName = [conferenceDictionary valueForKey:@"Name"];
                                             user.theTeam.conferenceLogoUrl = [conferenceDictionary valueForKey:@"LogoUrl"];
                                             user.theTeam.conferenceLogoUrlBlack = [conferenceDictionary valueForKey:@"LogoUrlBlack"];
-                                            user.theTeam.location = [derivedUserDictionary valueForKey:@"Location"];
+                                            user.theTeam.locationExtended = [derivedUserDictionary valueForKey:@"Location"];
                                             user.theTeam.universityName = [derivedUserDictionary valueForKey:@"UniversityName"];
                                             user.theTeam.conferenceRankingString = [derivedUserDictionary valueForKey:@"ConferenceRanking"];
                                             user.theTeam.nationalRankingString = [derivedUserDictionary valueForKey:@"NationalRanking"];
