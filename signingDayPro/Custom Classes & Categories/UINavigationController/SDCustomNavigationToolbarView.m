@@ -27,6 +27,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self setupView];
     }
     return self;
 }
@@ -36,18 +37,21 @@
 - (void)setupView
 {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
-        
-        //update constraints due to ios7 different button size eval.
-        NSArray *constraints = [self constraints];
-        if(constraints.count != 0){
-            for (NSLayoutConstraint *constraint in constraints) {
-                if (constraint.constant == 6.0) {
-                    constraint.constant = 10;
-                }
-            }
-            
-        }
+        self.backgroundImageView.image = [UIImage imageNamed:@"toolbarBgIphone5.png"];
     }
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
+//        
+//        //update constraints due to ios7 different button size eval.
+//        NSArray *constraints = [self constraints];
+//        if(constraints.count != 0){
+//            for (NSLayoutConstraint *constraint in constraints) {
+//                if (constraint.constant == 6.0) {
+//                    constraint.constant = 10;
+//                }
+//            }
+//            
+//        }
+//    }
 }
 
 - (void)setLeftButtonImage:(UIImage *)image
