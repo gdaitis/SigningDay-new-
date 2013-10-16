@@ -63,7 +63,7 @@
     [super setupInfoWithUser:user];
     
     self.nameLabel.text = user.name;
-    self.universityLabel.text = user.theTeam.location;
+    self.universityLabel.text = user.theTeam.locationExtended;
     self.conferenceRankingNumberLabel.text = user.theTeam.conferenceRankingString;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"coachLevel == %@", [NSNumber numberWithInt:1]];

@@ -1,8 +1,8 @@
 //
 //  HighSchool.h
-//  signingDayPro
+//  SigningDay
 //
-//  Created by Lukas Kekys on 10/7/13.
+//  Created by Vytautas Gudaitis on 10/16/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -21,8 +21,8 @@
 @property (nonatomic, retain) NSString * stateCode;
 @property (nonatomic, retain) NSNumber * totalProspects;
 @property (nonatomic, retain) NSSet *players;
-@property (nonatomic, retain) User *theUser;
 @property (nonatomic, retain) NSSet *rosters;
+@property (nonatomic, retain) User *theUser;
 @end
 
 @interface HighSchool (CoreDataGeneratedAccessors)

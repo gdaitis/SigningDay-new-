@@ -2,7 +2,7 @@
 //  Team.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/11/13.
+//  Created by Vytautas Gudaitis on 10/16/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -28,6 +28,7 @@
 @dynamic teamName;
 @dynamic totalScore;
 @dynamic universityName;
+@dynamic locationExtended;
 @dynamic commits;
 @dynamic favoritedBy;
 @dynamic headCoaches;

@@ -2,7 +2,7 @@
 //  Team.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/11/13.
+//  Created by Vytautas Gudaitis on 10/16/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString * teamName;
 @property (nonatomic, retain) NSNumber * totalScore;
 @property (nonatomic, retain) NSString * universityName;
+@property (nonatomic, retain) NSString * locationExtended;
 @property (nonatomic, retain) NSSet *commits;
 @property (nonatomic, retain) NSSet *favoritedBy;
 @property (nonatomic, retain) NSSet *headCoaches;
