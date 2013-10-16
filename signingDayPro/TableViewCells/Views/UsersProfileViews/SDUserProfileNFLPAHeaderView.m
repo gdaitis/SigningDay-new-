@@ -27,9 +27,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *yearsProLabel;
 @property (nonatomic, weak) IBOutlet UILabel *yearsProTextLabel;
 
-
-- (IBAction)websiteButtonPressed:(id)sender;
-
 @end
 
 @implementation SDUserProfileNFLPAHeaderView

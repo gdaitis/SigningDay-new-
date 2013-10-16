@@ -106,17 +106,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([self.searchBar isFirstResponder]) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        
         [self removeKeyboard];
+        
         if (self.searchBar.text.length < 1) {
-            self.currentUserCount = 0;
+            self.currentUserCount = kPageCountForLandingPages;
             self.dataIsFiltered = NO;
+            self.pagingEndReached = NO;
             [self loadData];
+        }
+        else {
+            UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                                bundle:nil];
+            SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+            userProfileViewController.currentUser = [self.dataArray objectAtIndex:indexPath.row];
+            
+            [self.navigationController pushViewController:userProfileViewController animated:YES];
         }
     }
     else {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                             bundle:nil];
         SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
@@ -131,8 +141,9 @@
     if ([self.searchBar isFirstResponder]) {
         [self removeKeyboard];
         if (self.searchBar.text.length < 1) {
-            self.currentUserCount = 0;
+            self.currentUserCount = kPageCountForLandingPages;
             self.dataIsFiltered = NO;
+            self.pagingEndReached = NO;
             [self loadData];
         }
     }
@@ -189,8 +200,9 @@
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     if (self.searchBar.text.length < 1) {
-        self.currentUserCount = 0;
+        self.currentUserCount = kPageCountForLandingPages;
         self.dataIsFiltered = NO;
+        self.pagingEndReached = NO;
         [self loadData];
     }
 }
