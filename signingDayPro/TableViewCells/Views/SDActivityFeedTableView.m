@@ -221,7 +221,7 @@
 {
     if (self.customHeaderView)
     {
-        return self.customHeaderView.frame.size.height;
+        return self.customHeaderView.frame.size.height+3;
     }
     else {
         return 6;
