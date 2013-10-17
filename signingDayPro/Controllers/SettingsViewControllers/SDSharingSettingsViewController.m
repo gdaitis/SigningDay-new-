@@ -111,14 +111,23 @@
                                                     [tableView reloadData];
                                                 });
                                             } else {
-                                                master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                                [context MR_saveToPersistentStoreAndWait];
-                                                
                                                 NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
                                                 if ([twitterAccounts count] > 0) {
                                                     
                                                     ACAccount *account = [twitterAccounts objectAtIndex:0];
                                                     appDelegate.twitterAccount = account;
+                                                    
+                                                    master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                    [context MR_saveToPersistentStoreAndWait];
+                                                } else {
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
+                                                                                                            message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
+                                                                                                           delegate:nil
+                                                                                                  cancelButtonTitle:@"Ok"
+                                                                                                  otherButtonTitles:nil];
+                                                        [alertView show];
+                                                    });
                                                 }
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                     [tableView reloadData];
