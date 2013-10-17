@@ -47,6 +47,12 @@
                                           pageSize:(NSInteger)pageSize
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;
++ (void)getAllHighSchoolsForState:(NSString *)stateCode
+                    ForYearString:(NSString *)yearString
+                       pageNumber:(NSInteger)pageNumber
+                         pageSize:(NSInteger)pageSize
+                     successBlock:(void (^)(void))successBlock
+                     failureBlock:(void (^)(void))failureBlock;
 + (void)searchForHighSchoolsInAllStatesWithNameString:(NSString *)searchString
                                            yearString:(NSString *)yearString
                                          successBlock:(void (^)(void))successBlock

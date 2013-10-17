@@ -274,7 +274,23 @@
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d0&page=%d&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber];
+    NSLog(@"all states urlString = %@",urlString);
+    
+    [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
+                                               successBlock:successBlock
+                                               failureBlock:failureBlock];
+}
+
++ (void)getAllHighSchoolsForState:(NSString *)stateCode
+                    ForYearString:(NSString *)yearString
+                                        pageNumber:(NSInteger)pageNumber
+                                          pageSize:(NSInteger)pageSize
+                                      successBlock:(void (^)(void))successBlock
+                                      failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&$format=json&$filter=(HighSchoolState eq '%@')", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber,stateCode];
+    NSLog(@"urlString = %@",urlString);
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
                                                successBlock:successBlock
