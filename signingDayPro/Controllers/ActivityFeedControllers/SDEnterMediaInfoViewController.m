@@ -13,6 +13,7 @@
 #import "SDAppDelegate.h"
 #import "SDAddTagsViewController.h"
 #import "User.h"
+#import <Twitter/Twitter.h>
 
 @interface SDEnterMediaInfoViewController () <SDAddTagsViewControllerDelegate, SDModalNavigationControllerDelegate>
 
@@ -56,6 +57,13 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1];
     
     self.tagsLabel.textColor = [UIColor grayColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
 }
 
 - (void)cancelButtonPressed
@@ -153,16 +161,30 @@
                                                options:nil
                                             completion:^(BOOL granted, NSError *error) {
                                                 if (!granted) {
-                                                    NSLog(@"User rejected access to the account.");
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Access Denied"
+                                                                                                            message:@"There is no permissions granted for SigningDay app to post on your behalf. You can change the permissions in Settings."
+                                                                                                           delegate:nil
+                                                                                                  cancelButtonTitle:@"Ok"
+                                                                                                  otherButtonTitles:nil];
+                                                        [alertView show];
+                                                    });
                                                 } else {
-                                                    master.twitterSharingOn = [NSNumber numberWithBool:YES];
-                                                    [context MR_saveToPersistentStoreAndWait];
-                                                    
                                                     NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
                                                     if ([twitterAccounts count] > 0) {
-                                                        
                                                         ACAccount *account = [twitterAccounts objectAtIndex:0];
                                                         appDelegate.twitterAccount = account;
+                                                        master.twitterSharingOn = [NSNumber numberWithBool:YES];
+                                                        [context MR_saveToPersistentStoreAndWait];
+                                                    } else {
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Twitter Accounts"
+                                                                                                                message:@"There are no Twitter accounts configured. You can add or create a Twitter account in Settings."
+                                                                                                               delegate:nil
+                                                                                                      cancelButtonTitle:@"Ok"
+                                                                                                      otherButtonTitles:nil];
+                                                            [alertView show];
+                                                        });
                                                     }
                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                         [self.tableView reloadData];
@@ -206,12 +228,24 @@
             if (facebook) {
                 cell.accessoryView = self.facebookSwitch;
             } else {
-                [cell addSubview:self.facebookConfigureLabel];
+                cell.accessoryView = self.facebookConfigureLabel;
             }
             
         } else if (indexPath.row == 1) {
-            self.twitterConfigureLabel = [[UILabel alloc] initWithFrame:CGRectMake(230, 11, 72, 21)];
-            self.twitterConfigureLabel.text = @"enable";
+            self.twitterConfigureLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 72, 21)];
+            NSString *twitterConfigureLabelText;
+            ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+            ACAccountType *twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+            NSArray *twitterAccounts = [accountStore accountsWithAccountType:twitterAccountType];
+            if ([twitterAccounts count] > 0)
+                twitterConfigureLabelText = @"enable";
+            else
+                twitterConfigureLabelText = @"no twitter account";
+            CGSize size = [twitterConfigureLabelText sizeWithFont:self.twitterConfigureLabel.font];
+            CGRect frame = self.twitterConfigureLabel.frame;
+            frame.size.width = size.width;
+            self.twitterConfigureLabel.frame = frame;
+            self.twitterConfigureLabel.text = twitterConfigureLabelText;
             self.twitterConfigureLabel.textColor = [UIColor darkGrayColor];
             self.twitterConfigureLabel.backgroundColor = [UIColor clearColor];
             
@@ -223,7 +257,7 @@
             if (twitter) {
                 cell.accessoryView = self.twitterSwitch;
             } else {
-                [cell addSubview:self.twitterConfigureLabel];
+                cell.accessoryView = self.twitterConfigureLabel;
             }
         }
     }
