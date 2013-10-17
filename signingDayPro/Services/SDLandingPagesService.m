@@ -83,6 +83,7 @@
                  stateCodeStringsArray:(NSArray *)statesArray
                 classYearsStringsArray:(NSArray *)classesArray
                   positionStringsArray:(NSArray *)positionsArray
+                     sortedBy:(NSString *)sortOption
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock
 {
@@ -112,7 +113,7 @@
     }
     NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
     int top = pageEndIndex - pageBeginIndex;
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=DisplayName asc&$format=json&$skip=%d&$top=%d&$filter=(%@)", kSDBaseSigningDayURLString, pageBeginIndex, top, filterString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=%@&$format=json&$skip=%d&$top=%d&$filter=(%@)", kSDBaseSigningDayURLString, sortOption,pageBeginIndex, top, filterString];
     
 //    &$DisplayBaseScore=true
     NSLog(@"urlString = %@",urlString);

@@ -27,6 +27,7 @@
                  stateCodeStringsArray:(NSArray *)statesArray
                 classYearsStringsArray:(NSArray *)classesArray
                   positionStringsArray:(NSArray *)positionsArray
+                              sortedBy:(NSString *)sortOption
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock;
 // Teams
