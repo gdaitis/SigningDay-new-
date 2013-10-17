@@ -83,6 +83,7 @@
                  stateCodeStringsArray:(NSArray *)statesArray
                 classYearsStringsArray:(NSArray *)classesArray
                   positionStringsArray:(NSArray *)positionsArray
+                     sortedBy:(NSString *)sortOption
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock
 {
@@ -112,7 +113,7 @@
     }
     NSString *filterString = [self makeFilterStringFromRequestStringsArray:requestStringsArray];
     int top = pageEndIndex - pageBeginIndex;
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=DisplayName asc&$format=json&$skip=%d&$top=%d&$filter=(%@)", kSDBaseSigningDayURLString, pageBeginIndex, top, filterString];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=%@&$format=json&$skip=%d&$top=%d&$filter=(%@)", kSDBaseSigningDayURLString, sortOption,pageBeginIndex, top, filterString];
     
 //    &$DisplayBaseScore=true
     NSLog(@"urlString = %@",urlString);
@@ -192,10 +193,17 @@
 + (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
                                                    pageSize:(NSInteger)pageSize
                                                 classString:(NSString *)classString
+                                         conferenceIdString:(NSString *)conferenceIdString
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
+    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
+
+    if (conferenceIdString)
+        [urlString appendFormat:@"&conference=%@",conferenceIdString];
+    [urlString appendString:@"&$format=json"];
+    
+    
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                           classString:classString
                                          successBlock:successBlock
@@ -267,7 +275,23 @@
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d0&page=%d&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber];
+    NSLog(@"all states urlString = %@",urlString);
+    
+    [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
+                                               successBlock:successBlock
+                                               failureBlock:failureBlock];
+}
+
++ (void)getAllHighSchoolsForState:(NSString *)stateCode
+                    ForYearString:(NSString *)yearString
+                                        pageNumber:(NSInteger)pageNumber
+                                          pageSize:(NSInteger)pageSize
+                                      successBlock:(void (^)(void))successBlock
+                                      failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&$format=json&$filter=(HighSchoolState eq '%@')", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber,stateCode];
+    NSLog(@"urlString = %@",urlString);
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
                                                successBlock:successBlock

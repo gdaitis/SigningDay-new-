@@ -167,10 +167,13 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)loadData
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
+    NSPredicate *statePredicate = (self.currentFilterState) ? [NSPredicate predicateWithFormat:@"theHighSchool.stateCode == %@",self.currentFilterState.code] : nil;
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
+    NSPredicate *compoundPredicate = (statePredicate) ? [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate,statePredicate, nil]] : [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, nil]];
+    
     //seting fetch limit for pagination
-    NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
+    NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
     //set sort descriptor
     NSSortDescriptor *prospectsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theHighSchool.totalProspects" ascending:NO];
@@ -188,11 +191,11 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)loadFilteredData
 {
     NSMutableArray *predicateArray = [[NSMutableArray alloc] init];
-                                      
+    
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeHighSchool];
     NSPredicate *nameSearchPredicate = (self.searchBar.text.length > 0) ? [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text] : nil;
     NSPredicate *userStatePredicate = self.currentFilterState ? [NSPredicate predicateWithFormat:@"theHighSchool.stateCode == %@",self.currentFilterState.code] : nil;
-
+    
     [predicateArray addObject:userTypePredicate];
     if (nameSearchPredicate)
         [predicateArray addObject:nameSearchPredicate];
@@ -213,42 +216,54 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)checkServer
 {
     self.dataDownloadInProgress = YES;
-    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass pageNumber:(self.currentUserCount/kPageCountForLandingPages) pageSize:kPageCountForLandingPages successBlock:^{
-        self.currentUserCount +=kPageCountForLandingPages;
-        self.dataDownloadInProgress = NO;
-        [self loadData];
-        [self hideProgressHudInView:self.view];
-    } failureBlock:^{
-        [self hideProgressHudInView:self.view];
-        self.dataDownloadInProgress = NO;
-    }];
     
-//    [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass successBlock:^{
-//        self.currentUserCount +=kPageCountForLandingPages;
-//        self.dataDownloadInProgress = NO;
-//        [self loadData];
-//        [self hideProgressHudInView:self.view];
-//    } failureBlock:^{
-//        [self hideProgressHudInView:self.view];
-//        self.dataDownloadInProgress = NO;
-//    }];
+    if (self.currentFilterState) {
+        
+        [SDLandingPagesService getAllHighSchoolsForState:self.currentFilterState.code ForYearString:kSDDefaultClass pageNumber:(self.currentUserCount/kPageCountForLandingPages) pageSize:kPageCountForLandingPages successBlock:^{
+            self.currentUserCount +=kPageCountForLandingPages;
+            self.dataDownloadInProgress = NO;
+            [self loadData];
+            [self hideProgressHudInView:self.view];
+        } failureBlock:^{
+            [self hideProgressHudInView:self.view];
+            self.dataDownloadInProgress = NO;
+        }];
+    }
+    else {
+        
+        [SDLandingPagesService getAllHighSchoolsForAllStatesForYearString:kSDDefaultClass pageNumber:(self.currentUserCount/kPageCountForLandingPages) pageSize:kPageCountForLandingPages successBlock:^{
+            self.currentUserCount +=kPageCountForLandingPages;
+            self.dataDownloadInProgress = NO;
+            [self loadData];
+            [self hideProgressHudInView:self.view];
+        } failureBlock:^{
+            [self hideProgressHudInView:self.view];
+            self.dataDownloadInProgress = NO;
+        }];
+    }
 }
 
 - (void)searchFilteredData
 {
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
-    self.dataIsFiltered = YES;
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
-    
-    [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text yearString:kSDDefaultClass stateCodeStringsArray:stateCodeStringsArray successBlock:^{
-        [self loadFilteredData];
-        [self hideProgressHudInView:self.view];
-    } failureBlock:^{
-        [self hideProgressHudInView:self.view];
-        NSLog(@"Search failed in Highschool landing page");
-    }];
+    if (self.searchBar.text.length < 3) {
+        self.pagingEndReached = NO;
+        [self checkServer];
+    }
+    else {
+        self.dataIsFiltered = YES;
+        [self showProgressHudInView:self.view withText:@"Loading"];
+        NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
+        
+        [SDLandingPagesService searchForHighSchoolsWithNameString:self.searchBar.text yearString:kSDDefaultClass stateCodeStringsArray:stateCodeStringsArray successBlock:^{
+            [self loadFilteredData];
+            [self hideProgressHudInView:self.view];
+        } failureBlock:^{
+            [self hideProgressHudInView:self.view];
+            NSLog(@"Search failed in Highschool landing page");
+        }];
+    }
 }
 
 #pragma mark - Search bar search clicked
@@ -282,6 +297,7 @@ NSString * const kSDDefaultClass = @"2014";
     self.currentUserCount = 0;
     self.pagingEndReached = NO;
     [self searchFilteredData];
+    [self showProgressHudInView:self.view withText:@"Loading"];
 }
 
 #pragma mark - Filter list delegates

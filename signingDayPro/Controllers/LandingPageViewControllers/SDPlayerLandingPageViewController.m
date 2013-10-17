@@ -102,12 +102,12 @@
         if (!self.dataDownloadInProgress) {
             //data downloading not in progress, we can start downloading further pages
             if (self.dataIsFiltered) {
-                if (self.searchBar.text.length >= 3) {
+//                if (self.searchBar.text.length >= 3) {
                     [self searchFilteredData];
-                }
-                else {
-                    [self checkServer];
-                }
+//                }
+//                else {
+//                    [self checkServer];
+//                }
             }
             else {
                 [self checkServer];
@@ -247,14 +247,17 @@
         [self checkServer];
     }
     else {
-        self.dataIsFiltered = YES;
+        self.dataIsFiltered = (searchBarText.length < 3) ? NO : YES;
         self.dataDownloadInProgress = YES;
         
         
         NSArray *stateCodeStringsArray = self.currentFilterState.code ? [NSArray arrayWithObject:self.currentFilterState.code] : nil;
         NSArray *positionStringsArray = [self.currentFilterPositionDictionary objectForKey:@"shortName"] ? [NSArray arrayWithObject:[self.currentFilterPositionDictionary objectForKey:@"shortName"]] : nil;
+        NSArray *yearStringArray = (self.searchBar.text.length < 3) ? [NSArray arrayWithObject:[self.currentFilterYearDictionary valueForKey:@"name"]] : nil;
         
-        [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:nil positionStringsArray:positionStringsArray successBlock:^{
+        NSString *sortedBy = (searchBarText.length < 3) ? [NSString stringWithFormat:@"BaseScore desc"] :[NSString stringWithFormat:@"DisplayName asc"];
+        
+        [SDLandingPagesService searchForPlayersWithNameString:self.searchBar.text from:self.currentSearchUserCount to:self.currentSearchUserCount+kPageCountForLandingPages stateCodeStringsArray:stateCodeStringsArray classYearsStringsArray:yearStringArray positionStringsArray:positionStringsArray sortedBy:sortedBy successBlock:^{
             
             self.currentSearchUserCount +=kPageCountForLandingPages;
             self.dataDownloadInProgress = NO;
@@ -280,12 +283,17 @@
     //seting fetch limit for pagination
     NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
     [request setFetchLimit:self.currentUserCount];
-    //set sort descriptor
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO];
-    NSSortDescriptor *hasWatchListBadgeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
+    
+    //set sort descriptors
+    NSSortDescriptor *baseScoreDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO];
+    NSSortDescriptor *starsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
     
-    [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,hasWatchListBadgeDescriptor,nameDescriptor,nil]];
+    NSArray *descriptorArray = (self.searchBar.text.length < 3)
+    ? [NSArray arrayWithObjects:baseScoreDescriptor,starsDescriptor,nameDescriptor,nil]
+    : [NSArray arrayWithObjects:nameDescriptor,baseScoreDescriptor,starsDescriptor,nil];
+    
+    [request setSortDescriptors:descriptorArray];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
     //checking if end for paging is reached
@@ -324,8 +332,16 @@
         NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
         
         [request setFetchLimit:self.currentSearchUserCount];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-        [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
+        NSSortDescriptor *baseScoreDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.baseScore" ascending:NO];
+        NSSortDescriptor *starsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
+        NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+        
+        NSArray *descriptorArray = (self.searchBar.text.length < 3)
+        ? [NSArray arrayWithObjects:baseScoreDescriptor,starsDescriptor,nameDescriptor,nil]
+        : [NSArray arrayWithObjects:nameDescriptor,baseScoreDescriptor,starsDescriptor,nil];
+        
+        [request setSortDescriptors:descriptorArray];
         self.dataArray = [User MR_executeFetchRequest:request inContext:context];
         
         if ([self.dataArray count] < self.currentSearchUserCount) {
@@ -342,6 +358,7 @@
 {
     [self removeKeyboard];
     self.currentSearchUserCount = 0;
+    self.currentUserCount = 0;
     self.pagingEndReached = NO;
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self searchFilteredData];
@@ -351,6 +368,7 @@
 {
     self.dataIsFiltered = NO;
     self.currentSearchUserCount = kPageCountForLandingPages;
+    self.currentUserCount = 0;
     self.pagingEndReached = NO;
     [self loadData];
 }

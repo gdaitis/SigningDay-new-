@@ -133,7 +133,7 @@
         SDCoachingStaffCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
         if (!cell) {
-            cell = (id)[SDCoachingStaffCell loadInstanceFromNib];
+            cell = (SDCoachingStaffCell *)[SDCoachingStaffCell loadInstanceFromNib];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor clearColor];
         }
@@ -146,9 +146,9 @@
         cell.nameLabel.text = coach.theUser.name;
         cell.positionLabel.text = coach.position;
         
-        [cell.imageView cancelImageRequestOperation];
-        cell.imageView.image = nil;
-        [cell.imageView setImageWithURL:[NSURL URLWithString:coach.theUser.avatarUrl]];
+        [cell.imgView cancelImageRequestOperation];
+        cell.imgView.image = nil;
+        [cell.imgView setImageWithURL:[NSURL URLWithString:coach.theUser.avatarUrl]];
         
         return cell;
     }

@@ -27,12 +27,14 @@
                  stateCodeStringsArray:(NSArray *)statesArray
                 classYearsStringsArray:(NSArray *)classesArray
                   positionStringsArray:(NSArray *)positionsArray
+                              sortedBy:(NSString *)sortOption
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock;
 // Teams
 + (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
                                                    pageSize:(NSInteger)pageSize
                                                 classString:(NSString *)classString
+                                         conferenceIdString:(NSString *)conferenceIdString
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock;
 + (void)searchForTeamsWithNameString:(NSString *)searchString
@@ -46,6 +48,12 @@
                                           pageSize:(NSInteger)pageSize
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;
++ (void)getAllHighSchoolsForState:(NSString *)stateCode
+                    ForYearString:(NSString *)yearString
+                       pageNumber:(NSInteger)pageNumber
+                         pageSize:(NSInteger)pageSize
+                     successBlock:(void (^)(void))successBlock
+                     failureBlock:(void (^)(void))failureBlock;
 + (void)searchForHighSchoolsInAllStatesWithNameString:(NSString *)searchString
                                            yearString:(NSString *)yearString
                                          successBlock:(void (^)(void))successBlock
