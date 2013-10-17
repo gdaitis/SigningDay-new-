@@ -85,7 +85,8 @@
         
         cell.playerPositionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
         // Configure the cell...
-        [cell setupCellWithUser:user andFilteredData:self.dataIsFiltered];
+        BOOL rowNumberVisible = (self.searchBar.text.length < 3) ? YES : NO;
+        [cell setupCellWithUser:user andFilteredData:!rowNumberVisible];
         return cell;
     }
     else {
@@ -247,7 +248,7 @@
         [self checkServer];
     }
     else {
-        self.dataIsFiltered = (searchBarText.length < 3) ? NO : YES;
+        self.dataIsFiltered = YES;
         self.dataDownloadInProgress = YES;
         
         
@@ -289,9 +290,8 @@
     NSSortDescriptor *starsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
     
-    NSArray *descriptorArray = (self.searchBar.text.length < 3)
-    ? [NSArray arrayWithObjects:baseScoreDescriptor,starsDescriptor,nameDescriptor,nil]
-    : [NSArray arrayWithObjects:nameDescriptor,baseScoreDescriptor,starsDescriptor,nil];
+    NSLog(@"self.searchBar.text.length = %d",self.searchBar.text.length);
+    NSArray *descriptorArray = (self.searchBar.text.length < 3) ? [NSArray arrayWithObjects:baseScoreDescriptor,starsDescriptor,nameDescriptor,nil] : [NSArray arrayWithObjects:nameDescriptor,baseScoreDescriptor,starsDescriptor,nil];
     
     [request setSortDescriptors:descriptorArray];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
@@ -367,8 +367,9 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
     self.dataIsFiltered = NO;
-    self.currentSearchUserCount = kPageCountForLandingPages;
-    self.currentUserCount = 0;
+    searchBar.text = @"";
+    self.currentSearchUserCount = 0;
+    self.currentUserCount = kPageCountForLandingPages;
     self.pagingEndReached = NO;
     [self loadData];
 }
