@@ -141,7 +141,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl]];
     [cell.imageView setImageWithURLRequest:request
-                          placeholderImage:Nil
+                          placeholderImage:nil
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                        cell.imageView.image = (image) ? image : [UIImage imageNamed:@"Playbg.png"];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
