@@ -15,12 +15,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oa4-2U-bKz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="78" id="oga-YB-Pdd"/>
                             <constraint firstAttribute="width" constant="320" id="slg-X8-Fvq"/>
-                            <constraint firstAttribute="height" constant="79" id="tpj-Sp-0pr"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AccountVerifiedImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="tRb-Wm-Cwi">

@@ -33,6 +33,7 @@
 + (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
                                                    pageSize:(NSInteger)pageSize
                                                 classString:(NSString *)classString
+                                         conferenceIdString:(NSString *)conferenceIdString
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock;
 + (void)searchForTeamsWithNameString:(NSString *)searchString

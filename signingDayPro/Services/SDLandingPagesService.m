@@ -192,10 +192,17 @@
 + (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
                                                    pageSize:(NSInteger)pageSize
                                                 classString:(NSString *)classString
+                                         conferenceIdString:(NSString *)conferenceIdString
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
+    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
+
+    if (conferenceIdString)
+        [urlString appendFormat:@"&conference=%@",conferenceIdString];
+    [urlString appendString:@"&$format=json"];
+    
+    
     [self startTeamsHTTPRequestOperationWithURLString:urlString
                                           classString:classString
                                          successBlock:successBlock

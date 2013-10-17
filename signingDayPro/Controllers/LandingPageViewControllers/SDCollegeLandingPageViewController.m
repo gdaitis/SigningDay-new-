@@ -177,6 +177,7 @@
     [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:(self.currentUserCount/kPageCountForLandingPages)
                                                                       pageSize:kPageCountForLandingPages
                                                                    classString:[self.currentFilterYearDictionary objectForKey:@"name"]
+                                                            conferenceIdString:[self.currentFilterConference.identifier stringValue]
                                                                   successBlock:^{
                                                                       self.currentUserCount += kPageCountForLandingPages;
                                                                       self.dataDownloadInProgress = NO;
@@ -192,7 +193,7 @@
     [self hideFilterView];
     //need to set dataIsFilteredFlag to know if we should hide position number on players photo in player cell.
     
-    if (self.searchBar.text.length <3 && self.currentFilterConference == nil) {
+    if (self.searchBar.text.length < 3) {
         self.pagingEndReached = NO;
         [self checkServer];
     }
@@ -215,7 +216,9 @@
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
     NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
-    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate,userYearPredicate, nil]];
+    NSPredicate *conferencePredicate = (self.currentFilterConference) ? [NSPredicate predicateWithFormat:@"theTeam.conferenceId == %@",self.currentFilterConference.identifier] : nil;
+    
+    NSPredicate *compoundPredicate = (conferencePredicate) ? [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate,userYearPredicate, conferencePredicate, nil]] : [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate,userYearPredicate, nil]];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
@@ -225,7 +228,8 @@
     //set sort descriptor
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.totalScore" ascending:NO];
     NSSortDescriptor *commitsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.numberOfCommits" ascending:NO];
-    [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,commitsDescriptor,nil]];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor,commitsDescriptor,nameDescriptor,nil]];
     self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     
     if ([self.dataArray count] < self.currentUserCount) {
