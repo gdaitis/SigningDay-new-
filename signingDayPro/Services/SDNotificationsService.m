@@ -86,6 +86,7 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                                         fromUser.name = [fromUserDictionary valueForKey:@"DisplayName"];
                                         fromUser.avatarUrl = [fromUserDictionary valueForKey:@"AvatarUrl"];
                                         notification.fromUser = fromUser;
+                                        
                                     }
                                     [context MR_saveOnlySelfAndWait];
                                     if (successBlock)
