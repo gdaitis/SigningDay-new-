@@ -221,7 +221,7 @@
     if ([notification.notificationTypeId isEqualToNumber:[NSNumber numberWithInteger:SDNotificationTypeFollowing]]) {
         
         if ([notification.fromUser.userTypeId intValue] != SDUserTypeOrganization && [notification.fromUser.userTypeId intValue] > 0) {
-            //user shouldn't be from NFLPA or Organizations
+            //user shouldn't be Organizations
             [self.delegate notificationViewController:self
                                         didSelectUser:notification.fromUser];
         }

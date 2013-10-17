@@ -13,6 +13,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *positionLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *verifiedImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UIImageView *imgView;
 
 @end
