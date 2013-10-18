@@ -14,10 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>120</string>
 				<string>app_icon</string>
-				<string>app_icon_retina</string>
-				<string>app_icon_retina.png</string>
-				<string>app_icon.png</string>
 			</array>
 		</dict>
 	</dict>

@@ -44,6 +44,8 @@
 		7B736521175F8249007A338E /* MessagesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B736520175F8249007A338E /* MessagesStoryboard.storyboard */; };
 		7B736525175F84B3007A338E /* chat_send_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736523175F84B3007A338E /* chat_send_message_bg@2x.png */; };
 		7B73652A175F84F2007A338E /* send_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736528175F84F2007A338E /* send_button@2x.png */; };
+		7B77B01B18116F85007EE53B /* app_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B77B01A18116F85007EE53B /* app_icon_retina.png */; };
+		7B77B01D181173C0007EE53B /* 120.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B77B01C181173C0007EE53B /* 120.png */; };
 		7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */; };
 		7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */; };
 		7B99555A17D9C900009B8D01 /* SDSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555917D9C900009B8D01 /* SDSearchHeader.m */; };
@@ -406,6 +408,8 @@
 		7B736520175F8249007A338E /* MessagesStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessagesStoryboard.storyboard; sourceTree = "<group>"; };
 		7B736523175F84B3007A338E /* chat_send_message_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chat_send_message_bg@2x.png"; path = "../chat_send_message_bg@2x.png"; sourceTree = "<group>"; };
 		7B736528175F84F2007A338E /* send_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_button@2x.png"; sourceTree = "<group>"; };
+		7B77B01A18116F85007EE53B /* app_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_retina.png; sourceTree = "<group>"; };
+		7B77B01C181173C0007EE53B /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120.png; sourceTree = "<group>"; };
 		7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderLike@2x.png"; sourceTree = "<group>"; };
 		7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderRightArrow@2x.png"; sourceTree = "<group>"; };
 		7B99555817D9C900009B8D01 /* SDSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchHeader.h; sourceTree = "<group>"; };
@@ -1773,6 +1777,8 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7B77B01A18116F85007EE53B /* app_icon_retina.png */,
+				7B77B01C181173C0007EE53B /* 120.png */,
 				7B663CF517F1764F00CB59AE /* Switch */,
 				80F9089517DF5196005DF111 /* KeyAttributesImages */,
 				7BEBA8E017D4C5A20049CA1C /* LandingPages */,
@@ -2084,6 +2090,7 @@
 				804299C7180ED83900D17D2B /* Playbg@2x.png in Resources */,
 				809E729617575FE4004840D3 /* ToolbarItemSelectedArrow@2x.png in Resources */,
 				809E72A317577A1B004840D3 /* SDConversationCell.xib in Resources */,
+				7B77B01B18116F85007EE53B /* app_icon_retina.png in Resources */,
 				80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */,
 				80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */,
 				80E31BB51758B8590013545C /* FollowingUnselected@2x.png in Resources */,
@@ -2140,6 +2147,7 @@
 				801088E7179579BF002EF1EB /* flash_auto_button@2x.png in Resources */,
 				801088E8179579BF002EF1EB /* flash_off_button@2x.png in Resources */,
 				801088E9179579BF002EF1EB /* flash_on_button@2x.png in Resources */,
+				7B77B01D181173C0007EE53B /* 120.png in Resources */,
 				801088EA179579BF002EF1EB /* plus_icon@2x.png in Resources */,
 				801088EB179579BF002EF1EB /* publish_photo_button@2x.png in Resources */,
 				801088EC179579BF002EF1EB /* publish_video_button@2x.png in Resources */,
