@@ -65,13 +65,12 @@
             if (text.length > 0)
                 self.textView.text = self.currentUser.bio;
             else
-                self.textView.text = @"N/A";
+                self.textView.text = [NSString stringWithFormat:@"%@ has not posted a bio",self.currentUser.name];
         }
         else {
             [self showProgressHudInView:self.view withText:@"Loading"];
-            self.textView.text = @"N/A";
+            self.textView.text = [NSString stringWithFormat:@"%@ has not posted a bio",self.currentUser.name];
         }
-        
     }
 }
 
