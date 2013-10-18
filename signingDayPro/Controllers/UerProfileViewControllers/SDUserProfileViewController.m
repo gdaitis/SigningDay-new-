@@ -24,6 +24,8 @@
 #import "SDActivityFeedCellContentView.h"
 #import "SDImageService.h"
 #import "SDActivityFeedTableView.h"
+#import "Conversation.h"
+#import "SDConversationViewController.h"
 #import "AFNetworking.h"
 #import "UIView+NibLoading.h"
 #import "SDBuzzButtonView.h"
@@ -348,7 +350,18 @@
 
 - (void)messageButtonPressedInButtonView:(SDBuzzButtonView *)buzzButtonView
 {
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    Conversation *conversation = [Conversation MR_createInContext:context];
+    [conversation addUsersObject:self.currentUser];
+    [context MR_saveToPersistentStoreAndWait];
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessagesStoryboard"
+                                                         bundle:nil];
+    SDConversationViewController *conversationViewController = (SDConversationViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ConversationViewController"];
+    conversationViewController.conversation = conversation;
+    conversationViewController.isNewConversation = YES;
+    
+    [self.navigationController pushViewController:conversationViewController animated:YES];
 }
 
 #pragma mark - SlidingViewButton Delegate
