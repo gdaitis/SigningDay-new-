@@ -101,6 +101,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
         NSString *link = [mediaDictionary valueForKey:@"Url"];
         NSString *title = [mediaDictionary valueForKey:@"Title"];
         NSString *description = [mediaDictionary valueForKey:@"Description"];
+        NSString *thumbnailUrlString = [self getThumbnailPictureUrlStringFromFileUrlString:[[mediaDictionary valueForKey:@"File"] valueForKey:@"FileUrl"]];
         
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
@@ -119,7 +120,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
             
             NSMutableDictionary *fbPostParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                  link, @"link",
-                                                 kSDLogoURLString, @"picture",
+                                                 thumbnailUrlString, @"picture",
                                                  title, @"name",
                                                  description, @"caption",
                                                  nil, @"description",
@@ -185,10 +186,28 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
                                                   otherButtonTitles:nil];
             [alert show];
         }
+        if (error.code == -1011) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"A file with this title already exists. Please enter a different title."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
         [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
     }];
     
     [operation start];
+}
+
++ (NSString *)getThumbnailPictureUrlStringFromFileUrlString:(NSString *)urlString
+{
+    NSArray *components = [urlString pathComponents];
+    NSString *lastComponent = [components lastObject];
+    NSString *secondToLastComponent = [components objectAtIndex:[components count] - 2];
+    NSString *thumbnailUrlString = [NSString stringWithFormat:@"%@cfs-filesystemfile.ashx/__key/communityserver-components-secureimagefileviewer/telligent-evolution-components-attachments-%@/%@__2D00_320x240.jpg", kSDBaseSigningDayURLString, secondToLastComponent, lastComponent];
+    
+    return thumbnailUrlString;
 }
 
 + (void)uploadVideoWithURL:(NSURL *)URL
@@ -315,7 +334,22 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
         if (completionBlock)
             completionBlock();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SDErrorService handleError:error withOperation:operation];
+        if (error.code == -1009) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"Upload unsuccessful"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        if (error.code == -1011) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"A file with this title already exists. Please enter a different title."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
         [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
     }];
     
