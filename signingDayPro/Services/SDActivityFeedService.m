@@ -268,7 +268,7 @@
         user = [User MR_createInContext:context];
         user.identifier = authorIdentifier;
     }
-    user.username = [dictionary valueForKey:@"Username"];
+    user.username = [dictionary valueForKey:@"UserName"];
     user.avatarUrl = [dictionary valueForKey:@"AvatarUrl"];
     user.name = [dictionary valueForKey:@"DisplayName"];
     
