@@ -290,7 +290,7 @@
                                       successBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&$format=json&$filter=(HighSchoolState eq '%@')", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber,stateCode];
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&state='%@'&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber,stateCode];
     NSLog(@"urlString = %@",urlString);
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
