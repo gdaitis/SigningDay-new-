@@ -609,7 +609,7 @@
     NSString *mediaGalleryIdString = [NSString stringWithFormat:@"%d", [mediaGallery.identifier integerValue]];
     NSString *mediaGalleryTypeString = [NSString stringWithFormat:@"%d", galleryType];
     [[SDAPIClient sharedClient] getPath:@"sd/media.json"
-                             parameters:@{@"MediaGalleryId": mediaGalleryIdString, @"MediaType": mediaGalleryTypeString}
+                             parameters:@{@"MediaGalleryId": mediaGalleryIdString, @"MediaType": mediaGalleryTypeString, @"width": @400, @"height": @400}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *mediaListArray = [JSON valueForKey:@"MediaList"];
@@ -626,7 +626,7 @@
                                         mediaItem.contentType = [mediaItemDictionary valueForKey:@"ContentType"];
                                         mediaItem.createdDate = [SDUtils dateFromString:[mediaItemDictionary valueForKey:@"CreatedDate"]];
                                         mediaItem.fileName = [mediaItemDictionary valueForKey:@"FileItem"];
-                                        mediaItem.fileUrl = [mediaItemDictionary valueForKey:@"FileUrl"];
+                                        mediaItem.fileUrl = [[mediaItemDictionary valueForKey:@"ThumbnailUrl"] stringByReplacingOccurrencesOfString:@"400x400" withString:@"1000x1000"];
                                         mediaItem.thumbnailUrl = [mediaItemDictionary valueForKey:@"ThumbnailUrl"];
                                         mediaItem.title = [mediaItemDictionary valueForKey:@"Title"];
                                         mediaItem.mediaGallery = mediaGallery;

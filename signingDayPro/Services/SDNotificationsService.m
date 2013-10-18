@@ -85,6 +85,7 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                                         }
                                         fromUser.name = [fromUserDictionary valueForKey:@"DisplayName"];
                                         fromUser.avatarUrl = [fromUserDictionary valueForKey:@"AvatarUrl"];
+                                        fromUser.userTypeId = [fromUserDictionary valueForKey:@"UserTypeId"];
                                         notification.fromUser = fromUser;
                                         
                                     }

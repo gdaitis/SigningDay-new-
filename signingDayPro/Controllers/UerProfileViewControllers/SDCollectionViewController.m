@@ -14,6 +14,7 @@
 #import "MediaGallery.h"
 #import "MediaItem.h"
 #import "MBProgressHUD.h"
+#import "UIImageView+Crop.h"
 
 @interface SDCollectionViewController ()
 
@@ -137,16 +138,17 @@
     [cell.imageView cancelImageRequestOperation];
     cell.imageView.image = nil;
     
-//    [cell.imageView setImageWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl] placeholderImage:nil];
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl]];
     [cell.imageView setImageWithURLRequest:request
                           placeholderImage:nil
+                             cropedForSize:CGSizeMake(106, 106)
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       cell.imageView.image = (image) ? image : [UIImage imageNamed:@"Playbg.png"];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        cell.imageView.image = [UIImage imageNamed:@"Playbg.png"];
-    }];
+                                       SDCollectionCell *aCell = (SDCollectionCell *)[cv cellForItemAtIndexPath:indexPath];
+                                       aCell.imageView.image = (image) ? image : [UIImage imageNamed:@"Playbg.png"];
+                                   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                       SDCollectionCell *aCell = (SDCollectionCell *)[cv cellForItemAtIndexPath:indexPath];
+                                       aCell.imageView.image = [UIImage imageNamed:@"Playbg.png"];
+                                   }];
     
     return cell;
 }

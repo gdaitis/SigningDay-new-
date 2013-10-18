@@ -255,9 +255,10 @@
                      if (completionBlock) {
                          completionBlock();
                      }
-                     int badgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber];
+#warning BADGES
+                    /* int badgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber];
                      if (badgeNumber > 0)
-                         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:(badgeNumber - 1)];
+                         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:(badgeNumber - 1)];*/
                      
                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      [SDErrorService handleError:error withOperation:operation];
@@ -333,8 +334,9 @@
     [context MR_saveToPersistentStoreAndWait];
     
     //setup badge on left unread conversations
-    NSArray *unreadConversations = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"isRead == %@", [NSNumber numberWithBool:NO]] inContext:context];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadConversations count]];
+#warning BADGE
+    /*NSArray *unreadConversations = [Conversation MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"isRead == %@", [NSNumber numberWithBool:NO]] inContext:context];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadConversations count]];*/
 }
 
 + (void)markAllMessagesForDeletionForConversation:(Conversation *)conversation
