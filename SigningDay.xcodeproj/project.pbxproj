@@ -61,7 +61,6 @@
 		7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */; };
 		7BAA5A6917D5D353001DB55C /* SDLandingPagesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */; };
 		7BAAD0AC1808119C002C121B /* NFLPA.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAD0AB1808119C002C121B /* NFLPA.m */; };
-		7BAAD0AF1808119D002C121B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAD0AE1808119D002C121B /* User.m */; };
 		7BAAD0B518081BAD002C121B /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAD0B418081BAD002C121B /* Coach.m */; };
 		7BAF6ED217A93F5E00F7C6B3 /* SDCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */; };
 		7BAF6ED517A93F7500F7C6B3 /* SDBaseChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF6ED417A93F7500F7C6B3 /* SDBaseChatViewController.m */; };
@@ -91,6 +90,11 @@
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
 		7BFE1FE9179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE6179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png */; };
+		7BFF8EDC1816C89B0039520C /* Forum.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF8EDB1816C89B0039520C /* Forum.m */; };
+		7BFF8EDF1816C89B0039520C /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF8EDE1816C89B0039520C /* Group.m */; };
+		7BFF8EE51816C89B0039520C /* ForumReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF8EE41816C89B0039520C /* ForumReply.m */; };
+		7BFF8EE81816C89C0039520C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF8EE71816C89C0039520C /* User.m */; };
+		7BFF8EEE1816CC660039520C /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF8EED1816CC660039520C /* Thread.m */; };
 		801088BB1795794A002EF1EB /* SDAddTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088AF1795794A002EF1EB /* SDAddTagsCell.m */; };
 		801088BC1795794A002EF1EB /* SDAddTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801088B01795794A002EF1EB /* SDAddTagsCell.xib */; };
 		801088BD1795794A002EF1EB /* SDAddTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088B21795794A002EF1EB /* SDAddTagsViewController.m */; };
@@ -436,8 +440,6 @@
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAAD0AA1808119C002C121B /* NFLPA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NFLPA.h; sourceTree = "<group>"; };
 		7BAAD0AB1808119C002C121B /* NFLPA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NFLPA.m; sourceTree = "<group>"; };
-		7BAAD0AD1808119D002C121B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		7BAAD0AE1808119D002C121B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7BAAD0B318081BAD002C121B /* Coach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coach.h; sourceTree = "<group>"; };
 		7BAAD0B418081BAD002C121B /* Coach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coach.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -478,6 +480,16 @@
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarFull@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE6179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarHalfFull@2x.png"; sourceTree = "<group>"; };
+		7BFF8EDA1816C89B0039520C /* Forum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Forum.h; sourceTree = "<group>"; };
+		7BFF8EDB1816C89B0039520C /* Forum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Forum.m; sourceTree = "<group>"; };
+		7BFF8EDD1816C89B0039520C /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		7BFF8EDE1816C89B0039520C /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		7BFF8EE31816C89B0039520C /* ForumReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumReply.h; sourceTree = "<group>"; };
+		7BFF8EE41816C89B0039520C /* ForumReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumReply.m; sourceTree = "<group>"; };
+		7BFF8EE61816C89C0039520C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7BFF8EE71816C89C0039520C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7BFF8EEC1816CC660039520C /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
+		7BFF8EED1816CC660039520C /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
 		801088AE1795794A002EF1EB /* SDAddTagsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDAddTagsCell.h; path = ../Controllers/ActivityFeedControllers/SDAddTagsCell.h; sourceTree = "<group>"; };
 		801088AF1795794A002EF1EB /* SDAddTagsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDAddTagsCell.m; path = ../Controllers/ActivityFeedControllers/SDAddTagsCell.m; sourceTree = "<group>"; };
 		801088B01795794A002EF1EB /* SDAddTagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SDAddTagsCell.xib; path = ../Controllers/ActivityFeedControllers/SDAddTagsCell.xib; sourceTree = "<group>"; };
@@ -1287,14 +1299,22 @@
 			isa = PBXGroup;
 			children = (
 				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
+				7BFF8EEC1816CC660039520C /* Thread.h */,
+				7BFF8EED1816CC660039520C /* Thread.m */,
+				7BFF8EE61816C89C0039520C /* User.h */,
+				7BFF8EE71816C89C0039520C /* User.m */,
+				7BFF8EE31816C89B0039520C /* ForumReply.h */,
+				7BFF8EE41816C89B0039520C /* ForumReply.m */,
+				7BFF8EDD1816C89B0039520C /* Group.h */,
+				7BFF8EDE1816C89B0039520C /* Group.m */,
+				7BFF8EDA1816C89B0039520C /* Forum.h */,
+				7BFF8EDB1816C89B0039520C /* Forum.m */,
 				7BD0D160180EC07700DA9A71 /* Team.h */,
 				7BD0D161180EC07700DA9A71 /* Team.m */,
 				7BD0D15D180EBFAB00DA9A71 /* HighSchool.h */,
 				7BD0D15E180EBFAB00DA9A71 /* HighSchool.m */,
 				7BAAD0B318081BAD002C121B /* Coach.h */,
 				7BAAD0B418081BAD002C121B /* Coach.m */,
-				7BAAD0AD1808119D002C121B /* User.h */,
-				7BAAD0AE1808119D002C121B /* User.m */,
 				7BAAD0AA1808119C002C121B /* NFLPA.h */,
 				7BAAD0AB1808119C002C121B /* NFLPA.m */,
 				80A7DB8418059A2500D622B5 /* ImageData.h */,
@@ -2313,6 +2333,7 @@
 				805CF3F21754EB1A004C69E5 /* SDSettingsViewController.m in Sources */,
 				80A7DB6B18059A2300D622B5 /* ActivityStory.m in Sources */,
 				805CF3F81754FF59004C69E5 /* SDTableView.m in Sources */,
+				7BFF8EE51816C89B0039520C /* ForumReply.m in Sources */,
 				8032EFDF1755EEDE00C92AAC /* SDAPIClient.m in Sources */,
 				8032EFE01755EEDE00C92AAC /* SDChatService.m in Sources */,
 				8032EFE11755EEDE00C92AAC /* SDErrorService.m in Sources */,
@@ -2365,7 +2386,6 @@
 				80CCAE751794231B0015429A /* UIView+NibLoading.m in Sources */,
 				801088BB1795794A002EF1EB /* SDAddTagsCell.m in Sources */,
 				801088BD1795794A002EF1EB /* SDAddTagsViewController.m in Sources */,
-				7BAAD0AF1808119D002C121B /* User.m in Sources */,
 				8012100D181538D800F65B0B /* SDWarRoomService.m in Sources */,
 				801088BE1795794A002EF1EB /* SDCameraOverlayView.m in Sources */,
 				801088BF1795794A002EF1EB /* SDEnterMediaInfoViewController.m in Sources */,
@@ -2393,6 +2413,7 @@
 				80431E4917A006B3002F6E3D /* NSObject+MagicalDataImport.m in Sources */,
 				7BC1D86517F315C800D686E6 /* SDNotificationsService.m in Sources */,
 				80431E4A17A006B3002F6E3D /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
+				7BFF8EEE1816CC660039520C /* Thread.m in Sources */,
 				80431E4B17A006B3002F6E3D /* NSString+MagicalDataImport.m in Sources */,
 				80431E4C17A006B3002F6E3D /* NSManagedObject+MagicalAggregation.m in Sources */,
 				80431E4D17A006B3002F6E3D /* NSManagedObject+MagicalDataImport.m in Sources */,
@@ -2427,6 +2448,7 @@
 				7B33A5A317BBC849002A994F /* NSDictionary+NullConverver.m in Sources */,
 				80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */,
 				80522C4C17CF5E5C00936936 /* SDActivityStoryViewController.m in Sources */,
+				7BFF8EDF1816C89B0039520C /* Group.m in Sources */,
 				80A7DB5C18059A2100D622B5 /* Comment.m in Sources */,
 				8044395B17D4B0E600AADFDB /* SDImageEnlargementView.m in Sources */,
 				7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */,
@@ -2444,6 +2466,7 @@
 				7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */,
 				8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */,
 				8078686017DDBFD300B77789 /* SDLandingPageCollegeCell.m in Sources */,
+				7BFF8EE81816C89C0039520C /* User.m in Sources */,
 				8078686217DDBFD300B77789 /* SDLandingPageHighSchoolCell.m in Sources */,
 				8078687017DDBFE600B77789 /* SDCollegeLandingPageViewController.m in Sources */,
 				8078687117DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m in Sources */,
@@ -2454,6 +2477,7 @@
 				80A7DB7718059A2400D622B5 /* Like.m in Sources */,
 				80A7DB7D18059A2400D622B5 /* WebPreview.m in Sources */,
 				7B1DF11317E0A1AE005455D8 /* UIImageView+Crop.m in Sources */,
+				7BFF8EDC1816C89B0039520C /* Forum.m in Sources */,
 				7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */,
 				803ECED517F456BF0060702F /* SDCollectionViewController.m in Sources */,
 				80F531EB1802C1030089971C /* SDCommitsRostersCoachViewController.m in Sources */,

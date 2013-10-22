@@ -2,7 +2,7 @@
 //  User.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/11/13.
+//  Created by Vytautas Gudaitis on 10/22/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "Coach.h"
 #import "Comment.h"
 #import "Conversation.h"
+#import "ForumReply.h"
 #import "HighSchool.h"
 #import "Like.h"
 #import "Master.h"
@@ -22,6 +23,7 @@
 #import "Player.h"
 #import "State.h"
 #import "Team.h"
+#import "Thread.h"
 
 
 @implementation User
@@ -58,8 +60,10 @@
 @dynamic theCoach;
 @dynamic theHighSchool;
 @dynamic theMember;
+@dynamic theNFLPA;
 @dynamic thePlayer;
 @dynamic theTeam;
-@dynamic theNFLPA;
+@dynamic threads;
+@dynamic forumReplies;
 
 @end
