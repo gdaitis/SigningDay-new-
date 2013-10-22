@@ -9,30 +9,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403718780.133687"
+            filePath = "signingDayPro/Controllers/UerProfileViewControllers/SDUserProfileViewController.m"
+            timestampString = "404045447.506964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "-loadFilteredData"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "-staffButtonPressedInUserProfileSlidingButtonView:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403717444.086721"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "-checkServer"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SDUserProfileViewController staffButtonPressedInUserProfileSlidingButtonView:]"
+                  moduleName = "SigningDay"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDUserProfileViewController.m"
+                  timestampString = "404045592.169654"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "382"
+                  endingLineNumber = "382"
+                  offsetFromSymbolStart = "872">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__80-[SDUserProfileViewController staffButtonPressedInUserProfileSlidingButtonView:]_block_invoke"
+                  moduleName = "SigningDay"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDUserProfileViewController.m"
+                  timestampString = "404045592.170074"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "384"
+                  endingLineNumber = "384"
+                  offsetFromSymbolStart = "6">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,42 +55,42 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Services/SDNotificationsService.m"
-            timestampString = "403711833.276228"
+            filePath = "signingDayPro/Controllers/UerProfileViewControllers/SDUserProfileViewController.m"
+            timestampString = "404045572.496658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "+getNotificationsWithPageSize:successBlock:failureBlock:"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
+            landmarkName = "-staffButtonPressedInUserProfileSlidingButtonView:"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__81+[SDNotificationsService getNotificationsWithPageSize:successBlock:failureBlock:]_block_invoke"
+                  symbolName = "__80-[SDUserProfileViewController staffButtonPressedInUserProfileSlidingButtonView:]_block_invoke"
                   moduleName = "SigningDay"
-                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Services/SDNotificationsService.m"
-                  timestampString = "403718780.185631"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDUserProfileViewController.m"
+                  timestampString = "404045592.171168"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "3480">
+                  startingLineNumber = "384"
+                  endingLineNumber = "384"
+                  offsetFromSymbolStart = "6">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__81+[SDNotificationsService getNotificationsWithPageSize:successBlock:failureBlock:]_block_invoke"
+                  symbolName = "__80-[SDUserProfileViewController staffButtonPressedInUserProfileSlidingButtonView:]_block_invoke_2"
                   moduleName = "SigningDay"
-                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Services/SDNotificationsService.m"
-                  timestampString = "403718780.185854"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Controllers/UerProfileViewControllers/SDUserProfileViewController.m"
+                  timestampString = "404045592.171599"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "3682">
+                  startingLineNumber = "386"
+                  endingLineNumber = "386"
+                  offsetFromSymbolStart = "6">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -87,13 +101,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403717444.086721"
+            filePath = "signingDayPro/Services/SDProfileService.m"
+            timestampString = "404045588.582935"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "-searchFilteredData"
+            startingLineNumber = "1009"
+            endingLineNumber = "1009"
+            landmarkName = "+getOffersForUser:completionBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -103,13 +117,59 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403717444.086721"
+            filePath = "signingDayPro/Services/SDProfileService.m"
+            timestampString = "404052746.287211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
-            landmarkName = "-loadData"
+            startingLineNumber = "1045"
+            endingLineNumber = "1045"
+            landmarkName = "+getOffersForUser:completionBlock:failureBlock:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__66+[SDProfileService getOffersForUser:completionBlock:failureBlock:]_block_invoke"
+                  moduleName = "SigningDay"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Services/SDProfileService.m"
+                  timestampString = "404054251.029026"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1046"
+                  endingLineNumber = "1046"
+                  offsetFromSymbolStart = "730">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__66+[SDProfileService getOffersForUser:completionBlock:failureBlock:]_block_invoke"
+                  moduleName = "SigningDay"
+                  urlString = "file://localhost/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Services/SDProfileService.m"
+                  timestampString = "404054251.029253"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1046"
+                  endingLineNumber = "1046"
+                  offsetFromSymbolStart = "834">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "signingDayPro/TableViewCells/Views/SDFollowingViewController.m"
+            timestampString = "404046373.080372"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -119,13 +179,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403718780.133687"
+            filePath = "signingDayPro/Services/SDWarRoomService.m"
+            timestampString = "404054250.974708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
-            landmarkName = "-loadFilteredData"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "+getWarRoomsWithCompletionBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -135,13 +195,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403718780.133687"
+            filePath = "signingDayPro/Services/SDWarRoomService.m"
+            timestampString = "404054103.26838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
-            landmarkName = "-searchBarSearchButtonClicked:"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "+getWarRoomsWithCompletionBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -151,13 +211,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403718780.133687"
+            filePath = "signingDayPro/Services/SDWarRoomService.m"
+            timestampString = "404054250.974708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "-searchBarCancelButtonClicked:"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "+getWarRoomsWithCompletionBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -167,45 +227,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/LandingPageViewControllers/SDPlayerLandingPageViewController.m"
-            timestampString = "403718914.581507"
+            filePath = "signingDayPro/Services/SDWarRoomService.m"
+            timestampString = "404054250.974708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
-            landmarkName = "-playersSearchHeaderPressedSearchButton:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Services/SDLandingPagesService.m"
-            timestampString = "403781228.765693"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
-            landmarkName = "+searchForHighSchoolsWithNameString:yearString:stateCodeStringsArray:successBlock:failureBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "signingDayPro/Controllers/UerProfileViewControllers/SDUserProfileViewController.m"
-            timestampString = "403786991.004396"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
-            landmarkName = "-messageButtonPressedInButtonView:"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "+getWarRoomsWithCompletionBlock:failureBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -75,4 +75,10 @@ typedef enum {
 + (void)deleteAvatar;
 + (void)updateLoggedInUserWithCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock;
 
+
+//offers
++ (void)getOffersForUser:(User *)user
+         completionBlock:(void (^)(void))completionBlock
+            failureBlock:(void (^)(void))failureBlock;
+
 @end

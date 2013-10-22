@@ -44,8 +44,8 @@
 
 
 + (void)getCoachingStaffForTeamWithIdentifier:(NSString *)teamIdentifier
-                        completionBlock:(void (^)(void))completionBlock
-                           failureBlock:(void (^)(void))failureBlock
+                              completionBlock:(void (^)(void))completionBlock
+                                 failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/TeamsService.asmx/GetCoachingStaffForMobile", kSDBaseSigningDayURLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
@@ -95,10 +95,10 @@
     User *coachUser = [User MR_findFirstByAttribute:@"identifier"
                                           withValue:coachIdentifier
                                           inContext:context];
-//    NSString *name = [dictionary valueForKey:@"DisplayName"] ? [dictionary valueForKey:@"DisplayName"] : [dictionary valueForKey:@"Name"];
-//    User *coachUser = [User MR_findFirstByAttribute:@"name"
-//                                          withValue:name
-//                                          inContext:context];
+    //    NSString *name = [dictionary valueForKey:@"DisplayName"] ? [dictionary valueForKey:@"DisplayName"] : [dictionary valueForKey:@"Name"];
+    //    User *coachUser = [User MR_findFirstByAttribute:@"name"
+    //                                          withValue:name
+    //                                          inContext:context];
     
     if (!coachUser) {
         coachUser = [User MR_createInContext:context];
@@ -147,8 +147,8 @@
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         
         User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
-                                             withValue:[NSNumber numberWithInt:[highSchoolIdentifier intValue]]
-                                             inContext:context];
+                                                   withValue:[NSNumber numberWithInt:[highSchoolIdentifier intValue]]
+                                                   inContext:context];
         highSchoolUser.theHighSchool.rosters = nil;
         
         for (NSDictionary *userDictionary in userInfoArray) {
@@ -190,8 +190,8 @@
 
 + (void)getCommitsForTeamWithIdentifier:(NSString *)teamIdentifier
                           andYearString:(NSString *)yearString
-                              completionBlock:(void (^)(void))completionBlock
-                                 failureBlock:(void (^)(void))failureBlock
+                        completionBlock:(void (^)(void))completionBlock
+                           failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/TeamsService.asmx/GetTeamCommitsForMobile", kSDBaseSigningDayURLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
@@ -210,8 +210,8 @@
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         
         User *teamUser = [User MR_findFirstByAttribute:@"identifier"
-                                         withValue:[NSNumber numberWithInt:[teamIdentifier intValue]]
-                                         inContext:context];
+                                             withValue:[NSNumber numberWithInt:[teamIdentifier intValue]]
+                                             inContext:context];
         teamUser.theTeam.commits = nil;
         
         for (NSDictionary *playerDictionary in userInfoArray) {
@@ -544,8 +544,8 @@
 }
 
 + (void)getBasicProfileInfoForUserIdentifier:(NSNumber *)identifier
-                        completionBlock:(void (^)(void))completionBlock
-                           failureBlock:(void (^)(void))failureBlock
+                             completionBlock:(void (^)(void))completionBlock
+                                failureBlock:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"users/%d.json", [identifier integerValue]];
     [[SDAPIClient sharedClient] getPath:path
@@ -952,7 +952,7 @@
 
 
 
-#pragma mark
+#pragma mark - user update
 
 + (void)updateLoggedInUserWithCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
@@ -1000,5 +1000,78 @@
                                          failureBlock();
                                  }];
 }
+
+#pragma mark - Get Offers for User
++ (void)getOffersForUser:(User *)user
+         completionBlock:(void (^)(void))completionBlock
+            failureBlock:(void (^)(void))failureBlock
+{
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/OffersView?$format=json&$filter=(PlayerID eq %d)",kSDBaseSigningDayURLString,[user.identifier intValue]];
+    
+    [self startHTTPRequestOperationWithURLString:urlString
+                           operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               
+                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                               
+                               NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                                    options:kNilOptions
+                                                                                      error:nil];
+                               NSDictionary *dictionary = [[JSON valueForKey:@"d"] dictionaryByReplacingNullsWithStrings];
+                               
+                               for (NSDictionary *userDictionary in dictionary) {
+                                   
+                                   NSNumber *teamIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"TeamID"] intValue]];
+                                   User *teamUser = [User MR_findFirstByAttribute:@"identifier"
+                                                                        withValue:teamIdentifier
+                                                                        inContext:context];
+//                                   if (!teamUser) {
+//                                       teamUser = [User MR_createInContext:context];
+//                                       teamUser.identifier = teamIdentifier;
+//                                   }
+//                                   if (!teamUser.theTeam)
+//                                       teamUser.theTeam = [Team MR_createInContext:context];
+//                                   
+//                                   teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
+//                                   teamUser.name = [userDictionary valueForKey:@"TeamInstitution"];
+//
+//                                   teamUser.theTeam.teamName =[userDictionary valueForKey:@"TeamInstitution"];
+//                                   teamUser.theTeam.conferenceId = [NSNumber numberWithInt:[[userDictionary valueForKey:@"ConferenceID"] intValue]];
+//                                   teamUser.theTeam.universityName = [userDictionary valueForKey:@"FullInstitutionName"];
+//                                   teamUser.theTeam.location = [userDictionary valueForKey:@"TeamCity"];
+//                                   teamUser.theTeam.stateCode = [userDictionary valueForKey:@"TeamStateCode"];
+//                                   teamUser.theTeam.numberOfCommits = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Commits"] intValue]];
+//                                   teamUser.theTeam.totalScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"Total"] floatValue]];
+//                                   teamUser.theTeam.teamClass = classString;  //need to save year(class) for team for proper coredata sorting and paging
+                               }
+                               
+                               [context MR_saveOnlySelfAndWait];
+                               if (completionBlock)
+                                   completionBlock();
+                           } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+                               
+                               if (failureBlock)
+                                   failureBlock();
+                           }];
+}
+
++ (void)startHTTPRequestOperationWithURLString:(NSString *)URLString
+                         operationSuccessBlock:(void (^)(AFHTTPRequestOperation *operation, id responseObject))operationSuccessBlock
+                         operationFailureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))operationFailureBlock
+{
+    URLString = [[[URLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (operationSuccessBlock)
+            operationSuccessBlock(operation, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (operationFailureBlock)
+            operationFailureBlock(operation, error);
+    }];
+    [operation start];
+}
+
 
 @end

@@ -144,8 +144,9 @@
                 playerView.slidingButtonView.delegate = self;
                 [playerView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileKeyAttributesButton.png"] forState:UIControlStateNormal];
                 playerView.slidingButtonView.keyAttributesLabel.text = @"Key Attributes";
-                [playerView.slidingButtonView.staffButton removeFromSuperview];
-                [playerView.slidingButtonView.staffLabel removeFromSuperview];
+                
+                [playerView.slidingButtonView.staffButton setImage:[UIImage imageNamed:@"OffersButtonImage.png"] forState:UIControlStateNormal];
+                playerView.slidingButtonView.staffLabel.text = @"Offers";
                 view = playerView;
                 break;
             }
@@ -368,11 +369,22 @@
 
 - (void)staffButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
 {
-    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
-    SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
-    rosterViewController.userIdentifier = currentUserIdentifier;
-    rosterViewController.controllerType = CONTROLLER_TYPE_COACHINGSTAFF;
-    [self.navigationController pushViewController:rosterViewController animated:YES];
+    if ([self.currentUser.userTypeId intValue] == SDUserTypeTeam) {
+        NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
+        SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
+        rosterViewController.userIdentifier = currentUserIdentifier;
+        rosterViewController.controllerType = CONTROLLER_TYPE_COACHINGSTAFF;
+        [self.navigationController pushViewController:rosterViewController animated:YES];
+    }
+    else if ([self.currentUser.userTypeId intValue] == SDUserTypePlayer) {
+        
+        //show college list with offers
+        [SDProfileService getOffersForUser:self.currentUser completionBlock:^{
+            
+        } failureBlock:^{
+            
+        }];
+    }
 }
 
 - (void)changingButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
@@ -412,13 +424,13 @@
             break;
         }
         case SDUserTypeMember:
-
+            
             break;
         case SDUserTypeCoach:
-
+            
             break;
         default:
-
+            
             break;
     }
 }
