@@ -2,14 +2,14 @@
 //  User.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/11/13.
+//  Created by Vytautas Gudaitis on 10/22/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Coach, Comment, Conversation, HighSchool, Like, Master, MediaGallery, Member, Message, NFLPA, Notification, Player, State, Team;
+@class ActivityStory, Coach, Comment, Conversation, ForumReply, HighSchool, Like, Master, MediaGallery, Member, Message, NFLPA, Notification, Player, State, Team, Thread;
 
 @interface User : NSManagedObject
 
@@ -45,9 +45,11 @@
 @property (nonatomic, retain) Coach *theCoach;
 @property (nonatomic, retain) HighSchool *theHighSchool;
 @property (nonatomic, retain) Member *theMember;
+@property (nonatomic, retain) NFLPA *theNFLPA;
 @property (nonatomic, retain) Player *thePlayer;
 @property (nonatomic, retain) Team *theTeam;
-@property (nonatomic, retain) NFLPA *theNFLPA;
+@property (nonatomic, retain) NSSet *threads;
+@property (nonatomic, retain) NSSet *forumReplies;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -96,5 +98,15 @@
 - (void)removeNotificationsParticipatedInObject:(Notification *)value;
 - (void)addNotificationsParticipatedIn:(NSSet *)values;
 - (void)removeNotificationsParticipatedIn:(NSSet *)values;
+
+- (void)addThreadsObject:(Thread *)value;
+- (void)removeThreadsObject:(Thread *)value;
+- (void)addThreads:(NSSet *)values;
+- (void)removeThreads:(NSSet *)values;
+
+- (void)addForumRepliesObject:(ForumReply *)value;
+- (void)removeForumRepliesObject:(ForumReply *)value;
+- (void)addForumReplies:(NSSet *)values;
+- (void)removeForumReplies:(NSSet *)values;
 
 @end

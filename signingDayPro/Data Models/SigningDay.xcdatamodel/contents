@@ -60,6 +60,34 @@
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="conversation" inverseEntity="Message" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="conversations" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Forum" representedClassName="Forum" syncable="YES">
+        <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="enabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="forumDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="latestPostDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="replyCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="threadCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="forums" inverseEntity="Group" syncable="YES"/>
+        <relationship name="threads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thread" inverseName="forum" inverseEntity="Thread" syncable="YES"/>
+    </entity>
+    <entity name="ForumReply" representedClassName="ForumReply" syncable="YES">
+        <attribute name="bodyWithHTML" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="authorUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="forumReplies" inverseEntity="User" syncable="YES"/>
+        <relationship name="thread" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thread" inverseName="forumReplies" inverseEntity="Thread" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="groupDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Forum" inverseName="group" inverseEntity="Forum" syncable="YES"/>
+    </entity>
     <entity name="HighSchool" representedClassName="HighSchool" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="baseAverage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -192,6 +220,17 @@
         <relationship name="headCoaches" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theTeam" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Thread" representedClassName="Thread" syncable="YES">
+        <attribute name="bodyWithHTML" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="latestPostDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="replyCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="authorUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="threads" inverseEntity="User" syncable="YES"/>
+        <relationship name="forum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Forum" inverseName="threads" inverseEntity="Forum" syncable="YES"/>
+        <relationship name="forumReplies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForumReply" inverseName="thread" inverseEntity="ForumReply" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="accountVerified" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="allowBuzzMessage" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -216,6 +255,7 @@
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="users" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="followedBy" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="following" inverseEntity="Master" syncable="YES"/>
         <relationship name="following" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="followedBy" inverseEntity="Master" syncable="YES"/>
+        <relationship name="forumReplies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForumReply" inverseName="authorUser" inverseEntity="ForumReply" syncable="YES"/>
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="user" inverseEntity="Like" syncable="YES"/>
         <relationship name="master" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="users" inverseEntity="Master" syncable="YES"/>
         <relationship name="mediaGalleries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MediaGallery" inverseName="user" inverseEntity="MediaGallery" syncable="YES"/>
@@ -228,6 +268,7 @@
         <relationship name="theNFLPA" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NFLPA" inverseName="theUser" inverseEntity="NFLPA" syncable="YES"/>
         <relationship name="thePlayer" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="theUser" inverseEntity="Player" syncable="YES"/>
         <relationship name="theTeam" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="theUser" inverseEntity="Team" syncable="YES"/>
+        <relationship name="threads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thread" inverseName="authorUser" inverseEntity="Thread" syncable="YES"/>
     </entity>
     <entity name="WebPreview" representedClassName="WebPreview" syncable="YES">
         <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
@@ -240,23 +281,27 @@
     <elements>
         <element name="ActivityStory" positionX="0" positionY="0" width="128" height="360"/>
         <element name="Coach" positionX="1024" positionY="81" width="128" height="163"/>
-        <element name="Comment" positionX="-389" positionY="-153" width="128" height="135"/>
+        <element name="Comment" positionX="-396" positionY="-189" width="128" height="135"/>
         <element name="Conference" positionX="448" positionY="-270" width="128" height="135"/>
         <element name="Conversation" positionX="-459" positionY="-18" width="128" height="180"/>
         <element name="HighSchool" positionX="781" positionY="-234" width="128" height="193"/>
         <element name="ImageData" positionX="36" positionY="-288" width="128" height="90"/>
-        <element name="Like" positionX="-189" positionY="-180" width="128" height="90"/>
-        <element name="Master" positionX="-261" positionY="180" width="128" height="225"/>
-        <element name="MediaGallery" positionX="43" positionY="-123" width="128" height="105"/>
+        <element name="Like" positionX="-189" positionY="-189" width="128" height="90"/>
+        <element name="Master" positionX="-245" positionY="180" width="128" height="225"/>
+        <element name="MediaGallery" positionX="18" positionY="-153" width="128" height="105"/>
         <element name="MediaItem" positionX="250" positionY="-216" width="128" height="165"/>
         <element name="Member" positionX="745" positionY="402" width="128" height="120"/>
         <element name="Message" positionX="-182" positionY="0" width="128" height="135"/>
         <element name="NFLPA" positionX="891" positionY="675" width="128" height="163"/>
-        <element name="Notification" positionX="-191" positionY="462" width="128" height="195"/>
+        <element name="Notification" positionX="-531" positionY="360" width="128" height="195"/>
         <element name="Player" positionX="990" positionY="333" width="128" height="270"/>
-        <element name="State" positionX="36" positionY="453" width="128" height="105"/>
+        <element name="State" positionX="-119" positionY="414" width="128" height="105"/>
         <element name="Team" positionX="718" positionY="11" width="128" height="313"/>
-        <element name="User" positionX="484" positionY="165" width="128" height="568"/>
-        <element name="WebPreview" positionX="367" positionY="-27" width="128" height="135"/>
+        <element name="User" positionX="403" positionY="108" width="128" height="598"/>
+        <element name="WebPreview" positionX="430" positionY="-99" width="128" height="135"/>
+        <element name="Forum" positionX="-189" positionY="737" width="128" height="193"/>
+        <element name="Group" positionX="-387" positionY="738" width="128" height="148"/>
+        <element name="ForumReply" positionX="207" positionY="737" width="128" height="118"/>
+        <element name="Thread" positionX="7" positionY="738" width="128" height="178"/>
     </elements>
 </model>
