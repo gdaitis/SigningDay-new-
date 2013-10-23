@@ -102,6 +102,7 @@
     self.contentTextView.text = contentText;
     
     [_imageView cancelImageRequestOperation];
+    _imageView.image = nil;
     
     if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0) {
         
@@ -110,7 +111,6 @@
         frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10;
         _imageView.frame = frame;
         _imageView.hidden = NO;
-        _imageView.image = nil;
 
         NSString *fullUrl = nil;
         if ([activityStory.thumbnailUrl length] >0) {

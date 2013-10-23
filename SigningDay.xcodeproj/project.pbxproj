@@ -123,6 +123,16 @@
 		801088F717957A0E002EF1EB /* SDActivityFeedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801088F417957A0E002EF1EB /* SDActivityFeedHeaderView.m */; };
 		8012100D181538D800F65B0B /* SDWarRoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012100C181538D800F65B0B /* SDWarRoomService.m */; };
 		8012100F18153DAC00F65B0B /* OffersButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8012100E18153DAC00F65B0B /* OffersButtonImage@2x.png */; };
+		8012101318169C7800F65B0B /* SDDiscussionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012101118169C7800F65B0B /* SDDiscussionListViewController.m */; };
+		8012101618169D3E00F65B0B /* SDBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8012101518169D3E00F65B0B /* SDBaseViewController.xib */; };
+		801210191816B5E900F65B0B /* SDDiscussionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801210181816B5E900F65B0B /* SDDiscussionViewController.m */; };
+		8012101C1816BB5800F65B0B /* SDGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012101B1816BB5800F65B0B /* SDGroupCell.m */; };
+		801210251816C0C300F65B0B /* SDDiscussionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801210241816C0C300F65B0B /* SDDiscussionListCell.m */; };
+		801210281816C0EC00F65B0B /* SDDiscussionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 801210271816C0EC00F65B0B /* SDDiscussionCell.m */; };
+		8012102A1816C10000F65B0B /* SDGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801210291816C10000F65B0B /* SDGroupCell.xib */; };
+		8012102C1816C10E00F65B0B /* SDDiscussionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8012102B1816C10E00F65B0B /* SDDiscussionListCell.xib */; };
+		8012102E1816C12700F65B0B /* SDDiscussionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8012102D1816C12700F65B0B /* SDDiscussionCell.xib */; };
+		801210311816C9CC00F65B0B /* disclosureArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 801210301816C9CC00F65B0B /* disclosureArrow@2x.png */; };
 		8013F477174CF36100BA313B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8013F476174CF36100BA313B /* QuartzCore.framework */; };
 		8013F47B174CF6E800BA313B /* SDInitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */; };
 		8013F47E174CF96400BA313B /* SDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8013F47D174CF96400BA313B /* SDBaseViewController.m */; };
@@ -287,7 +297,7 @@
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
 		80A121AF181516DC00E97AF2 /* WarRoomStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A121AE181516DC00E97AF2 /* WarRoomStoryBoard.storyboard */; };
-		80A121B5181517F900E97AF2 /* SDWarRoomsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A121B4181517F900E97AF2 /* SDWarRoomsListController.m */; };
+		80A121B5181517F900E97AF2 /* SDGroupListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A121B4181517F900E97AF2 /* SDGroupListController.m */; };
 		80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
@@ -521,6 +531,21 @@
 		8012100B181538D800F65B0B /* SDWarRoomService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWarRoomService.h; sourceTree = "<group>"; };
 		8012100C181538D800F65B0B /* SDWarRoomService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWarRoomService.m; sourceTree = "<group>"; };
 		8012100E18153DAC00F65B0B /* OffersButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OffersButtonImage@2x.png"; sourceTree = "<group>"; };
+		8012101018169C7800F65B0B /* SDDiscussionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionListViewController.h; sourceTree = "<group>"; };
+		8012101118169C7800F65B0B /* SDDiscussionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionListViewController.m; sourceTree = "<group>"; };
+		8012101518169D3E00F65B0B /* SDBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBaseViewController.xib; sourceTree = "<group>"; };
+		801210171816B5E900F65B0B /* SDDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionViewController.h; sourceTree = "<group>"; };
+		801210181816B5E900F65B0B /* SDDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionViewController.m; sourceTree = "<group>"; };
+		8012101A1816BB5800F65B0B /* SDGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGroupCell.h; sourceTree = "<group>"; };
+		8012101B1816BB5800F65B0B /* SDGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGroupCell.m; sourceTree = "<group>"; };
+		801210231816C0C300F65B0B /* SDDiscussionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionListCell.h; sourceTree = "<group>"; };
+		801210241816C0C300F65B0B /* SDDiscussionListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionListCell.m; sourceTree = "<group>"; };
+		801210261816C0EC00F65B0B /* SDDiscussionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionCell.h; sourceTree = "<group>"; };
+		801210271816C0EC00F65B0B /* SDDiscussionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionCell.m; sourceTree = "<group>"; };
+		801210291816C10000F65B0B /* SDGroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDGroupCell.xib; sourceTree = "<group>"; };
+		8012102B1816C10E00F65B0B /* SDDiscussionListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDDiscussionListCell.xib; sourceTree = "<group>"; };
+		8012102D1816C12700F65B0B /* SDDiscussionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDDiscussionCell.xib; sourceTree = "<group>"; };
+		801210301816C9CC00F65B0B /* disclosureArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosureArrow@2x.png"; sourceTree = "<group>"; };
 		8013F476174CF36100BA313B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8013F479174CF6E800BA313B /* SDInitialSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInitialSlidingViewController.h; sourceTree = "<group>"; };
 		8013F47A174CF6E800BA313B /* SDInitialSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDInitialSlidingViewController.m; sourceTree = "<group>"; };
@@ -782,8 +807,8 @@
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuItemList.plist; path = ../MenuItemList.plist; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
 		80A121AE181516DC00E97AF2 /* WarRoomStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WarRoomStoryBoard.storyboard; sourceTree = "<group>"; };
-		80A121B3181517F900E97AF2 /* SDWarRoomsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWarRoomsListController.h; sourceTree = "<group>"; };
-		80A121B4181517F900E97AF2 /* SDWarRoomsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWarRoomsListController.m; sourceTree = "<group>"; };
+		80A121B3181517F900E97AF2 /* SDGroupListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGroupListController.h; sourceTree = "<group>"; };
+		80A121B4181517F900E97AF2 /* SDGroupListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGroupListController.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
 		80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzSomethingViewController.m; sourceTree = "<group>"; };
 		80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButtonPost@2x.png"; sourceTree = "<group>"; };
@@ -1097,6 +1122,64 @@
 				8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */,
 			);
 			name = LandingPages;
+			sourceTree = "<group>";
+		};
+		8012101D1816BFA000F65B0B /* ConversationCells */ = {
+			isa = PBXGroup;
+			children = (
+				809E729F175779FB004840D3 /* SDConversationCell.h */,
+				809E72A0175779FB004840D3 /* SDConversationCell.m */,
+				809E72A217577A1B004840D3 /* SDConversationCell.xib */,
+				80180D3C178C281700C24398 /* SDNewConversationCell.h */,
+				80180D3D178C281700C24398 /* SDNewConversationCell.m */,
+				80180D3E178C281700C24398 /* SDNewConversationCell.xib */,
+				7B73651B175F7ABD007A338E /* SDMessageCell.h */,
+				7B73651C175F7ABE007A338E /* SDMessageCell.m */,
+			);
+			name = ConversationCells;
+			sourceTree = "<group>";
+		};
+		8012101F1816BFE000F65B0B /* LandingPageCells */ = {
+			isa = PBXGroup;
+			children = (
+				802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */,
+				802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */,
+				802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */,
+				8078685A17DDBFD300B77789 /* SDLandingPageCollegeCell.h */,
+				8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */,
+				8078685C17DDBFD300B77789 /* SDLandingPageCollegeCell.xib */,
+				8078685D17DDBFD300B77789 /* SDLandingPageHighSchoolCell.h */,
+				8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */,
+				8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */,
+				803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */,
+				803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */,
+				803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */,
+			);
+			name = LandingPageCells;
+			sourceTree = "<group>";
+		};
+		801210201816C00000F65B0B /* ForumCells */ = {
+			isa = PBXGroup;
+			children = (
+				8012101A1816BB5800F65B0B /* SDGroupCell.h */,
+				8012101B1816BB5800F65B0B /* SDGroupCell.m */,
+				801210291816C10000F65B0B /* SDGroupCell.xib */,
+				801210231816C0C300F65B0B /* SDDiscussionListCell.h */,
+				801210241816C0C300F65B0B /* SDDiscussionListCell.m */,
+				8012102B1816C10E00F65B0B /* SDDiscussionListCell.xib */,
+				801210261816C0EC00F65B0B /* SDDiscussionCell.h */,
+				801210271816C0EC00F65B0B /* SDDiscussionCell.m */,
+				8012102D1816C12700F65B0B /* SDDiscussionCell.xib */,
+			);
+			name = ForumCells;
+			sourceTree = "<group>";
+		};
+		8012102F1816C9B100F65B0B /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				801210301816C9CC00F65B0B /* disclosureArrow@2x.png */,
+			);
+			name = Forum;
 			sourceTree = "<group>";
 		};
 		8022CC3417EC294C0054A1C5 /* Notifications */ = {
@@ -1555,6 +1638,7 @@
 				805F686E178EFBF100ED186B /* WebViewControllers */,
 				8013F47C174CF96400BA313B /* SDBaseViewController.h */,
 				8013F47D174CF96400BA313B /* SDBaseViewController.m */,
+				8012101518169D3E00F65B0B /* SDBaseViewController.xib */,
 				8013F47F174CF9B000BA313B /* SDMenuViewController.h */,
 				8013F480174CF9B000BA313B /* SDMenuViewController.m */,
 				8013F479174CF6E800BA313B /* SDInitialSlidingViewController.h */,
@@ -1580,40 +1664,23 @@
 		805CF34F174E07DA0046E6A5 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				8012101D1816BFA000F65B0B /* ConversationCells */,
+				8012101F1816BFE000F65B0B /* LandingPageCells */,
+				801210201816C00000F65B0B /* ForumCells */,
 				801088AE1795794A002EF1EB /* SDAddTagsCell.h */,
 				801088AF1795794A002EF1EB /* SDAddTagsCell.m */,
 				801088B01795794A002EF1EB /* SDAddTagsCell.xib */,
 				7BAF6ED617A93FB000F7C6B3 /* SDCommentCell.h */,
 				7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */,
-				809E729F175779FB004840D3 /* SDConversationCell.h */,
-				809E72A0175779FB004840D3 /* SDConversationCell.m */,
-				809E72A217577A1B004840D3 /* SDConversationCell.xib */,
 				805F725717719BC400BDA30F /* SDActivityFeedCell.h */,
 				805F725817719BC400BDA30F /* SDActivityFeedCell.m */,
 				805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */,
-				80180D3C178C281700C24398 /* SDNewConversationCell.h */,
-				80180D3D178C281700C24398 /* SDNewConversationCell.m */,
-				80180D3E178C281700C24398 /* SDNewConversationCell.xib */,
 				805CF352174E08320046E6A5 /* SDMenuItemCell.h */,
 				805CF353174E08320046E6A5 /* SDMenuItemCell.m */,
 				805CF355174E08500046E6A5 /* SDMenuItemCell.xib */,
 				80E31BA71758AF990013545C /* SDFollowingCell.h */,
 				80E31BA81758AF990013545C /* SDFollowingCell.m */,
 				80E31BA91758AF990013545C /* SDFollowingCell.xib */,
-				7B73651B175F7ABD007A338E /* SDMessageCell.h */,
-				7B73651C175F7ABE007A338E /* SDMessageCell.m */,
-				802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */,
-				802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */,
-				802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */,
-				8078685A17DDBFD300B77789 /* SDLandingPageCollegeCell.h */,
-				8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */,
-				8078685C17DDBFD300B77789 /* SDLandingPageCollegeCell.xib */,
-				8078685D17DDBFD300B77789 /* SDLandingPageHighSchoolCell.h */,
-				8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */,
-				8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */,
-				803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */,
-				803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */,
-				803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */,
 				801C90F317E0589800227D88 /* SDFilterListCell.h */,
 				801C90F417E0589800227D88 /* SDFilterListCell.m */,
 				801C90F617E058AA00227D88 /* SDFilterListCell.xib */,
@@ -1794,6 +1861,7 @@
 			children = (
 				7B77B01A18116F85007EE53B /* app_icon_retina.png */,
 				7B77B01C181173C0007EE53B /* 120.png */,
+				8012102F1816C9B100F65B0B /* Forum */,
 				7B663CF517F1764F00CB59AE /* Switch */,
 				80F9089517DF5196005DF111 /* KeyAttributesImages */,
 				7BEBA8E017D4C5A20049CA1C /* LandingPages */,
@@ -1830,8 +1898,12 @@
 		80A121B01815176300E97AF2 /* WarRoomControllers */ = {
 			isa = PBXGroup;
 			children = (
-				80A121B3181517F900E97AF2 /* SDWarRoomsListController.h */,
-				80A121B4181517F900E97AF2 /* SDWarRoomsListController.m */,
+				80A121B3181517F900E97AF2 /* SDGroupListController.h */,
+				80A121B4181517F900E97AF2 /* SDGroupListController.m */,
+				8012101018169C7800F65B0B /* SDDiscussionListViewController.h */,
+				8012101118169C7800F65B0B /* SDDiscussionListViewController.m */,
+				801210171816B5E900F65B0B /* SDDiscussionViewController.h */,
+				801210181816B5E900F65B0B /* SDDiscussionViewController.m */,
 			);
 			name = WarRoomControllers;
 			path = WarRoom;
@@ -2095,6 +2167,7 @@
 				80F301801753A85E00134FF4 /* NotificationIcon@2x.png in Resources */,
 				80F301821753A85E00134FF4 /* NotificationIconActive@2x.png in Resources */,
 				80F301841753A85E00134FF4 /* ToolbarBg@2x.png in Resources */,
+				8012102A1816C10000F65B0B /* SDGroupCell.xib in Resources */,
 				805CF3A1175490F0004C69E5 /* MenuButton@2x.png in Resources */,
 				805CF3A517549403004C69E5 /* MenuButtonBack@2x.png in Resources */,
 				805CF3E91754E69C004C69E5 /* UserProfileStoryboard.storyboard in Resources */,
@@ -2113,6 +2186,7 @@
 				809E728E175738DE004840D3 /* SDBaseToolbarItemViewController.xib in Resources */,
 				809E729417575FE4004840D3 /* NewConversationButtonImage@2x.png in Resources */,
 				804299C7180ED83900D17D2B /* Playbg@2x.png in Resources */,
+				8012102C1816C10E00F65B0B /* SDDiscussionListCell.xib in Resources */,
 				809E729617575FE4004840D3 /* ToolbarItemSelectedArrow@2x.png in Resources */,
 				809E72A317577A1B004840D3 /* SDConversationCell.xib in Resources */,
 				7B77B01B18116F85007EE53B /* app_icon_retina.png in Resources */,
@@ -2191,12 +2265,14 @@
 				80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */,
 				8063D2CC17991C0100C01D92 /* SDUserProfilePlayerHeaderView.xib in Resources */,
 				8063D2CE1799486500C01D92 /* shadow.png in Resources */,
+				801210311816C9CC00F65B0B /* disclosureArrow@2x.png in Resources */,
 				7B2D9AAD1799524700B1D660 /* UserProfileStarActive@2x.png in Resources */,
 				7B2D9AAE1799524700B1D660 /* UserProfileStarFaded@2x.png in Resources */,
 				7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */,
 				7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */,
 				7BFE1FE9179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png in Resources */,
 				8063D2E1179D507800C01D92 /* SDUserProfileCoachHeaderView.xib in Resources */,
+				8012102E1816C12700F65B0B /* SDDiscussionCell.xib in Resources */,
 				8063D2E3179D507800C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */,
 				7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */,
 				8012100F18153DAC00F65B0B /* OffersButtonImage@2x.png in Resources */,
@@ -2232,6 +2308,7 @@
 				80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */,
 				80F9089917DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png in Resources */,
 				801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */,
+				8012101618169D3E00F65B0B /* SDBaseViewController.xib in Resources */,
 				807ACB2417E1ABF1005B8442 /* PositionsList.plist in Resources */,
 				807ACB2E17E1ADC1005B8442 /* YearsList.plist in Resources */,
 				7B5B5FBE17E8489C00215ED4 /* add_media_button@2x.png in Resources */,
@@ -2289,6 +2366,7 @@
 				7BBFBBE117AA569600BF45A5 /* SDSimplifiedCameraOverlayView.m in Sources */,
 				7B3031C9177AFB12006EF25B /* HTMLNode.m in Sources */,
 				803ECEC517F4248A0060702F /* SDBioViewController.m in Sources */,
+				8012101C1816BB5800F65B0B /* SDGroupCell.m in Sources */,
 				80A7DB6218059A2200D622B5 /* State.m in Sources */,
 				80A7DB8318059A2500D622B5 /* Conversation.m in Sources */,
 				80A7DB5918059A2000D622B5 /* MediaItem.m in Sources */,
@@ -2323,6 +2401,7 @@
 				8032EFE61755EEDE00C92AAC /* SDUploadService.m in Sources */,
 				8032F0871755F98E00C92AAC /* MBProgressHUD.m in Sources */,
 				8032F0881755F98E00C92AAC /* NSString+Additions.m in Sources */,
+				801210191816B5E900F65B0B /* SDDiscussionViewController.m in Sources */,
 				8032F0891755F98E00C92AAC /* GTMNSString+HTML.m in Sources */,
 				8032F08A1755F98E00C92AAC /* NSString+HTML.m in Sources */,
 				8032F08B1755F98E00C92AAC /* PSYBlockTimer.m in Sources */,
@@ -2357,7 +2436,7 @@
 				80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */,
 				80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */,
 				805F6874178EFBF100ED186B /* SDTermsViewController.m in Sources */,
-				80A121B5181517F900E97AF2 /* SDWarRoomsListController.m in Sources */,
+				80A121B5181517F900E97AF2 /* SDGroupListController.m in Sources */,
 				805F6877178F00B200ED186B /* SDSharingSettingsViewController.m in Sources */,
 				805F687A178F014000ED186B /* SDEditProfileViewController.m in Sources */,
 				80CCAE651793E6C30015429A /* SDUserProfileMemberHeaderView.m in Sources */,
@@ -2365,6 +2444,7 @@
 				80CCAE751794231B0015429A /* UIView+NibLoading.m in Sources */,
 				801088BB1795794A002EF1EB /* SDAddTagsCell.m in Sources */,
 				801088BD1795794A002EF1EB /* SDAddTagsViewController.m in Sources */,
+				8012101318169C7800F65B0B /* SDDiscussionListViewController.m in Sources */,
 				7BAAD0AF1808119D002C121B /* User.m in Sources */,
 				8012100D181538D800F65B0B /* SDWarRoomService.m in Sources */,
 				801088BE1795794A002EF1EB /* SDCameraOverlayView.m in Sources */,
@@ -2403,10 +2483,12 @@
 				80431E5017A006B3002F6E3D /* NSManagedObject+MagicalRequests.m in Sources */,
 				80431E5117A006B3002F6E3D /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				80431E5217A006B3002F6E3D /* NSManagedObjectContext+MagicalRecord.m in Sources */,
+				801210251816C0C300F65B0B /* SDDiscussionListCell.m in Sources */,
 				80431E5317A006B3002F6E3D /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				80431E5417A006B3002F6E3D /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				80431E5517A006B3002F6E3D /* NSManagedObjectModel+MagicalRecord.m in Sources */,
 				80431E5617A006B3002F6E3D /* NSPersistentStore+MagicalRecord.m in Sources */,
+				801210281816C0EC00F65B0B /* SDDiscussionCell.m in Sources */,
 				80431E5717A006B3002F6E3D /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				7BAAD0AC1808119C002C121B /* NFLPA.m in Sources */,
 				80431E5817A006B3002F6E3D /* MagicalRecord+Actions.m in Sources */,

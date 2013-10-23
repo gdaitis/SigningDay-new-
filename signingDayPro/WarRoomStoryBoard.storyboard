@@ -5,10 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--War Rooms List Controller-->
+        <!--Group List Controller-->
         <scene sceneID="jMQ-Cq-QHT">
             <objects>
-                <viewController id="sxE-eL-Rfo" customClass="SDWarRoomsListController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4GF-9u-b7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="WarRoomController" id="sxE-eL-Rfo" customClass="SDGroupListController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hVb-2g-zax"/>
                         <viewControllerLayoutGuide type="bottom" id="jtR-Hc-dKn"/>
@@ -16,13 +17,26 @@
                     <view key="view" contentMode="scaleToFill" id="Ius-C0-18L">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Eq-cbB">
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sxE-eL-Rfo" id="bp2-13-YHW"/>
+                                    <outlet property="delegate" destination="sxE-eL-Rfo" id="Ivn-wf-c09"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="nkC-G4-KdN"/>
+                    <connections>
+                        <outlet property="tableView" destination="geb-Eq-cbB" id="rcf-Ni-TNY"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4GF-9u-b7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="616" y="85"/>
+            <point key="canvasLocation" x="475" y="88"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3HK-fH-mEf">
@@ -40,7 +54,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFm-ih-ASW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="191" y="79"/>
+            <point key="canvasLocation" x="21" y="88"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

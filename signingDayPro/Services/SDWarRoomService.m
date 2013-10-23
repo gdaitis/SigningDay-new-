@@ -15,6 +15,7 @@
 @implementation SDWarRoomService
 
 #pragma mark - Get Offers for User
+
 + (void)getWarRoomsWithCompletionBlock:(void (^)(void))completionBlock
                           failureBlock:(void (^)(void))failureBlock
 {
