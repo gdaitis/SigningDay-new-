@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Forum;
+
 @interface SDForumCell : UITableViewCell
+
+- (void)setupCellWithForum:(Forum *)forum;
 
 @end

@@ -19,7 +19,7 @@
 #import "Forum.h"
 #import "Thread.h"
 
-@interface SDForumListController ()
+@interface SDForumListController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     switch (self.listType) {
         case LIST_TYPE_GROUP:
@@ -72,10 +74,10 @@
             result = 100;
             break;
         case LIST_TYPE_FORUM:
-            result = 100;
+            result = 60;
             break;
         case LIST_TYPE_THREAD:
-            result = 100;
+            result = 60;
             break;
         default:
             break;
@@ -128,8 +130,7 @@
             }
             
             id forum = [self.dataArray objectAtIndex:indexPath.row];
-            // Configure the cell...
-            //        [cell setupCellWithGroup:group];
+            [cell setupCellWithForum:forum];
             
             result = cell;
             break;
@@ -146,8 +147,7 @@
             }
             
             id thread = [self.dataArray objectAtIndex:indexPath.row];
-            // Configure the cell...
-            //        [cell setupCellWithGroup:group];
+            [cell setupCellWithThread:thread];
             
             result = cell;
         }
@@ -209,30 +209,71 @@
 
 - (void)loadGroupList
 {
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    self.dataArray = [Group MR_findAllInContext:context];
+    [self.tableView reloadData];
+    
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
     [SDWarRoomService getWarRoomGroupsWithCompletionBlock:^{
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         self.dataArray = [Group MR_findAllInContext:context];
         [self.tableView reloadData];
+        [self hideProgressHudInView:self.view];
     } failureBlock:^{
-        
+        [self hideProgressHudInView:self.view];
     }];
-    
-}
-
-- (void)loadThreadList
-{
     
 }
 
 - (void)loadForumList
 {
-    //    [SDWarRoomService getGroupWithId:[self.group valueForKey:@"identifier"]
-    //                 withCompletionBlock:^{
-    //
-    //    [self.tableView reloadData];
-    //    } failureBlock:^{
-    //        
-    //    }];
+    NSNumber *groupIdentifier = ((Group *)self.parentItem).identifier;
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
+    
+    self.dataArray = [Forum MR_findAllWithPredicate:predicate inContext:context];
+    [self.tableView reloadData];
+    
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
+    [SDWarRoomService getGroupForumsWithGroupId:groupIdentifier pageIndex:0 pageSize:20 completionBlock:^(NSInteger totalCount) {
+        
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
+        
+        self.dataArray = [Forum MR_findAllWithPredicate:predicate inContext:context];
+        [self.tableView reloadData];
+        [self hideProgressHudInView:self.view];
+        
+    } failureBlock:^{
+        [self hideProgressHudInView:self.view];
+    }];
+}
+
+- (void)loadThreadList
+{
+    NSNumber *forumIdentifier = ((Forum *)self.parentItem).identifier;
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forum.identifier == %@", forumIdentifier];
+    
+    self.dataArray = [Thread MR_findAllWithPredicate:predicate inContext:context];
+    [self.tableView reloadData];
+    
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
+    [SDWarRoomService getForumThreadsWithForumId:forumIdentifier pageIndex:0 pageSize:20 completionBlock:^(NSInteger totalCount) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forum.identifier == %@", forumIdentifier];
+        
+        self.dataArray = [Thread MR_findAllWithPredicate:predicate inContext:context];
+        [self.tableView reloadData];
+        [self hideProgressHudInView:self.view];
+        
+    } failureBlock:^{
+        [self hideProgressHudInView:self.view];
+    }];
 }
 
 

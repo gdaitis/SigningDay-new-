@@ -205,6 +205,9 @@
 
 + (NSDate *)dateFromString:(NSString *)dateString
 {
+    if (!dateString || [dateString isEqual:[NSNull null]]) {
+        return nil;
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
     

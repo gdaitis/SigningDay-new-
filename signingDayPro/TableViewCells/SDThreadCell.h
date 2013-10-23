@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Thread;
+
 @interface SDThreadCell : UITableViewCell
+
+- (void)setupCellWithThread:(Thread *)thread;
 
 @end

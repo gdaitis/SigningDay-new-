@@ -1771,12 +1771,12 @@
 				8094EFB71817E55B00A163FD /* SDGroupCell.h */,
 				8094EFB81817E55B00A163FD /* SDGroupCell.m */,
 				8094EFB91817E55B00A163FD /* SDGroupCell.xib */,
-				8094EFB11817E55B00A163FD /* SDThreadCell.h */,
-				8094EFB21817E55B00A163FD /* SDThreadCell.m */,
-				8094EFB31817E55B00A163FD /* SDThreadCell.xib */,
 				8094EFB41817E55B00A163FD /* SDForumCell.h */,
 				8094EFB51817E55B00A163FD /* SDForumCell.m */,
 				8094EFB61817E55B00A163FD /* SDForumCell.xib */,
+				8094EFB11817E55B00A163FD /* SDThreadCell.h */,
+				8094EFB21817E55B00A163FD /* SDThreadCell.m */,
+				8094EFB31817E55B00A163FD /* SDThreadCell.xib */,
 			);
 			name = WarRoomCells;
 			sourceTree = "<group>";
