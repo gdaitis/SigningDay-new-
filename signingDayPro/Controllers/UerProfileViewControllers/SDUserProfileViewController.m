@@ -43,6 +43,8 @@
 #import "SDCommitsRostersCoachViewController.h"
 #import "MediaGallery.h"
 
+#import "SDOffersViewController.h"
+
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
 
@@ -378,12 +380,10 @@
     }
     else if ([self.currentUser.userTypeId intValue] == SDUserTypePlayer) {
         
-        //show college list with offers
-        [SDProfileService getOffersForUser:self.currentUser completionBlock:^{
-            
-        } failureBlock:^{
-            
-        }];
+        SDOffersViewController *offersViewController = [[SDOffersViewController alloc] initWithNibName:@"SDBaseViewController" bundle:nil];
+        offersViewController.currentUser = self.currentUser;
+        
+        [self.navigationController pushViewController:offersViewController animated:YES];
     }
 }
 

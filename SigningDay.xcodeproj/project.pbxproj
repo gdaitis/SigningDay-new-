@@ -321,6 +321,7 @@
 		80A7DB8618059A2500D622B5 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7DB8518059A2500D622B5 /* ImageData.m */; };
 		80B4DD9917B2599300352E07 /* SDUserProfileHighSchoolHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B4DD9817B2599200352E07 /* SDUserProfileHighSchoolHeaderView.m */; };
 		80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */; };
+		80C5695C18182FBF0055A041 /* SDOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C5695B18182FBF0055A041 /* SDOffersViewController.m */; };
 		80C7EF3517F1765C000A3B3D /* SDCustomNavigationToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C7EF3417F1765C000A3B3D /* SDCustomNavigationToolbarView.m */; };
 		80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */; };
 		80CCAE651793E6C30015429A /* SDUserProfileMemberHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CCAE641793E6C30015429A /* SDUserProfileMemberHeaderView.m */; };
@@ -855,6 +856,8 @@
 		80B4DD9717B2599200352E07 /* SDUserProfileHighSchoolHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHighSchoolHeaderView.h; sourceTree = "<group>"; };
 		80B4DD9817B2599200352E07 /* SDUserProfileHighSchoolHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileHighSchoolHeaderView.m; sourceTree = "<group>"; };
 		80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileHighSchoolHeaderView.xib; sourceTree = "<group>"; };
+		80C5695A18182FBF0055A041 /* SDOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOffersViewController.h; sourceTree = "<group>"; };
+		80C5695B18182FBF0055A041 /* SDOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDOffersViewController.m; sourceTree = "<group>"; };
 		80C7EF3317F1765C000A3B3D /* SDCustomNavigationToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCustomNavigationToolbarView.h; sourceTree = "<group>"; };
 		80C7EF3417F1765C000A3B3D /* SDCustomNavigationToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCustomNavigationToolbarView.m; sourceTree = "<group>"; };
 		80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCustomNavigationToolbarView.xib; sourceTree = "<group>"; };
@@ -1985,6 +1988,8 @@
 			children = (
 				80EEF5E1175614D900A7C803 /* SDUserProfileViewController.h */,
 				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
+				80C5695A18182FBF0055A041 /* SDOffersViewController.h */,
+				80C5695B18182FBF0055A041 /* SDOffersViewController.m */,
 				80E28A1417D76FD600665313 /* SDKeyAttributesViewController.h */,
 				80E28A1517D76FD600665313 /* SDKeyAttributesViewController.m */,
 				80F531E81802C1030089971C /* SDCommitsRostersCoachViewController.h */,
@@ -2481,6 +2486,7 @@
 				8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */,
 				80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */,
 				80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */,
+				80C5695C18182FBF0055A041 /* SDOffersViewController.m in Sources */,
 				80431E4717A006B3002F6E3D /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				7BD0D15F180EBFAB00DA9A71 /* HighSchool.m in Sources */,
 				803CDD611806D2E800BB399F /* SDCoachingStaffCell.m in Sources */,
