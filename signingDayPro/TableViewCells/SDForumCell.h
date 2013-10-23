@@ -1,5 +1,5 @@
 //
-//  SDDiscussionListViewController.h
+//  SDDiscussionListCell.h
 //  SigningDay
 //
 //  Created by Lukas Kekys on 10/22/13.
@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDBaseViewController.h"
 
-@interface SDDiscussionListViewController : SDBaseViewController
+@interface SDForumCell : UITableViewCell
 
 @end

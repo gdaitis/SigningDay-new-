@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Group;
+
 @interface SDGroupCell : UITableViewCell
 
-- (void)setupCellWithGroup:(id)group;
+- (void)setupCellWithGroup:(Group *)group;
 
 @end

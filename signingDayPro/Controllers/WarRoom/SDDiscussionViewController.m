@@ -7,6 +7,7 @@
 //
 
 #import "SDDiscussionViewController.h"
+#import "Thread.h"
 
 @interface SDDiscussionViewController () <UITableViewDelegate, UITableViewDataSource>
 

@@ -7,6 +7,7 @@
 //
 
 #import "SDGroupCell.h"
+#import "Group.h"
 
 @interface SDGroupCell ()
 
@@ -40,13 +41,13 @@
     // Configure the view for the selected state
 }
 
-- (void)setupCellWithGroup:(id)group
+- (void)setupCellWithGroup:(Group *)group
 {
 //    [group valueForKey:@"groupTitle"];
     
     //test
     self.postCountLabel.text = @"129";
-    self.groupTitleLabel.text = @"General Board sasdasdasd";
+    self.groupTitleLabel.text = group.name;
     self.lastPostLabel.text = @"Last post on 29 Aug, 6:57 PM Longer longer";
     
     [self setNeedsUpdateConstraints];

@@ -30,11 +30,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXr-ug-rWM">
-                                <rect key="frame" x="20" y="54" width="192" height="14"/>
+                                <rect key="frame" x="20" y="54" width="235" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="277-4V-gEW"/>
-                                    <constraint firstAttribute="width" priority="990" constant="192" id="LY4-Tx-B7g"/>
+                                    <constraint firstAttribute="height" constant="14" id="PdH-EV-l5x"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,13 +71,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IXr-ug-rWM" firstAttribute="leading" secondItem="gFo-8Q-55t" secondAttribute="leading" constant="20" id="7SD-zg-fN9"/>
                             <constraint firstItem="EAW-LK-rZ6" firstAttribute="top" secondItem="gFo-8Q-55t" secondAttribute="top" constant="27" id="EGa-qJ-ETw"/>
                             <constraint firstAttribute="trailing" secondItem="SZZ-Ab-w9S" secondAttribute="trailing" constant="23" id="Moq-bd-eJE"/>
-                            <constraint firstItem="IXr-ug-rWM" firstAttribute="leading" secondItem="gFo-8Q-55t" secondAttribute="leading" constant="20" id="Ohp-vr-az3"/>
+                            <constraint firstItem="Lng-9k-ZgY" firstAttribute="trailing" secondItem="IXr-ug-rWM" secondAttribute="trailing" id="NdE-BN-DFp"/>
                             <constraint firstItem="Lng-9k-ZgY" firstAttribute="top" secondItem="gFo-8Q-55t" secondAttribute="top" constant="30" id="Uer-op-k0l"/>
-                            <constraint firstAttribute="bottom" secondItem="IXr-ug-rWM" secondAttribute="bottom" constant="31" id="ZKY-0v-Ue0"/>
                             <constraint firstItem="EAW-LK-rZ6" firstAttribute="centerX" secondItem="Mzj-8z-joa" secondAttribute="centerX" id="Zp4-8v-OfT"/>
                             <constraint firstItem="EAW-LK-rZ6" firstAttribute="leading" secondItem="Lng-9k-ZgY" secondAttribute="trailing" constant="5" id="Zta-PC-DZb"/>
+                            <constraint firstItem="IXr-ug-rWM" firstAttribute="top" secondItem="gFo-8Q-55t" secondAttribute="top" constant="54" id="gVA-zz-4nm"/>
                             <constraint firstItem="Mzj-8z-joa" firstAttribute="top" secondItem="gFo-8Q-55t" secondAttribute="top" constant="69" id="hTL-z1-3MB"/>
                             <constraint firstItem="SZZ-Ab-w9S" firstAttribute="top" secondItem="gFo-8Q-55t" secondAttribute="top" constant="42" id="izZ-ba-00R"/>
                             <constraint firstItem="Lng-9k-ZgY" firstAttribute="leading" secondItem="gFo-8Q-55t" secondAttribute="leading" constant="20" id="yt6-lX-Pxe"/>

@@ -5,11 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--Group List Controller-->
+        <!--Forum List Controller-->
         <scene sceneID="jMQ-Cq-QHT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4GF-9u-b7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="WarRoomController" id="sxE-eL-Rfo" customClass="SDGroupListController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WarRoomController" id="sxE-eL-Rfo" customClass="SDForumListController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hVb-2g-zax"/>
                         <viewControllerLayoutGuide type="bottom" id="jtR-Hc-dKn"/>
@@ -35,6 +34,7 @@
                         <outlet property="tableView" destination="geb-Eq-cbB" id="rcf-Ni-TNY"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4GF-9u-b7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="475" y="88"/>
         </scene>

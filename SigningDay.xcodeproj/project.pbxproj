@@ -274,17 +274,17 @@
 		8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */; };
 		8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */; };
 		8083892917D4D80B006E4FE9 /* SDLandingPageSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8083892817D4D80B006E4FE9 /* SDLandingPageSearchBar.m */; };
-		8094EFAC1817E51500A163FD /* SDDiscussionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFA71817E51500A163FD /* SDDiscussionListViewController.m */; };
 		8094EFAD1817E51500A163FD /* SDDiscussionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFA91817E51500A163FD /* SDDiscussionViewController.m */; };
-		8094EFAE1817E51500A163FD /* SDGroupListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFAB1817E51500A163FD /* SDGroupListController.m */; };
+		8094EFAE1817E51500A163FD /* SDForumListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFAB1817E51500A163FD /* SDForumListController.m */; };
 		8094EFB01817E54200A163FD /* SDBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFAF1817E54200A163FD /* SDBaseViewController.xib */; };
-		8094EFBA1817E55B00A163FD /* SDDiscussionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB21817E55B00A163FD /* SDDiscussionCell.m */; };
-		8094EFBB1817E55B00A163FD /* SDDiscussionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFB31817E55B00A163FD /* SDDiscussionCell.xib */; };
-		8094EFBC1817E55B00A163FD /* SDDiscussionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB51817E55B00A163FD /* SDDiscussionListCell.m */; };
-		8094EFBD1817E55B00A163FD /* SDDiscussionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFB61817E55B00A163FD /* SDDiscussionListCell.xib */; };
+		8094EFBA1817E55B00A163FD /* SDThreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB21817E55B00A163FD /* SDThreadCell.m */; };
+		8094EFBB1817E55B00A163FD /* SDThreadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFB31817E55B00A163FD /* SDThreadCell.xib */; };
+		8094EFBC1817E55B00A163FD /* SDForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB51817E55B00A163FD /* SDForumCell.m */; };
+		8094EFBD1817E55B00A163FD /* SDForumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFB61817E55B00A163FD /* SDForumCell.xib */; };
 		8094EFBE1817E55B00A163FD /* SDGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB81817E55B00A163FD /* SDGroupCell.m */; };
 		8094EFBF1817E55B00A163FD /* SDGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFB91817E55B00A163FD /* SDGroupCell.xib */; };
 		8094EFC51817E63300A163FD /* disclosureArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFC41817E63300A163FD /* disclosureArrow@2x.png */; };
+		8094EFC71817FE8300A163FD /* WarRoomStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFC61817FE8300A163FD /* WarRoomStoryBoard.storyboard */; };
 		8096974517AA90CF00970E73 /* playImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8096974417AA90CF00970E73 /* playImage@2x.png */; };
 		809DF90417955AC5001F37B3 /* UserProfileBioButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */; };
 		809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */; };
@@ -301,7 +301,6 @@
 		809E72A617588B76004840D3 /* SDFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E72A517588B76004840D3 /* SDFollowingViewController.m */; };
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
-		80A121AF181516DC00E97AF2 /* WarRoomStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A121AE181516DC00E97AF2 /* WarRoomStoryBoard.storyboard */; };
 		80A7B9281797F05E006FC87E /* SDBuzzSomethingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
@@ -783,23 +782,22 @@
 		8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PlayerCellStrechableNumberImage@2x.png"; path = "LandingPageImages/PlayerCellStrechableNumberImage@2x.png"; sourceTree = "<group>"; };
 		8083892717D4D80B006E4FE9 /* SDLandingPageSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageSearchBar.h; sourceTree = "<group>"; };
 		8083892817D4D80B006E4FE9 /* SDLandingPageSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageSearchBar.m; sourceTree = "<group>"; };
-		8094EFA61817E51500A163FD /* SDDiscussionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionListViewController.h; sourceTree = "<group>"; };
-		8094EFA71817E51500A163FD /* SDDiscussionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionListViewController.m; sourceTree = "<group>"; };
 		8094EFA81817E51500A163FD /* SDDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionViewController.h; sourceTree = "<group>"; };
 		8094EFA91817E51500A163FD /* SDDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionViewController.m; sourceTree = "<group>"; };
-		8094EFAA1817E51500A163FD /* SDGroupListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGroupListController.h; sourceTree = "<group>"; };
-		8094EFAB1817E51500A163FD /* SDGroupListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGroupListController.m; sourceTree = "<group>"; };
+		8094EFAA1817E51500A163FD /* SDForumListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDForumListController.h; sourceTree = "<group>"; };
+		8094EFAB1817E51500A163FD /* SDForumListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDForumListController.m; sourceTree = "<group>"; };
 		8094EFAF1817E54200A163FD /* SDBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBaseViewController.xib; sourceTree = "<group>"; };
-		8094EFB11817E55B00A163FD /* SDDiscussionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionCell.h; sourceTree = "<group>"; };
-		8094EFB21817E55B00A163FD /* SDDiscussionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionCell.m; sourceTree = "<group>"; };
-		8094EFB31817E55B00A163FD /* SDDiscussionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDDiscussionCell.xib; sourceTree = "<group>"; };
-		8094EFB41817E55B00A163FD /* SDDiscussionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionListCell.h; sourceTree = "<group>"; };
-		8094EFB51817E55B00A163FD /* SDDiscussionListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionListCell.m; sourceTree = "<group>"; };
-		8094EFB61817E55B00A163FD /* SDDiscussionListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDDiscussionListCell.xib; sourceTree = "<group>"; };
+		8094EFB11817E55B00A163FD /* SDThreadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDThreadCell.h; sourceTree = "<group>"; };
+		8094EFB21817E55B00A163FD /* SDThreadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDThreadCell.m; sourceTree = "<group>"; };
+		8094EFB31817E55B00A163FD /* SDThreadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDThreadCell.xib; sourceTree = "<group>"; };
+		8094EFB41817E55B00A163FD /* SDForumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDForumCell.h; sourceTree = "<group>"; };
+		8094EFB51817E55B00A163FD /* SDForumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDForumCell.m; sourceTree = "<group>"; };
+		8094EFB61817E55B00A163FD /* SDForumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDForumCell.xib; sourceTree = "<group>"; };
 		8094EFB71817E55B00A163FD /* SDGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGroupCell.h; sourceTree = "<group>"; };
 		8094EFB81817E55B00A163FD /* SDGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGroupCell.m; sourceTree = "<group>"; };
 		8094EFB91817E55B00A163FD /* SDGroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDGroupCell.xib; sourceTree = "<group>"; };
 		8094EFC41817E63300A163FD /* disclosureArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosureArrow@2x.png"; sourceTree = "<group>"; };
+		8094EFC61817FE8300A163FD /* WarRoomStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WarRoomStoryBoard.storyboard; sourceTree = "<group>"; };
 		8096974417AA90CF00970E73 /* playImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playImage@2x.png"; sourceTree = "<group>"; };
 		809DF8F817955AC5001F37B3 /* UserProfileBioButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBioButton@2x.png"; sourceTree = "<group>"; };
 		809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileKeyAttributesButton@2x.png"; sourceTree = "<group>"; };
@@ -820,7 +818,6 @@
 		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFollowingViewController.m; path = ../TableViewCells/Views/SDFollowingViewController.m; sourceTree = "<group>"; };
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuItemList.plist; path = ../MenuItemList.plist; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
-		80A121AE181516DC00E97AF2 /* WarRoomStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WarRoomStoryBoard.storyboard; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
 		80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzSomethingViewController.m; sourceTree = "<group>"; };
 		80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButtonPost@2x.png"; sourceTree = "<group>"; };
@@ -1525,7 +1522,7 @@
 				805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */,
 				7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */,
 				8083890D17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard */,
-				80A121AE181516DC00E97AF2 /* WarRoomStoryBoard.storyboard */,
+				8094EFC61817FE8300A163FD /* WarRoomStoryBoard.storyboard */,
 				8032F0971755F9AF00C92AAC /* Data Models */,
 				8032EFCE1755EEDE00C92AAC /* Services */,
 				8055990C174CEE620040631D /* Controllers */,
@@ -1771,12 +1768,12 @@
 		8094EFC01817E56300A163FD /* WarRoomCells */ = {
 			isa = PBXGroup;
 			children = (
-				8094EFB11817E55B00A163FD /* SDDiscussionCell.h */,
-				8094EFB21817E55B00A163FD /* SDDiscussionCell.m */,
-				8094EFB31817E55B00A163FD /* SDDiscussionCell.xib */,
-				8094EFB41817E55B00A163FD /* SDDiscussionListCell.h */,
-				8094EFB51817E55B00A163FD /* SDDiscussionListCell.m */,
-				8094EFB61817E55B00A163FD /* SDDiscussionListCell.xib */,
+				8094EFB11817E55B00A163FD /* SDThreadCell.h */,
+				8094EFB21817E55B00A163FD /* SDThreadCell.m */,
+				8094EFB31817E55B00A163FD /* SDThreadCell.xib */,
+				8094EFB41817E55B00A163FD /* SDForumCell.h */,
+				8094EFB51817E55B00A163FD /* SDForumCell.m */,
+				8094EFB61817E55B00A163FD /* SDForumCell.xib */,
 				8094EFB71817E55B00A163FD /* SDGroupCell.h */,
 				8094EFB81817E55B00A163FD /* SDGroupCell.m */,
 				8094EFB91817E55B00A163FD /* SDGroupCell.xib */,
@@ -1918,12 +1915,10 @@
 		80A121B01815176300E97AF2 /* WarRoomControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8094EFA61817E51500A163FD /* SDDiscussionListViewController.h */,
-				8094EFA71817E51500A163FD /* SDDiscussionListViewController.m */,
 				8094EFA81817E51500A163FD /* SDDiscussionViewController.h */,
 				8094EFA91817E51500A163FD /* SDDiscussionViewController.m */,
-				8094EFAA1817E51500A163FD /* SDGroupListController.h */,
-				8094EFAB1817E51500A163FD /* SDGroupListController.m */,
+				8094EFAA1817E51500A163FD /* SDForumListController.h */,
+				8094EFAB1817E51500A163FD /* SDForumListController.m */,
 			);
 			name = WarRoomControllers;
 			path = WarRoom;
@@ -2206,7 +2201,7 @@
 				809E729417575FE4004840D3 /* NewConversationButtonImage@2x.png in Resources */,
 				804299C7180ED83900D17D2B /* Playbg@2x.png in Resources */,
 				809E729617575FE4004840D3 /* ToolbarItemSelectedArrow@2x.png in Resources */,
-				8094EFBD1817E55B00A163FD /* SDDiscussionListCell.xib in Resources */,
+				8094EFBD1817E55B00A163FD /* SDForumCell.xib in Resources */,
 				809E72A317577A1B004840D3 /* SDConversationCell.xib in Resources */,
 				7B77B01B18116F85007EE53B /* app_icon_retina.png in Resources */,
 				80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */,
@@ -2233,6 +2228,7 @@
 				803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */,
 				805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */,
 				80F2590C1773411900D3B85E /* commentImage@2x.png in Resources */,
+				8094EFC71817FE8300A163FD /* WarRoomStoryBoard.storyboard in Resources */,
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
 				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
@@ -2309,7 +2305,6 @@
 				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
-				80A121AF181516DC00E97AF2 /* WarRoomStoryBoard.storyboard in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
@@ -2322,7 +2317,7 @@
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
 				8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */,
-				8094EFBB1817E55B00A163FD /* SDDiscussionCell.xib in Resources */,
+				8094EFBB1817E55B00A163FD /* SDThreadCell.xib in Resources */,
 				8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */,
 				8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */,
 				80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */,
@@ -2415,7 +2410,7 @@
 				8032EFE01755EEDE00C92AAC /* SDChatService.m in Sources */,
 				8032EFE11755EEDE00C92AAC /* SDErrorService.m in Sources */,
 				8032EFE21755EEDE00C92AAC /* SDFollowingService.m in Sources */,
-				8094EFBA1817E55B00A163FD /* SDDiscussionCell.m in Sources */,
+				8094EFBA1817E55B00A163FD /* SDThreadCell.m in Sources */,
 				8032EFE31755EEDE00C92AAC /* SDImageService.m in Sources */,
 				8032EFE41755EEDE00C92AAC /* SDLoginService.m in Sources */,
 				8032EFE51755EEDE00C92AAC /* SDProfileService.m in Sources */,
@@ -2440,7 +2435,7 @@
 				8032F0991755F9AF00C92AAC /* SigningDay.xcdatamodel in Sources */,
 				80EEF5E3175614D900A7C803 /* SDTestingViewController.m in Sources */,
 				80EEF5E4175614D900A7C803 /* SDUserProfileViewController.m in Sources */,
-				8094EFBC1817E55B00A163FD /* SDDiscussionListCell.m in Sources */,
+				8094EFBC1817E55B00A163FD /* SDForumCell.m in Sources */,
 				80EEF601175626C200A7C803 /* SDForgotPasswordViewController.m in Sources */,
 				80EEF602175626C200A7C803 /* SDLoginViewController.m in Sources */,
 				80EEF605175627B400A7C803 /* SDCommonWebViewController.m in Sources */,
@@ -2485,7 +2480,6 @@
 				8063D2E2179D507800C01D92 /* SDUserProfileTeamHeaderView.m in Sources */,
 				8063D2E6179D706200C01D92 /* SDBaseProfileHeaderView.m in Sources */,
 				80431E4517A006B3002F6E3D /* MagicalImportFunctions.m in Sources */,
-				8094EFAC1817E51500A163FD /* SDDiscussionListViewController.m in Sources */,
 				80431E4617A006B3002F6E3D /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				80431E4717A006B3002F6E3D /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				7BD0D15F180EBFAB00DA9A71 /* HighSchool.m in Sources */,
@@ -2510,7 +2504,7 @@
 				80431E5517A006B3002F6E3D /* NSManagedObjectModel+MagicalRecord.m in Sources */,
 				80431E5617A006B3002F6E3D /* NSPersistentStore+MagicalRecord.m in Sources */,
 				80431E5717A006B3002F6E3D /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
-				8094EFAE1817E51500A163FD /* SDGroupListController.m in Sources */,
+				8094EFAE1817E51500A163FD /* SDForumListController.m in Sources */,
 				7BAAD0AC1808119C002C121B /* NFLPA.m in Sources */,
 				80431E5817A006B3002F6E3D /* MagicalRecord+Actions.m in Sources */,
 				80431E5917A006B3002F6E3D /* MagicalRecord+ErrorHandling.m in Sources */,

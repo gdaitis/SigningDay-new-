@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SDDiscussionCell : UITableViewCell
+@interface SDThreadCell : UITableViewCell
 
 @end

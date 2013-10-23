@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
+@class Thread;
+
 @interface SDDiscussionViewController : SDBaseViewController
+
+@property (nonatomic, strong) Thread *currentThread;
 
 @end
