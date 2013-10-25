@@ -23,8 +23,6 @@
                    completionBlock:(void (^)(NSInteger totalCount))completionBlock
                       failureBlock:(void (^)(void))failureBlock;
 + (void)getForumRepliesWithThreadId:(NSNumber *)identifier
-                          pageIndex:(NSInteger)pageIndex
-                           pageSize:(NSInteger)pageSize
-                    completionBlock:(void (^)(NSInteger totalCount))completionBlock
+                    completionBlock:(void (^)())completionBlock
                        failureBlock:(void (^)(void))failureBlock;
 @end

@@ -93,26 +93,6 @@
                                 }];
 }
 
-+ (Group *)createGroupFromDictionary:(NSDictionary *)groupDictionary
-                           inContext:(NSManagedObjectContext *)context
-{
-    NSNumber *identifier = [NSNumber numberWithInteger:[[groupDictionary valueForKey:@"Id"] integerValue]];
-    Group *group = [Group MR_findFirstByAttribute:@"identifier"
-                                        withValue:identifier
-                                        inContext:context];
-    if (!group) {
-        group = [Group MR_createInContext:context];
-        group.identifier = identifier;
-    }
-    group.avatarUrl = [groupDictionary valueForKey:@"AvatarUrl"];
-    group.dateCreated = [SDUtils dateFromString:[groupDictionary valueForKey:@"DateCreated"]];
-    group.groupDescription = [groupDictionary valueForKey:@"Description"];
-    group.isEnabled = [NSNumber numberWithBool:[[groupDictionary valueForKey:@"IsEnabled"] boolValue]];
-    group.name = [groupDictionary valueForKey:@"Name"];
-    
-    return group;
-}
-
 + (void)getForumThreadsWithForumId:(NSNumber *)identifier
                          pageIndex:(NSInteger)pageIndex
                           pageSize:(NSInteger)pageSize
@@ -136,7 +116,7 @@
                                             thread = [Thread MR_createInContext:context];
                                             thread.identifier = identifier;
                                         }
-                                        thread.bodyWithHTML = [threadDictionary valueForKey:@"Body"];
+                                        thread.bodyText = [threadDictionary valueForKey:@"Body"];
                                         thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"Date"]];
                                         thread.latestPostDate = [SDUtils dateFromString:[threadDictionary valueForKey:@"LatestPostDate"]];
                                         thread.subject = [threadDictionary valueForKey:@"Subject"];
@@ -149,18 +129,8 @@
                                             thread.forum = forum;
                                         
                                         NSDictionary *authorDictionary = [threadDictionary valueForKey:@"Author"];
-                                        NSNumber *authorIdentifier = [NSNumber numberWithInteger:[[authorDictionary valueForKey:@"Id"] integerValue]];
-                                        User *author = [User MR_findFirstByAttribute:@"identifier"
-                                                                           withValue:authorIdentifier
-                                                                           inContext:context];
-                                        if (!author) {
-                                            author = [User MR_createInContext:context];
-                                            author.identifier = identifier;
-                                        }
-                                        author.avatarUrl = [authorDictionary valueForKey:@"AvatarUrl"];
-                                        author.name = [authorDictionary valueForKey:@"DisplayName"];
-                                        author.username = [authorDictionary valueForKey:@"Username"];
-                                        
+                                        User *author = [self createUserFromDictionary:authorDictionary
+                                                                            inContext:context];
                                         thread.authorUser = author;
                                     }
                                     
@@ -177,29 +147,105 @@
 }
 
 + (void)getForumRepliesWithThreadId:(NSNumber *)identifier
-                          pageIndex:(NSInteger)pageIndex
-                           pageSize:(NSInteger)pageSize
-                    completionBlock:(void (^)(NSInteger totalCount))completionBlock
+                    completionBlock:(void (^)())completionBlock
                        failureBlock:(void (^)(void))failureBlock
 {
-    [[SDAPIClient sharedClient] getPath:[NSString stringWithFormat:@"forums/threads/%d/replies.json", [identifier integerValue]]
-                             parameters:@{@"PageSize":[NSString stringWithFormat:@"%d", pageSize],
-                                          @"PageIndex":[NSString stringWithFormat:@"%d", pageIndex]}
+    [[SDAPIClient sharedClient] getPath:@"sd/forums.json"
+                             parameters:@{@"ThreadId":[NSString stringWithFormat:@"%d", [identifier integerValue]]}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
+                                    NSDictionary *threadDictionary = [JSON valueForKey:@"Thread"];
+                                    NSNumber *threadIdentifier = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ThreadId"] integerValue]];
+                                    Thread *thread = [Thread MR_findFirstByAttribute:@"identifier"
+                                                                           withValue:threadIdentifier
+                                                                           inContext:context];
+                                    if (!thread) {
+                                        thread = [Thread MR_createInContext:context];
+                                        thread.identifier = threadIdentifier;
+                                    }
+                                    thread.countOfBelieves = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"BelievesCount"] integerValue]];
+                                    thread.countOfHates = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"HatesCount"] integerValue]];
+                                    thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"PostDate"]];
+                                    thread.subject = [threadDictionary valueForKey:@"Subject"];
+                                    thread.bodyText = [threadDictionary valueForKey:@"Text"];
                                     
+                                    NSDictionary *authorDictionary = [threadDictionary valueForKey:@"Author"];
+                                    User *author = [self createUserFromDictionary:authorDictionary
+                                                                        inContext:context];
+                                    thread.authorUser = author;
+                                    
+                                    NSArray *repliesArray = [JSON valueForKey:@"Replies"];
+                                    for (NSDictionary *replyDictionary in repliesArray) {
+                                        NSNumber *replyIdentifier = [NSNumber numberWithInteger:[[replyDictionary valueForKey:@"Id"] integerValue]];
+                                        ForumReply *reply = [ForumReply MR_findFirstByAttribute:@"identifier"
+                                                                                      withValue:replyIdentifier
+                                                                                      inContext:context];
+                                        if (!reply) {
+                                            reply = [ForumReply MR_createInContext:context];
+                                            reply.identifier = replyIdentifier;
+                                        }
+                                        reply.countOfBelieves = [NSNumber numberWithInteger:[[replyDictionary valueForKey:@"BelievesCount"] integerValue]];
+                                        reply.countOfHates = [NSNumber numberWithInteger:[[replyDictionary valueForKey:@"HatesCount"] integerValue]];
+                                        reply.date = [SDUtils dateFromString:[replyDictionary valueForKey:@"PostDate"]];
+                                        reply.subject = [replyDictionary valueForKey:@"Subject"];
+                                        reply.bodyText = [replyDictionary valueForKey:@"Text"];
+                                        
+                                        NSDictionary *authorDictionary = [replyDictionary valueForKey:@"Author"];
+                                        User *author = [self createUserFromDictionary:authorDictionary
+                                                                            inContext:context];
+                                        reply.authorUser = author;
+                                    }
                                     
                                     [context MR_saveOnlySelfAndWait];
-                                    NSInteger totalCount = [[JSON valueForKey:@"TotalCount"] integerValue];
                                     if (completionBlock) {
-                                        completionBlock(totalCount);
+                                        completionBlock();
                                     }
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     if (failureBlock)
                                         failureBlock();
                                 }];
+}
+
+#pragma mark - Private methods
+
++ (Group *)createGroupFromDictionary:(NSDictionary *)groupDictionary
+                           inContext:(NSManagedObjectContext *)context
+{
+    NSNumber *identifier = [NSNumber numberWithInteger:[[groupDictionary valueForKey:@"Id"] integerValue]];
+    Group *group = [Group MR_findFirstByAttribute:@"identifier"
+                                        withValue:identifier
+                                        inContext:context];
+    if (!group) {
+        group = [Group MR_createInContext:context];
+        group.identifier = identifier;
+    }
+    group.avatarUrl = [groupDictionary valueForKey:@"AvatarUrl"];
+    group.dateCreated = [SDUtils dateFromString:[groupDictionary valueForKey:@"DateCreated"]];
+    group.groupDescription = [groupDictionary valueForKey:@"Description"];
+    group.isEnabled = [NSNumber numberWithBool:[[groupDictionary valueForKey:@"IsEnabled"] boolValue]];
+    group.name = [groupDictionary valueForKey:@"Name"];
+    
+    return group;
+}
+
++ (User *)createUserFromDictionary:(NSDictionary *)userDictionary
+                         inContext:(NSManagedObjectContext *)context
+{
+    NSNumber *userIdentifier = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"Id"] integerValue]];
+    User *user = [User MR_findFirstByAttribute:@"identifier"
+                                     withValue:userDictionary
+                                     inContext:context];
+    if (!user) {
+        user = [User MR_createInContext:context];
+        user.identifier = userIdentifier;
+    }
+    user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+    user.name = [userDictionary valueForKey:@"DisplayName"];
+    user.username = [userDictionary valueForKey:@"Username"];
+    
+    return user;
 }
 
 @end

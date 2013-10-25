@@ -36,8 +36,9 @@
 #import "SDImageEnlargementView.h"
 #import "SDYoutubePlayerViewController.h"
 
-
 #import "SDNotificationsService.h"
+
+#import "SDWarRoomService.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -97,6 +98,8 @@
     [SDNotificationsService getNotificationsWithPageSize:nil
                                             successBlock:nil
                                             failureBlock:nil];
+    
+    [SDWarRoomService getForumRepliesWithThreadId:[NSNumber numberWithInt:87] completionBlock:nil failureBlock:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated

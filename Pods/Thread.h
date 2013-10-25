@@ -1,9 +1,9 @@
 //
 //  Thread.h
-//  SigningDay
+//  Pods
 //
 //  Created by Vytautas Gudaitis on 25/10/13.
-//  Copyright (c) 2013 Seriously inc. All rights reserved.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,7 @@
 
 @interface Thread : NSManagedObject
 
-@property (nonatomic, retain) NSString * bodyText;
+@property (nonatomic, retain) NSString * bodyWithHTML;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSDate * latestPostDate;

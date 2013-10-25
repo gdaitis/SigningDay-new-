@@ -1,9 +1,9 @@
 //
 //  Thread.m
-//  SigningDay
+//  Pods
 //
 //  Created by Vytautas Gudaitis on 25/10/13.
-//  Copyright (c) 2013 Seriously inc. All rights reserved.
+//
 //
 
 #import "Thread.h"
@@ -14,7 +14,7 @@
 
 @implementation Thread
 
-@dynamic bodyText;
+@dynamic bodyWithHTML;
 @dynamic date;
 @dynamic identifier;
 @dynamic latestPostDate;

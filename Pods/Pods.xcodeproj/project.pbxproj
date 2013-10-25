@@ -197,6 +197,10 @@
 		7A50924928C94CA4B9602688 /* FBSessionFacebookAppWebLoginStategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466CEB766A04B568C3E6E68 /* FBSessionFacebookAppWebLoginStategy.m */; };
 		7B15979EE1814061BF1F408F /* DTImageTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D55039014B24556808CB388 /* DTImageTextAttachment.h */; };
 		7B355BC6267943978ED97216 /* DTAsyncFileDeleter.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AF9A549F40480D96CEDD16 /* DTAsyncFileDeleter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
+		7B7CC165181A55A300045389 /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B7CC163181A55A300045389 /* Thread.h */; };
+		7B7CC166181A55A300045389 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7CC164181A55A300045389 /* Thread.m */; };
+		7B7CC17C181A824D00045389 /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B7CC17A181A824D00045389 /* Thread.h */; };
+		7B7CC17D181A824D00045389 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B7CC17B181A824D00045389 /* Thread.m */; };
 		7C62A7B666D74F8B8F3C8211 /* NSMutableString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AC61C7290B47759A337972 /* NSMutableString+HTML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
 		7DA902BC081B425981D5C11A /* DTHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 09BD53A46BE4423FA4A49860 /* DTHTMLParser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
 		7E4E5AAD32DC4A1FA427605A /* FBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = E7433A64F29442769AA64FE1 /* FBSession.h */; };
@@ -663,6 +667,10 @@
 		78A13ED6E9F844E18842608D /* FBDialogsParams.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBDialogsParams.m; path = "Facebook-iOS-SDK/src/FBDialogsParams.m"; sourceTree = SOURCE_ROOT; };
 		78A4825EEA7F448B8597C301 /* NSString+DTURLEncoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+DTURLEncoding.h"; path = "DTFoundation/Core/Source/NSString+DTURLEncoding.h"; sourceTree = SOURCE_ROOT; };
 		7A3486E3068548EF8644EA42 /* Pods-Facebook-iOS-SDK-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Facebook-iOS-SDK-Private.xcconfig"; sourceTree = SOURCE_ROOT; };
+		7B7CC163181A55A300045389 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
+		7B7CC164181A55A300045389 /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
+		7B7CC17A181A824D00045389 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = "../signingDayPro/Data Models/Thread.h"; sourceTree = "<group>"; };
+		7B7CC17B181A824D00045389 /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Thread.m; path = "../signingDayPro/Data Models/Thread.m"; sourceTree = "<group>"; };
 		7C50E1BFEEC34AEABD081980 /* FBSDKVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKVersion.h; path = "Facebook-iOS-SDK/src/FBSDKVersion.h"; sourceTree = SOURCE_ROOT; };
 		7D32E8F2908E40BF938754F5 /* FBAccessTokenData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAccessTokenData.h; path = "Facebook-iOS-SDK/src/FBAccessTokenData.h"; sourceTree = SOURCE_ROOT; };
 		7D93C4BC24C148E0BF875F10 /* NSData+DTCrypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+DTCrypto.h"; path = "DTFoundation/Core/Source/NSData+DTCrypto.h"; sourceTree = SOURCE_ROOT; };
@@ -1259,6 +1267,10 @@
 		8362068E6B5E48D1BD5715C2 = {
 			isa = PBXGroup;
 			children = (
+				7B7CC17A181A824D00045389 /* Thread.h */,
+				7B7CC17B181A824D00045389 /* Thread.m */,
+				7B7CC163181A55A300045389 /* Thread.h */,
+				7B7CC164181A55A300045389 /* Thread.m */,
 				3BCFCCB0DF6B478DB96000C9 /* Frameworks */,
 				3CE0384234DD4B6BBBDD0964 /* Pods */,
 				FBF45772E17149858E8D0FA3 /* Products */,
@@ -1796,6 +1808,8 @@
 				3E8A41D1B46044E4AC5CF670 /* AFURLConnectionOperation.h in Headers */,
 				8785302E599B43C28CD7F6D7 /* AFXMLRequestOperation.h in Headers */,
 				1602B71884E2460BA3274CB1 /* UIImageView+AFNetworking.h in Headers */,
+				7B7CC17C181A824D00045389 /* Thread.h in Headers */,
+				7B7CC165181A55A300045389 /* Thread.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2021,6 +2035,8 @@
 				21F8AE4FBB1A4E0283C5C3B6 /* AFPropertyListRequestOperation.m in Sources */,
 				D94D73DBA3CA43409F117B12 /* AFURLConnectionOperation.m in Sources */,
 				A474E952D00F463C9F6EE8D0 /* AFXMLRequestOperation.m in Sources */,
+				7B7CC17D181A824D00045389 /* Thread.m in Sources */,
+				7B7CC166181A55A300045389 /* Thread.m in Sources */,
 				366536314D0F401F860EA7D0 /* UIImageView+AFNetworking.m in Sources */,
 				49BB62116A38458BAC0A0E7D /* Pods-AFNetworking-dummy.m in Sources */,
 			);
