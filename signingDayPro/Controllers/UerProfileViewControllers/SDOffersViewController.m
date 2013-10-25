@@ -10,8 +10,10 @@
 
 #import "User.h"
 #import "SDProfileService.h"
+#import "SDOfferCell.h"
+#import "UIView+NibLoading.h"
 
-@interface SDOffersViewController ()
+@interface SDOffersViewController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -32,6 +34,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     //show college list with offers
     [self loadData];
@@ -62,25 +67,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id result = nil;
-
-//            NSString *identifier = @"SDGroupCellID";
-//            SDGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//            
-//            if (!cell) {
-//                cell = (id)[SDGroupCell loadInstanceFromNib];
-//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//                cell.backgroundColor = [UIColor clearColor];
-//            }
-//            
-//            id group = [self.dataArray objectAtIndex:indexPath.row];
-//            // Configure the cell...
-//            [cell setupCellWithGroup:group];
-//            
-//            result = cell;
-//            break;
     
-    return result;
+    NSString *identifier = @"SDOfferCellID";
+    SDOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell) {
+        cell = (id)[SDOfferCell loadInstanceFromNib];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    
+    id college = [self.dataArray objectAtIndex:indexPath.row];
+    // Configure the cell...
+    [cell setupCellWithCollegeUser:college];
+    
+    return cell;
 }
 
 #pragma mark - Table view delegate
@@ -96,7 +97,7 @@
 - (void)loadData
 {
     [SDProfileService getOffersForUser:self.currentUser completionBlock:^{
-
+        
     } failureBlock:^{
         
     }];

@@ -2,7 +2,7 @@
 //  Forum.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/22/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,10 +14,10 @@
 @interface Forum : NSManagedObject
 
 @property (nonatomic, retain) NSDate * dateCreated;
+@property (nonatomic, retain) NSNumber * enabled;
 @property (nonatomic, retain) NSString * forumDescription;
 @property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSDate * latestPostDate;
-@property (nonatomic, retain) NSNumber * enabled;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * replyCount;
 @property (nonatomic, retain) NSNumber * threadCount;

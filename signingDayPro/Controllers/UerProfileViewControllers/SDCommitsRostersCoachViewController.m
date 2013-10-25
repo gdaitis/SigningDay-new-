@@ -16,6 +16,7 @@
 #import "Team.h"
 #import "Coach.h"
 #import "HighSchool.h"
+#import "Offer.h"
 #import "SDUserProfileViewController.h"
 #import "SDCoachingStaffCell.h"
 
@@ -120,7 +121,13 @@
             [cell.accountVerifiedImageView removeFromSuperview];
         }
         
-        Player *player = [self.dataArray objectAtIndex:indexPath.row];
+        Player *player = nil;
+        if (self.controllerType == CONTROLLER_TYPE_COMMITS) {
+            Offer *offer = [self.dataArray objectAtIndex:indexPath.row];
+            player = offer.player;
+        }
+        else
+            player = [self.dataArray objectAtIndex:indexPath.row];
         
         cell.playerPositionLabel.text = [NSString stringWithFormat:@"%d",indexPath.row+1];
         // Configure the cell...
@@ -195,12 +202,15 @@
                                          withValue:[NSNumber numberWithInt:[self.userIdentifier intValue]]
                                          inContext:context];
     
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"baseScore"
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"player.baseScore"
                                                                      ascending:NO];
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"theUser.name"
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"player.theUser.name"
                                                                      ascending:YES];
     
-    self.dataArray = [[teamUser.theTeam.commits allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"playerCommited == %@", [NSNumber numberWithBool:YES]];
+    
+    NSArray *filteredArray = [[teamUser.theTeam.offers allObjects] filteredArrayUsingPredicate:predicate];
+    self.dataArray = [filteredArray sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor,nameDescriptor,nil]];
     
     [self.tableView reloadData];
 }

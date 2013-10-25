@@ -2,7 +2,7 @@
 //  Group.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/22/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 

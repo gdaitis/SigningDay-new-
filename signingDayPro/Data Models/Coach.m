@@ -2,7 +2,7 @@
 //  Coach.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/11/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,13 +14,13 @@
 
 @implementation Coach
 
+@dynamic coachLevel;
 @dynamic institution;
 @dynamic location;
 @dynamic position;
-@dynamic coachLevel;
-@dynamic team;
-@dynamic theUser;
 @dynamic subCoaches;
 @dynamic superCoach;
+@dynamic team;
+@dynamic theUser;
 
 @end

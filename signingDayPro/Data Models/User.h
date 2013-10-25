@@ -2,7 +2,7 @@
 //  User.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/22/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -36,6 +36,7 @@
 @property (nonatomic, retain) NSSet *conversations;
 @property (nonatomic, retain) Master *followedBy;
 @property (nonatomic, retain) Master *following;
+@property (nonatomic, retain) NSSet *forumReplies;
 @property (nonatomic, retain) NSSet *likes;
 @property (nonatomic, retain) Master *master;
 @property (nonatomic, retain) NSSet *mediaGalleries;
@@ -49,7 +50,6 @@
 @property (nonatomic, retain) Player *thePlayer;
 @property (nonatomic, retain) Team *theTeam;
 @property (nonatomic, retain) NSSet *threads;
-@property (nonatomic, retain) NSSet *forumReplies;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -79,6 +79,11 @@
 - (void)addConversations:(NSSet *)values;
 - (void)removeConversations:(NSSet *)values;
 
+- (void)addForumRepliesObject:(ForumReply *)value;
+- (void)removeForumRepliesObject:(ForumReply *)value;
+- (void)addForumReplies:(NSSet *)values;
+- (void)removeForumReplies:(NSSet *)values;
+
 - (void)addLikesObject:(Like *)value;
 - (void)removeLikesObject:(Like *)value;
 - (void)addLikes:(NSSet *)values;
@@ -103,10 +108,5 @@
 - (void)removeThreadsObject:(Thread *)value;
 - (void)addThreads:(NSSet *)values;
 - (void)removeThreads:(NSSet *)values;
-
-- (void)addForumRepliesObject:(ForumReply *)value;
-- (void)removeForumRepliesObject:(ForumReply *)value;
-- (void)addForumReplies:(NSSet *)values;
-- (void)removeForumReplies:(NSSet *)values;
 
 @end

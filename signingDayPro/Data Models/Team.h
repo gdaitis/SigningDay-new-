@@ -2,14 +2,14 @@
 //  Team.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/16/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Coach, Member, Player, User;
+@class Coach, Member, Offer, User;
 
 @interface Team : NSManagedObject
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * conferenceName;
 @property (nonatomic, retain) NSString * conferenceRankingString;
 @property (nonatomic, retain) NSString * location;
+@property (nonatomic, retain) NSString * locationExtended;
 @property (nonatomic, retain) NSString * nationalRankingString;
 @property (nonatomic, retain) NSNumber * numberOfCommits;
 @property (nonatomic, retain) NSString * stateCode;
@@ -26,19 +27,13 @@
 @property (nonatomic, retain) NSString * teamName;
 @property (nonatomic, retain) NSNumber * totalScore;
 @property (nonatomic, retain) NSString * universityName;
-@property (nonatomic, retain) NSString * locationExtended;
-@property (nonatomic, retain) NSSet *commits;
 @property (nonatomic, retain) NSSet *favoritedBy;
 @property (nonatomic, retain) NSSet *headCoaches;
 @property (nonatomic, retain) User *theUser;
+@property (nonatomic, retain) NSSet *offers;
 @end
 
 @interface Team (CoreDataGeneratedAccessors)
-
-- (void)addCommitsObject:(Player *)value;
-- (void)removeCommitsObject:(Player *)value;
-- (void)addCommits:(NSSet *)values;
-- (void)removeCommits:(NSSet *)values;
 
 - (void)addFavoritedByObject:(Member *)value;
 - (void)removeFavoritedByObject:(Member *)value;
@@ -49,5 +44,10 @@
 - (void)removeHeadCoachesObject:(Coach *)value;
 - (void)addHeadCoaches:(NSSet *)values;
 - (void)removeHeadCoaches:(NSSet *)values;
+
+- (void)addOffersObject:(Offer *)value;
+- (void)removeOffersObject:(Offer *)value;
+- (void)addOffers:(NSSet *)values;
+- (void)removeOffers:(NSSet *)values;
 
 @end

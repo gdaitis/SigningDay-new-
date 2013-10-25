@@ -177,6 +177,11 @@
         <relationship name="fromUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notificationsParticipatedIn" inverseEntity="User" syncable="YES"/>
         <relationship name="master" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Master" inverseName="notificationsReceived" inverseEntity="Master" syncable="YES"/>
     </entity>
+    <entity name="Offer" representedClassName="Offer" syncable="YES">
+        <attribute name="playerCommited" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="offers" inverseEntity="Player" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="offers" inverseEntity="Team" syncable="YES"/>
+    </entity>
     <entity name="Player" representedClassName="Player" syncable="YES">
         <attribute name="baseScore" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="has150Badge" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -189,8 +194,8 @@
         <attribute name="stateRanking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userClass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="commitedTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="commits" inverseEntity="Team" syncable="YES"/>
         <relationship name="highSchool" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="players" inverseEntity="HighSchool" syncable="YES"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="player" inverseEntity="Offer" syncable="YES"/>
         <relationship name="rosterOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="rosters" inverseEntity="HighSchool" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thePlayer" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -215,9 +220,9 @@
         <attribute name="teamName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalScore" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="universityName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="commits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="commitedTo" inverseEntity="Player" syncable="YES"/>
         <relationship name="favoritedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Member" inverseName="favoriteTeam" inverseEntity="Member" syncable="YES"/>
         <relationship name="headCoaches" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="team" inverseEntity="Offer" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theTeam" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Thread" representedClassName="Thread" syncable="YES">
@@ -284,24 +289,25 @@
         <element name="Comment" positionX="-396" positionY="-189" width="128" height="135"/>
         <element name="Conference" positionX="448" positionY="-270" width="128" height="135"/>
         <element name="Conversation" positionX="-459" positionY="-18" width="128" height="180"/>
+        <element name="Forum" positionX="-189" positionY="737" width="128" height="193"/>
+        <element name="ForumReply" positionX="207" positionY="737" width="128" height="118"/>
+        <element name="Group" positionX="-387" positionY="738" width="128" height="148"/>
         <element name="HighSchool" positionX="781" positionY="-234" width="128" height="193"/>
         <element name="ImageData" positionX="36" positionY="-288" width="128" height="90"/>
         <element name="Like" positionX="-189" positionY="-189" width="128" height="90"/>
         <element name="Master" positionX="-245" positionY="180" width="128" height="225"/>
         <element name="MediaGallery" positionX="18" positionY="-153" width="128" height="105"/>
         <element name="MediaItem" positionX="250" positionY="-216" width="128" height="165"/>
-        <element name="Member" positionX="745" positionY="402" width="128" height="120"/>
+        <element name="Member" positionX="610" positionY="387" width="128" height="120"/>
         <element name="Message" positionX="-182" positionY="0" width="128" height="135"/>
-        <element name="NFLPA" positionX="891" positionY="675" width="128" height="163"/>
+        <element name="NFLPA" positionX="684" positionY="746" width="128" height="163"/>
         <element name="Notification" positionX="-531" positionY="360" width="128" height="195"/>
-        <element name="Player" positionX="990" positionY="333" width="128" height="270"/>
+        <element name="Player" positionX="1069" positionY="324" width="128" height="268"/>
         <element name="State" positionX="-119" positionY="414" width="128" height="105"/>
         <element name="Team" positionX="718" positionY="11" width="128" height="313"/>
+        <element name="Thread" positionX="7" positionY="738" width="128" height="178"/>
         <element name="User" positionX="403" positionY="108" width="128" height="598"/>
         <element name="WebPreview" positionX="430" positionY="-99" width="128" height="135"/>
-        <element name="Forum" positionX="-189" positionY="737" width="128" height="193"/>
-        <element name="Group" positionX="-387" positionY="738" width="128" height="148"/>
-        <element name="ForumReply" positionX="207" positionY="737" width="128" height="118"/>
-        <element name="Thread" positionX="7" positionY="738" width="128" height="178"/>
+        <element name="Offer" positionX="819" positionY="405" width="128" height="88"/>
     </elements>
 </model>

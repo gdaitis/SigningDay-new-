@@ -2,7 +2,7 @@
 //  User.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/22/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -51,6 +51,7 @@
 @dynamic conversations;
 @dynamic followedBy;
 @dynamic following;
+@dynamic forumReplies;
 @dynamic likes;
 @dynamic master;
 @dynamic mediaGalleries;
@@ -64,6 +65,5 @@
 @dynamic thePlayer;
 @dynamic theTeam;
 @dynamic threads;
-@dynamic forumReplies;
 
 @end

@@ -19,6 +19,7 @@
 #import "SDErrorService.h"
 #import "NSString+HTML.h"
 #import "Player.h"
+#import "Offer.h"
 #import "Coach.h"
 #import "Team.h"
 #import "Member.h"
@@ -212,7 +213,7 @@
         User *teamUser = [User MR_findFirstByAttribute:@"identifier"
                                              withValue:[NSNumber numberWithInt:[teamIdentifier intValue]]
                                              inContext:context];
-        teamUser.theTeam.commits = nil;
+        teamUser.theTeam.offers = nil;
         
         for (NSDictionary *playerDictionary in userInfoArray) {
             
@@ -265,8 +266,12 @@
             user.thePlayer.starsCount = [NSNumber numberWithInt:[[dictionary valueForKey:@"PlayerStars"] intValue]];
             user.thePlayer.has150Badge = [NSNumber numberWithBool:[[dictionary valueForKey:@"Has150Badge"] boolValue]];
             user.thePlayer.hasWatchListBadge = [NSNumber numberWithBool:[[dictionary valueForKey:@"HasWatchListBadge"] boolValue]];
-            user.thePlayer.commitedTo = teamUser.theTeam;
             user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+            
+            Offer *offer = [Offer MR_createInContext:context];
+            offer.playerCommited = [NSNumber numberWithBool:YES];
+            offer.player = user.thePlayer;
+            offer.team = teamUser.theTeam;
         }
         
         [context MR_saveOnlySelfAndWait];
@@ -1017,32 +1022,31 @@
                                NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
                                                                                     options:kNilOptions
                                                                                       error:nil];
-                               NSDictionary *dictionary = [[JSON valueForKey:@"d"] dictionaryByReplacingNullsWithStrings];
+                               user.thePlayer.offers = nil;
+                               NSArray *array = [JSON valueForKey:@"d"];
                                
-                               for (NSDictionary *userDictionary in dictionary) {
+                               for (NSDictionary *dictionary in array) {
+                                   
+                                   NSDictionary *userDictionary = [dictionary dictionaryByReplacingNullsWithStrings];
                                    
                                    NSNumber *teamIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"TeamID"] intValue]];
                                    User *teamUser = [User MR_findFirstByAttribute:@"identifier"
                                                                         withValue:teamIdentifier
                                                                         inContext:context];
-//                                   if (!teamUser) {
-//                                       teamUser = [User MR_createInContext:context];
-//                                       teamUser.identifier = teamIdentifier;
-//                                   }
-//                                   if (!teamUser.theTeam)
-//                                       teamUser.theTeam = [Team MR_createInContext:context];
-//                                   
-//                                   teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
-//                                   teamUser.name = [userDictionary valueForKey:@"TeamInstitution"];
-//
-//                                   teamUser.theTeam.teamName =[userDictionary valueForKey:@"TeamInstitution"];
-//                                   teamUser.theTeam.conferenceId = [NSNumber numberWithInt:[[userDictionary valueForKey:@"ConferenceID"] intValue]];
-//                                   teamUser.theTeam.universityName = [userDictionary valueForKey:@"FullInstitutionName"];
-//                                   teamUser.theTeam.location = [userDictionary valueForKey:@"TeamCity"];
-//                                   teamUser.theTeam.stateCode = [userDictionary valueForKey:@"TeamStateCode"];
-//                                   teamUser.theTeam.numberOfCommits = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Commits"] intValue]];
-//                                   teamUser.theTeam.totalScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"Total"] floatValue]];
-//                                   teamUser.theTeam.teamClass = classString;  //need to save year(class) for team for proper coredata sorting and paging
+                                   if (!teamUser) {
+                                       teamUser = [User MR_createInContext:context];
+                                       teamUser.identifier = teamIdentifier;
+                                   }
+                                   if (!teamUser.theTeam)
+                                       teamUser.theTeam = [Team MR_createInContext:context];
+
+                                   teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
+                                   teamUser.avatarUrl = [NSString stringWithFormat:@"%@%@",kSDBaseSigningDayURLString,[userDictionary valueForKey:@"TeamAvatarUrl"]];
+                                   
+                                   Offer *offer = [Offer MR_createInContext:context];
+                                   offer.playerCommited = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsCommited"] boolValue]];
+                                   offer.player = user.thePlayer;
+                                   offer.team = teamUser.theTeam;
                                }
                                
                                [context MR_saveOnlySelfAndWait];

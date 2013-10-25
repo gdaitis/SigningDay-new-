@@ -2,7 +2,7 @@
 //  Coach.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/11/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -13,14 +13,14 @@
 
 @interface Coach : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * coachLevel;
 @property (nonatomic, retain) NSString * institution;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSString * position;
-@property (nonatomic, retain) NSNumber * coachLevel;
-@property (nonatomic, retain) Team *team;
-@property (nonatomic, retain) User *theUser;
 @property (nonatomic, retain) NSSet *subCoaches;
 @property (nonatomic, retain) Coach *superCoach;
+@property (nonatomic, retain) Team *team;
+@property (nonatomic, retain) User *theUser;
 @end
 
 @interface Coach (CoreDataGeneratedAccessors)

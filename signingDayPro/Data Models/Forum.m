@@ -2,7 +2,7 @@
 //  Forum.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 10/22/13.
+//  Created by Lukas Kekys on 10/24/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,10 +14,10 @@
 @implementation Forum
 
 @dynamic dateCreated;
+@dynamic enabled;
 @dynamic forumDescription;
 @dynamic identifier;
 @dynamic latestPostDate;
-@dynamic enabled;
 @dynamic name;
 @dynamic replyCount;
 @dynamic threadCount;
