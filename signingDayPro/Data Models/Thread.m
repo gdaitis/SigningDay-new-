@@ -15,13 +15,13 @@
 @implementation Thread
 
 @dynamic bodyText;
+@dynamic countOfBelieves;
+@dynamic countOfHates;
 @dynamic date;
 @dynamic identifier;
 @dynamic latestPostDate;
 @dynamic replyCount;
 @dynamic subject;
-@dynamic countOfBelieves;
-@dynamic countOfHates;
 @dynamic authorUser;
 @dynamic forum;
 @dynamic forumReplies;

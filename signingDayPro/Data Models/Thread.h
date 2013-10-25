@@ -14,13 +14,13 @@
 @interface Thread : NSManagedObject
 
 @property (nonatomic, retain) NSString * bodyText;
+@property (nonatomic, retain) NSNumber * countOfBelieves;
+@property (nonatomic, retain) NSNumber * countOfHates;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSDate * latestPostDate;
 @property (nonatomic, retain) NSNumber * replyCount;
 @property (nonatomic, retain) NSString * subject;
-@property (nonatomic, retain) NSNumber * countOfBelieves;
-@property (nonatomic, retain) NSNumber * countOfHates;
 @property (nonatomic, retain) User *authorUser;
 @property (nonatomic, retain) Forum *forum;
 @property (nonatomic, retain) NSSet *forumReplies;
