@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    SDEmotionHate = 0,
+    SDEmotionBelieve = 1
+} SDEmotion;
+
+typedef enum {
+    SDForumPostTypeThread = 0,
+    SDForumPostTypeReply = 1
+} SDForumPostType;
+
 @interface SDWarRoomService : NSObject
 
 + (void)getWarRoomGroupsWithCompletionBlock:(void (^)(void))completionBlock
@@ -25,4 +35,10 @@
 + (void)getForumRepliesWithThreadId:(NSNumber *)identifier
                     completionBlock:(void (^)())completionBlock
                        failureBlock:(void (^)(void))failureBlock;
++ (void)setEmotion:(SDEmotion)emotion
+   toForumPostType:(SDForumPostType)forumPostType
+    withIdentifier:(NSNumber *)identifier
+withCompletionBlock:(void (^)(void))completionBlock
+      failureBlock:(void (^)(void))failureBlock;
+
 @end

@@ -208,6 +208,56 @@
                                 }];
 }
 
++ (void)setEmotion:(SDEmotion)emotion
+   toForumPostType:(SDForumPostType)forumPostType
+    withIdentifier:(NSNumber *)identifier
+withCompletionBlock:(void (^)(void))completionBlock
+      failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path;
+    NSString *emotionIdParameterName;
+    switch (emotion) {
+        case SDEmotionBelieve:
+            path = @"sd/believers.json";
+            emotionIdParameterName = @"BelieverID";
+            break;
+            
+        case SDEmotionHate:
+            path = @"sd/haters.json";
+            emotionIdParameterName = @"HaterID";
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSString *identifierParameterName;
+    switch (forumPostType) {
+        case SDForumPostTypeThread:
+            identifierParameterName = @"ThreadId";
+            break;
+            
+        case SDForumPostTypeReply:
+            identifierParameterName = @"ThreadReplyId";
+            break;
+            
+        default:
+            break;
+    }
+    
+    [[SDAPIClient sharedClient] postPath:path
+                              parameters:@{identifierParameterName: [NSString stringWithFormat:@"%d", [identifier integerValue]],
+                                           emotionIdParameterName: @2100}
+                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                     if (completionBlock) {
+                                         completionBlock();
+                                     }
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     if (failureBlock)
+                                         failureBlock();
+                                 }];
+}
+
 #pragma mark - Private methods
 
 + (Group *)createGroupFromDictionary:(NSDictionary *)groupDictionary
@@ -235,7 +285,7 @@
 {
     NSNumber *userIdentifier = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"Id"] integerValue]];
     User *user = [User MR_findFirstByAttribute:@"identifier"
-                                     withValue:userDictionary
+                                     withValue:userIdentifier
                                      inContext:context];
     if (!user) {
         user = [User MR_createInContext:context];
