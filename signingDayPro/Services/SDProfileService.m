@@ -61,7 +61,7 @@
         NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
                                                               options:kNilOptions
                                                                 error:nil] dictionaryByReplacingNullsWithStrings];
-        NSDictionary *dictionary = [JSON valueForKey:@"d"];
+        NSDictionary *dictionary = [[JSON valueForKey:@"d"] dictionaryByReplacingNullsWithStrings];
         
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         User *teamUser = [User MR_findFirstByAttribute:@"identifier"
@@ -92,6 +92,7 @@
 
 + (void)saveCoachFromDictionary:(NSDictionary *)dictionary withLevel:(int)level andTeam:(Team *)team forCoach:(Coach *)coach inContext:(NSManagedObjectContext *)context
 {
+    dictionary = [dictionary dictionaryByReplacingNullsWithStrings];
     NSNumber *coachIdentifier = [NSNumber numberWithInt:[[dictionary valueForKey:@"UserId"] intValue]];
     User *coachUser = [User MR_findFirstByAttribute:@"identifier"
                                           withValue:coachIdentifier
@@ -367,7 +368,7 @@
                                     videoGallery.galleryType = [NSNumber numberWithInteger:SDGalleryTypeVideos];
                                     videoGallery.user = user;
                                     
-                                    NSDictionary *derivedUserDictionary = [userDictionary valueForKey:@"DerivedUser"];
+                                    NSDictionary *derivedUserDictionary = [[userDictionary valueForKey:@"DerivedUser"] dictionaryByReplacingNullsWithStrings];
                                     
                                     SDUserType userTypeId = [[userDictionary valueForKey:@"UserTypeId"] intValue];
                                     user.userTypeId = [NSNumber numberWithInt:userTypeId];
@@ -564,7 +565,7 @@
                                         user = [User MR_createInContext:context];
                                         user.identifier = identifier;
                                     }
-                                    NSDictionary *userDictionary = [JSON valueForKey:@"User"];
+                                    NSDictionary *userDictionary = [[JSON valueForKey:@"User"] dictionaryByReplacingNullsWithStrings];
                                     
                                     user.username = [userDictionary valueForKey:@"Username"];
                                     user.name = [userDictionary valueForKey:@"DisplayName"];
@@ -775,7 +776,7 @@
               parameters:parameters
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
-                     NSDictionary *userDictionary = [JSON objectForKey:@"User"];
+                     NSDictionary *userDictionary = [[JSON objectForKey:@"User"] dictionaryByReplacingNullsWithStrings];
                      NSString *displayName = [userDictionary valueForKey:@"DisplayName"];
                      NSString *bio = [[userDictionary valueForKey:@"Bio"] stringByConvertingHTMLToPlainText];
                      
@@ -978,8 +979,8 @@
                                      NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
                                      Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
                                      
-                                     for (NSDictionary *userInfo in results) {
-                                         
+                                     for (__strong NSDictionary *userInfo in results) {
+                                         userInfo = [userInfo dictionaryByReplacingNullsWithStrings];
                                          NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
                                          User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier inContext:context];
                                          

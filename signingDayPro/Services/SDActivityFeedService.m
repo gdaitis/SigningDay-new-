@@ -25,6 +25,7 @@
 #import "SDErrorService.h"
 #import "NSString+HTML.h"
 #import "SDProfileService.h"
+#import "NSDictionary+NullConverver.h"
 
 @interface SDActivityFeedService ()
 
@@ -81,7 +82,7 @@
                                         
                                         for (int i = 0; i < [activityStories count]; i++) {
                                             endReached = NO;
-                                            NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
+                                            NSDictionary *activityStoryDictionary = [[activityStories objectAtIndex:i] dictionaryByReplacingNullsWithStrings];
                                             
                                             BOOL activityStoryValid = [self validateActivityStory:activityStoryDictionary fromContext:context];
                                             /*activity story is not forum activity and nflpa not involved */
@@ -132,7 +133,8 @@
         }
     }
     NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
-    for (NSDictionary *userDictionary in userArray) {
+    for (__strong NSDictionary *userDictionary in userArray) {
+        userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
         if ([[userDictionary valueForKey:@"UserTypeId"] intValue] == SDUserTypeOrganization) {
             valid = NO;
             //currently we can't display these users
@@ -152,7 +154,7 @@
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSArray *activityStories = [JSON valueForKey:@"ActivityStories"];
                                     for (int i = 0; i < [activityStories count]; i++) {
-                                        NSDictionary *activityStoryDictionary = [activityStories objectAtIndex:i];
+                                        NSDictionary *activityStoryDictionary = [[activityStories objectAtIndex:i] dictionaryByReplacingNullsWithStrings];
                                         NSString *activityStoryContentId = [activityStoryDictionary valueForKey:@"ContentId"];
                                         if ([activityStoryContentId isEqual:contentId])
                                             [self createActivityStoryFromDictionary:activityStoryDictionary
@@ -436,7 +438,7 @@
     [[SDAPIClient sharedClient] postPath:@"comments.json"
                               parameters:@{@"ContentId":activityStory.contentId, @"ContentTypeId":activityStory.contentTypeId, @"Body":commentText}
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                     NSDictionary *commentDictionary = [JSON valueForKey:@"Comment"];
+                                     NSDictionary *commentDictionary = [[JSON valueForKey:@"Comment"] dictionaryByReplacingNullsWithStrings];
                                      [self createCommentFromDictionary:commentDictionary];
                                      successBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -472,7 +474,8 @@
                              parameters:@{@"ContentId":activityStory.contentId}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSArray *commentsArray = [JSON valueForKey:@"Comments"];
-                                    for (NSDictionary *commentDictionary in commentsArray) {
+                                    for (__strong NSDictionary *commentDictionary in commentsArray) {
+                                        commentDictionary = [commentDictionary dictionaryByReplacingNullsWithStrings];
                                         [self createCommentFromDictionary:commentDictionary];
                                     }
                                     NSManagedObjectContext *activityStoryContext = [NSManagedObjectContext MR_contextForCurrentThread];
@@ -501,7 +504,8 @@
                                     [self deleteAllLikesFromActivityStory:activityStory];
                                     
                                     NSArray *likesArray = [JSON valueForKey:@"Likes"];
-                                    for (NSDictionary *likeDictionary in likesArray) {
+                                    for (__strong NSDictionary *likeDictionary in likesArray) {
+                                        likeDictionary = [likeDictionary dictionaryByReplacingNullsWithStrings];
                                         [self createLikeFromDictionary:likeDictionary];
                                     }
                                     successBlock();
@@ -539,7 +543,7 @@
     NSString *commentBody = [commentDictionary valueForKey:@"Body"];
     comment.body = [commentBody stringByConvertingHTMLToPlainText];
     
-    NSDictionary *userDictionary = [commentDictionary valueForKey:@"User"];
+    NSDictionary *userDictionary = [[commentDictionary valueForKey:@"User"] dictionaryByReplacingNullsWithStrings];
     NSNumber *identifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Id"] intValue]];
     User *user = [User MR_findFirstByAttribute:@"identifier"
                                      withValue:identifier
@@ -588,7 +592,7 @@
         NSDate *createdDate = [dateFormatter dateFromString:createdDateString];
         like.createdDate = createdDate;
     }
-    NSDictionary *userDictionary = [likeDictionary valueForKey:@"User"];
+    NSDictionary *userDictionary = [[likeDictionary valueForKey:@"User"] dictionaryByReplacingNullsWithStrings];
     User *user = [User MR_findFirstByAttribute:@"identifier"
                                      withValue:identifier
                                      inContext:likesContext];

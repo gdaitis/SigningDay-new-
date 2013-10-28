@@ -17,6 +17,7 @@
 #import <Twitter/Twitter.h>
 #import "SDErrorService.h"
 #import "User.h"
+#import "NSDictionary+NullConverver.h"
 
 NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.ashx/__key/communityserver-components-sitefiles/SD-logo.png";
 
@@ -96,7 +97,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
         hud.labelText = @"Upload successful";
         [hud hide:YES afterDelay:3];
         
-        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil] dictionaryByReplacingNullsWithStrings];
         NSDictionary *mediaDictionary = [JSON objectForKey:@"Media"];
         NSString *link = [mediaDictionary valueForKey:@"Url"];
         NSString *title = [mediaDictionary valueForKey:@"Title"];
@@ -251,7 +252,7 @@ NSString * const kSDLogoURLString = @"https://www.dev.signingday.com/cfs-file.as
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
         
-        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil] dictionaryByReplacingNullsWithStrings];
         NSDictionary *mediaDictionary = [JSON objectForKey:@"Media"];
         NSString *link = [mediaDictionary valueForKey:@"Url"];
         NSString *pictureLink = [[mediaDictionary objectForKey:@"File"] valueForKey:@"FileUrl"];

@@ -16,7 +16,7 @@
 #import "SDErrorService.h"
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
-
+#import "NSDictionary+NullConverver.h"
 
 @interface SDChatService ()
 
@@ -31,7 +31,8 @@
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
     NSArray *parsedConversations = [JSON objectForKey:@"Conversations"];
-    for (NSDictionary *conversationDictionary in parsedConversations) {
+    for (__strong NSDictionary *conversationDictionary in parsedConversations) {
+        conversationDictionary = [conversationDictionary dictionaryByReplacingNullsWithStrings];
         NSString *identifier = [conversationDictionary valueForKey:@"Id"];
         Conversation *conversation = [Conversation MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
         if (!conversation) {
@@ -40,7 +41,7 @@
         }
         conversation.shouldBeDeleted = [NSNumber numberWithBool:NO];
         
-        NSDictionary *lastMessageDictionary = [conversationDictionary objectForKey:@"LastMessage"];
+        NSDictionary *lastMessageDictionary = [[conversationDictionary objectForKey:@"LastMessage"] dictionaryByReplacingNullsWithStrings];
         NSString *dateString = [[lastMessageDictionary objectForKey:@"CreatedDate"] stringByDeletingPathExtension];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
@@ -48,7 +49,7 @@
         conversation.lastMessageDate = date;
         conversation.lastMessageText = [[lastMessageDictionary objectForKey:@"Body"] stringByConvertingHTMLToPlainText];
         
-        NSDictionary *authorDictionary = [conversationDictionary valueForKey:@"CreatedUser"];
+        NSDictionary *authorDictionary = [[conversationDictionary valueForKey:@"CreatedUser"] dictionaryByReplacingNullsWithStrings];
         NSNumber *authorIdentifier = [NSNumber numberWithInt:[[authorDictionary valueForKey:@"Id"] intValue]];
         User *author = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
         if (!author) {
@@ -63,8 +64,9 @@
         
         Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
         NSNumber *masterUserIndentifier = master.identifier;
-        NSDictionary *participantsDictionary = [conversationDictionary objectForKey:@"Participants"];
-        for (NSDictionary *participantDictionary in participantsDictionary) {
+        NSDictionary *participantsDictionary = [[conversationDictionary objectForKey:@"Participants"] dictionaryByReplacingNullsWithStrings];
+        for (__strong NSDictionary *participantDictionary in participantsDictionary) {
+            participantDictionary = [participantDictionary dictionaryByReplacingNullsWithStrings];
             NSNumber *identifier = [NSNumber numberWithInt:[[participantDictionary valueForKey:@"Id"] intValue]];
             if (![identifier isEqualToNumber:masterUserIndentifier]) {
                 NSNumber *participantUserIdentifier = [NSNumber numberWithInt:[[participantDictionary valueForKey:@"Id"] intValue]];
@@ -124,7 +126,8 @@
                                     }
                                     
                                     NSArray *parsedMessages = [JSON objectForKey:@"Messages"];
-                                    for (NSDictionary *messageDictionary in parsedMessages) {
+                                    for (__strong NSDictionary *messageDictionary in parsedMessages) {
+                                        messageDictionary = [messageDictionary dictionaryByReplacingNullsWithStrings];
                                         NSString *identifier = [messageDictionary valueForKey:@"Id"];
                                         Message *message = [Message MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
                                         if (!message) {
@@ -133,7 +136,7 @@
                                         }
                                         message.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         message.conversation = conversation;
-                                        NSDictionary *authorDictionary = [messageDictionary objectForKey:@"Author"];
+                                        NSDictionary *authorDictionary = [[messageDictionary objectForKey:@"Author"] dictionaryByReplacingNullsWithStrings];
                                         NSNumber *authorIdentifier = [NSNumber numberWithInt:[[authorDictionary valueForKey:@"Id"] intValue]];
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:authorIdentifier inContext:context];
                                         if (!user) {
@@ -194,7 +197,8 @@
                                     master.followedBy = nil;
                                     
                                     NSArray *followers = [JSON objectForKey:@"Followers"];
-                                    for (NSDictionary *userInfo in followers) {
+                                    for (__strong NSDictionary *userInfo in followers) {
+                                        userInfo = [userInfo dictionaryByReplacingNullsWithStrings];
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"Id"];
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followersUserIdentifier];
                                         User *user = [User MR_findFirstWithPredicate:predicate inContext:context];
@@ -224,7 +228,7 @@
     [[SDAPIClient sharedClient] postPath:@"conversations.json"
                               parameters:parameters
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                     NSDictionary *conversationDictionary = [JSON objectForKey:@"Conversation"];
+                                     NSDictionary *conversationDictionary = [[JSON objectForKey:@"Conversation"] dictionaryByReplacingNullsWithStrings];
                                      NSString *identifier = [conversationDictionary valueForKey:@"Id"];
                                      if (completionBlock)
                                          completionBlock(identifier);
@@ -278,11 +282,12 @@
     [[SDAPIClient sharedClient] getPath:followersPath
                              parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"100", @"PageSize", nil]
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
-                                    NSDictionary *followingDictionary = [JSON objectForKey:@"Following"];
+                                    NSDictionary *followingDictionary = [[JSON objectForKey:@"Following"] dictionaryByReplacingNullsWithStrings];
                                     
                                     master.following = nil;
                                     
-                                    for (NSDictionary *followingUserDictionary in followingDictionary) {
+                                    for (__strong NSDictionary *followingUserDictionary in followingDictionary) {
+                                        followingUserDictionary= [followingUserDictionary dictionaryByReplacingNullsWithStrings];
                                         NSNumber *identifier = [NSNumber numberWithInt:[[followingUserDictionary valueForKey:@"Id"] integerValue]];
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
                                         if (!user) {
