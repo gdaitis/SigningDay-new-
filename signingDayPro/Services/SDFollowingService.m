@@ -21,6 +21,7 @@
 #import "SDErrorService.h"
 #import "NSString+HTML.h"
 #import "SDUtils.h"
+#import "NSDictionary+NullConverver.h"
 
 @interface SDFollowingService ()
 
@@ -95,7 +96,8 @@
                                     int totalUserCount = [[JSON valueForKey:@"TotalCount"] intValue];
                                     
                                     NSArray *followers = [JSON objectForKey:@"Followers"];
-                                    for (NSDictionary *userInfo in followers) {
+                                    for (__strong NSDictionary *userInfo in followers) {
+                                        userInfo = [userInfo dictionaryByReplacingNullsWithStrings];
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"Id"];
                                         
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followersUserIdentifier];
@@ -145,7 +147,8 @@
                                     NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
                                     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
                                     
-                                    for (NSDictionary *userInfo in followings) {
+                                    for (__strong NSDictionary *userInfo in followings) {
+                                        userInfo = [userInfo dictionaryByReplacingNullsWithStrings];
                                         NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
                                         
                                         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", followingsUserIdentifier];
@@ -195,7 +198,8 @@
                                     int totalUserCount = [[JSON valueForKey:@"TotalCount"] intValue];
                                     
                                     NSArray *followers = [JSON objectForKey:@"Results"];
-                                    for (NSDictionary *userInfo in followers) {
+                                    for (__strong NSDictionary *userInfo in followers) {
+                                        userInfo = [userInfo dictionaryByReplacingNullsWithStrings];
                                         NSNumber *followersUserIdentifier = [userInfo valueForKey:@"UserId"];
                                         
                                         User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followersUserIdentifier inContext:context];
@@ -311,8 +315,8 @@
                                      NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
                                      Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
                                      
-                                     for (NSDictionary *userInfo in results) {
-                                         
+                                     for (__strong NSDictionary *userInfo in results) {
+                                         userInfo = [userInfo dictionaryByReplacingNullsWithStrings];
                                          NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
                                          User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier inContext:context];
                                          
@@ -359,8 +363,8 @@
                                      Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:context];
                                      
                                      NSArray *results = [JSON objectForKey:@"Results"];
-                                     for (NSDictionary *userInfo in results) {
-                                         
+                                     for (__strong NSDictionary *userInfo in results) {
+                                         userInfo = [userInfo dictionaryByReplacingNullsWithStrings];
                                          NSNumber *followingsUserIdentifier = [userInfo valueForKey:@"UserId"];
                                          User *user = [User MR_findFirstByAttribute:@"identifier" withValue:followingsUserIdentifier inContext:context];
                                          

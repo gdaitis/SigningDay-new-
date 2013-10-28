@@ -61,7 +61,7 @@ typedef enum {
             failureBlock:(void (^)(void))failureBlock;
 + (void)getProfileInfoForUserIdentifier:(NSNumber *)identifier
                         completionBlock:(void (^)(void))completionBlock
-                           failureBlock:(void (^)(void))failureBlock;
+                           failureBlock:(void (^)(void))failureBlock __attribute__((deprecated)); // DEPRECATED
 + (void)postNewProfileFieldsForUserWithIdentifier:(NSNumber *)identifier
                                              name:(NSString *)name
                                               bio:(NSString *)bio

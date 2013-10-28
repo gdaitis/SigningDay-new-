@@ -16,6 +16,7 @@
 #import "SDProfileService.h"
 #import "User.h"
 #import "SDActivityFeedService.h"
+#import "NSDictionary+NullConverver.h"
 
 NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUserDidLogoutNotificationName";
 
@@ -91,7 +92,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                          user = [User MR_createInContext:context];
                                          user.identifier = @([JSON[@"User"][@"Id"] intValue]);
                                      }
-                                     NSDictionary *userDictionary = [JSON objectForKey:@"User"];
+                                     NSDictionary *userDictionary = [[JSON objectForKey:@"User"] dictionaryByReplacingNullsWithStrings];
                                      user.username = anUsername;
                                      user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
                                      user.name = [userDictionary valueForKey:@"DisplayName"];

@@ -134,6 +134,7 @@
                                [self createUsersFromResponseObject:responseObject
                                                        withContext:context
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
+                                             userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
                                              
@@ -245,6 +246,7 @@
                                [self createUsersFromResponseObject:responseObject
                                                        withContext:context
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
+                                             userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
                                              if (!user.theTeam)

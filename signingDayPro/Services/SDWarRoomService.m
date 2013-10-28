@@ -30,7 +30,7 @@
                                     NSArray *groupsArray = [JSON valueForKey:@"Groups"];
                                     for (NSDictionary *groupDictionary in groupsArray) {
                                         __unused Group *group = [self createGroupFromDictionary:groupDictionary
-                                                                             inContext:context];
+                                                                                      inContext:context];
                                     }
                                     
                                     [context MR_saveOnlySelfAndWait];
@@ -57,7 +57,8 @@
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
                                     NSArray *forumsArray = [JSON valueForKey:@"Forums"];
-                                    for (NSDictionary *forumDictionary in forumsArray) {
+                                    for (__strong NSDictionary *forumDictionary in forumsArray) {
+                                        forumDictionary = [forumDictionary dictionaryByReplacingNullsWithStrings];
                                         NSNumber *identifier = [NSNumber numberWithInteger:[[forumDictionary valueForKey:@"Id"] integerValue]];
                                         Forum *forum = [Forum MR_findFirstByAttribute:@"identifier"
                                                                             withValue:identifier
@@ -107,7 +108,8 @@
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
                                     NSArray *threadsArray = [JSON valueForKey:@"Threads"];
-                                    for (NSDictionary *threadDictionary in threadsArray) {
+                                    for (__strong NSDictionary *threadDictionary in threadsArray) {
+                                        threadDictionary = [threadDictionary dictionaryByReplacingNullsWithStrings];
                                         NSNumber *identifier = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"Id"] integerValue]];
                                         Thread *thread = [Thread MR_findFirstByAttribute:@"identifier"
                                                                                withValue:identifier
@@ -155,7 +157,7 @@
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
-                                    NSDictionary *threadDictionary = [JSON valueForKey:@"Thread"];
+                                    NSDictionary *threadDictionary = [[JSON valueForKey:@"Thread"] dictionaryByReplacingNullsWithStrings];
                                     NSNumber *threadIdentifier = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ThreadId"] integerValue]];
                                     Thread *thread = [Thread MR_findFirstByAttribute:@"identifier"
                                                                            withValue:threadIdentifier
@@ -176,7 +178,8 @@
                                     thread.authorUser = author;
                                     
                                     NSArray *repliesArray = [JSON valueForKey:@"Replies"];
-                                    for (NSDictionary *replyDictionary in repliesArray) {
+                                    for (__strong NSDictionary *replyDictionary in repliesArray) {
+                                        replyDictionary = [replyDictionary dictionaryByReplacingNullsWithStrings];
                                         NSNumber *replyIdentifier = [NSNumber numberWithInteger:[[replyDictionary valueForKey:@"Id"] integerValue]];
                                         ForumReply *reply = [ForumReply MR_findFirstByAttribute:@"identifier"
                                                                                       withValue:replyIdentifier
@@ -263,6 +266,7 @@ withCompletionBlock:(void (^)(void))completionBlock
 + (Group *)createGroupFromDictionary:(NSDictionary *)groupDictionary
                            inContext:(NSManagedObjectContext *)context
 {
+    groupDictionary = [groupDictionary dictionaryByReplacingNullsWithStrings];
     NSNumber *identifier = [NSNumber numberWithInteger:[[groupDictionary valueForKey:@"Id"] integerValue]];
     Group *group = [Group MR_findFirstByAttribute:@"identifier"
                                         withValue:identifier
