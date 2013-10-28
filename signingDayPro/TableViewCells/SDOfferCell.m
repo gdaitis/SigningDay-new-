@@ -8,12 +8,15 @@
 
 #import "SDOfferCell.h"
 #import "User.h"
+#import "Offer.h"
+#import "Team.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface SDOfferCell ()
 
 @property (nonatomic, weak) IBOutlet UILabel *collegeNameLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *checkMarkImageView;
 
 @end
 
@@ -35,17 +38,19 @@
     // Configure the view for the selected state
 }
 
-- (void)setupCellWithCollegeUser:(User *)user
+- (void)setupCellWithOffer:(Offer *)offer
 {
     //    [group valueForKey:@"groupTitle"];
     
     //test
-    self.collegeNameLabel.text = user.name;
+    self.collegeNameLabel.text = offer.team.theUser.name;
+    
+    self.checkMarkImageView.hidden = ([offer.playerCommited boolValue]) ? NO : YES;
     
     [self.avatarImageView cancelImageRequestOperation];
     self.avatarImageView.image = nil;
     
-    [self.avatarImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
+    [self.avatarImageView setImageWithURL:[NSURL URLWithString:offer.team.theUser.avatarUrl]];
 }
 
 @end

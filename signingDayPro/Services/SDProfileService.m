@@ -1041,7 +1041,8 @@
                                        teamUser.theTeam = [Team MR_createInContext:context];
 
                                    teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
-                                   teamUser.avatarUrl = [NSString stringWithFormat:@"%@%@",kSDBaseSigningDayURLString,[userDictionary valueForKey:@"TeamAvatarUrl"]];
+                                   teamUser.avatarUrl = [userDictionary valueForKey:@"TeamAvatarUrl"];
+                                   teamUser.name = [userDictionary valueForKey:@"TeamInstitution"];
                                    
                                    Offer *offer = [Offer MR_createInContext:context];
                                    offer.playerCommited = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsCommited"] boolValue]];

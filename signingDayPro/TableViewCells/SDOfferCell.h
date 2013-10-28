@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class User;
+@class Offer;
 
 @interface SDOfferCell : UITableViewCell
 
-- (void)setupCellWithCollegeUser:(User *)user;
+- (void)setupCellWithOffer:(Offer *)offer;
 
 @end

@@ -14,12 +14,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yn-cc-iPD">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yn-cc-iPD">
                         <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="checkMark.png" translatesAutoresizingMaskIntoConstraints="NO" id="hWQ-x9-ptJ">
+                        <rect key="frame" x="292" y="17" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YhD-FA-Kh8">
-                        <rect key="frame" x="62" y="14" width="238" height="21"/>
+                        <rect key="frame" x="62" y="14" width="220" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -30,8 +34,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="avatarImageView" destination="2yn-cc-iPD" id="kn7-qa-MTN"/>
+                <outlet property="checkMarkImageView" destination="hWQ-x9-ptJ" id="4KV-XI-kuC"/>
                 <outlet property="collegeNameLabel" destination="YhD-FA-Kh8" id="beH-yU-fHe"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="checkMark.png" width="32" height="32"/>
+    </resources>
 </document>

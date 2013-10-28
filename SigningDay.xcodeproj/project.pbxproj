@@ -339,6 +339,7 @@
 		80D1F39C17967FF20051E8E1 /* MessageIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D1F39817967FF20051E8E1 /* MessageIcon@2x.png */; };
 		80D1F39F179680C50051E8E1 /* SDBuzzButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */; };
 		80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */; };
+		80D336BC181E9D180032230D /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D336BB181E9D180032230D /* checkMark.png */; };
 		80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */; };
 		80DF59C217A7E81E004F5246 /* SDActivityFeedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */; };
 		80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E28A1517D76FD600665313 /* SDKeyAttributesViewController.m */; };
@@ -886,6 +887,7 @@
 		80D1F39D179680C50051E8E1 /* SDBuzzButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzButtonView.h; sourceTree = "<group>"; };
 		80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzButtonView.m; sourceTree = "<group>"; };
 		80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBuzzButtonView.xib; sourceTree = "<group>"; };
+		80D336BB181E9D180032230D /* checkMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMark.png; sourceTree = "<group>"; };
 		80D59A8D17CB61CC00CB494D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedTableView.h; sourceTree = "<group>"; };
@@ -1736,6 +1738,7 @@
 		8063D2CF1799486E00C01D92 /* DeleteReplace */ = {
 			isa = PBXGroup;
 			children = (
+				80D336BB181E9D180032230D /* checkMark.png */,
 				8063D2CD1799486500C01D92 /* shadow.png */,
 				8096974417AA90CF00970E73 /* playImage@2x.png */,
 				804299C6180ED83900D17D2B /* Playbg@2x.png */,
@@ -2268,6 +2271,7 @@
 				801088BC1795794A002EF1EB /* SDAddTagsCell.xib in Resources */,
 				8094EFBF1817E55B00A163FD /* SDGroupCell.xib in Resources */,
 				801088DA179579BF002EF1EB /* activity_feed_header_bg@2x.png in Resources */,
+				80D336BC181E9D180032230D /* checkMark.png in Resources */,
 				801088DD179579BF002EF1EB /* camera_back_button@2x.png in Resources */,
 				801088DE179579BF002EF1EB /* camera_bottom_bg_simplified@2x.png in Resources */,
 				801088DF179579BF002EF1EB /* camera_bottom_bg@2x.png in Resources */,

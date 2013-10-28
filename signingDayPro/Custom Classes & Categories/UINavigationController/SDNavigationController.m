@@ -738,6 +738,7 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     self.navigationInProgress = NO;
+//    NSLog(@"navigationController did show %@",[viewController class]);
 }
 
 @end
