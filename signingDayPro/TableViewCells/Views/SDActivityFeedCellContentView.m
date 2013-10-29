@@ -96,10 +96,6 @@
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
     
-    if ([contentText rangeOfString:@"Evaluation"].location != NSNotFound) {
-        NSLog(@"found!");
-    }
-    
     CGRect frame = self.contentTextView.frame;
     frame.size.height = size.height +10;
     self.contentTextView.frame = frame;

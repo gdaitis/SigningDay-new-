@@ -138,16 +138,21 @@
     [cell.imageView cancelImageRequestOperation];
     cell.imageView.image = nil;
     
+    NSLog(@"media thumbnail url = %@",mediaItem.thumbnailUrl);
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl]];
     [cell.imageView setImageWithURLRequest:request
                           placeholderImage:nil
                              cropedForSize:CGSizeMake(106, 106)
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                        SDCollectionCell *aCell = (SDCollectionCell *)[cv cellForItemAtIndexPath:indexPath];
-                                       aCell.imageView.image = (image) ? image : [UIImage imageNamed:@"Playbg.png"];
+                                       if (image)
+                                           aCell.imageView.image = image;
+                                       else
+                                            aCell.imageView.image = (self.galleryType == SDGalleryTypePhotos) ? nil : [UIImage imageNamed:@"Playbg.png"];
                                    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                        SDCollectionCell *aCell = (SDCollectionCell *)[cv cellForItemAtIndexPath:indexPath];
-                                       aCell.imageView.image = [UIImage imageNamed:@"Playbg.png"];
+                                       aCell.imageView.image = (self.galleryType == SDGalleryTypePhotos) ? nil : [UIImage imageNamed:@"Playbg.png"];
                                    }];
     
     return cell;

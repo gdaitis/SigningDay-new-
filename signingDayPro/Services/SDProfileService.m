@@ -1042,7 +1042,8 @@
                                        teamUser.theTeam = [Team MR_createInContext:context];
 
                                    teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
-                                   teamUser.avatarUrl = [userDictionary valueForKey:@"TeamAvatarUrl"];
+                                   teamUser.avatarUrl = [NSString stringWithFormat:@"%@%@", kSDBaseSigningDayURLString,[[userDictionary valueForKey:@"TeamAvatarUrl"] substringFromIndex:2]];
+                                   
                                    teamUser.name = [userDictionary valueForKey:@"TeamInstitution"];
                                    
                                    Offer *offer = [Offer MR_createInContext:context];

@@ -196,8 +196,6 @@
     activityStory.createdDate = [SDUtils dateFromString:createdDateString];
     activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
     
-#warning change comparison to nsnull
-    
     activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
     activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
     activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];

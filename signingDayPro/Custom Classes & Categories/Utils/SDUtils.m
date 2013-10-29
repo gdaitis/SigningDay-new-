@@ -81,10 +81,6 @@
         }
     }
     
-    if ([contentText rangeOfString:@"Evaluation"].location != NSNotFound) {
-        NSLog(@"found!");
-    }
-    
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
     
@@ -334,10 +330,10 @@
         
         NSMutableString *result = [[NSMutableString alloc] initWithString:@"-"];
         if (userTypeId == SDUserTypePlayer) {
-            if (user.thePlayer.position) {
+            if (user.thePlayer.position.length > 0) {
                 [result appendFormat:@" %@", user.thePlayer.position];
             }
-            if (user.thePlayer.userClass) {
+            if (user.thePlayer.userClass.length > 0) {
                 if (![result isEqualToString:@"-"]) {
                     [result appendFormat:@","];
                 }
@@ -345,10 +341,10 @@
             }
         }
         else if (userTypeId == SDUserTypeTeam) {
-            if (user.theTeam.location) {
+            if (user.theTeam.location.length > 0) {
                 [result appendFormat:@" %@", user.theTeam.location];
             }
-            if (user.theTeam.stateCode) {
+            if (user.theTeam.stateCode.length > 0) {
                 if (![result isEqualToString:@"-"]) {
                     [result appendFormat:@","];
                 }
@@ -356,7 +352,7 @@
             }
         }
         else if (userTypeId == SDUserTypeCoach) {
-            if (user.theCoach) {
+            if (user.theCoach.institution.length > 0) {
                 [result appendFormat:@" %@", user.theCoach.institution];
             }
         }
@@ -364,10 +360,10 @@
             
         }
         else  if (userTypeId == SDUserTypeHighSchool) {
-            if (user.theHighSchool.address) {
+            if (user.theHighSchool.address.length > 0) {
                 [result appendFormat:@" %@", user.theHighSchool.address];
             }
-            if (user.theHighSchool.stateCode) {
+            if (user.theHighSchool.stateCode.length > 0) {
                 if (![result isEqualToString:@"-"]) {
                     [result appendFormat:@","];
                 }

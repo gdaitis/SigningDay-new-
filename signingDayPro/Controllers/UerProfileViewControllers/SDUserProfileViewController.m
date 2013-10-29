@@ -195,8 +195,10 @@
                 coachView.delegate = self;
                 coachView.buzzButtonView.delegate = self;
                 coachView.slidingButtonView.delegate = self;
-                [coachView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileCommitsButton.png"] forState:UIControlStateNormal];
-                coachView.slidingButtonView.keyAttributesLabel.text = @"Commits";
+//                [coachView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileCommitsButton.png"] forState:UIControlStateNormal];
+//                coachView.slidingButtonView.keyAttributesLabel.text = @"Commits";
+                [coachView.slidingButtonView.changingButton removeFromSuperview];
+                [coachView.slidingButtonView.keyAttributesLabel removeFromSuperview];
                 [coachView.slidingButtonView.staffButton removeFromSuperview];
                 [coachView.slidingButtonView.staffLabel removeFromSuperview];
                 view = coachView;

@@ -94,7 +94,6 @@
 
 - (void)setupNameLabelForActivityStory:(ActivityStory *)activityStory
 {
-#warning CHECK THIS
     //this function setups attributed user name. If user has parameters adds them, also if activityStory is a wallpost adds arrows and appends other user name
     
     if (!activityStory)
@@ -106,7 +105,6 @@
     NSMutableAttributedString *authorName = nil;
     if (activityStory.postedToUser) {
         //this is a wall post
-        
         
         //get first and second usernames with attributes
         User *user = activityStory.author;
