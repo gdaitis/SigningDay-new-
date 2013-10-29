@@ -120,13 +120,13 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 
 - (void)playVideoWithMediaFileUrlString:(NSString *)urlString
 {
-    if ([urlString rangeOfString:@"youtu"].location == NSNotFound) {
-        NSURL *url = [NSURL URLWithString:urlString];
-        [self playVideoWithUrl:url];
+    if ([urlString rangeOfString:@"signingday"].location == NSNotFound) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }
     else {
-        //youtube link
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        //signingday link
+        NSURL *url = [NSURL URLWithString:urlString];
+        [self playVideoWithUrl:url];
     }
 }
 

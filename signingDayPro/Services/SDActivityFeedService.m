@@ -79,7 +79,6 @@
                                     
                                     if (dataCount > 0) {
                                         
-                                        
                                         for (int i = 0; i < [activityStories count]; i++) {
                                             endReached = NO;
                                             NSDictionary *activityStoryDictionary = [[activityStories objectAtIndex:i] dictionaryByReplacingNullsWithStrings];
@@ -105,7 +104,7 @@
                                     if (lastDate) {
                                         [resultsDictionary setObject:lastDate forKey:@"LastDate"];
                                     }
-                                                                            
+                                    NSLog(@"result count = %d",resultCount);
                                     
                                     [context MR_saveOnlySelfAndWait];
                                     
@@ -126,8 +125,8 @@
 + (BOOL)validateActivityStory:(NSDictionary *)activityStoryDictionary fromContext:(NSManagedObjectContext *)context
 {
     BOOL valid = YES;
-    if ([activityStoryDictionary valueForKey:@"MediaType"] == [NSNull null] && [activityStoryDictionary valueForKey:@"MediaUrl"] == [NSNull null]) {
-        if ([activityStoryDictionary valueForKey:@"MessageText"] == [NSNull null] && [activityStoryDictionary valueForKey:@"DescriptionText"] == [NSNull null]) {
+    if ([[activityStoryDictionary valueForKey:@"MediaType"] length] == 0 && [[activityStoryDictionary valueForKey:@"MediaUrl"] length] == 0 ) {
+        if ([[activityStoryDictionary valueForKey:@"MessageText"] length] == 0  && [[activityStoryDictionary valueForKey:@"DescriptionText"] length] == 0 ) {
             valid = NO;
             //has no text to display and is not a picture or video
         }
@@ -199,33 +198,23 @@
     
 #warning change comparison to nsnull
     
-    if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
-        activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
-    }
-    if ([activityStoryDictionary valueForKey:@"MessageText"] != [NSNull null]) {
-        activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
-    }
-    if ([activityStoryDictionary valueForKey:@"MediaType"] != [NSNull null]) {
-        activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
-    }
-    if ([activityStoryDictionary valueForKey:@"ThumbnailUrl"] != [NSNull null]) {
-        activityStory.thumbnailUrl = [activityStoryDictionary valueForKey:@"ThumbnailUrl"];
-    }
-    if ([activityStoryDictionary valueForKey:@"MediaUrl"] != [NSNull null]) {
-        activityStory.mediaUrl = [activityStoryDictionary valueForKey:@"MediaUrl"];
-    }
+    activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
+    activityStory.activityTitle = [activityStoryDictionary valueForKey:@"MessageText"];
+    activityStory.mediaType = [activityStoryDictionary valueForKey:@"MediaType"];
+    activityStory.thumbnailUrl = [activityStoryDictionary valueForKey:@"ThumbnailUrl"];
+    activityStory.mediaUrl = [activityStoryDictionary valueForKey:@"MediaUrl"];
     
     //if has a webpreview then this story contains a link, parse and save this object
-    if ([activityStoryDictionary valueForKey:@"WebPreview"] != [NSNull null]) {
+    if ([[activityStoryDictionary valueForKey:@"WebPreview"] isKindOfClass:[NSDictionary class]])
         [self createUpdateWebPreviewObjectFromDictionary:[activityStoryDictionary valueForKey:@"WebPreview"] withStory:activityStory inContext:context];
-    }
     
     //parse users(actors/authors) in this activity story
     NSArray *userArray = [activityStoryDictionary valueForKey:@"Users"];
     for (NSDictionary *userDictionary in userArray) {
         
         //cycle through array and creates updates users
-        [self createUpdateUserFromDictionary:userDictionary withActivityStory:activityStory inContext:context];
+        NSDictionary *formatedUserDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
+        [self createUpdateUserFromDictionary:formatedUserDictionary withActivityStory:activityStory inContext:context];
     }
 }
 
@@ -235,7 +224,7 @@
 {
     NSString *webPreviewLink = nil;
     
-    if ([dictionary objectForKey:@"Link"] != [NSNull null]) {
+    if ([dictionary objectForKey:@"Link"]) {
         webPreviewLink = [dictionary objectForKey:@"Link"];
         
         WebPreview *webPreview = [WebPreview MR_findFirstByAttribute:@"link" withValue:webPreviewLink inContext:context];
@@ -244,18 +233,12 @@
         }
         
         webPreview.link = webPreviewLink;
-        if ([dictionary objectForKey:@"Title"] != [NSNull null]) {
-            webPreview.webPreviewTitle = [dictionary objectForKey:@"Title"];
-        }
-        if ([dictionary objectForKey:@"SiteName"] != [NSNull null]) {
-            webPreview.siteName = [dictionary objectForKey:@"SiteName"];
-        }
-//        if ([dictionary objectForKey:@"Excerpt"] != [NSNull null]) {
-//            webPreview.excerpt = [dictionary objectForKey:@"Excerpt"];
-//        }
-        if ([dictionary objectForKey:@"ImageUrl"] != [NSNull null]) {
-            webPreview.imageUrl = [dictionary objectForKey:@"ImageUrl"];
-        }
+        webPreview.webPreviewTitle = [dictionary objectForKey:@"Title"];
+        webPreview.siteName = [dictionary objectForKey:@"SiteName"];
+        //        if ([dictionary objectForKey:@"Excerpt"] != [NSNull null]) {
+        //            webPreview.excerpt = [dictionary objectForKey:@"Excerpt"];
+        //        }
+        webPreview.imageUrl = [dictionary objectForKey:@"ImageUrl"];
         story.webPreview = webPreview;
     }
 }
@@ -293,60 +276,48 @@
         user.userTypeId = [NSNumber numberWithInt:userTypeId];
     }
     
-    if (userTypeId == SDUserTypePlayer) {
-        //user type: Player
-        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
-        
-        if (attributeDictionary) {
-            if (!user.thePlayer)
-                user.thePlayer = [Player MR_createInContext:context];
-            if ([attributeDictionary valueForKey:@"Position"] != [NSNull null]) {
+    if ([[dictionary objectForKey:@"Attributes"] isKindOfClass:[NSDictionary class]]) {
+    
+        NSDictionary *attributeDictionary = [[dictionary objectForKey:@"Attributes"] dictionaryByReplacingNullsWithStrings];
+        if (userTypeId == SDUserTypePlayer) {
+            //user type: Player
+            
+            if (attributeDictionary) {
+                if (!user.thePlayer)
+                    user.thePlayer = [Player MR_createInContext:context];
                 user.thePlayer.position = [attributeDictionary valueForKey:@"Position"];
-            }
-            if ([attributeDictionary valueForKey:@"Class"] != [NSNull null]) {
-                user.thePlayer.userClass = [[attributeDictionary valueForKey:@"Class"] stringValue];
+                user.thePlayer.userClass = [[attributeDictionary valueForKey:@"Class"] isKindOfClass:[NSString class]] ? [attributeDictionary valueForKey:@"Class"] : [[attributeDictionary valueForKey:@"Class"] stringValue];
             }
         }
-    }
-    else if (userTypeId == SDUserTypeTeam) {
-        //user type: TEAM
-        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
-        
-        if (attributeDictionary) {
-            if (!user.theTeam)
-                user.theTeam = [Team MR_createInContext:context];
-            if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
+        else if (userTypeId == SDUserTypeTeam) {
+            //user type: TEAM
+            
+            if (attributeDictionary) {
+                if (!user.theTeam)
+                    user.theTeam = [Team MR_createInContext:context];
                 user.theTeam.location = [attributeDictionary valueForKey:@"CityName"];
-            }
-            if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
                 user.theTeam.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }
-    }
-    else if (userTypeId == SDUserTypeCoach) {
-        //user type: Coach
-        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
-        
-        if (attributeDictionary) {
-            if (!user.theCoach)
-                user.theCoach = [Coach MR_createInContext:context];
-            if ([attributeDictionary valueForKey:@"Institution"] != [NSNull null]) {
+        else if (userTypeId == SDUserTypeCoach) {
+            //user type: Coach
+            
+            if (attributeDictionary) {
+                if (!user.theCoach)
+                    user.theCoach = [Coach MR_createInContext:context];
+                
                 user.theCoach.institution = [attributeDictionary valueForKey:@"Institution"];
             }
         }
-    }
-    else if (userTypeId == SDUserTypeHighSchool) {
-        
-        //user type: HighSchool
-        NSDictionary *attributeDictionary = [dictionary objectForKey:@"Attributes"];
-        
-        if (attributeDictionary) {
-            if (!user.theHighSchool)
-                user.theHighSchool = [HighSchool MR_createInContext:context];
-            if ([attributeDictionary valueForKey:@"CityName"] != [NSNull null]) {
+        else if (userTypeId == SDUserTypeHighSchool) {
+            
+            //user type: HighSchool
+            
+            if (attributeDictionary) {
+                if (!user.theHighSchool)
+                    user.theHighSchool = [HighSchool MR_createInContext:context];
+                
                 user.theHighSchool.address = [attributeDictionary valueForKey:@"CityName"];
-            }
-            if ([attributeDictionary valueForKey:@"StateCode"] != [NSNull null]) {
                 user.theHighSchool.stateCode = [attributeDictionary valueForKey:@"StateCode"];
             }
         }

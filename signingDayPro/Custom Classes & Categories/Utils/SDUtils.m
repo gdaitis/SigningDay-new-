@@ -81,10 +81,14 @@
         }
     }
     
+    if ([contentText rangeOfString:@"Evaluation"].location != NSNotFound) {
+        NSLog(@"found!");
+    }
+    
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
     
-    if (activityStory.mediaType) {
+    if ([activityStory.mediaType length] > 0) {
         result = size.height + 10/*offset*/ + 150;/*imageView size*/
     }
     else {

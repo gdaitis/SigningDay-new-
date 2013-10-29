@@ -265,7 +265,7 @@
             }
             else {
                 //videos
-                [self playVideoWithActivityStory:activityStory];
+                [self playVideoWithMediaFileUrlString:activityStory.mediaUrl];
             }
         }
     }
@@ -277,15 +277,15 @@
     [imageEnlargemenetView presentImageViewInView:self.navigationController.view];
 }
 
-- (void)playVideoWithActivityStory:(ActivityStory *)activityStory
+- (void)playVideoWithMediaFileUrlString:(NSString *)urlString
 {
-    if ([activityStory.mediaUrl rangeOfString:@"youtu"].location == NSNotFound) {
-        NSURL *url = [NSURL URLWithString:activityStory.mediaUrl];
-        [self playVideoWithUrl:url];
+    if ([urlString rangeOfString:@"signingday"].location == NSNotFound) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }
     else {
-        //youtube link
-        [self showYoutubePlayerWithUrlString:activityStory.mediaUrl];
+        //signingday link
+        NSURL *url = [NSURL URLWithString:urlString];
+        [self playVideoWithUrl:url];
     }
 }
 

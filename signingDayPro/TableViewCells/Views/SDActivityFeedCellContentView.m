@@ -96,6 +96,10 @@
     CGSize size = [contentText sizeWithFont:[UIFont systemFontOfSize:15.0f]
                           constrainedToSize:CGSizeMake(288, CGFLOAT_MAX)];
     
+    if ([contentText rangeOfString:@"Evaluation"].location != NSNotFound) {
+        NSLog(@"found!");
+    }
+    
     CGRect frame = self.contentTextView.frame;
     frame.size.height = size.height +10;
     self.contentTextView.frame = frame;
@@ -103,8 +107,9 @@
     
     [_imageView cancelImageRequestOperation];
     _imageView.image = nil;
+    _imageView.backgroundColor = [UIColor clearColor];
     
-    if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0) {
+    if ([activityStory.thumbnailUrl length] > 0 || [activityStory.webPreview.imageUrl length] > 0 ) {
         
         //calculate position for photo
         CGRect frame = _imageView.frame;
@@ -125,20 +130,36 @@
                 fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.thumbnailUrl];
                 self.playImageView.hidden = YES;
             }
-            [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
+            
+            __weak typeof(self) weakSelf = self;
+            [_imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fullUrl]] placeholderImage:Nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                weakSelf.imageView.backgroundColor = [UIColor blackColor];
+                weakSelf.imageView.image = image;
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                if (!weakSelf.playImageView.hidden)
+                    weakSelf.imageView.backgroundColor = [UIColor blackColor];
+            }];
         }
         else {
             fullUrl = [NSString stringWithFormat:@"%@%@",kSDAPIBaseURLString,activityStory.webPreview.imageUrl];
             self.playImageView.hidden = YES;
-            [_imageView setImageWithURL:[NSURL URLWithString:fullUrl]];
+
+            __weak typeof(self) weakSelf = self;
+            [_imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fullUrl]] placeholderImage:Nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                weakSelf.imageView.backgroundColor = [UIColor blackColor];
+                weakSelf.imageView.image = image;
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                
+            }];
         }
     }
-    else if ([activityStory.mediaType isEqualToString:@"videos"]) {
+    else if ([activityStory.mediaType isEqualToString:@"videos"] || [activityStory.mediaType isEqualToString:@"player-evaluation"]) {
         //no image for video
         
         CGRect frame = _imageView.frame;
         frame.origin.y = self.contentTextView.frame.size.height + self.contentTextView.frame.origin.y +10/*offset betwen label and photo*/;
         _imageView.frame = frame;
+        _imageView.backgroundColor = [UIColor blackColor];
         
         _imageView.hidden = NO;
         self.playImageView.hidden = NO;
@@ -148,6 +169,11 @@
         _imageView.hidden = YES;
         _imageView.image = nil;
     }
+}
+
+- (void)setImageBackgroundToBlack
+{
+    self.imageView.backgroundColor = [UIColor blackColor];
 }
 
 @end

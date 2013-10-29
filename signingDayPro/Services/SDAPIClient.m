@@ -16,7 +16,7 @@
 
 @end
 
-#warning using DISTRIBUTION server
+#warning using Development server
 
 //NSString * const kSDBaseSigningDayURLString = @"https://www.signingday.com/";
 //NSString * const kSDAPIBaseURLString = @"https://www.signingday.com/api.ashx/v2/";

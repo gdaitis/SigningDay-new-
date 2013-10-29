@@ -94,6 +94,7 @@
 
 - (void)setupNameLabelForActivityStory:(ActivityStory *)activityStory
 {
+#warning CHECK THIS
     //this function setups attributed user name. If user has parameters adds them, also if activityStory is a wallpost adds arrows and appends other user name
     
     if (!activityStory)
