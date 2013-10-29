@@ -108,6 +108,7 @@
 
 - (void)loadData
 {
+    [self showProgressHudInView:self.tableView withText:@"Loading"];
     [SDProfileService getOffersForUser:self.currentUser completionBlock:^{
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"playerCommited" ascending:NO];
         NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"team.theUser.name"
@@ -116,9 +117,32 @@
         self.dataArray = [[self.currentUser.thePlayer.offers allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor, nameDescriptor, nil]];
         
         [self.tableView reloadData];
-    } failureBlock:^{
+        [self hideProgressHudInView:self.tableView];
         
+        if ([self.dataArray count] == 0)
+            [self showNoOffersLabel];
+        
+    } failureBlock:^{
+        [self hideProgressHudInView:self.tableView];
     }];
 }
+
+#pragma mark - Additional functions
+
+- (void)showNoOffersLabel
+{
+    int labelHeight = 200;
+    UILabel *offersLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (self.navigationController.view.frame.size.height/2) - (labelHeight/2), self.view.frame.size.width, labelHeight)];
+    offersLabel.textAlignment = NSTextAlignmentCenter;
+    offersLabel.backgroundColor = [UIColor clearColor];
+    offersLabel.font = [UIFont systemFontOfSize:24];
+    offersLabel.center = CGPointMake(160, self.navigationController.view.frame.size.height/2);
+    offersLabel.numberOfLines = 0;
+    offersLabel.textColor = [UIColor blackColor];
+    offersLabel.text = [NSString stringWithFormat:@"%@ does not have any offers yet.",self.currentUser.name];
+    
+    [self.view addSubview:offersLabel];
+}
+
 
 @end
