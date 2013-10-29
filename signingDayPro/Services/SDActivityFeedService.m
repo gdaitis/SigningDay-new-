@@ -197,6 +197,7 @@
     activityStory.createdDate = [SDUtils dateFromString:createdDateString];
     activityStory.lastUpdateDate = [SDUtils dateFromString:lastUpdateDateString];
     
+#warning change comparison to nsnull
     
     if ([activityStoryDictionary valueForKey:@"DescriptionText"] != [NSNull null]) {
         activityStory.activityDescription = [activityStoryDictionary valueForKey:@"DescriptionText"];
