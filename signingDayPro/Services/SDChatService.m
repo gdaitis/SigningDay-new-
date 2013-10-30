@@ -64,8 +64,8 @@
         
         Master *master = [Master MR_findFirstByAttribute:@"username" withValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"] inContext:context];
         NSNumber *masterUserIndentifier = master.identifier;
-        NSDictionary *participantsDictionary = [[conversationDictionary objectForKey:@"Participants"] dictionaryByReplacingNullsWithStrings];
-        for (__strong NSDictionary *participantDictionary in participantsDictionary) {
+        NSArray *participantsArray = [conversationDictionary objectForKey:@"Participants"];
+        for (__strong NSDictionary *participantDictionary in participantsArray) {
             participantDictionary = [participantDictionary dictionaryByReplacingNullsWithStrings];
             NSNumber *identifier = [NSNumber numberWithInt:[[participantDictionary valueForKey:@"Id"] intValue]];
             if (![identifier isEqualToNumber:masterUserIndentifier]) {
