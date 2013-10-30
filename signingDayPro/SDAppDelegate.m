@@ -31,19 +31,9 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
-    
-    // remove old store from coordinator
-    NSError *error = nil;
 
-    NSPersistentStore *persistentStore = [NSPersistentStore MR_defaultPersistentStore];
-    NSPersistentStoreCoordinator *storeCordinator = [NSPersistentStoreCoordinator MR_defaultStoreCoordinator];
-    [storeCordinator removePersistentStore:persistentStore error:&error];
-    if (error) {
-        NSLog(@"error removing persistent store %@ %@", error, [error userInfo]);
-    }
-    
-    
-    [MagicalRecord setupCoreDataStack];
+    //checks for data migration, and setups suitable stack
+    [SDUtils setupCoreDataStack];
 
     //if master user got deleted, performing logout
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];

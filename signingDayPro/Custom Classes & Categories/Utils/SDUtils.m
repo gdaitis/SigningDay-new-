@@ -16,6 +16,7 @@
 #import "Coach.h"
 #import "HighSchool.h"
 #import "Member.h"
+#import "SDLoginService.h"
 
 @interface SDUtils()
 
@@ -27,11 +28,18 @@
 
 + (void)setupCoreDataStack
 {
-    if (![self databaseCompatible]) {
-        [MagicalRecord setupAutoMigratingCoreDataStack];
+    BOOL needsLogout = NO;
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"buildVersion"] intValue] < [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] intValue]) {
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtPath:[NSPersistentStore MR_urlForStoreName:@"SigningDay.sqlite"].path
+                                                   error:&error];
+        [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"buildVersion"];
+        needsLogout = YES;
     }
-    else {
-        [MagicalRecord setupCoreDataStack];
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"SigningDay.sqlite"];
+    
+    if (needsLogout) {
+        [SDLoginService logout];
     }
 }
 
