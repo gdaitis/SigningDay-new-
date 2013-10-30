@@ -42,15 +42,5 @@
 		<key>Image</key>
 		<string>HighSchoolsIcon.png</string>
 	</dict>
-	<dict>
-		<key>Storyboard</key>
-		<string>WarRoomStoryBoard</string>
-		<key>ViewControllerIdentifier</key>
-		<string>WarRoomNavigationController</string>
-		<key>Title</key>
-		<string>WAR ROOM</string>
-		<key>Image</key>
-		<string>WarRoomIcon.png</string>
-	</dict>
 </array>
 </plist>
