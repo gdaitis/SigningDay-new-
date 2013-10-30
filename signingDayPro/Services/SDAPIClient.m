@@ -16,17 +16,17 @@
 
 @end
 
-#warning using DISTRIBUTION server
+#warning using Development server
 
-NSString * const kSDBaseSigningDayURLString = @"https://www.signingday.com/";
-NSString * const kSDAPIBaseURLString = @"https://www.signingday.com/api.ashx/v2/";
-NSString * const kSDOldAPIBaseURLString = @"https://www.signingday.com/api/";
-NSString * const kSDAPICLientNoApiKeyNotification = @"SDAPICLientNoApiKeyNotificationName";
-
-//NSString * const kSDBaseSigningDayURLString = @"http://dev.signingday.com/";
-//NSString * const kSDAPIBaseURLString = @"http://dev.signingday.com/api.ashx/v2/";
-//NSString * const kSDOldAPIBaseURLString = @"http://dev.signingday.com/api/";
+//NSString * const kSDBaseSigningDayURLString = @"https://www.signingday.com/";
+//NSString * const kSDAPIBaseURLString = @"https://www.signingday.com/api.ashx/v2/";
+//NSString * const kSDOldAPIBaseURLString = @"https://www.signingday.com/api/";
 //NSString * const kSDAPICLientNoApiKeyNotification = @"SDAPICLientNoApiKeyNotificationName";
+
+NSString * const kSDBaseSigningDayURLString = @"http://dev.signingday.com/";
+NSString * const kSDAPIBaseURLString = @"http://dev.signingday.com/api.ashx/v2/";
+NSString * const kSDOldAPIBaseURLString = @"http://dev.signingday.com/api/";
+NSString * const kSDAPICLientNoApiKeyNotification = @"SDAPICLientNoApiKeyNotificationName";
 
 @implementation SDAPIClient
 
