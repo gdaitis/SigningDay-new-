@@ -166,7 +166,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Player *player = [self.dataArray objectAtIndex:indexPath.row];
+    
+    Player *player = nil;
+    if (self.controllerType == CONTROLLER_TYPE_COMMITS) {
+        Offer *offer = [self.dataArray objectAtIndex:indexPath.row];
+        player = offer.player;
+    }
+    else {
+        player = [self.dataArray objectAtIndex:indexPath.row];
+    }
+    
     User *user = player.theUser;
     UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                         bundle:nil];
