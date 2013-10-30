@@ -388,23 +388,28 @@
                                             user.thePlayer.starsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"StarsCount"] intValue]];
                                             
                                             NSDictionary *highSchoolDictionary = [derivedUserDictionary valueForKey:@"HighSchool"];
-                                            NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[highSchoolDictionary valueForKey:@"HighSchoolId"] intValue]];
-                                            User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
-                                                                                       withValue:highSchoolIdentifier
-                                                                                       inContext:userContext];
-                                            if (!highSchoolUser) {
-                                                highSchoolUser = [User MR_createInContext:userContext];
-                                                highSchoolUser.identifier = highSchoolIdentifier;
-                                            }
-                                            highSchoolUser.name = [highSchoolDictionary valueForKey:@"Name"];
-                                            highSchoolUser.avatarUrl = [highSchoolDictionary valueForKey:@"AvatarUrl"];
-                                            if (!highSchoolUser.theHighSchool)
-                                                highSchoolUser.theHighSchool = [HighSchool MR_createInContext:userContext];
-                                            highSchoolUser.theHighSchool.mascot = [highSchoolDictionary valueForKey:@"Mascot"];
-                                            highSchoolUser.theHighSchool.headCoachName = [highSchoolDictionary valueForKey:@"HeadCoach"];
-                                            highSchoolUser.theHighSchool.address = [highSchoolDictionary valueForKey:@"Address"];
                                             
-                                            user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+                                            if ([highSchoolDictionary isKindOfClass:[NSDictionary class]]) {
+                                                if ([highSchoolDictionary valueForKey:@"HighSchoolId"]) {
+                                                    NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[highSchoolDictionary valueForKey:@"HighSchoolId"] intValue]];
+                                                    User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
+                                                                                               withValue:highSchoolIdentifier
+                                                                                               inContext:userContext];
+                                                    if (!highSchoolUser) {
+                                                        highSchoolUser = [User MR_createInContext:userContext];
+                                                        highSchoolUser.identifier = highSchoolIdentifier;
+                                                    }
+                                                    highSchoolUser.name = [highSchoolDictionary valueForKey:@"Name"];
+                                                    highSchoolUser.avatarUrl = [highSchoolDictionary valueForKey:@"AvatarUrl"];
+                                                    if (!highSchoolUser.theHighSchool)
+                                                        highSchoolUser.theHighSchool = [HighSchool MR_createInContext:userContext];
+                                                    highSchoolUser.theHighSchool.mascot = [highSchoolDictionary valueForKey:@"Mascot"];
+                                                    highSchoolUser.theHighSchool.headCoachName = [highSchoolDictionary valueForKey:@"HeadCoach"];
+                                                    highSchoolUser.theHighSchool.address = [highSchoolDictionary valueForKey:@"Address"];
+                                                    
+                                                    user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+                                                }
+                                            }
                                         }
                                             break;
                                             
@@ -632,8 +637,9 @@
                                         mediaItem.contentType = [mediaItemDictionary valueForKey:@"ContentType"];
                                         mediaItem.createdDate = [SDUtils dateFromString:[mediaItemDictionary valueForKey:@"CreatedDate"]];
                                         mediaItem.fileName = [mediaItemDictionary valueForKey:@"FileItem"];
-                                        mediaItem.fileUrl = [[mediaItemDictionary valueForKey:@"ThumbnailUrl"] stringByReplacingOccurrencesOfString:@"400x400" withString:@"1000x1000"];
-                                        mediaItem.thumbnailUrl = [mediaItemDictionary valueForKey:@"ThumbnailUrl"];
+                                        mediaItem.fileUrl = [mediaItemDictionary valueForKey:@"FileUrl"];
+                                        mediaItem.thumbnailUrl = [[mediaItemDictionary valueForKey:@"ThumbnailUrl"] stringByReplacingOccurrencesOfString:@"400x400" withString:@"1000x1000"];
+                                        
                                         mediaItem.title = [mediaItemDictionary valueForKey:@"Title"];
                                         mediaItem.mediaGallery = mediaGallery;
                                     }
@@ -1040,7 +1046,7 @@
                                    }
                                    if (!teamUser.theTeam)
                                        teamUser.theTeam = [Team MR_createInContext:context];
-
+                                   
                                    teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
                                    teamUser.avatarUrl = [NSString stringWithFormat:@"%@%@", kSDBaseSigningDayURLString,[[userDictionary valueForKey:@"TeamAvatarUrl"] substringFromIndex:2]];
                                    
