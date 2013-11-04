@@ -31,8 +31,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     
-    [self.refreshControl removeFromSuperview];
-    
     self.tableView.clearsContextBeforeDrawing = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -229,6 +227,11 @@
     [self setChatBarHeight:kChatBarHeight4];
 }
 
+- (int)yCoordinateOfTableView
+{
+    return 84;
+}
+
 - (void)setChatBarHeight:(NSInteger)height
 {
     NSInteger viewHeight = self.containerView.frame.size.height;
@@ -236,7 +239,7 @@
     float y = 0;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
         y = 20;
-    NSInteger viewY = 84 - y;
+    NSInteger viewY = self.yCoordinateOfTableView - y;
     
     CGRect chatContentFrame = self.tableView.frame;
     chatContentFrame.size.height = viewHeight - height - viewY;

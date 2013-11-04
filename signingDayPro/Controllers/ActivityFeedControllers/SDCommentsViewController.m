@@ -31,6 +31,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self.refreshControl removeFromSuperview];
+    
     float y = 0;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
         y = 20;

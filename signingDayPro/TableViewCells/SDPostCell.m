@@ -8,6 +8,10 @@
 
 #import "SDPostCell.h"
 #import "AFNetworking.h"
+#import "Thread.h"
+#import "ForumReply.h"
+#import "User.h"
+#import "SDUtils.h"
 
 @interface SDPostCell ()
 
@@ -52,11 +56,10 @@
                                                      green:75.0f/255.0f
                                                       blue:0.0f/255.0f
                                                      alpha:1.0f];
+    self.backgroundColor = [UIColor whiteColor];
     self.bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     self.bottomLineView.backgroundColor = [UIColor grayColor];
     [self addSubview:self.bottomLineView];
-    
-    [self setupWithSmthn];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -66,16 +69,37 @@
     // Configure the view for the selected state
 }
 
-- (void)setupWithSmthn
+- (void)setupWithDataObject:(id)dataObject
 {
-    NSString *avatarUrl = @"http://dev.signingday.com/resized-image.ashx/__size/245x230/__key/communityserver-components-avatars/00-00-03-87-07/4TOGZ3UKM8DW.png";
-    NSString *userName = @"Sam Poggi sdfg sdfg";
-    BOOL isSDStaff = YES;
-    NSString *postText = @"Aasdjfg kadshfgsherjgsdnfbvn ansdf asldfj a;lksdfl jvbn xcn va;lsdhtj sdfnv xclvjkbs;fjg sd;fn sdn fljalsdjf sdf";
-    NSString *dateText = @"on 5 Feb 2013 11:24 PM";
-    int believesCount = 45;
+    NSString *avatarUrl;// = @"http://dev.signingday.com/resized-image.ashx/__size/245x230/__key/communityserver-components-avatars/00-00-03-87-07/4TOGZ3UKM8DW.png";
+    NSString *userName;// = @"Sam Poggi sdfg sdfg";
+#warning SDStaff status is not implemented in the web service, flag is hardcoded
+    BOOL isSDStaff = NO;
+    NSString *postText;// = @"Aasdjfg kadshfgsherjgsdnfbvn ansdf asldfj a;lksdfl jvbn xcn va;lsdhtj sdfnv xclvjkbs;fjg sd;fn sdn fljalsdjf sdf";
+    NSString *dateText;// = @"on 5 Feb 2013 11:24 PM";
+    int believesCount;// = 45;
+    int hatesCount;// = 30;
+    
+    if ([dataObject isKindOfClass:[Thread class]]) {
+        Thread *thread = (Thread *)dataObject;
+        avatarUrl = thread.authorUser.avatarUrl;
+        userName = thread.authorUser.name;
+        postText = thread.bodyText;
+        dateText = [SDUtils formatedTimeForDate:thread.date];
+        believesCount = [thread.countOfBelieves integerValue];
+        hatesCount = [thread.countOfHates integerValue];
+    } else if ([dataObject isKindOfClass:[ForumReply class]]) {
+        ForumReply *forumReply = (ForumReply *)dataObject;
+        avatarUrl = forumReply.authorUser.avatarUrl;
+        userName = forumReply.authorUser.name;
+        postText = forumReply.bodyText;
+        dateText = [SDUtils formatedTimeForDate:forumReply.date];
+        believesCount = [forumReply.countOfBelieves integerValue];
+        hatesCount = [forumReply.countOfHates integerValue];
+    } else {
+        return;
+    }
     NSString *believesCountString = [NSString stringWithFormat:@"%d", believesCount];
-    int hatesCount = 30;
     NSString *hatesCountString = [NSString stringWithFormat:@"%d", hatesCount];
     
     // Avatar
@@ -84,7 +108,7 @@
     // Name label
     CGSize nameLabelSize = [userName sizeWithFont:[UIFont boldSystemFontOfSize:kSDPostCellDefaultFontSize]
                                 constrainedToSize:CGSizeMake(kSDPostCellMaxNameLabelWidth, CGFLOAT_MAX)
-                                    lineBreakMode:NSLineBreakByTruncatingTail];
+                                    lineBreakMode:NSLineBreakByWordWrapping];
     CGRect nameLabelFrame = self.userNameLabel.frame;
     nameLabelFrame.size.width = nameLabelSize.width;
     self.userNameLabel.frame = nameLabelFrame;
@@ -101,7 +125,7 @@
     }
     
     // Post text
-    CGSize postTextSize = [postText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
+    CGSize postTextSize = [postText sizeWithFont:self.postTextView.font
                                constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth, CGFLOAT_MAX)
                                    lineBreakMode:NSLineBreakByWordWrapping];
     CGRect postTextViewFrame = self.postTextView.frame;
@@ -116,7 +140,7 @@
     // Date text label
     CGSize dateLabelSize = [dateText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
                                 constrainedToSize:CGSizeMake(kSDPostCellMaxDateLabelWidth, CGFLOAT_MAX)
-                                    lineBreakMode:NSLineBreakByTruncatingTail];
+                                    lineBreakMode:NSLineBreakByWordWrapping];
     CGRect dateLabelFrame = self.dateLabel.frame;
     dateLabelFrame.origin.y = self.postTextView.frame.origin.y + self.postTextView.frame.size.height + kSDPostCellPostTextAndDateLabelGapHeight;
     dateLabelFrame.size.width = dateLabelSize.width;

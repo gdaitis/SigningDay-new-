@@ -43,4 +43,6 @@ static CGFloat const kChatBarHeight4    = 104.0f;
 - (void)clearChatInput;
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
+- (int)yCoordinateOfTableView;
+
 @end

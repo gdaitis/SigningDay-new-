@@ -19,4 +19,6 @@
 
 @interface SDPostCell : UITableViewCell
 
+- (void)setupWithDataObject:(id)dataObject;
+
 @end

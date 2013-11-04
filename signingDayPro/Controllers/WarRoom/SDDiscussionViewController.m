@@ -10,34 +10,80 @@
 #import "Thread.h"
 #import "SDPostCell.h"
 #import "UIView+NibLoading.h"
+#import "SDWarRoomService.h"
+#import "ForumReply.h"
 
 @implementation SDDiscussionViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self reload];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    
+    [self checkServer];
+}
+
+- (int)yCoordinateOfTableView
+{
+    return 42;
+}
+
+- (void)checkServer
+{
+    [self beginRefreshing];
+    [SDWarRoomService getForumRepliesWithThreadId:self.currentThread.identifier
+                                  completionBlock:^{
+                                      [self reload];
+                                      [self endRefreshing];
+                                  } failureBlock:^{
+                                      [self endRefreshing];
+                                  }];
+}
+
+- (void)reload
+{
+    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+    [dataArray addObject:self.currentThread];
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSArray *repliesArray = [ForumReply MR_findByAttribute:@"thread.identifier"
+                                                 withValue:self.currentThread.identifier
+                                                andOrderBy:@"date"
+                                                 ascending:YES
+                                                 inContext:context];
+    [dataArray addObjectsFromArray:repliesArray];
+    self.dataArray = dataArray;
+    
+    [self.tableView reloadData];
+}
+
+- (void)send
+{
+    
 }
 
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *postText = @"Aasdjfg kadshfgsherjgsdnfbvn ansdf asldfj a;lksdfl jvbn xcn va;lsdhtj sdfnv xclvjkbs;fjg sd;fn sdn fljalsdjf sdf";
+    NSString *postText;
+    id dataObject = [self.dataArray objectAtIndex:[indexPath row]];
+    if ([dataObject isKindOfClass:[Thread class]]) {
+        Thread *thread = (Thread *)dataObject;
+        postText = thread.bodyText;
+    } else if ([dataObject isKindOfClass:[ForumReply class]]) {
+        ForumReply *forumReply = (ForumReply *)dataObject;
+        postText = forumReply.bodyText;
+    } else {
+        postText = @"";
+    }
+    
     return [self getHeightForCellWithPostText:postText];
 }
 
@@ -48,7 +94,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return /*[self.dataArray count]*/3;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,16 +107,11 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     // Configure the cell (give data nomnomnom)
+    id dataObject = [self.dataArray objectAtIndex:[indexPath row]];
+    [cell setupWithDataObject:dataObject];
     
     return cell;
 }
-
-//#pragma mark - Table view delegate
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];/
-//}
 
 #pragma mark - Private methods
 

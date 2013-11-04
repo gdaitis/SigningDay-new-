@@ -198,6 +198,7 @@
                                         User *author = [self createUserFromDictionary:authorDictionary
                                                                             inContext:context];
                                         reply.authorUser = author;
+                                        reply.thread = thread;
                                     }
                                     
                                     [context MR_saveOnlySelfAndWait];
