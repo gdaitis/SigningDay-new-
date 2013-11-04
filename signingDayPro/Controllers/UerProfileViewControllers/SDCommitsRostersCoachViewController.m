@@ -51,6 +51,8 @@
     [self.refreshControl removeFromSuperview];
     
     if (self.controllerType == CONTROLLER_TYPE_ROSTERS) {
+        self.screenName = @"Roster screen";
+        
         [self loadRosters];
         [self showProgressHudInView:self.view withText:@"Loading"];
         
@@ -63,6 +65,7 @@
         }];
     }
     else if (self.controllerType == CONTROLLER_TYPE_COMMITS) {
+        self.screenName = @"Commits screen";
         
         [self loadCommits];
         [SDProfileService getCommitsForTeamWithIdentifier:self.userIdentifier andYearString:self.yearString completionBlock:^{
@@ -75,6 +78,8 @@
         }];
     }
     else {
+        self.screenName = @"Coaching staff screen";
+        
         [self loadCoachingStaff];
         [self showProgressHudInView:self.view withText:@"Loading"];
         
@@ -84,6 +89,21 @@
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
         }];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.controllerType == CONTROLLER_TYPE_ROSTERS) {
+        self.screenName = @"Roster screen";
+    }
+    else if (self.controllerType == CONTROLLER_TYPE_COMMITS) {
+        self.screenName = @"Commits screen";
+    }
+    else {
+        self.screenName = @"Coaching staff screen";
     }
 }
 

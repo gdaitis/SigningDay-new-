@@ -30,6 +30,12 @@
     self.navigationItem.leftBarButtonItem = barButton;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Forgot password screen";
+}
+
 - (void)viewDidUnload
 {
     [self setWebView:nil];

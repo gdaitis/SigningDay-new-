@@ -98,6 +98,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.screenName = @"Conversation screen";
     
     if (!self.isNewConversation && ![self.conversation.isRead boolValue]) {
         [SDChatService setConversationToRead:self.conversation completionBlock:^{

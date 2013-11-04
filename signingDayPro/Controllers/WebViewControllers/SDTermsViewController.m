@@ -37,6 +37,12 @@
     self.navigationItem.leftBarButtonItem = barButton;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Terms screen";
+}
+
 - (void)viewDidUnload
 {
     [self setWebView:nil];

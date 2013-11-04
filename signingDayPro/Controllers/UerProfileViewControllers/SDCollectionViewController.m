@@ -43,11 +43,13 @@
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"CollectionCellID"];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
+    
     NSString *noMediaText;
     if (self.galleryType == SDGalleryTypePhotos)
         noMediaText = @"No photos";
     else
-        noMediaText = @"no videos";
+        noMediaText = @"No videos";
+    
     UIFont *font = [UIFont fontWithName:@"BebasNeue" size:60.0];
     NSInteger width = 150;
     CGSize size = [noMediaText sizeWithFont:font
@@ -69,6 +71,15 @@
     
     [self reload];
     [self checkServer];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.galleryType == SDGalleryTypePhotos)
+        self.screenName = @"Photo gallery screen";
+    else
+        self.screenName = @"Video gallery screen";
 }
 
 - (void)checkServer

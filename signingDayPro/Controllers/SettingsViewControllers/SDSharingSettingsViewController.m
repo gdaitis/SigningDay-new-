@@ -13,6 +13,9 @@
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
 #import <QuartzCore/QuartzCore.h>
+#import "GAIDictionaryBuilder.h"
+#import "GAI.h"
+#import "GAIFields.h"
 
 @interface SDSharingSettingsViewController ()
 
@@ -54,6 +57,9 @@
 {
     [super viewDidAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Sharing settings screen"
+                                                      forKey:kGAIScreenName] build]];
 }
 
 #pragma mark - Table view delegate and data source methods

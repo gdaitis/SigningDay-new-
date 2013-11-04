@@ -52,6 +52,12 @@
     [self reload];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Comments screen";
+}
+
 - (void)reload
 {
     NSArray *unsortedComments = [self.activityStory.comments allObjects];

@@ -42,6 +42,7 @@
 #import "WebPreview.h"
 #import "SDCommitsRostersCoachViewController.h"
 #import "MediaGallery.h"
+#import "GAIDictionaryBuilder.h"
 
 #import "SDOffersViewController.h"
 
@@ -72,9 +73,8 @@
     [super viewDidLoad];
     
     //chechking if user is viewing his own profile, depending on this we show or remove buzz button view
-    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]])
         _isMasterProfile = YES;
-    }
     
     UIColor *backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
     self.tableView.backgroundColor = backgroundColor;
@@ -93,6 +93,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        self.screenName = @"My profile screen";
+    }
+    else {
+        self.screenName = @"User profile screen";
+    }
     
     [SDProfileService getProfileInfoForUser:self.currentUser
                             completionBlock:^{
@@ -469,7 +476,13 @@
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing
 {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+
     if (isFollowing) {
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Profile_Follow_Selected"
+                                                               value:nil] build]];
         [SDFollowingService followUserWithIdentifier:self.currentUser.identifier
                                  withCompletionBlock:^{
                                  } failureBlock:^{
@@ -477,6 +490,10 @@
                                  }];
         
     } else {
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Profile_Unfollow_Selected"
+                                                               value:nil] build]];
         [SDFollowingService unfollowUserWithIdentifier:self.currentUser.identifier
                                    withCompletionBlock:^{
                                        

@@ -44,11 +44,16 @@ NSString * const kSDDefaultClass = @"2014";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     [self loadData];
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"HighSchool Landing screen";
 }
 
 - (void)didReceiveMemoryWarning

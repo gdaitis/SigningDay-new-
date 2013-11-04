@@ -47,6 +47,12 @@
     [self checkServer];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Likes screen";
+}
+
 - (void)checkServer
 {
     [self showProgressHudInView:self.tableView

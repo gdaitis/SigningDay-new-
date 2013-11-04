@@ -35,6 +35,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -69,6 +71,12 @@
     [self.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     
     [self.textView becomeFirstResponder];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Buzz something screen";
 }
 
 - (void)didReceiveMemoryWarning
