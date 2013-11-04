@@ -243,7 +243,7 @@
 
 + (NSDate *)dateFromString:(NSString *)dateString
 {
-    if (!dateString || [dateString isEqual:[NSNull null]]) {
+    if (!dateString || [dateString isEqual:[NSNull null]] || [dateString isEqual:@""]) {
         return nil;
     }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

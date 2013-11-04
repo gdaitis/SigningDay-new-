@@ -56,6 +56,7 @@
 		7B99555D17D9E6BD009B8D01 /* UIButton+AddTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99555C17D9E6BD009B8D01 /* UIButton+AddTitle.m */; };
 		7B99556417D9FED7009B8D01 /* SDTeamsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */; };
 		7B99556F17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */; };
+		7B9D057618224CD6007F75DC /* NavigationBarBgIOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9D057518224CD6007F75DC /* NavigationBarBgIOS7@2x.png */; };
 		7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */; };
 		7BA0F53B17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */; };
 		7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */; };
@@ -84,6 +85,11 @@
 		7BDDAB92179FC457003F6AD7 /* PlayersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8C179FC457003F6AD7 /* PlayersIcon@2x.png */; };
 		7BDDAB93179FC457003F6AD7 /* SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8D179FC457003F6AD7 /* SettingsIcon@2x.png */; };
 		7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */; };
+		7BE2FEEC1826DF2A0024834A /* SDPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2FEEB1826DF2A0024834A /* SDPostCell.m */; };
+		7BE2FEEE1826E21F0024834A /* SDPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BE2FEED1826E21F0024834A /* SDPostCell.xib */; };
+		7BE2FEF01826EEAD0024834A /* ForumsSDStaffLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BE2FEEF1826EEAD0024834A /* ForumsSDStaffLogo@2x.png */; };
+		7BE2FEF71826F3B70024834A /* ForumsBelieveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BE2FEF51826F3B70024834A /* ForumsBelieveIcon@2x.png */; };
+		7BE2FEF81826F3B70024834A /* ForumsHateIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BE2FEF61826F3B70024834A /* ForumsHateIcon@2x.png */; };
 		7BEBA8DD17D4BD300049CA1C /* SDPlayersSearchHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */; };
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
 		7BFE1FE3179D1A8D00D94B3C /* SDBaseScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */; };
@@ -452,6 +458,7 @@
 		7B99556317D9FED7009B8D01 /* SDTeamsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTeamsSearchHeader.m; sourceTree = "<group>"; };
 		7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolsSearchHeader.h; sourceTree = "<group>"; };
 		7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolsSearchHeader.m; sourceTree = "<group>"; };
+		7B9D057518224CD6007F75DC /* NavigationBarBgIOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavigationBarBgIOS7@2x.png"; sourceTree = "<group>"; };
 		7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageFilterButton@2x.png"; sourceTree = "<group>"; };
 		7BA0F53917E9B1ED00C6DE89 /* NSObject+MasterUserMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+MasterUserMethods.h"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.h"; sourceTree = "<group>"; };
 		7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MasterUserMethods.m"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.m"; sourceTree = "<group>"; };
@@ -488,6 +495,12 @@
 		7BDDAB8C179FC457003F6AD7 /* PlayersIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlayersIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8D179FC457003F6AD7 /* SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8E179FC457003F6AD7 /* WarRoomIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WarRoomIcon@2x.png"; sourceTree = "<group>"; };
+		7BE2FEEA1826DF2A0024834A /* SDPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPostCell.h; sourceTree = "<group>"; };
+		7BE2FEEB1826DF2A0024834A /* SDPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPostCell.m; sourceTree = "<group>"; };
+		7BE2FEED1826E21F0024834A /* SDPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPostCell.xib; sourceTree = "<group>"; };
+		7BE2FEEF1826EEAD0024834A /* ForumsSDStaffLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ForumsSDStaffLogo@2x.png"; sourceTree = "<group>"; };
+		7BE2FEF51826F3B70024834A /* ForumsBelieveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ForumsBelieveIcon@2x.png"; sourceTree = "<group>"; };
+		7BE2FEF61826F3B70024834A /* ForumsHateIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ForumsHateIcon@2x.png"; sourceTree = "<group>"; };
 		7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayersSearchHeader.h; sourceTree = "<group>"; };
 		7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayersSearchHeader.m; sourceTree = "<group>"; };
 		7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchOptionButtonBg@2x.png"; sourceTree = "<group>"; };
@@ -1824,6 +1837,9 @@
 				8094EFB11817E55B00A163FD /* SDThreadCell.h */,
 				8094EFB21817E55B00A163FD /* SDThreadCell.m */,
 				8094EFB31817E55B00A163FD /* SDThreadCell.xib */,
+				7BE2FEEA1826DF2A0024834A /* SDPostCell.h */,
+				7BE2FEEB1826DF2A0024834A /* SDPostCell.m */,
+				7BE2FEED1826E21F0024834A /* SDPostCell.xib */,
 			);
 			name = WarRoomCells;
 			sourceTree = "<group>";
@@ -1865,7 +1881,10 @@
 		8094EFC31817E62700A163FD /* ForumImages */ = {
 			isa = PBXGroup;
 			children = (
+				7BE2FEEF1826EEAD0024834A /* ForumsSDStaffLogo@2x.png */,
 				8094EFC41817E63300A163FD /* disclosureArrow@2x.png */,
+				7BE2FEF51826F3B70024834A /* ForumsBelieveIcon@2x.png */,
+				7BE2FEF61826F3B70024834A /* ForumsHateIcon@2x.png */,
 			);
 			name = ForumImages;
 			sourceTree = "<group>";
@@ -2145,6 +2164,7 @@
 				80F301721753A85E00134FF4 /* NotificationIconActive@2x.png */,
 				80F301741753A85E00134FF4 /* ToolbarBg@2x.png */,
 				804299C2180ECD9900D17D2B /* toolbarBgIphone5@2x.png */,
+				7B9D057518224CD6007F75DC /* NavigationBarBgIOS7@2x.png */,
 				7B0E782717F5682A001F8305 /* badgeBg@2x.png */,
 			);
 			path = TopToolbar;
@@ -2237,6 +2257,7 @@
 				804299C3180ECD9900D17D2B /* toolbarBgIphone5@2x.png in Resources */,
 				805CF3EC1754E870004C69E5 /* SettingsStoryboard.storyboard in Resources */,
 				8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */,
+				7BE2FEF81826F3B70024834A /* ForumsHateIcon@2x.png in Resources */,
 				8032F08F1755F98E00C92AAC /* switchBlueBg.png in Resources */,
 				8032F0901755F98E00C92AAC /* switchOffPlain.png in Resources */,
 				8032F0911755F98E00C92AAC /* switchThumb.png in Resources */,
@@ -2281,10 +2302,12 @@
 				8094EFC71817FE8300A163FD /* WarRoomStoryBoard.storyboard in Resources */,
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
+				7B9D057618224CD6007F75DC /* NavigationBarBgIOS7@2x.png in Resources */,
 				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
 				7B663D0F17F1B92D00CB59AE /* switch_thumb@2x.png in Resources */,
 				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
 				80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */,
+				7BE2FEEE1826E21F0024834A /* SDPostCell.xib in Resources */,
 				80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */,
 				801E8FE617FB0A9F002FFC81 /* SDActivityStoryViewController.xib in Resources */,
 				80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */,
@@ -2327,6 +2350,7 @@
 				80D1F39A17967FF20051E8E1 /* BuzzSomethingIcon@2x.png in Resources */,
 				803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */,
 				80D1F39B17967FF20051E8E1 /* MessageButtonBackground@2x.png in Resources */,
+				7BE2FEF01826EEAD0024834A /* ForumsSDStaffLogo@2x.png in Resources */,
 				80D1F39C17967FF20051E8E1 /* MessageIcon@2x.png in Resources */,
 				80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */,
 				80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */,
@@ -2353,6 +2377,7 @@
 				8096974517AA90CF00970E73 /* playImage@2x.png in Resources */,
 				80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */,
 				804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */,
+				7BE2FEF71826F3B70024834A /* ForumsBelieveIcon@2x.png in Resources */,
 				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
@@ -2505,6 +2530,7 @@
 				80CE109D1779788A005D2281 /* SDActivityFeedButtonView.m in Sources */,
 				80630D11177B15B9002AA0BC /* SDActivityFeedCellContentView.m in Sources */,
 				80180D36178C272100C24398 /* SDNewConversationViewController.m in Sources */,
+				7BE2FEEC1826DF2A0024834A /* SDPostCell.m in Sources */,
 				80180D3F178C281700C24398 /* SDNewConversationCell.m in Sources */,
 				805F6874178EFBF100ED186B /* SDTermsViewController.m in Sources */,
 				805F6877178F00B200ED186B /* SDSharingSettingsViewController.m in Sources */,

@@ -38,20 +38,9 @@
 {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
         self.backgroundImageView.image = [UIImage imageNamed:@"toolbarBgIphone5.png"];
+    } else {
+        self.backgroundImageView.image = [UIImage imageNamed:@"NavigationBarBgIOS7.png"];
     }
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
-//        
-//        //update constraints due to ios7 different button size eval.
-//        NSArray *constraints = [self constraints];
-//        if(constraints.count != 0){
-//            for (NSLayoutConstraint *constraint in constraints) {
-//                if (constraint.constant == 6.0) {
-//                    constraint.constant = 10;
-//                }
-//            }
-//            
-//        }
-//    }
 }
 
 - (void)setLeftButtonImage:(UIImage *)image

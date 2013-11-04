@@ -16,6 +16,7 @@
 #import "SDContentHeaderView.h"
 #import "DTCoreText.h"
 #import "UIImageView+Crop.h"
+#import "SDAppDelegate.h"
 
 #define ClearConversationButtonIndex 0
 
@@ -44,6 +45,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInForegroundNotification object:nil];
     
     self.firstLoad = YES;
     
