@@ -20,6 +20,8 @@
 #import "SDUserProfileViewController.h"
 #import "UIImageView+Crop.h"
 
+#import "GAIDictionaryBuilder.h"
+
 @interface SDFollowingViewController ()
 
 @property (nonatomic, strong) NSMutableSet *userSet;
@@ -62,12 +64,12 @@
 
 - (void)viewDidLoad
 {
-//    [super viewDidLoad];
+    //    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     _controllerType = CONTROLLER_TYPE_FOLLOWERS;
     _currentFollowersPage = _currentFollowingPage = 0;
-
+    
     SDContentHeaderView *header = [[SDContentHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, kBaseToolbarItemViewControllerHeaderHeight)];
     
     //adding gray line in the center
@@ -117,7 +119,7 @@
     upperBorderLayer.borderWidth = 1;
     upperBorderLayer.borderColor = upperBorderColor;
     [self.tableView.layer addSublayer:upperBorderLayer];
-
+    
     CALayer *lowerBorderLayer = [CALayer layer];
     lowerBorderLayer.frame = CGRectMake(0, _searchBar.frame.size.height, 320, 1);
     lowerBorderLayer.borderWidth = 1;
@@ -133,7 +135,7 @@
     self.customSearchDisplayController.searchResultsDataSource = self;
     self.customSearchDisplayController.searchResultsDelegate = self;
     
-//    self.tableView.tableHeaderView = _searchBar;
+    //    self.tableView.tableHeaderView = _searchBar;
     
     self.followingButton = nil;
     self.followingButton = followingbtn;
@@ -446,6 +448,21 @@
     else {
         [self showAlertWithTitle:nil andText:@"Sorry, this profile is currently unavailable."];
     }
+    
+    if (self.controllerType == CONTROLLER_TYPE_FOLLOWERS) {
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Follower_Selected"
+                                                               value:nil] build]];
+    }
+    else {
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Following_Selected"
+                                                               value:nil] build]];
+    }
 }
 
 #pragma mark - Following actions
@@ -459,6 +476,12 @@
     [self.userSet addObject:user.identifier];
     
     if (!sender.selected) {
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Follow_Selected_FollowingScreen"
+                                                               value:nil] build]];
         //following action
         [SDFollowingService followUserWithIdentifier:user.identifier withCompletionBlock:^{
             [self hideProgressHudInView:self.view];
@@ -469,6 +492,12 @@
         }];
     }
     else {
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Unfollow_Selected_FollowingScreen"
+                                                               value:nil] build]];
+        
         //unfollowing action
         [SDFollowingService unfollowUserWithIdentifier:user.identifier withCompletionBlock:^{
             [self hideProgressHudInView:self.view];

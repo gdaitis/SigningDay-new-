@@ -573,7 +573,11 @@
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
             didSelectActivityStory:(ActivityStory *)activityStory
 {
-#warning add action in delegate methods
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:@"Notification_Selected"
+                                                           value:nil] build]];
     
     SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] init];
     activityStoryViewController.activityStory = activityStory;
@@ -584,7 +588,11 @@
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
                      didSelectUser:(User *)user
 {
-    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:@"Notification_Selected"
+                                                           value:nil] build]];
     
     UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                         bundle:nil];
@@ -640,6 +648,12 @@
             return;
         }
     }
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:@"Conversation_Selected"
+                                                           value:nil] build]];
     
     //remember in which controller we will need to open following view
     [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_CONVERSATIONS];

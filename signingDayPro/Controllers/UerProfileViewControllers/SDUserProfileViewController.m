@@ -42,6 +42,7 @@
 #import "WebPreview.h"
 #import "SDCommitsRostersCoachViewController.h"
 #import "MediaGallery.h"
+#import "GAIDictionaryBuilder.h"
 
 #import "SDOffersViewController.h"
 
@@ -475,7 +476,13 @@
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing
 {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+
     if (isFollowing) {
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Profile_Follow_Selected"
+                                                               value:nil] build]];
         [SDFollowingService followUserWithIdentifier:self.currentUser.identifier
                                  withCompletionBlock:^{
                                  } failureBlock:^{
@@ -483,6 +490,10 @@
                                  }];
         
     } else {
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"Profile_Unfollow_Selected"
+                                                               value:nil] build]];
         [SDFollowingService unfollowUserWithIdentifier:self.currentUser.identifier
                                    withCompletionBlock:^{
                                        

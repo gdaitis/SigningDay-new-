@@ -41,14 +41,14 @@ static NSString *const kAllowTracking = @"allowTracking";
     [SDUtils setupCoreDataStack];
     
     [GAI sharedInstance].trackUncaughtExceptions = YES;
-    [GAI sharedInstance].dispatchInterval = 30;
+    [GAI sharedInstance].dispatchInterval = 60;
     
 #warning will change after tests
 #ifdef DEBUG
 //    [GAI sharedInstance].dryRun = YES;
 #endif
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:kTrackingId];
+    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kTrackingId];
 
     //if master user got deleted, performing logout
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
