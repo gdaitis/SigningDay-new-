@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SDLoginViewController.h"
 #import "NSObject+MasterUserMethods.h"
+#import "GAI.h"
+#import "GAIFields.h"
 
 extern NSString * const SDKeyboardShouldHideNotification;
 
@@ -17,7 +19,7 @@ extern NSString * const SDKeyboardShouldHideNotification;
 
 
 
-@interface SDBaseViewController : UIViewController <SDLoginViewControllerDelegate>
+@interface SDBaseViewController : GAITrackedViewController <SDLoginViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;

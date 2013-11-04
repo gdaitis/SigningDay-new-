@@ -118,6 +118,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.screenName = @"Key attributes screen";
 }
 
 - (void)loadData

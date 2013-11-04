@@ -31,6 +31,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    
     float y = 0;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
         y = 20;
@@ -48,6 +50,12 @@
     [self.view addSubview:self.contentHeaderView];
     
     [self reload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Comments screen";
 }
 
 - (void)reload

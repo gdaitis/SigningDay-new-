@@ -71,6 +71,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    
     self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
     self.headerView.clipsToBounds = NO;
     
@@ -103,7 +105,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    self.screenName = @"Activity Feed screen";
     [self.tableView loadData];
 }
 

@@ -43,6 +43,7 @@
 {
     [super viewDidAppear:animated];
     
+    self.screenName = @"Settings screen";
     [self.refreshControl removeFromSuperview];
     
     self.tableView.backgroundColor = kBaseBackgroundColor;

@@ -18,6 +18,10 @@
 #import "SDFollowingService.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+Crop.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
 
 @interface SDAddTagsViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
 
@@ -118,6 +122,15 @@
 {
     [super viewWillAppear:animated];
     [self updateInfoAndShowActivityIndicator:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Add tags screen"
+                                                      forKey:kGAIScreenName] build]];
 }
 
 - (void)userDidLogout

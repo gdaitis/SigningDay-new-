@@ -13,6 +13,10 @@
 #import "SDAppDelegate.h"
 #import "SDFollowingService.h"
 
+#import "GAIDictionaryBuilder.h"
+#import "GAI.h"
+#import "GAIFields.h"
+
 @interface SDPublishPhotoTableViewController ()
 
 @end
@@ -31,6 +35,15 @@
 {
     [super viewWillAppear:animated];
     //[SDFollowingService removeFollowing:YES andFollowed:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Publish photo screen"
+                                                      forKey:kGAIScreenName] build]];
 }
 
 - (IBAction)publishPhotoPressed:(id)sender

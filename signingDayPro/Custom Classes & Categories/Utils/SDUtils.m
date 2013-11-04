@@ -26,13 +26,43 @@
 
 @implementation SDUtils
 
+//+ (void)setupCoreDataStack
+//{
+//    BOOL needsLogout = NO;
+//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"buildVersion"] intValue] < [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] intValue]) {
+//        NSError *error;
+//        [[NSFileManager defaultManager] removeItemAtPath:[NSPersistentStore MR_urlForStoreName:@"SigningDay.sqlite"].path
+//                                                   error:&error];
+//        [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"buildVersion"];
+//        needsLogout = YES;
+//    }
+//    [MagicalRecord setupCoreDataStackWithStoreNamed:@"SigningDay.sqlite"];
+//    
+//    if (needsLogout) {
+//        [SDLoginService logout];
+//    }
+//}
+
+#warning need to test before release
 + (void)setupCoreDataStack
 {
     BOOL needsLogout = NO;
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"buildVersion"] intValue] < [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] intValue]) {
+    
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"buildVersion"] isEqualToString: [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]) {
         NSError *error;
-        [[NSFileManager defaultManager] removeItemAtPath:[NSPersistentStore MR_urlForStoreName:@"SigningDay.sqlite"].path
-                                                   error:&error];
+        
+        NSLog(@"Old database will be deleted");
+        NSString *path = [NSPersistentStore MR_urlForStoreName:@"SigningDay.sqlite"].path;
+        NSString *previousVersionPath = [NSPersistentStore MR_urlForStoreName:@"CoreDataStore.sqlite"].path;
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path])
+            [[NSFileManager defaultManager] removeItemAtPath:path
+                                                       error:&error];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:previousVersionPath])
+            [[NSFileManager defaultManager] removeItemAtPath:previousVersionPath
+                                                       error:&error];
+        
         [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"buildVersion"];
         needsLogout = YES;
     }

@@ -10,6 +10,9 @@
 #import "Reachability.h"
 #import "SDModalNavigationController.h"
 #import "SDUploadService.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAI.h"
+#import "GAIFields.h"
 
 @interface SDPublishVideoTableViewController ()
 
@@ -23,6 +26,15 @@
     
     SDModalNavigationController *modalNavigationController = (SDModalNavigationController *)self.navigationController;
     self.delegate = (id <SDPublishVideoTableViewControllerDelegate>) modalNavigationController.myDelegate;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Publish photo screen"
+                                                      forKey:kGAIScreenName] build]];
 }
 
 - (IBAction)publishVideoPressed:(id)sender

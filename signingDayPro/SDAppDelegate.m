@@ -16,9 +16,14 @@
 #import "User.h"
 #import "Master.h"
 #import "DTCoreText.h"
+#import "GAI.h"
 
 NSString * const kSDPushNotificationReceivedWhileInBackgroundNotification = @"SDPushNotificationReceivedWhileInBackgroundNotificationName";
 NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SDPushNotificationReceivedWhileInForegroundNotificationName";
+
+/******* Set your tracking ID here *******/
+static NSString *const kTrackingId = @"UA-45419104-1"; //Testing id
+static NSString *const kAllowTracking = @"allowTracking";
 
 @implementation SDAppDelegate
 
@@ -34,6 +39,16 @@ NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SD
 
     //checks for data migration, and setups suitable stack
     [SDUtils setupCoreDataStack];
+    
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 30;
+    
+#warning will change after tests
+#ifdef DEBUG
+//    [GAI sharedInstance].dryRun = YES;
+#endif
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:kTrackingId];
 
     //if master user got deleted, performing logout
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];

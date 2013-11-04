@@ -135,6 +135,8 @@
 		801E8FE617FB0A9F002FFC81 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801E8FE517FB0A9F002FFC81 /* SDActivityStoryViewController.xib */; };
 		8022CC4117EC2B3F0054A1C5 /* SDNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */; };
 		80236158174D1B6800595432 /* SDMenuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 80236157174D1B6800595432 /* SDMenuLabel.m */; };
+		802597F218227D16003C0884 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 802597F118227D16003C0884 /* libGoogleAnalyticsServices.a */; };
+		802597F418227D96003C0884 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 802597F318227D96003C0884 /* libz.dylib */; };
 		8026EE0B17F9A2E900A1A25D /* SDYoutubePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */; };
 		8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */; };
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
@@ -559,6 +561,14 @@
 		8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationViewController.m; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
+		802597EB18227D16003C0884 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		802597EC18227D16003C0884 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		802597ED18227D16003C0884 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		802597EE18227D16003C0884 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		802597EF18227D16003C0884 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		802597F018227D16003C0884 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		802597F118227D16003C0884 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "signingDayPro/Custom Classes & Categories/GoogleAnalytics/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
+		802597F318227D96003C0884 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDYoutubePlayerViewController.h; sourceTree = "<group>"; };
 		8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDYoutubePlayerViewController.m; sourceTree = "<group>"; };
 		8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDYoutubePlayerViewController.xib; sourceTree = "<group>"; };
@@ -947,6 +957,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				802597F418227D96003C0884 /* libz.dylib in Frameworks */,
 				8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */,
 				7B1DF11D17E0AF9D005455D8 /* Social.framework in Frameworks */,
 				7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */,
@@ -964,6 +975,7 @@
 				8032F09B1755FA2100C92AAC /* CoreMedia.framework in Frameworks */,
 				8013F477174CF36100BA313B /* QuartzCore.framework in Frameworks */,
 				805598C2174CE8200040631D /* UIKit.framework in Frameworks */,
+				802597F218227D16003C0884 /* libGoogleAnalyticsServices.a in Frameworks */,
 				805598C4174CE8200040631D /* Foundation.framework in Frameworks */,
 				805598C6174CE8200040631D /* CoreGraphics.framework in Frameworks */,
 				88A17F66364444A5A4CDE784 /* libPods.a in Frameworks */,
@@ -1163,6 +1175,19 @@
 			);
 			name = UILabel;
 			path = "Custom Classes & Categories/UILabel";
+			sourceTree = "<group>";
+		};
+		802597EA18227D16003C0884 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				802597EB18227D16003C0884 /* GAI.h */,
+				802597EC18227D16003C0884 /* GAIDictionaryBuilder.h */,
+				802597ED18227D16003C0884 /* GAIFields.h */,
+				802597EE18227D16003C0884 /* GAILogger.h */,
+				802597EF18227D16003C0884 /* GAITrackedViewController.h */,
+				802597F018227D16003C0884 /* GAITracker.h */,
+			);
+			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		8032EFCE1755EEDE00C92AAC /* Services */ = {
@@ -1500,6 +1525,8 @@
 		805598C0174CE8200040631D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				802597F318227D96003C0884 /* libz.dylib */,
+				802597F118227D16003C0884 /* libGoogleAnalyticsServices.a */,
 				7B1DF11C17E0AF9D005455D8 /* Social.framework */,
 				80522C4E17D0C67200936936 /* MediaPlayer.framework */,
 				7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */,
@@ -1574,6 +1601,7 @@
 		80559904174CEDDE0040631D /* 3rd party classes */ = {
 			isa = PBXGroup;
 			children = (
+				802597EA18227D16003C0884 /* GoogleAnalytics */,
 				7B09B77917F05A500070688F /* HPGrowingTextView */,
 				7B33A5A017BBC825002A994F /* NSDictionary+NullConverter */,
 				7B3031AA177ADB2C006EF25B /* HTMLParser */,
@@ -2688,7 +2716,7 @@
 				GCC_PREFIX_HEADER = "signingDayPro/SigningDay-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/SigningDay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Custom\\ Classes\\ &\\ Categories/GoogleAnalytics";
 				PRODUCT_NAME = SigningDay;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -2710,7 +2738,7 @@
 				GCC_PREFIX_HEADER = "signingDayPro/SigningDay-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/SigningDay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Custom\\ Classes\\ &\\ Categories/GoogleAnalytics";
 				PRODUCT_NAME = SigningDay;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

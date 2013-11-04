@@ -37,7 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.;
     
     //default value for the filter is 2014, assigning this to filter property
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YearsList" ofType:@"plist"];
@@ -53,6 +52,12 @@
 {
     [super viewWillAppear:animated];
     [self updateFilterButtonNames];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Team Landing screen";
 }
 
 - (void)didReceiveMemoryWarning

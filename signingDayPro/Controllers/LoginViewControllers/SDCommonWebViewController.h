@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAI.h"
 
-@interface SDCommonWebViewController : UIViewController <UIWebViewDelegate>
+@interface SDCommonWebViewController : GAITrackedViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 

@@ -19,6 +19,9 @@
 #import "SDBadgeView.h"
 #import "SDNotificationsService.h"
 #import "SDActivityStoryViewController.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAI.h"
+#import "GAIFields.h"
 
 @interface SDNavigationController () <SDCustomNavigationToolbarViewDelegate>
 
@@ -328,6 +331,10 @@
 
 - (void)showNotifications
 {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Notifications screen"
+                                                      forKey:kGAIScreenName] build]];
+    
     _selectedMenuType = BARBUTTONTYPE_NOTIFICATIONS;
     if (!_notificationVC) {
         SDNotificationViewController *notificationVC = [[SDNotificationViewController alloc] init];
@@ -373,6 +380,10 @@
 
 - (void)showConversations
 {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Conversations screen"
+                                                      forKey:kGAIScreenName] build]];
+    
     _selectedMenuType = BARBUTTONTYPE_CONVERSATIONS;
     if (!_messageVC) {
         SDMessageViewController *sdmessageVC = [[SDMessageViewController alloc] init];
@@ -418,6 +429,10 @@
 
 - (void)showFollowers
 {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Followers screen"
+                                                      forKey:kGAIScreenName] build]];
+    
     [SDFollowingService removeFollowing:YES andFollowed:YES];
     _selectedMenuType = BARBUTTONTYPE_FOLLOWERS;
     if (!_followingVC) {
@@ -558,6 +573,8 @@
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
             didSelectActivityStory:(ActivityStory *)activityStory
 {
+#warning add action in delegate methods
+    
     SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] init];
     activityStoryViewController.activityStory = activityStory;
     
@@ -738,7 +755,7 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     self.navigationInProgress = NO;
-//    NSLog(@"navigationController did show %@",[viewController class]);
+    NSLog(@"navigationController did show %@",[viewController class]);
 }
 
 @end

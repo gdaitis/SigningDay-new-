@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAI.h"
 
 @class SDLoginViewController;
 
@@ -18,7 +19,7 @@
 
 @end
 
-@interface SDLoginViewController : UIViewController
+@interface SDLoginViewController : GAITrackedViewController
 
 - (IBAction)loginButtonPressed:(id)sender;
 

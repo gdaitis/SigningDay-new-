@@ -82,6 +82,30 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    switch (self.filterListType) {
+        case LIST_TYPE_POSITIONS:
+            self.screenName = @"Filter position list screen";
+            break;
+        case LIST_TYPE_STATES:
+            self.screenName = @"Filter states list screen";
+            break;
+        case LIST_TYPE_YEARS:
+            self.screenName = @"Filter year list screen";
+            break;
+        case LIST_TYPE_CONFERENCES:
+            self.screenName = @"Filter conference list screen";
+            break;
+            
+        default:
+            self.screenName = @"Filter list screen";
+            break;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

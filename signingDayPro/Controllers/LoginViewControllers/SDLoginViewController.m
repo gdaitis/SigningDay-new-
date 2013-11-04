@@ -46,6 +46,12 @@
     self.backgroundImageView.image = bgImage;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Login screen";
+}
+
 - (void)closeKeyboard
 {
     [self.usernameTextField resignFirstResponder];
