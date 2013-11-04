@@ -189,19 +189,24 @@
 
 - (void)showForumListControllerWithParentItem:(id)parentItem andListType:(GroupListType)listType
 {
-    SDForumListController *forumListController = [[SDForumListController alloc] initWithNibName:@"SDBaseViewController" bundle:nil];
+    SDForumListController *forumListController = [[SDForumListController alloc] initWithNibName:@"SDBaseViewController"
+                                                                                         bundle:nil];
     forumListController.parentItem = parentItem;
     forumListController.listType = listType;
     
-    [self.navigationController pushViewController:forumListController animated:YES];
+    [self.navigationController pushViewController:forumListController
+                                         animated:YES];
 }
 
 - (void)showDiscussionControllerForThread:(Thread *)thread
 {
-    SDDiscussionViewController *discussionController = [[SDDiscussionViewController alloc] initWithNibName:@"SDBaseViewController" bundle:nil];
+    UIStoryboard *warRoomStoryboard = [UIStoryboard storyboardWithName:@"WarRoomStoryBoard"
+                                                                bundle:nil];
+    SDDiscussionViewController *discussionController = [warRoomStoryboard instantiateViewControllerWithIdentifier:@"DiscussionViewController"];
     discussionController.currentThread = thread;
     
-    [self.navigationController pushViewController:discussionController animated:YES];
+    [self.navigationController pushViewController:discussionController
+                                         animated:YES];
 }
 
 

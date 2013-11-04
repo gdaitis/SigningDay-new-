@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDBaseViewController.h"
+#import "SDBaseChatViewController.h"
 
 @class Thread;
 
-@interface SDDiscussionViewController : SDBaseViewController
+@interface SDDiscussionViewController : SDBaseChatViewController
 
 @property (nonatomic, strong) Thread *currentThread;
 

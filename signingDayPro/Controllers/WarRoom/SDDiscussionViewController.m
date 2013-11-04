@@ -8,12 +8,8 @@
 
 #import "SDDiscussionViewController.h"
 #import "Thread.h"
-
-@interface SDDiscussionViewController () <UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, strong) NSArray *dataArray;
-
-@end
+#import "SDPostCell.h"
+#import "UIView+NibLoading.h"
 
 @implementation SDDiscussionViewController
 
@@ -29,9 +25,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,7 +37,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    NSString *postText = @"Aasdjfg kadshfgsherjgsdnfbvn ansdf asldfj a;lksdfl jvbn xcn va;lsdhtj sdfnv xclvjkbs;fjg sd;fn sdn fljalsdjf sdf";
+    return [self getHeightForCellWithPostText:postText];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -54,17 +48,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataArray count];
+    return /*[self.dataArray count]*/3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    NSString *identifier = @"SDPostCellID";
+    SDPostCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor clearColor];
-    
-    cell.textLabel.text = @"DISCUSSION item";
+    if (!cell) {
+        cell = (id)[SDPostCell loadInstanceFromNib];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    // Configure the cell (give data nomnomnom)
     
     return cell;
 }
@@ -75,5 +71,26 @@
 //{
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];/
 //}
+
+#pragma mark - Private methods
+
+- (CGFloat)getHeightForCellWithPostText:(NSString *)postText
+{
+    int cellHeight = 0;
+    
+    cellHeight += 31; // y position of post text view
+    
+    CGSize postTextSize = [postText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
+                               constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth, CGFLOAT_MAX)
+                                   lineBreakMode:NSLineBreakByWordWrapping];
+    
+    cellHeight += postTextSize.height;
+    cellHeight += kSDPostCellPostTextAndDateLabelGapHeight;
+    cellHeight += 16; // height of date label
+    cellHeight += kSDPostCellDateLabelAndBottomLineGapHeight;
+    cellHeight += 1; // height of bottom line
+    
+    return cellHeight;
+}
 
 @end
