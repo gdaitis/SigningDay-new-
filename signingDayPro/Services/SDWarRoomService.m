@@ -227,7 +227,7 @@
                                         reply.authorUser = author;
                                         reply.thread = thread;
                                     }
-                                    
+#warning doesn't work!
                                     [self deleteMarkedObjectsInArray:[thread.forumReplies allObjects] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];

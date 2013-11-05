@@ -8,6 +8,7 @@
 
 #import "SDThreadCell.h"
 #import "Thread.h"
+#import "SDUtils.h"
 
 #define kcountLabelPositionEndX 310
 #define koffsetBetweenLabels 5
@@ -46,12 +47,9 @@
 
 - (void)setupCellWithThread:(Thread *)thread
 {
-    //    [group valueForKey:@"groupTitle"];
-    
-    //test
     self.postCountLabel.text = [NSString stringWithFormat:@"%d",[thread.replyCount intValue]];
     self.threadTitleLabel.text = thread.subject;
-    self.lastPostLabel.text = @"Last post on 29 Aug, 6:57 PM";
+    self.lastPostLabel.text = (thread.latestPostDate) ? [NSString stringWithFormat:@"Last post on %@",[SDUtils formatedDateStringFromDate:thread.latestPostDate]] : @"";
     
     [self updateFrames];
 }

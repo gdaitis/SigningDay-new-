@@ -8,6 +8,7 @@
 
 #import "SDForumCell.h"
 #import "Forum.h"
+#import "SDUtils.h"
 
 #define kcountLabelPositionEndX 280
 #define koffsetBetweenLabels 5
@@ -46,12 +47,9 @@
 
 - (void)setupCellWithForum:(Forum *)forum
 {
-    //    [group valueForKey:@"groupTitle"];
-    
-    //test
     self.postCountLabel.text = [NSString stringWithFormat:@"%d",[forum.threadCount intValue]];
     self.forumTitleLabel.text = forum.name;
-    self.lastPostLabel.text = @"Last post on 29 Aug, 6:57 PM";
+    self.lastPostLabel.text = (forum.latestPostDate) ? [NSString stringWithFormat:@"Last post on %@",[SDUtils formatedDateStringFromDate:forum.latestPostDate]] : @"";
     
     [self updateFrames];
 }

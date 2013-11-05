@@ -46,7 +46,7 @@
 - (void)setupCellWithGroup:(Group *)group
 {
     self.groupTitleLabel.text = group.name;
-    self.lastPostLabel.text = [SDUtils formatedDateStringFromDate:group.dateCreated];
+    self.lastPostLabel.text = (group.dateCreated) ? [NSString stringWithFormat:@"Created on %@",[SDUtils formatedDateStringFromDate:group.dateCreated]] : @"";
 }
 
 @end
