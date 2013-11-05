@@ -33,8 +33,17 @@ typedef enum {
                    completionBlock:(void (^)(NSInteger totalCount))completionBlock
                       failureBlock:(void (^)(void))failureBlock;
 + (void)getForumRepliesWithThreadId:(NSNumber *)identifier
-                    completionBlock:(void (^)())completionBlock
+                    completionBlock:(void (^)(void))completionBlock
                        failureBlock:(void (^)(void))failureBlock;
++ (void)postForumReplyForThreadId:(NSNumber *)threadId
+                             text:(NSString *)text
+                  completionBlock:(void (^)(void))completionBlock
+                     failureBlock:(void (^)(void))failureBlock;
++ (void)postNewPorumThreadForForumId:(NSNumber *)forumId
+                             subject:(NSString *)subject
+                                text:(NSString *)text
+                     completionBlock:(void (^)(void))completionBlock
+                        failureBlock:(void (^)(void))failureBlock;
 + (void)setEmotion:(SDEmotion)emotion
    toForumPostType:(SDForumPostType)forumPostType
     withIdentifier:(NSNumber *)identifier

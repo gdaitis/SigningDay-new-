@@ -42,20 +42,28 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    int offset = 10;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0)
+        offset = 0;
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *btnImg = [UIImage imageNamed:@"MenuButtonClose.png"];
     [btn addTarget:self action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    btn.frame = CGRectMake(0, 0, btnImg.size.width, btnImg.size.height);
+    btn.frame = CGRectMake(-offset, 0, btnImg.size.width, btnImg.size.height);
     [btn setImage:btnImg forState:UIControlStateNormal];
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIView *leftButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, btnImg.size.width, btnImg.size.height)];
+    [leftButtonView addSubview:btn];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:leftButtonView];
     self.navigationItem.leftBarButtonItem = barButton;
     
     UIImage *image = [UIImage imageNamed:@"MenuButtonPost.png"];
-    CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    CGRect frame = CGRectMake(offset, 0, image.size.width, image.size.height);
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
     [button setBackgroundImage:image forState:UIControlStateNormal];
     [button addTarget:self action:@selector(postButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    UIView *rightButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    [rightButtonView addSubview:button];
+    UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButtonView];
     self.navigationItem.rightBarButtonItem = doneButtonItem;
 
     self.userImageView.layer.cornerRadius = 4.0f;
