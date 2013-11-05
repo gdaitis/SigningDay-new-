@@ -2736,13 +2736,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Externals/FacebookSDK/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "signingDayPro/SigningDay-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/SigningDay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Custom\\ Classes\\ &\\ Categories/GoogleAnalytics";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/signingDayPro/Custom\\ Classes\\ &\\ Categories/GoogleAnalytics\"";
 				PRODUCT_NAME = SigningDay;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -2758,13 +2757,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Externals/FacebookSDK/build\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "signingDayPro/SigningDay-Prefix.pch";
 				INFOPLIST_FILE = "signingDayPro/SigningDay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "/Users/Lukas/SigningDayPro-GIT/SigningDay-ios/signingDayPro/Custom\\ Classes\\ &\\ Categories/GoogleAnalytics";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/signingDayPro/Custom\\ Classes\\ &\\ Categories/GoogleAnalytics\"";
 				PRODUCT_NAME = SigningDay;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
