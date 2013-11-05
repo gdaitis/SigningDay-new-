@@ -111,7 +111,6 @@
                                     lineBreakMode:NSLineBreakByWordWrapping];
     CGRect nameLabelFrame = self.userNameLabel.frame;
     
-//    nameLabelFrame.size.width = nameLabelSize.width;
     nameLabelFrame.size.width = (nameLabelSize.width < kSDPostCellMaxNameLabelWidth) ? ceilf(nameLabelSize.width) : kSDPostCellMaxNameLabelWidth;
     self.userNameLabel.frame = nameLabelFrame;
     self.userNameLabel.text = userName;
@@ -143,12 +142,11 @@
     
     // Date text label
     CGSize dateLabelSize = [dateText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
-                                constrainedToSize:CGSizeMake(kSDPostCellMaxDateLabelWidth, CGFLOAT_MAX)
+                                constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                     lineBreakMode:NSLineBreakByWordWrapping];
     CGRect dateLabelFrame = self.dateLabel.frame;
     dateLabelFrame.origin.y = self.postTextView.frame.origin.y + self.postTextView.frame.size.height + kSDPostCellPostTextAndDateLabelGapHeight;
-    dateLabelFrame.size.width = dateLabelSize.width;
-    dateLabelFrame.size.height = dateLabelSize.height;
+    dateLabelFrame.size.width = (dateLabelSize.width < kSDPostCellMaxDateLabelWidth) ? ceilf(dateLabelSize.width) : kSDPostCellMaxDateLabelWidth;
     self.dateLabel.frame = dateLabelFrame;
     self.dateLabel.text = dateText;
     
