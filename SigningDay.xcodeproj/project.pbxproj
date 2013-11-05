@@ -349,6 +349,7 @@
 		80D336BC181E9D180032230D /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D336BB181E9D180032230D /* checkMark.png */; };
 		80D59A8F17CB61CD00CB494D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */; };
 		80DF59C217A7E81E004F5246 /* SDActivityFeedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */; };
+		80E202941829199D00449287 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E202931829199D00449287 /* libGoogleAnalyticsServices.a */; };
 		80E28A1617D76FD600665313 /* SDKeyAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E28A1517D76FD600665313 /* SDKeyAttributesViewController.m */; };
 		80E31BAA1758AF990013545C /* SDFollowingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E31BA81758AF990013545C /* SDFollowingCell.m */; };
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
@@ -908,6 +909,13 @@
 		80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedTableView.h; sourceTree = "<group>"; };
 		80DF59C117A7E81E004F5246 /* SDActivityFeedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedTableView.m; sourceTree = "<group>"; };
 		80DF59C617A9003F004F5246 /* SDUserProfileHeaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHeaderDelegate.h; sourceTree = "<group>"; };
+		80E2028D1829199D00449287 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		80E2028E1829199D00449287 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		80E2028F1829199D00449287 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		80E202901829199D00449287 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		80E202911829199D00449287 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		80E202921829199D00449287 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		80E202931829199D00449287 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		80E28A1417D76FD600665313 /* SDKeyAttributesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKeyAttributesViewController.h; sourceTree = "<group>"; };
 		80E28A1517D76FD600665313 /* SDKeyAttributesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDKeyAttributesViewController.m; sourceTree = "<group>"; };
 		80E31BA71758AF990013545C /* SDFollowingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDFollowingCell.h; sourceTree = "<group>"; };
@@ -981,6 +989,7 @@
 				8013F477174CF36100BA313B /* QuartzCore.framework in Frameworks */,
 				805598C2174CE8200040631D /* UIKit.framework in Frameworks */,
 				805598C4174CE8200040631D /* Foundation.framework in Frameworks */,
+				80E202941829199D00449287 /* libGoogleAnalyticsServices.a in Frameworks */,
 				805598C6174CE8200040631D /* CoreGraphics.framework in Frameworks */,
 				88A17F66364444A5A4CDE784 /* libPods.a in Frameworks */,
 			);
@@ -1591,6 +1600,7 @@
 		80559904174CEDDE0040631D /* 3rd party classes */ = {
 			isa = PBXGroup;
 			children = (
+				80E2028C1829199D00449287 /* GoogleAnalytics */,
 				7B09B77917F05A500070688F /* HPGrowingTextView */,
 				7B33A5A017BBC825002A994F /* NSDictionary+NullConverter */,
 				7B3031AA177ADB2C006EF25B /* HTMLParser */,
@@ -2011,6 +2021,20 @@
 				80CCAE741794231B0015429A /* UIView+NibLoading.m */,
 			);
 			path = "UIView+NibLoading";
+			sourceTree = "<group>";
+		};
+		80E2028C1829199D00449287 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				80E2028D1829199D00449287 /* GAI.h */,
+				80E2028E1829199D00449287 /* GAIDictionaryBuilder.h */,
+				80E2028F1829199D00449287 /* GAIFields.h */,
+				80E202901829199D00449287 /* GAILogger.h */,
+				80E202911829199D00449287 /* GAITrackedViewController.h */,
+				80E202921829199D00449287 /* GAITracker.h */,
+				80E202931829199D00449287 /* libGoogleAnalyticsServices.a */,
+			);
+			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		80E31BAD1758B8590013545C /* Follow_Unfollow */ = {
