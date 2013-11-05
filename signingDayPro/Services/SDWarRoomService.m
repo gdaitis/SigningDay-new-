@@ -172,7 +172,7 @@
 }
 
 + (void)getForumRepliesWithThreadId:(NSNumber *)identifier
-                    completionBlock:(void (^)())completionBlock
+                    completionBlock:(void (^)(void))completionBlock
                        failureBlock:(void (^)(void))failureBlock
 {
     [[SDAPIClient sharedClient] getPath:@"sd/forums.json"
@@ -285,6 +285,44 @@ withCompletionBlock:(void (^)(void))completionBlock
                                      if (completionBlock) {
                                          completionBlock();
                                      }
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     if (failureBlock)
+                                         failureBlock();
+                                 }];
+}
+
++ (void)postForumReplyForThreadId:(NSNumber *)threadId
+                             text:(NSString *)text
+                  completionBlock:(void (^)(void))completionBlock
+                     failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"forums/threads/%d/replies.json", [threadId integerValue]];
+    [[SDAPIClient sharedClient] postPath:path
+                              parameters:@{@"ThreadId": [NSString stringWithFormat:@"%d", [threadId integerValue]],
+                                           @"Body": text}
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     if (completionBlock)
+                                         completionBlock();
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     if (failureBlock)
+                                         failureBlock();
+                                 }];
+}
+
++ (void)postNewPorumThreadForForumId:(NSNumber *)forumId
+                             subject:(NSString *)subject
+                                text:(NSString *)text
+                     completionBlock:(void (^)(void))completionBlock
+                        failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"forums/%d/threads.json", [forumId integerValue]];
+    [[SDAPIClient sharedClient] postPath:path
+                              parameters:@{@"ForumId": [NSString stringWithFormat:@"%d", [forumId integerValue]],
+                                           @"Subject": subject,
+                                           @"Body": text}
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     if (completionBlock)
+                                         completionBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      if (failureBlock)
                                          failureBlock();

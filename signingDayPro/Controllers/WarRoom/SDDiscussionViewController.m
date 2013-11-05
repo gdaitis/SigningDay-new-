@@ -12,12 +12,15 @@
 #import "UIView+NibLoading.h"
 #import "SDWarRoomService.h"
 #import "ForumReply.h"
+#import "NSString+Additions.h"
 
 @implementation SDDiscussionViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.refreshControl removeFromSuperview];
     
     [self reload];
 }
@@ -36,13 +39,21 @@
 
 - (void)checkServer
 {
-    [self beginRefreshing];
+    [self checkServerWithScrollingToBottom:NO];
+}
+
+- (void)checkServerWithScrollingToBottom:(BOOL)scrollToBottom
+{
+    [self showProgressHudInView:self.tableView
+                       withText:@"Loding"];
     [SDWarRoomService getForumRepliesWithThreadId:self.currentThread.identifier
                                   completionBlock:^{
                                       [self reload];
-                                      [self endRefreshing];
+                                      [self hideProgressHudInView:self.tableView];
+                                      if (scrollToBottom)
+                                          [self scrollToBottomAnimated:YES];
                                   } failureBlock:^{
-                                      [self endRefreshing];
+                                      [self hideProgressHudInView:self.tableView];
                                   }];
 }
 
@@ -65,7 +76,22 @@
 
 - (void)send
 {
+    NSString *rightTrimmedMessage = [self.enterMessageTextView.text stringByTrimmingTrailingWhitespaceAndNewlineCharacters];
     
+    if (rightTrimmedMessage.length == 0) {
+        [self clearChatInput];
+        return;
+    }
+    
+    [self clearChatInput];
+    
+    [SDWarRoomService postForumReplyForThreadId:self.currentThread.identifier
+                                           text:rightTrimmedMessage
+                                completionBlock:^{
+                                    [self checkServerWithScrollingToBottom:YES];
+                                } failureBlock:nil];
+    
+    [self scrollToBottomAnimated:YES];
 }
 
 #pragma mark - Table view data source
@@ -129,7 +155,7 @@
     cellHeight += kSDPostCellPostTextAndDateLabelGapHeight;
     cellHeight += 16; // height of date label
     cellHeight += kSDPostCellDateLabelAndBottomLineGapHeight;
-    cellHeight += 1; // height of bottom line
+    cellHeight += 2; // height of bottom line
     
     return cellHeight;
 }
