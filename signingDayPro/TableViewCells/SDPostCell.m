@@ -107,10 +107,12 @@
     
     // Name label
     CGSize nameLabelSize = [userName sizeWithFont:[UIFont boldSystemFontOfSize:kSDPostCellDefaultFontSize]
-                                constrainedToSize:CGSizeMake(kSDPostCellMaxNameLabelWidth, CGFLOAT_MAX)
+                                constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                     lineBreakMode:NSLineBreakByWordWrapping];
     CGRect nameLabelFrame = self.userNameLabel.frame;
-    nameLabelFrame.size.width = nameLabelSize.width;
+    
+//    nameLabelFrame.size.width = nameLabelSize.width;
+    nameLabelFrame.size.width = (nameLabelSize.width < kSDPostCellMaxNameLabelWidth) ? ceilf(nameLabelSize.width) : kSDPostCellMaxNameLabelWidth;
     self.userNameLabel.frame = nameLabelFrame;
     self.userNameLabel.text = userName;
     
@@ -125,12 +127,14 @@
     }
     
     // Post text
-    CGSize postTextSize = [postText sizeWithFont:self.postTextView.font
+    CGSize postTextSize = [postText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
                                constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth, CGFLOAT_MAX)
                                    lineBreakMode:NSLineBreakByWordWrapping];
     CGRect postTextViewFrame = self.postTextView.frame;
-    postTextViewFrame.size = postTextSize;
+    postTextViewFrame.size.height = ceilf(postTextSize.height);
+    
     self.postTextView.frame = postTextViewFrame;
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
         self.postTextView.contentInset = UIEdgeInsetsMake(-4,-4,0,0);
     else
@@ -144,6 +148,7 @@
     CGRect dateLabelFrame = self.dateLabel.frame;
     dateLabelFrame.origin.y = self.postTextView.frame.origin.y + self.postTextView.frame.size.height + kSDPostCellPostTextAndDateLabelGapHeight;
     dateLabelFrame.size.width = dateLabelSize.width;
+    dateLabelFrame.size.height = dateLabelSize.height;
     self.dateLabel.frame = dateLabelFrame;
     self.dateLabel.text = dateText;
     
