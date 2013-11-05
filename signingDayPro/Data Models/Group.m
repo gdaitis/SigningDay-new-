@@ -2,7 +2,7 @@
 //  Group.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 25/10/13.
+//  Created by Lukas Kekys on 11/5/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @dynamic identifier;
 @dynamic isEnabled;
 @dynamic name;
+@dynamic shouldBeDeleted;
 @dynamic forums;
 
 @end

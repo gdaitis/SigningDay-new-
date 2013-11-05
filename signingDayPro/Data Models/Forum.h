@@ -2,7 +2,7 @@
 //  Forum.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 25/10/13.
+//  Created by Lukas Kekys on 11/5/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * replyCount;
 @property (nonatomic, retain) NSNumber * threadCount;
+@property (nonatomic, retain) NSNumber * shouldBeDeleted;
 @property (nonatomic, retain) Group *group;
 @property (nonatomic, retain) NSSet *threads;
 @end

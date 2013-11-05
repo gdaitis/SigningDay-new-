@@ -2,7 +2,7 @@
 //  Thread.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 25/10/13.
+//  Created by Lukas Kekys on 11/5/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSDate * latestPostDate;
 @property (nonatomic, retain) NSNumber * replyCount;
 @property (nonatomic, retain) NSString * subject;
+@property (nonatomic, retain) NSNumber * shouldBeDeleted;
 @property (nonatomic, retain) User *authorUser;
 @property (nonatomic, retain) Forum *forum;
 @property (nonatomic, retain) NSSet *forumReplies;

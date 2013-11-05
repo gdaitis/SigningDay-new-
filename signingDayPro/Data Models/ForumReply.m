@@ -2,7 +2,7 @@
 //  ForumReply.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 25/10/13.
+//  Created by Lukas Kekys on 11/5/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,11 +14,12 @@
 @implementation ForumReply
 
 @dynamic bodyText;
-@dynamic date;
-@dynamic identifier;
 @dynamic countOfBelieves;
 @dynamic countOfHates;
+@dynamic date;
+@dynamic identifier;
 @dynamic subject;
+@dynamic shouldBeDeleted;
 @dynamic authorUser;
 @dynamic thread;
 

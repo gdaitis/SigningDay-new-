@@ -43,6 +43,23 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self beginRefreshing];
+    [self loadData];
+}
+
+- (void)checkServer
+{
+    [self loadData];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)loadData
+{
     switch (self.listType) {
         case LIST_TYPE_GROUP:
             [self loadGroupList];
@@ -56,12 +73,6 @@
         default:
             break;
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -218,15 +229,13 @@
     self.dataArray = [Group MR_findAllInContext:context];
     [self.tableView reloadData];
     
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    
     [SDWarRoomService getWarRoomGroupsWithCompletionBlock:^{
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         self.dataArray = [Group MR_findAllInContext:context];
         [self.tableView reloadData];
-        [self hideProgressHudInView:self.view];
+        [self endRefreshing];
     } failureBlock:^{
-        [self hideProgressHudInView:self.view];
+        [self endRefreshing];
     }];
     
 }
@@ -241,8 +250,6 @@
     self.dataArray = [Forum MR_findAllWithPredicate:predicate inContext:context];
     [self.tableView reloadData];
     
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    
     [SDWarRoomService getGroupForumsWithGroupId:groupIdentifier pageIndex:0 pageSize:20 completionBlock:^(NSInteger totalCount) {
         
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
@@ -250,10 +257,9 @@
         
         self.dataArray = [Forum MR_findAllWithPredicate:predicate inContext:context];
         [self.tableView reloadData];
-        [self hideProgressHudInView:self.view];
-        
+        [self endRefreshing];
     } failureBlock:^{
-        [self hideProgressHudInView:self.view];
+        [self endRefreshing];
     }];
 }
 
@@ -267,17 +273,15 @@
     self.dataArray = [Thread MR_findAllWithPredicate:predicate inContext:context];
     [self.tableView reloadData];
     
-    [self showProgressHudInView:self.view withText:@"Loading"];
-    
     [SDWarRoomService getForumThreadsWithForumId:forumIdentifier pageIndex:0 pageSize:20 completionBlock:^(NSInteger totalCount) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forum.identifier == %@", forumIdentifier];
         
         self.dataArray = [Thread MR_findAllWithPredicate:predicate inContext:context];
         [self.tableView reloadData];
-        [self hideProgressHudInView:self.view];
+        [self endRefreshing];
         
     } failureBlock:^{
-        [self hideProgressHudInView:self.view];
+        [self endRefreshing];
     }];
 }
 

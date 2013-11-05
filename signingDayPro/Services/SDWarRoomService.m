@@ -17,6 +17,13 @@
 #import "Thread.h"
 #import "SDUtils.h"
 
+@interface SDWarRoomService ()
+
++ (void)markAllObjectsForDeletion:(NSArray *)forumItemArray;
++ (void)deleteMarkedObjectsInArray:(NSArray *)array inContext:(NSManagedObjectContext *)context;
+
+@end
+
 @implementation SDWarRoomService
 
 + (void)getWarRoomGroupsWithCompletionBlock:(void (^)(void))completionBlock
@@ -27,11 +34,15 @@
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
+                                    [self markAllObjectsForDeletion:[Group MR_findAll]];
+                                    
                                     NSArray *groupsArray = [JSON valueForKey:@"Groups"];
                                     for (NSDictionary *groupDictionary in groupsArray) {
                                         __unused Group *group = [self createGroupFromDictionary:groupDictionary
                                                                                       inContext:context];
                                     }
+                                    
+                                    [self deleteMarkedObjectsInArray:[Group MR_findAll] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];
                                     if (completionBlock) {
@@ -56,6 +67,9 @@
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
+                                    Group *parentGroup = [Group MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
+                                    [self markAllObjectsForDeletion:[parentGroup.forums allObjects]];
+                                    
                                     NSArray *forumsArray = [JSON valueForKey:@"Forums"];
                                     for (__strong NSDictionary *forumDictionary in forumsArray) {
                                         forumDictionary = [forumDictionary dictionaryByReplacingNullsWithStrings];
@@ -74,6 +88,7 @@
                                         forum.name = [forumDictionary valueForKey:@"Name"];
                                         forum.replyCount = [NSNumber numberWithInteger:[[forumDictionary valueForKey:@"ReplyCount"] integerValue]];
                                         forum.threadCount = [NSNumber numberWithInteger:[[forumDictionary valueForKey:@"ThreadCount"] integerValue]];
+                                        forum.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         
                                         NSDictionary *groupDictionary = [forumDictionary valueForKey:@"Group"];
                                         Group *group = [self createGroupFromDictionary:groupDictionary
@@ -81,6 +96,8 @@
                                         
                                         forum.group = group;
                                     }
+                                    
+                                    [self deleteMarkedObjectsInArray:[parentGroup.forums allObjects] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];
                                     NSInteger totalCount = [[JSON valueForKey:@"TotalCount"] integerValue];
@@ -107,6 +124,9 @@
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
+                                    Forum *parentForum = [Forum MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
+                                    [self markAllObjectsForDeletion:[parentForum.threads allObjects]];
+                                    
                                     NSArray *threadsArray = [JSON valueForKey:@"Threads"];
                                     for (__strong NSDictionary *threadDictionary in threadsArray) {
                                         threadDictionary = [threadDictionary dictionaryByReplacingNullsWithStrings];
@@ -123,6 +143,7 @@
                                         thread.latestPostDate = [SDUtils dateFromString:[threadDictionary valueForKey:@"LatestPostDate"]];
                                         thread.subject = [threadDictionary valueForKey:@"Subject"];
                                         thread.replyCount = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ReplyCount"] integerValue]];
+                                        thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         
                                         Forum *forum = [Forum MR_findFirstByAttribute:@"identifier"
                                                                             withValue:forumIdentifier
@@ -135,6 +156,8 @@
                                                                             inContext:context];
                                         thread.authorUser = author;
                                     }
+                                    
+                                    [self deleteMarkedObjectsInArray:[parentForum.threads allObjects] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];
                                     NSInteger totalCount = [[JSON valueForKey:@"TotalCount"] integerValue];
@@ -171,11 +194,14 @@
                                     thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"PostDate"]];
                                     thread.subject = [threadDictionary valueForKey:@"Subject"];
                                     thread.bodyText = [threadDictionary valueForKey:@"Text"];
+                                    thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                     
                                     NSDictionary *authorDictionary = [threadDictionary valueForKey:@"Author"];
                                     User *author = [self createUserFromDictionary:authorDictionary
                                                                         inContext:context];
                                     thread.authorUser = author;
+                                    
+                                    [self markAllObjectsForDeletion:[thread.forumReplies allObjects]];
                                     
                                     NSArray *repliesArray = [JSON valueForKey:@"Replies"];
                                     for (__strong NSDictionary *replyDictionary in repliesArray) {
@@ -193,6 +219,7 @@
                                         reply.date = [SDUtils dateFromString:[replyDictionary valueForKey:@"PostDate"]];
                                         reply.subject = [replyDictionary valueForKey:@"Subject"];
                                         reply.bodyText = [replyDictionary valueForKey:@"Text"];
+                                        reply.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         
                                         NSDictionary *authorDictionary = [replyDictionary valueForKey:@"Author"];
                                         User *author = [self createUserFromDictionary:authorDictionary
@@ -200,6 +227,8 @@
                                         reply.authorUser = author;
                                         reply.thread = thread;
                                     }
+                                    
+                                    [self deleteMarkedObjectsInArray:[thread.forumReplies allObjects] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];
                                     if (completionBlock) {
@@ -281,6 +310,7 @@ withCompletionBlock:(void (^)(void))completionBlock
     group.groupDescription = [groupDictionary valueForKey:@"Description"];
     group.isEnabled = [NSNumber numberWithBool:[[groupDictionary valueForKey:@"IsEnabled"] boolValue]];
     group.name = [groupDictionary valueForKey:@"Name"];
+    group.shouldBeDeleted = [NSNumber numberWithBool:NO];
     
     return group;
 }
@@ -301,6 +331,37 @@ withCompletionBlock:(void (^)(void))completionBlock
     user.username = [userDictionary valueForKey:@"Username"];
     
     return user;
+}
+
+#pragma mark - private methods
+
++ (void)markAllObjectsForDeletion:(NSArray *)forumItemArray
+{
+    if (forumItemArray) {
+        for (id forumListItem in forumItemArray) {
+            
+            if ([forumListItem valueForKey:@"shouldBeDeleted"]) {
+                if ([[forumListItem valueForKey:@"shouldBeDeleted"] isKindOfClass:[NSNumber class]]) {
+                    [forumListItem setValue:[NSNumber numberWithBool:YES] forKey:@"shouldBeDeleted"];
+                }
+            }
+        }
+    }
+}
+
+
++ (void)deleteMarkedObjectsInArray:(NSArray *)array inContext:(NSManagedObjectContext *)context
+{
+    for (id forumListItem in array) {
+        
+        if ([forumListItem valueForKey:@"shouldBeDeleted"]) {
+            if ([[forumListItem valueForKey:@"shouldBeDeleted"] isKindOfClass:[NSNumber class]]) {
+                if ([[forumListItem valueForKey:@"shouldBeDeleted"] boolValue]) {
+                    [context deleteObject:forumListItem];
+                }
+            }
+        }
+    }
 }
 
 @end
