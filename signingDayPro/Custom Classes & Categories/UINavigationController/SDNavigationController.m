@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIViewController *lastControllerForToolbarItems;
 @property (nonatomic, assign) BarButtonType lastSelectedType;
 @property (nonatomic, assign) BOOL showFilterButton;
+@property (nonatomic, assign) BOOL showNewPostButton;
 @property (nonatomic, assign) BOOL filterViewVisible;
 @property (nonatomic, assign) BOOL navigationInProgress;
 
@@ -177,14 +178,24 @@
     self.topToolBar.rightButton.selected = (self.filterViewVisible) ? YES : NO;
     
     //check is filter button needed
-    if (self.showFilterButton) {
-        [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"LandingPageFilterButton.png"]];
+    [self checkIfRightButtonNeededWithImage:[UIImage imageNamed:@"LandingPageFilterButton.png"]
+                                    andFlag:self.showFilterButton];
+    
+    //check if post button needed
+    [self checkIfRightButtonNeededWithImage:[UIImage imageNamed:@"WarRoomNewPostButton.png"]
+                                    andFlag:self.showNewPostButton];
+    
+}
+
+- (void)checkIfRightButtonNeededWithImage:(UIImage *)buttonImage
+                                  andFlag:(BOOL)flag
+{
+    if (flag) {
+        [self.topToolBar setrightButtonImage:buttonImage];
         self.topToolBar.rightButton.hidden = NO;
     }
-    else {
+    else
         self.topToolBar.rightButton.hidden = YES;
-    }
-    
 }
 
 - (void)hideKeyboardsOfUIResponders
@@ -324,6 +335,23 @@
 - (void)removeFilterButton
 {
     self.showFilterButton = NO;
+    [self setToolbarButtons];
+}
+
+- (void)newPostButtonSelected
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNewPostButtonPressedNotification object:nil];
+}
+
+- (void)addNewPostButton
+{
+    self.showNewPostButton = YES;
+    [self setToolbarButtons];
+}
+
+- (void)removeNewPostButton
+{
+    self.showNewPostButton = NO;
     [self setToolbarButtons];
 }
 
@@ -692,7 +720,10 @@
 
 - (void)rightButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView
 {
-    [self filterButtonSelected];
+    if (self.showFilterButton)
+        [self filterButtonSelected];
+    else if (self.showNewPostButton)
+        [self newPostButtonSelected];
 }
 
 - (void)notificationButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView

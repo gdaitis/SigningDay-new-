@@ -52,6 +52,74 @@
             </objects>
             <point key="canvasLocation" x="21" y="88"/>
         </scene>
+        <!--Modal Navigation Controller-->
+        <scene sceneID="SyK-63-3L6">
+            <objects>
+                <navigationController storyboardIdentifier="CreateNewDiscussionNavigationController" definesPresentationContext="YES" id="ES2-05-fNf" customClass="SDModalNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qfs-eo-Jrp">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="XY5-kl-KMm">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="f6g-pI-0Ba" kind="relationship" relationship="rootViewController" id="zNV-ag-JSC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0rE-fZ-uX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="21" y="866"/>
+        </scene>
+        <!--New Discussion View Controller - New Thread-->
+        <scene sceneID="X9f-Rj-No5">
+            <objects>
+                <viewController storyboardIdentifier="CreateNewDiscussionController" title="New Thread" id="f6g-pI-0Ba" customClass="SDNewDiscussionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dhl-X8-jKG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="IWd-7K-EJ8">
+                                <rect key="frame" x="0.0" y="64" width="320" height="288"/>
+                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="UQV-Gu-1sa">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.74509803921568629" green="0.74509803921568629" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject of Topic" minimumFontSize="17" id="ttP-gJ-8a6">
+                                        <rect key="frame" x="20" y="0.0" width="280" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="0bG-zF-OvN" customClass="UIPlaceHolderTextView">
+                                        <rect key="frame" x="20" y="59" width="280" height="229"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="64" maxX="0.0" maxY="-64"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Thread" id="Kng-a7-qsZ"/>
+                    <connections>
+                        <outlet property="contentView" destination="IWd-7K-EJ8" id="dV9-4l-viN"/>
+                        <outlet property="postTextView" destination="0bG-zF-OvN" id="ECE-ea-JmQ"/>
+                        <outlet property="subjectTextField" destination="ttP-gJ-8a6" id="jau-mg-tCS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BgY-5v-VNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="475" y="866"/>
+        </scene>
         <!--Discussion View Controller-->
         <scene sceneID="BFd-yq-y3d">
             <objects>
