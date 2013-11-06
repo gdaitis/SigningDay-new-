@@ -38,6 +38,7 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                                     for (NSDictionary __strong *notificationDictionary in notificationsArray) {
                                         notificationDictionary = [notificationDictionary dictionaryByReplacingNullsWithStrings];
                                         NSNumber *identifier = [NSNumber numberWithInt:[[notificationDictionary valueForKey:@"ID"] intValue]];
+                                        
                                         Notification *notification = [Notification MR_findFirstByAttribute:@"identifier"
                                                                                                  withValue:identifier
                                                                                                  inContext:context];
@@ -81,7 +82,7 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                                                                              inContext:context];
                                         if (!fromUser) {
                                             fromUser = [User MR_createInContext:context];
-                                            fromUser.identifier = identifier;
+                                            fromUser.identifier = fromUserIdentifier;
                                         }
                                         fromUser.name = [fromUserDictionary valueForKey:@"DisplayName"];
                                         fromUser.avatarUrl = [fromUserDictionary valueForKey:@"AvatarUrl"];
