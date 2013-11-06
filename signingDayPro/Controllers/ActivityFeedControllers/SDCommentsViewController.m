@@ -150,7 +150,7 @@
     }
     
     Comment *comment = [self.dataArray objectAtIndex:indexPath.row];
-    cell.usernameLabel.text = comment.user.username;
+    cell.usernameLabel.text = comment.user.name;
     cell.messageTextLabel.text = comment.body;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     

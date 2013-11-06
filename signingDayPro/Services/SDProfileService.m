@@ -387,9 +387,9 @@
                                             user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"NationalRanking"] intValue]];
                                             user.thePlayer.starsCount = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"StarsCount"] intValue]];
                                             
-                                            NSDictionary *highSchoolDictionary = [derivedUserDictionary valueForKey:@"HighSchool"];
-                                            
-                                            if ([highSchoolDictionary isKindOfClass:[NSDictionary class]]) {
+                                            if ([[derivedUserDictionary valueForKey:@"HighSchool"] isKindOfClass:[NSDictionary class]]) {
+                                                NSDictionary *highSchoolDictionary = [[derivedUserDictionary valueForKey:@"HighSchool"] dictionaryByReplacingNullsWithStrings];
+                                                
                                                 if ([highSchoolDictionary valueForKey:@"HighSchoolId"]) {
                                                     NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[highSchoolDictionary valueForKey:@"HighSchoolId"] intValue]];
                                                     User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"

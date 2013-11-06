@@ -13,6 +13,7 @@
 #import "HighSchool.h"
 #import "User.h"
 #import "SDUtils.h"
+#import "State.h"
 #import "Team.h"
 
 @interface SDUserProfilePlayerHeaderView ()
@@ -69,7 +70,15 @@
     [super setupInfoWithUser:user];
     
     self.namelabel.text = user.name;
-    self.schoolNamelabel.text = user.thePlayer.highSchool.theUser.name;
+    
+    NSMutableString *mutableLocationString = [[NSMutableString alloc] initWithString:@""];
+    if (user.thePlayer.highSchool.theUser.name && ![user.thePlayer.highSchool.theUser.name isEqual:[NSNull null]]) {
+        [mutableLocationString appendString:user.thePlayer.highSchool.theUser.name];
+        if (user.state && ![user.state.code isEqual:[NSNull null]]) {
+            [mutableLocationString appendFormat:@" (%@)",user.state.code];
+        }
+    }
+    self.schoolNamelabel.text = mutableLocationString;
     self.starsRatingView.starsCount = [user.thePlayer.starsCount intValue];
     self.baseScoreView.baseScore = [user.thePlayer.baseScore floatValue];
     self.positionNumberlabel.text = [user.thePlayer.positionRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.positionRanking intValue]] : @"N/A";
