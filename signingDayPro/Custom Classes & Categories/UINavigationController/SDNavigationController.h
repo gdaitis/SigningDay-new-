@@ -50,6 +50,8 @@ typedef enum {
 - (void)removeFilterButton;
 //when filter view is hidden, not using filter button
 - (void)filterViewBecameHidden;
+- (void)addNewPostButton;
+- (void)removeNewPostButton;
 - (void)revealMenu:(id)sender;
 
 @end

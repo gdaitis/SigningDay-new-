@@ -10,6 +10,8 @@
 #import "SDWarRoomService.h"
 #import "SDDiscussionViewController.h"
 #import "UIView+NibLoading.h"
+#import "SDModalNavigationController.h"
+#import "SDNewDiscussionViewController.h"
 
 #import "SDGroupCell.h"
 #import "SDForumCell.h"
@@ -19,7 +21,7 @@
 #import "Forum.h"
 #import "Thread.h"
 
-@interface SDForumListController () <UITableViewDataSource,UITableViewDelegate>
+@interface SDForumListController () <UITableViewDataSource,UITableViewDelegate,SDModalNavigationControllerDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -45,6 +47,29 @@
     
     [self beginRefreshing];
     [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.listType == LIST_TYPE_FORUM) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(newPostButtonPressed)
+                                                     name:kNewPostButtonPressedNotification
+                                                   object:nil];
+        [((SDNavigationController *)self.navigationController) addNewPostButton];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.listType == LIST_TYPE_FORUM) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:kNewPostButtonPressedNotification
+                                                      object:nil];
+        [((SDNavigationController *)self.navigationController) removeNewPostButton];
+    }
 }
 
 - (void)checkServer
@@ -73,6 +98,21 @@
         default:
             break;
     }
+}
+
+- (void)newPostButtonPressed
+{
+    SDModalNavigationController *modalNavigationViewController = [[SDModalNavigationController alloc] init];
+    modalNavigationViewController.myDelegate = self;
+    UIStoryboard *warRoomStoryboard = [UIStoryboard storyboardWithName:@"WarRoomStoryBoard"
+                                                                bundle:nil];
+    SDNewDiscussionViewController *createNewDiscussionNavigationController = [warRoomStoryboard instantiateViewControllerWithIdentifier:@"CreateNewDiscussionController"];
+    Forum *forum = (Forum *)self.parentItem;
+    createNewDiscussionNavigationController.forum = forum;
+    [modalNavigationViewController addChildViewController:createNewDiscussionNavigationController];
+    [self presentViewController:modalNavigationViewController
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -283,6 +323,16 @@
     } failureBlock:^{
         [self endRefreshing];
     }];
+}
+
+#pragma mark - SDModalNavigationController myDelegate methods
+
+- (void)modalNavigationControllerWantsToClose:(SDModalNavigationController *)modalNavigationController
+{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 [self checkServer];
+                             }];
 }
 
 
