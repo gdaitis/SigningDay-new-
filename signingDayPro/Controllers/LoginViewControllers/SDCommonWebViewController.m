@@ -53,4 +53,9 @@
     [MBProgressHUD hideAllHUDsForView:webView animated:YES];
 }
 
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    
+}
+
 @end

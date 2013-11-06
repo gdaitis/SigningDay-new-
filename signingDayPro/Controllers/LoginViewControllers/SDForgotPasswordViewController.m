@@ -8,6 +8,7 @@
 
 #import "SDForgotPasswordViewController.h"
 #import "SDAPIClient.h"
+#import "MBProgressHUD.h"
 
 @implementation SDForgotPasswordViewController
 
@@ -19,6 +20,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@/user/emailforgottenpassword.aspx", kSDBaseSigningDayURLString];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    self.webView.delegate = self;
     [self.webView loadRequest:request];
     
     UIImage *image = [UIImage imageNamed:@"x_button_yellow.png"];
@@ -41,4 +43,23 @@
     [self setWebView:nil];
     [super viewDidUnload];
 }
+
+#pragma mark UIWebView delegate methods
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:webView animated:YES];
+    hud.labelText = @"Loading";
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [MBProgressHUD hideAllHUDsForView:webView animated:YES];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [MBProgressHUD hideAllHUDsForView:webView animated:YES];
+}
+
 @end
