@@ -56,6 +56,10 @@
                                                          green:209.0f/255.0f
                                                           blue:209.0f/255.0f
                                                          alpha:1];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+        self.postTextView.contentInset = UIEdgeInsetsMake(-4,-4,0,0);
+    else
+        self.postTextView.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
 }
 
 - (void)closeButtonPressed
