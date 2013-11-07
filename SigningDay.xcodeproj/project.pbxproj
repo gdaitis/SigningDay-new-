@@ -14,6 +14,7 @@
 		7B2D9AAD1799524700B1D660 /* UserProfileStarActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B2D9AAB1799524700B1D660 /* UserProfileStarActive@2x.png */; };
 		7B2D9AAE1799524700B1D660 /* UserProfileStarFaded@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B2D9AAC1799524700B1D660 /* UserProfileStarFaded@2x.png */; };
 		7B3031B0177ADB97006EF25B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3031AF177ADB97006EF25B /* libxml2.dylib */; };
+		7B3D05F3182BC96500B96EAE /* SigningDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D05F0182BC96500B96EAE /* SigningDay.xcdatamodeld */; };
 		7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288A1765DC5500091954 /* chat_box_bg@2x.png */; };
 		7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */; };
 		7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */; };
@@ -413,6 +414,8 @@
 		7B3031AF177ADB97006EF25B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		7B33A5A117BBC849002A994F /* NSDictionary+NullConverver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullConverver.h"; sourceTree = "<group>"; };
 		7B33A5A217BBC849002A994F /* NSDictionary+NullConverver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullConverver.m"; sourceTree = "<group>"; };
+		7B3D05F1182BC96500B96EAE /* SigningDay 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SigningDay 2.xcdatamodel"; sourceTree = "<group>"; };
+		7B3D05F2182BC96500B96EAE /* SigningDay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SigningDay.xcdatamodel; sourceTree = "<group>"; };
 		7B46288A1765DC5500091954 /* chat_box_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_bg@2x.png"; sourceTree = "<group>"; };
 		7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_send_bt@2x.png"; sourceTree = "<group>"; };
 		7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_text_bg@2x.png"; sourceTree = "<group>"; };
@@ -628,7 +631,6 @@
 		8032F05C1755F98E00C92AAC /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		8032F0611755F98E00C92AAC /* SDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUtils.h; sourceTree = "<group>"; };
 		8032F0621755F98E00C92AAC /* SDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUtils.m; sourceTree = "<group>"; };
-		8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SigningDay.xcdatamodel; sourceTree = "<group>"; };
 		8032F09A1755FA2100C92AAC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		8032F09C1755FA2B00C92AAC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8032F09E1755FA3600C92AAC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -1370,7 +1372,7 @@
 		8032F0971755F9AF00C92AAC /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				8032F0981755F9AF00C92AAC /* SigningDay.xcdatamodel */,
+				7B3D05F0182BC96500B96EAE /* SigningDay.xcdatamodeld */,
 				80E202AA182946F300449287 /* Group.h */,
 				80E202AB182946F300449287 /* Group.m */,
 				80E202A7182946F300449287 /* Forum.h */,
@@ -2557,6 +2559,7 @@
 				7B93CEC5182AA007007A6275 /* SDUserProfileMemberHeaderView.m in Sources */,
 				7B93CEC6182AA007007A6275 /* SDUserProfileNFLPAHeaderView.m in Sources */,
 				7B93CEC7182AA007007A6275 /* SDUserProfileHighSchoolHeaderView.m in Sources */,
+				7B3D05F3182BC96500B96EAE /* SigningDay.xcdatamodeld in Sources */,
 				7B93CEC8182AA007007A6275 /* SDUserProfilePlayerHeaderView.m in Sources */,
 				7B93CEC9182AA007007A6275 /* SDUserProfileCoachHeaderView.m in Sources */,
 				7B93CECA182AA007007A6275 /* SDUserProfileTeamHeaderView.m in Sources */,
@@ -2808,6 +2811,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7B3D05F0182BC96500B96EAE /* SigningDay.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7B3D05F1182BC96500B96EAE /* SigningDay 2.xcdatamodel */,
+				7B3D05F2182BC96500B96EAE /* SigningDay.xcdatamodel */,
+			);
+			currentVersion = 7B3D05F1182BC96500B96EAE /* SigningDay 2.xcdatamodel */;
+			path = SigningDay.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 805598B4174CE8200040631D /* Project object */;
 }
