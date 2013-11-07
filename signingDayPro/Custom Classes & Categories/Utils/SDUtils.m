@@ -66,7 +66,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"buildVersion"];
         needsLogout = YES;
     }
-    [MagicalRecord setupCoreDataStackWithStoreNamed:@"SigningDay.sqlite"];
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"SigningDay.sqlite"];
     
     if (needsLogout) {
         [SDLoginService logout];
