@@ -86,8 +86,8 @@
         
         if ([user.thePlayer.highSchool.theUser.name class] != [NSNull null] && user.thePlayer.highSchool.theUser.name != nil)
             [playerLocationString appendString:user.thePlayer.highSchool.theUser.name];
-        if ([user.state.code class] != [NSNull null] && user.state.code != nil)
-            [playerLocationString appendFormat:@" (%@)",user.state.code];
+        if ([user.thePlayer.highSchool.theUser.state.code class] != [NSNull null] && user.thePlayer.highSchool.theUser.state.code != nil)
+            [playerLocationString appendFormat:@" (%@)",user.thePlayer.highSchool.theUser.state.code];
         
         self.schoolLabel.text = playerLocationString;
         self.baseScoreNameLabel.text = [NSString stringWithFormat:@"%.2f",[user.thePlayer.baseScore floatValue]];

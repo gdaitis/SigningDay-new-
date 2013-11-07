@@ -179,6 +179,16 @@
                                              
                                              user.thePlayer.highSchool = highSchoolUser.theHighSchool;
                                              
+                                             NSString *highSchoolCode = [userDictionary valueForKey:@"HighSchoolStateCode"];
+                                             state = [State MR_findFirstByAttribute:@"code"
+                                                                                 withValue:highSchoolCode
+                                                                                 inContext:context];
+                                             if (!state) {
+                                                 state = [State MR_createInContext:context];
+                                                 state.code = highSchoolCode;
+                                             }
+                                             user.thePlayer.highSchool.theUser.state = state;
+                                             
                                          }];
                                [context MR_saveOnlySelfAndWait];
                                if (successBlock)

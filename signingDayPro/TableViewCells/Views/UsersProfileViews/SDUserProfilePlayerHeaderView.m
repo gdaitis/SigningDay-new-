@@ -72,10 +72,11 @@
     self.namelabel.text = user.name;
     
     NSMutableString *mutableLocationString = [[NSMutableString alloc] initWithString:@""];
-    if (user.thePlayer.highSchool.theUser.name && ![user.thePlayer.highSchool.theUser.name isEqual:[NSNull null]]) {
+    if (user.thePlayer.highSchool.theUser.name && ![user.thePlayer.highSchool.theUser.name isEqual:[NSNull null]] && user.thePlayer.highSchool.theUser.name != nil) {
+        
         [mutableLocationString appendString:user.thePlayer.highSchool.theUser.name];
-        if (user.state && ![user.state.code isEqual:[NSNull null]]) {
-            [mutableLocationString appendFormat:@" (%@)",user.state.code];
+        if (user.thePlayer.highSchool.theUser.state && ![user.thePlayer.highSchool.theUser.state.code isEqual:[NSNull null]] && user.thePlayer.highSchool.theUser.state.code != nil) {
+            [mutableLocationString appendFormat:@" (%@)",user.thePlayer.highSchool.theUser.state.code];
         }
     }
     self.schoolNamelabel.text = mutableLocationString;

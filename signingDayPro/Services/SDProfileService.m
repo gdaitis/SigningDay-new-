@@ -346,6 +346,10 @@
                                     user.allowBuzzMessage = [NSNumber numberWithBool:[[userDictionary valueForKey:@"AllowBuzzMessage"] boolValue]];
                                     user.allowPrivateMessage = [NSNumber numberWithBool:[[userDictionary valueForKey:@"AllowPrivateMessage"] boolValue]];
                                     
+                                    NSString *masterUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+                                    Master *master = [Master MR_findFirstByAttribute:@"username" withValue:masterUsername inContext:userContext];
+                                    user.followedBy = ([[userDictionary valueForKey:@"IsFollowing"] boolValue]) ? master : nil;
+                                    
                                     NSNumber *photoGalleryIdentifier = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"PhotoGalleryId"] integerValue]];
                                     MediaGallery *photoGallery = [MediaGallery MR_findFirstByAttribute:@"identifier"
                                                                                              withValue:photoGalleryIdentifier
@@ -408,6 +412,16 @@
                                                     highSchoolUser.theHighSchool.address = [highSchoolDictionary valueForKey:@"Address"];
                                                     
                                                     user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+                                                    
+                                                    NSString *code = [highSchoolDictionary valueForKey:@"StateCode"];
+                                                    State *state = [State MR_findFirstByAttribute:@"code"
+                                                                                        withValue:code
+                                                                                        inContext:userContext];
+                                                    if (!state) {
+                                                        state = [State MR_createInContext:userContext];
+                                                        state.code = code;
+                                                    }
+                                                    highSchoolUser.state = state;
                                                 }
                                             }
                                         }
@@ -1048,7 +1062,7 @@
                                        teamUser.theTeam = [Team MR_createInContext:context];
                                    
                                    teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
-                                   teamUser.avatarUrl = [NSString stringWithFormat:@"%@%@", kSDBaseSigningDayURLString,[[userDictionary valueForKey:@"TeamAvatarUrl"] substringFromIndex:2]];
+                                   teamUser.avatarUrl = [userDictionary valueForKey:@"TeamAvatarUrl"];
                                    
                                    teamUser.name = [userDictionary valueForKey:@"TeamInstitution"];
                                    
