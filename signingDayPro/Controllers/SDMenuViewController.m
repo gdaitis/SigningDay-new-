@@ -259,6 +259,9 @@
 
 - (void)showLoginScreen
 {
+    UIViewController *presentedVC = [self presentedViewController];
+    if (presentedVC isKindOfClass:[SDLoginViewController class] && presentedVC)
+        return;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
     SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];

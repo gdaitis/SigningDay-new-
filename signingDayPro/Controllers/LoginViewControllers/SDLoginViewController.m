@@ -74,7 +74,7 @@
     [SDLoginService loginWithUsername:username password:password facebookToken:nil successBlock:^{
         [self.delegate loginViewControllerDidFinishLoggingIn:self];
     } failBlock:^{
-        
+        [SDLoginService logout];
     }];
 }
 
