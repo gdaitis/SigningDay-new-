@@ -2,7 +2,7 @@
 //  Thread.m
 //  SigningDay
 //
-//  Created by Lukas Kekys on 11/5/13.
+//  Created by Lukas Kekys on 11/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -21,8 +21,8 @@
 @dynamic identifier;
 @dynamic latestPostDate;
 @dynamic replyCount;
-@dynamic subject;
 @dynamic shouldBeDeleted;
+@dynamic subject;
 @dynamic authorUser;
 @dynamic forum;
 @dynamic forumReplies;

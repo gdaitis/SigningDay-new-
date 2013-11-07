@@ -2,7 +2,7 @@
 //  Player.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 10/24/13.
+//  Created by Lukas Kekys on 11/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -25,9 +25,9 @@
 @property (nonatomic, retain) NSString * userClass;
 @property (nonatomic, retain) NSNumber * weight;
 @property (nonatomic, retain) HighSchool *highSchool;
+@property (nonatomic, retain) NSSet *offers;
 @property (nonatomic, retain) HighSchool *rosterOf;
 @property (nonatomic, retain) User *theUser;
-@property (nonatomic, retain) NSSet *offers;
 @end
 
 @interface Player (CoreDataGeneratedAccessors)

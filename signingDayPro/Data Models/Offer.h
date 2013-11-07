@@ -2,7 +2,7 @@
 //  Offer.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 10/24/13.
+//  Created by Lukas Kekys on 11/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
 @interface Offer : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * playerCommited;
-@property (nonatomic, retain) Team *team;
 @property (nonatomic, retain) Player *player;
+@property (nonatomic, retain) Team *team;
 
 @end

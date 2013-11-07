@@ -2,7 +2,7 @@
 //  Team.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 10/24/13.
+//  Created by Lukas Kekys on 11/7/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -29,8 +29,8 @@
 @property (nonatomic, retain) NSString * universityName;
 @property (nonatomic, retain) NSSet *favoritedBy;
 @property (nonatomic, retain) NSSet *headCoaches;
-@property (nonatomic, retain) User *theUser;
 @property (nonatomic, retain) NSSet *offers;
+@property (nonatomic, retain) User *theUser;
 @end
 
 @interface Team (CoreDataGeneratedAccessors)
