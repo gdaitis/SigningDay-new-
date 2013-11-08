@@ -13,6 +13,7 @@
 #import "SDWarRoomService.h"
 #import "ForumReply.h"
 #import "NSString+Additions.h"
+#import "SDWarRoomService.h"
 
 @implementation SDDiscussionViewController
 
@@ -131,6 +132,12 @@
     if (!cell) {
         cell = (id)[SDPostCell loadInstanceFromNib];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UITapGestureRecognizer *believeGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(believePressed:)];
+        [cell.believesImageView addGestureRecognizer:believeGestureRecognizer];
+        UITapGestureRecognizer *hateGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hatePressed:)];
+        [cell.hatesImageView addGestureRecognizer:hateGestureRecognizer];
+        
+        cell.believesImageView.tag = cell.hatesImageView.tag = indexPath.row;
     }
     // Configure the cell (give data nomnomnom)
     id dataObject = [self.dataArray objectAtIndex:[indexPath row]];
@@ -158,6 +165,34 @@
     cellHeight += 2; // height of bottom line
     
     return cellHeight;
+}
+
+- (void)believePressed:(UIView *)sender
+{
+//    int index = sender.tag;
+//    
+//    SDForumPostType forumPostType;
+//    if (index == 0)
+//        forumPostType = SDForumPostTypeThread;
+//    else
+//        forumPostType = SDForumPostTypeReply;
+//    
+//    SDEmotion emotion;
+//    emotion = SDEmotionBelieve;
+//    
+//    [SDWarRoomService setEmotion:emotion
+//                 toForumPostType:forumPostType
+//                  withIdentifier:self.currentThread.identifier
+//             withCompletionBlock:^{
+//                 [self reload];
+//             } failureBlock:^{
+//                 [self reload];
+//             }];
+}
+
+- (void)hatePressed:(UIView *)sender
+{
+//    int index = sender.tag;
 }
 
 @end

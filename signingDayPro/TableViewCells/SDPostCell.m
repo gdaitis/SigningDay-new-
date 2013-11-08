@@ -15,14 +15,10 @@
 
 @interface SDPostCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *sdStaffIconImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *believesImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *hatesImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *believesCountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *hatesCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *sdStaffIconImageView;
 @property (weak, nonatomic) IBOutlet UITextView *postTextView;
 
 @property (nonatomic, strong) UIView *bottomLineView;
@@ -43,6 +39,9 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    self.believesImageView.userInteractionEnabled = YES;
+    self.hatesImageView.userInteractionEnabled = YES;
     
     self.dateLabel.textColor = [UIColor colorWithRed:119.0f/255.0f
                                                green:119.0f/255.0f
