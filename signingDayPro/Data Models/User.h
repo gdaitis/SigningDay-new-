@@ -2,7 +2,7 @@
 //  User.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 11/7/13.
+//  Created by Vytautas Gudaitis on 08/11/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSNumber * userTypeId;
+@property (nonatomic, retain) NSNumber * isSDStaff;
 @property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) NSSet *activityStoriesFromOtherUsers;
 @property (nonatomic, retain) NSSet *authorOf;

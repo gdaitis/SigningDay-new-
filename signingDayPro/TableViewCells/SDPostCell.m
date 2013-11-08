@@ -72,8 +72,7 @@
 {
     NSString *avatarUrl;// = @"http://dev.signingday.com/resized-image.ashx/__size/245x230/__key/communityserver-components-avatars/00-00-03-87-07/4TOGZ3UKM8DW.png";
     NSString *userName;// = @"Sam Poggi sdfg sdfg";
-#warning SDStaff status is not implemented in the web service, flag is hardcoded
-    BOOL isSDStaff = NO;
+    BOOL isSDStaff;
     NSString *postText;// = @"Aasdjfg kadshfgsherjgsdnfbvn ansdf asldfj a;lksdfl jvbn xcn va;lsdhtj sdfnv xclvjkbs;fjg sd;fn sdn fljalsdjf sdf";
     NSString *dateText;// = @"on 5 Feb 2013 11:24 PM";
     int believesCount;// = 45;
@@ -87,6 +86,7 @@
         dateText = [SDUtils formatedTimeForDate:thread.date];
         believesCount = [thread.countOfBelieves integerValue];
         hatesCount = [thread.countOfHates integerValue];
+        isSDStaff = [thread.authorUser.isSDStaff boolValue];
     } else if ([dataObject isKindOfClass:[ForumReply class]]) {
         ForumReply *forumReply = (ForumReply *)dataObject;
         avatarUrl = forumReply.authorUser.avatarUrl;
@@ -95,6 +95,7 @@
         dateText = [SDUtils formatedTimeForDate:forumReply.date];
         believesCount = [forumReply.countOfBelieves integerValue];
         hatesCount = [forumReply.countOfHates integerValue];
+        isSDStaff = [forumReply.authorUser.isSDStaff boolValue];
     } else {
         return;
     }
@@ -129,7 +130,7 @@
                                constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth, CGFLOAT_MAX)
                                    lineBreakMode:NSLineBreakByWordWrapping];
     CGRect postTextViewFrame = self.postTextView.frame;
-    postTextViewFrame.size.height = ceilf(postTextSize.height);
+    postTextViewFrame.size.height = ceilf(postTextSize.height) + 5; // add padding to text view
     
     self.postTextView.frame = postTextViewFrame;
     

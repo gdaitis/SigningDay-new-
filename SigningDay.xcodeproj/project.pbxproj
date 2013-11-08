@@ -198,6 +198,7 @@
 		7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */; };
 		7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */; };
 		7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */; };
+		7BAC3809182CE1D8007ED8AB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAC3808182CE1D8007ED8AB /* User.m */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
 		7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */; };
 		7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374017CF6A9B0064DBEB /* CoreText.framework */; };
@@ -351,7 +352,6 @@
 		80C28388182BCC41007759A0 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28387182BCC41007759A0 /* Like.m */; };
 		80C2838B182BCC41007759A0 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2838A182BCC41007759A0 /* Player.m */; };
 		80C2838E182BCC41007759A0 /* MediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2838D182BCC41007759A0 /* MediaItem.m */; };
-		80C28391182BCC41007759A0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28390182BCC41007759A0 /* User.m */; };
 		80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */; };
 		80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */; };
 		80CCAE6C179404CE0015429A /* SDUserProfileSlidingButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */; };
@@ -468,6 +468,8 @@
 		7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonSmall@2x.png"; sourceTree = "<group>"; };
 		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
+		7BAC3807182CE1D8007ED8AB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7BAC3808182CE1D8007ED8AB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
 		7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommentsViewController.m; sourceTree = "<group>"; };
 		7BAF6ED317A93F7500F7C6B3 /* SDBaseChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseChatViewController.h; sourceTree = "<group>"; };
@@ -884,8 +886,6 @@
 		80C2838A182BCC41007759A0 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		80C2838C182BCC41007759A0 /* MediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaItem.h; sourceTree = "<group>"; };
 		80C2838D182BCC41007759A0 /* MediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaItem.m; sourceTree = "<group>"; };
-		80C2838F182BCC41007759A0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		80C28390182BCC41007759A0 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		80C5695A18182FBF0055A041 /* SDOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOffersViewController.h; sourceTree = "<group>"; };
 		80C5695B18182FBF0055A041 /* SDOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDOffersViewController.m; sourceTree = "<group>"; };
 		80C7EF3317F1765C000A3B3D /* SDCustomNavigationToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCustomNavigationToolbarView.h; sourceTree = "<group>"; };
@@ -1372,8 +1372,8 @@
 			isa = PBXGroup;
 			children = (
 				80C28345182BCC2F007759A0 /* SigningDay.xcdatamodel */,
-				80C2838F182BCC41007759A0 /* User.h */,
-				80C28390182BCC41007759A0 /* User.m */,
+				7BAC3807182CE1D8007ED8AB /* User.h */,
+				7BAC3808182CE1D8007ED8AB /* User.m */,
 				80C2838C182BCC41007759A0 /* MediaItem.h */,
 				80C2838D182BCC41007759A0 /* MediaItem.m */,
 				80C28389182BCC41007759A0 /* Player.h */,
@@ -2472,7 +2472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80C28391182BCC41007759A0 /* User.m in Sources */,
+				7BAC3809182CE1D8007ED8AB /* User.m in Sources */,
 				7B93CF09182AA05D007A6275 /* main.m in Sources */,
 				80C28364182BCC3F007759A0 /* State.m in Sources */,
 				7B93CEE1182AA038007A6275 /* NSDictionary+NullConverver.m in Sources */,

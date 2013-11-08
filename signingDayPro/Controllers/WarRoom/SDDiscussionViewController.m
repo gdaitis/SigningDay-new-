@@ -159,6 +159,7 @@
                                    lineBreakMode:NSLineBreakByWordWrapping];
     
     cellHeight += postTextSize.height;
+    cellHeight += 5; // postTextSize padding
     cellHeight += kSDPostCellPostTextAndDateLabelGapHeight;
     cellHeight += 16; // height of date label
     cellHeight += kSDPostCellDateLabelAndBottomLineGapHeight;

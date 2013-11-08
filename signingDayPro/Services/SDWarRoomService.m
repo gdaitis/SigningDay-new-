@@ -347,6 +347,7 @@ withCompletionBlock:(void (^)(void))completionBlock
     user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
     user.name = [userDictionary valueForKey:@"DisplayName"];
     user.username = [userDictionary valueForKey:@"Username"];
+    user.isSDStaff = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsSdStaff"] boolValue]];
     
     return user;
 }
