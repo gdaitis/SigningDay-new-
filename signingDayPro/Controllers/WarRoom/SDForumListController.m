@@ -21,7 +21,7 @@
 #import "Forum.h"
 #import "Thread.h"
 
-@interface SDForumListController () <UITableViewDataSource,UITableViewDelegate,SDModalNavigationControllerDelegate>
+@interface SDForumListController () <UITableViewDataSource, UITableViewDelegate, SDModalNavigationControllerDelegate, SDNewDiscussionViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -52,7 +52,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.listType == LIST_TYPE_FORUM) {
+    if (self.listType == LIST_TYPE_THREAD) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(newPostButtonPressed)
                                                      name:kNewPostButtonPressedNotification
@@ -64,7 +64,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    if (self.listType == LIST_TYPE_FORUM) {
+    if (self.listType == LIST_TYPE_THREAD) {
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:kNewPostButtonPressedNotification
                                                       object:nil];
@@ -107,6 +107,7 @@
     UIStoryboard *warRoomStoryboard = [UIStoryboard storyboardWithName:@"WarRoomStoryBoard"
                                                                 bundle:nil];
     SDNewDiscussionViewController *createNewDiscussionNavigationController = [warRoomStoryboard instantiateViewControllerWithIdentifier:@"CreateNewDiscussionController"];
+    createNewDiscussionNavigationController.delegate = self;
     Forum *forum = (Forum *)self.parentItem;
     createNewDiscussionNavigationController.forum = forum;
     [modalNavigationViewController addChildViewController:createNewDiscussionNavigationController];
@@ -331,9 +332,20 @@
 {
     [self dismissViewControllerAnimated:YES
                              completion:^{
+                                 [self beginRefreshing];
                                  [self checkServer];
                              }];
 }
 
+#pragma mark - SDNewDiscussionViewController delegate methods
+
+- (void)newDiscussionViewController:(SDNewDiscussionViewController *)newDiscussionViewController
+                 didCreateNewThread:(Thread *)thread
+{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 [self showDiscussionControllerForThread:thread];
+                             }];
+}
 
 @end

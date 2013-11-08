@@ -85,9 +85,10 @@
     [SDWarRoomService postNewPorumThreadForForumId:self.forum.identifier
                                            subject:self.subjectTextField.text
                                               text:self.postTextView.text
-                                   completionBlock:^{
+                                   completionBlock:^(Thread *thread) {
                                        [self hideProgressHudInView:self.contentView];
-                                       [self closeButtonPressed];
+                                       [self.delegate newDiscussionViewController:self
+                                                               didCreateNewThread:thread];
                                    } failureBlock:^{
                                        [self hideProgressHudInView:self.contentView];
                                        [self closeButtonPressed];

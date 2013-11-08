@@ -1114,6 +1114,7 @@
 				7B93CF0B182AA0FD007A6275 /* UIPlaceHolderTextView.m */,
 			);
 			name = UIPlaceHolderTextView;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		7BA0F54417E9B1F100C6DE89 /* NSObject+MasterUserMethods */ = {
@@ -1128,7 +1129,6 @@
 		7BBFBBDE17AA4ED300BF45A5 /* Custom classes */ = {
 			isa = PBXGroup;
 			children = (
-				7B93CE53182A9F1F007A6275 /* UIPlaceHolderTextView */,
 				7BA0F54417E9B1F100C6DE89 /* NSObject+MasterUserMethods */,
 				7B1DF10817E0A187005455D8 /* UIImageView+Crop */,
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
@@ -1613,6 +1613,7 @@
 		80559904174CEDDE0040631D /* 3rd party classes */ = {
 			isa = PBXGroup;
 			children = (
+				7B93CE53182A9F1F007A6275 /* UIPlaceHolderTextView */,
 				80E2028C1829199D00449287 /* GoogleAnalytics */,
 				7B09B77917F05A500070688F /* HPGrowingTextView */,
 				7B33A5A017BBC825002A994F /* NSDictionary+NullConverter */,

@@ -16,6 +16,7 @@
 #import "ForumReply.h"
 #import "Thread.h"
 #import "SDUtils.h"
+#import "NSString+HTML.h"
 
 @interface SDWarRoomService ()
 
@@ -124,37 +125,12 @@
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
-                                    Forum *parentForum = [Forum MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
+                                    Forum *parentForum = [Forum MR_findFirstByAttribute:@"identifier" withValue:forumIdentifier inContext:context];
                                     [self markAllObjectsForDeletion:[parentForum.threads allObjects]];
                                     
                                     NSArray *threadsArray = [JSON valueForKey:@"Threads"];
                                     for (__strong NSDictionary *threadDictionary in threadsArray) {
-                                        threadDictionary = [threadDictionary dictionaryByReplacingNullsWithStrings];
-                                        NSNumber *identifier = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"Id"] integerValue]];
-                                        Thread *thread = [Thread MR_findFirstByAttribute:@"identifier"
-                                                                               withValue:identifier
-                                                                               inContext:context];
-                                        if (!thread) {
-                                            thread = [Thread MR_createInContext:context];
-                                            thread.identifier = identifier;
-                                        }
-                                        thread.bodyText = [threadDictionary valueForKey:@"Body"];
-                                        thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"Date"]];
-                                        thread.latestPostDate = [SDUtils dateFromString:[threadDictionary valueForKey:@"LatestPostDate"]];
-                                        thread.subject = [threadDictionary valueForKey:@"Subject"];
-                                        thread.replyCount = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ReplyCount"] integerValue]];
-                                        thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
-                                        
-                                        Forum *forum = [Forum MR_findFirstByAttribute:@"identifier"
-                                                                            withValue:forumIdentifier
-                                                                            inContext:context];
-                                        if (forum)
-                                            thread.forum = forum;
-                                        
-                                        NSDictionary *authorDictionary = [threadDictionary valueForKey:@"Author"];
-                                        User *author = [self createUserFromDictionary:authorDictionary
-                                                                            inContext:context];
-                                        thread.authorUser = author;
+                                        __unused Thread *trhead = [self createThreadFromDictionary:threadDictionary inContext:context];
                                     }
                                     
                                     [self deleteMarkedObjectsInArray:[parentForum.threads allObjects] inContext:context];
@@ -193,7 +169,7 @@
                                     thread.countOfHates = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"HatesCount"] integerValue]];
                                     thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"PostDate"]];
                                     thread.subject = [threadDictionary valueForKey:@"Subject"];
-                                    thread.bodyText = [threadDictionary valueForKey:@"Text"];
+                                    thread.bodyText = [[threadDictionary valueForKey:@"Text"] stringByConvertingHTMLToPlainText];
                                     thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                     
                                     NSDictionary *authorDictionary = [threadDictionary valueForKey:@"Author"];
@@ -218,7 +194,7 @@
                                         reply.countOfHates = [NSNumber numberWithInteger:[[replyDictionary valueForKey:@"HatesCount"] integerValue]];
                                         reply.date = [SDUtils dateFromString:[replyDictionary valueForKey:@"PostDate"]];
                                         reply.subject = [replyDictionary valueForKey:@"Subject"];
-                                        reply.bodyText = [replyDictionary valueForKey:@"Text"];
+                                        reply.bodyText = [[replyDictionary valueForKey:@"Text"] stringByConvertingHTMLToPlainText];
                                         reply.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         
                                         NSDictionary *authorDictionary = [replyDictionary valueForKey:@"Author"];
@@ -312,7 +288,7 @@ withCompletionBlock:(void (^)(void))completionBlock
 + (void)postNewPorumThreadForForumId:(NSNumber *)forumId
                              subject:(NSString *)subject
                                 text:(NSString *)text
-                     completionBlock:(void (^)(void))completionBlock
+                     completionBlock:(void (^)(Thread *thread))completionBlock
                         failureBlock:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"forums/%d/threads.json", [forumId integerValue]];
@@ -320,9 +296,13 @@ withCompletionBlock:(void (^)(void))completionBlock
                               parameters:@{@"ForumId": [NSString stringWithFormat:@"%d", [forumId integerValue]],
                                            @"Subject": subject,
                                            @"Body": text}
-                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                     NSDictionary *threadDictionary = [JSON valueForKey:@"Thread"];
+                                     Thread *thread = [self createThreadFromDictionary:threadDictionary inContext:context];
+                                     [context MR_saveOnlySelfAndWait];
                                      if (completionBlock)
-                                         completionBlock();
+                                         completionBlock(thread);
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      if (failureBlock)
                                          failureBlock();
@@ -369,6 +349,41 @@ withCompletionBlock:(void (^)(void))completionBlock
     user.username = [userDictionary valueForKey:@"Username"];
     
     return user;
+}
+
++ (Thread *)createThreadFromDictionary:(NSDictionary *)threadDictionary
+                             inContext:(NSManagedObjectContext *)context
+{
+    threadDictionary = [threadDictionary dictionaryByReplacingNullsWithStrings];
+    NSNumber *identifier = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"Id"] integerValue]];
+    Thread *thread = [Thread MR_findFirstByAttribute:@"identifier"
+                                           withValue:identifier
+                                           inContext:context];
+    if (!thread) {
+        thread = [Thread MR_createInContext:context];
+        thread.identifier = identifier;
+    }
+    thread.bodyText = [[threadDictionary valueForKey:@"Body"] stringByConvertingHTMLToPlainText];
+    thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"Date"]];
+    thread.latestPostDate = [SDUtils dateFromString:[threadDictionary valueForKey:@"LatestPostDate"]];
+    thread.subject = [threadDictionary valueForKey:@"Subject"];
+    thread.replyCount = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ReplyCount"] integerValue]];
+    thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
+    
+    NSNumber *forumIdentifier = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ForumId"] integerValue]];
+    
+    Forum *forum = [Forum MR_findFirstByAttribute:@"identifier"
+                                        withValue:forumIdentifier
+                                        inContext:context];
+    if (forum)
+        thread.forum = forum;
+    
+    NSDictionary *authorDictionary = [threadDictionary valueForKey:@"Author"];
+    User *author = [self createUserFromDictionary:authorDictionary
+                                        inContext:context];
+    thread.authorUser = author;
+    
+    return thread;
 }
 
 #pragma mark - private methods

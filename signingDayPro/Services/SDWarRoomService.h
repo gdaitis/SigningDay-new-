@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Thread;
+
 typedef enum {
     SDEmotionHate = 0,
     SDEmotionBelieve = 1
@@ -42,7 +44,7 @@ typedef enum {
 + (void)postNewPorumThreadForForumId:(NSNumber *)forumId
                              subject:(NSString *)subject
                                 text:(NSString *)text
-                     completionBlock:(void (^)(void))completionBlock
+                     completionBlock:(void (^)(Thread *thread))completionBlock
                         failureBlock:(void (^)(void))failureBlock;
 + (void)setEmotion:(SDEmotion)emotion
    toForumPostType:(SDForumPostType)forumPostType

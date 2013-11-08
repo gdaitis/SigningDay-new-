@@ -9,9 +9,21 @@
 #import "SDBaseViewController.h"
 
 @class Forum;
+@class Thread;
+@class SDNewDiscussionViewController;
+
+@protocol SDNewDiscussionViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)newDiscussionViewController:(SDNewDiscussionViewController *)newDiscussionViewController
+                 didCreateNewThread:(Thread *)thread;
+
+@end
 
 @interface SDNewDiscussionViewController : SDBaseViewController
 
 @property (nonatomic, strong) Forum *forum;
+@property (nonatomic, weak) id <SDNewDiscussionViewControllerDelegate> delegate;
 
 @end

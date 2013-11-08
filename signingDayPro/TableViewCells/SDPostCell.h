@@ -19,6 +19,11 @@
 
 @interface SDPostCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *believesCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hatesCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *believesImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *hatesImageView;
+
 - (void)setupWithDataObject:(id)dataObject;
 
 @end
