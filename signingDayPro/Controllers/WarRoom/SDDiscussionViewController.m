@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     [self.refreshControl removeFromSuperview];
-    
+    self.tableView.backgroundColor = [UIColor whiteColor];
     [self reload];
 }
 
@@ -154,8 +154,10 @@
     
     cellHeight += 31; // y position of post text view
     
+    int textViewPadding = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 8 : 16;
+    
     CGSize postTextSize = [postText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
-                               constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth, CGFLOAT_MAX)
+                               constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth-textViewPadding, CGFLOAT_MAX)
                                    lineBreakMode:NSLineBreakByWordWrapping];
     
     cellHeight += postTextSize.height;

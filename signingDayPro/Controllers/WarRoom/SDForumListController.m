@@ -120,21 +120,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int result = 0;
-    switch (self.listType) {
-        case LIST_TYPE_GROUP:
-            result = 100;
-            break;
-        case LIST_TYPE_FORUM:
-            result = 60;
-            break;
-        case LIST_TYPE_THREAD:
-            result = 60;
-            break;
-        default:
-            break;
-    }
-    
+    int result = (self.listType == LIST_TYPE_GROUP) ? 100 : 60;
     return result;
 }
 
