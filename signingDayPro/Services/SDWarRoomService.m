@@ -181,7 +181,9 @@
                                     
                                     NSArray *repliesArray = [JSON valueForKey:@"Replies"];
                                     for (__strong NSDictionary *replyDictionary in repliesArray) {
+                                        
                                         replyDictionary = [replyDictionary dictionaryByReplacingNullsWithStrings];
+                                        
                                         NSNumber *replyIdentifier = [NSNumber numberWithInteger:[[replyDictionary valueForKey:@"Id"] integerValue]];
                                         ForumReply *reply = [ForumReply MR_findFirstByAttribute:@"identifier"
                                                                                       withValue:replyIdentifier
