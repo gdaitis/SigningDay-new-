@@ -157,6 +157,7 @@
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
                                     NSDictionary *threadDictionary = [[JSON valueForKey:@"Thread"] dictionaryByReplacingNullsWithStrings];
+                                    // Not using createThreadFromDictionary, cuz it's a custom service with different names of params
                                     NSNumber *threadIdentifier = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ThreadId"] integerValue]];
                                     Thread *thread = [Thread MR_findFirstByAttribute:@"identifier"
                                                                            withValue:threadIdentifier
