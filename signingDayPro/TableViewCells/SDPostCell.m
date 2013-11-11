@@ -56,6 +56,7 @@
                                                       blue:0.0f/255.0f
                                                      alpha:1.0f];
     self.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor whiteColor];
     self.bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     self.bottomLineView.backgroundColor = [UIColor grayColor];
     [self addSubview:self.bottomLineView];
@@ -125,19 +126,17 @@
         self.sdStaffIconImageView.hidden = YES;
     }
     
+    int textViewPadding = ([[[UIDevice currentDevice] systemVersion] floatValue] < 7) ? 8 : 4;
+    self.postTextView.contentInset = UIEdgeInsetsMake(-textViewPadding,-textViewPadding,0,0);
+    
     // Post text
     CGSize postTextSize = [postText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
-                               constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth, CGFLOAT_MAX)
+                               constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth-textViewPadding*2, CGFLOAT_MAX)
                                    lineBreakMode:NSLineBreakByWordWrapping];
     CGRect postTextViewFrame = self.postTextView.frame;
     postTextViewFrame.size.height = ceilf(postTextSize.height) + 5; // add padding to text view
     
     self.postTextView.frame = postTextViewFrame;
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
-        self.postTextView.contentInset = UIEdgeInsetsMake(-4,-4,0,0);
-    else
-        self.postTextView.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
     self.postTextView.text = postText;
     
     // Date text label
