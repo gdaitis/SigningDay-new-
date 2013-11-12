@@ -248,7 +248,8 @@
 }
 
 
-#pragma mark - data loading
+#pragma mark DATA LOADING
+#pragma mark - Groups
 
 - (void)loadGroupList
 {
@@ -258,7 +259,7 @@
     
     [SDWarRoomService getWarRoomGroupsWithCompletionBlock:^{
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-        self.dataArray = [Group MR_findAllInContext:context];
+        self.dataArray = [Group MR_findAllSortedBy:@"name" ascending:YES inContext:context];
         [self.tableView reloadData];
         [self endRefreshing];
     } failureBlock:^{
@@ -267,28 +268,35 @@
     
 }
 
+#pragma mark - Forum
+
 - (void)loadForumList
 {
     NSNumber *groupIdentifier = ((Group *)self.parentItem).identifier;
-    
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
-    
-    self.dataArray = [Forum MR_findAllWithPredicate:predicate inContext:context];
-    [self.tableView reloadData];
+    [self getForumsWithId:groupIdentifier];
     
     [SDWarRoomService getGroupForumsWithGroupId:groupIdentifier pageIndex:0 pageSize:20 completionBlock:^(NSInteger totalCount) {
         
-        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
-        
-        self.dataArray = [Forum MR_findAllWithPredicate:predicate inContext:context];
-        [self.tableView reloadData];
+        [self getForumsWithId:groupIdentifier];
         [self endRefreshing];
     } failureBlock:^{
         [self endRefreshing];
     }];
 }
+
+- (void)getForumsWithId:(NSNumber *)groupIdentifier
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
+    
+    NSFetchRequest *request = [Forum MR_requestAllWithPredicate:predicate inContext:context];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    self.dataArray = [Forum MR_executeFetchRequest:request inContext:context];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Thread
 
 - (void)loadThreadList
 {
@@ -310,6 +318,18 @@
     } failureBlock:^{
         [self endRefreshing];
     }];
+}
+
+- (void)getThreadsWithId:(NSNumber *)groupIdentifier
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
+    
+    NSFetchRequest *request = [Forum MR_requestAllWithPredicate:predicate inContext:context];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    self.dataArray = [Forum MR_executeFetchRequest:request inContext:context];
+    [self.tableView reloadData];
 }
 
 #pragma mark - SDModalNavigationController myDelegate methods
