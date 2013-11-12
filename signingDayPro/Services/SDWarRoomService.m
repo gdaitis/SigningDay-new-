@@ -86,7 +86,7 @@
                                             forum.identifier = identifier;
                                         }
                                         forum.dateCreated = [SDUtils dateFromString:[forumDictionary valueForKey:@"DateCreated"]];
-                                        forum.forumDescription = [forumDictionary valueForKey:@"Description"];
+                                        forum.forumDescription = [[forumDictionary valueForKey:@"Description"] stringByConvertingHTMLToPlainText];
                                         forum.latestPostDate = [SDUtils dateFromString:[forumDictionary valueForKey:@"LatestPostDate"]];
                                         forum.enabled = [NSNumber numberWithBool:[[forumDictionary valueForKey:@"Enabled"] boolValue]];
                                         forum.name = [forumDictionary valueForKey:@"Name"];
@@ -177,7 +177,7 @@
                                     thread.countOfBelieves = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"BelievesCount"] integerValue]];
                                     thread.countOfHates = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"HatesCount"] integerValue]];
                                     thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"PostDate"]];
-                                    thread.subject = [threadDictionary valueForKey:@"Subject"];
+                                    thread.subject = [[threadDictionary valueForKey:@"Subject"] stringByConvertingHTMLToPlainText];
                                     thread.bodyText = [[threadDictionary valueForKey:@"Text"] stringByConvertingHTMLToPlainText];
                                     thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                     
@@ -189,6 +189,7 @@
                                     [self markAllObjectsForDeletion:[thread.forumReplies allObjects]];
                                     
                                     NSArray *repliesArray = [JSON valueForKey:@"Replies"];
+                                    
                                     for (__strong NSDictionary *replyDictionary in repliesArray) {
                                         
                                         replyDictionary = [replyDictionary dictionaryByReplacingNullsWithStrings];
@@ -338,7 +339,7 @@ withCompletionBlock:(void (^)(void))completionBlock
     group.dateCreated = [SDUtils dateFromString:[groupDictionary valueForKey:@"DateCreated"]];
     group.groupDescription = [groupDictionary valueForKey:@"Description"];
     group.isEnabled = [NSNumber numberWithBool:[[groupDictionary valueForKey:@"IsEnabled"] boolValue]];
-    group.name = [groupDictionary valueForKey:@"Name"];
+    group.name = [[groupDictionary valueForKey:@"Name"] stringByConvertingHTMLToPlainText];
     group.shouldBeDeleted = [NSNumber numberWithBool:NO];
     
     return group;
@@ -378,7 +379,7 @@ withCompletionBlock:(void (^)(void))completionBlock
     thread.bodyText = [[threadDictionary valueForKey:@"Body"] stringByConvertingHTMLToPlainText];
     thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"Date"]];
     thread.latestPostDate = [SDUtils dateFromString:[threadDictionary valueForKey:@"LatestPostDate"]];
-    thread.subject = [threadDictionary valueForKey:@"Subject"];
+    thread.subject = [[threadDictionary valueForKey:@"Subject"] stringByConvertingHTMLToPlainText];
     thread.replyCount = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"ReplyCount"] integerValue]];
     thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
     
