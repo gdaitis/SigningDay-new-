@@ -550,7 +550,7 @@
     }
     user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
     user.username = [userDictionary valueForKey:@"Username"];
-    user.name = [userDictionary valueForKey:@"DisplayName"];
+    user.name = [[userDictionary valueForKey:@"DisplayName"] stringByConvertingHTMLToPlainText];
     comment.user = user;
     
     NSString *updatedDateString = [[commentDictionary objectForKey:@"UpdatedDate"] stringByDeletingPathExtension];

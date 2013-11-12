@@ -21,9 +21,14 @@
 #import "Forum.h"
 #import "Thread.h"
 
+#define kForumPageSize 20
+
 @interface SDForumListController () <UITableViewDataSource, UITableViewDelegate, SDModalNavigationControllerDelegate, SDNewDiscussionViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, assign) int pagingItemCount;
+@property (nonatomic, assign) BOOL pagingEndReached;
+@property (nonatomic, assign) BOOL dataDownloadInProgress;
 
 @end
 
@@ -44,8 +49,10 @@
 	// Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.pagingItemCount = 0;
+    self.pagingEndReached = NO;
     
-    [self beginRefreshing];
+    //    [self beginRefreshing];
     [self loadData];
 }
 
@@ -74,7 +81,9 @@
 
 - (void)checkServer
 {
-    [self loadData];
+    self.pagingEndReached = NO;
+    self.pagingItemCount = 0;
+    [self downloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,6 +103,23 @@
             break;
         case LIST_TYPE_THREAD:
             [self loadThreadList];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)downloadData
+{
+    switch (self.listType) {
+        case LIST_TYPE_GROUP:
+            [self downloadGroupList];
+            break;
+        case LIST_TYPE_FORUM:
+            [self downloadForumList];
+            break;
+        case LIST_TYPE_THREAD:
+            [self downloadThreadList];
             break;
         default:
             break;
@@ -131,66 +157,98 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataArray count];
+    int result = 0;
+    int dataCount = [self.dataArray count];
+    
+    if (self.listType != LIST_TYPE_GROUP)
+        result = (self.pagingEndReached) ? dataCount : dataCount + 1;
+    else
+        result = dataCount;
+    
+    return result;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id result = nil;
-    switch (self.listType) {
-        case LIST_TYPE_GROUP:
-        {
-            NSString *identifier = @"SDGroupCellID";
-            SDGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            
-            if (!cell) {
-                cell = (id)[SDGroupCell loadInstanceFromNib];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [UIColor clearColor];
+    if (indexPath.row != [self.dataArray count]) {
+        
+        switch (self.listType) {
+            case LIST_TYPE_GROUP:
+            {
+                NSString *identifier = @"SDGroupCellID";
+                SDGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+                
+                if (!cell) {
+                    cell = (id)[SDGroupCell loadInstanceFromNib];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.backgroundColor = [UIColor clearColor];
+                }
+                
+                id group = [self.dataArray objectAtIndex:indexPath.row];
+                // Configure the cell...
+                [cell setupCellWithGroup:group];
+                
+                result = cell;
+                break;
             }
-            
-            id group = [self.dataArray objectAtIndex:indexPath.row];
-            // Configure the cell...
-            [cell setupCellWithGroup:group];
-            
-            result = cell;
-            break;
-        }
-        case LIST_TYPE_FORUM:
-        {
-            NSString *identifier = @"SDForumCellID";
-            SDForumCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            
-            if (!cell) {
-                cell = (id)[SDForumCell loadInstanceFromNib];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [UIColor clearColor];
+            case LIST_TYPE_FORUM:
+            {
+                NSString *identifier = @"SDForumCellID";
+                SDForumCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+                
+                if (!cell) {
+                    cell = (id)[SDForumCell loadInstanceFromNib];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.backgroundColor = [UIColor clearColor];
+                }
+                
+                id forum = [self.dataArray objectAtIndex:indexPath.row];
+                [cell setupCellWithForum:forum];
+                
+                result = cell;
+                break;
             }
-            
-            id forum = [self.dataArray objectAtIndex:indexPath.row];
-            [cell setupCellWithForum:forum];
-            
-            result = cell;
-            break;
-        }
-        case LIST_TYPE_THREAD:
-        {
-            NSString *identifier = @"SDThreadCellID";
-            SDThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            
-            if (!cell) {
-                cell = (id)[SDThreadCell loadInstanceFromNib];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [UIColor clearColor];
+            case LIST_TYPE_THREAD:
+            {
+                NSString *identifier = @"SDThreadCellID";
+                SDThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+                
+                if (!cell) {
+                    cell = (id)[SDThreadCell loadInstanceFromNib];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.backgroundColor = [UIColor clearColor];
+                }
+                
+                id thread = [self.dataArray objectAtIndex:indexPath.row];
+                [cell setupCellWithThread:thread];
+                
+                result = cell;
             }
-            
-            id thread = [self.dataArray objectAtIndex:indexPath.row];
-            [cell setupCellWithThread:thread];
-            
-            result = cell;
+            default:
+                break;
         }
-        default:
-            break;
+    }
+    else {
+        NSString *identifier = @"PagingCellID";
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
+        
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
+        activityView.center = cell.center;
+        [cell addSubview:activityView];
+        [activityView startAnimating];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+        
+        if (!self.dataDownloadInProgress) {
+            //data downloading not in progress, we can start downloading further pages
+            [self downloadData];
+        }
+        result = cell;
     }
     
     return result;
@@ -251,37 +309,54 @@
 #pragma mark DATA LOADING
 #pragma mark - Groups
 
-- (void)loadGroupList
+- (void)downloadGroupList
 {
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    self.dataArray = [Group MR_findAllInContext:context];
-    [self.tableView reloadData];
-    
+    self.dataDownloadInProgress = YES;
     [SDWarRoomService getWarRoomGroupsWithCompletionBlock:^{
-        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-        self.dataArray = [Group MR_findAllSortedBy:@"name" ascending:YES inContext:context];
-        [self.tableView reloadData];
+        self.dataDownloadInProgress = NO;
+        [self getGroups];
         [self endRefreshing];
     } failureBlock:^{
         [self endRefreshing];
     }];
-    
+}
+
+- (void)loadGroupList
+{
+    self.dataDownloadInProgress = YES;
+    [self getGroups];
+    [self downloadGroupList];
+}
+
+- (void)getGroups
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    self.dataArray = [Group MR_findAllSortedBy:@"name" ascending:YES inContext:context];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Forum
+
+- (void)downloadForumList
+{
+    NSNumber *groupIdentifier = ((Group *)self.parentItem).identifier;
+    self.dataDownloadInProgress = YES;
+    [SDWarRoomService getGroupForumsWithGroupId:groupIdentifier pageIndex:self.pagingItemCount/kForumPageSize pageSize:kForumPageSize completionBlock:^(NSInteger totalCount) {
+        
+        self.pagingItemCount +=kForumPageSize;
+        [self getForumsWithId:groupIdentifier];
+        self.dataDownloadInProgress = NO;
+        [self endRefreshing];
+    } failureBlock:^{
+        [self endRefreshing];
+    }];
+}
 
 - (void)loadForumList
 {
     NSNumber *groupIdentifier = ((Group *)self.parentItem).identifier;
     [self getForumsWithId:groupIdentifier];
-    
-    [SDWarRoomService getGroupForumsWithGroupId:groupIdentifier pageIndex:0 pageSize:20 completionBlock:^(NSInteger totalCount) {
-        
-        [self getForumsWithId:groupIdentifier];
-        [self endRefreshing];
-    } failureBlock:^{
-        [self endRefreshing];
-    }];
+    [self downloadForumList];
 }
 
 - (void)getForumsWithId:(NSNumber *)groupIdentifier
@@ -290,45 +365,58 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
     
     NSFetchRequest *request = [Forum MR_requestAllWithPredicate:predicate inContext:context];
+    [request setFetchLimit:self.pagingItemCount];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     self.dataArray = [Forum MR_executeFetchRequest:request inContext:context];
+    
+    if ([self.dataArray count] < self.pagingItemCount) {
+        self.pagingEndReached = YES;
+    }
+    
     [self.tableView reloadData];
 }
 
 #pragma mark - Thread
 
-- (void)loadThreadList
+- (void)downloadThreadList
 {
     NSNumber *forumIdentifier = ((Forum *)self.parentItem).identifier;
     
-    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forum.identifier == %@", forumIdentifier];
-    
-    self.dataArray = [Thread MR_findAllWithPredicate:predicate inContext:context];
-    [self.tableView reloadData];
-    
-    [SDWarRoomService getForumThreadsWithForumId:forumIdentifier pageIndex:0 pageSize:20 completionBlock:^(NSInteger totalCount) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forum.identifier == %@", forumIdentifier];
+    self.dataDownloadInProgress = YES;
+    [SDWarRoomService getForumThreadsWithForumId:forumIdentifier pageIndex:self.pagingItemCount/kForumPageSize pageSize:kForumPageSize completionBlock:^(NSInteger totalCount) {
         
-        self.dataArray = [Thread MR_findAllWithPredicate:predicate inContext:context];
-        [self.tableView reloadData];
+        self.pagingItemCount += kForumPageSize;
+        self.dataDownloadInProgress = NO;
         [self endRefreshing];
-        
+        [self getThreadsWithId:forumIdentifier];
     } failureBlock:^{
         [self endRefreshing];
     }];
 }
 
-- (void)getThreadsWithId:(NSNumber *)groupIdentifier
+- (void)loadThreadList
+{
+    NSNumber *forumIdentifier = ((Forum *)self.parentItem).identifier;
+    [self getThreadsWithId:forumIdentifier];
+    [self downloadThreadList];
+}
+
+- (void)getThreadsWithId:(NSNumber *)forumIdentifier
 {
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"group.identifier == %@", groupIdentifier];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forum.identifier == %@", forumIdentifier];
     
-    NSFetchRequest *request = [Forum MR_requestAllWithPredicate:predicate inContext:context];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+    NSFetchRequest *request = [Thread MR_requestAllWithPredicate:predicate inContext:context];
+    [request setFetchLimit:self.pagingItemCount];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"subject" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    self.dataArray = [Forum MR_executeFetchRequest:request inContext:context];
+    self.dataArray = [Thread MR_executeFetchRequest:request inContext:context];
+    
+    if ([self.dataArray count] < self.pagingItemCount) {
+        self.pagingEndReached = YES;
+    }
+    
     [self.tableView reloadData];
 }
 

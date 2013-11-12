@@ -64,11 +64,14 @@
 {
     [[SDAPIClient sharedClient] getPath:[NSString stringWithFormat:@"groups/%d/forums.json", [identifier integerValue]]
                              parameters:@{@"PageSize":[NSString stringWithFormat:@"%d", pageSize],
-                                          @"PageIndex":[NSString stringWithFormat:@"%d", pageIndex]}
+                                          @"PageIndex":[NSString stringWithFormat:@"%d", pageIndex],
+                                          @"SortBy":@"Name"}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
                                     Group *parentGroup = [Group MR_findFirstByAttribute:@"identifier" withValue:identifier inContext:context];
+                                    
+                                    if (pageIndex == 0)
                                     [self markAllObjectsForDeletion:[parentGroup.forums allObjects]];
                                     
                                     NSArray *forumsArray = [JSON valueForKey:@"Forums"];
@@ -98,6 +101,7 @@
                                         forum.group = group;
                                     }
                                     
+                                    if (pageIndex == 0)
                                     [self deleteMarkedObjectsInArray:[parentGroup.forums allObjects] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];
@@ -121,11 +125,14 @@
     __block NSNumber *forumIdentifier = identifier;
     [[SDAPIClient sharedClient] getPath:[NSString stringWithFormat:@"forums/%d/threads.json", [identifier integerValue]]
                              parameters:@{@"PageSize":[NSString stringWithFormat:@"%d", pageSize],
-                                          @"PageIndex":[NSString stringWithFormat:@"%d", pageIndex]}
+                                          @"PageIndex":[NSString stringWithFormat:@"%d", pageIndex],
+                                          @"SortBy":@"Subject"}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     
                                     Forum *parentForum = [Forum MR_findFirstByAttribute:@"identifier" withValue:forumIdentifier inContext:context];
+                                    
+                                    if (pageIndex == 0)
                                     [self markAllObjectsForDeletion:[parentForum.threads allObjects]];
                                     
                                     NSArray *threadsArray = [JSON valueForKey:@"Threads"];
@@ -133,6 +140,7 @@
                                         __unused Thread *trhead = [self createThreadFromDictionary:threadDictionary inContext:context];
                                     }
                                     
+                                    if (pageIndex == 0)
                                     [self deleteMarkedObjectsInArray:[parentForum.threads allObjects] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];
