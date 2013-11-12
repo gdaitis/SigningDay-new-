@@ -177,25 +177,16 @@
     self.topToolBar.followersButton.selected = (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) ? YES : NO;
     self.topToolBar.rightButton.selected = (self.filterViewVisible) ? YES : NO;
     
-    //check is filter button needed
-    [self checkIfRightButtonNeededWithImage:[UIImage imageNamed:@"LandingPageFilterButton.png"]
-                                    andFlag:self.showFilterButton];
-    
-    //check if post button needed
-    [self checkIfRightButtonNeededWithImage:[UIImage imageNamed:@"WarRoomNewPostButton.png"]
-                                    andFlag:self.showNewPostButton];
-    
-}
-
-- (void)checkIfRightButtonNeededWithImage:(UIImage *)buttonImage
-                                  andFlag:(BOOL)flag
-{
-    if (flag) {
-        [self.topToolBar setrightButtonImage:buttonImage];
+    if (self.showFilterButton) {
+        [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"LandingPageFilterButton.png"]];
         self.topToolBar.rightButton.hidden = NO;
-    }
-    else
+    } else if (self.showNewPostButton) {
+        [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"WarRoomNewPostButton.png"]];
+        self.topToolBar.rightButton.hidden = NO;
+    } else {
         self.topToolBar.rightButton.hidden = YES;
+    }
+    
 }
 
 - (void)hideKeyboardsOfUIResponders
@@ -722,7 +713,7 @@
 {
     if (self.showFilterButton)
         [self filterButtonSelected];
-    else if (self.showNewPostButton)
+    if (self.showNewPostButton)
         [self newPostButtonSelected];
 }
 

@@ -27,15 +27,6 @@
 #import "SDProfileService.h"
 #import "NSDictionary+NullConverver.h"
 
-@interface SDActivityFeedService ()
-
-+ (void)createCommentFromDictionary:(NSDictionary *)commentDictionary;
-+ (void)createLikeFromDictionary:(NSDictionary *)likeDictionary;
-
-@end
-
-
-
 @implementation SDActivityFeedService
 
 + (void)getActivityStoriesForUser:(User *)user
@@ -409,7 +400,7 @@
                               parameters:@{@"ContentId":activityStory.contentId, @"ContentTypeId":activityStory.contentTypeId, @"Body":commentText}
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
                                      NSDictionary *commentDictionary = [[JSON valueForKey:@"Comment"] dictionaryByReplacingNullsWithStrings];
-                                     [self createCommentFromDictionary:commentDictionary];
+                                     __unused Comment *comment = [self createCommentFromDictionary:commentDictionary];
                                      successBlock();
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      failureBlock();
@@ -444,17 +435,23 @@
                              parameters:@{@"ContentId":activityStory.contentId}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
                                     NSArray *commentsArray = [JSON valueForKey:@"Comments"];
+                                    NSMutableArray *commentsIdsArray = [[NSMutableArray alloc] init];
                                     for (__strong NSDictionary *commentDictionary in commentsArray) {
                                         commentDictionary = [commentDictionary dictionaryByReplacingNullsWithStrings];
-                                        [self createCommentFromDictionary:commentDictionary];
+                                        Comment *comment = [self createCommentFromDictionary:commentDictionary];
+                                        [commentsIdsArray addObject:comment.commentId];
                                     }
                                     NSManagedObjectContext *activityStoryContext = [NSManagedObjectContext MR_contextForCurrentThread];
                                     ActivityStory *activityStoryInContext = [activityStory MR_inContext:activityStoryContext];
                                     activityStoryInContext.commentCount = [NSNumber numberWithInt:[commentsArray count]];
                                     [activityStoryContext MR_saveToPersistentStoreAndWait];
-                                    if (successBlock)
-                                        successBlock();
                                     
+                                    NSString *stringOfCommentsIds = [commentsIdsArray componentsJoinedByString:@","];
+                                    [self replaceMentionsWithPlainTextForCommentsWithIdsSeperatedByCommas:stringOfCommentsIds
+                                                                                         withSuccessBlock:^{
+                                                                                             if (successBlock)
+                                                                                                 successBlock();
+                                                                                         } failureBlock:nil];
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Comments parse failed");
                                     if (failureBlock)
@@ -484,9 +481,38 @@
                                 }];
 }
 
++ (void)replaceMentionsWithPlainTextForCommentsWithIdsSeperatedByCommas:(NSString *)commentsIdsSeperatedByCommas
+                                                       withSuccessBlock:(void (^)(void))successBlock
+                                                           failureBlock:(void (^)(void))failureBlock
+{
+    [[SDAPIClient sharedClient] getPath:@"mentions.json"
+                             parameters:@{@"MentioningContentIds":commentsIdsSeperatedByCommas}
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    NSArray *mentionsArray = [JSON valueForKey:@"Mentions"];
+                                    for (NSDictionary *mentionDictionary in mentionsArray) {
+                                        NSDictionary *mentioningContentDictionary = [mentionDictionary valueForKey:@"MentioningContent"];
+                                        NSString *commentId = [mentioningContentDictionary valueForKey:@"ContentId"];
+                                        NSString *commentText = [[mentioningContentDictionary valueForKey:@"HtmlDescription"] stringByConvertingHTMLToPlainText];
+                                        
+                                        Comment *comment = [Comment MR_findFirstByAttribute:@"commentId"
+                                                                                  withValue:commentId
+                                                                                  inContext:context];
+                                        comment.body = commentText;
+                                    }
+                                    [context MR_saveOnlySelfAndWait];
+                                    if (successBlock)
+                                        successBlock();
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
+}
+
 #pragma mark - Private methods
 
-+ (void)createCommentFromDictionary:(NSDictionary *)commentDictionary
++ (Comment *)createCommentFromDictionary:(NSDictionary *)commentDictionary
 {
     NSString *commentId = [commentDictionary valueForKey:@"CommentId"];
     NSString *contentId = [[commentDictionary valueForKey:@"Content"] valueForKey:@"ContentId"];
@@ -534,6 +560,8 @@
     comment.updatedDate = updatedDate;
     
     [commentsContext MR_saveToPersistentStoreAndWait];
+    
+    return comment;
 }
 
 + (void)createLikeFromDictionary:(NSDictionary *)likeDictionary
