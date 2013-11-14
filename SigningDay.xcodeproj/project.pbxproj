@@ -644,7 +644,7 @@
 		803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCoachingStaffCell.m; sourceTree = "<group>"; };
 		803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCoachingStaffCell.xib; sourceTree = "<group>"; };
 		803ECEC317F4248A0060702F /* SDBioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBioViewController.h; sourceTree = "<group>"; };
-		803ECEC417F4248A0060702F /* SDBioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBioViewController.m; sourceTree = "<group>"; };
+		803ECEC417F4248A0060702F /* SDBioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDBioViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		803ECECE17F452CE0060702F /* SDCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionCell.h; sourceTree = "<group>"; };
 		803ECECF17F452CE0060702F /* SDCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionCell.m; sourceTree = "<group>"; };
 		803ECED117F453F60060702F /* SDCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCollectionCell.xib; sourceTree = "<group>"; };
