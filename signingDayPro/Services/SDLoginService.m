@@ -37,6 +37,8 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     [parameters setValue:systemName forKey:@"DeviceOS"];
     NSString *osVersion = [[UIDevice currentDevice] systemVersion];
     [parameters setValue:osVersion forKey:@"DeviceOSVersion"];
+    NSString *platform = @"1";
+    [parameters setValue:platform forKey:@"Platform"];
     SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSString *deviceToken = appDelegate.deviceToken;
