@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @protocol SDUserProfileHeaderDelegate <NSObject>
 
 - (void)dataLoadingFinishedInHeaderView:(id)headerView;
 - (void)dataLoadingFailedInHeaderView:(id)headerView;
+
+- (void)headerView:(id)headerView didSelectSchoolUser:(User *)schoolUser;
 
 @end

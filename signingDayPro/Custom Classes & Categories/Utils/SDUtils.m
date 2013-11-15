@@ -429,4 +429,34 @@
     return result;
 }
 
+#pragma mark - forum reply formatter
+
++ (NSString *)formattedForrumReplyFromString:(NSString *)reply
+{
+    NSLog(@"reply = %@",reply);
+    
+    NSString *htmlString = [reply stringByReplacingOccurrencesOfString:@"\\n" withString:@"<br>"];
+    NSString *string = [htmlString stringByReplacingOccurrencesOfString:@"<blockquote class=\"quote\">" withString:@"<blockquote class=\"quote\" style=\"background-color:#f0f0f0\"><div style=\"padding:5px 10px 5px 10px;\">"];
+    
+    NSString *original = @"#f0f0f0";
+    NSString *replacementGray = @"#E6E6E6";
+    NSString *replacementDarkGray = @"#F2F2F2";
+    NSRange r;
+    int counter = 0;
+    
+    while ((r = [string rangeOfString:original options:NSRegularExpressionSearch]).location != NSNotFound) {
+        if (counter % 2 == 0)
+            string = [string stringByReplacingCharactersInRange:r withString:replacementGray];
+        else
+            string = [string stringByReplacingCharactersInRange:r withString:replacementDarkGray];
+        counter++;
+    }
+    
+    NSString *result = [string stringByReplacingOccurrencesOfString:@"</blockquote>" withString:@"</div></blockquote>"];
+    
+    NSLog(@"formatted reply = %@",result);
+    
+    return result;
+}
+
 @end

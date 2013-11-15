@@ -32,4 +32,6 @@
 //E.g returns 5'6"
 + (NSString *)stringHeightFromInches:(int)inches;
 
++ (NSString *)formattedForrumReplyFromString:(NSString *)reply;
+
 @end

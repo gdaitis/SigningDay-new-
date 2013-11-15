@@ -341,6 +341,16 @@
     [self.tableView checkServerAndDeleteOld:NO];
 }
 
+- (void)headerView:(id)headerView didSelectSchoolUser:(User *)schoolUser
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = schoolUser;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
+}
+
 - (void)shouldEndRefreshing
 {
     [self endRefreshing];

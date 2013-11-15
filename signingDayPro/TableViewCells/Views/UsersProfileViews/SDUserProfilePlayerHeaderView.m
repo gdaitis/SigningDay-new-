@@ -37,6 +37,8 @@
 @property (weak, nonatomic) IBOutlet SDStarsRatingView *starsRatingView;
 @property (weak, nonatomic) IBOutlet SDBaseScoreView *baseScoreView;
 
+@property (nonatomic, assign) int currentHighSchoolUserId;
+
 @end
 
 @implementation SDUserProfilePlayerHeaderView
@@ -90,6 +92,9 @@
     
     self.classNumberlabel.text = user.thePlayer.userClass;
     
+    if (user.thePlayer.highSchool.theUser)
+        self.currentHighSchoolUserId = [user.thePlayer.highSchool.theUser.identifier intValue];
+        
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl success:^(UIImage *image) {
         self.userImageView.image = image;
         
@@ -98,7 +103,14 @@
     }];
 }
 
-
+- (IBAction)highschoolSelected:(id)sender
+{
+    if (self.currentHighSchoolUserId > 0) {
+        User *user = [User MR_findFirstByAttribute:@"identifier" withValue:[NSNumber numberWithInteger:self.currentHighSchoolUserId]];
+        if (user)
+            [self.delegate headerView:self didSelectSchoolUser:user];
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
