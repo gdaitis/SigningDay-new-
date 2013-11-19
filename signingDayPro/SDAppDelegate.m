@@ -18,8 +18,7 @@
 #import "DTCoreText.h"
 #import "GAI.h"
 
-NSString * const kSDPushNotificationReceivedWhileInBackgroundNotification = @"SDPushNotificationReceivedWhileInBackgroundNotificationName";
-NSString * const kSDPushNotificationReceivedWhileInForegroundNotification = @"SDPushNotificationReceivedWhileInForegroundNotificationName";
+NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDelegatePushNotificationReceivedNotification";
 
 /******* Set your tracking ID here *******/
 static NSString *const kTrackingId = @"UA-45419104-1"; //Testing id
@@ -66,7 +65,7 @@ static NSString *const kAllowTracking = @"allowTracking";
     }
     
     // Let the device know we want to receive push notifications
-	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
     [STKeychain storeUsername:@"initialApiKey" andPassword:@"OGQ3MzZ4c205cWNtbzhiaHAxYnlqNzVqcGwzcWRhdDY6aU9T" forServiceName:@"SigningDayPro" updateExisting:NO error:nil];
     
@@ -113,7 +112,7 @@ static NSString *const kAllowTracking = @"allowTracking";
     [SDLoginService logout];
 }
 
-/*#pragma mark - Push Notifications
+#pragma mark - Push Notifications
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
@@ -133,17 +132,18 @@ static NSString *const kAllowTracking = @"allowTracking";
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
-    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
-        NSLog(@"Active");
-        [[NSNotificationCenter defaultCenter] postNotificationName:kSDPushNotificationReceivedWhileInForegroundNotification object:nil userInfo:nil];
-    }
-    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive) {
-        NSLog(@"Inactive");
-        [[NSNotificationCenter defaultCenter] postNotificationName:kSDPushNotificationReceivedWhileInBackgroundNotification object:nil userInfo:nil];
-    }
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[userInfo valueForKey:@"badge"] intValue]];
-	NSLog(@"Received notification: %@", userInfo);
-}*/
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSDAppDelegatePushNotificationReceivedNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+    
+//    NSString *message = [NSString stringWithFormat:@"%@", userInfo];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Notifications testing"
+//                                                    message:message
+//                                                   delegate:nil
+//                                          cancelButtonTitle:@"Ok"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+}
 
 #pragma mark - FBSession methods
 
