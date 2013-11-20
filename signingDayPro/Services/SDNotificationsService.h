@@ -15,7 +15,8 @@ typedef enum {
     SDNotificationTypeMention = 4,
     SDNotificationTypeForumPost = 5,
     SDNotificationTypeFollowing = 6,
-    SDNotificationTypeBuzzBoard = 7
+    SDNotificationTypeBuzzBoard = 7,
+    SDNotificationTypeConversation = 8
 } SDNotificationType;
 
 extern NSString * const SDNotificationsServiceCountOfUnreadNotifications;

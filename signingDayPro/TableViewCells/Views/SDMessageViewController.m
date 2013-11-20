@@ -50,8 +50,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInBackgroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkServer)
+                                                 name:kSDAppDelegatePushNotificationReceivedNotification
+                                               object:nil];
     
     self.firstLoad = YES;
     _currentMessagesPage = _totalMessages = 0;

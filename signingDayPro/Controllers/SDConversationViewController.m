@@ -48,8 +48,10 @@
     
     [self.refreshControl removeFromSuperview];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInBackgroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkServer) name:kSDPushNotificationReceivedWhileInForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkServer)
+                                                 name:kSDAppDelegatePushNotificationReceivedNotification
+                                               object:nil];
     
     self.firstLoad = YES;
     

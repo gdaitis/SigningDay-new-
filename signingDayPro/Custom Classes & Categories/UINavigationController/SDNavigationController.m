@@ -22,6 +22,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAI.h"
 #import "GAIFields.h"
+#import "SDAppDelegate.h"
 
 @interface SDNavigationController () <SDCustomNavigationToolbarViewDelegate>
 
@@ -67,6 +68,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pushNotificationReceived:)
+                                                 name:kSDAppDelegatePushNotificationReceivedNotification
+                                               object:nil];
+    
     self.delegate = self;
     
     _selectedMenuType = BARBUTTONTYPE_NONE;
@@ -74,6 +80,13 @@
     
     //creates and adds buttons to the top toolbar
     [self setupToolbar];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kSDAppDelegatePushNotificationReceivedNotification
+                                                  object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,6 +106,30 @@
 {
     //opens side menu
     [self.viewDeckController toggleLeftViewAnimated:YES];
+}
+
+#pragma mark - Push notifications
+
+- (void)pushNotificationReceived:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSInteger *notificationsNumber = [[userInfo valueForKey:@"newNotifications"] integerValue];
+    NSInteger *messagesNumber = [[userInfo valueForKey:@"newConversations"] integerValue];
+    NSInteger *followersNumber = [[userInfo valueForKey:@"newFollowers"] integerValue];
+    
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive) {
+        SDNotificationType notificationType = [[userInfo valueForKey:@"notificationTypeId"] integerValue];
+        if (notificationType == SDNotificationTypeConversation) {
+            [self conversationsSelected];
+        } else {
+            [self notificationsSelected];
+        }
+    }
+    
+    [self setupBadgesWithNotificationsNumber:notificationsNumber
+                              messagesNumber:messagesNumber
+                             followersNumber:followersNumber];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[[[userInfo valueForKey:@"aps"] valueForKey:@"badge"] integerValue]];
 }
 
 #pragma mark - Server
@@ -201,6 +238,9 @@
                             messagesNumber:(NSInteger)messagesNumber
                            followersNumber:(NSInteger)followersNumber
 {
+    NSInteger sumOfAllBadges = notificationsNumber + messagesNumber; // we don't use followers number since it's included in notifications count
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:sumOfAllBadges];
+    
     for (UIView *subiew in self.topToolBar.subviews) {
         if ([subiew isKindOfClass:[SDBadgeView class]])
             [subiew removeFromSuperview];

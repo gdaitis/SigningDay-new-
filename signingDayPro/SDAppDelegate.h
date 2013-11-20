@@ -11,8 +11,7 @@
 #import <Accounts/Accounts.h>
 #import "GAITracker.h"
 
-extern NSString * const kSDPushNotificationReceivedWhileInBackgroundNotification;
-extern NSString * const kSDPushNotificationReceivedWhileInForegroundNotification;
+extern NSString * const kSDAppDelegatePushNotificationReceivedNotification;
 
 @interface SDAppDelegate : UIResponder <UIApplicationDelegate>
 
