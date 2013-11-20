@@ -178,7 +178,7 @@
                                     thread.countOfHates = [NSNumber numberWithInteger:[[threadDictionary valueForKey:@"HatesCount"] integerValue]];
                                     thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"PostDate"]];
                                     thread.subject = [[threadDictionary valueForKey:@"Subject"] stringByConvertingHTMLToPlainText];
-                                    thread.bodyText = [[threadDictionary valueForKey:@"Text"] stringByConvertingHTMLToPlainText];
+                                    thread.bodyText = [SDUtils formattedForrumReplyFromString:[threadDictionary valueForKey:@"Text"]];
                                     thread.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                     
                                     NSDictionary *authorDictionary = [threadDictionary valueForKey:@"Author"];
@@ -206,7 +206,8 @@
                                         reply.countOfHates = [NSNumber numberWithInteger:[[replyDictionary valueForKey:@"HatesCount"] integerValue]];
                                         reply.date = [SDUtils dateFromString:[replyDictionary valueForKey:@"PostDate"]];
                                         reply.subject = [replyDictionary valueForKey:@"Subject"];
-                                        reply.bodyText = [[replyDictionary valueForKey:@"Text"] stringByConvertingHTMLToPlainText];
+                                        reply.bodyText = [SDUtils formattedForrumReplyFromString:[replyDictionary valueForKey:@"Text"]];
+                                        
                                         reply.shouldBeDeleted = [NSNumber numberWithBool:NO];
                                         
                                         NSDictionary *authorDictionary = [replyDictionary valueForKey:@"Author"];
@@ -215,7 +216,7 @@
                                         reply.authorUser = author;
                                         reply.thread = thread;
                                     }
-#warning doesn't work!
+                                    
                                     [self deleteMarkedObjectsInArray:[thread.forumReplies allObjects] inContext:context];
                                     
                                     [context MR_saveOnlySelfAndWait];

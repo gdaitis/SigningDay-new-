@@ -17,6 +17,10 @@
 #import "HighSchool.h"
 #import "Member.h"
 #import "SDLoginService.h"
+#import <CoreText/CoreText.h>
+#import <DTCSSStylesheet.h>
+#import <DTHTMLAttributedStringBuilder.h>
+#import <DTCoreTextConstants.h>
 
 @interface SDUtils()
 
@@ -431,10 +435,8 @@
 
 #pragma mark - forum reply formatter
 
-+ (NSString *)formattedForrumReplyFromString:(NSString *)reply
++ (NSString *)formattedColoredForrumReplyFromString:(NSString *)reply
 {
-    NSLog(@"reply = %@",reply);
-    
     NSString *htmlString = [reply stringByReplacingOccurrencesOfString:@"\\n" withString:@"<br>"];
     NSString *string = [htmlString stringByReplacingOccurrencesOfString:@"<blockquote class=\"quote\">" withString:@"<blockquote class=\"quote\" style=\"background-color:#f0f0f0\"><div style=\"padding:5px 10px 5px 10px;\">"];
     
@@ -454,7 +456,55 @@
     
     NSString *result = [string stringByReplacingOccurrencesOfString:@"</blockquote>" withString:@"</div></blockquote>"];
     
-    NSLog(@"formatted reply = %@",result);
+    return result;
+}
+
++ (NSString *)formattedForrumReplyFromString:(NSString *)reply
+{
+    if (!reply) {
+        return @"";
+    }
+    NSString *result = reply;
+    
+    NSRange range = [reply rangeOfString:@"<blockquote class=\"quote\">"
+                                               options:NSCaseInsensitiveSearch];
+    if (range.location != NSNotFound) {
+        
+        NSString *text = [reply stringByReplacingOccurrencesOfString:@"<blockquote class=\"quote\">"
+                                                                        withString:@"<div class=\"quote-mycustom\"><blockquote class=\"quote\">"
+                                                                           options:NSCaseInsensitiveSearch range:range];
+        
+        NSRange backwardRange = [text rangeOfString:@"</blockquote>" options:NSBackwardsSearch];
+        if (backwardRange.location != NSNotFound) {
+            NSString *formedtext = [text stringByReplacingOccurrencesOfString:@"</blockquote>"
+                                                                 withString:@"</blockquote></div>"
+                                                                    options:NSBackwardsSearch range:backwardRange];
+            result = formedtext;
+        }
+    }
+    
+    result = [result stringByReplacingOccurrencesOfString:@"<div style=\"clear:both;\"></div>" withString:@""];
+
+    return result;
+}
+
++ (NSAttributedString *)buildDTCoreTextStringForSigningdayWithHTMLText:(NSString *)htmlString
+{
+    DTCSSStylesheet *customStyleSheet = [[DTCSSStylesheet alloc]
+                                         initWithStyleBlock:@".quote {margin: 0;margin-bottom: 0px;color: #555555;font-size: 13px;} "
+                                         ".quote-mycustom {padding:1px 1px 1px 1px;background-color: #f0f0f0;} "
+                                         ".quote-user {color: black;font-size: 13px;} "
+                                         ".quote-content {font-style: italic;color: #555555;font-size: 13px;}"];
+    
+    NSDictionary *builderOptions = @{DTDefaultFontFamily: @"Helvetica",
+                                     DTDefaultLineHeightMultiplier: @"1.2",
+                                     DTDefaultStyleSheet: customStyleSheet};
+    
+    NSData *htmlData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
+    DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:htmlData
+                                                                                               options:builderOptions
+                                                                                    documentAttributes:nil];
+    NSAttributedString *result = [stringBuilder generatedAttributedString];
     
     return result;
 }

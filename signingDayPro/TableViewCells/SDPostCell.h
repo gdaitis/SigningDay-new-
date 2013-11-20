@@ -12,7 +12,8 @@
 #define kSDPostCellMaxNameLabelWidth 217
 #define kSDPostCellNameLabelAndSDStaffLogoGapWidth 7
 #define kSDPostCellMaxPostLabelWidth 243
-#define kSDPostCellPostTextAndDateLabelGapHeight 14
+#define kSDPostCellPostTextAndDateLabelGapHeight 7
+#define kSDPostCellPostTextOriginY 40
 #define kSDPostCellMaxDateLabelWidth 175
 #define kSDPostCellWidthOfGapBetweenHatesOrLikesCountAndIncon 5
 #define kSDPostCellDateLabelAndBottomLineGapHeight 13

@@ -299,8 +299,6 @@
         User *user = [self.searchResults objectAtIndex:indexPath.row];
         cell.usernameTitle.text = user.name;
         
-        NSLog(@"username = %@",user.username);
-        
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:user.avatarUrl]];
         [cell.userImageView setImageWithURLRequest:request
                                   placeholderImage:nil

@@ -33,5 +33,6 @@
 + (NSString *)stringHeightFromInches:(int)inches;
 
 + (NSString *)formattedForrumReplyFromString:(NSString *)reply;
++ (NSAttributedString *)buildDTCoreTextStringForSigningdayWithHTMLText:(NSString *)htmlString;
 
 @end

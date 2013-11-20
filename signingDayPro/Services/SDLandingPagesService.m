@@ -68,9 +68,6 @@
     
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=BaseScore desc,Stars desc,DisplayName asc&$skip=%d&$top=%d&$format=json&$filter=(Class eq %@)", kSDBaseSigningDayURLString, pageBeginIndex, top, classString];
     
-    //    &$DisplayBaseScore=true
-    NSLog(@"urlString = %@",urlString);
-    
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
                                            failureBlock:failureBlock];
@@ -115,8 +112,6 @@
     int top = pageEndIndex - pageBeginIndex;
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/PlayersDto?$orderby=%@&$format=json&$skip=%d&$top=%d&$filter=(%@)", kSDBaseSigningDayURLString, sortOption,pageBeginIndex, top, filterString];
     
-//    &$DisplayBaseScore=true
-    NSLog(@"urlString = %@",urlString);
     [self startPlayersHTTPRequestOperationWithURLString:urlString
                                            successBlock:successBlock
                                            failureBlock:failureBlock];
@@ -137,8 +132,6 @@
                                              userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
                                              user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                                              user.name = [userDictionary valueForKey:@"DisplayName"];
-                                             
-                                             NSLog(@"Downloaded Player: %@",user.name);
                                              
                                              if (!user.thePlayer)
                                                  user.thePlayer = [Player MR_createInContext:context];
@@ -288,7 +281,6 @@
                                       failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber];
-    NSLog(@"all states urlString = %@",urlString);
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
                                                successBlock:successBlock
@@ -303,7 +295,6 @@
                                       failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&state='%@'&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber,stateCode];
-    NSLog(@"urlString = %@",urlString);
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
                                                successBlock:successBlock
