@@ -43,10 +43,10 @@ static NSString *const kAllowTracking = @"allowTracking";
     [GAI sharedInstance].dispatchInterval = 60;
     
 #warning will change after tests
-#ifdef DEBUG
-//    [GAI sharedInstance].dryRun = YES;
-#endif
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    [GAI sharedInstance].dryRun = YES;
+//    [[GAI sharedInstance] setOptOut:YES];
+    
+//    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kTrackingId];
 
     //if master user got deleted, performing logout
