@@ -61,15 +61,11 @@
 
 - (void)buzzSomethingPressed
 {
-    NSLog(@"buzzSomethingPressed");
-    
     [self.delegate activityFeedHeaderViewDidClickOnBuzzSomething:self];
 }
 
 - (void)addMediaPressed
 {
-    NSLog(@"addMediaPressed");
-    
     [self.delegate activityFeedHeaderViewDidClickOnAddMedia:self];
 }
 

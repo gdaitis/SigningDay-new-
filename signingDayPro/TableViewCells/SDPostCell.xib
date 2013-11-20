@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gec-6r-jnl">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gec-6r-jnl">
                         <rect key="frame" x="12" y="15" width="28" height="28"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </imageView>
@@ -58,13 +58,11 @@
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="sdfgjhsd flkgh sdfg" id="Hee-w4-CFw">
-                        <rect key="frame" x="48" y="31" width="243" height="50"/>
+                    <view contentMode="scaleToFill" id="5Xh-Ge-acd" customClass="DTAttributedTextContentView">
+                        <rect key="frame" x="48" y="38" width="243" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -73,7 +71,7 @@
                 <outlet property="dateLabel" destination="piJ-dC-njq" id="YB4-rp-J0l"/>
                 <outlet property="hatesCountLabel" destination="jtm-CJ-pVC" id="nrB-12-fNh"/>
                 <outlet property="hatesImageView" destination="qDi-K0-Nrf" id="ZMW-My-09U"/>
-                <outlet property="postTextView" destination="Hee-w4-CFw" id="PCh-R9-fra"/>
+                <outlet property="postTextView" destination="5Xh-Ge-acd" id="cVT-qp-npv"/>
                 <outlet property="sdStaffIconImageView" destination="FK5-Dn-Dx5" id="nnW-UP-Y7T"/>
                 <outlet property="userAvatarImageView" destination="gec-6r-jnl" id="zE5-lW-V9u"/>
                 <outlet property="userNameLabel" destination="gBL-5U-4mx" id="Sny-n1-fKY"/>

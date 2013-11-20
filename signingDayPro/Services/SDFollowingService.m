@@ -425,7 +425,6 @@
                 if (user.activityStories == nil && user.activityStoriesFromOtherUsers == nil) {
                     if (![user.identifier isEqualToNumber:master.identifier]) {
                         //not master user can delete
-                        NSLog(@"User deleted: %@",user.name);
                         [context deleteObject:user];
                     }
                 }

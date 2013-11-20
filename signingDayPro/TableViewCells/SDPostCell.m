@@ -12,14 +12,22 @@
 #import "ForumReply.h"
 #import "User.h"
 #import "SDUtils.h"
+#import "NSAttributedString+DTCoreText.h"
+#import <DTAttributedTextContentView.h>
+#import <DTHTMLAttributedStringBuilder.h>
+#import <DTTextBlock.h>
+#import <DTCSSStylesheet.h>
+#import <NSAttributedString+DTCoreText.h>
+#import <DTCoreTextConstants.h>
+#import <DTCoreTextLayouter.h>
 
-@interface SDPostCell ()
+@interface SDPostCell () <DTAttributedTextContentViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *sdStaffIconImageView;
-@property (weak, nonatomic) IBOutlet UITextView *postTextView;
+@property (weak, nonatomic) IBOutlet DTAttributedTextContentView *postTextView;
 
 @property (nonatomic, strong) UIView *bottomLineView;
 
@@ -60,6 +68,11 @@
     self.bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     self.bottomLineView.backgroundColor = [UIColor grayColor];
     [self addSubview:self.bottomLineView];
+    
+    self.postTextView.delegate = self;
+    
+    self.userAvatarImageView.layer.cornerRadius = 4.0f;
+    self.userAvatarImageView.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -126,18 +139,14 @@
         self.sdStaffIconImageView.hidden = YES;
     }
     
-    int textViewPadding = ([[[UIDevice currentDevice] systemVersion] floatValue] < 7) ? 8 : 4;
-    self.postTextView.contentInset = UIEdgeInsetsMake(-textViewPadding,-textViewPadding,0,0);
+    NSAttributedString *attributedString = [SDUtils buildDTCoreTextStringForSigningdayWithHTMLText:postText];
+    self.postTextView.attributedString = attributedString;
     
-    // Post text
-    CGSize postTextSize = [postText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
-                               constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth-textViewPadding*2, CGFLOAT_MAX)
-                                   lineBreakMode:NSLineBreakByWordWrapping];
-    CGRect postTextViewFrame = self.postTextView.frame;
-    postTextViewFrame.size.height = ceilf(postTextSize.height) + 5; // add padding to text view
+    CGSize attributedTextSize = [attributedString attributedStringSizeForWidth:kSDPostCellMaxPostLabelWidth];
+    CGRect frame = self.postTextView.frame;
+    frame.size.height = attributedTextSize.height;
+    self.postTextView.frame = frame;
     
-    self.postTextView.frame = postTextViewFrame;
-    self.postTextView.text = postText;
     
     // Date text label
     CGSize dateLabelSize = [dateText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
@@ -183,6 +192,30 @@
                                            self.dateLabel.frame.origin.y + self.dateLabel.frame.size.height + kSDPostCellDateLabelAndBottomLineGapHeight,
                                            320,
                                            1);
+}
+
+- (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame
+{
+    CGRect newFrame = frame;
+    int padding = 4;
+    newFrame.origin.y -= padding;
+    newFrame.size.height += padding*2;
+    
+	UIBezierPath *roundedFrame = [UIBezierPath bezierPathWithRoundedRect:newFrame cornerRadius:5];
+    
+	CGColorRef color = [textBlock.backgroundColor CGColor];
+	if (color)
+	{
+		CGContextSetFillColorWithColor(context, color);
+	}
+	CGContextAddPath(context, [roundedFrame CGPath]);
+	CGContextFillPath(context);
+	
+	CGContextAddPath(context, [roundedFrame CGPath]);
+	CGContextSetRGBStrokeColor(context, 0, 0, 0, 1);
+	CGContextStrokePath(context);
+	
+	return NO; // draw standard background
 }
 
 @end

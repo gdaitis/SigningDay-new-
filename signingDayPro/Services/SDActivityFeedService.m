@@ -95,7 +95,6 @@
                                     if (lastDate) {
                                         [resultsDictionary setObject:lastDate forKey:@"LastDate"];
                                     }
-                                    NSLog(@"result count = %d",resultCount);
                                     
                                     [context MR_saveOnlySelfAndWait];
                                     

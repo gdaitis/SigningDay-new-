@@ -149,8 +149,6 @@
     [cell.imageView cancelImageRequestOperation];
     cell.imageView.image = nil;
     
-    NSLog(@"media thumbnail url = %@",mediaItem.thumbnailUrl);
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:mediaItem.thumbnailUrl]];
     [cell.imageView setImageWithURLRequest:request
                           placeholderImage:nil

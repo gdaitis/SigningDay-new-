@@ -22,4 +22,4 @@ SPEC CHECKSUMS:
   DTFoundation: 5bfec187ed495cea33c47dc64e8ee623e8beb353
   Facebook-iOS-SDK: 55a22fe8bcaacd638cde9014af6b3ee85f4d71fb
 
-COCOAPODS: 0.23.0
+COCOAPODS: 0.27.1

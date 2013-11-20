@@ -128,7 +128,6 @@
 
 - (void)activityFeedTableView:(SDActivityFeedTableView *)activityFeedTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath withActivityStory:(ActivityStory *)activityStory
 {
-    NSLog(@"activityStory.mediaUrl = %@",activityStory.mediaUrl);
     if (activityStory.webPreview) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:activityStory.webPreview.link]];
     }

@@ -296,7 +296,6 @@
     NSSortDescriptor *starsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"thePlayer.starsCount" ascending:NO];
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
     
-    NSLog(@"self.searchBar.text.length = %d",self.searchBar.text.length);
     NSArray *descriptorArray = (self.searchBar.text.length < 3) ? [NSArray arrayWithObjects:baseScoreDescriptor,starsDescriptor,nameDescriptor,nil] : [NSArray arrayWithObjects:nameDescriptor,baseScoreDescriptor,starsDescriptor,nil];
     
     [request setSortDescriptors:descriptorArray];

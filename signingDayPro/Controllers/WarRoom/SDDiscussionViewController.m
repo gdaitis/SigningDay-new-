@@ -14,6 +14,13 @@
 #import "ForumReply.h"
 #import "NSString+Additions.h"
 #import "SDWarRoomService.h"
+#import "SDUtils.h"
+#import <DTCSSStylesheet.h>
+#import <DTHTMLAttributedStringBuilder.h>
+#import <DTCoreTextConstants.h>
+#import <DTCoreTextLayoutFrame.h>
+#import <DTCoreTextLayouter.h>
+#import "NSAttributedString+DTCoreText.h"
 
 @implementation SDDiscussionViewController
 
@@ -152,20 +159,15 @@
 {
     int cellHeight = 0;
     
-    cellHeight += 31; // y position of post text view
+    NSAttributedString *attributedString = [SDUtils buildDTCoreTextStringForSigningdayWithHTMLText:postText];
+    CGSize attributedTextSize = [attributedString attributedStringSizeForWidth:kSDPostCellMaxPostLabelWidth];
     
-    int textViewPadding = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) ? 8 : 16;
-    
-    CGSize postTextSize = [postText sizeWithFont:[UIFont systemFontOfSize:kSDPostCellDefaultFontSize]
-                               constrainedToSize:CGSizeMake(kSDPostCellMaxPostLabelWidth-textViewPadding, CGFLOAT_MAX)
-                                   lineBreakMode:NSLineBreakByWordWrapping];
-    
-    cellHeight += postTextSize.height;
-    cellHeight += 5; // postTextSize padding
+    cellHeight += kSDPostCellPostTextOriginY; // y position of post text view
+    cellHeight += attributedTextSize.height;
     cellHeight += kSDPostCellPostTextAndDateLabelGapHeight;
     cellHeight += 16; // height of date label
     cellHeight += kSDPostCellDateLabelAndBottomLineGapHeight;
-    cellHeight += 2; // height of bottom line
+    cellHeight += 1; // height of bottom line
     
     return cellHeight;
 }
