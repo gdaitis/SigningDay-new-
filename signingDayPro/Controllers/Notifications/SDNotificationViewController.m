@@ -73,7 +73,7 @@
     Master *master = [self getMaster];
     NSPredicate *masterPredicate = [NSPredicate predicateWithFormat:@"master == %@", master];
     NSPredicate *notificationTypesPredicate = [NSPredicate predicateWithFormat:@"notificationTypeId == %d OR notificationTypeId == %d OR notificationTypeId == %d", SDNotificationTypeLike, SDNotificationTypeComment, SDNotificationTypeFollowing];
-    NSPredicate *contentTypeNamesPredicate = [NSPredicate predicateWithFormat:@"contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@", @"Comment", @"Wall Post", @"Status Message", @"Following"];
+    NSPredicate *contentTypeNamesPredicate = [NSPredicate predicateWithFormat:@"contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@" , @"Comment", @"Wall Post", @"Status Message", @"Following", @"Media"];
     NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[masterPredicate, notificationTypesPredicate, contentTypeNamesPredicate]];
     self.dataArray = [Notification MR_findAllSortedBy:@"createdDate"
                                             ascending:NO

@@ -123,7 +123,32 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                  }];
 }
 
-+ (void)logout
++ (void)logoutWithSuccessBlock:(void (^)(void))successBlock
+                  failureBlock:(void (^)(void))failureBlock
+{
+    SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSString *deviceToken = appDelegate.deviceToken;
+    
+    [[SDAPIClient sharedClient] postPath:@"sd/logout.json"
+                              parameters:@{@"DeviceToken":deviceToken}
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     [self cleanUpUserSession];
+                                     
+                                     if (successBlock)
+                                         successBlock();
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                     message:@"Server error: could not log out"
+                                                                                    delegate:nil
+                                                                           cancelButtonTitle:@"Ok"
+                                                                           otherButtonTitles:nil];
+                                     [alert show];
+                                     if (failureBlock)
+                                         failureBlock();
+                                 }];
+}
+
++ (void)cleanUpUserSession
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSDLoginServiceUserDidLogoutNotification object:nil];
     

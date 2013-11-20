@@ -109,7 +109,7 @@ static NSString *const kAllowTracking = @"allowTracking";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [MagicalRecord saveWithBlock:nil];
     
-    [SDLoginService logout];
+    [SDLoginService logoutWithSuccessBlock:nil failureBlock:nil];
 }
 
 #pragma mark - Push Notifications
@@ -143,6 +143,20 @@ static NSString *const kAllowTracking = @"allowTracking";
 //                                          cancelButtonTitle:@"Ok"
 //                                          otherButtonTitles:nil];
 //    [alert show];
+}
+
+- (void)setDeviceToken:(NSString *)deviceToken
+{
+    [[NSUserDefaults standardUserDefaults] setValue:deviceToken
+                                             forKey:@"deviceToken"];
+    _deviceToken = deviceToken;
+}
+
+- (NSString *)deviceToken
+{
+    if (!_deviceToken)
+        return [[NSUserDefaults standardUserDefaults] valueForKey:@"deviceToken"];
+    return _deviceToken;
 }
 
 #pragma mark - FBSession methods

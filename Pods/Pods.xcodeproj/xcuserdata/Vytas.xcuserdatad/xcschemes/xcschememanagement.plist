@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFHTTPRequestOperationLogger.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,21 +22,31 @@
 		<key>Pods-DTFoundation.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>07EAA43F58A24850A7B3DF5E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>100B52E0910C46BF8258C6E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1AF23591440E492AAA5676CA</key>
 		<dict>
 			<key>primary</key>
@@ -42,12 +57,67 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>549B2AE9E50C4CDB8D8092E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>59265270AFB1425EB4E672C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FA011C771A84B09A74915BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6460BBE0931F4CC3B6FF3B1C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>649F01E7D2854F5E8739CD72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>694046ABEDB9423F8090110E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74BA382D136E48DDBF0AC0EC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7588819715A44199B8FBC191</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8395D6D697424111BC60D3D4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8AF51926950A493EA30980F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>91F71181C1184645B385CEEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>98BF45A12712482EBDC82C3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9FCF04C4C06D49F1B5C48AA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +132,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B34067E7E2BA4D05B9CC2456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9EE56B9F2184F958508A8FE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D487883B22C244DAB5F85B8E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D6AED739240241D19928439B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D987A010A761494FBBF47F15</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4953E88C70548AAA3092EE6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4B48223CD1044338CB652B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB08154476DE4DCF9B829D43</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,6 +183,11 @@
 			<true/>
 		</dict>
 		<key>FC93B9F35F93471B87A8F94D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD874308754C427E91824674</key>
 		<dict>
 			<key>primary</key>
 			<true/>

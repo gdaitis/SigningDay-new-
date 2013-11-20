@@ -52,7 +52,13 @@
 
 - (void)signOutButtonPressed
 {
-    [SDLoginService logout];
+    [self showProgressHudInView:self.tableView
+                       withText:@"Logging out"];
+    [SDLoginService logoutWithSuccessBlock:^{
+        [self hideProgressHudInView:self.tableView];
+    } failureBlock:^{
+        [self hideProgressHudInView:self.tableView];
+    }];
 }
 
 #pragma mark - TableView datasource

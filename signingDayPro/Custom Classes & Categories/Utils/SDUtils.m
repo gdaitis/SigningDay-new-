@@ -73,7 +73,7 @@
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"SigningDay.sqlite"];
     
     if (needsLogout) {
-        [SDLoginService logout];
+        [SDLoginService cleanUpUserSession];
     }
 }
 
