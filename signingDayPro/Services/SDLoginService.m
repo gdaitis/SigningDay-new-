@@ -45,15 +45,15 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     if (deviceToken == nil) {
         deviceToken = @"invalid_token";
     }
-
+    
     [parameters setValue:deviceToken forKey:@"DeviceToken"];
-
+    
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.window animated:YES];
     hud.labelText = @"Logging in";
     
     [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:[STKeychain getPasswordForUsername:@"initialApiKey" andServiceName:@"SigningDayPro" error:nil]];
-    [[SDAPIClient sharedClient] postPath:@"sd/clientdevices.json" 
+    [[SDAPIClient sharedClient] postPath:@"sd/clientdevices.json"
                               parameters:parameters
                                  success:^(AFHTTPRequestOperation *operation, id JSON) {
                                      [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
@@ -68,7 +68,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                      [[NSUserDefaults standardUserDefaults] setValue:anUsername forKey:@"username"];
                                      [[NSUserDefaults standardUserDefaults] synchronize];
                                      
-                                     NSString *apiKey = [JSON objectForKey:@"ApiKey"]; 
+                                     NSString *apiKey = [JSON objectForKey:@"ApiKey"];
                                      NSError *error;
                                      [STKeychain storeUsername:anUsername andPassword:apiKey forServiceName:@"SigningDayPro" updateExisting:YES error:&error];
                                      if (error) {
@@ -114,7 +114,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                      } failureBlock:^{
                                          failBlock();
                                      }];
-                                 } 
+                                 }
                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      [MBProgressHUD hideAllHUDsForView:appDelegate.window animated:YES];
                                      
@@ -129,23 +129,27 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSString *deviceToken = appDelegate.deviceToken;
     
-    [[SDAPIClient sharedClient] postPath:@"sd/logout.json"
-                              parameters:@{@"DeviceToken":deviceToken}
-                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                     [self cleanUpUserSession];
-                                     
-                                     if (successBlock)
-                                         successBlock();
-                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                                     message:@"Server error: could not log out"
-                                                                                    delegate:nil
-                                                                           cancelButtonTitle:@"Ok"
-                                                                           otherButtonTitles:nil];
-                                     [alert show];
-                                     if (failureBlock)
-                                         failureBlock();
-                                 }];
+    if (deviceToken) {
+        [[SDAPIClient sharedClient] postPath:@"sd/logout.json"
+                                  parameters:@{@"DeviceToken":deviceToken}
+                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         [self cleanUpUserSession];
+                                         
+                                         if (successBlock)
+                                             successBlock();
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                         message:@"Server error: could not log out"
+                                                                                        delegate:nil
+                                                                               cancelButtonTitle:@"Ok"
+                                                                               otherButtonTitles:nil];
+                                         [alert show];
+                                         if (failureBlock)
+                                             failureBlock();
+                                     }];
+    }
+    else
+        [self cleanUpUserSession]; //
 }
 
 + (void)cleanUpUserSession

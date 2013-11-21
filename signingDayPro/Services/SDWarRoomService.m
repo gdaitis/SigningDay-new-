@@ -377,7 +377,7 @@ withCompletionBlock:(void (^)(void))completionBlock
         thread = [Thread MR_createInContext:context];
         thread.identifier = identifier;
     }
-    thread.bodyText = [[threadDictionary valueForKey:@"Body"] stringByConvertingHTMLToPlainText];
+    thread.bodyText = [SDUtils formattedForrumReplyFromString:[threadDictionary valueForKey:@"Body"]];
     thread.date = [SDUtils dateFromString:[threadDictionary valueForKey:@"Date"]];
     thread.latestPostDate = [SDUtils dateFromString:[threadDictionary valueForKey:@"LatestPostDate"]];
     thread.subject = [[threadDictionary valueForKey:@"Subject"] stringByConvertingHTMLToPlainText];

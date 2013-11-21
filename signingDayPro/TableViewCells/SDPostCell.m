@@ -20,6 +20,8 @@
 #import <NSAttributedString+DTCoreText.h>
 #import <DTCoreTextConstants.h>
 #import <DTCoreTextLayouter.h>
+#import <DTAttributedTextView.h>
+#import <DTLinkButton.h>
 
 @interface SDPostCell () <DTAttributedTextContentViewDelegate>
 
@@ -70,6 +72,7 @@
     [self addSubview:self.bottomLineView];
     
     self.postTextView.delegate = self;
+    self.postTextView.shouldDrawLinks = YES;
     
     self.userAvatarImageView.layer.cornerRadius = 4.0f;
     self.userAvatarImageView.clipsToBounds = YES;
@@ -216,6 +219,25 @@
 	CGContextStrokePath(context);
 	
 	return NO; // draw standard background
+}
+
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView
+                          viewForLink:(NSURL *)url
+                           identifier:(NSString *)identifier
+                                frame:(CGRect)frame
+{
+    DTLinkButton *linkButton = [[DTLinkButton alloc] initWithFrame:frame];
+    linkButton.URL = url;
+    [linkButton addTarget:self action:@selector(linkButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return linkButton;
+}
+
+#pragma mark - Events
+
+- (void)linkButtonClicked:(DTLinkButton *)sender
+{
+    [[UIApplication sharedApplication] openURL:sender.URL];
 }
 
 @end
