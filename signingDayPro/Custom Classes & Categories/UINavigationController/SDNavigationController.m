@@ -121,6 +121,8 @@
         SDNotificationType notificationType = [[userInfo valueForKey:@"notificationTypeId"] integerValue];
         if (notificationType == SDNotificationTypeConversation) {
             [self conversationsSelected];
+        } else  if (notificationType == SDNotificationTypeFollowing) {
+            [self followersSelected];
         } else {
             [self notificationsSelected];
         }
@@ -238,25 +240,27 @@
                             messagesNumber:(NSInteger)messagesNumber
                            followersNumber:(NSInteger)followersNumber
 {
-    NSInteger sumOfAllBadges = notificationsNumber + messagesNumber; // we don't use followers number since it's included in notifications count
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:sumOfAllBadges];
-    
-    for (UIView *subiew in self.topToolBar.subviews) {
-        if ([subiew isKindOfClass:[SDBadgeView class]])
-            [subiew removeFromSuperview];
-    }
-    SDBadgeView *notificationsBadge = [self createBadgeWithNumber:notificationsNumber
-                                                 forToolbarButton:self.topToolBar.notificationButton
-                                                     withSelector:@selector(notificationsSelected)];
-    SDBadgeView *messagesBadge = [self createBadgeWithNumber:messagesNumber
-                                            forToolbarButton:self.topToolBar.messagesButton
-                                                withSelector:@selector(conversationsSelected)];
-    SDBadgeView *followersBadge = [self createBadgeWithNumber:followersNumber
-                                             forToolbarButton:self.topToolBar.followersButton
-                                                 withSelector:@selector(followersSelected)];
-    [self.topToolBar addSubview:notificationsBadge];
-    [self.topToolBar addSubview:messagesBadge];
-    [self.topToolBar addSubview:followersBadge];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSInteger sumOfAllBadges = notificationsNumber + messagesNumber; // we don't use followers number since it's included in notifications count
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:sumOfAllBadges];
+        
+        for (UIView *subiew in self.topToolBar.subviews) {
+            if ([subiew isKindOfClass:[SDBadgeView class]])
+                [subiew removeFromSuperview];
+        }
+        SDBadgeView *notificationsBadge = [self createBadgeWithNumber:notificationsNumber
+                                                     forToolbarButton:self.topToolBar.notificationButton
+                                                         withSelector:@selector(notificationsSelected)];
+        SDBadgeView *messagesBadge = [self createBadgeWithNumber:messagesNumber
+                                                forToolbarButton:self.topToolBar.messagesButton
+                                                    withSelector:@selector(conversationsSelected)];
+        SDBadgeView *followersBadge = [self createBadgeWithNumber:followersNumber
+                                                 forToolbarButton:self.topToolBar.followersButton
+                                                     withSelector:@selector(followersSelected)];
+        [self.topToolBar addSubview:notificationsBadge];
+        [self.topToolBar addSubview:messagesBadge];
+        [self.topToolBar addSubview:followersBadge];
+    });
 }
 
 - (SDBadgeView *)createBadgeWithNumber:(NSInteger)badgeNumber
