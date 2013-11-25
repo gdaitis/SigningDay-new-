@@ -23,9 +23,14 @@
 //NSString * const kSDOldAPIBaseURLString = @"https://www.signingday.com/api/";
 //NSString * const kSDAPICLientNoApiKeyNotification = @"SDAPICLientNoApiKeyNotificationName";
 
-NSString * const kSDBaseSigningDayURLString = @"http://dev.signingday.com/";
-NSString * const kSDAPIBaseURLString = @"http://dev.signingday.com/api.ashx/v2/";
-NSString * const kSDOldAPIBaseURLString = @"http://dev.signingday.com/api/";
+//NSString * const kSDBaseSigningDayURLString = @"http://dev.signingday.com/";
+//NSString * const kSDAPIBaseURLString = @"http://dev.signingday.com/api.ashx/v2/";
+//NSString * const kSDOldAPIBaseURLString = @"http://dev.signingday.com/api/";
+//NSString * const kSDAPICLientNoApiKeyNotification = @"SDAPICLientNoApiKeyNotificationName";
+
+NSString * const kSDBaseSigningDayURLString = @"http://signingday.telligenthosting.net/";
+NSString * const kSDAPIBaseURLString = @"http://signingday.telligenthosting.net/api.ashx/v2/";
+NSString * const kSDOldAPIBaseURLString = @"http://signingday.telligenthosting.net/api/";
 NSString * const kSDAPICLientNoApiKeyNotification = @"SDAPICLientNoApiKeyNotificationName";
 
 @implementation SDAPIClient
