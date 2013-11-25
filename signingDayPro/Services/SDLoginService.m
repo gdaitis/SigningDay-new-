@@ -138,18 +138,25 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                          if (successBlock)
                                              successBlock();
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                                         message:@"Server error: could not log out"
-                                                                                        delegate:nil
-                                                                               cancelButtonTitle:@"Ok"
-                                                                               otherButtonTitles:nil];
-                                         [alert show];
-                                         if (failureBlock)
-                                             failureBlock();
+                                         if ([error code] == -1011) {
+                                             [self cleanUpUserSession];
+                                             
+                                             if (successBlock)
+                                                 successBlock();
+                                         } else {
+                                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                             message:@"Server error: could not log out"
+                                                                                            delegate:nil
+                                                                                   cancelButtonTitle:@"Ok"
+                                                                                   otherButtonTitles:nil];
+                                             [alert show];
+                                             if (failureBlock)
+                                                 failureBlock();
+                                         }
                                      }];
+    } else {
+        [self cleanUpUserSession];
     }
-    else
-        [self cleanUpUserSession]; //
 }
 
 + (void)cleanUpUserSession
