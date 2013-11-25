@@ -13,9 +13,7 @@
 #import "SDAppDelegate.h"
 #import "SDFollowingService.h"
 
-#import "GAIDictionaryBuilder.h"
-#import "GAI.h"
-#import "GAIFields.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDPublishPhotoTableViewController ()
 
@@ -40,10 +38,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Publish photo screen"
-                                                      forKey:kGAIScreenName] build]];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Publish_photo_screen"];
 }
 
 - (IBAction)publishPhotoPressed:(id)sender

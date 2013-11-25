@@ -19,6 +19,7 @@
 #import "SDLoginService.h"
 #import "MBProgressHUD.h"
 #import "SDTermsViewController.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDSettingsViewController () <UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDCameraOverlayViewDelegate>
 
@@ -59,6 +60,8 @@
     } failureBlock:^{
         [self hideProgressHudInView:self.tableView];
     }];
+    
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"SignOut_Action"];
 }
 
 #pragma mark - TableView datasource

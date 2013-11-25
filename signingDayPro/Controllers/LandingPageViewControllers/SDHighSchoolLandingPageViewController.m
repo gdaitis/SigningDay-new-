@@ -13,6 +13,7 @@
 #import "SDHighSchoolsSearchHeader.h"
 #import "UIButton+AddTitle.h"
 #import "State.h"
+#import "SDGoogleAnalyticsService.h"
 
 NSString * const kSDDefaultClass = @"2014";
 
@@ -97,6 +98,7 @@ NSString * const kSDDefaultClass = @"2014";
         if (!self.dataDownloadInProgress) {
             //data downloading not in progress, we can start downloading further pages
             [self checkServer];
+            [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Show_More_HighSchoolLandingPage"];
         }
         return cell;
     }
@@ -303,6 +305,7 @@ NSString * const kSDDefaultClass = @"2014";
     self.pagingEndReached = NO;
     [self searchFilteredData];
     [self showProgressHudInView:self.view withText:@"Loading"];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Search_Selected_HighSchoolLandingPage"];
 }
 
 #pragma mark - Filter list delegates

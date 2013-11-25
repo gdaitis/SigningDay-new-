@@ -16,6 +16,7 @@
 #import "AFNetworking.h"
 #import "SDActivityFeedCellContentView.h"
 #import "SDCommentsViewController.h"
+#import "SDGoogleAnalyticsService.h"
 #import "SDUserProfileViewController.h"
 
 @interface SDActivityFeedTableView ()
@@ -299,6 +300,7 @@
                                     } failureBlock:^{
                                         NSLog(@"Liking failed");
                                     }];
+        [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Like_Selected_Activity_Feed"];
     } else {
         [SDActivityFeedService unlikeActivityStory:activityStoryInContext
                                       successBlock:^{
@@ -306,6 +308,7 @@
                                       } failureBlock:^{
                                           NSLog(@"Unliking failed");
                                       }];
+        [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Unlike_Selected_Activity_Feed"];
     }
     
 }

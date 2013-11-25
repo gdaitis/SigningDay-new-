@@ -18,6 +18,8 @@
 #import "SDLikesViewController.h"
 #import "UIImageView+Crop.h"
 
+#import "SDGoogleAnalyticsService.h"
+
 @interface SDCommentsViewController ()
 
 @property (nonatomic, strong) SDCommentsHeaderView *contentHeaderView;
@@ -124,6 +126,7 @@
                                         } failureBlock:^{
                                             NSLog(@"Commentig failed");
                                         }];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Commented_On_Activity_Story"];
 }
 
 #pragma mark - Keyboards

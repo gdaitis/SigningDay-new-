@@ -16,13 +16,9 @@
 #import "User.h"
 #import "Master.h"
 #import "DTCoreText.h"
-#import "GAI.h"
+#import "SDGoogleAnalyticsService.h"
 
 NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDelegatePushNotificationReceivedNotification";
-
-/******* Set your tracking ID here *******/
-static NSString *const kTrackingId = @"UA-45419104-1"; //Testing id
-static NSString *const kAllowTracking = @"allowTracking";
 
 @implementation SDAppDelegate
 
@@ -39,15 +35,8 @@ static NSString *const kAllowTracking = @"allowTracking";
     //checks for data migration, and setups suitable stack
     [SDUtils setupCoreDataStack];
     
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    [GAI sharedInstance].dispatchInterval = 60;
+    [[SDGoogleAnalyticsService sharedService] setupService];
     
-#warning will change after tests
-    [GAI sharedInstance].dryRun = YES;
-//    [[GAI sharedInstance] setOptOut:YES];
-    
-//    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kTrackingId];
 
     //if master user got deleted, performing logout
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];

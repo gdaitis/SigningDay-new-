@@ -22,6 +22,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SDActivityFeedService.h"
 
+#import "SDGoogleAnalyticsService.h"
+
 
 @interface SDActivityStoryViewController ()
 
@@ -178,12 +180,14 @@
                                     } failureBlock:^{
                                         NSLog(@"Liking failed");
                                     }];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Like_Selected_Activity_Story_View"];
     } else {
         [SDActivityFeedService unlikeActivityStory:self.activityStory
                                       successBlock:^{
                                       } failureBlock:^{
                                           NSLog(@"Unliking failed");
                                       }];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Unlike_Selected_Activity_Story_View"];
     }
     [self.tableView reloadData];
 }

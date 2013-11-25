@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import <Accounts/Accounts.h>
-#import "GAITracker.h"
 
 extern NSString * const kSDAppDelegatePushNotificationReceivedNotification;
 
@@ -19,7 +18,5 @@ extern NSString * const kSDAppDelegatePushNotificationReceivedNotification;
 @property (nonatomic, strong) FBSession *fbSession;
 @property (nonatomic, strong) NSString* deviceToken;
 @property (nonatomic, strong) ACAccount *twitterAccount;
-
-@property (nonatomic, strong) id<GAITracker> tracker;
 
 @end

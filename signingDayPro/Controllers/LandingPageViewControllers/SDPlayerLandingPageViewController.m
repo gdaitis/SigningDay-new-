@@ -15,6 +15,8 @@
 #import "SDPlayersSearchHeader.h"
 #import "AFNetworking.h"
 
+#import "SDGoogleAnalyticsService.h"
+
 @interface SDPlayerLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDPlayersSearchHeaderDelegate>
 
 @property (nonatomic, strong) SDPlayersSearchHeader *playerSearchView;
@@ -118,6 +120,7 @@
             }
             else {
                 [self checkServer];
+                [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Show_More_PlayerLandingPage"];
             }
         }
         return cell;
@@ -432,6 +435,8 @@
     self.pagingEndReached = NO;
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self searchFilteredData];
+    
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Search_Selected_PlayerLandingPage"];
 }
 
 #pragma mark - Filter list delegates

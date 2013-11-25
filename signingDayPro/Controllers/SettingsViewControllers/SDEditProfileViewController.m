@@ -11,9 +11,7 @@
 #import "User.h"
 #import "SDProfileService.h"
 #import "MBProgressHUD.h"
-#import "GAIFields.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDEditProfileViewController ()
 
@@ -73,10 +71,8 @@
     
     [self loadData];
     [self checkServer];
-    
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Edit profile screen"
-                                                    forKey:kGAIScreenName] build]];
+
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Edit profile screen"];
 }
 
 - (void)backButtonPressed

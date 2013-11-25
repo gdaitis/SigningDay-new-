@@ -38,6 +38,7 @@
 
 #import "SDNotificationsService.h"
 
+#import "SDGoogleAnalyticsService.h"
 #import "SDWarRoomService.h"
 
 #define kButtonImageViewTag 999
@@ -174,6 +175,7 @@
                                                     otherButtonTitles:@"Camera", @"Library", nil];
     actionSheet.tag = 101;
     [actionSheet showInView:self.view];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Post_Photo/Video_Selected_Activity_Feed"];
 }
 
 - (void)activityFeedHeaderViewDidClickOnBuzzSomething:(SDActivityFeedHeaderView *)activityFeedHeaderView
@@ -185,6 +187,7 @@
     [self presentViewController:modalNavigationViewController
                        animated:YES
                      completion:nil];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Say_Something_Selected_Activity_Feed"];
 }
 
 #pragma mark - UIActionSheet delegate methods

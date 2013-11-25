@@ -19,9 +19,7 @@
 #import "SDBadgeView.h"
 #import "SDNotificationsService.h"
 #import "SDActivityStoryViewController.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAI.h"
-#import "GAIFields.h"
+#import "SDGoogleAnalyticsService.h"
 #import "SDAppDelegate.h"
 
 @interface SDNavigationController () <SDCustomNavigationToolbarViewDelegate>
@@ -390,9 +388,7 @@
 
 - (void)showNotifications
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Notifications screen"
-                                                      forKey:kGAIScreenName] build]];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Notifications screen"];
     
     _selectedMenuType = BARBUTTONTYPE_NOTIFICATIONS;
     if (!_notificationVC) {
@@ -439,9 +435,7 @@
 
 - (void)showConversations
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Conversations screen"
-                                                      forKey:kGAIScreenName] build]];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Conversations screen"];
     
     _selectedMenuType = BARBUTTONTYPE_CONVERSATIONS;
     if (!_messageVC) {
@@ -488,9 +482,7 @@
 
 - (void)showFollowers
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Followers screen"
-                                                      forKey:kGAIScreenName] build]];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Followers screen"];
     
     [SDFollowingService removeFollowing:YES andFollowed:YES];
     _selectedMenuType = BARBUTTONTYPE_FOLLOWERS;
@@ -632,11 +624,7 @@
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
             didSelectActivityStory:(ActivityStory *)activityStory
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:@"Notification_Selected"
-                                                           value:nil] build]];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Activity_Story_Selected_From_Notification_List"];
     
     SDActivityStoryViewController *activityStoryViewController = [[SDActivityStoryViewController alloc] init];
     activityStoryViewController.activityStory = activityStory;
@@ -647,11 +635,7 @@
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
                      didSelectUser:(User *)user
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:@"Notification_Selected"
-                                                           value:nil] build]];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"User_Selected_From_Notification_List"];
     
     UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                         bundle:nil];
@@ -684,6 +668,8 @@
 {
     [self hideFollowersAndRemoveContentView:YES];
     
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"User_Selected_From_Following_List"];
+    
     //remember in which controller we will need to open following view
     [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_FOLLOWERS];
     
@@ -708,11 +694,7 @@
         }
     }
     
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:@"Conversation_Selected"
-                                                           value:nil] build]];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Conversation_Selected_From_Conversation_List"];
     
     //remember in which controller we will need to open following view
     [self rememberCurrentControllerForButtonType:BARBUTTONTYPE_CONVERSATIONS];

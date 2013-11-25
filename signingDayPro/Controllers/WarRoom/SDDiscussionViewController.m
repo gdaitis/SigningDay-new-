@@ -21,6 +21,7 @@
 #import <DTCoreTextLayoutFrame.h>
 #import <DTCoreTextLayouter.h>
 #import "NSAttributedString+DTCoreText.h"
+#import "SDGoogleAnalyticsService.h"
 
 @implementation SDDiscussionViewController
 
@@ -38,6 +39,12 @@
     [super viewWillAppear:animated];
     
     [self checkServer];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Forum_Discussion_Screen";
 }
 
 - (int)yCoordinateOfTableView
@@ -100,6 +107,7 @@
                                 } failureBlock:nil];
     
     [self scrollToBottomAnimated:YES];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Forum_Reply_Send_Action"];
 }
 
 #pragma mark - Table view data source
@@ -193,11 +201,14 @@
 //             } failureBlock:^{
 //                 [self reload];
 //             }];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Believe_Selected"];
+#warning Believe, Hate not implemented
 }
 
 - (void)hatePressed:(UIView *)sender
 {
 //    int index = sender.tag;
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Hate_Selected"];
 }
 
 @end

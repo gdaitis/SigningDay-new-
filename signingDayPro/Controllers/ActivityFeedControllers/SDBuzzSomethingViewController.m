@@ -12,6 +12,7 @@
 #import "SDActivityFeedService.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AFNetworking.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDBuzzSomethingViewController ()
 
@@ -118,10 +119,12 @@
                                                         forUser:self.user
                                                    successBlock:successBlock
                                                    failureBlock:failureBlock];
+        [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Post_Action_On_Users_Feed"];
     } else {
         [SDActivityFeedService postActivityStoryWithMessageBody:self.textView.text
                                                    successBlock:successBlock
                                                    failureBlock:failureBlock];
+        [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Post_Action_On_Activity_Feed"];
     }
 }
 

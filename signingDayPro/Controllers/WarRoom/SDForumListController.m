@@ -12,6 +12,7 @@
 #import "UIView+NibLoading.h"
 #import "SDModalNavigationController.h"
 #import "SDNewDiscussionViewController.h"
+#import "SDGoogleAnalyticsService.h"
 
 #import "SDGroupCell.h"
 #import "SDForumCell.h"
@@ -76,6 +77,25 @@
                                                         name:kNewPostButtonPressedNotification
                                                       object:nil];
         [((SDNavigationController *)self.navigationController) removeNewPostButton];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    switch (self.listType) {
+        case LIST_TYPE_GROUP:
+            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum Group Screen"];
+            break;
+        case LIST_TYPE_FORUM:
+            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum Screen"];
+            break;
+        case LIST_TYPE_THREAD:
+            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum Thread Screen"];
+            break;
+        default:
+            break;
     }
 }
 

@@ -11,6 +11,7 @@
 #import "UIPlaceHolderTextView.h"
 #import "SDWarRoomService.h"
 #import "Forum.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDNewDiscussionViewController ()
 
@@ -62,6 +63,12 @@
         self.postTextView.contentInset = UIEdgeInsetsMake(-8,-8,0,0);
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.screenName = @"Forum New Discussion Screen";
+}
+
 - (void)closeButtonPressed
 {
     SDModalNavigationController *modalNavigationController = (SDModalNavigationController *)self.navigationController;
@@ -99,6 +106,7 @@
                                                                              otherButtonTitles:nil];
                                        [alert show];
                                    }];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"New_Thread_Post_Button_Selected"];
 }
 
 @end

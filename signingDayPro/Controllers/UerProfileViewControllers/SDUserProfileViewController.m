@@ -42,7 +42,8 @@
 #import "WebPreview.h"
 #import "SDCommitsRostersCoachViewController.h"
 #import "MediaGallery.h"
-#import "GAIDictionaryBuilder.h"
+
+#import "SDGoogleAnalyticsService.h"
 
 #import "SDOffersViewController.h"
 
@@ -104,7 +105,8 @@
     [SDProfileService getProfileInfoForUser:self.currentUser
                             completionBlock:^{
                                 [self setupHeaderView];
-                            } failureBlock:nil];}
+                            } failureBlock:nil];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -368,6 +370,8 @@
     [self presentViewController:modalNavigationViewController
                        animated:YES
                      completion:nil];
+    
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Post_In_User_Profile_Selected"];
 }
 
 - (void)messageButtonPressedInButtonView:(SDBuzzButtonView *)buzzButtonView
@@ -384,6 +388,8 @@
     conversationViewController.isNewConversation = YES;
     
     [self.navigationController pushViewController:conversationViewController animated:YES];
+    
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Private_Message_In_User_Profile_Selected"];
 }
 
 #pragma mark - SlidingViewButton Delegate
@@ -486,13 +492,8 @@
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-
     if (isFollowing) {
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:@"Profile_Follow_Selected"
-                                                               value:nil] build]];
+        [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Follow_Button_Selected_Profile_View"];
         [SDFollowingService followUserWithIdentifier:self.currentUser.identifier
                                  withCompletionBlock:^{
                                  } failureBlock:^{
@@ -500,10 +501,7 @@
                                  }];
         
     } else {
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:@"Profile_Unfollow_Selected"
-                                                               value:nil] build]];
+        [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Unfollow_Button_Selected_Profile_View"];
         [SDFollowingService unfollowUserWithIdentifier:self.currentUser.identifier
                                    withCompletionBlock:^{
                                        

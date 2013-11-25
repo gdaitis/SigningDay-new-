@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SDLoginViewController.h"
 #import "NSObject+MasterUserMethods.h"
-#import "GAI.h"
-#import "GAIFields.h"
+#import "GAITrackedViewController.h"
 
 extern NSString * const SDKeyboardShouldHideNotification;
 

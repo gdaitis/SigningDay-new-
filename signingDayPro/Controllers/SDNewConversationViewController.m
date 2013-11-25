@@ -21,9 +21,7 @@
 #import "SDFollowingService.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+Crop.h"
-#import "GAIFields.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDNewConversationViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -114,10 +112,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"New conversation user selection screen"
-                                                      forKey:kGAIScreenName] build]];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"New conversation user selection screen"];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

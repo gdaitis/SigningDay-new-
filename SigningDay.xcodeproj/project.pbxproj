@@ -325,6 +325,7 @@
 		809E72A317577A1B004840D3 /* SDConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E72A217577A1B004840D3 /* SDConversationCell.xib */; };
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
+		80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
 		80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */; };
@@ -833,6 +834,8 @@
 		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFollowingViewController.m; path = ../TableViewCells/Views/SDFollowingViewController.m; sourceTree = "<group>"; };
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuItemList.plist; path = ../MenuItemList.plist; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
+		80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGoogleAnalyticsService.h; sourceTree = "<group>"; };
+		80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGoogleAnalyticsService.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
 		80A7B9271797F05E006FC87E /* SDBuzzSomethingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzSomethingViewController.m; sourceTree = "<group>"; };
 		80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuButtonPost@2x.png"; sourceTree = "<group>"; };
@@ -1236,6 +1239,8 @@
 				7BC1D86417F315C800D686E6 /* SDNotificationsService.m */,
 				8012100B181538D800F65B0B /* SDWarRoomService.h */,
 				8012100C181538D800F65B0B /* SDWarRoomService.m */,
+				80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */,
+				80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2618,6 +2623,7 @@
 				7B93CE56182A9FAE007A6275 /* SDAppDelegate.m in Sources */,
 				7B93CE70182A9FAE007A6275 /* SDAPIClient.m in Sources */,
 				7B93CE71182A9FAE007A6275 /* SDActivityFeedService.m in Sources */,
+				80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */,
 				7B93CE72182A9FAE007A6275 /* SDChatService.m in Sources */,
 				7B93CE73182A9FAE007A6275 /* SDErrorService.m in Sources */,
 				7B93CE74182A9FAE007A6275 /* SDFollowingService.m in Sources */,

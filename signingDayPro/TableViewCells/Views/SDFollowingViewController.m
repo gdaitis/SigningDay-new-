@@ -20,7 +20,7 @@
 #import "SDUserProfileViewController.h"
 #import "UIImageView+Crop.h"
 
-#import "GAIDictionaryBuilder.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDFollowingViewController ()
 
@@ -449,20 +449,8 @@
         [self showAlertWithTitle:nil andText:@"Sorry, this profile is currently unavailable."];
     }
     
-    if (self.controllerType == CONTROLLER_TYPE_FOLLOWERS) {
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:@"Follower_Selected"
-                                                               value:nil] build]];
-    }
-    else {
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:@"Following_Selected"
-                                                               value:nil] build]];
-    }
+    NSString *gaEventLabel = (self.controllerType == CONTROLLER_TYPE_FOLLOWERS) ? @"Follower_List_User_Selected" : @"Following_List_User_Selected";
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:gaEventLabel];
 }
 
 #pragma mark - Following actions
@@ -475,13 +463,11 @@
     User *user = [self.dataArray objectAtIndex:sender.tag];
     [self.userSet addObject:user.identifier];
     
+    NSString *gaEventLabel = nil;
     if (!sender.selected) {
         
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:@"Follow_Selected_FollowingScreen"
-                                                               value:nil] build]];
+        gaEventLabel = @"Follow_Action_FollowingScreen";
+
         //following action
         [SDFollowingService followUserWithIdentifier:user.identifier withCompletionBlock:^{
             [self hideProgressHudInView:self.view];
@@ -492,11 +478,7 @@
         }];
     }
     else {
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:@"Unfollow_Selected_FollowingScreen"
-                                                               value:nil] build]];
+        gaEventLabel = @"Unfollow_Action_FollowingScreen";
         
         //unfollowing action
         [SDFollowingService unfollowUserWithIdentifier:user.identifier withCompletionBlock:^{
@@ -507,6 +489,8 @@
             [self hideProgressHudInView:self.view];
         }];
     }
+    
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:gaEventLabel];
 }
 
 - (void)followTypeChanged:(UIButton *)btn

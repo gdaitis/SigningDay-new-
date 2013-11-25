@@ -13,6 +13,7 @@
 #import "SDTeamsSearchHeader.h"
 #import "UIButton+AddTitle.h"
 #import "Conference.h"
+#import "SDGoogleAnalyticsService.h"
 
 @interface SDCollegeLandingPageViewController () <UITableViewDataSource, UITableViewDelegate,SDTeamsSearchHeaderDelegate>
 
@@ -99,6 +100,7 @@
         if (!self.dataDownloadInProgress) {
             //data downloading not in progress, we can start downloading further pages
             [self checkServer];
+            [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Show_More_CollegeLandingPage"];
         }
         return cell;
     }
@@ -296,6 +298,7 @@
     self.currentUserCount = 0;
     self.pagingEndReached = NO;
     [self searchFilteredData];
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Search_Selected_TeamLandingPage"];
 }
 
 #pragma mark - Filter list delegates
