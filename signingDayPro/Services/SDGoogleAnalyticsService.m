@@ -11,8 +11,9 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-/******* Set your tracking ID here *******/
-static NSString *const kTrackingId = @"UA-45419104-1"; //Testing id
+//Login: signingday.com@gmail.com
+static NSString *const kTrackingId = @"UA-34217626-2";   //SigningDay-Mobile
+//static NSString *const kTrackingId = @"UA-45419104-1"; //Testing id
 static NSString *const kAllowTracking = @"allowTracking";
 
 @interface SDGoogleAnalyticsService ()
