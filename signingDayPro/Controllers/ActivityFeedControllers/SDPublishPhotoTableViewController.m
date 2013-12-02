@@ -38,7 +38,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Publish_photo_screen"];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Publish photo screen"];
 }
 
 - (IBAction)publishPhotoPressed:(id)sender

@@ -66,7 +66,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.screenName = @"Forum New Discussion Screen";
+    self.screenName = @"Forum new discussion screen";
 }
 
 - (void)closeButtonPressed
