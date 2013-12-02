@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
+typedef enum {
+    TABLE_STYLE_EDIT  = 0,
+    TABLE_STYLE_NORMAL  = 1
+} TableEditStyle;
+
 @class User;
 
 @interface SDOffersViewController : SDBaseViewController
 
 @property (nonatomic, strong) User *currentUser;
+@property (nonatomic, assign) TableEditStyle tableStyle;
 
 @end

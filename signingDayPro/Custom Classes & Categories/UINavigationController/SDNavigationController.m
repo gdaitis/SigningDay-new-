@@ -162,9 +162,41 @@
         self.topToolBar = toolbarView;
         self.topToolBar.frame = CGRectMake(0, 0, self.view.bounds.size.width, kTopToolbarHeight+y);
         [self.view addSubview:_topToolBar];
+        [self hideTitleLabelAndUnhideActionButtons];
     }
     
     [self setToolbarButtons];
+}
+
+- (void)hideActionButtonsAndUnhideTitleLabel
+{
+    self.topToolBar.notificationButton.hidden = YES;
+    self.topToolBar.messagesButton.hidden = YES;
+    self.topToolBar.followersButton.hidden = YES;
+    
+    self.topToolBar.titleLabel.hidden = NO;
+}
+
+- (void)hideTitleLabelAndUnhideActionButtons
+{
+    self.topToolBar.notificationButton.hidden = NO;
+    self.topToolBar.messagesButton.hidden = NO;
+    self.topToolBar.followersButton.hidden = NO;
+    
+    self.topToolBar.titleLabel.hidden = YES;
+}
+
+- (void)setTitle:(NSString *)text
+{
+    if (text) {
+        
+        if (text.length > 0)
+            [self hideActionButtonsAndUnhideTitleLabel];
+        else
+            [self hideTitleLabelAndUnhideActionButtons];
+        
+        self.topToolBar.titleLabel.text = text;
+    }
 }
 
 #pragma mark - Navigation
