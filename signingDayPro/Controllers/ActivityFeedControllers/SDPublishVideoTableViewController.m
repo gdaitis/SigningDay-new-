@@ -29,7 +29,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Publish_video_screen"];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Publish video screen"];
 }
 
 - (IBAction)publishVideoPressed:(id)sender

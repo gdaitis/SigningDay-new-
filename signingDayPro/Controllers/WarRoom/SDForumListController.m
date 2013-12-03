@@ -86,13 +86,13 @@
     
     switch (self.listType) {
         case LIST_TYPE_GROUP:
-            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum Group Screen"];
+            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum group screen"];
             break;
         case LIST_TYPE_FORUM:
-            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum Screen"];
+            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum screen"];
             break;
         case LIST_TYPE_THREAD:
-            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum Thread Screen"];
+            [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Forum thread screen"];
             break;
         default:
             break;

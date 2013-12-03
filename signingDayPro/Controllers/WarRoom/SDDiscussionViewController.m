@@ -44,7 +44,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.screenName = @"Forum_Discussion_Screen";
+    self.screenName = @"Forum discussion screen";
 }
 
 - (int)yCoordinateOfTableView

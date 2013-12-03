@@ -55,7 +55,7 @@
 {
     [super viewDidAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Sharing_settings_screen"];
+    [[SDGoogleAnalyticsService sharedService] trackAppViewWithName:@"Sharing settings screen"];
 }
 
 #pragma mark - Table view delegate and data source methods
