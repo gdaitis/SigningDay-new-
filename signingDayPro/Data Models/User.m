@@ -2,7 +2,7 @@
 //  User.m
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 08/11/13.
+//  Created by lite on 02/12/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -36,6 +36,7 @@
 @dynamic followerRelationshipCreated;
 @dynamic followingRelationshipCreated;
 @dynamic identifier;
+@dynamic isSDStaff;
 @dynamic name;
 @dynamic numberOfFollowers;
 @dynamic numberOfFollowing;
@@ -44,7 +45,12 @@
 @dynamic username;
 @dynamic userType;
 @dynamic userTypeId;
-@dynamic isSDStaff;
+@dynamic bioAddress;
+@dynamic bioCity;
+@dynamic bioEmail;
+@dynamic bioPhone;
+@dynamic bioState;
+@dynamic bioZip;
 @dynamic activityStories;
 @dynamic activityStoriesFromOtherUsers;
 @dynamic authorOf;

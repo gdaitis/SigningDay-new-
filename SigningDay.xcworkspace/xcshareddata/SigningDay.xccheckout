@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6AF6C659-1E35-4859-839D-C5915F3E75AC</string>
+	<string>E0875AC6-92F5-4089-9A2C-8A81D100E250</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SigningDay</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -18,7 +18,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</key>
-		<string>..</string>
+		<string>../Pods/dtcoretext</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Seriously/SigningDay-ios.git</string>
@@ -28,6 +28,14 @@
 	<string>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>newSigningDay-ios</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

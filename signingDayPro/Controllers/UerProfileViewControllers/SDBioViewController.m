@@ -10,6 +10,7 @@
 #import "User.h"
 #import "SDProfileService.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TTTAttributedLabel.h"
 
 #define kSDBioViewControllerBioLabelTopPadding 16
 #define kSDBioViewControllerBioLabelBottomPadding 12
@@ -19,7 +20,7 @@
 #define kSDBioViewControllerContactsInfoLabelsVerticalSpacing 20
 #define kSDBioViewControllerBottomLineTopPadding 23
 
-@interface SDBioViewController ()
+@interface SDBioViewController () <TTTAttributedLabelDelegate>
 
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
@@ -28,9 +29,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *mobileLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *mobileInfoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *emailInfoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *addressInfoLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *mobileInfoLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *emailInfoLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *addressInfoLabel;
 @property (nonatomic, strong) UIView *bottomLine;
 @property (nonatomic, strong) CAGradientLayer *shadowLayer;
 
@@ -76,7 +77,7 @@
 
 - (void)checkServer
 {
-    void (^completionBlock)(void) = ^(void){
+    void (^completionBlock)(void) = ^(void) {
         [self loadBio];
         [self hideProgressHudInView:self.view];
     };
@@ -85,7 +86,17 @@
                        withText:@"Loading"];
     [SDProfileService getBasicProfileInfoForUserIdentifier:self.currentUser.identifier
                                            completionBlock:^{
-                                               completionBlock();
+                                               User *masterUser = [self getMasterUser];
+                                               if ([masterUser.userTypeId integerValue] == SDUserTypeCoach) {
+                                                   [SDProfileService getAllContactInfoForUserIdentifier:self.currentUser.identifier
+                                                                                        completionBlock:^{
+                                                                                            completionBlock();
+                                                                                        } failureBlock:^{
+                                                                                            completionBlock();
+                                                                                        }];
+                                               } else {
+                                                   completionBlock();
+                                               }
                                            } failureBlock:^{
                                                NSLog(@"getBasicProfileInfoForUserIdentifier FAILED in BioViewController");
                                                completionBlock();
@@ -94,14 +105,17 @@
 
 - (void)loadBio
 {
-    NSString *bio = @"";//@"This is a long bio. This is a long bio. This is";
-    NSString *mobileNr = @"";//@"00 379 59873 7652";
-    NSString *email = @"";//@"email@email.com";
-    NSString *address = @"";//@"1600 Pennsylvania Avenue, Washington D.C.";
-    
+    NSString *mobileNr = @"";
+    NSString *email = @"";
+    NSString *address = @"";
+    NSString *bio = self.currentUser.bio;//@"This is a long bio. This is a long bio. This is";
+    if ([[self getMasterUser].userTypeId integerValue] == SDUserTypeCoach) {
+        mobileNr = self.currentUser.bioPhone;
+        email = self.currentUser.bioEmail;
+        address = self.currentUser.bioAddress;
+    }
     if (self.currentUser) {
-        if (self.currentUser.bio)
-        {
+        if (self.currentUser.bio) {
             NSString *text = [self.currentUser.bio stringByReplacingOccurrencesOfString:@" " withString:@""];
             if (text.length > 0)
                 bio = self.currentUser.bio;
@@ -226,6 +240,9 @@
     mobileLabelFrame.origin.y = yPosition;
     self.mobileLabel.frame = mobileLabelFrame;
     
+    self.mobileInfoLabel.linkAttributes = nil;
+    self.mobileInfoLabel.delegate = self;
+    self.mobileInfoLabel.enabledTextCheckingTypes = NSTextCheckingAllTypes;
     self.mobileInfoLabel.text = mobileText;
     
     CGSize mobileInfoLabelSize = [self.mobileInfoLabel sizeThatFits:self.contactsInfoLabelsFitSize];
@@ -241,7 +258,11 @@
     emailLabelFrame.origin.y = yPosition;
     self.emailLabel.frame = emailLabelFrame;
     
+    self.emailInfoLabel.linkAttributes = nil;
+    self.emailInfoLabel.delegate = self;
+    self.emailInfoLabel.enabledTextCheckingTypes = NSTextCheckingAllTypes;
     self.emailInfoLabel.text = emailText;
+    
     CGSize emailInfoLabelSize = [self.emailInfoLabel sizeThatFits:self.contactsInfoLabelsFitSize];
     CGRect emailInfoLabelFrame = self.emailInfoLabel.frame;
     emailInfoLabelFrame.origin.y = self.emailLabel.frame.origin.y;
@@ -295,6 +316,23 @@
     CGColorRef lightColor = [UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f].CGColor;
     self.shadowLayer.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
     [self.backgroundView.layer addSublayer:self.shadowLayer];
+}
+
+#pragma mark - TTTAttributedLabelDelegate methods
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
+{
+    UIDevice *device = [UIDevice currentDevice];
+    if ([[device model] isEqualToString:@"iPhone"] ) {
+        phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNumber]];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end

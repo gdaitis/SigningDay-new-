@@ -32,8 +32,13 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
     }
     [[SDAPIClient sharedClient] getPath:@"sd/notifications.json"
                              parameters:parameters
-                                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                    NSArray *notificationsArray = [responseObject objectForKey:@"Notifications"];
+                                success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+                                    responseObject = [responseObject dictionaryByReplacingNullsWithStrings];
+                                    NSArray *notificationsArray;
+                                    if (![[responseObject objectForKey:@"Notifications"] isEqual:@""])
+                                        notificationsArray = [responseObject objectForKey:@"Notifications"];
+                                    else
+                                        notificationsArray = nil;
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     for (NSDictionary __strong *notificationDictionary in notificationsArray) {
                                         notificationDictionary = [notificationDictionary dictionaryByReplacingNullsWithStrings];
