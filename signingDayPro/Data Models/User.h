@@ -2,7 +2,7 @@
 //  User.h
 //  SigningDay
 //
-//  Created by Vytautas Gudaitis on 08/11/13.
+//  Created by lite on 02/12/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSDate * followerRelationshipCreated;
 @property (nonatomic, retain) NSDate * followingRelationshipCreated;
 @property (nonatomic, retain) NSNumber * identifier;
+@property (nonatomic, retain) NSNumber * isSDStaff;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * numberOfFollowers;
 @property (nonatomic, retain) NSNumber * numberOfFollowing;
@@ -29,7 +30,12 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSNumber * userTypeId;
-@property (nonatomic, retain) NSNumber * isSDStaff;
+@property (nonatomic, retain) NSString * bioAddress;
+@property (nonatomic, retain) NSString * bioCity;
+@property (nonatomic, retain) NSString * bioEmail;
+@property (nonatomic, retain) NSString * bioPhone;
+@property (nonatomic, retain) NSString * bioState;
+@property (nonatomic, retain) NSString * bioZip;
 @property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) NSSet *activityStoriesFromOtherUsers;
 @property (nonatomic, retain) NSSet *authorOf;

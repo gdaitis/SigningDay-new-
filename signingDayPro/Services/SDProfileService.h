@@ -50,6 +50,9 @@ typedef enum {
 + (void)getBasicProfileInfoForUserIdentifier:(NSNumber *)identifier
                              completionBlock:(void (^)(void))completionBlock
                                 failureBlock:(void (^)(void))failureBlock;
++ (void)getAllContactInfoForUserIdentifier:(NSNumber *)identifier
+                           completionBlock:(void (^)(void))completionBlock
+                              failureBlock:(void (^)(void))failureBlock;
 + (void)getProfileInfoForUser:(User *)theUser
               completionBlock:(void (^)(void))completionBlock
                  failureBlock:(void (^)(void))failureBlock;

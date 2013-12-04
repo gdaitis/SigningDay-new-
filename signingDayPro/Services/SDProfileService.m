@@ -607,7 +607,39 @@
                                     if (failureBlock)
                                         failureBlock();
                                 }];
-    
+}
+
++ (void)getAllContactInfoForUserIdentifier:(NSNumber *)identifier
+                           completionBlock:(void (^)(void))completionBlock
+                              failureBlock:(void (^)(void))failureBlock
+{
+    [[SDAPIClient sharedClient] getPath:@"sd/bio.json"
+                             parameters:@{@"UserId":[NSString stringWithFormat:@"%d", [identifier integerValue]]}
+                                success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+                                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
+                                    User *user = [User MR_findFirstWithPredicate:predicate
+                                                                       inContext:context];
+                                    if (!user) {
+                                        user = [User MR_createInContext:context];
+                                        user.identifier = identifier;
+                                    }
+                                    NSDictionary *resultsDictionary = [[[JSON valueForKey:@"Results"] objectAtIndex:0] dictionaryByReplacingNullsWithStrings];
+                                    user.bioAddress = [resultsDictionary valueForKey:@"Address"];
+                                    user.bioCity = [resultsDictionary valueForKey:@"City"];
+                                    user.bioEmail = [resultsDictionary valueForKey:@"Email"];
+                                    user.bioPhone = [resultsDictionary valueForKey:@"Phone"];
+                                    user.bioState = [resultsDictionary valueForKey:@"State"];
+                                    user.bioZip = [resultsDictionary valueForKey:@"Zip"];
+                                    
+                                    [context MR_saveOnlySelfAndWait];
+                                    
+                                    if (completionBlock)
+                                        completionBlock();
+                                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    if (failureBlock)
+                                        failureBlock();
+                                }];
 }
 
 + (void)getPhotosForUser:(User *)user
