@@ -236,6 +236,38 @@
                                          failureBlock:failureBlock];
 }
 
++ (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
+                                                   pageSize:(NSInteger)pageSize
+                                               successBlock:(void (^)(void))successBlock
+                                               failureBlock:(void (^)(void))failureBlock
+{
+//    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
+    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, pageNumber, pageSize];
+    
+    [self startTeamsHTTPRequestOperationWithURLString:urlString
+                                          classString:nil
+                                         successBlock:successBlock
+                                         failureBlock:failureBlock];
+}
+
++ (void)searchForTeamsWithNameString:(NSString *)searchString
+                        successBlock:(void (^)(void))successBlock
+                        failureBlock:(void (^)(void))failureBlock
+{
+//    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@", kSDBaseSigningDayURLString, classString];
+    
+    if (searchString.length > 2) {
+        NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams$filter=(substringof(tolower('%@'),tolower(DisplayName)))&$format=json", kSDBaseSigningDayURLString,searchString];
+        [self startTeamsHTTPRequestOperationWithURLString:urlString
+                                              classString:nil
+                                             successBlock:successBlock
+                                             failureBlock:failureBlock];
+    }
+    else {
+        failureBlock();
+    }
+}
+
 + (void)startTeamsHTTPRequestOperationWithURLString:(NSString *)URLString
                                         classString:(NSString *)classString
                                        successBlock:(void (^)(void))successBlock

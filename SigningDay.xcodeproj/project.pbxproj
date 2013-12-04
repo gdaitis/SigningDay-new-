@@ -251,6 +251,10 @@
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
 		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
 		8029FE24181906180066D2B3 /* SDOfferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029FE23181906180066D2B3 /* SDOfferCell.xib */; };
+		802B471B184DDA3A00FC87ED /* SDCollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B4719184DDA3A00FC87ED /* SDCollegeSearchViewController.m */; };
+		802B471C184DDA3A00FC87ED /* SDCollegeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802B471A184DDA3A00FC87ED /* SDCollegeSearchViewController.xib */; };
+		802B4720184E118200FC87ED /* SaveButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802B471F184E118200FC87ED /* SaveButton@2x.png */; };
+		802B4726184E1A4700FC87ED /* EditButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802B4725184E1A4700FC87ED /* EditButton@2x.png */; };
 		802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */; };
 		8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8032EFC71755E83300C92AAC /* SearchFieldBg@2x.png */; };
 		8032F0891755F98E00C92AAC /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8032F0411755F98E00C92AAC /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -279,7 +283,6 @@
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
 		8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044394617D4A8C400AADFDB /* closeBtn@2x.png */; };
 		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
-		80540E43184CB66C009EC1B8 /* plusIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80540E42184CB66C009EC1B8 /* plusIcon@2x.png */; };
 		80540E46184CC781009EC1B8 /* SDOfferEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80540E45184CC781009EC1B8 /* SDOfferEditCell.m */; };
 		80540E48184CC799009EC1B8 /* SDOfferEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80540E47184CC799009EC1B8 /* SDOfferEditCell.xib */; };
 		80540E4A184CCBF9009EC1B8 /* offerCheckMark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80540E49184CCBF9009EC1B8 /* offerCheckMark@2x.png */; };
@@ -590,6 +593,11 @@
 		8029FE20181905D80066D2B3 /* SDOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOfferCell.h; sourceTree = "<group>"; };
 		8029FE21181905D80066D2B3 /* SDOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDOfferCell.m; sourceTree = "<group>"; };
 		8029FE23181906180066D2B3 /* SDOfferCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDOfferCell.xib; sourceTree = "<group>"; };
+		802B4718184DDA3A00FC87ED /* SDCollegeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollegeSearchViewController.h; sourceTree = "<group>"; };
+		802B4719184DDA3A00FC87ED /* SDCollegeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollegeSearchViewController.m; sourceTree = "<group>"; };
+		802B471A184DDA3A00FC87ED /* SDCollegeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCollegeSearchViewController.xib; sourceTree = "<group>"; };
+		802B471F184E118200FC87ED /* SaveButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SaveButton@2x.png"; sourceTree = "<group>"; };
+		802B4725184E1A4700FC87ED /* EditButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EditButton@2x.png"; sourceTree = "<group>"; };
 		802B793C17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagePlayerCell.h; sourceTree = "<group>"; };
 		802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagePlayerCell.m; sourceTree = "<group>"; };
 		802B794717D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPagePlayerCell.xib; sourceTree = "<group>"; };
@@ -721,7 +729,6 @@
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
 		80522C4E17D0C67200936936 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		80540E42184CB66C009EC1B8 /* plusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plusIcon@2x.png"; sourceTree = "<group>"; };
 		80540E44184CC781009EC1B8 /* SDOfferEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOfferEditCell.h; sourceTree = "<group>"; };
 		80540E45184CC781009EC1B8 /* SDOfferEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDOfferEditCell.m; sourceTree = "<group>"; };
 		80540E47184CC799009EC1B8 /* SDOfferEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDOfferEditCell.xib; sourceTree = "<group>"; };
@@ -2101,6 +2108,9 @@
 				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
 				80C5695A18182FBF0055A041 /* SDOffersViewController.h */,
 				80C5695B18182FBF0055A041 /* SDOffersViewController.m */,
+				802B4718184DDA3A00FC87ED /* SDCollegeSearchViewController.h */,
+				802B4719184DDA3A00FC87ED /* SDCollegeSearchViewController.m */,
+				802B471A184DDA3A00FC87ED /* SDCollegeSearchViewController.xib */,
 				80E28A1417D76FD600665313 /* SDKeyAttributesViewController.h */,
 				80E28A1517D76FD600665313 /* SDKeyAttributesViewController.m */,
 				80F531E81802C1030089971C /* SDCommitsRostersCoachViewController.h */,
@@ -2196,11 +2206,12 @@
 		80F301641753A85E00134FF4 /* TopToolbar */ = {
 			isa = PBXGroup;
 			children = (
+				802B4725184E1A4700FC87ED /* EditButton@2x.png */,
+				802B471F184E118200FC87ED /* SaveButton@2x.png */,
 				7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */,
 				801088EF179579DC002EF1EB /* MenuButtonClose@2x.png */,
 				801088F0179579DC002EF1EB /* MenuButtonDone@2x.png */,
 				80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */,
-				80540E42184CB66C009EC1B8 /* plusIcon@2x.png */,
 				809E729017575FE4004840D3 /* NewConversationButtonImage@2x.png */,
 				809E729217575FE4004840D3 /* ToolbarItemSelectedArrow@2x.png */,
 				80F301661753A85E00134FF4 /* FollowersIcon@2x.png */,
@@ -2292,6 +2303,7 @@
 				805CF356174E08500046E6A5 /* SDMenuItemCell.xib in Resources */,
 				805CF358174E0B740046E6A5 /* BebasNeue.otf in Resources */,
 				80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */,
+				802B4720184E118200FC87ED /* SaveButton@2x.png in Resources */,
 				80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */,
 				80F301761753A85E00134FF4 /* FollowersIcon@2x.png in Resources */,
 				80F301781753A85E00134FF4 /* FollowersIconActive@2x.png in Resources */,
@@ -2302,7 +2314,6 @@
 				80F301841753A85E00134FF4 /* ToolbarBg@2x.png in Resources */,
 				805CF3A1175490F0004C69E5 /* MenuButton@2x.png in Resources */,
 				805CF3A517549403004C69E5 /* MenuButtonBack@2x.png in Resources */,
-				80540E43184CB66C009EC1B8 /* plusIcon@2x.png in Resources */,
 				805CF3E91754E69C004C69E5 /* UserProfileStoryboard.storyboard in Resources */,
 				804299C3180ECD9900D17D2B /* toolbarBgIphone5@2x.png in Resources */,
 				805CF3EC1754E870004C69E5 /* SettingsStoryboard.storyboard in Resources */,
@@ -2434,6 +2445,7 @@
 				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
+				802B4726184E1A4700FC87ED /* EditButton@2x.png in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
@@ -2444,6 +2456,7 @@
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
+				802B471C184DDA3A00FC87ED /* SDCollegeSearchViewController.xib in Resources */,
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
 				8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */,
 				8094EFBB1817E55B00A163FD /* SDThreadCell.xib in Resources */,
@@ -2562,6 +2575,7 @@
 				7B93CE9B182AA007007A6275 /* SDTestingViewController.m in Sources */,
 				7B93CE9C182AA007007A6275 /* SDNewDiscussionViewController.m in Sources */,
 				7B93CE9D182AA007007A6275 /* SDDiscussionViewController.m in Sources */,
+				802B471B184DDA3A00FC87ED /* SDCollegeSearchViewController.m in Sources */,
 				7B93CE9E182AA007007A6275 /* SDForumListController.m in Sources */,
 				7B93CE9F182AA007007A6275 /* SDCommonWebViewController.m in Sources */,
 				7B93CEA0182AA007007A6275 /* SDTermsViewController.m in Sources */,

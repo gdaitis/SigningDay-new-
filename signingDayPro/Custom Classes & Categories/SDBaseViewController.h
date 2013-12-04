@@ -22,6 +22,7 @@ extern NSString * const SDKeyboardShouldHideNotification;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSString *navigationTitle;
 
 - (void)beginRefreshing;
 - (void)endRefreshing;

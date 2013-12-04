@@ -20,10 +20,11 @@
 #import "SDNavigationController.h"
 #import "IIViewDeckController.h"
 #import "SDOfferEditCell.h"
+#import "SDCollegeSearchViewController.h"
 
 @interface SDOffersViewController () <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) Offer *commitedToOffer;
 
 @end
@@ -43,6 +44,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
+    //set navigation Title to show title instead of buttons in navigationBar
+    self.navigationTitle = @"Offers";
     
     [self.refreshControl removeFromSuperview];
     
@@ -157,7 +162,9 @@
         }
         else {
             //show team selection controller
-            
+            SDCollegeSearchViewController *collegeSearchViewController = [[SDCollegeSearchViewController alloc] initWithNibName:@"SDCollegeSearchViewController" bundle:[NSBundle mainBundle]];
+            collegeSearchViewController.delegate = self;
+            [self.navigationController pushViewController:collegeSearchViewController animated:YES];
         }
     }
     else {
@@ -182,8 +189,8 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"playerCommited" ascending:NO];
         NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"team.theUser.name"
                                                                          ascending:YES];
-        
-        self.dataArray = [[self.currentUser.thePlayer.offers allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor, nameDescriptor, nil]];
+        self.dataArray = nil;
+        self.dataArray = [NSMutableArray arrayWithArray:[[self.currentUser.thePlayer.offers allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor, nameDescriptor, nil]]];
         
         [self.tableView reloadData];
         [self hideProgressHudInView:self.tableView];
@@ -214,23 +221,33 @@
     [self.view addSubview:offersLabel];
 }
 
+- (void)updateButtonTitle
+{
+    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
+    
+    UIImage *imageName = (self.tableStyle == TABLE_STYLE_NORMAL) ? [UIImage imageNamed:@"EditButton.png"] : [UIImage imageNamed:@"SaveButton.png"];
+    
+    [navigationController.topToolBar.rightButton setImage:imageName forState:UIControlStateNormal];
+}
+
 #pragma mark - Edit action
 
 - (void)addEditButton
 {
+#warning uncomment if statement when finished!
 //    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
         self.viewDeckController.panningMode = IIViewDeckNoPanning;
         SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-        [navigationController setTitle:@"Offers"];
         
         [navigationController.topToolBar.rightButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [navigationController.topToolBar.rightButton setImage:[UIImage imageNamed:@"plusIcon.png"] forState:UIControlStateNormal];
+        [self updateButtonTitle];
         navigationController.topToolBar.rightButton.hidden = NO;
 //    }
 }
 
 - (void)removeEditButton
 {
+#warning uncomment if statement when finished!
 //    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
         self.viewDeckController.panningMode = IIViewDeckFullViewPanning;
         SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
@@ -261,6 +278,7 @@
         [self saveUpdatesAndNotifyServer];
     }
 
+    [self updateButtonTitle];
     [self.tableView reloadData];
 }
 
@@ -272,6 +290,10 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     
     BOOL result = (self.tableStyle == TABLE_STYLE_EDIT) ? YES : NO;
+    
+    if (indexPath.row >= [self.dataArray count])
+        result = NO;
+    
     return result;
 }
 
@@ -296,9 +318,22 @@
         NSArray *deleteIndexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
         [self.tableView beginUpdates];
         [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self deleteOffer:[self.dataArray objectAtIndex:indexPath.row]];
+        [self.dataArray removeObjectAtIndex:indexPath.row];
         [self.tableView endUpdates];
+    }
+}
+
+- (void)deleteOffer:(Offer *)offer
+{
+    if (offer) {
         
-        [self performSelector:@selector(reloadTable) withObject:nil afterDelay:0.3f];
+        if ([offer isEqual:self.commitedToOffer])
+            self.commitedToOffer = nil;
+        
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+        [context deleteObject:offer];
+        [context MR_saveOnlySelfAndWait];
     }
 }
 

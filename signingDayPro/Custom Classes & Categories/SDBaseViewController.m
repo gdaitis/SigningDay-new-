@@ -59,6 +59,16 @@ NSString * const SDKeyboardShouldHideNotification = @"SDKeyboardShouldHideNotifi
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //If view controller has self.navigationTitle, it means we want to show title instead of fav,msg,follow buttons
+    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
+    if (self.navigationTitle) {
+        if (navigationController)
+            [navigationController setTitle:self.navigationTitle];
+    }
+    else {
+        [navigationController setTitle:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
