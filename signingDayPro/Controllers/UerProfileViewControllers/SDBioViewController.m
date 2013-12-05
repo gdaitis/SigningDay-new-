@@ -276,7 +276,13 @@
     addressLabelFrame.origin.y = yPosition;
     self.addressLabel.frame = addressLabelFrame;
     
+    self.addressInfoLabel.linkAttributes = nil;
+    self.addressInfoLabel.delegate = self;
     self.addressInfoLabel.text = addressText;
+    NSRange range = (NSRange){0, addressText.length};
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", [addressText stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    [self.addressInfoLabel addLinkToURL:[NSURL URLWithString:urlString] withRange:range];
+    
     CGSize addressInfoLabelSize = [self.addressInfoLabel sizeThatFits:self.contactsInfoLabelsFitSize];
     CGRect addressInfoLabelFrame = self.addressInfoLabel.frame;
     addressInfoLabelFrame.origin.y = self.addressLabel.frame.origin.y;
