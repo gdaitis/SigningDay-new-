@@ -163,9 +163,44 @@
         self.topToolBar = toolbarView;
         self.topToolBar.frame = CGRectMake(0, 0, self.view.bounds.size.width, kTopToolbarHeight+y);
         [self.view addSubview:_topToolBar];
+        [self hideTitleLabelAndUnhideActionButtons];
     }
     
     [self setToolbarButtons];
+}
+
+- (void)hideActionButtonsAndUnhideTitleLabel
+{
+    self.topToolBar.notificationButton.hidden = YES;
+    self.topToolBar.messagesButton.hidden = YES;
+    self.topToolBar.followersButton.hidden = YES;
+    
+    self.topToolBar.titleLabel.hidden = NO;
+}
+
+- (void)hideTitleLabelAndUnhideActionButtons
+{
+    self.topToolBar.notificationButton.hidden = NO;
+    self.topToolBar.messagesButton.hidden = NO;
+    self.topToolBar.followersButton.hidden = NO;
+    
+    self.topToolBar.titleLabel.hidden = YES;
+}
+
+- (void)setTitle:(NSString *)text
+{
+    if (text) {
+        
+        if (text.length > 0)
+            [self hideActionButtonsAndUnhideTitleLabel];
+        else
+            [self hideTitleLabelAndUnhideActionButtons];
+        
+        self.topToolBar.titleLabel.text = text;
+    }
+    else {
+        [self hideTitleLabelAndUnhideActionButtons];
+    }
 }
 
 #pragma mark - Navigation
@@ -256,9 +291,9 @@
         SDBadgeView *followersBadge = [self createBadgeWithNumber:followersNumber
                                                  forToolbarButton:self.topToolBar.followersButton
                                                      withSelector:@selector(followersSelected)];
-        [self.topToolBar addSubview:notificationsBadge];
-        [self.topToolBar addSubview:messagesBadge];
-        [self.topToolBar addSubview:followersBadge];
+        [self.topToolBar.notificationButton addSubview:notificationsBadge];
+        [self.topToolBar.messagesButton addSubview:messagesBadge];
+        [self.topToolBar.followersButton addSubview:followersBadge];
     });
 }
 
@@ -268,8 +303,7 @@
 {
     SDBadgeView *badgeView = [[SDBadgeView alloc] init];
     badgeView.badgeCountNumber = badgeNumber;
-    badgeView.center = CGPointMake(toolbarButton.frame.origin.x + toolbarButton.frame.size.width - badgeView.frame.size.width / 3,
-                                   toolbarButton.frame.origin.y + badgeView.frame.size.height / 3);
+    badgeView.center = CGPointMake(toolbarButton.frame.size.width - badgeView.frame.size.width / 3, 8);
     UIGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                      action:selector];
     [badgeView addGestureRecognizer:gestureRecognizer];

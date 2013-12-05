@@ -54,4 +54,8 @@ typedef enum {
 - (void)removeNewPostButton;
 - (void)revealMenu:(id)sender;
 
+- (void)hideActionButtonsAndUnhideTitleLabel;
+- (void)hideTitleLabelAndUnhideActionButtons;
+- (void)setTitle:(NSString *)text;
+
 @end

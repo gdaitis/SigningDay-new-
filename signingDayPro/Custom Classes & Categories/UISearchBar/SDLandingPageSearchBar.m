@@ -50,20 +50,11 @@
             [txtField addSubview:imageView];
             [txtField sendSubviewToBack:imageView];
             
-//            txtField.backgroundColor = [UIColor whiteColor];
-//            txtField.layer.cornerRadius = 5.0f;
-//            txtField.clipsToBounds = YES;
-//            txtField.layer.borderWidth = 1.0f;
-//            txtField.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-            
             [txtField setBackground:nil];
             [txtField setTextColor:[UIColor lightGrayColor]];
             [txtField setFont:[UIFont fontWithName:@"Helvetica-Regular" size:15]];
             [txtField setReturnKeyType:UIReturnKeySearch];
-            
-//            UIImage *image = [UIImage imageNamed: @"LandingPageSearchBarMagnifyIcon.png"];
-//            UIImageView *iView = [[UIImageView alloc] initWithImage:image];
-//            txtField.leftView = iView;
+
         }
         if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
         {

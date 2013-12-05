@@ -30,6 +30,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *notificationButton;
 @property (nonatomic, weak) IBOutlet UIButton *messagesButton;
 @property (nonatomic, weak) IBOutlet UIButton *followersButton;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIButton *leftButton;
 @property (nonatomic, weak) IBOutlet UIButton *rightButton;
 
@@ -39,5 +40,6 @@
 
 - (void)setLeftButtonImage:(UIImage *)image;
 - (void)setrightButtonImage:(UIImage *)image;
+
 
 @end
