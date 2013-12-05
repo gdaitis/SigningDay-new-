@@ -172,11 +172,11 @@
         <relationship name="theUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theNFLPA" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Notification" representedClassName="Notification" syncable="YES">
-        <attribute name="activityStoryId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentTypeId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentTypeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="forumThreadId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="isNew" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="notificationTypeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -317,7 +317,7 @@
         <element name="Member" positionX="610" positionY="387" width="128" height="120"/>
         <element name="Message" positionX="-182" positionY="0" width="128" height="135"/>
         <element name="NFLPA" positionX="684" positionY="746" width="128" height="163"/>
-        <element name="Notification" positionX="-531" positionY="360" width="128" height="195"/>
+        <element name="Notification" positionX="-531" positionY="360" width="128" height="193"/>
         <element name="Offer" positionX="819" positionY="405" width="128" height="88"/>
         <element name="Player" positionX="1069" positionY="324" width="128" height="268"/>
         <element name="State" positionX="-119" positionY="414" width="128" height="105"/>

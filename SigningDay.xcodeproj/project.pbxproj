@@ -199,6 +199,7 @@
 		7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */; };
 		7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
+		7BAF744D184F620B00B5A2DE /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF744C184F620B00B5A2DE /* Notification.m */; };
 		7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */; };
 		7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374017CF6A9B0064DBEB /* CoreText.framework */; };
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
@@ -343,7 +344,6 @@
 		80C28367182BCC40007759A0 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28366182BCC40007759A0 /* Conversation.m */; };
 		80C2836A182BCC40007759A0 /* ForumReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28369182BCC40007759A0 /* ForumReply.m */; };
 		80C2836D182BCC40007759A0 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2836C182BCC40007759A0 /* Message.m */; };
-		80C28370182BCC40007759A0 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2836F182BCC40007759A0 /* Notification.m */; };
 		80C28373182BCC40007759A0 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28372182BCC40007759A0 /* Master.m */; };
 		80C28376182BCC40007759A0 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28375182BCC40007759A0 /* Offer.m */; };
 		80C28379182BCC40007759A0 /* Coach.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28378182BCC40007759A0 /* Coach.m */; };
@@ -481,6 +481,8 @@
 		7BAF6EDC17A94DBD00F7C6B3 /* SDLikesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLikesViewController.h; sourceTree = "<group>"; };
 		7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLikesViewController.m; sourceTree = "<group>"; };
 		7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentsViewStoryboard.storyboard; sourceTree = "<group>"; };
+		7BAF744B184F620B00B5A2DE /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		7BAF744C184F620B00B5A2DE /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7BB4374017CF6A9B0064DBEB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -870,8 +872,6 @@
 		80C28369182BCC40007759A0 /* ForumReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumReply.m; sourceTree = "<group>"; };
 		80C2836B182BCC40007759A0 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		80C2836C182BCC40007759A0 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		80C2836E182BCC40007759A0 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		80C2836F182BCC40007759A0 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		80C28371182BCC40007759A0 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
 		80C28372182BCC40007759A0 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
 		80C28374182BCC40007759A0 /* Offer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offer.h; sourceTree = "<group>"; };
@@ -1381,6 +1381,8 @@
 			isa = PBXGroup;
 			children = (
 				80C28345182BCC2F007759A0 /* SigningDay.xcdatamodel */,
+				7BAF744B184F620B00B5A2DE /* Notification.h */,
+				7BAF744C184F620B00B5A2DE /* Notification.m */,
 				7BC4DD8E184CD1C400730E92 /* User.h */,
 				7BC4DD8F184CD1C400730E92 /* User.m */,
 				80C2838C182BCC41007759A0 /* MediaItem.h */,
@@ -1403,8 +1405,6 @@
 				80C28375182BCC40007759A0 /* Offer.m */,
 				80C28371182BCC40007759A0 /* Master.h */,
 				80C28372182BCC40007759A0 /* Master.m */,
-				80C2836E182BCC40007759A0 /* Notification.h */,
-				80C2836F182BCC40007759A0 /* Notification.m */,
 				80C2836B182BCC40007759A0 /* Message.h */,
 				80C2836C182BCC40007759A0 /* Message.m */,
 				80C28368182BCC40007759A0 /* ForumReply.h */,
@@ -2637,6 +2637,7 @@
 				7B93CE7B182A9FAE007A6275 /* SDWarRoomService.m in Sources */,
 				7B93CE7C182A9FAE007A6275 /* SDActivityFeedViewController.m in Sources */,
 				7B93CE7D182A9FAE007A6275 /* SDActivityStoryViewController.m in Sources */,
+				7BAF744D184F620B00B5A2DE /* Notification.m in Sources */,
 				7B93CE7E182A9FAE007A6275 /* SDBuzzSomethingViewController.m in Sources */,
 				80C2838B182BCC41007759A0 /* Player.m in Sources */,
 				7B93CE7F182A9FAE007A6275 /* SDAddTagsViewController.m in Sources */,
@@ -2671,7 +2672,6 @@
 				7B93CE97182A9FAE007A6275 /* SDKeyAttributesViewController.m in Sources */,
 				7B93CE98182A9FAE007A6275 /* SDCommitsRostersCoachViewController.m in Sources */,
 				8032F0891755F98E00C92AAC /* GTMNSString+HTML.m in Sources */,
-				80C28370182BCC40007759A0 /* Notification.m in Sources */,
 				7B93CF0C182AA0FD007A6275 /* UIPlaceHolderTextView.m in Sources */,
 				8032F08A1755F98E00C92AAC /* NSString+HTML.m in Sources */,
 				8032F08C1755F98E00C92AAC /* Reachability.m in Sources */,
@@ -2711,8 +2711,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2746,8 +2746,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2770,8 +2770,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE9475C8047F4D62869BFFDC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2791,8 +2791,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE9475C8047F4D62869BFFDC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

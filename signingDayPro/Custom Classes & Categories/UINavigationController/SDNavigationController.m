@@ -21,6 +21,7 @@
 #import "SDActivityStoryViewController.h"
 #import "SDGoogleAnalyticsService.h"
 #import "SDAppDelegate.h"
+#import "SDDiscussionViewController.h"
 
 @interface SDNavigationController () <SDCustomNavigationToolbarViewDelegate>
 
@@ -647,6 +648,19 @@
     userProfileViewController.currentUser = user;
     
     [self pushViewCOntrollerFromNotificationsViewController:userProfileViewController];
+}
+
+- (void)notificationViewController:(SDNotificationViewController *)notificationViewController
+              didSelectForumThread:(Thread *)thread
+{
+    [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Forum_Thread_Selected_From_Notification_List"];
+    
+    UIStoryboard *warRoomStoryboard = [UIStoryboard storyboardWithName:@"WarRoomStoryBoard"
+                                                                bundle:nil];
+    SDDiscussionViewController *discussionController = [warRoomStoryboard instantiateViewControllerWithIdentifier:@"DiscussionViewController"];
+    discussionController.currentThread = thread;
+    
+    [self pushViewCOntrollerFromNotificationsViewController:discussionController];
 }
 
 - (void)notificationViewControllerDidCheckForNewNotifications:(SDNotificationViewController *)notificationViewController

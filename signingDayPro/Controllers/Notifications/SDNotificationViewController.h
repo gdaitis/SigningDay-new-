@@ -12,6 +12,7 @@
 @class SDNotificationViewController;
 @class ActivityStory;
 @class User;
+@class Thread;
 
 @protocol SDNotificationViewControllerDelegate <NSObject>
 
@@ -21,6 +22,8 @@
             didSelectActivityStory:(ActivityStory *)activityStory;
 - (void)notificationViewController:(SDNotificationViewController *)notificationViewController
                      didSelectUser:(User *)user;
+- (void)notificationViewController:(SDNotificationViewController *)notificationViewController
+              didSelectForumThread:(Thread *)thread;
 - (void)notificationViewControllerDidCheckForNewNotifications:(SDNotificationViewController *)notificationViewController;
 
 @end
