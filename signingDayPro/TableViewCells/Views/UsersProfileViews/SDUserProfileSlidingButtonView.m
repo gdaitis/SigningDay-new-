@@ -9,8 +9,11 @@
 #import "SDUserProfileSlidingButtonView.h"
 #import "UIView+NibLoading.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SDProfileButtonsView.h"
+#import "NSObject+MasterUserMethods.h"
+#import "User.h"
 
-@interface SDUserProfileSlidingButtonView ()
+@interface SDUserProfileSlidingButtonView () <SDProfileButtonsViewDelegate>
 
 @property (nonatomic, weak) CAGradientLayer *shadowLayer;
 
@@ -18,27 +21,12 @@
 @property (nonatomic, weak) IBOutlet UILabel *followingTitleLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
-//Sliding menu labels
-
-@property (nonatomic, weak) IBOutlet UILabel *photosLabel;
-@property (nonatomic, weak) IBOutlet UILabel *videosLabel;
-@property (nonatomic, weak) IBOutlet UILabel *bioLabel;
-
-
 @end
 
 @implementation SDUserProfileSlidingButtonView
 
 
 #pragma mark - initializers
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 - (id) awakeAfterUsingCoder:(NSCoder*)aDecoder
 {
@@ -47,6 +35,7 @@
         theRealThing.frame = self.frame;
         theRealThing.autoresizingMask = self.autoresizingMask;
         theRealThing.alpha = self.alpha;
+        
         
         return theRealThing;
     }
@@ -85,31 +74,73 @@
     }
     
     [super layoutSubviews];
-//    _scrollView.contentSize = CGSizeMake(375, 10);
-    [self updateContentSize];
-}
-
-- (void)updateContentSize
-{
-    int lastButtonEndPlusOffset = 320;
-    if (_changingButton)
-        lastButtonEndPlusOffset += 55;
-    if (_staffButton)
-        lastButtonEndPlusOffset += 90;
-    _scrollView.contentSize = CGSizeMake(lastButtonEndPlusOffset, 10);
 }
 
 - (void)setupView
 {
-    [_bioButton addTarget:self action:@selector(bioButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_changingButton addTarget:self action:@selector(changingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_staffButton addTarget:self action:@selector(staffButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_photosButton addTarget:self action:@selector(photosButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_videosButton addTarget:self action:@selector(videoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    SDProfileButtonsView *profileButtonsView = [[SDProfileButtonsView alloc] init];
+    NSArray *profileButtonsArray = [[NSArray alloc] init];
+    BOOL masterIsCoach = NO;
+    User *masterUser = [self getMasterUser];
+    if ([masterUser.userTypeId intValue] == SDUserTypeCoach)
+        masterIsCoach = YES;
     
-    _followersCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
-    _followingCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
+    switch (self.userType) {
+        case SDUserTypePlayer:
+            if (masterIsCoach)
+                profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeContacts],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeKeyAttributes],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeOffers],
+                                        [NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+            else
+                profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeKeyAttributes],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeOffers],
+                                        [NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+            break;
+        case SDUserTypeHighSchool:
+            profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeRoster],
+                                    [NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+            break;
+        case SDUserTypeTeam:
+            profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeCommits],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeStaff],
+                                    [NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+            break;
+        case SDUserTypeMember:
+            profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+            break;
+        case SDUserTypeCoach:
+            profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+            break;
+        case SDUserTypeNFLPA:
+            profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+            break;
+            
+        default:
+            break;
+    }
+    profileButtonsView.arrayOfButtonTypeNumberObjects = profileButtonsArray;
+    profileButtonsView.delegate = self;
+    
+    self.scrollView.contentSize = profileButtonsView.frame.size;
+    [self.scrollView addSubview:profileButtonsView];
+    
+    self.followersCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
+    self.followingCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
 }
 
 #pragma mark - Follow button presses
@@ -122,29 +153,51 @@
                                  isNowFollowing:sender.selected];
 }
 
-- (void)bioButtonPressed:(id)sender
+#pragma mark - SDProfileButtonsViewDelegate methods
+
+- (void)profileButtonsViewKeyAttributesPressed:(SDProfileButtonsView *)profileButtonsView
 {
-    [self.delegate bioButtonPressedInUserProfileSlidingButtonView:self];
+    [self.delegate keyAttributesPressedInUserProfileSlidingButtonView:self];
 }
 
-- (void)changingButtonPressed:(id)sender
+- (void)profileButtonsViewOffersPressed:(SDProfileButtonsView *)profileButtonsView
 {
-    [self.delegate changingButtonPressedInUserProfileSlidingButtonView:self];
+    [self.delegate offersPressedInUserProfileSlidingButtonView:self];
 }
 
-- (void)photosButtonPressed:(id)sender
+- (void)profileButtonsViewRosterPressed:(SDProfileButtonsView *)profileButtonsView
+{
+    [self.delegate rosterPressedInUserProfileSlidingButtonView:self];
+}
+
+- (void)profileButtonsViewCommitsPressed:(SDProfileButtonsView *)profileButtonsView
+{
+    [self.delegate commitsPressedInUserProfileSlidingButtonView:self];
+}
+
+- (void)profileButtonsViewStaffPressed:(SDProfileButtonsView *)profileButtonsView
+{
+    [self.delegate staffButtonPressedInUserProfileSlidingButtonView:self];
+}
+
+- (void)profileButtonsViewPhotosPressed:(SDProfileButtonsView *)profileButtonsView
 {
     [self.delegate photosButtonPressedInUserProfileSlidingButtonView:self];
 }
 
-- (void)videoButtonPressed:(id)sender
+- (void)profileButtonsViewVideosPressed:(SDProfileButtonsView *)profileButtonsView
 {
     [self.delegate videosButtonPressedInUserProfileSlidingButtonView:self];
 }
 
-- (void)staffButtonPressed:(id)sender
+- (void)profileButtonsViewBioPressed:(SDProfileButtonsView *)profileButtonsView
 {
-    [self.delegate staffButtonPressedInUserProfileSlidingButtonView:self];
+    [self.delegate bioButtonPressedInUserProfileSlidingButtonView:self];
+}
+
+- (void)profileButtonsViewContactsPressed:(SDProfileButtonsView *)profileButtonsView
+{
+    [self.delegate contactsPressedInUserProfileSlidingButtonView:self];
 }
 
 

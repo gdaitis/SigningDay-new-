@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDProfileService.h"
 
 @class SDUserProfileSlidingButtonView;
 
@@ -16,12 +17,16 @@
 
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing;
-- (void)changingButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
+
 - (void)staffButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
 - (void)photosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
 - (void)videosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
 - (void)bioButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
-
+- (void)keyAttributesPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
+- (void)offersPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
+- (void)rosterPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
+- (void)commitsPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
+- (void)contactsPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView;
 
 @end
 
@@ -34,21 +39,10 @@
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 @property (nonatomic, weak) IBOutlet UIView *bottomView;
 
-
-//sliding menu buttons
-@property (nonatomic, weak) IBOutlet UIButton *changingButton;   //this button changes depending on profile type
-@property (nonatomic, weak) IBOutlet UIButton *photosButton;
-@property (nonatomic, weak) IBOutlet UIButton *videosButton;
-@property (nonatomic, weak) IBOutlet UIButton *bioButton;
-@property (nonatomic, weak) IBOutlet UIButton *staffButton;
-
-//sliding meniu label
-@property (nonatomic, weak) IBOutlet UILabel *keyAttributesLabel;
-@property (nonatomic, weak) IBOutlet UILabel *staffLabel;
+@property (nonatomic, assign) SDUserType userType;
 
 @property (nonatomic, weak) id <SDUserProfileSlidingButtonViewDelegate> delegate;
 
 - (void)setupView;
-- (void)updateContentSize;
 
 @end

@@ -34,6 +34,7 @@
 		7B73652A175F84F2007A338E /* send_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B736528175F84F2007A338E /* send_button@2x.png */; };
 		7B77B01B18116F85007EE53B /* app_icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B77B01A18116F85007EE53B /* app_icon_retina.png */; };
 		7B77B01D181173C0007EE53B /* 120.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B77B01C181173C0007EE53B /* 120.png */; };
+		7B842BC91851C3D30016BF6B /* SDProfileButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B842BC81851C3D30016BF6B /* SDProfileButtonsView.m */; };
 		7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */; };
 		7B93CE55182A9F40007A6275 /* WarRoomNewPostButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B93CE54182A9F40007A6275 /* WarRoomNewPostButton@2x.png */; };
 		7B93CE56182A9FAE007A6275 /* SDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 805598D1174CE8200040631D /* SDAppDelegate.m */; };
@@ -206,6 +207,8 @@
 		7BB86C4D1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */; };
 		7BC4DD90184CD1C400730E92 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC4DD8F184CD1C400730E92 /* User.m */; };
 		7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */; };
+		7BD8D7711850840000A0AD65 /* SDContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8D7701850840000A0AD65 /* SDContactInfoViewController.m */; };
+		7BD8D7751850D04B00A0AD65 /* UserProfileContactsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD8D7741850D04B00A0AD65 /* UserProfileContactsButton@2x.png */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
 		7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */; };
 		7BDDAB91179FC457003F6AD7 /* HighSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */; };
@@ -451,6 +454,8 @@
 		7B736528175F84F2007A338E /* send_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_button@2x.png"; sourceTree = "<group>"; };
 		7B77B01A18116F85007EE53B /* app_icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_retina.png; sourceTree = "<group>"; };
 		7B77B01C181173C0007EE53B /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120.png; sourceTree = "<group>"; };
+		7B842BC71851C3D30016BF6B /* SDProfileButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDProfileButtonsView.h; sourceTree = "<group>"; };
+		7B842BC81851C3D30016BF6B /* SDProfileButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDProfileButtonsView.m; sourceTree = "<group>"; };
 		7B90F1CF17B3B45D00F9702F /* CommentsHeaderLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentsHeaderLike@2x.png"; sourceTree = "<group>"; };
 		7B93CE4D182A9F05007A6275 /* SDNewDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNewDiscussionViewController.h; sourceTree = "<group>"; };
 		7B93CE4E182A9F05007A6275 /* SDNewDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNewDiscussionViewController.m; sourceTree = "<group>"; };
@@ -501,6 +506,9 @@
 		7BD5233E17F99045007F8F67 /* SDNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationCell.h; sourceTree = "<group>"; };
 		7BD5233F17F99045007F8F67 /* SDNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SDNotificationCell.m; sourceTree = "<group>"; };
 		7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDNotificationCell.xib; sourceTree = "<group>"; };
+		7BD8D76F1850840000A0AD65 /* SDContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDContactInfoViewController.h; sourceTree = "<group>"; };
+		7BD8D7701850840000A0AD65 /* SDContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDContactInfoViewController.m; sourceTree = "<group>"; };
+		7BD8D7741850D04B00A0AD65 /* UserProfileContactsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileContactsButton@2x.png"; sourceTree = "<group>"; };
 		7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityFeedIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoachesIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HighSchoolsIcon@2x.png"; sourceTree = "<group>"; };
@@ -1946,6 +1954,7 @@
 				809DF8FC17955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png */,
 				8012100E18153DAC00F65B0B /* OffersButtonImage@2x.png */,
 				809DF8FE17955AC5001F37B3 /* UserProfilePhotosButton@2x.png */,
+				7BD8D7741850D04B00A0AD65 /* UserProfileContactsButton@2x.png */,
 				809DF90017955AC5001F37B3 /* UserProfileProspectsButton@2x.png */,
 				809DF90217955AC5001F37B3 /* UserProfileVideoButton@2x.png */,
 				7B2D9AAB1799524700B1D660 /* UserProfileStarActive@2x.png */,
@@ -2056,6 +2065,8 @@
 				80CCAE68179404BE0015429A /* SDUserProfileSlidingButtonView.h */,
 				80CCAE69179404BE0015429A /* SDUserProfileSlidingButtonView.m */,
 				80CCAE6B179404CE0015429A /* SDUserProfileSlidingButtonView.xib */,
+				7B842BC71851C3D30016BF6B /* SDProfileButtonsView.h */,
+				7B842BC81851C3D30016BF6B /* SDProfileButtonsView.m */,
 				80D1F39D179680C50051E8E1 /* SDBuzzButtonView.h */,
 				80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */,
 				80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */,
@@ -2118,6 +2129,8 @@
 				80F531EA1802C1030089971C /* SDCommitsRostersCoachViewController.xib */,
 				803ECEC317F4248A0060702F /* SDBioViewController.h */,
 				803ECEC417F4248A0060702F /* SDBioViewController.m */,
+				7BD8D76F1850840000A0AD65 /* SDContactInfoViewController.h */,
+				7BD8D7701850840000A0AD65 /* SDContactInfoViewController.m */,
 				803ECED317F456BF0060702F /* SDCollectionViewController.h */,
 				803ECED417F456BF0060702F /* SDCollectionViewController.m */,
 				80EEF5DF175614D900A7C803 /* SDTestingViewController.h */,
@@ -2382,6 +2395,7 @@
 				809DF90C17955AC5001F37B3 /* UserProfileProspectsButton@2x.png in Resources */,
 				809DF90E17955AC5001F37B3 /* UserProfileVideoButton@2x.png in Resources */,
 				801088BC1795794A002EF1EB /* SDAddTagsCell.xib in Resources */,
+				7BD8D7751850D04B00A0AD65 /* UserProfileContactsButton@2x.png in Resources */,
 				8094EFBF1817E55B00A163FD /* SDGroupCell.xib in Resources */,
 				801088DA179579BF002EF1EB /* activity_feed_header_bg@2x.png in Resources */,
 				80D336BC181E9D180032230D /* checkMark.png in Resources */,
@@ -2618,9 +2632,11 @@
 				7B93CEC0182AA007007A6275 /* SDActivityFeedHeaderView.m in Sources */,
 				7B93CEC1182AA007007A6275 /* SDActivityFeedButtonView.m in Sources */,
 				7B93CEC2182AA007007A6275 /* SDActivityFeedCellContentView.m in Sources */,
+				7BD8D7711850840000A0AD65 /* SDContactInfoViewController.m in Sources */,
 				7B93CEC3182AA007007A6275 /* SDCommentsHeaderView.m in Sources */,
 				7B93CEC4182AA007007A6275 /* SDActivityFeedTableView.m in Sources */,
 				7B93CEC5182AA007007A6275 /* SDUserProfileMemberHeaderView.m in Sources */,
+				7B842BC91851C3D30016BF6B /* SDProfileButtonsView.m in Sources */,
 				7B93CEC6182AA007007A6275 /* SDUserProfileNFLPAHeaderView.m in Sources */,
 				7B93CEC7182AA007007A6275 /* SDUserProfileHighSchoolHeaderView.m in Sources */,
 				7B93CEC8182AA007007A6275 /* SDUserProfilePlayerHeaderView.m in Sources */,
