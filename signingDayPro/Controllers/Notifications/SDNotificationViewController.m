@@ -245,7 +245,7 @@
                                                 successBlock:^{
                                                     [self endRefreshing];
                                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-                                                    ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
+                                                    ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"contentId"
                                                                                                                 withValue:notification.contentId
                                                                                                                 inContext:context];
                                                     if (activityStory)
