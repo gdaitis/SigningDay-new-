@@ -10,12 +10,17 @@
 #import "SDLoginService.h"
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
+#import "SDTermsViewController.h"
+#import "SDModalWebViewController.h"
 
 @interface SDLoginViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+- (IBAction)helpCenterButtonPressed:(UIButton *)sender;
+- (IBAction)forgotPasswordButtonPressed:(UIButton *)sender;
 
 @end
 
@@ -64,6 +69,8 @@
     self.passwordTextField.text = @"";
 }
 
+#pragma mark - IBActions
+
 - (IBAction)loginButtonPressed:(id)sender 
 {
     [self.usernameTextField resignFirstResponder];
@@ -104,6 +111,26 @@
 - (IBAction)connectWithTwitterPressed:(id)sender
 {
     
+}
+
+- (IBAction)forgotPasswordButtonPressed:(UIButton *)sender
+{
+    SDModalWebViewController *viewController = [[SDModalWebViewController alloc] initWithNibName:@"SDModalWebViewController" bundle:[NSBundle mainBundle]];
+    viewController.urlString = @"/user/emailforgottenpassword.aspx";
+    viewController.gaScreenName = @"Forgot password screen";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navigationController.title = @"Forgot Password";
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
+}
+
+- (IBAction)helpCenterButtonPressed:(UIButton *)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SettingsStoryboard" bundle:nil];
+    SDTermsViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"TermsStroyBoardID"];
+    viewController.urlString = @"/p/faq.aspx";
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)viewDidUnload 

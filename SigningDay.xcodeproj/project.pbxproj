@@ -65,7 +65,6 @@
 		7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686D17DDBFE600B77789 /* SDCollegeLandingPageViewController.m */; };
 		7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686F17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m */; };
 		7B93CE8A182A9FAE007A6275 /* SDFilterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801C90E917E0560200227D88 /* SDFilterListViewController.m */; };
-		7B93CE8B182A9FAE007A6275 /* SDForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */; };
 		7B93CE8C182A9FAE007A6275 /* SDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF600175626C200A7C803 /* SDLoginViewController.m */; };
 		7B93CE8D182A9FAE007A6275 /* SDMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728617573633004840D3 /* SDMessageViewController.m */; };
 		7B93CE8E182A9FAE007A6275 /* SDNewConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D35178C272100C24398 /* SDNewConversationViewController.m */; };
@@ -972,8 +971,6 @@
 		80EEF5EF1756231E00A7C803 /* login_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_button@2x.png"; sourceTree = "<group>"; };
 		80EEF5F11756231E00A7C803 /* login_fb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_fb@2x.png"; sourceTree = "<group>"; };
 		80EEF5F91756251B00A7C803 /* forgot_password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forgot_password@2x.png"; sourceTree = "<group>"; };
-		80EEF5FD175626C200A7C803 /* SDForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDForgotPasswordViewController.h; sourceTree = "<group>"; };
-		80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDForgotPasswordViewController.m; sourceTree = "<group>"; };
 		80EEF5FF175626C200A7C803 /* SDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewController.h; sourceTree = "<group>"; };
 		80EEF600175626C200A7C803 /* SDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginViewController.m; sourceTree = "<group>"; };
 		80EEF603175627B400A7C803 /* SDCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDCommonWebViewController.h; path = ../LoginViewControllers/SDCommonWebViewController.h; sourceTree = "<group>"; };
@@ -2157,8 +2154,6 @@
 		80EEF5FC175626C200A7C803 /* LoginViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				80EEF5FD175626C200A7C803 /* SDForgotPasswordViewController.h */,
-				80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */,
 				80EEF5FF175626C200A7C803 /* SDLoginViewController.h */,
 				80EEF600175626C200A7C803 /* SDLoginViewController.m */,
 			);
@@ -2704,7 +2699,6 @@
 				7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */,
 				7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */,
 				7B93CE8A182A9FAE007A6275 /* SDFilterListViewController.m in Sources */,
-				7B93CE8B182A9FAE007A6275 /* SDForgotPasswordViewController.m in Sources */,
 				7B93CE8C182A9FAE007A6275 /* SDLoginViewController.m in Sources */,
 				80C2835B182BCC3F007759A0 /* ActivityStory.m in Sources */,
 				7B93CE8D182A9FAE007A6275 /* SDMessageViewController.m in Sources */,

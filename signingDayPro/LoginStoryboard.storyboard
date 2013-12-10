@@ -5,10 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--Forgot Password View Controller - Forgot Password-->
+        <!--Modal Web View Controller - Forgot Password-->
         <scene sceneID="wO1-KX-A7o">
             <objects>
-                <viewController id="wCV-Ar-dQ4" customClass="SDForgotPasswordViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f4t-cG-Lss" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="wCV-Ar-dQ4" customClass="SDModalWebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="krL-4T-dxe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -36,13 +37,13 @@
                         <outlet property="webView" destination="KsX-4C-Qz0" id="QDi-fy-ipA"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f4t-cG-Lss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="686" y="-459"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tdX-jC-xxH">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jGG-TH-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="wiS-bw-xLt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="5iT-KU-czx"/>
@@ -55,9 +56,8 @@
                         <segue destination="wCV-Ar-dQ4" kind="relationship" relationship="rootViewController" id="eOa-Gy-gyy"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jGG-TH-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="199" y="-459"/>
+            <point key="canvasLocation" x="224" y="-459"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tDt-kt-Lt6">
@@ -122,6 +122,22 @@
                                 </state>
                                 <connections>
                                     <segue destination="wiS-bw-xLt" kind="modal" id="CzH-64-BN0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WbX-pV-huP">
+                                <rect key="frame" x="84" y="507" width="152" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="forgot_password.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="helpCenterButtonPressed:" destination="qJQ-0Q-bcc" eventType="touchUpInside" id="zYw-kW-ERT"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XcD-rs-Xak">
