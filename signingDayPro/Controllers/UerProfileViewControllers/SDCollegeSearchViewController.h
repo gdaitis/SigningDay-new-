@@ -22,6 +22,7 @@
 
 @interface SDCollegeSearchViewController : SDBaseViewController
 
+@property (nonatomic, strong) NSString *collegeYear;
 @property (nonatomic, weak) id <SDCollegeSearchViewControllerDelegate> delegate;
 
 @end

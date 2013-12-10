@@ -50,6 +50,9 @@
                                                    pageSize:(NSInteger)pageSize
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock;
++ (void)getTeamsWithSearchString:(NSString *)searchString
+                 completionBlock:(void (^)(void))completionBlock
+                    failureBlock:(void (^)(void))failureBlock;
 
 // High Schools
 + (void)getAllHighSchoolsForAllStatesForYearString:(NSString *)yearString

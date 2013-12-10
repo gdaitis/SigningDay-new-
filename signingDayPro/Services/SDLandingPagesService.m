@@ -214,6 +214,53 @@
                                          failureBlock:failureBlock];
 }
 
++ (void)getTeamsWithSearchString:(NSString *)searchString
+                 completionBlock:(void (^)(void))completionBlock
+                    failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/TeamsService.asmx/SearchTeamsByInstitutionForMobile", kSDBaseSigningDayURLString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    NSString *body = [NSString stringWithFormat:@"{searchStr:\"%@\", maxRows:\"300\"}",searchString];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:nil] dictionaryByReplacingNullsWithStrings];
+        
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        NSArray *object = [JSON valueForKey:@"d"];
+
+        for (NSDictionary *dict in object)
+        {
+            NSNumber *identifier = [NSNumber numberWithInteger:[[dict valueForKey:@"UserID"] integerValue]];
+            User *teamUser = [User MR_findFirstByAttribute:@"identifier" withValue:identifier];
+            if (!teamUser) {
+                teamUser = [User MR_createInContext:context];
+                teamUser.identifier = identifier;
+            }
+            teamUser.avatarUrl = [dict valueForKey:@"TeamLogoURL"];
+            teamUser.name = [dict valueForKey:@"Institution"];
+            teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
+
+            if (!teamUser.theTeam)
+                teamUser.theTeam = [Team MR_createInContext:context];
+            teamUser.theTeam.teamName = [dict valueForKey:@"Institution"];
+        }
+        
+        [context MR_saveOnlySelfAndWait];
+        completionBlock();
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock();
+    }];
+    [operation start];
+}
+
 + (void)searchForTeamsWithNameString:(NSString *)searchString
                   conferenceIDString:(NSString *)conferenceString
                          classString:(NSString *)classString

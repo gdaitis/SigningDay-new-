@@ -83,5 +83,8 @@ typedef enum {
 + (void)getOffersForUser:(User *)user
          completionBlock:(void (^)(void))completionBlock
             failureBlock:(void (^)(void))failureBlock;
++ (void)saveUsersOffersFromString:(NSString *)offersString
+                  completionBlock:(void (^)(void))completionBlock
+                     failureBlock:(void (^)(void))failureBlock;
 
 @end

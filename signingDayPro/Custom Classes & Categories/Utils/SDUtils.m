@@ -509,4 +509,13 @@
     return result;
 }
 
++ (NSString *)currentYear
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[NSDate date]];
+    NSInteger year = [components year];
+    NSString *result = [NSString stringWithFormat:@"%d",year];
+    
+    return result;
+}
+
 @end

@@ -21,8 +21,9 @@
 #import "IIViewDeckController.h"
 #import "SDOfferEditCell.h"
 #import "SDCollegeSearchViewController.h"
+#import "SDUtils.h"
 
-@interface SDOffersViewController () <UITableViewDataSource,UITableViewDelegate>
+@interface SDOffersViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) Offer *commitedToOffer;
@@ -143,8 +144,9 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCellID"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCellID"];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        
         cell.textLabel.text = @"Add new";
         
         return cell;
@@ -155,15 +157,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (self.tableStyle == TABLE_STYLE_EDIT) {
         if (indexPath.row < [self.dataArray count]) {
-            self.commitedToOffer = [self.dataArray objectAtIndex:indexPath.row];
+            Offer *selectedOffer = [self.dataArray objectAtIndex:indexPath.row];
+            self.commitedToOffer = ([selectedOffer isEqual:self.commitedToOffer]) ? nil : selectedOffer;
             [tableView reloadData];
         }
         else {
             //show team selection controller
             SDCollegeSearchViewController *collegeSearchViewController = [[SDCollegeSearchViewController alloc] initWithNibName:@"SDCollegeSearchViewController" bundle:[NSBundle mainBundle]];
             collegeSearchViewController.delegate = self;
+            
+            collegeSearchViewController.collegeYear = (self.currentUser.thePlayer.userClass) ? self.currentUser.thePlayer.userClass : [SDUtils currentYear];
             [self.navigationController pushViewController:collegeSearchViewController animated:YES];
         }
     }
@@ -234,28 +241,25 @@
 
 - (void)addEditButton
 {
-#warning uncomment if statement when finished!
-//    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
         self.viewDeckController.panningMode = IIViewDeckNoPanning;
         SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
         
         [navigationController.topToolBar.rightButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self updateButtonTitle];
         navigationController.topToolBar.rightButton.hidden = NO;
-//    }
+    }
 }
 
 - (void)removeEditButton
 {
-#warning uncomment if statement when finished!
-//    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
         self.viewDeckController.panningMode = IIViewDeckFullViewPanning;
         SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-        [navigationController setTitle:@""];
         [navigationController.topToolBar.rightButton removeTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [navigationController.topToolBar.rightButton setImage:nil forState:UIControlStateNormal];
         navigationController.topToolBar.rightButton.hidden = YES;
-//    }
+    }
 }
 
 - (void)findOfferInArray:(NSArray *)array
@@ -275,9 +279,9 @@
     }
     else {
         self.tableStyle = TABLE_STYLE_NORMAL;
-        [self saveUpdatesAndNotifyServer];
+        [self saveUpdates];
     }
-
+    
     [self updateButtonTitle];
     [self.tableView reloadData];
 }
@@ -337,9 +341,103 @@
     }
 }
 
-- (void)saveUpdatesAndNotifyServer
+- (void)saveUpdates
 {
+    [self showProgressHudInView:self.view withText:@"Saving"];
     //save changes to database and do a request to server with changes
+    if (self.commitedToOffer) {
+        for (Offer *offer in self.dataArray) {
+            if (![offer isEqual:self.commitedToOffer])
+                offer.playerCommited = [NSNumber numberWithBool:NO];
+            else
+                offer.playerCommited = [NSNumber numberWithBool:YES];
+        }
+    }
+    else {
+        for (Offer *offer in self.dataArray) {
+            offer.playerCommited = [NSNumber numberWithBool:NO];
+        }
+    }
+    
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+    [context MR_saveOnlySelfAndWait];
+    [self updateServerInfo];
+}
+
+- (void)cantSaveOffers
+{
+    self.tableStyle = TABLE_STYLE_NORMAL;
+    [self editButtonPressed:nil];
+    
+    [self hideProgressHudInView:self.view];
+    [self showAlertWithTitle:nil andText:@"An error occurred. Please try again later."];
+}
+
+- (void)offersSaved
+{
+    [self hideProgressHudInView:self.view];
+}
+
+- (void)updateServerInfo
+{
+    //    { Teams: [{TeamId: 2182, Commited: true}, {TeamId: 2143, Commited: false}] }
+
+    NSMutableString *dataString = [NSMutableString stringWithFormat:@"{Teams:["];
+
+    int commitedValidator = 0;
+    if ([self.dataArray count] > 0) {
+        for (int i = 0; i < [self.dataArray count]; i++) {
+            
+            Offer *offer = [self.dataArray objectAtIndex:i];
+            [dataString appendFormat:@"{TeamId:%d,",[offer.team.theUser.identifier intValue]];
+            if ([offer.playerCommited boolValue]) {
+                [dataString appendFormat:@"Commited:true}"];
+                commitedValidator ++;
+            }
+            else
+                [dataString appendFormat:@"Commited:false}"];
+            
+            if (i+1 != [self.dataArray count])
+                [dataString appendFormat:@","];
+        }
+    }
+    [dataString appendFormat:@"]}"];
+    if (commitedValidator > 1) {
+        //user can't be commited to more than one team
+        [self cantSaveOffers];
+    }
+    else {
+        [SDProfileService saveUsersOffersFromString:dataString completionBlock:^{
+            [self offersSaved];
+        } failureBlock:^{
+            [self cantSaveOffers];
+        }];
+    }
+}
+
+#pragma mark - SDCollegeSearchControllerDelegate
+
+- (void)collegeSearchViewController:(SDCollegeSearchViewController *)collegeSearchController didSelectCollegeUser:(User *)teamUser
+{
+    NSLog(@"teamUser.identifier = %d",[teamUser.identifier integerValue]);
+    if (!teamUser || !teamUser.identifier)
+        return;
+    
+    for (Offer *offer in self.dataArray) {
+        if ([offer.team.theUser.identifier isEqualToNumber:teamUser.identifier])
+            return; //team already exists in the list
+    }
+    
+    //if team doesn't exist, creating team offer and saving to DB
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+    Offer *offer = [Offer MR_createInContext:context];
+    offer.team = teamUser.theTeam;
+    offer.player = self.currentUser.thePlayer;
+    offer.playerCommited = [NSNumber numberWithBool:NO];
+    
+    [self.dataArray addObject:offer];
+    [context MR_saveOnlySelfAndWait];
+    [self.tableView reloadData];
 }
 
 @end
