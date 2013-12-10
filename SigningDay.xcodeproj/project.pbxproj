@@ -337,6 +337,7 @@
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
 		80A09F6C18574CA900195470 /* SDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F6A18574CA900195470 /* SDWebViewController.m */; };
 		80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F6B18574CA900195470 /* SDWebViewController.xib */; };
+		80A09F6F1857653000195470 /* FAQhtml.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F6E1857653000195470 /* FAQhtml.rtf */; };
 		80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
@@ -864,6 +865,7 @@
 		80A09F6918574CA900195470 /* SDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebViewController.h; sourceTree = "<group>"; };
 		80A09F6A18574CA900195470 /* SDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebViewController.m; sourceTree = "<group>"; };
 		80A09F6B18574CA900195470 /* SDWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWebViewController.xib; sourceTree = "<group>"; };
+		80A09F6E1857653000195470 /* FAQhtml.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = FAQhtml.rtf; sourceTree = "<group>"; };
 		80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGoogleAnalyticsService.h; sourceTree = "<group>"; };
 		80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGoogleAnalyticsService.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
@@ -1843,6 +1845,7 @@
 				807ACB2317E1ABF1005B8442 /* PositionsList.plist */,
 				807ACB2D17E1ADC1005B8442 /* YearsList.plist */,
 				80A0614D17529DB3005FE319 /* MenuItemList.plist */,
+				80A09F6E1857653000195470 /* FAQhtml.rtf */,
 			);
 			path = DataFiles;
 			sourceTree = "<group>";
@@ -2422,6 +2425,7 @@
 				801088ED179579BF002EF1EB /* x_button_gray@2x.png in Resources */,
 				801088EE179579BF002EF1EB /* x_button_yellow@2x.png in Resources */,
 				803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */,
+				80A09F6F1857653000195470 /* FAQhtml.rtf in Resources */,
 				80F531EC1802C1030089971C /* SDCommitsRostersCoachViewController.xib in Resources */,
 				80540E4A184CCBF9009EC1B8 /* offerCheckMark@2x.png in Resources */,
 				801088F1179579DC002EF1EB /* MenuButtonClose@2x.png in Resources */,

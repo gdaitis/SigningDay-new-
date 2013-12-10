@@ -48,14 +48,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     self.title = self.navigationTitle;
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", kSDBaseSigningDayURLString,self.urlString];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    self.webView.delegate = self;
-    [self.webView loadRequest:request];
+    [self loadHtml];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -68,6 +63,21 @@
 {
     [self setWebView:nil];
     [super viewDidUnload];
+}
+
+- (void)loadHtml
+{
+    if (self.urlString) {
+        
+        NSString *urlString = [NSString stringWithFormat:@"%@%@", kSDBaseSigningDayURLString,self.urlString];
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        self.webView.delegate = self;
+        [self.webView loadRequest:request];
+    }
+    else {
+        
+    }
 }
 
 #pragma mark UIWebView delegate methods

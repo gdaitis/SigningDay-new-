@@ -13,6 +13,7 @@
 @interface SDWebViewController : SDCommonWebViewController
 
 @property (nonatomic, strong) NSString *urlString;
+@property (nonatomic, strong) NSString *htmlString;
 @property (nonatomic, strong) NSString *gaScreenName;
 @property (nonatomic, strong) NSString *navigationTitle;
 
