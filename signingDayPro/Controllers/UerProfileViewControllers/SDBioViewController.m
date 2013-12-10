@@ -10,43 +10,24 @@
 #import "User.h"
 #import "SDProfileService.h"
 #import <QuartzCore/QuartzCore.h>
-#import "TTTAttributedLabel.h"
 
 #define kSDBioViewControllerBioLabelTopPadding 16
 #define kSDBioViewControllerBioLabelBottomPadding 12
 #define kSDBioViewControllerBioInfoLabelBottomPadding 25
 #define kSDBioViewControllerBioInfoLabelWidth 300
-#define kSDBioViewControllerContactsInfoLabelsWidth 223
-#define kSDBioViewControllerContactsInfoLabelsVerticalSpacing 20
 #define kSDBioViewControllerBottomLineTopPadding 23
 
-@interface SDBioViewController () <TTTAttributedLabelDelegate>
+@interface SDBioViewController ()
 
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bioInfoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *contactsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *mobileLabel;
-@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet TTTAttributedLabel *mobileInfoLabel;
-@property (weak, nonatomic) IBOutlet TTTAttributedLabel *emailInfoLabel;
-@property (weak, nonatomic) IBOutlet TTTAttributedLabel *addressInfoLabel;
 @property (nonatomic, strong) UIView *bottomLine;
 @property (nonatomic, strong) CAGradientLayer *shadowLayer;
 
 @end
 
 @implementation SDBioViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -61,10 +42,6 @@
 - (void)resizeTitleLabels
 {
     [self.bioLabel sizeToFit];
-    [self.contactsLabel sizeToFit];
-    [self.mobileLabel sizeToFit];
-    [self.emailLabel sizeToFit];
-    [self.addressLabel sizeToFit];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -86,17 +63,7 @@
                        withText:@"Loading"];
     [SDProfileService getBasicProfileInfoForUserIdentifier:self.currentUser.identifier
                                            completionBlock:^{
-                                               User *masterUser = [self getMasterUser];
-                                               if ([masterUser.userTypeId integerValue] == SDUserTypeCoach) {
-                                                   [SDProfileService getAllContactInfoForUserIdentifier:self.currentUser.identifier
-                                                                                        completionBlock:^{
-                                                                                            completionBlock();
-                                                                                        } failureBlock:^{
-                                                                                            completionBlock();
-                                                                                        }];
-                                               } else {
-                                                   completionBlock();
-                                               }
+                                               completionBlock();
                                            } failureBlock:^{
                                                NSLog(@"getBasicProfileInfoForUserIdentifier FAILED in BioViewController");
                                                completionBlock();
@@ -105,15 +72,7 @@
 
 - (void)loadBio
 {
-    NSString *mobileNr = @"";
-    NSString *email = @"";
-    NSString *address = @"";
     NSString *bio = self.currentUser.bio;//@"This is a long bio. This is a long bio. This is";
-    if ([[self getMasterUser].userTypeId integerValue] == SDUserTypeCoach) {
-        mobileNr = self.currentUser.bioPhone;
-        email = self.currentUser.bioEmail;
-        address = self.currentUser.bioAddress;
-    }
     if (self.currentUser) {
         if (self.currentUser.bio) {
             NSString *text = [self.currentUser.bio stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -123,18 +82,12 @@
                 bio = [NSString stringWithFormat:@"%@ has not posted a bio",self.currentUser.name];
         }
     }
-    [self setupViewWithBio:bio
-                  mobileNr:mobileNr
-                     email:email
-                   address:address];
+    [self setupViewWithBio:bio];
 }
 
 #pragma mark - Layout methods
 
 - (void)setupViewWithBio:(NSString *)bio
-                mobileNr:(NSString *)mobileNr
-                   email:(NSString *)email
-                 address:(NSString *)address
 {
     CGFloat currentYPosition = kSDBioViewControllerBioLabelTopPadding;
     [self setupBioLabelAtYPosition:currentYPosition];
@@ -143,63 +96,7 @@
     [self setupBioInfoLabelAtYPosition:currentYPosition
                                andText:bio];
     currentYPosition += self.bioInfoLabel.frame.size.height;
-    
-    if (![mobileNr isEqualToString:@""] || ![email isEqualToString:@""] || ![address isEqualToString:@""]) {
-        self.contactsLabel.hidden = NO;
-        currentYPosition += kSDBioViewControllerBioInfoLabelBottomPadding;
-        
-        [self setupContactsLabelAtYPosition:currentYPosition];
-        currentYPosition += self.contactsLabel.frame.size.height;
-        
-        if (![mobileNr isEqualToString:@""]) {
-            self.mobileLabel.hidden = NO;
-            self.mobileInfoLabel.hidden = NO;
-            
-            currentYPosition += kSDBioViewControllerContactsInfoLabelsVerticalSpacing;
-            [self setupMobileLabelsAtYPosition:currentYPosition
-                                       andText:mobileNr];
-            currentYPosition += self.mobileInfoLabel.frame.size.height;
-        } else {
-            self.mobileLabel.hidden = YES;
-            self.mobileInfoLabel.hidden = YES;
-        }
-        
-        if (![email isEqualToString:@""]) {
-            self.emailLabel.hidden = NO;
-            self.emailInfoLabel.hidden = NO;
-            currentYPosition += kSDBioViewControllerContactsInfoLabelsVerticalSpacing;
-            [self setupEmailLabelsAtYPosition:currentYPosition
-                                      andText:email];
-            currentYPosition += self.emailInfoLabel.frame.size.height;
-        } else {
-            self.emailLabel.hidden = YES;
-            self.emailInfoLabel.hidden = YES;
-        }
-        
-        if (![address isEqualToString:@""]) {
-            self.addressLabel.hidden = NO;
-            self.addressInfoLabel.hidden = NO;
-            
-            currentYPosition += kSDBioViewControllerContactsInfoLabelsVerticalSpacing;
-            [self setupAddressLabelsAtYPosition:currentYPosition
-                                        andText:address];
-            currentYPosition += self.addressInfoLabel.frame.size.height;
-        } else {
-            self.addressLabel.hidden = YES;
-            self.addressInfoLabel.hidden = YES;
-        }
-        currentYPosition += kSDBioViewControllerBottomLineTopPadding;
-    } else {
-        self.contactsLabel.hidden = YES;
-        self.mobileLabel.hidden = YES;
-        self.mobileInfoLabel.hidden = YES;
-        self.emailLabel.hidden = YES;
-        self.emailInfoLabel.hidden = YES;
-        self.addressLabel.hidden = YES;
-        self.addressInfoLabel.hidden = YES;
-        
-        currentYPosition += kSDBioViewControllerBottomLineTopPadding;
-    }
+    currentYPosition += kSDBioViewControllerBottomLineTopPadding;
     
     [self setupBottomLineAtYPosition:currentYPosition];
 }
@@ -220,68 +117,6 @@
     bioInfoLabelFrame.origin.y = yPosition;
     bioInfoLabelFrame.size = bioInfoLabelSize;
     self.bioInfoLabel.frame = bioInfoLabelFrame;
-}
-
-- (void)setupContactsLabelAtYPosition:(CGFloat)yPosition
-{
-    CGRect contactsLabelFrame = self.contactsLabel.frame;
-    contactsLabelFrame.origin.y = yPosition;
-    self.contactsLabel.frame = contactsLabelFrame;
-}
-
-- (CGSize)contactsInfoLabelsFitSize
-{
-    return CGSizeMake(kSDBioViewControllerContactsInfoLabelsWidth, CGFLOAT_MAX);
-}
-
-- (void)setupMobileLabelsAtYPosition:(CGFloat)yPosition andText:(NSString *)mobileText
-{
-    CGRect mobileLabelFrame = self.mobileLabel.frame;
-    mobileLabelFrame.origin.y = yPosition;
-    self.mobileLabel.frame = mobileLabelFrame;
-    
-    self.mobileInfoLabel.linkAttributes = nil;
-    self.mobileInfoLabel.delegate = self;
-    self.mobileInfoLabel.enabledTextCheckingTypes = NSTextCheckingAllTypes;
-    self.mobileInfoLabel.text = mobileText;
-    
-    CGSize mobileInfoLabelSize = [self.mobileInfoLabel sizeThatFits:self.contactsInfoLabelsFitSize];
-    CGRect mobileInfoLabelFrame = self.mobileInfoLabel.frame;
-    mobileInfoLabelFrame.origin.y = self.mobileLabel.frame.origin.y;
-    mobileInfoLabelFrame.size = mobileInfoLabelSize;
-    self.mobileInfoLabel.frame = mobileInfoLabelFrame;
-}
-
-- (void)setupEmailLabelsAtYPosition:(CGFloat)yPosition andText:(NSString *)emailText
-{
-    CGRect emailLabelFrame = self.emailLabel.frame;
-    emailLabelFrame.origin.y = yPosition;
-    self.emailLabel.frame = emailLabelFrame;
-    
-    self.emailInfoLabel.linkAttributes = nil;
-    self.emailInfoLabel.delegate = self;
-    self.emailInfoLabel.enabledTextCheckingTypes = NSTextCheckingAllTypes;
-    self.emailInfoLabel.text = emailText;
-    
-    CGSize emailInfoLabelSize = [self.emailInfoLabel sizeThatFits:self.contactsInfoLabelsFitSize];
-    CGRect emailInfoLabelFrame = self.emailInfoLabel.frame;
-    emailInfoLabelFrame.origin.y = self.emailLabel.frame.origin.y;
-    emailInfoLabelFrame.size = emailInfoLabelSize;
-    self.emailInfoLabel.frame = emailInfoLabelFrame;
-}
-
-- (void)setupAddressLabelsAtYPosition:(CGFloat)yPosition andText:(NSString *)addressText
-{
-    CGRect addressLabelFrame = self.addressLabel.frame;
-    addressLabelFrame.origin.y = yPosition;
-    self.addressLabel.frame = addressLabelFrame;
-    
-    self.addressInfoLabel.text = addressText;
-    CGSize addressInfoLabelSize = [self.addressInfoLabel sizeThatFits:self.contactsInfoLabelsFitSize];
-    CGRect addressInfoLabelFrame = self.addressInfoLabel.frame;
-    addressInfoLabelFrame.origin.y = self.addressLabel.frame.origin.y;
-    addressInfoLabelFrame.size = addressInfoLabelSize;
-    self.addressInfoLabel.frame = addressInfoLabelFrame;
 }
 
 - (void)setupBottomLineAtYPosition:(CGFloat)yPosition
@@ -316,23 +151,6 @@
     CGColorRef lightColor = [UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f].CGColor;
     self.shadowLayer.colors = [NSArray arrayWithObjects:(__bridge id)darkColor, (__bridge id)lightColor, nil];
     [self.backgroundView.layer addSublayer:self.shadowLayer];
-}
-
-#pragma mark - TTTAttributedLabelDelegate methods
-
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
-{
-    UIDevice *device = [UIDevice currentDevice];
-    if ([[device model] isEqualToString:@"iPhone"] ) {
-        phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNumber]];
-        [[UIApplication sharedApplication] openURL:url];
-    }
-}
-
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
-{
-    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end

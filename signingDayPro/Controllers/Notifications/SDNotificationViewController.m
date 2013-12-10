@@ -18,6 +18,8 @@
 #import "ActivityStory.h"
 #import "SDUserProfileViewController.h"
 #import "SDProfileService.h"
+#import "SDWarRoomService.h"
+#import "Thread.h"
 
 @interface SDNotificationViewController ()
 
@@ -72,12 +74,9 @@
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     Master *master = [self getMaster];
     NSPredicate *masterPredicate = [NSPredicate predicateWithFormat:@"master == %@", master];
-    NSPredicate *notificationTypesPredicate = [NSPredicate predicateWithFormat:@"notificationTypeId == %d OR notificationTypeId == %d OR notificationTypeId == %d", SDNotificationTypeLike, SDNotificationTypeComment, SDNotificationTypeFollowing];
-    NSPredicate *contentTypeNamesPredicate = [NSPredicate predicateWithFormat:@"contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@ OR contentTypeName == %@" , @"Comment", @"Wall Post", @"Status Message", @"Following", @"Media"];
-    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[masterPredicate, notificationTypesPredicate, contentTypeNamesPredicate]];
     self.dataArray = [Notification MR_findAllSortedBy:@"createdDate"
                                             ascending:NO
-                                        withPredicate:compoundPredicate
+                                        withPredicate:masterPredicate
                                             inContext:context];
     [self.tableView reloadData];
 }
@@ -224,25 +223,38 @@
             //user shouldn't be Organizations
             [self.delegate notificationViewController:self
                                         didSelectUser:notification.fromUser];
+        } else {
+            [self showAlertWithTitle:nil
+                             andText:@"Sorry, this profile is currently unavailable."];
         }
-        else {
-            [self showAlertWithTitle:nil andText:@"Sorry, this profile is currently unavailable."];
+    } else if (![notification.forumThreadId isEqualToNumber:[NSNumber numberWithInt:0]]) {
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        Thread *thread = [Thread MR_findFirstByAttribute:@"identifier"
+                                               withValue:notification.forumThreadId
+                                               inContext:context];
+        if (!thread) {
+            thread = [Thread MR_createInContext:context];
+            thread.identifier = notification.forumThreadId;
+            [context MR_saveOnlySelfAndWait];
         }
-    }
-    if (notification.activityStoryId) {
+        [self.delegate notificationViewController:self
+                             didSelectForumThread:thread];
+    } else {
         [self beginRefreshing];
-        [SDActivityFeedService getActivityStoryWithContentId:notification.activityStoryId
+        [SDActivityFeedService getActivityStoryWithContentId:notification.contentId
                                                 successBlock:^{
                                                     [self endRefreshing];
                                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-                                                    ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"identifier"
-                                                                                                                withValue:notification.activityStoryId
+                                                    ActivityStory *activityStory = [ActivityStory MR_findFirstByAttribute:@"contentId"
+                                                                                                                withValue:notification.contentId
                                                                                                                 inContext:context];
                                                     if (activityStory)
                                                         [self.delegate notificationViewController:self
                                                                            didSelectActivityStory:activityStory];
                                                 } failureBlock:^{
                                                     [self endRefreshing];
+                                                    [self showAlertWithTitle:nil
+                                                                     andText:@"Server error"];
                                                 }];
     }
 }

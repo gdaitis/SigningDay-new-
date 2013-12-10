@@ -41,10 +41,11 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     [parameters setValue:platform forKey:@"Platform"];
     SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    NSString *deviceToken = appDelegate.deviceToken;
+    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"deviceToken"];
     if (deviceToken == nil) {
         deviceToken = @"invalid_token";
     }
+    NSLog(@"DEVICE_TOKEN: %@", deviceToken);
     
     [parameters setValue:deviceToken forKey:@"DeviceToken"];
     
@@ -126,8 +127,7 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
 + (void)logoutWithSuccessBlock:(void (^)(void))successBlock
                   failureBlock:(void (^)(void))failureBlock
 {
-    SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSString *deviceToken = appDelegate.deviceToken;
+    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"deviceToken"];
     
     if (deviceToken) {
         [[SDAPIClient sharedClient] postPath:@"sd/logout.json"

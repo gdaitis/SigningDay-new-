@@ -57,17 +57,9 @@ NSString * const SDNotificationsServiceCountOfUnreadFollowers = @"SDNotification
                                         notification.createdDate = [SDUtils dateFromString:[notificationDictionary valueForKey:@"CreatedOn"]];
                                         notification.isNew = [NSNumber numberWithBool:[[notificationDictionary valueForKey:@"IsNew"] boolValue]];
                                         notification.notificationTypeId = [NSNumber numberWithInt:[[notificationDictionary valueForKey:@"NotificationTypeID"] intValue]];
-                                        
-                                        NSString *activityStoryId = @"";
-                                        NSArray *urlContents = [[notificationDictionary valueForKey:@"Url"] componentsSeparatedByString:@"?"];
-                                        for (NSString *string in urlContents) {
-                                            if ([string hasPrefix:@"ActivityMessageID="]) {
-                                                activityStoryId = [string stringByReplacingOccurrencesOfString:@"ActivityMessageID=" withString:@""];
-                                                break;
-                                            }
-                                        }
-                                        if (![activityStoryId isEqual:@""]) {
-                                            notification.activityStoryId = activityStoryId;
+                                        if (![[notificationDictionary objectForKey:@"ForumThreadId"] isEqual:@""]) {
+                                            NSNumber *forumThreadIdentifier = [NSNumber numberWithInteger:[[notificationDictionary objectForKey:@"ForumThreadId"] integerValue]];
+                                            notification.forumThreadId = forumThreadIdentifier;
                                         }
                                         
                                         NSNumber *masterIdentifier = [NSNumber numberWithInt:[[notificationDictionary valueForKey:@"ForUserID"] intValue]];

@@ -24,7 +24,6 @@ NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDel
 
 @synthesize window = _window;
 @synthesize fbSession = _fbSession;
-@synthesize deviceToken = _deviceToken;
 @synthesize twitterAccount = _twitterAccount;
 
 
@@ -109,9 +108,10 @@ NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDel
 	newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 	newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    //NSLog(@"device token: %@", newToken);
+    [[NSUserDefaults standardUserDefaults] setValue:newToken
+                                             forKey:@"deviceToken"];
     
-    self.deviceToken = newToken;
+    //self.deviceToken = newToken;
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
@@ -132,20 +132,6 @@ NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDel
 //                                          cancelButtonTitle:@"Ok"
 //                                          otherButtonTitles:nil];
 //    [alert show];
-}
-
-- (void)setDeviceToken:(NSString *)deviceToken
-{
-    [[NSUserDefaults standardUserDefaults] setValue:deviceToken
-                                             forKey:@"deviceToken"];
-    _deviceToken = deviceToken;
-}
-
-- (NSString *)deviceToken
-{
-    if (!_deviceToken)
-        return [[NSUserDefaults standardUserDefaults] valueForKey:@"deviceToken"];
-    return _deviceToken;
 }
 
 #pragma mark - FBSession methods

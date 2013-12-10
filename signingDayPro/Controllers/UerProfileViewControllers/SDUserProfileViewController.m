@@ -42,10 +42,9 @@
 #import "WebPreview.h"
 #import "SDCommitsRostersCoachViewController.h"
 #import "MediaGallery.h"
-
 #import "SDGoogleAnalyticsService.h"
-
 #import "SDOffersViewController.h"
+#import "SDContactInfoViewController.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
@@ -146,18 +145,16 @@
         
         // Load headerview
         id view = nil;
-        switch ([self.currentUser.userTypeId intValue]) {
+        SDUserType userType = [self.currentUser.userTypeId intValue];
+        switch (userType) {
             case SDUserTypePlayer:
             {
                 SDUserProfilePlayerHeaderView *playerView = (SDUserProfilePlayerHeaderView *)[SDUserProfilePlayerHeaderView loadInstanceFromNib];
                 playerView.delegate = self;
                 playerView.buzzButtonView.delegate = self;
                 playerView.slidingButtonView.delegate = self;
-                [playerView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileKeyAttributesButton.png"] forState:UIControlStateNormal];
-                playerView.slidingButtonView.keyAttributesLabel.text = @"Key Attributes";
+                playerView.slidingButtonView.userType = userType;
                 
-                [playerView.slidingButtonView.staffButton setImage:[UIImage imageNamed:@"OffersButtonImage.png"] forState:UIControlStateNormal];
-                playerView.slidingButtonView.staffLabel.text = @"Offers";
                 view = playerView;
                 break;
             }
@@ -167,10 +164,8 @@
                 highschoolView.delegate = self;
                 highschoolView.buzzButtonView.delegate = self;
                 highschoolView.slidingButtonView.delegate = self;
-                [highschoolView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileProspectsButton.png"] forState:UIControlStateNormal];
-                highschoolView.slidingButtonView.keyAttributesLabel.text = @"Roster";
-                [highschoolView.slidingButtonView.staffButton removeFromSuperview];
-                [highschoolView.slidingButtonView.staffLabel removeFromSuperview];
+                highschoolView.slidingButtonView.userType = userType;
+                
                 view = highschoolView;
                 break;
             }
@@ -180,8 +175,8 @@
                 teamView.delegate = self;
                 teamView.buzzButtonView.delegate = self;
                 teamView.slidingButtonView.delegate = self;
-                [teamView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileCommitsButton.png"] forState:UIControlStateNormal];
-                teamView.slidingButtonView.keyAttributesLabel.text = @"Commits";
+                teamView.slidingButtonView.userType = userType;
+                
                 view = teamView;
                 break;
             }
@@ -191,10 +186,8 @@
                 memberView.delegate = self;
                 memberView.buzzButtonView.delegate = self;
                 memberView.slidingButtonView.delegate = self;
-                [memberView.slidingButtonView.changingButton removeFromSuperview];
-                [memberView.slidingButtonView.keyAttributesLabel removeFromSuperview];
-                [memberView.slidingButtonView.staffButton removeFromSuperview];
-                [memberView.slidingButtonView.staffLabel removeFromSuperview];
+                memberView.slidingButtonView.userType = userType;
+                
                 view = memberView;
                 break;
             }
@@ -204,12 +197,8 @@
                 coachView.delegate = self;
                 coachView.buzzButtonView.delegate = self;
                 coachView.slidingButtonView.delegate = self;
-//                [coachView.slidingButtonView.changingButton setImage:[UIImage imageNamed:@"UserProfileCommitsButton.png"] forState:UIControlStateNormal];
-//                coachView.slidingButtonView.keyAttributesLabel.text = @"Commits";
-                [coachView.slidingButtonView.changingButton removeFromSuperview];
-                [coachView.slidingButtonView.keyAttributesLabel removeFromSuperview];
-                [coachView.slidingButtonView.staffButton removeFromSuperview];
-                [coachView.slidingButtonView.staffLabel removeFromSuperview];
+                coachView.slidingButtonView.userType = userType;
+
                 view = coachView;
                 break;
             }
@@ -219,10 +208,8 @@
                 nflpaView.delegate = self;
                 nflpaView.buzzButtonView.delegate = self;
                 nflpaView.slidingButtonView.delegate = self;
-                [nflpaView.slidingButtonView.changingButton removeFromSuperview];
-                [nflpaView.slidingButtonView.keyAttributesLabel removeFromSuperview];
-                [nflpaView.slidingButtonView.staffButton removeFromSuperview];
-                [nflpaView.slidingButtonView.staffLabel removeFromSuperview];
+                nflpaView.slidingButtonView.userType = userType;
+                
                 view = nflpaView;
                 break;
             }
@@ -232,10 +219,8 @@
                 memberView.delegate = self;
                 memberView.buzzButtonView.delegate = self;
                 memberView.slidingButtonView.delegate = self;
-                [memberView.slidingButtonView.changingButton removeFromSuperview];
-                [memberView.slidingButtonView.keyAttributesLabel removeFromSuperview];
-                [memberView.slidingButtonView.staffButton removeFromSuperview];
-                [memberView.slidingButtonView.staffLabel removeFromSuperview];
+                memberView.slidingButtonView.userType = userType;
+                
                 view = memberView;
                 break;
             }
@@ -394,101 +379,6 @@
 
 #pragma mark - SlidingViewButton Delegate
 
-- (void)staffButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
-{
-    if ([self.currentUser.userTypeId intValue] == SDUserTypeTeam) {
-        NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
-        SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
-        rosterViewController.userIdentifier = currentUserIdentifier;
-        rosterViewController.controllerType = CONTROLLER_TYPE_COACHINGSTAFF;
-        [self.navigationController pushViewController:rosterViewController animated:YES];
-    }
-    else if ([self.currentUser.userTypeId intValue] == SDUserTypePlayer) {
-        
-        SDOffersViewController *offersViewController = [[SDOffersViewController alloc] initWithNibName:@"SDBaseViewController" bundle:nil];
-        offersViewController.currentUser = self.currentUser;
-        
-        [self.navigationController pushViewController:offersViewController animated:YES];
-    }
-}
-
-- (void)changingButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
-{
-    //this button is different depending on types of user, different actions should be taken
-    
-    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
-    
-    switch ([self.currentUser.userTypeId intValue]) {
-        case SDUserTypePlayer:
-        {
-            UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                                bundle:nil];
-            SDKeyAttributesViewController *keyAttributesViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"KeyAttributesViewController"];
-            
-            keyAttributesViewController.userIdentifierString = currentUserIdentifier;
-            
-            [self.navigationController pushViewController:keyAttributesViewController animated:YES];
-            
-            break;
-        }
-        case SDUserTypeHighSchool:
-        {
-            SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
-            rosterViewController.userIdentifier = currentUserIdentifier;
-            rosterViewController.controllerType = CONTROLLER_TYPE_ROSTERS;
-            [self.navigationController pushViewController:rosterViewController animated:YES];
-            break;
-        }
-        case SDUserTypeTeam:
-        {
-            SDCommitsRostersCoachViewController *commitsViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
-            commitsViewController.userIdentifier = currentUserIdentifier;
-            commitsViewController.controllerType = CONTROLLER_TYPE_COMMITS;
-            commitsViewController.yearString = self.currentUser.theTeam.teamClass;
-            [self.navigationController pushViewController:commitsViewController animated:YES];
-            break;
-        }
-        case SDUserTypeMember:
-            
-            break;
-        case SDUserTypeCoach:
-            
-            break;
-        default:
-            
-            break;
-    }
-}
-
-- (void)photosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
-{
-    [self pushCollectionViewControllerWithGalleryType:SDGalleryTypePhotos];
-}
-
-- (void)videosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
-{
-    [self pushCollectionViewControllerWithGalleryType:SDGalleryTypeVideos];
-}
-
-- (void)pushCollectionViewControllerWithGalleryType:(SDGalleryType)galleryType
-{
-    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                        bundle:nil];
-    SDCollectionViewController *collectionViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
-    collectionViewController.galleryType = galleryType;
-    collectionViewController.user = self.currentUser;
-    [self.navigationController pushViewController:collectionViewController animated:YES];
-}
-
-- (void)bioButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
-{
-    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-                                                                        bundle:nil];
-    SDBioViewController *bioViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"BioViewController"];
-    bioViewController.currentUser = self.currentUser;
-    [self.navigationController pushViewController:bioViewController animated:YES];
-}
-
 - (void)userProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
                       isNowFollowing:(BOOL)isFollowing
 {
@@ -511,6 +401,93 @@
     }
 }
 
+- (void)staffButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
+    SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
+    rosterViewController.userIdentifier = currentUserIdentifier;
+    rosterViewController.controllerType = CONTROLLER_TYPE_COACHINGSTAFF;
+    [self.navigationController pushViewController:rosterViewController animated:YES];
+}
+
+- (void)photosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    [self pushCollectionViewControllerWithGalleryType:SDGalleryTypePhotos];
+}
+
+
+- (void)videosButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    [self pushCollectionViewControllerWithGalleryType:SDGalleryTypeVideos];
+}
+
+- (void)bioButtonPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDBioViewController *bioViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"BioViewController"];
+    bioViewController.currentUser = self.currentUser;
+    [self.navigationController pushViewController:bioViewController animated:YES];
+}
+
+- (void)keyAttributesPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDKeyAttributesViewController *keyAttributesViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"KeyAttributesViewController"];
+    keyAttributesViewController.userIdentifierString = currentUserIdentifier;
+    [self.navigationController pushViewController:keyAttributesViewController animated:YES];
+}
+
+- (void)offersPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    SDOffersViewController *offersViewController = [[SDOffersViewController alloc] initWithNibName:@"SDBaseViewController" bundle:nil];
+    offersViewController.currentUser = self.currentUser;
+    
+    [self.navigationController pushViewController:offersViewController animated:YES];
+}
+
+- (void)rosterPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
+    SDCommitsRostersCoachViewController *rosterViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
+    rosterViewController.userIdentifier = currentUserIdentifier;
+    rosterViewController.controllerType = CONTROLLER_TYPE_ROSTERS;
+    [self.navigationController pushViewController:rosterViewController animated:YES];
+}
+
+- (void)commitsPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    NSString *currentUserIdentifier = [self.currentUser.identifier stringValue];
+    SDCommitsRostersCoachViewController *commitsViewController = [[SDCommitsRostersCoachViewController alloc] initWithNibName:@"SDCommitsRostersCoachViewController" bundle:[NSBundle mainBundle]];
+    commitsViewController.userIdentifier = currentUserIdentifier;
+    commitsViewController.controllerType = CONTROLLER_TYPE_COMMITS;
+    commitsViewController.yearString = self.currentUser.theTeam.teamClass;
+    [self.navigationController pushViewController:commitsViewController animated:YES];
+}
+
+- (void)contactsPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDContactInfoViewController *contactInfoViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"ContactInfoViewController"];
+    contactInfoViewController.currentUser = self.currentUser;
+    [self.navigationController pushViewController:contactInfoViewController animated:YES];
+}
+
+#pragma mark -
+
+- (void)pushCollectionViewControllerWithGalleryType:(SDGalleryType)galleryType
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDCollectionViewController *collectionViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"CollectionViewController"];
+    collectionViewController.galleryType = galleryType;
+    collectionViewController.user = self.currentUser;
+    [self.navigationController pushViewController:collectionViewController animated:YES];
+}
+
 #pragma mark - SDModalNavigationController myDelegate methods
 
 - (void)modalNavigationControllerWantsToClose:(SDModalNavigationController *)modalNavigationController
@@ -523,7 +500,7 @@
 
 #pragma mark - NSNotificationCenter
 
--(void)followingUpdated
+- (void)followingUpdated
 {
     [self.headerView updateFollowingInfo];
 }
