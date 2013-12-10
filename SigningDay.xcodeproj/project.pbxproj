@@ -335,6 +335,8 @@
 		809E72A317577A1B004840D3 /* SDConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E72A217577A1B004840D3 /* SDConversationCell.xib */; };
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
+		80A09F6C18574CA900195470 /* SDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F6A18574CA900195470 /* SDWebViewController.m */; };
+		80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F6B18574CA900195470 /* SDWebViewController.xib */; };
 		80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
@@ -859,6 +861,9 @@
 		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFollowingViewController.m; path = ../TableViewCells/Views/SDFollowingViewController.m; sourceTree = "<group>"; };
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuItemList.plist; path = ../MenuItemList.plist; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
+		80A09F6918574CA900195470 /* SDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebViewController.h; sourceTree = "<group>"; };
+		80A09F6A18574CA900195470 /* SDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebViewController.m; sourceTree = "<group>"; };
+		80A09F6B18574CA900195470 /* SDWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWebViewController.xib; sourceTree = "<group>"; };
 		80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGoogleAnalyticsService.h; sourceTree = "<group>"; };
 		80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGoogleAnalyticsService.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
@@ -1774,6 +1779,9 @@
 			children = (
 				80EEF603175627B400A7C803 /* SDCommonWebViewController.h */,
 				80EEF604175627B400A7C803 /* SDCommonWebViewController.m */,
+				80A09F6918574CA900195470 /* SDWebViewController.h */,
+				80A09F6A18574CA900195470 /* SDWebViewController.m */,
+				80A09F6B18574CA900195470 /* SDWebViewController.xib */,
 				805F6871178EFBF100ED186B /* SDTermsViewController.h */,
 				805F6872178EFBF100ED186B /* SDTermsViewController.m */,
 				8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */,
@@ -2462,6 +2470,7 @@
 				8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */,
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
 				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
+				80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
@@ -2545,6 +2554,7 @@
 				7B93CEEB182AA038007A6275 /* NSManagedObject+MagicalAggregation.m in Sources */,
 				7B93CEEC182AA038007A6275 /* NSManagedObject+MagicalDataImport.m in Sources */,
 				7B93CEED182AA038007A6275 /* NSManagedObject+MagicalFinders.m in Sources */,
+				80A09F6C18574CA900195470 /* SDWebViewController.m in Sources */,
 				7B93CEEE182AA038007A6275 /* NSManagedObject+MagicalRecord.m in Sources */,
 				7B93CEEF182AA038007A6275 /* NSManagedObject+MagicalRequests.m in Sources */,
 				7B93CEF0182AA038007A6275 /* NSManagedObjectContext+MagicalObserving.m in Sources */,

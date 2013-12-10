@@ -11,7 +11,7 @@
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
 #import "SDTermsViewController.h"
-#import "SDModalWebViewController.h"
+#import "SDWebViewController.h"
 
 @interface SDLoginViewController () <UITextFieldDelegate>
 
@@ -115,9 +115,10 @@
 
 - (IBAction)forgotPasswordButtonPressed:(UIButton *)sender
 {
-    SDModalWebViewController *viewController = [[SDModalWebViewController alloc] initWithNibName:@"SDModalWebViewController" bundle:[NSBundle mainBundle]];
-    viewController.urlString = @"/user/emailforgottenpassword.aspx";
+    SDWebViewController *viewController = [[SDWebViewController alloc] initWithNibName:@"SDWebViewController" bundle:[NSBundle mainBundle]];
+    viewController.urlString = @"user/emailforgottenpassword.aspx";
     viewController.gaScreenName = @"Forgot password screen";
+    viewController.navigationTitle = @"Help center";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationController.title = @"Forgot Password";
     [self presentViewController:navigationController animated:YES completion:^{
@@ -127,10 +128,14 @@
 
 - (IBAction)helpCenterButtonPressed:(UIButton *)sender
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SettingsStoryboard" bundle:nil];
-    SDTermsViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"TermsStroyBoardID"];
-    viewController.urlString = @"/p/faq.aspx";
-    [self.navigationController pushViewController:viewController animated:YES];
+    SDWebViewController *viewController = [[SDWebViewController alloc] initWithNibName:@"SDWebViewController" bundle:[NSBundle mainBundle]];
+    viewController.urlString = @"p/faq.aspx";
+    viewController.gaScreenName = @"Help center screen";
+    viewController.navigationTitle = @"Help center";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
 }
 
 - (void)viewDidUnload 
