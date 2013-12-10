@@ -41,6 +41,8 @@
 #import "SDGoogleAnalyticsService.h"
 #import "SDWarRoomService.h"
 
+#import "SDProfileService.h"
+
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
@@ -72,7 +74,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
+    [SDProfileService searchForUsersWithSearchString:@"eric" completionBlock:nil failureBlock:nil];
     
     self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
     self.headerView.clipsToBounds = NO;

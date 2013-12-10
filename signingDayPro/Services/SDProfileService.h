@@ -77,7 +77,9 @@ typedef enum {
                                                    completionHandler:(void (^)(void))completionHandler;
 + (void)deleteAvatar;
 + (void)updateLoggedInUserWithCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock;
-
++ (void)searchForUsersWithSearchString:(NSString *)searchString
+                       completionBlock:(void (^)(void))completionBlock
+                          failureBlock:(void (^)(void))failureBlock;
 
 //offers
 + (void)getOffersForUser:(User *)user
