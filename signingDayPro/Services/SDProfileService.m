@@ -1074,6 +1074,7 @@
 {
     
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/OffersView?$filter=(PlayerID eq %d)&$format=json",kSDBaseSigningDayURLString,[user.identifier intValue]];
+//    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/OffersView?$format=json&$filter=(PlayerID eq %d)",kSDBaseSigningDayURLString,[user.identifier intValue]];
     
     [self startHTTPRequestOperationWithURLString:urlString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {

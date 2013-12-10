@@ -55,14 +55,25 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    
     self.tableView.clipsToBounds = YES;
     
     [self addSearchBar];
     [self loadData];
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
+    NSLog(@"self.searchBar.frame.size.height = %f",self.searchBar.frame.size.height);
+    NSLog(@"self.searchBar.frame.origin.y = %f",self.searchBar.frame.origin.y);
+    NSLog(@"self.view.frame.size.height = %f",self.view.frame.size.height);
+#warning temporary fix, for build!!!
+    if (self.view.frame.size.height < 500) {
+        self.tableView.frame = CGRectMake(0, 108, self.view.frame.size.width, self.view.frame.size.height - 108);
+    }
 }
 
 - (void)didReceiveMemoryWarning

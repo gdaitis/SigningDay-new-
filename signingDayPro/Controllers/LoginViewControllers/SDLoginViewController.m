@@ -129,7 +129,8 @@
 - (IBAction)helpCenterButtonPressed:(UIButton *)sender
 {
     SDWebViewController *viewController = [[SDWebViewController alloc] initWithNibName:@"SDWebViewController" bundle:[NSBundle mainBundle]];
-    viewController.urlString = @"p/faq.aspx";
+//    viewController.urlString = @"p/faq.aspx";
+    viewController.fileName = @"FAQhtml";
     viewController.gaScreenName = @"Help center screen";
     viewController.navigationTitle = @"Help center";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];

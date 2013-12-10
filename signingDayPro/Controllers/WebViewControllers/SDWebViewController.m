@@ -51,6 +51,7 @@
     self.title = self.navigationTitle;
     
     [self loadHtml];
+    self.webView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -67,16 +68,17 @@
 
 - (void)loadHtml
 {
+    self.webView.delegate = self;
     if (self.urlString) {
-        
         NSString *urlString = [NSString stringWithFormat:@"%@%@", kSDBaseSigningDayURLString,self.urlString];
         NSURL *url = [NSURL URLWithString:urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        self.webView.delegate = self;
         [self.webView loadRequest:request];
     }
     else {
-        
+        NSString *path = [[NSBundle mainBundle] pathForResource:self.fileName ofType:@"txt"];
+        NSString *htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        [self.webView loadHTMLString:htmlString baseURL:nil];
     }
 }
 

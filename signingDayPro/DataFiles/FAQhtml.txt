@@ -1,0 +1,72 @@
+﻿<h2>Mobile App FAQs</h2>
+<h3>Technical FAQs</h3>
+<h4>Why can’t I download and/or sign in to the mobile app?</h4>
+<p>Inability to download and/or sign in to the SigningDay mobile app can be attributed to several issues:</p>
+<ul>
+   <li><strong>Cell phone software is out of date –</strong>App requires iOS 6.0 or later. Make sure your device software is updated with the latest available version.</li>
+   <li><strong>SigningDay mobile app version is out of date –</strong> App is updated periodically with new features and bug fixes. Make sure you have the latest version of the SigningDay mobile app installed on your device.</li>
+</ul>
+<p>Still having trouble? Try this:</p>
+<ul>
+   <li>If your software is updated and you have downloaded the latest version of the SigningDay mobile app and problems persist, restart your device and attempt to download or sign in again.</li>
+   <li>If the previous actions do not resolve the issue, delete the SigningDay mobile app from your device. Once you’ve deleted the app, attempt to download or sign in again.</li>
+</ul>
+<p>Still not working? Contact the SigningDay staff at <a href="mailto:support@signingday.com">support@signingday.com</a> for more help.</p>
+<h3>Getting Started FAQs</h3>
+<h4>How do I post content using the mobile app?</h4>
+<p>Users can post content such as status messages, photos and videos directly from the <strong>Activity Feed.</strong></p>
+<ul>
+   <li>Post status messages by clicking <strong>Say something</strong> icon at the top of the Activity Feed. Write what’s on your mind then hit Post to share your thoughts with the SigningDay community.</li>
+   <li>Post photos and videos by clicking the <strong>Post a Photo or Video</strong> icon at the top of the Activity Feed. Capture and share photos and videos instantly using the integrated camera.  Share existing photos and videos from your library. </li>
+</ul>
+<p><strong>Note –</strong> In order to share videos, a Wi-Fi connection needs to be established. Videos captured without a Wi-Fi connection can be saved to user’s library</p>
+<h4>How do I connect with users on the mobile app?</h4>
+<p>Follow other members, post to member’s Buzz Boards, direct message, comment and like content posted by other members.</p>
+<ul>
+   <li>To follow a member, navigate to their page and select the grey SigningDay icon with the addition sign. This is displayed next to “Followers / Following” display. When you successfully follow a user, the icon will become yellow and the addition sign will convert to a check.</li>
+   <li>User has the ability to follow other members instantly on the mobile app. </li>
+   <li>Users who follow each other have the ability to post directly to buzz boards, send direct messages, as well as comment and like content uploaded.</li>
+   <li>To post on a member’s Buzz Board, navigate to their page and select the <strong>Post</strong> icon above the Buzz Board.</li>
+   <li>To direct message a member, navigate to their page and select the <strong>Message</strong> icon above the Buzz Board.</li>
+   <li>Can also direct message members by selecting the gray envelope icon at the top of the app display.</li>
+</ul>
+<br/>
+<h4>As a player, can I edit my recruiting content using the mobile app?</h4>
+<p>Yes. Players have the ability to update their recruiting content instantly using the SigningDay mobile app.</p>
+<ul>
+   <li>Add offers by clicking the <strong>Offers</strong> icon displayed on their profile page. Search and add new offers instantly as well as indicate a commitment to a college program.</li>
+   <li>Edit top schools and interests by clicking the <strong>Top Schools</strong> icon displayed on the profile page. Rank and indicate interest in top schools.</li>
+</ul>
+<br/>
+<h4>How can I find the users I’m most interested in?</h4>
+<p><strong>Navigation</strong> menu has categories for <strong>Players, Colleges and High Schools.</strong> Each section contains sorted lists of results.</p>
+<ul>
+   <li>
+      <strong>Players</strong> landing page – Displays a player list containing the top prospects in the current class in descending order by base score. Sort results by state, year, or position by clicking the white filter icon at the top right of the display.
+      <ul>
+         <li>Enter player name directly in the search field at the top of the prospects list if know and select Search.</li>
+      </ul>
+   </li>
+   <li>
+      <strong>Colleges</strong> landing page – Displays top college recruiting classes by current year in descending order by total score. Sort by conference or recruiting class through the white filter icon at the top right of the display.
+      <ul>
+         <li>To find a specific school, enter college directly in the search field at the top of the list and select Search.</li>
+      </ul>
+   </li>
+   <li>
+      <strong>High Schools</strong> landing page – Displays a list of top recruited high schools by total ranked prospects. Users have the ability to sort results by state.
+      <ul>
+         <li>To find a specific school, enter directly in the search field at the top of the list and select Search.</li>
+      </ul>
+   </li>
+</ul>
+<br/>
+<h4>Can I edit my profile and sharing settings directly from the app?</h4>
+<p>Yes. Profile settings such as display name, bio info, privacy settings, and Facebook and Twitter content can be edited on the app. </p>
+<ul>
+   <li><strong>Edit profile</strong> settings by selecting <strong>Settings</strong>from the main navigation page. Once inside Settings, select <strong>Edit profile</strong> and edit display name and bio info. To apply changes, select the green <strong>Submit</strong> icon.</li>
+   <li>Edit <strong>Sharing settings</strong> by selecting <strong>Settings</strong> from the main navigation page. Once inside Settings, select <strong>Sharing settings</strong> and control sharing settings for Facebook and Twitter. To apply changes, select the green <strong>Submit</strong> icon.</li>
+</ul>
+<br/>
+<p>Still have questions? Contact the SigningDay staff at <a href="mailto:support@signingday.com">support@signingday.com</a> for more help.</p>
+</div>
