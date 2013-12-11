@@ -47,7 +47,6 @@
 //    }
 //}
 
-#warning need to test before release
 + (void)setupCoreDataStack
 {
     BOOL needsLogout = NO;

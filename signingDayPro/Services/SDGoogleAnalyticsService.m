@@ -62,7 +62,6 @@ static NSString *const kAllowTracking = @"allowTracking";
 
 - (void)setupService
 {
-#warning will change after tests
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [GAI sharedInstance].dispatchInterval = 60;
     

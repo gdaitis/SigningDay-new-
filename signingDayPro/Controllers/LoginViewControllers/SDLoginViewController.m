@@ -118,9 +118,8 @@
     SDWebViewController *viewController = [[SDWebViewController alloc] initWithNibName:@"SDWebViewController" bundle:[NSBundle mainBundle]];
     viewController.urlString = @"user/emailforgottenpassword.aspx";
     viewController.gaScreenName = @"Forgot password screen";
-    viewController.navigationTitle = @"Help center";
+    viewController.navigationTitle = @"Forgot Password";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    navigationController.title = @"Forgot Password";
     [self presentViewController:navigationController animated:YES completion:^{
         
     }];
