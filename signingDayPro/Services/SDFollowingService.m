@@ -22,6 +22,7 @@
 #import "NSString+HTML.h"
 #import "SDUtils.h"
 #import "NSDictionary+NullConverver.h"
+#import "SDCacheService.h"
 
 @interface SDFollowingService ()
 
@@ -304,7 +305,7 @@
 + (void)getListOfFollowingsForUserWithIdentifier:(NSNumber *)identifier withSearchString:(NSString *)searchString withCompletionBlock:(void (^)(void))completionBlock failureBlock:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"sd/following.json"];
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"10", @"MaxRows",[NSString stringWithFormat:@"%d",[identifier intValue]], @"UserId",searchString, @"SearchString", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"10", @"MaxRows",[NSString stringWithFormat:@"%d",[identifier intValue]], @"UserId",searchString, @"SearchString", @"name",@"SortBy",@"asc",@"SortOrder",nil];
     
     [[SDAPIClient sharedClient] postPath:path
                               parameters:dict
@@ -353,7 +354,7 @@
 {
     
     NSString *path = [NSString stringWithFormat:@"sd/followers.json"];
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"10", @"MaxRows",[NSString stringWithFormat:@"%d",[identifier intValue]], @"UserId",searchString, @"SearchString", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"10", @"MaxRows",[NSString stringWithFormat:@"%d",[identifier intValue]], @"UserId",searchString, @"SearchString",@"name",@"SortBy",@"asc",@"SortOrder", nil];
     
     [[SDAPIClient sharedClient] postPath:path
                               parameters:dict
@@ -415,6 +416,8 @@
     Master *master = [Master MR_findFirstByAttribute:@"username" withValue:username inContext:context];
     NSArray *userArray = [User MR_findAllInContext:context];
     
+    BOOL userDeleted = NO;
+    
     for (User *user in userArray) {
         if (!user.followedBy && !user.following) {
             
@@ -426,11 +429,17 @@
                     if (![user.identifier isEqualToNumber:master.identifier]) {
                         //not master user can delete
                         [context deleteObject:user];
+                        userDeleted = YES;
                     }
                 }
             }
         }
     }
+    
+    if (userDeleted) {
+        [SDCacheService teamsShouldBeUpdateWhenNeeded]; //if at least one user gets deleted, we should update cached info.
+    }
+    
     [context MR_saveToPersistentStoreAndWait];
 }
 

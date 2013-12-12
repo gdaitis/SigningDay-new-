@@ -47,7 +47,6 @@
 //    }
 //}
 
-#warning need to test before release
 + (void)setupCoreDataStack
 {
     BOOL needsLogout = NO;
@@ -505,6 +504,15 @@
                                                                                                options:builderOptions
                                                                                     documentAttributes:nil];
     NSAttributedString *result = [stringBuilder generatedAttributedString];
+    
+    return result;
+}
+
++ (NSString *)currentYear
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[NSDate date]];
+    NSInteger year = [components year];
+    NSString *result = [NSString stringWithFormat:@"%d",year];
     
     return result;
 }

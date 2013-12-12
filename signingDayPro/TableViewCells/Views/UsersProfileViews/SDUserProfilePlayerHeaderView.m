@@ -34,6 +34,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *weightlabel;
 @property (nonatomic, weak) IBOutlet UILabel *classlabel;
 @property (nonatomic, weak) IBOutlet UILabel *classNumberlabel;
+@property (nonatomic, weak) IBOutlet UIButton *highSchoolButton;
 @property (weak, nonatomic) IBOutlet SDStarsRatingView *starsRatingView;
 @property (weak, nonatomic) IBOutlet SDBaseScoreView *baseScoreView;
 
@@ -65,6 +66,8 @@
     self.baseScorelabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
     self.rankingslabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
     self.infolabel.font = [UIFont fontWithName:@"BebasNeue" size:15.0];
+    
+    self.highSchoolButton.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setupInfoWithUser:(User *)user

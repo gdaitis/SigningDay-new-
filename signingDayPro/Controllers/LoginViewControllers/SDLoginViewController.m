@@ -10,12 +10,17 @@
 #import "SDLoginService.h"
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
+#import "SDTermsViewController.h"
+#import "SDWebViewController.h"
 
 @interface SDLoginViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+- (IBAction)helpCenterButtonPressed:(UIButton *)sender;
+- (IBAction)forgotPasswordButtonPressed:(UIButton *)sender;
 
 @end
 
@@ -64,6 +69,8 @@
     self.passwordTextField.text = @"";
 }
 
+#pragma mark - IBActions
+
 - (IBAction)loginButtonPressed:(id)sender 
 {
     [self.usernameTextField resignFirstResponder];
@@ -104,6 +111,31 @@
 - (IBAction)connectWithTwitterPressed:(id)sender
 {
     
+}
+
+- (IBAction)forgotPasswordButtonPressed:(UIButton *)sender
+{
+    SDWebViewController *viewController = [[SDWebViewController alloc] initWithNibName:@"SDWebViewController" bundle:[NSBundle mainBundle]];
+    viewController.urlString = @"user/emailforgottenpassword.aspx";
+    viewController.gaScreenName = @"Forgot password screen";
+    viewController.navigationTitle = @"Forgot Password";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
+}
+
+- (IBAction)helpCenterButtonPressed:(UIButton *)sender
+{
+    SDWebViewController *viewController = [[SDWebViewController alloc] initWithNibName:@"SDWebViewController" bundle:[NSBundle mainBundle]];
+//    viewController.urlString = @"p/faq.aspx";
+    viewController.fileName = @"FAQhtml";
+    viewController.gaScreenName = @"Help center screen";
+    viewController.navigationTitle = @"Help center";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
 }
 
 - (void)viewDidUnload 

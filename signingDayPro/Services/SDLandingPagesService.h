@@ -37,6 +37,14 @@
                                          conferenceIdString:(NSString *)conferenceIdString
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock;
+
++ (void)getTeamsOrderedByNameWithPageNumber:(NSInteger)pageNumber
+                                   pageSize:(NSInteger)pageSize
+                                classString:(NSString *)classString
+                         conferenceIdString:(NSString *)conferenceIdString
+                               successBlock:(void (^)(void))successBlock
+                               failureBlock:(void (^)(void))failureBlock;
+
 + (void)searchForTeamsWithNameString:(NSString *)searchString
                   conferenceIDString:(NSString *)conferenceString
                          classString:(NSString *)classString
@@ -50,6 +58,9 @@
                                                    pageSize:(NSInteger)pageSize
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock;
++ (void)getTeamsWithSearchString:(NSString *)searchString
+                 completionBlock:(void (^)(void))completionBlock
+                    failureBlock:(void (^)(void))failureBlock;
 
 // High Schools
 + (void)getAllHighSchoolsForAllStatesForYearString:(NSString *)yearString
