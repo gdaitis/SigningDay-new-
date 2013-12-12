@@ -79,6 +79,7 @@
 - (void)setupView
 {
     SDProfileButtonsView *profileButtonsView = [[SDProfileButtonsView alloc] init];
+    profileButtonsView.backgroundColor = [UIColor clearColor];
     NSArray *profileButtonsArray = [[NSArray alloc] init];
     BOOL masterIsCoach = NO;
     User *masterUser = [self getMasterUser];
@@ -202,6 +203,10 @@
     [self.delegate contactsPressedInUserProfileSlidingButtonView:self];
 }
 
+- (void)profileButtonsViewTopSchoolsPressed:(SDProfileButtonsView *)profileButtonsView
+{
+    [self.delegate topSchoolsPressedInUserProfileSlidingButtonView:self];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

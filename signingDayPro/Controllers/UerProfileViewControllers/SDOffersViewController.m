@@ -215,17 +215,19 @@
 
 - (void)showNoOffersLabel
 {
-    int labelHeight = 200;
-    UILabel *offersLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (self.navigationController.view.frame.size.height/2) - (labelHeight/2), self.view.frame.size.width, labelHeight)];
-    offersLabel.textAlignment = NSTextAlignmentCenter;
-    offersLabel.backgroundColor = [UIColor clearColor];
-    offersLabel.font = [UIFont systemFontOfSize:24];
-    offersLabel.center = CGPointMake(160, self.navigationController.view.frame.size.height/2);
-    offersLabel.numberOfLines = 0;
-    offersLabel.textColor = [UIColor blackColor];
-    offersLabel.text = [NSString stringWithFormat:@"%@ does not have any offers yet.",self.currentUser.name];
-    
-    [self.view addSubview:offersLabel];
+    if (![self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        int labelHeight = 200;
+        UILabel *offersLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (self.navigationController.view.frame.size.height/2) - (labelHeight/2), self.view.frame.size.width, labelHeight)];
+        offersLabel.textAlignment = NSTextAlignmentCenter;
+        offersLabel.backgroundColor = [UIColor clearColor];
+        offersLabel.font = [UIFont systemFontOfSize:24];
+        offersLabel.center = CGPointMake(160, self.navigationController.view.frame.size.height/2);
+        offersLabel.numberOfLines = 0;
+        offersLabel.textColor = [UIColor blackColor];
+        offersLabel.text = [NSString stringWithFormat:@"%@ does not have any offers yet.",self.currentUser.name];
+        
+        [self.view addSubview:offersLabel];
+    }
 }
 
 - (void)updateButtonTitleAndSetImage
@@ -234,7 +236,7 @@
     
     UIImage *imageName = (self.tableStyle == TABLE_STYLE_NORMAL) ? [UIImage imageNamed:@"EditButton.png"] : [UIImage imageNamed:@"SaveButton.png"];
     [navigationController.topToolBar setrightButtonImage:imageName];
-
+    
 }
 
 #pragma mark - Edit action
@@ -381,9 +383,9 @@
 - (void)updateServerInfo
 {
     //    { Teams: [{TeamId: 2182, Commited: true}, {TeamId: 2143, Commited: false}] }
-
+    
     NSMutableString *dataString = [NSMutableString stringWithFormat:@"{Teams:["];
-
+    
     int commitedValidator = 0;
     if ([self.dataArray count] > 0) {
         for (int i = 0; i < [self.dataArray count]; i++) {

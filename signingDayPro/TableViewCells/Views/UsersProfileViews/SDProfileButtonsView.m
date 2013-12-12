@@ -35,9 +35,6 @@
                                 0,
                                 kSDProfileButtonsViewDefaultWidth,
                                 kSDProfileButtonsViewDefaultHeight);
-        self.backgroundView = [[UIView alloc] initWithFrame:self.frame];
-        self.backgroundView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:self.backgroundView];
     }
     return self;
 }
@@ -138,6 +135,9 @@
         case SDProfileButtonTypeContacts:
             selector = @selector(contactsPressed);
             break;
+        case SDProfileButtonTypeTopSchools:
+            selector = @selector(topSchoolsPressed);
+            break;
             
         default:
             break;
@@ -203,6 +203,9 @@
         case SDProfileButtonTypeContacts:
             text = @"Contacts";
             break;
+        case SDProfileButtonTypeTopSchools:
+            text = @"Top Schools";
+            break;
             
         default:
             break;
@@ -249,6 +252,9 @@
             
         case SDProfileButtonTypeContacts:
             image = [UIImage imageNamed:@"UserProfileContactsButton.png"];
+            break;
+        case SDProfileButtonTypeTopSchools:
+            image = [UIImage imageNamed:@"UserProfileProspectsButton.png"];
             break;
             
         default:
@@ -303,6 +309,11 @@
 - (void)contactsPressed
 {
     [self.delegate profileButtonsViewContactsPressed:self];
+}
+
+- (void)topSchoolsPressed
+{
+    [self.delegate profileButtonsViewTopSchoolsPressed:self];
 }
 
 @end
