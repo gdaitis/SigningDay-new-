@@ -31,17 +31,13 @@
 #import "SDCommentsViewController.h"
 #import "WebPreview.h"
 #import "SDActivityStoryViewController.h"
+#import "SDGlobalSearchViewController.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import "SDImageEnlargementView.h"
 #import "SDYoutubePlayerViewController.h"
 
-#import "SDNotificationsService.h"
-
 #import "SDGoogleAnalyticsService.h"
-#import "SDWarRoomService.h"
-
-#import "SDProfileService.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
@@ -74,8 +70,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [SDProfileService searchForUsersWithSearchString:@"eric" completionBlock:nil failureBlock:nil];
-    
     self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
     self.headerView.clipsToBounds = NO;
     
@@ -99,10 +93,6 @@
     self.tableView.tableDelegate = self;
     
     [self.tableView checkServerAndDeleteOld:YES];
-    
-    [SDNotificationsService getNotificationsWithPageSize:nil
-                                            successBlock:nil
-                                            failureBlock:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -110,6 +100,11 @@
     [super viewDidAppear:animated];
     self.screenName = @"Activity Feed screen";
     [self.tableView loadData];
+    
+    
+    SDGlobalSearchViewController *globalSearchViewController = [[SDGlobalSearchViewController alloc] init];
+    globalSearchViewController.view.frame = CGRectMake(0, 150, 320, 200);
+    [self presentViewController:globalSearchViewController animated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

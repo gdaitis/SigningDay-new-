@@ -8,19 +8,20 @@
 
 #import "SDGlobalSearchViewController.h"
 
-@interface SDGlobalSearchViewController ()
+@interface SDGlobalSearchViewController () <UISearchBarDelegate>
 
 @end
 
 @implementation SDGlobalSearchViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)loadView
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super loadView];
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.frame = CGRectMake(0, 0, 320, 40);
+    searchBar.delegate = self;
+    [self.view addSubview:searchBar];
 }
 
 - (void)viewDidLoad
@@ -33,6 +34,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UISearchBarDelegateMethods
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
 }
 
 @end

@@ -199,6 +199,7 @@
 		7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */; };
 		7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */; };
 		7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */; };
+		7BA5775D1859E24E00594729 /* SDGlobalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5775C1859E24E00594729 /* SDGlobalSearchViewController.m */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
 		7BAF744D184F620B00B5A2DE /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF744C184F620B00B5A2DE /* Notification.m */; };
 		7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */; };
@@ -480,6 +481,8 @@
 		7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfilePostButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonSmall@2x.png"; sourceTree = "<group>"; };
+		7BA5775B1859E24E00594729 /* SDGlobalSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGlobalSearchViewController.h; sourceTree = "<group>"; };
+		7BA5775C1859E24E00594729 /* SDGlobalSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGlobalSearchViewController.m; sourceTree = "<group>"; };
 		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -1808,6 +1811,8 @@
 				7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */,
 				7BAF6EDC17A94DBD00F7C6B3 /* SDLikesViewController.h */,
 				7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */,
+				7BA5775B1859E24E00594729 /* SDGlobalSearchViewController.h */,
+				7BA5775C1859E24E00594729 /* SDGlobalSearchViewController.m */,
 			);
 			path = ActivityFeedControllers;
 			sourceTree = "<group>";
@@ -2716,6 +2721,7 @@
 				7B93CE93182A9FAE007A6275 /* SDEditProfileViewController.m in Sources */,
 				7B93CE94182A9FAE007A6275 /* SDBaseToolbarItemViewController.m in Sources */,
 				7B93CE95182A9FAE007A6275 /* SDUserProfileViewController.m in Sources */,
+				7BA5775D1859E24E00594729 /* SDGlobalSearchViewController.m in Sources */,
 				7B93CE96182A9FAE007A6275 /* SDOffersViewController.m in Sources */,
 				7B93CE97182A9FAE007A6275 /* SDKeyAttributesViewController.m in Sources */,
 				7B93CE98182A9FAE007A6275 /* SDCommitsRostersCoachViewController.m in Sources */,
