@@ -327,12 +327,6 @@
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
                                
                                NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-                               
-                               NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                                                    options:kNilOptions
-                                                                                      error:nil];
-                               NSLog(@"json = %@",JSON);
-                               
                                [self createUsersFromResponseObject:responseObject
                                                        withContext:context
                                          withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {

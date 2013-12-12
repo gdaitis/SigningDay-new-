@@ -419,7 +419,6 @@
 
 - (void)collegeSearchViewController:(SDCollegeSearchViewController *)collegeSearchController didSelectCollegeUser:(User *)teamUser
 {
-    NSLog(@"teamUser.identifier = %d",[teamUser.identifier integerValue]);
     if (!teamUser || !teamUser.identifier)
         return;
     

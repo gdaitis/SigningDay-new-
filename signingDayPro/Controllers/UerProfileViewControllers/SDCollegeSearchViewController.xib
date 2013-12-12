@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDCollegeSearchViewController">
             <connections>
-                <outlet property="tableView" destination="oBN-aG-UUS" id="WVo-WT-RHz"/>
+                <outlet property="tableView" destination="y0r-8b-DSp" id="Tgb-wH-YL7"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -16,12 +16,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oBN-aG-UUS">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="y0r-8b-DSp">
                     <rect key="frame" x="0.0" y="102" width="320" height="466"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="fBi-mE-WD1"/>
-                        <outlet property="delegate" destination="-1" id="mVm-LW-Vsg"/>
+                        <outlet property="dataSource" destination="-1" id="5B9-Bp-xtE"/>
+                        <outlet property="delegate" destination="-1" id="qij-2O-vfW"/>
                     </connections>
                 </tableView>
             </subviews>

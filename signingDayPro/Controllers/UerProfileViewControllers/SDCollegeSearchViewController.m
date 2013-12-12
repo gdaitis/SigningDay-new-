@@ -54,8 +54,6 @@
     
     self.tableView.clipsToBounds = YES;
     
-    [self addSearchBar];
-//    [self loadData];
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
 }
@@ -63,14 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    NSLog(@"self.searchBar.frame.size.height = %f",self.searchBar.frame.size.height);
-    NSLog(@"self.searchBar.frame.origin.y = %f",self.searchBar.frame.origin.y);
-    NSLog(@"self.view.frame.size.height = %f",self.view.frame.size.height);
-#warning temporary fix, for build!!!
-    if (self.view.frame.size.height < 500) {
-        self.tableView.frame = CGRectMake(0, 108, self.view.frame.size.width, self.view.frame.size.height - 108);
-    }
+    [self addSearchBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -258,13 +249,6 @@
     NSPredicate *compoundedPredicate= [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, namePredicate]];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    
-    //seting fetch limit for pagination
-//    NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundedPredicate inContext:context];
-//    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-//    [request setSortDescriptors:[NSArray arrayWithObjects:nameDescriptor,nil]];
-//    self.dataArray = [User MR_executeFetchRequest:request inContext:context];
-    
     self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundedPredicate inContext:context];
     
     [self hideProgressHudInView:self.view];
@@ -305,11 +289,11 @@
     });
     
     if (searchString.length > 0) {
-//        [self loadFilteredData];
         [self searchFilteredData];
     }
     else {
         self.dataArray = nil;
+        [self loadData];
         [self reloadTableView];
     }
     return YES;
