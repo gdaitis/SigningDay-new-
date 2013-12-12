@@ -207,6 +207,13 @@
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
         }];
+//        [SDFollowingService getAlphabeticallySortedListOfFollowingsForUserWithIdentifier:master.identifier forPage:_currentFollowingPage withCompletionBlock:^(int totalFollowingCount) {
+//            _totalFollowings = totalFollowingCount;
+//            [self hideProgressHudInView:self.view];
+//            [self reloadView];
+//        } failureBlock:^{
+//            [self hideProgressHudInView:self.view];
+//        }];
     }
     else {
         //get list of followers
@@ -217,6 +224,13 @@
         } failureBlock:^{
             [self hideProgressHudInView:self.view];
         }];
+//        [SDFollowingService getAlphabeticallySortedListOfFollowersForUserWithIdentifier:master.identifier forPage:_currentFollowersPage withCompletionBlock:^(int totalFollowerCount) {
+//            _totalFollowers = totalFollowerCount; //set the count to know how much we should send
+//            [self hideProgressHudInView:self.view];
+//            [self reloadView];
+//        } failureBlock:^{
+//            [self hideProgressHudInView:self.view];
+//        }];
     }
 }
 
@@ -264,15 +278,15 @@
         [request setFetchLimit:fetchLimit];
         //set sort descriptor
         
-        NSString *sortingKey = nil;
-        if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
-            sortingKey = @"followerRelationshipCreated";
-        }
-        else {
-            sortingKey = @"followingRelationshipCreated";
-        }
+//        NSString *sortingKey = nil;
+//        if (_controllerType == CONTROLLER_TYPE_FOLLOWERS) {
+//            sortingKey = @"followerRelationshipCreated";
+//        }
+//        else {
+//            sortingKey = @"followingRelationshipCreated";
+//        }
         
-        NSSortDescriptor *followingSortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortingKey ascending:NO selector:@selector(compare:)];
+        NSSortDescriptor *followingSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
         [request setSortDescriptors:[NSArray arrayWithObjects:followingSortDescriptor, /*nameSortDescriptor,*/ nil]];
         self.dataArray = [User MR_executeFetchRequest:request inContext:context];
     }
@@ -402,11 +416,11 @@
     }
     else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleWhite;
+        UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
         
-        if ([_searchBar.text length] > 0) {
-            activityViewStyle = UIActivityIndicatorViewStyleGray;
-        }
+//        if ([_searchBar.text length] > 0) {
+//            activityViewStyle = UIActivityIndicatorViewStyleGray;
+//        }
         
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
         activityView.center = cell.center;
@@ -518,6 +532,7 @@
 
 - (void)reloadTableView
 {
+    _searchActive = NO;
     if ([_searchBar.text length] > 0) {
         
         //reload searchresultstableview tu update cell

@@ -50,6 +50,14 @@
 
 - (void)setrightButtonImage:(UIImage *)image
 {
+    //button size changed depending on different images, also position is recalculated
+    int offsetFromRightSide = 10;
+    
+    CGRect frame = self.rightButton.frame;
+    frame.size.width = image.size.width;
+    frame.origin.x = self.frame.size.width - image.size.width - offsetFromRightSide;
+    self.rightButton.frame = frame;
+    
     [self.rightButton setImage:image forState:UIControlStateNormal];
 }
 

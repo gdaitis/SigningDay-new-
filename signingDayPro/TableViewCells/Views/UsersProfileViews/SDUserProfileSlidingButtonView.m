@@ -141,6 +141,8 @@
     
     self.followersCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
     self.followingCountLabel.font = [UIFont fontWithName:@"BebasNeue" size:11.0];
+    
+    [self.followButton addTarget:self action:@selector(followButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - Follow button presses

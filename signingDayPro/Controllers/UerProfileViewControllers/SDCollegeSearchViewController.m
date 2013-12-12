@@ -11,9 +11,10 @@
 #import "User.h"
 #import "SDProfileService.h"
 #import "SDLandingPagesService.h"
-
-#define kHideKeyboardButtonTag 999
-#define kPageCountForColleges 20
+#import "SDNewConversationCell.h"
+#import "UIView+NibLoading.h"
+#import "SDCacheService.h"
+#import <AFNetworking.h>
 
 @interface SDCollegeSearchViewController () <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
 
@@ -22,9 +23,7 @@
 @property (nonatomic, weak) UIView *searchBarBackground;
 
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, assign) int currentCollegeCount;
 @property (nonatomic, assign) BOOL dataIsFiltered;
-@property (nonatomic, assign) BOOL pagingEndReached;
 @property (nonatomic, assign) BOOL dataDownloadInProgress;
 
 @end
@@ -46,11 +45,23 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationTitle = @"Add team";
     
-    [self addSearchBar];
-    [self loadData];
+    [self.refreshControl removeFromSuperview];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
+    self.tableView.clipsToBounds = YES;
+    
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self addSearchBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +74,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 48;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -75,19 +86,27 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    int result = 0;
-    if (self.pagingEndReached || self.searchBar.text.length > 0 || self.dataIsFiltered) {
-        result = [self.dataArray count];
-    }
-    else {
-        result = ([self.dataArray count] == 0) ? 0 : [self.dataArray count]+1;
-    }
-    return result;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    NSString *identifier = @"SearchResultsCell";
+    SDNewConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell) {
+        cell = (id)[SDNewConversationCell loadInstanceFromNib];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    User *teamUser = [self.dataArray objectAtIndex:indexPath.row];
+    cell.usernameTitle.text = teamUser.name;
+    
+    [cell.userImageView cancelImageRequestOperation];
+    cell.userImageView.image = nil;
+    [cell.userImageView setImageWithURL:[NSURL URLWithString:teamUser.avatarUrl]];
+    
+    return cell;
 }
 
 #pragma mark - Table view delegate
@@ -100,18 +119,17 @@
     }
     
     [self.delegate collegeSearchViewController:self didSelectCollegeUser:[self.dataArray objectAtIndex:indexPath.row]];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if ([self.searchBar isFirstResponder]) {
         [self removeKeyboard];
-        //        if (self.searchBar.text.length < 1) {
-        //            self.currentCollegeCount = kPageCountForColleges;
-        //            self.dataIsFiltered = NO;
-        //            self.pagingEndReached = NO;
-        //            [self loadData];
-        //        }
+        if (self.searchBar.text.length < 1) {
+            self.dataIsFiltered = NO;
+            [self loadData];
+        }
     }
 }
 
@@ -152,23 +170,10 @@
 
 #pragma mark - UISearchBar delegate
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    UIButton *hideKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    hideKeyboardButton.frame = CGRectMake(0, 100, self.view.bounds.size.width, self.view.bounds.size.height);
-    
-    hideKeyboardButton.tag = kHideKeyboardButtonTag;
-    [hideKeyboardButton addTarget:self action:@selector(removeKeyboard) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:hideKeyboardButton];
-}
-
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     if (self.searchBar.text.length < 1) {
-        self.currentCollegeCount = kPageCountForColleges;
         self.dataIsFiltered = NO;
-        self.pagingEndReached = NO;
         [self loadData];
     }
 }
@@ -180,14 +185,11 @@
 
 - (void)removeKeyboard
 {
-    if ([self.searchBar isFirstResponder]) {
+    if ([self.searchBar isFirstResponder])
         [self.searchBar resignFirstResponder];
-        [(UIButton *)[self.view viewWithTag:kHideKeyboardButtonTag] removeFromSuperview];
-    }
-    if ([self.customSearchDisplayController.searchBar isFirstResponder]) {
+    
+    if ([self.customSearchDisplayController.searchBar isFirstResponder])
         [self.customSearchDisplayController.searchBar resignFirstResponder];
-        [(UIButton *)[self.view viewWithTag:kHideKeyboardButtonTag] removeFromSuperview];
-    }
 }
 
 - (void)reloadTableView
@@ -207,51 +209,33 @@
 
 - (void)checkServer
 {
-    self.dataDownloadInProgress = YES;
-    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:self.currentCollegeCount pageSize:kPageCountForColleges successBlock:^{
-        self.currentCollegeCount += kPageCountForColleges;
-        self.dataDownloadInProgress = NO;
-        [self loadData];
-        
-    } failureBlock:^{
-        self.dataDownloadInProgress = NO;
-    }];
+//    NSString *searchString = (self.searchBar.text.length > 0) ? self.searchBar.text : @"";
     
-//    [SDLandingPagesService getTeamsOrderedByDescendingTotalScoreWithPageNumber:(self.currentUserCount/kPageCountForLandingPages)
-//                                                                      pageSize:kPageCountForLandingPages
-//                                                                   classString:[self.currentFilterYearDictionary objectForKey:@"name"]
-//                                                            conferenceIdString:[self.currentFilterConference.identifier stringValue]
-//                                                                  successBlock:^{
-//                                                                      self.currentUserCount += kPageCountForLandingPages;
-//                                                                      self.dataDownloadInProgress = NO;
-//                                                                      [self loadData];
-//                                                                  } failureBlock:^{
-//                                                                      self.dataDownloadInProgress = NO;
-//                                                                      NSLog(@"Data downloading failed in :%@",[self class]);
-//                                                                  }];
+    BOOL updateTeams = [SDCacheService shouldTeamsBeUpdated];
+    
+    if (!updateTeams) {
+        [self loadData];
+    }
+    else {
+        
+        self.dataDownloadInProgress = YES;
+        [SDLandingPagesService getTeamsWithSearchString:@"" completionBlock:^{
+            self.dataDownloadInProgress = NO;
+            [self loadData];
+        } failureBlock:^{
+            self.dataDownloadInProgress = NO;
+            NSLog(@"Data downloading failed in :%@",[self class]);
+        }];
+    }
 }
 
 - (void)searchFilteredData
 {
-    if (self.searchBar.text.length < 3) {
-        self.pagingEndReached = NO;
-        [self checkServer];
+    if (self.searchBar.text.length < 1) {
+        [self loadData];
     }
     else {
-        [self showProgressHudInView:self.view withText:@"Loading"];
-        self.dataIsFiltered = YES;
-        
-        [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text successBlock:^{
-            [self loadFilteredData];
-        } failureBlock:^{
-            
-        }];
-        
-//        [SDLandingPagesService searchForTeamsWithNameString:self.searchBar.text conferenceIDString:[self.currentFilterConference.identifier stringValue] classString:[self.currentFilterYearDictionary objectForKey:@"name"] successBlock:^{
-//            [self loadFilteredData];
-//        } failureBlock:^{
-//            NSLog(@"Search failed in Collenge landing page");
-//        }];
+        [self loadFilteredData];
     }
 }
 
@@ -261,25 +245,11 @@
 - (void)loadData
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
+    NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"name!=nil AND name!=''"];
+    NSPredicate *compoundedPredicate= [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, namePredicate]];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    
-    //seting fetch limit for pagination
-    NSFetchRequest *request = [User MR_requestAllWithPredicate:predicate inContext:context];
-    
-    // ? ?? ?
-//    [request setFetchLimit:self.currentUserCount];
-    //set sort descriptor
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.totalScore" ascending:NO];
-//    NSSortDescriptor *commitsDescriptor = [[NSSortDescriptor alloc] initWithKey:@"theTeam.numberOfCommits" ascending:NO];
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    [request setSortDescriptors:[NSArray arrayWithObjects:nameDescriptor,nil]];
-    self.dataArray = [User MR_executeFetchRequest:request inContext:context];
-
-    // ? ? ? ?
-//    if ([self.dataArray count] < self.currentCollegeCount) {
-//        self.pagingEndReached = YES;
-//    }
+    self.dataArray = [User MR_findAllSortedBy:@"name" ascending:YES withPredicate:compoundedPredicate inContext:context];
     
     [self hideProgressHudInView:self.view];
     [self reloadTableView];
@@ -288,10 +258,8 @@
 - (void)loadFilteredData
 {
     NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",SDUserTypeTeam];
-    //    NSPredicate *userYearPredicate = [NSPredicate predicateWithFormat:@"theTeam.teamClass == %@",[self.currentFilterYearDictionary valueForKey:@"name"]];
     NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", self.searchBar.text];
     
-    //also add self.currentFilterState.code and [self.currentFilterPositionDictionary objectForKey:@"shortName"]
     NSPredicate *compoundPredicate = (self.searchBar.text.length > 0) ? [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate,nameSearchPredicate]] : [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate]];
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
@@ -299,6 +267,69 @@
     
     [self reloadTableView];
     [self hideProgressHudInView:self.view];
+}
+
+#pragma mark - Searchresults controller delegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    //change text for default "No results", to my own
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        for (UIView *v in controller.searchResultsTableView.subviews) {
+            if ([v isKindOfClass:[UILabel self]]) {
+                if (searchString.length < 1) {
+                    ((UILabel *)v).text = @"Enter minimum 1 symbols";
+                }
+                else {
+                    ((UILabel *)v).text = @"No results";
+                }
+                break;
+            }
+        }
+    });
+    
+    if (searchString.length > 0) {
+        [self searchFilteredData];
+    }
+    else {
+        self.dataArray = nil;
+        [self loadData];
+        [self reloadTableView];
+    }
+    return YES;
+}
+
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    [self reloadTableView];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    return YES;
+}
+
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void) keyboardWillHide {
+    
+    UITableView *tableView = [[self searchDisplayController] searchResultsTableView];
+    
+    [tableView setContentInset:UIEdgeInsetsZero];
+    
+    [tableView setScrollIndicatorInsets:UIEdgeInsetsZero];
+    
 }
 
 

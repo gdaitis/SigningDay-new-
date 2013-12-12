@@ -183,9 +183,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvp-p3-HEC">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvp-p3-HEC">
                     <rect key="frame" x="16" y="133" width="271" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -261,6 +263,7 @@
                 <outlet property="buzzButtonView" destination="15" id="58"/>
                 <outlet property="classNumberlabel" destination="458" id="574"/>
                 <outlet property="classlabel" destination="448" id="573"/>
+                <outlet property="highSchoolButton" destination="vvp-p3-HEC" id="a9d-la-vLl"/>
                 <outlet property="infolabel" destination="10" id="575"/>
                 <outlet property="namelabel" destination="13" id="576"/>
                 <outlet property="nationalNumberlabel" destination="254" id="578"/>

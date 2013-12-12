@@ -34,5 +34,6 @@
 
 + (NSString *)formattedForrumReplyFromString:(NSString *)reply;
 + (NSAttributedString *)buildDTCoreTextStringForSigningdayWithHTMLText:(NSString *)htmlString;
++ (NSString *)currentYear;
 
 @end

@@ -65,7 +65,6 @@
 		7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686D17DDBFE600B77789 /* SDCollegeLandingPageViewController.m */; };
 		7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078686F17DDBFE600B77789 /* SDHighSchoolLandingPageViewController.m */; };
 		7B93CE8A182A9FAE007A6275 /* SDFilterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801C90E917E0560200227D88 /* SDFilterListViewController.m */; };
-		7B93CE8B182A9FAE007A6275 /* SDForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */; };
 		7B93CE8C182A9FAE007A6275 /* SDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EEF600175626C200A7C803 /* SDLoginViewController.m */; };
 		7B93CE8D182A9FAE007A6275 /* SDMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809E728617573633004840D3 /* SDMessageViewController.m */; };
 		7B93CE8E182A9FAE007A6275 /* SDNewConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80180D35178C272100C24398 /* SDNewConversationViewController.m */; };
@@ -336,6 +335,10 @@
 		809E72A317577A1B004840D3 /* SDConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809E72A217577A1B004840D3 /* SDConversationCell.xib */; };
 		80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A0614D17529DB3005FE319 /* MenuItemList.plist */; };
 		80A0616217534497005FE319 /* MagnifyingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A0616017534497005FE319 /* MagnifyingIcon@2x.png */; };
+		80A09F6C18574CA900195470 /* SDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F6A18574CA900195470 /* SDWebViewController.m */; };
+		80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F6B18574CA900195470 /* SDWebViewController.xib */; };
+		80A09F71185769A700195470 /* FAQhtml.txt in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F70185769A700195470 /* FAQhtml.txt */; };
+		80A09F741858BC9200195470 /* SDCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F731858BC9200195470 /* SDCacheService.m */; };
 		80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
@@ -860,6 +863,12 @@
 		809E72A517588B76004840D3 /* SDFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFollowingViewController.m; path = ../TableViewCells/Views/SDFollowingViewController.m; sourceTree = "<group>"; };
 		80A0614D17529DB3005FE319 /* MenuItemList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MenuItemList.plist; path = ../MenuItemList.plist; sourceTree = "<group>"; };
 		80A0616017534497005FE319 /* MagnifyingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagnifyingIcon@2x.png"; sourceTree = "<group>"; };
+		80A09F6918574CA900195470 /* SDWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebViewController.h; sourceTree = "<group>"; };
+		80A09F6A18574CA900195470 /* SDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebViewController.m; sourceTree = "<group>"; };
+		80A09F6B18574CA900195470 /* SDWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWebViewController.xib; sourceTree = "<group>"; };
+		80A09F70185769A700195470 /* FAQhtml.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FAQhtml.txt; sourceTree = "<group>"; };
+		80A09F721858BC9200195470 /* SDCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCacheService.h; sourceTree = "<group>"; };
+		80A09F731858BC9200195470 /* SDCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCacheService.m; sourceTree = "<group>"; };
 		80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGoogleAnalyticsService.h; sourceTree = "<group>"; };
 		80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGoogleAnalyticsService.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
@@ -972,8 +981,6 @@
 		80EEF5EF1756231E00A7C803 /* login_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_button@2x.png"; sourceTree = "<group>"; };
 		80EEF5F11756231E00A7C803 /* login_fb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_fb@2x.png"; sourceTree = "<group>"; };
 		80EEF5F91756251B00A7C803 /* forgot_password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forgot_password@2x.png"; sourceTree = "<group>"; };
-		80EEF5FD175626C200A7C803 /* SDForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDForgotPasswordViewController.h; sourceTree = "<group>"; };
-		80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDForgotPasswordViewController.m; sourceTree = "<group>"; };
 		80EEF5FF175626C200A7C803 /* SDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewController.h; sourceTree = "<group>"; };
 		80EEF600175626C200A7C803 /* SDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginViewController.m; sourceTree = "<group>"; };
 		80EEF603175627B400A7C803 /* SDCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDCommonWebViewController.h; path = ../LoginViewControllers/SDCommonWebViewController.h; sourceTree = "<group>"; };
@@ -1243,6 +1250,8 @@
 				8032EFD01755EEDE00C92AAC /* SDAPIClient.m */,
 				7B652362176EEA0E002EA795 /* SDActivityFeedService.h */,
 				7B652363176EEA0E002EA795 /* SDActivityFeedService.m */,
+				80A09F721858BC9200195470 /* SDCacheService.h */,
+				80A09F731858BC9200195470 /* SDCacheService.m */,
 				8032EFD11755EEDE00C92AAC /* SDChatService.h */,
 				8032EFD21755EEDE00C92AAC /* SDChatService.m */,
 				8032EFD31755EEDE00C92AAC /* SDErrorService.h */,
@@ -1777,6 +1786,9 @@
 			children = (
 				80EEF603175627B400A7C803 /* SDCommonWebViewController.h */,
 				80EEF604175627B400A7C803 /* SDCommonWebViewController.m */,
+				80A09F6918574CA900195470 /* SDWebViewController.h */,
+				80A09F6A18574CA900195470 /* SDWebViewController.m */,
+				80A09F6B18574CA900195470 /* SDWebViewController.xib */,
 				805F6871178EFBF100ED186B /* SDTermsViewController.h */,
 				805F6872178EFBF100ED186B /* SDTermsViewController.m */,
 				8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */,
@@ -1838,6 +1850,7 @@
 				807ACB2317E1ABF1005B8442 /* PositionsList.plist */,
 				807ACB2D17E1ADC1005B8442 /* YearsList.plist */,
 				80A0614D17529DB3005FE319 /* MenuItemList.plist */,
+				80A09F70185769A700195470 /* FAQhtml.txt */,
 			);
 			path = DataFiles;
 			sourceTree = "<group>";
@@ -2157,8 +2170,6 @@
 		80EEF5FC175626C200A7C803 /* LoginViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				80EEF5FD175626C200A7C803 /* SDForgotPasswordViewController.h */,
-				80EEF5FE175626C200A7C803 /* SDForgotPasswordViewController.m */,
 				80EEF5FF175626C200A7C803 /* SDLoginViewController.h */,
 				80EEF600175626C200A7C803 /* SDLoginViewController.m */,
 			);
@@ -2467,6 +2478,7 @@
 				8083890E17D4D781006E4FE9 /* LandingPageStoryBoard.storyboard in Resources */,
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
 				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
+				80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
@@ -2474,6 +2486,7 @@
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
 				8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */,
 				8094EFBB1817E55B00A163FD /* SDThreadCell.xib in Resources */,
+				80A09F71185769A700195470 /* FAQhtml.txt in Resources */,
 				8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */,
 				8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */,
 				80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */,
@@ -2550,6 +2563,7 @@
 				7B93CEEB182AA038007A6275 /* NSManagedObject+MagicalAggregation.m in Sources */,
 				7B93CEEC182AA038007A6275 /* NSManagedObject+MagicalDataImport.m in Sources */,
 				7B93CEED182AA038007A6275 /* NSManagedObject+MagicalFinders.m in Sources */,
+				80A09F6C18574CA900195470 /* SDWebViewController.m in Sources */,
 				7B93CEEE182AA038007A6275 /* NSManagedObject+MagicalRecord.m in Sources */,
 				7B93CEEF182AA038007A6275 /* NSManagedObject+MagicalRequests.m in Sources */,
 				7B93CEF0182AA038007A6275 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
@@ -2572,6 +2586,7 @@
 				7B93CEFE182AA038007A6275 /* MBProgressHUD.m in Sources */,
 				80C2837C182BCC40007759A0 /* Forum.m in Sources */,
 				7B93CEFF182AA038007A6275 /* NSString+Additions.m in Sources */,
+				80A09F741858BC9200195470 /* SDCacheService.m in Sources */,
 				7B93CF00182AA038007A6275 /* PSYBlockTimer.m in Sources */,
 				80C2836A182BCC40007759A0 /* ForumReply.m in Sources */,
 				7B93CF01182AA038007A6275 /* UICustomSwitch.m in Sources */,
@@ -2704,7 +2719,6 @@
 				7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */,
 				7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */,
 				7B93CE8A182A9FAE007A6275 /* SDFilterListViewController.m in Sources */,
-				7B93CE8B182A9FAE007A6275 /* SDForgotPasswordViewController.m in Sources */,
 				7B93CE8C182A9FAE007A6275 /* SDLoginViewController.m in Sources */,
 				80C2835B182BCC3F007759A0 /* ActivityStory.m in Sources */,
 				7B93CE8D182A9FAE007A6275 /* SDMessageViewController.m in Sources */,
