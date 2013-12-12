@@ -228,13 +228,13 @@
     [self.view addSubview:offersLabel];
 }
 
-- (void)updateButtonTitle
+- (void)updateButtonTitleAndSetImage
 {
     SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
     
     UIImage *imageName = (self.tableStyle == TABLE_STYLE_NORMAL) ? [UIImage imageNamed:@"EditButton.png"] : [UIImage imageNamed:@"SaveButton.png"];
-    
-    [navigationController.topToolBar.rightButton setImage:imageName forState:UIControlStateNormal];
+    [navigationController.topToolBar setrightButtonImage:imageName];
+
 }
 
 #pragma mark - Edit action
@@ -246,8 +246,8 @@
         SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
         
         [navigationController.topToolBar.rightButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self updateButtonTitle];
         navigationController.topToolBar.rightButton.hidden = NO;
+        [self updateButtonTitleAndSetImage];
     }
 }
 
@@ -282,7 +282,7 @@
         [self saveUpdates];
     }
     
-    [self updateButtonTitle];
+    [self updateButtonTitleAndSetImage];
     [self.tableView reloadData];
 }
 

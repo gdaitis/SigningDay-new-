@@ -13,6 +13,7 @@
 #import "SDLandingPagesService.h"
 #import "SDNewConversationCell.h"
 #import "UIView+NibLoading.h"
+#import "SDCacheService.h"
 #import <AFNetworking.h>
 
 @interface SDCollegeSearchViewController () <UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
@@ -54,7 +55,7 @@
     self.tableView.clipsToBounds = YES;
     
     [self addSearchBar];
-    [self loadData];
+//    [self loadData];
     [self showProgressHudInView:self.view withText:@"Loading"];
     [self checkServer];
 }
@@ -217,21 +218,29 @@
 
 - (void)checkServer
 {
-    self.dataDownloadInProgress = YES;
-    NSString *searchString = (self.searchBar.text.length > 0) ? self.searchBar.text : @"";
+//    NSString *searchString = (self.searchBar.text.length > 0) ? self.searchBar.text : @"";
     
-    [SDLandingPagesService getTeamsWithSearchString:searchString completionBlock:^{
-        self.dataDownloadInProgress = NO;
+    BOOL updateTeams = [SDCacheService shouldTeamsBeUpdated];
+    
+    if (!updateTeams) {
         [self loadData];
-    } failureBlock:^{
-        self.dataDownloadInProgress = NO;
-        NSLog(@"Data downloading failed in :%@",[self class]);
-    }];
+    }
+    else {
+        
+        self.dataDownloadInProgress = YES;
+        [SDLandingPagesService getTeamsWithSearchString:@"" completionBlock:^{
+            self.dataDownloadInProgress = NO;
+            [self loadData];
+        } failureBlock:^{
+            self.dataDownloadInProgress = NO;
+            NSLog(@"Data downloading failed in :%@",[self class]);
+        }];
+    }
 }
 
 - (void)searchFilteredData
 {
-    if (self.searchBar.text.length < 3) {
+    if (self.searchBar.text.length < 1) {
         [self loadData];
     }
     else {
@@ -284,8 +293,8 @@
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         for (UIView *v in controller.searchResultsTableView.subviews) {
             if ([v isKindOfClass:[UILabel self]]) {
-                if (searchString.length < 3) {
-                    ((UILabel *)v).text = @"Enter minimum 3 symbols";
+                if (searchString.length < 1) {
+                    ((UILabel *)v).text = @"Enter minimum 1 symbols";
                 }
                 else {
                     ((UILabel *)v).text = @"No results";
@@ -295,8 +304,8 @@
         }
     });
     
-    if (searchString.length > 2) {
-        [self loadFilteredData];
+    if (searchString.length > 0) {
+//        [self loadFilteredData];
         [self searchFilteredData];
     }
     else {

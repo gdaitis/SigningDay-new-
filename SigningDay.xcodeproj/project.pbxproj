@@ -338,6 +338,7 @@
 		80A09F6C18574CA900195470 /* SDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F6A18574CA900195470 /* SDWebViewController.m */; };
 		80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F6B18574CA900195470 /* SDWebViewController.xib */; };
 		80A09F71185769A700195470 /* FAQhtml.txt in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F70185769A700195470 /* FAQhtml.txt */; };
+		80A09F741858BC9200195470 /* SDCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F731858BC9200195470 /* SDCacheService.m */; };
 		80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
@@ -866,6 +867,8 @@
 		80A09F6A18574CA900195470 /* SDWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebViewController.m; sourceTree = "<group>"; };
 		80A09F6B18574CA900195470 /* SDWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWebViewController.xib; sourceTree = "<group>"; };
 		80A09F70185769A700195470 /* FAQhtml.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FAQhtml.txt; sourceTree = "<group>"; };
+		80A09F721858BC9200195470 /* SDCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCacheService.h; sourceTree = "<group>"; };
+		80A09F731858BC9200195470 /* SDCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCacheService.m; sourceTree = "<group>"; };
 		80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGoogleAnalyticsService.h; sourceTree = "<group>"; };
 		80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGoogleAnalyticsService.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
@@ -1247,6 +1250,8 @@
 				8032EFD01755EEDE00C92AAC /* SDAPIClient.m */,
 				7B652362176EEA0E002EA795 /* SDActivityFeedService.h */,
 				7B652363176EEA0E002EA795 /* SDActivityFeedService.m */,
+				80A09F721858BC9200195470 /* SDCacheService.h */,
+				80A09F731858BC9200195470 /* SDCacheService.m */,
 				8032EFD11755EEDE00C92AAC /* SDChatService.h */,
 				8032EFD21755EEDE00C92AAC /* SDChatService.m */,
 				8032EFD31755EEDE00C92AAC /* SDErrorService.h */,
@@ -2581,6 +2586,7 @@
 				7B93CEFE182AA038007A6275 /* MBProgressHUD.m in Sources */,
 				80C2837C182BCC40007759A0 /* Forum.m in Sources */,
 				7B93CEFF182AA038007A6275 /* NSString+Additions.m in Sources */,
+				80A09F741858BC9200195470 /* SDCacheService.m in Sources */,
 				7B93CF00182AA038007A6275 /* PSYBlockTimer.m in Sources */,
 				80C2836A182BCC40007759A0 /* ForumReply.m in Sources */,
 				7B93CF01182AA038007A6275 /* UICustomSwitch.m in Sources */,

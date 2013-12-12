@@ -18,6 +18,7 @@
 #import "Team.h"
 #import "Conference.h"
 #import "State.h"
+#import "SDCacheService.h"
 
 @interface User (BasicUserInfoParsing)
 
@@ -218,6 +219,8 @@
                  completionBlock:(void (^)(void))completionBlock
                     failureBlock:(void (^)(void))failureBlock
 {
+    [SDCacheService teamsUpdated]; //for caching purposes
+    
     NSString *urlString = [NSString stringWithFormat:@"%@services/TeamsService.asmx/SearchTeamsByInstitutionForMobile", kSDBaseSigningDayURLString];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
