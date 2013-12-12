@@ -1016,7 +1016,53 @@
     [operation start];
 }
 
+#pragma mark - Global users search
 
++ (void)searchForUsersWithSearchString:(NSString *)searchString
+                       completionBlock:(void (^)(void))completionBlock
+                          failureBlock:(void (^)(void))failureBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@services/UserService.asmx/QuickSearchForMobile", kSDBaseSigningDayURLString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    NSString *body = [NSString stringWithFormat:@"{\"searchStr\":\"%@\", \"userId\":\"%d\"}", searchString, [[self getMasterIdentifier] integerValue]];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        NSDictionary *JSON = [[NSJSONSerialization JSONObjectWithData:data
+                                                              options:kNilOptions
+                                                                error:nil] dictionaryByReplacingNullsWithStrings];
+        NSArray *usersArray = [JSON valueForKey:@"d"];
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        for (NSDictionary *userDictionary in usersArray) {
+            NSNumber *identifier = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"UserID"] integerValue]];
+            User *user = [User MR_findFirstByAttribute:@"identifier"
+                                             withValue:identifier
+                                             inContext:context];
+            if (!user) {
+                user = [User MR_createInContext:context];
+                user.identifier = identifier;
+            }
+            user.bioAddress = [userDictionary valueForKey:@"Address"];
+            user.avatarUrl = [userDictionary valueForKey:@"AvatarUrl"];
+            user.name = [userDictionary valueForKey:@"DisplayName"];
+            user.numberOfFollowers = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"Followers"] integerValue]];
+            user.userTypeId = [NSNumber numberWithInteger:[[userDictionary valueForKey:@"Type"] integerValue]];
+            user.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
+        }
+        
+        [context MR_saveOnlySelfAndWait];
+        if (completionBlock)
+            completionBlock();
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failureBlock)
+            failureBlock();
+    }];
+    [operation start];
+}
 
 #pragma mark - user update
 
