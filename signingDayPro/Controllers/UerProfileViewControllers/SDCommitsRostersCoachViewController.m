@@ -18,7 +18,7 @@
 #import "HighSchool.h"
 #import "Offer.h"
 #import "SDUserProfileViewController.h"
-#import "SDCoachingStaffCell.h"
+#import "SDBasicUserCell.h"
 
 @interface SDCommitsRostersCoachViewController ()
 
@@ -157,10 +157,10 @@
     else {
 
         NSString *identifier = @"SDCoachingStaffCellID";
-        SDCoachingStaffCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        SDBasicUserCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
         if (!cell) {
-            cell = (SDCoachingStaffCell *)[SDCoachingStaffCell loadInstanceFromNib];
+            cell = (SDBasicUserCell *)[SDBasicUserCell loadInstanceFromNib];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor clearColor];
         }

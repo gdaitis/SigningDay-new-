@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SDCoachingStaffCell : UITableViewCell
+@interface SDBasicUserCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *positionLabel;

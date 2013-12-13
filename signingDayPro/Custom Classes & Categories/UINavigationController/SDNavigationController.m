@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIViewController *lastControllerForToolbarItems;
 @property (nonatomic, assign) BarButtonType lastSelectedType;
 @property (nonatomic, assign) BOOL showFilterButton;
+@property (nonatomic, assign) BOOL showSearchButton;
 @property (nonatomic, assign) BOOL showNewPostButton;
 @property (nonatomic, assign) BOOL filterViewVisible;
 @property (nonatomic, assign) BOOL navigationInProgress;
@@ -420,6 +421,18 @@
 - (void)removeNewPostButton
 {
     self.showNewPostButton = NO;
+    [self setToolbarButtons];
+}
+
+- (void)addSearchButton
+{
+    self.showSearchButton = YES;
+    [self setToolbarButtons];
+}
+
+- (void)removeSearchButton
+{
+    self.showSearchButton = NO;
     [self setToolbarButtons];
 }
 

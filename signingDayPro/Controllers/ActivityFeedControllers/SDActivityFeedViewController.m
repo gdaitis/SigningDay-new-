@@ -42,7 +42,7 @@
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
-@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate,SDActivityFeedTableViewDelegate>
+@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate, SDActivityFeedTableViewDelegate, SDGlobalSearchViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet SDActivityFeedTableView *tableView;
 @property (nonatomic, weak) IBOutlet SDActivityFeedHeaderView *headerView;
@@ -92,7 +92,17 @@
     self.tableView.endReached = NO;
     self.tableView.tableDelegate = self;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSearch:) name:kSearchButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) addSearchButton];
+    
     [self.tableView checkServerAndDeleteOld:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSearchButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) removeSearchButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -101,10 +111,18 @@
     self.screenName = @"Activity Feed screen";
     [self.tableView loadData];
     
-    
+#warning DEBUG
+    //---
     SDGlobalSearchViewController *globalSearchViewController = [[SDGlobalSearchViewController alloc] init];
-    globalSearchViewController.view.frame = CGRectMake(0, 150, 320, 200);
-    [self presentViewController:globalSearchViewController animated:NO completion:nil];
+    [self addChildViewController:globalSearchViewController];
+    [self.view addSubview:globalSearchViewController.view];
+    globalSearchViewController.view.frame = CGRectMake(0,
+                                                       64,
+                                                       self.view.frame.size.width,
+                                                       200);
+    globalSearchViewController.delegate = self;
+    [globalSearchViewController didMoveToParentViewController:self];
+    //---
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,6 +203,13 @@
                        animated:YES
                      completion:nil];
     [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Say_Something_Selected_Activity_Feed"];
+}
+
+#pragma mark - Search methods
+
+- (void)showSearch:(NSNotification *)notification
+{
+    
 }
 
 #pragma mark - UIActionSheet delegate methods

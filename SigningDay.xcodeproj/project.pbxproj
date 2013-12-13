@@ -97,7 +97,7 @@
 		7B93CEA9182AA007007A6275 /* SDLandingPagePlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */; };
 		7B93CEAA182AA007007A6275 /* SDLandingPageCollegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */; };
 		7B93CEAB182AA007007A6275 /* SDLandingPageHighSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */; };
-		7B93CEAC182AA007007A6275 /* SDCoachingStaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */; };
+		7B93CEAC182AA007007A6275 /* SDBasicUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803CDD601806D2E800BB399F /* SDBasicUserCell.m */; };
 		7B93CEAD182AA007007A6275 /* SDGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB81817E55B00A163FD /* SDGroupCell.m */; };
 		7B93CEAE182AA007007A6275 /* SDForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB51817E55B00A163FD /* SDForumCell.m */; };
 		7B93CEAF182AA007007A6275 /* SDThreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB21817E55B00A163FD /* SDThreadCell.m */; };
@@ -278,7 +278,7 @@
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
 		803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */; };
-		803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */; };
+		803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDBasicUserCell.xib */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
 		804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C0180E8D1100D17D2B /* NFLPA_logo@2x.png */; };
 		804299C3180ECD9900D17D2B /* toolbarBgIphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C2180ECD9900D17D2B /* toolbarBgIphone5@2x.png */; };
@@ -670,9 +670,9 @@
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StaffButtonImage@2x.png"; sourceTree = "<group>"; };
-		803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCoachingStaffCell.h; sourceTree = "<group>"; };
-		803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCoachingStaffCell.m; sourceTree = "<group>"; };
-		803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCoachingStaffCell.xib; sourceTree = "<group>"; };
+		803CDD5F1806D2E800BB399F /* SDBasicUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBasicUserCell.h; sourceTree = "<group>"; };
+		803CDD601806D2E800BB399F /* SDBasicUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBasicUserCell.m; sourceTree = "<group>"; };
+		803CDD621806D30200BB399F /* SDBasicUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBasicUserCell.xib; sourceTree = "<group>"; };
 		803ECEC317F4248A0060702F /* SDBioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBioViewController.h; sourceTree = "<group>"; };
 		803ECEC417F4248A0060702F /* SDBioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDBioViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		803ECECE17F452CE0060702F /* SDCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionCell.h; sourceTree = "<group>"; };
@@ -1919,9 +1919,9 @@
 				8078685D17DDBFD300B77789 /* SDLandingPageHighSchoolCell.h */,
 				8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */,
 				8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */,
-				803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */,
-				803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */,
-				803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */,
+				803CDD5F1806D2E800BB399F /* SDBasicUserCell.h */,
+				803CDD601806D2E800BB399F /* SDBasicUserCell.m */,
+				803CDD621806D30200BB399F /* SDBasicUserCell.xib */,
 			);
 			name = LandingPageCells;
 			sourceTree = "<group>";
@@ -2387,7 +2387,7 @@
 				80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */,
 				7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */,
 				805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */,
-				803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */,
+				803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */,
 				805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */,
 				80F2590C1773411900D3B85E /* commentImage@2x.png in Resources */,
 				8094EFC71817FE8300A163FD /* WarRoomStoryBoard.storyboard in Resources */,
@@ -2626,7 +2626,7 @@
 				7B93CEAA182AA007007A6275 /* SDLandingPageCollegeCell.m in Sources */,
 				7B93CEAB182AA007007A6275 /* SDLandingPageHighSchoolCell.m in Sources */,
 				80C2838E182BCC41007759A0 /* MediaItem.m in Sources */,
-				7B93CEAC182AA007007A6275 /* SDCoachingStaffCell.m in Sources */,
+				7B93CEAC182AA007007A6275 /* SDBasicUserCell.m in Sources */,
 				7B93CEAD182AA007007A6275 /* SDGroupCell.m in Sources */,
 				7BC4DD90184CD1C400730E92 /* User.m in Sources */,
 				7B93CEAE182AA007007A6275 /* SDForumCell.m in Sources */,

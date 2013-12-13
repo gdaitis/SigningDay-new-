@@ -7,8 +7,16 @@
 //
 
 #import "SDGlobalSearchViewController.h"
+#import "SDProfileService.h"
+#import "User.h"
+#import "SDBasicUserCell.h"
+#import "UIView+NibLoading.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface SDGlobalSearchViewController () <UISearchBarDelegate>
+@interface SDGlobalSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) NSArray *searchResults;
 
 @end
 
@@ -18,29 +26,137 @@
 {
     [super loadView];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] init];
-    searchBar.frame = CGRectMake(0, 0, 320, 40);
-    searchBar.delegate = self;
-    [self.view addSubview:searchBar];
+    self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchBar.delegate = self;
+    
+    self.tableView = [[UITableView alloc] init];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
-- (void)viewDidLoad
+- (void)viewWillLayoutSubviews
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.searchBar.frame = CGRectMake(0,
+                                      0,
+                                      self.view.frame.size.width,
+                                      40);
+    
+    [self.view addSubview:self.searchBar];
+    
+    self.tableView.frame = CGRectMake(0,
+                                      self.searchBar.frame.size.height,
+                                      self.view.frame.size.width,
+                                      self.view.frame.size.height - self.searchBar.frame.size.height);
+    [self.view addSubview:self.tableView];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - Data loading
+
+- (void)reloadLocalData
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString *searchText = [self.searchBar text];
+    if ([searchText isEqual:@""]) {
+        self.searchResults = nil;
+    } else {
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+        NSPredicate *usernameSearchPredicate = [NSPredicate predicateWithFormat:@"username contains[cd] %@ OR name contains[cd] %@", searchText, searchText];
+        self.searchResults = [User MR_findAllSortedBy:@"name"
+                                            ascending:YES
+                                        withPredicate:usernameSearchPredicate
+                                            inContext:context];
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)checkServer
+{
+    [SDProfileService searchForUsersWithSearchString:self.searchBar.text
+                                     completionBlock:^{
+                                         [self reloadLocalData];
+                                         [self endRefreshing];
+                                     } failureBlock:^{
+                                         [self endRefreshing];
+                                     }];
 }
 
 #pragma mark - UISearchBarDelegateMethods
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+- (void)searchBar:(UISearchBar *)searchBar
+    textDidChange:(NSString *)searchText
 {
     
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchResults = nil;
+    [self.tableView reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self beginRefreshing];
+    [self checkServer];
+}
+
+#pragma mark - UITableViewDelegate and UITableViewDataSource methods
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    return self.searchResults.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 79;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = @"SDCoachingStaffCellID";
+    SDBasicUserCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell) {
+        cell = (SDBasicUserCell *)[SDBasicUserCell loadInstanceFromNib];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    
+    User *user = [self.searchResults objectAtIndex:indexPath.row];
+    
+    cell.verifiedImageView.hidden = ([user.accountVerified boolValue]) ? NO : YES;
+    
+    cell.nameLabel.text = user.name;
+    cell.positionLabel.text = user.bioAddress;
+    
+    [cell.imgView cancelImageRequestOperation];
+    cell.imgView.image = nil;
+    [cell.imgView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
+    
+    
+    /*** LOADING CELL
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
+    
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
+    activityView.center = cell.center;
+    [cell addSubview:activityView];
+    [activityView startAnimating];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
+    ***/
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

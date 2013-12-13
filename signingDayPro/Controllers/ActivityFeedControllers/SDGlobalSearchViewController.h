@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDBaseViewController.h"
 
-@interface SDGlobalSearchViewController : UIViewController
+@class SDGlobalSearchViewController;
+
+@protocol SDGlobalSearchViewControllerDelegate <NSObject>
+
+@optional
+
+@end
+
+@interface SDGlobalSearchViewController : SDBaseViewController
+
+@property (nonatomic, weak) id <SDGlobalSearchViewControllerDelegate> delegate;
 
 @end
