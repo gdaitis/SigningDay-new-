@@ -32,6 +32,7 @@
 #import "WebPreview.h"
 #import "SDActivityStoryViewController.h"
 #import "SDGlobalSearchViewController.h"
+#import "SDUserProfileViewController.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import "SDImageEnlargementView.h"
@@ -51,6 +52,7 @@
 @property (nonatomic, strong) UIImage *capturedImage;
 @property (nonatomic, strong) NSURL *capturedVideoURL;
 @property (nonatomic, strong) NSString *mediaType;
+@property (nonatomic, strong) SDGlobalSearchViewController *globalSearchViewController;
 
 @end
 
@@ -92,10 +94,18 @@
     self.tableView.endReached = NO;
     self.tableView.tableDelegate = self;
     
+    [self.tableView checkServerAndDeleteOld:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSearch:) name:kSearchButtonPressedNotification object:nil];
     [((SDNavigationController *)self.navigationController) addSearchButton];
     
-    [self.tableView checkServerAndDeleteOld:YES];
+    self.screenName = @"Activity Feed screen";
+    [self.tableView loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -103,26 +113,6 @@
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kSearchButtonPressedNotification object:nil];
     [((SDNavigationController *)self.navigationController) removeSearchButton];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.screenName = @"Activity Feed screen";
-    [self.tableView loadData];
-    
-#warning DEBUG
-    //---
-    SDGlobalSearchViewController *globalSearchViewController = [[SDGlobalSearchViewController alloc] init];
-    [self addChildViewController:globalSearchViewController];
-    [self.view addSubview:globalSearchViewController.view];
-    globalSearchViewController.view.frame = CGRectMake(0,
-                                                       64,
-                                                       self.view.frame.size.width,
-                                                       200);
-    globalSearchViewController.delegate = self;
-    [globalSearchViewController didMoveToParentViewController:self];
-    //---
 }
 
 - (void)didReceiveMemoryWarning
@@ -209,7 +199,47 @@
 
 - (void)showSearch:(NSNotification *)notification
 {
+    if ([[[notification userInfo] objectForKey:@"hideSearchView"] boolValue]) {
+        [self hideSearchView];
+    }
+    else {
+        [self showSearchView];
+    }
+}
+
+- (void)showSearchView
+{
+    self.globalSearchViewController = [[SDGlobalSearchViewController alloc] init];
+    [self addChildViewController:self.globalSearchViewController];
+    [self.view addSubview:self.globalSearchViewController.view];
+    self.globalSearchViewController.view.frame = CGRectMake(0,
+                                                            64,
+                                                            self.view.frame.size.width,
+                                                            self.view.frame.size.height - 64);
+    self.globalSearchViewController.delegate = self;
+    [self.globalSearchViewController didMoveToParentViewController:self];
+}
+
+- (void)hideSearchView
+{
+    [self.globalSearchViewController willMoveToParentViewController:nil];
+    [self.globalSearchViewController.view removeFromSuperview];
+    [self.globalSearchViewController removeFromParentViewController];
+}
+
+#pragma mark - SDGlobalSearchViewControllerDelegate methods
+
+- (void)globalSearchViewController:(SDGlobalSearchViewController *)globalSearchViewController
+                     didSelectUser:(User *)user
+{
+    [self hideSearchView];
     
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 #pragma mark - UIActionSheet delegate methods

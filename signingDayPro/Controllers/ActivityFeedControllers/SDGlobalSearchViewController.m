@@ -26,12 +26,14 @@
 {
     [super loadView];
     
-    self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.view.backgroundColor = [UIColor clearColor];
     
     self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.delegate = self;
     
     self.tableView = [[UITableView alloc] init];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -50,6 +52,13 @@
                                       self.view.frame.size.width,
                                       self.view.frame.size.height - self.searchBar.frame.size.height);
     [self.view addSubview:self.tableView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.searchBar becomeFirstResponder];
 }
 
 #pragma mark - Data loading
@@ -98,6 +107,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [searchBar resignFirstResponder];
     [self beginRefreshing];
     [self checkServer];
 }
@@ -112,7 +122,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 79;
+    return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -138,24 +148,14 @@
     cell.imgView.image = nil;
     [cell.imgView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     
-    
-    /*** LOADING CELL
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    UIActivityIndicatorViewStyle activityViewStyle = UIActivityIndicatorViewStyleGray;
-    
-    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:activityViewStyle];
-    activityView.center = cell.center;
-    [cell addSubview:activityView];
-    [activityView startAnimating];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor clearColor];
-    ***/
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    User *user = [self.searchResults objectAtIndex:indexPath.row];
+    [self.delegate globalSearchViewController:self
+                                didSelectUser:user];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

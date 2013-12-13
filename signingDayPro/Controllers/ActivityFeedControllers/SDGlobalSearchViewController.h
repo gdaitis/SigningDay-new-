@@ -10,10 +10,14 @@
 #import "SDBaseViewController.h"
 
 @class SDGlobalSearchViewController;
+@class User;
 
 @protocol SDGlobalSearchViewControllerDelegate <NSObject>
 
 @optional
+
+- (void)globalSearchViewController:(SDGlobalSearchViewController *)globalSearchViewController
+                     didSelectUser:(User *)user;
 
 @end
 
