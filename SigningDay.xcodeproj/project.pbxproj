@@ -340,6 +340,7 @@
 		80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F6B18574CA900195470 /* SDWebViewController.xib */; };
 		80A09F71185769A700195470 /* FAQhtml.txt in Resources */ = {isa = PBXBuildFile; fileRef = 80A09F70185769A700195470 /* FAQhtml.txt */; };
 		80A09F741858BC9200195470 /* SDCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F731858BC9200195470 /* SDCacheService.m */; };
+		80A09F771859E8C900195470 /* SDTopSchoolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A09F761859E8C900195470 /* SDTopSchoolsViewController.m */; };
 		80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */; };
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
@@ -872,6 +873,8 @@
 		80A09F70185769A700195470 /* FAQhtml.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FAQhtml.txt; sourceTree = "<group>"; };
 		80A09F721858BC9200195470 /* SDCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCacheService.h; sourceTree = "<group>"; };
 		80A09F731858BC9200195470 /* SDCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCacheService.m; sourceTree = "<group>"; };
+		80A09F751859E8C900195470 /* SDTopSchoolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolsViewController.h; sourceTree = "<group>"; };
+		80A09F761859E8C900195470 /* SDTopSchoolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTopSchoolsViewController.m; sourceTree = "<group>"; };
 		80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGoogleAnalyticsService.h; sourceTree = "<group>"; };
 		80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGoogleAnalyticsService.m; sourceTree = "<group>"; };
 		80A7B9261797F05E006FC87E /* SDBuzzSomethingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBuzzSomethingViewController.h; sourceTree = "<group>"; };
@@ -2137,6 +2140,8 @@
 				80EEF5E2175614D900A7C803 /* SDUserProfileViewController.m */,
 				80C5695A18182FBF0055A041 /* SDOffersViewController.h */,
 				80C5695B18182FBF0055A041 /* SDOffersViewController.m */,
+				80A09F751859E8C900195470 /* SDTopSchoolsViewController.h */,
+				80A09F761859E8C900195470 /* SDTopSchoolsViewController.m */,
 				802B4718184DDA3A00FC87ED /* SDCollegeSearchViewController.h */,
 				802B4719184DDA3A00FC87ED /* SDCollegeSearchViewController.m */,
 				802B471A184DDA3A00FC87ED /* SDCollegeSearchViewController.xib */,
@@ -2609,6 +2614,7 @@
 				7B93CE9C182AA007007A6275 /* SDNewDiscussionViewController.m in Sources */,
 				7B93CE9D182AA007007A6275 /* SDDiscussionViewController.m in Sources */,
 				802B471B184DDA3A00FC87ED /* SDCollegeSearchViewController.m in Sources */,
+				80A09F771859E8C900195470 /* SDTopSchoolsViewController.m in Sources */,
 				7B93CE9E182AA007007A6275 /* SDForumListController.m in Sources */,
 				7B93CE9F182AA007007A6275 /* SDCommonWebViewController.m in Sources */,
 				7B93CEA0182AA007007A6275 /* SDTermsViewController.m in Sources */,

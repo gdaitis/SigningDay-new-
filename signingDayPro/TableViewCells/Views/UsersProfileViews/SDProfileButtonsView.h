@@ -17,7 +17,8 @@ typedef enum {
     SDProfileButtonTypePhotos,
     SDProfileButtonTypeVideos,
     SDProfileButtonTypeBio,
-    SDProfileButtonTypeContacts
+    SDProfileButtonTypeContacts,
+    SDProfileButtonTypeTopSchools
 } SDProfileButtonType;
 
 @class SDProfileButtonsView;
@@ -35,6 +36,7 @@ typedef enum {
 - (void)profileButtonsViewVideosPressed:(SDProfileButtonsView *)profileButtonsView;
 - (void)profileButtonsViewBioPressed:(SDProfileButtonsView *)profileButtonsView;
 - (void)profileButtonsViewContactsPressed:(SDProfileButtonsView *)profileButtonsView;
+- (void)profileButtonsViewTopSchoolsPressed:(SDProfileButtonsView *)profileButtonsView;
 
 @end
 

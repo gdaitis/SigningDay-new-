@@ -476,6 +476,11 @@
     [self.navigationController pushViewController:contactInfoViewController animated:YES];
 }
 
+- (void)topSchoolsPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
+{
+#warning show top schools!
+}
+
 #pragma mark -
 
 - (void)pushCollectionViewControllerWithGalleryType:(SDGalleryType)galleryType
