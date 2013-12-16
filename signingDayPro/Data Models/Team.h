@@ -2,7 +2,7 @@
 //  Team.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 11/7/13.
+//  Created by Lukas Kekys on 12/12/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -31,6 +31,7 @@
 @property (nonatomic, retain) NSSet *headCoaches;
 @property (nonatomic, retain) NSSet *offers;
 @property (nonatomic, retain) User *theUser;
+@property (nonatomic, retain) NSSet *topSchools;
 @end
 
 @interface Team (CoreDataGeneratedAccessors)
@@ -49,5 +50,10 @@
 - (void)removeOffersObject:(Offer *)value;
 - (void)addOffers:(NSSet *)values;
 - (void)removeOffers:(NSSet *)values;
+
+- (void)addTopSchoolsObject:(NSManagedObject *)value;
+- (void)removeTopSchoolsObject:(NSManagedObject *)value;
+- (void)addTopSchools:(NSSet *)values;
+- (void)removeTopSchools:(NSSet *)values;
 
 @end

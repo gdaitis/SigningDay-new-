@@ -15,6 +15,11 @@
 #import "CoreData+MagicalRecord.h"
     #import <CoreData/CoreData.h>
 
+typedef enum {
+    TABLE_STYLE_EDIT  = 0,
+    TABLE_STYLE_NORMAL  = 1
+} TableEditStyle;
+
 #define kUserUpdatedNotification @"UserUpdatedNotification"
 #define kFilterButtonPressedNotification @"FilterButtonPressedNotification"
 #define kNewPostButtonPressedNotification @"NewPostButtonPressedNotification"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ActivityStory" representedClassName="ActivityStory" syncable="YES">
         <attribute name="activityDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="activityTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -204,6 +204,7 @@
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="player" inverseEntity="Offer" syncable="YES"/>
         <relationship name="rosterOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HighSchool" inverseName="rosters" inverseEntity="HighSchool" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thePlayer" inverseEntity="User" syncable="YES"/>
+        <relationship name="topSchools" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TopSchool" inverseName="thePlayer" inverseEntity="TopSchool" syncable="YES"/>
     </entity>
     <entity name="State" representedClassName="State" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
@@ -230,6 +231,7 @@
         <relationship name="headCoaches" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="team" inverseEntity="Coach" syncable="YES"/>
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="team" inverseEntity="Offer" syncable="YES"/>
         <relationship name="theUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="theTeam" inverseEntity="User" syncable="YES"/>
+        <relationship name="topSchools" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TopSchool" inverseName="theTeam" inverseEntity="TopSchool" syncable="YES"/>
     </entity>
     <entity name="Thread" representedClassName="Thread" syncable="YES">
         <attribute name="bodyText" optional="YES" attributeType="String" syncable="YES"/>
@@ -244,6 +246,12 @@
         <relationship name="authorUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="threads" inverseEntity="User" syncable="YES"/>
         <relationship name="forum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Forum" inverseName="threads" inverseEntity="Forum" syncable="YES"/>
         <relationship name="forumReplies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ForumReply" inverseName="thread" inverseEntity="ForumReply" syncable="YES"/>
+    </entity>
+    <entity name="TopSchool" representedClassName="TopSchool" syncable="YES">
+        <attribute name="interest" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="thePlayer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="topSchools" inverseEntity="Player" syncable="YES"/>
+        <relationship name="theTeam" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="topSchools" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="accountVerified" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -319,10 +327,11 @@
         <element name="NFLPA" positionX="684" positionY="746" width="128" height="163"/>
         <element name="Notification" positionX="-531" positionY="360" width="128" height="193"/>
         <element name="Offer" positionX="819" positionY="405" width="128" height="88"/>
-        <element name="Player" positionX="1069" positionY="324" width="128" height="268"/>
+        <element name="Player" positionX="1069" positionY="324" width="128" height="283"/>
         <element name="State" positionX="-119" positionY="414" width="128" height="105"/>
-        <element name="Team" positionX="718" positionY="11" width="128" height="313"/>
+        <element name="Team" positionX="718" positionY="11" width="128" height="328"/>
         <element name="Thread" positionX="7" positionY="738" width="128" height="223"/>
+        <element name="TopSchool" positionX="844" positionY="635" width="128" height="103"/>
         <element name="User" positionX="403" positionY="108" width="128" height="703"/>
         <element name="WebPreview" positionX="430" positionY="-99" width="128" height="135"/>
     </elements>

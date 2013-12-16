@@ -45,6 +45,7 @@
 #import "SDGoogleAnalyticsService.h"
 #import "SDOffersViewController.h"
 #import "SDContactInfoViewController.h"
+#import "SDTopSchoolsViewController.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
@@ -478,7 +479,10 @@
 
 - (void)topSchoolsPressedInUserProfileSlidingButtonView:(SDUserProfileSlidingButtonView *)userProfileSlidingButtonView
 {
-#warning show top schools!
+    SDTopSchoolsViewController *topSchoolsViewController = [[SDTopSchoolsViewController alloc] initWithNibName:@"SDBaseViewController" bundle:nil];
+    topSchoolsViewController.currentUser = self.currentUser;
+    
+    [self.navigationController pushViewController:topSchoolsViewController animated:YES];
 }
 
 #pragma mark -
