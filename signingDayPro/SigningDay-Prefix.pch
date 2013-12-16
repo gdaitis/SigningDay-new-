@@ -32,4 +32,6 @@
 #define kDefaultStateFilterName @"All states"
 #define kDefaultStateConferenceName @"All conferences"
 
+#define kSharingUrlDisplayedText @"www.signingday.com"
+
 #endif
