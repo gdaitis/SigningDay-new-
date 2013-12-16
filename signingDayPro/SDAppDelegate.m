@@ -35,7 +35,6 @@ NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDel
     [SDUtils setupCoreDataStack];
     
     [[SDGoogleAnalyticsService sharedService] setupService];
-    
 
     //if master user got deleted, performing logout
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];

@@ -508,7 +508,7 @@
 
 - (NSString *)stringForCommitedPlayer
 {
-    NSString *result = [NSString stringWithFormat:@"%@ committed to %@ via @Signing_Day %@",self.currentUser.name,self.commitedToOffer.team.theUser.name,kSharingUrlDisplayedText];
+    NSString *result = [NSString stringWithFormat:@"committed to %@ via @Signing_Day %@",self.commitedToOffer.team.theUser.name,kSharingUrlDisplayedText];
     
     return result;
 }
@@ -517,7 +517,7 @@
 {
     BOOL commitedToAtLeastOneNewTeam = NO;
     
-    NSMutableString *result = [NSMutableString stringWithFormat:@"%@ received offers from",self.currentUser.name];
+    NSMutableString *result = [NSMutableString stringWithFormat:@"received offers from"];
     for (Offer *offer in self.dataArray) {
         if (![self.originalList containsObject:offer.team.theUser.identifier]) {
             [result appendFormat:@" %@,",offer.team.theUser.name];
@@ -547,7 +547,7 @@
     shareView.alpha = 0.0f;
     [self.navigationController.view addSubview:shareView];
     
-    [UIView animateWithDuration:0.35f animations:^{
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
         shareView.alpha = 1.0f;
     } completion:^(__unused BOOL finished) {
     }];
@@ -574,7 +574,7 @@
 
 - (void)removeShareView:(SDShareView *)shareView
 {
-    [UIView animateWithDuration:0.35f animations:^{
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
         shareView.alpha = 0.0f;
     } completion:^(__unused BOOL finished) {
         [shareView removeFromSuperview];

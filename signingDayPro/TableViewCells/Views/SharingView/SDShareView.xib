@@ -27,15 +27,8 @@
                                     <rect key="frame" x="23" y="75" width="28" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" id="hPs-ju-o6z">
-                                    <rect key="frame" x="59" y="75" width="202" height="55"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <attributedString key="attributedText"/>
-                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                </textView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aeC-oq-mn7">
-                                    <rect key="frame" x="59" y="133" width="202" height="21"/>
+                                    <rect key="frame" x="59" y="129" width="202" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,6 +81,12 @@
                                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="shadowOffset" width="1" height="1"/>
                                 </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Zx-4v-HG7">
+                                    <rect key="frame" x="59" y="72" width="205" height="53"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
@@ -106,7 +105,7 @@
                 <outlet property="dateLabel" destination="aeC-oq-mn7" id="FFc-jV-E8f"/>
                 <outlet property="facebookTitleLabel" destination="633-pX-gws" id="4Em-uZ-pZB"/>
                 <outlet property="shareButton" destination="tqT-Yy-u1R" id="dYc-Wk-q6n"/>
-                <outlet property="shareTextView" destination="hPs-ju-o6z" id="Rcw-0D-qnW"/>
+                <outlet property="shareLabel" destination="5Zx-4v-HG7" id="EqC-Cg-bJH"/>
                 <outlet property="shareTitleLabel" destination="0HG-Ta-OFS" id="Qzx-tm-WXY"/>
                 <outlet property="twitterTitleLabel" destination="CR9-X0-yFT" id="oYj-hO-h9u"/>
             </connections>

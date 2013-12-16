@@ -12,6 +12,8 @@
 #import "SDAppDelegate.h"
 #import "User.h"
 #import <AFNetworking.h>
+#import "SDUtils.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDShareView ()
 
@@ -29,7 +31,7 @@
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *shareTitleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic) IBOutlet UITextView *shareTextView;
+@property (weak, nonatomic) IBOutlet UILabel *shareLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *facebookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *twitterTitleLabel;
@@ -49,6 +51,7 @@
     if (self) {
         // Initialization code
         [self setupSocialButtons];
+        [self setupView];
     }
     return self;
 }
@@ -57,6 +60,7 @@
 {
     [super awakeFromNib];
     [self setupSocialButtons];
+    [self setupView];
 }
 
 /*
@@ -67,6 +71,12 @@
  // Drawing code
  }
  */
+
+- (void)setupView
+{
+    self.avatarImageView.layer.cornerRadius = 4.0f;
+    self.avatarImageView.clipsToBounds = YES;
+}
 
 - (void)setupSocialButtons
 {
@@ -151,7 +161,18 @@
     self.currentUser = currentUser;
     self.shareText = shareString;
     
-    self.shareTextView.text = shareString;
+    UIColor *textColor = [UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
+    UIFont *helveticaBoldFont = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+    UIFont *helveticaRegularFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    
+    NSMutableAttributedString *fullstring = (NSMutableAttributedString *)[SDUtils attributedStringWithText:currentUser.name firstColor:textColor andSecondText:[NSString stringWithFormat:@" %@",shareString] andSecondColor:textColor andFirstFont:helveticaBoldFont andSecondFont:helveticaRegularFont];
+    
+//    NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
+//    [paragrahStyle setLineSpacing:1];
+//    [fullstring addAttribute:NSParagraphStyleAttributeName value:paragrahStyle range:NSMakeRange(0, [fullstring length])];
+    self.shareLabel.attributedText = fullstring;
+    
+    self.dateLabel.text = [SDUtils formatedLocalizedDateStringFromDate:[NSDate date]];
     
     [self.avatarImageView cancelImageRequestOperation];
     self.avatarImageView.image = nil;
@@ -233,13 +254,14 @@
 {
     BOOL facebookSharingOn = NO;
     BOOL twitterSharingOn = NO;
+    NSString *fullString = [NSString stringWithFormat:@"%@ %@",self.currentUser.name,self.shareText];
     
     if (self.facebookSwitch)
         facebookSharingOn = self.facebookSwitch.isOn;
     if (self.twitterSwitch)
         twitterSharingOn = self.twitterSwitch.isOn;
     
-    [self.delegate shareButtonSelectedInShareView:self withShareText:self.shareText facebookEnabled:facebookSharingOn twitterEnabled:twitterSharingOn];
+    [self.delegate shareButtonSelectedInShareView:self withShareText:fullString facebookEnabled:facebookSharingOn twitterEnabled:twitterSharingOn];
 }
 
 - (IBAction)cancelShareButtonPressed:(UIButton *)sender

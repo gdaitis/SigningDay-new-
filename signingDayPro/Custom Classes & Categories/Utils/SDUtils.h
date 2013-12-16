@@ -21,6 +21,8 @@
 + (NSString *)formatedTimeForDate:(NSDate *)date;
 + (NSString *)formatedDateStringFromDateToNow:(NSDate *)date;
 + (NSString *)formatedDateStringFromDate:(NSDate *)date;
++ (NSString *)formatedLocalizedDateStringFromDate:(NSDate *)date;
+
 + (NSDate *)notLocalizedDateFromString:(NSString *)dateString;
 + (NSDate *)dateFromString:(NSString *)dateString;
 + (NSAttributedString *)attributedStringWithText:(NSString *)firstText firstColor:(UIColor *)firstColor andSecondText:(NSString *)secondText andSecondColor:(UIColor *)secondColor andFirstFont:(UIFont *)firstFont andSecondFont:(UIFont *)secondFont;
