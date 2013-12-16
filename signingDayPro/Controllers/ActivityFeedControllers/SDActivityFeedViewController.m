@@ -199,12 +199,13 @@
 
 - (void)showSearch:(NSNotification *)notification
 {
-    if ([[[notification userInfo] objectForKey:@"hideSearchView"] boolValue]) {
+    [UIView beginAnimations:nil
+                    context:nil];
+    if ([[[notification userInfo] objectForKey:@"hideSearchView"] boolValue])
         [self hideSearchView];
-    }
-    else {
+    else
         [self showSearchView];
-    }
+    [UIView commitAnimations];
 }
 
 - (void)showSearchView
@@ -232,14 +233,13 @@
 - (void)globalSearchViewController:(SDGlobalSearchViewController *)globalSearchViewController
                      didSelectUser:(User *)user
 {
-    [self hideSearchView];
-    
     UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
                                                                         bundle:nil];
     SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
     userProfileViewController.currentUser = user;
     
-    [self.navigationController pushViewController:userProfileViewController animated:YES];
+    [self.navigationController pushViewController:userProfileViewController
+                                         animated:YES];
 }
 
 #pragma mark - UIActionSheet delegate methods
