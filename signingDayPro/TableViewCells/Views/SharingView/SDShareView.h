@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class SDShareView;
+@class User;
 
 @protocol SDShareViewDelegate <NSObject>
 
@@ -23,5 +24,7 @@
 
 @property (nonatomic, strong) NSString *shareText;
 @property (nonatomic, weak) id <SDShareViewDelegate> delegate;
+
+- (void)setUpViewWithShareString:(NSString *)shareString andUser:(User *)currentUser;
 
 @end

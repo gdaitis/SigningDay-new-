@@ -42,16 +42,16 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="633-pX-gws">
-                                    <rect key="frame" x="15" y="184" width="70" height="21"/>
+                                    <rect key="frame" x="15" y="184" width="82" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CR9-X0-yFT">
                                     <rect key="frame" x="15" y="229" width="70" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -62,7 +62,7 @@
                                     <size key="titleShadowOffset" width="1" height="1"/>
                                     <state key="normal" title="Share" backgroundImage="shareButtonBigGreen.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
                                         <action selector="shareButtonPressed:" destination="1" eventType="touchUpInside" id="xNo-ZM-1Rz"/>
@@ -80,18 +80,19 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share this post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0HG-Ta-OFS">
-                                    <rect key="frame" x="23" y="18" width="238" height="21"/>
+                                    <rect key="frame" x="23" y="16" width="238" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="shadowOffset" width="1" height="1"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.45000000000000001" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.096088047445255481" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -101,6 +102,7 @@
                 <outlet property="avatarImageView" destination="J2d-2z-oKf" id="o7g-eD-agH"/>
                 <outlet property="blackBackground" destination="bxT-ha-6RK" id="gVE-uO-l21"/>
                 <outlet property="cancelShareButton" destination="vRv-ng-hDT" id="py4-uX-kS5"/>
+                <outlet property="contentView" destination="CFK-o3-tUP" id="CaV-OO-eTo"/>
                 <outlet property="dateLabel" destination="aeC-oq-mn7" id="FFc-jV-E8f"/>
                 <outlet property="facebookTitleLabel" destination="633-pX-gws" id="4Em-uZ-pZB"/>
                 <outlet property="shareButton" destination="tqT-Yy-u1R" id="dYc-Wk-q6n"/>

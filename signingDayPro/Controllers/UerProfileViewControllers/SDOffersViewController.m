@@ -539,12 +539,18 @@
 - (void)showSharingViewWithString:(NSString *)shareString andUser:(User *)currentUser
 {
     //in delegate method sendUpdatesToServer
+    
     SDShareView *shareView = (id)[SDShareView loadInstanceFromNib];
     shareView.frame = self.navigationController.view.frame;
     shareView.delegate = self;
-    shareView.shareText = shareString;
-    
+    [shareView setUpViewWithShareString:shareString andUser:currentUser];
+    shareView.alpha = 0.0f;
     [self.navigationController.view addSubview:shareView];
+    
+    [UIView animateWithDuration:0.35f animations:^{
+        shareView.alpha = 1.0f;
+    } completion:^(__unused BOOL finished) {
+    }];
 }
 
 #pragma mark - ShareView Delegate
@@ -568,7 +574,11 @@
 
 - (void)removeShareView:(SDShareView *)shareView
 {
-    [shareView removeFromSuperview];
+    [UIView animateWithDuration:0.35f animations:^{
+        shareView.alpha = 0.0f;
+    } completion:^(__unused BOOL finished) {
+        [shareView removeFromSuperview];
+    }];
 }
 
 @end
