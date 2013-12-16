@@ -54,9 +54,9 @@
     [self.view addSubview:self.tableView];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewDidAppear:animated];
+    [super viewDidLoad];
     
     [self.searchBar becomeFirstResponder];
 }
@@ -154,6 +154,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     User *user = [self.searchResults objectAtIndex:indexPath.row];
+    [self.searchBar resignFirstResponder];
     [self.delegate globalSearchViewController:self
                                 didSelectUser:user];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -259,7 +259,7 @@
         [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"WarRoomNewPostButton.png"]];
         self.topToolBar.rightButton.hidden = NO;
     } else if (self.showSearchButton) {
-        [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"WarRoomNewPostButton.png"]];
+        [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"SearchIcon.png"]];
         self.topToolBar.rightButton.hidden = NO;
     } else {
         self.topToolBar.rightButton.hidden = YES;
