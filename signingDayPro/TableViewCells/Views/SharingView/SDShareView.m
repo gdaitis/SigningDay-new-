@@ -76,7 +76,13 @@
 {
     self.avatarImageView.layer.cornerRadius = 4.0f;
     self.avatarImageView.clipsToBounds = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setupSocialButtons)
+                                                 name:kApplicationCameFromBackground
+                                               object:nil];
 }
+
 
 - (void)setupSocialButtons
 {
@@ -154,11 +160,6 @@
         [self.contentView addSubview:self.twitterConfigureLabelButton];
     }
     
-}
-
-- (void)updateSocialButtons
-{
-    [self setupSocialButtons];
 }
 
 - (void)setUpViewWithShareString:(NSString *)shareString andUser:(User *)currentUser
@@ -272,5 +273,12 @@
 - (IBAction)cancelShareButtonPressed:(UIButton *)sender
 {
     [self.delegate dontShareButtonSelectedInShareView:self];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kApplicationCameFromBackground
+                                                  object:nil];
 }
 @end
