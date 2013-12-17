@@ -61,7 +61,7 @@
                                         <action selector="shareButtonPressed:" destination="1" eventType="touchUpInside" id="xNo-ZM-1Rz"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vRv-ng-hDT">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vRv-ng-hDT" customClass="UIUnderlinedButton">
                                     <rect key="frame" x="92" y="332" width="100" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="No, thank you">

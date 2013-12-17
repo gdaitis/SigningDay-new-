@@ -282,6 +282,7 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
+		80362A8B186069880017945E /* UIUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362A8A186069880017945E /* UIUnderlinedButton.m */; };
 		803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */; };
 		803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDBasicUserCell.xib */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
@@ -681,6 +682,8 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		80362A89186069880017945E /* UIUnderlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUnderlinedButton.h; sourceTree = "<group>"; };
+		80362A8A186069880017945E /* UIUnderlinedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUnderlinedButton.m; sourceTree = "<group>"; };
 		803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StaffButtonImage@2x.png"; sourceTree = "<group>"; };
 		803CDD5F1806D2E800BB399F /* SDBasicUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBasicUserCell.h; sourceTree = "<group>"; };
 		803CDD601806D2E800BB399F /* SDBasicUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBasicUserCell.m; sourceTree = "<group>"; };
@@ -1189,6 +1192,7 @@
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
 				80236152174D1B4C00595432 /* UILabel */,
+				80362A88186069880017945E /* UnderlinedTextButton */,
 				8032F0601755F98E00C92AAC /* Utils */,
 			);
 			name = "Custom classes";
@@ -1502,6 +1506,15 @@
 				80C28348182BCC3E007759A0 /* Thread.m */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		80362A88186069880017945E /* UnderlinedTextButton */ = {
+			isa = PBXGroup;
+			children = (
+				80362A89186069880017945E /* UIUnderlinedButton.h */,
+				80362A8A186069880017945E /* UIUnderlinedButton.m */,
+			);
+			path = UnderlinedTextButton;
 			sourceTree = "<group>";
 		};
 		80431E0A17A006B3002F6E3D /* Categories */ = {
@@ -2709,6 +2722,7 @@
 				7B93CECC182AA007007A6275 /* SDBuzzButtonView.m in Sources */,
 				7B93CECD182AA007007A6275 /* SDStarsRatingView.m in Sources */,
 				7B93CECE182AA007007A6275 /* SDBaseScoreView.m in Sources */,
+				80362A8B186069880017945E /* UIUnderlinedButton.m in Sources */,
 				80C2834C182BCC3F007759A0 /* WebPreview.m in Sources */,
 				7B93CECF182AA007007A6275 /* SDBaseProfileHeaderView.m in Sources */,
 				80C28373182BCC40007759A0 /* Master.m in Sources */,

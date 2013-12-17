@@ -26,5 +26,6 @@
 @property (nonatomic, weak) id <SDShareViewDelegate> delegate;
 
 - (void)setUpViewWithShareString:(NSString *)shareString andUser:(User *)currentUser;
+- (void)updateSocialButtons;
 
 @end

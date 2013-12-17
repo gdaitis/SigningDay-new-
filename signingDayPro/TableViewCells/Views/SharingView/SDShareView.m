@@ -156,6 +156,11 @@
     
 }
 
+- (void)updateSocialButtons
+{
+    [self setupSocialButtons];
+}
+
 - (void)setUpViewWithShareString:(NSString *)shareString andUser:(User *)currentUser
 {
     self.currentUser = currentUser;

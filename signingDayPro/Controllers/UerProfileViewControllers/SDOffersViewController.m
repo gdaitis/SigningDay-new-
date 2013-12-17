@@ -33,6 +33,7 @@
 //list tracking for sharing
 @property (nonatomic, strong) NSMutableArray *originalList;
 @property (nonatomic, strong) Offer *originalCommitedToOffer;
+@property (nonatomic, strong) SDShareView *shareView;
 
 @end
 
@@ -70,6 +71,9 @@
 {
     [super viewWillAppear:animated];
     [self addEditButton];
+    if (self.shareView) {
+        [self.shareView updateSocialButtons];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -380,6 +384,7 @@
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     [context MR_saveOnlySelfAndWait];
+    [self.tableView reloadData];
     [self updateServerInfo];
 }
 
@@ -540,15 +545,16 @@
 {
     //in delegate method sendUpdatesToServer
     
-    SDShareView *shareView = (id)[SDShareView loadInstanceFromNib];
-    shareView.frame = self.navigationController.view.frame;
-    shareView.delegate = self;
-    [shareView setUpViewWithShareString:shareString andUser:currentUser];
-    shareView.alpha = 0.0f;
-    [self.navigationController.view addSubview:shareView];
+    SDShareView *shareV = (id)[SDShareView loadInstanceFromNib];
+    self.shareView = shareV;
+    self.shareView.frame = self.navigationController.view.frame;
+    self.shareView.delegate = self;
+    [self.shareView setUpViewWithShareString:shareString andUser:currentUser];
+    self.shareView.alpha = 0.0f;
+    [self.navigationController.view addSubview:self.shareView];
     
     [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-        shareView.alpha = 1.0f;
+        self.shareView.alpha = 1.0f;
     } completion:^(__unused BOOL finished) {
     }];
 }
@@ -578,6 +584,7 @@
         shareView.alpha = 0.0f;
     } completion:^(__unused BOOL finished) {
         [shareView removeFromSuperview];
+        self.shareView = nil;
     }];
 }
 
