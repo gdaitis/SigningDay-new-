@@ -8,6 +8,10 @@
 
 #import "SDTopSchoolEditCell.h"
 #import "TopSchool.h"
+#import "Team.h"
+#import "Player.h"
+#import "User.h"
+#import <AFNetworking.h>
 
 @interface SDTopSchoolEditCell ()
 
@@ -70,7 +74,12 @@
 
 - (void)setupCellWithTopSchool:(TopSchool *)topSchool
 {
+    self.collegeNameLabel.text = topSchool.theTeam.theUser.name;
+    [self setInterestLevel:[topSchool.interest intValue]];
     
+    [self.avatarImageView cancelImageRequestOperation];
+    self.avatarImageView.image = nil;
+    [self.avatarImageView setImageWithURL:[NSURL URLWithString:topSchool.theTeam.theUser.avatarUrl]];
 }
 
 #pragma mark - IBActions

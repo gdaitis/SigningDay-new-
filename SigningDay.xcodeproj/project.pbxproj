@@ -276,6 +276,9 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
+		80362A8E186085510017945E /* SDTopSchoolService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362A8D186085510017945E /* SDTopSchoolService.m */; };
+		80362A90186099640017945E /* topSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362A8F186099640017945E /* topSchoolsIcon@2x.png */; };
+		80362A9318609E3F0017945E /* TopSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362A9218609E3F0017945E /* TopSchool.m */; };
 		803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */; };
 		803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
@@ -286,7 +289,6 @@
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
 		8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044394617D4A8C400AADFDB /* closeBtn@2x.png */; };
 		8050AFC8185A109B007688AB /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFC7185A109B007688AB /* Team.m */; };
-		8050AFCB185A109C007688AB /* TopSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFCA185A109C007688AB /* TopSchool.m */; };
 		8050AFCE185A109C007688AB /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFCD185A109C007688AB /* Player.m */; };
 		8050AFD1185A12C6007688AB /* SDTopSchoolsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFD0185A12C6007688AB /* SDTopSchoolsCell.m */; };
 		8050AFD4185A12DB007688AB /* SDTopSchoolEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFD3185A12DB007688AB /* SDTopSchoolEditCell.m */; };
@@ -677,6 +679,11 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		80362A8C186085510017945E /* SDTopSchoolService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolService.h; sourceTree = "<group>"; };
+		80362A8D186085510017945E /* SDTopSchoolService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTopSchoolService.m; sourceTree = "<group>"; };
+		80362A8F186099640017945E /* topSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topSchoolsIcon@2x.png"; sourceTree = "<group>"; };
+		80362A9118609E3F0017945E /* TopSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopSchool.h; sourceTree = "<group>"; };
+		80362A9218609E3F0017945E /* TopSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopSchool.m; sourceTree = "<group>"; };
 		803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StaffButtonImage@2x.png"; sourceTree = "<group>"; };
 		803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCoachingStaffCell.h; sourceTree = "<group>"; };
 		803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCoachingStaffCell.m; sourceTree = "<group>"; };
@@ -752,8 +759,6 @@
 		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
 		8050AFC6185A109B007688AB /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		8050AFC7185A109B007688AB /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
-		8050AFC9185A109C007688AB /* TopSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopSchool.h; sourceTree = "<group>"; };
-		8050AFCA185A109C007688AB /* TopSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopSchool.m; sourceTree = "<group>"; };
 		8050AFCC185A109C007688AB /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		8050AFCD185A109C007688AB /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		8050AFCF185A12C6007688AB /* SDTopSchoolsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolsCell.h; sourceTree = "<group>"; };
@@ -1284,6 +1289,8 @@
 				8032EFD41755EEDE00C92AAC /* SDErrorService.m */,
 				8032EFD51755EEDE00C92AAC /* SDFollowingService.h */,
 				8032EFD61755EEDE00C92AAC /* SDFollowingService.m */,
+				80362A8C186085510017945E /* SDTopSchoolService.h */,
+				80362A8D186085510017945E /* SDTopSchoolService.m */,
 				8032EFD71755EEDE00C92AAC /* SDImageService.h */,
 				8032EFD81755EEDE00C92AAC /* SDImageService.m */,
 				8032EFD91755EEDE00C92AAC /* SDLoginService.h */,
@@ -1440,10 +1447,10 @@
 			isa = PBXGroup;
 			children = (
 				80C28345182BCC2F007759A0 /* SigningDay.xcdatamodel */,
+				80362A9118609E3F0017945E /* TopSchool.h */,
+				80362A9218609E3F0017945E /* TopSchool.m */,
 				8050AFCC185A109C007688AB /* Player.h */,
 				8050AFCD185A109C007688AB /* Player.m */,
-				8050AFC9185A109C007688AB /* TopSchool.h */,
-				8050AFCA185A109C007688AB /* TopSchool.m */,
 				8050AFC6185A109B007688AB /* Team.h */,
 				8050AFC7185A109B007688AB /* Team.m */,
 				7BAF744B184F620B00B5A2DE /* Notification.h */,
@@ -1590,6 +1597,7 @@
 		8050AFD9185A1B05007688AB /* TopSchools */ = {
 			isa = PBXGroup;
 			children = (
+				80362A8F186099640017945E /* topSchoolsIcon@2x.png */,
 				8050AFDA185A1B1C007688AB /* interestImage1@2x.png */,
 				8050AFDD185A1B1C007688AB /* interestImage2@2x.png */,
 				8050AFDE185A1B1C007688AB /* interestImage3@2x.png */,
@@ -2440,6 +2448,7 @@
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
 				7B9D057618224CD6007F75DC /* NavigationBarBgIOS7@2x.png in Resources */,
+				80362A90186099640017945E /* topSchoolsIcon@2x.png in Resources */,
 				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
 				7B663D0F17F1B92D00CB59AE /* switch_thumb@2x.png in Resources */,
 				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
@@ -2717,6 +2726,7 @@
 				7B93CEC9182AA007007A6275 /* SDUserProfileCoachHeaderView.m in Sources */,
 				7B93CECA182AA007007A6275 /* SDUserProfileTeamHeaderView.m in Sources */,
 				7B93CECB182AA007007A6275 /* SDUserProfileSlidingButtonView.m in Sources */,
+				80362A8E186085510017945E /* SDTopSchoolService.m in Sources */,
 				7B93CECC182AA007007A6275 /* SDBuzzButtonView.m in Sources */,
 				7B93CECD182AA007007A6275 /* SDStarsRatingView.m in Sources */,
 				7B93CECE182AA007007A6275 /* SDBaseScoreView.m in Sources */,
@@ -2765,7 +2775,6 @@
 				7B93CE80182A9FAE007A6275 /* SDEnterMediaInfoViewController.m in Sources */,
 				7B93CE81182A9FAE007A6275 /* SDPublishPhotoTableViewController.m in Sources */,
 				80C28385182BCC41007759A0 /* Group.m in Sources */,
-				8050AFCB185A109C007688AB /* TopSchool.m in Sources */,
 				7B93CE82182A9FAE007A6275 /* SDPublishVideoTableViewController.m in Sources */,
 				7B93CE83182A9FAE007A6275 /* SDCommentsViewController.m in Sources */,
 				80C2837F182BCC40007759A0 /* Member.m in Sources */,
@@ -2789,6 +2798,7 @@
 				7B93CE92182A9FAE007A6275 /* SDSharingSettingsViewController.m in Sources */,
 				7B93CE93182A9FAE007A6275 /* SDEditProfileViewController.m in Sources */,
 				7B93CE94182A9FAE007A6275 /* SDBaseToolbarItemViewController.m in Sources */,
+				80362A9318609E3F0017945E /* TopSchool.m in Sources */,
 				7B93CE95182A9FAE007A6275 /* SDUserProfileViewController.m in Sources */,
 				7B93CE96182A9FAE007A6275 /* SDOffersViewController.m in Sources */,
 				7B93CE97182A9FAE007A6275 /* SDKeyAttributesViewController.m in Sources */,

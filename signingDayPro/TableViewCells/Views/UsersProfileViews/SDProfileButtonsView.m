@@ -254,7 +254,7 @@
             image = [UIImage imageNamed:@"UserProfileContactsButton.png"];
             break;
         case SDProfileButtonTypeTopSchools:
-            image = [UIImage imageNamed:@"UserProfileProspectsButton.png"];
+            image = [UIImage imageNamed:@"topSchoolsIcon.png"];
             break;
             
         default:

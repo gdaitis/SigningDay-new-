@@ -248,6 +248,7 @@
         <relationship name="forumReplies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ForumReply" inverseName="thread" inverseEntity="ForumReply" syncable="YES"/>
     </entity>
     <entity name="TopSchool" representedClassName="TopSchool" syncable="YES">
+        <attribute name="hasOfferFromTeam" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="interest" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="thePlayer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="topSchools" inverseEntity="Player" syncable="YES"/>
@@ -331,7 +332,7 @@
         <element name="State" positionX="-119" positionY="414" width="128" height="105"/>
         <element name="Team" positionX="718" positionY="11" width="128" height="328"/>
         <element name="Thread" positionX="7" positionY="738" width="128" height="223"/>
-        <element name="TopSchool" positionX="844" positionY="635" width="128" height="103"/>
+        <element name="TopSchool" positionX="844" positionY="635" width="128" height="120"/>
         <element name="User" positionX="403" positionY="108" width="128" height="703"/>
         <element name="WebPreview" positionX="430" positionY="-99" width="128" height="135"/>
     </elements>

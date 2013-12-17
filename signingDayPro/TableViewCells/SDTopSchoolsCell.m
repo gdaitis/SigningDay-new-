@@ -8,6 +8,10 @@
 
 #import "SDTopSchoolsCell.h"
 #import "TopSchool.h"
+#import "Team.h"
+#import "Player.h"
+#import "User.h"
+#import <AFNetworking.h>
 
 @interface SDTopSchoolsCell ()
 
@@ -20,6 +24,12 @@
 @end
 
 @implementation SDTopSchoolsCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.checkMarkImageView.backgroundColor = [UIColor colorWithRed:221.0f/255.0f green:220.0f/255.0f blue:214.0f/255.0f alpha:1.0f];
+}
 
 - (void)setInterestLevel:(int)interestLevel
 {
@@ -71,7 +81,13 @@
 
 - (void)setupCellWithTopSchool:(TopSchool *)topSchool
 {
+    self.collegeNameLabel.text = topSchool.theTeam.theUser.name;
+    [self setInterestLevel:[topSchool.interest intValue]];
+    self.checkMarkImageView.image = ([topSchool.hasOfferFromTeam boolValue]) ? [UIImage imageNamed:@"offerCheckMark.png"] : nil;
     
+    [self.avatarImageView cancelImageRequestOperation];
+    self.avatarImageView.image = nil;
+    [self.avatarImageView setImageWithURL:[NSURL URLWithString:topSchool.theTeam.theUser.avatarUrl]];
 }
 
 #pragma mark - IBActions

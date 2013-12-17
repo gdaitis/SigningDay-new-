@@ -20,6 +20,7 @@
 #import "SDNavigationController.h"
 #import "SDCustomNavigationToolbarView.h"
 #import "IIViewDeckController.h"
+#import "SDTopSchoolService.h"
 
 @interface SDTopSchoolsViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate>
 
@@ -183,6 +184,23 @@
 - (void)loadData
 {
     [self showProgressHudInView:self.tableView withText:@"Loading"];
+    
+    [SDTopSchoolService getTopSchoolsForUser:self.currentUser completionBlock:^{
+        NSSortDescriptor *rankDescriptor =      [NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES];
+        
+        self.dataArray = nil;
+        self.dataArray = [NSMutableArray arrayWithArray:[[self.currentUser.thePlayer.topSchools allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:rankDescriptor, nil]]];
+        
+        [self.tableView reloadData];
+        [self hideProgressHudInView:self.tableView];
+        if ([self.dataArray count] == 0)
+            [self showNoOffersLabel];
+
+
+    } failureBlock:^{
+        
+    }];
+    
 //    [SDProfileService getOffersForUser:self.currentUser completionBlock:^{
 //        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"playerCommited" ascending:NO];
 //        NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"team.theUser.name"
@@ -325,6 +343,7 @@
         
         NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
 #warning check cascade rules for deleting
+//        [SDCacheService teamsShouldBeUpdateWhenNeeded];
         [context deleteObject:topSchool];
         [context MR_saveOnlySelfAndWait];
     }
@@ -432,7 +451,7 @@
 
 - (void)showInterestLevelViewForTopSchool:(TopSchool *)topSchool
 {
-    
+    NSLog(@"Showing InterestLevel View");
 }
 
 #pragma mark - Interest Level View Delegate
