@@ -22,7 +22,7 @@
 #import "SDOfferEditCell.h"
 #import "SDCollegeSearchViewController.h"
 #import "SDUtils.h"
-
+#import "SDSharingService.h"
 #import "SDShareView.h"
 
 @interface SDOffersViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate,SDShareViewDelegate>
@@ -561,10 +561,15 @@
 
 #pragma mark - ShareView Delegate
 
-- (void)shareButtonSelectedInShareView:(SDShareView *)shareView withShareText:(NSString *)shareText facebookEnabled:(BOOL)facebookEnabled twitterEnabled:(BOOL)twitterEnabled
+- (void)shareButtonSelectedInShareView:(SDShareView *)shareView
+                         withShareText:(NSString *)shareText
+                       facebookEnabled:(BOOL)facebookEnabled
+                        twitterEnabled:(BOOL)twitterEnabled
 {
-    //send share string to fb or
-    
+    //send share string to fb or tw
+    [SDSharingService shareString:shareText
+                      forFacebook:facebookEnabled
+                       andTwitter:twitterEnabled];
     
     //send edited list to server
     [self sendUpdatesToServer];

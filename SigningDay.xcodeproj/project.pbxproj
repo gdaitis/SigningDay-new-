@@ -206,6 +206,7 @@
 		7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374017CF6A9B0064DBEB /* CoreText.framework */; };
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
 		7BB86C4D1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */; };
+		7BBBDCE61860726F00831D38 /* SDSharingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBDCE51860726F00831D38 /* SDSharingService.m */; };
 		7BC4DD90184CD1C400730E92 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC4DD8F184CD1C400730E92 /* User.m */; };
 		7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */; };
 		7BD8D7711850840000A0AD65 /* SDContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8D7701850840000A0AD65 /* SDContactInfoViewController.m */; };
@@ -513,6 +514,8 @@
 		7BB4374017CF6A9B0064DBEB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
+		7BBBDCE41860726F00831D38 /* SDSharingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSharingService.h; sourceTree = "<group>"; };
+		7BBBDCE51860726F00831D38 /* SDSharingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSharingService.m; sourceTree = "<group>"; };
 		7BC1D86317F315C800D686E6 /* SDNotificationsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationsService.h; sourceTree = "<group>"; };
 		7BC1D86417F315C800D686E6 /* SDNotificationsService.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationsService.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
 		7BC4DD8E184CD1C400730E92 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -1314,6 +1317,8 @@
 				8012100C181538D800F65B0B /* SDWarRoomService.m */,
 				80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */,
 				80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */,
+				7BBBDCE41860726F00831D38 /* SDSharingService.h */,
+				7BBBDCE51860726F00831D38 /* SDSharingService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2778,6 +2783,7 @@
 				7B93CE85182A9FAE007A6275 /* SDFollowingViewController.m in Sources */,
 				80C28376182BCC40007759A0 /* Offer.m in Sources */,
 				7B93CE86182A9FAE007A6275 /* SDBaseLandingPageViewController.m in Sources */,
+				7BBBDCE61860726F00831D38 /* SDSharingService.m in Sources */,
 				7B93CE87182A9FAE007A6275 /* SDPlayerLandingPageViewController.m in Sources */,
 				7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */,
 				7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */,
