@@ -24,6 +24,11 @@
 
 @implementation SDTopSchoolEditCell
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+}
+
 - (void)setInterestLevel:(int)interestLevel
 {
     _interestLevel= interestLevel;
@@ -74,6 +79,7 @@
 
 - (void)setupCellWithTopSchool:(TopSchool *)topSchool
 {
+    self.showsReorderControl = YES;
     self.collegeNameLabel.text = topSchool.theTeam.theUser.name;
     [self setInterestLevel:[topSchool.interest intValue]];
     
