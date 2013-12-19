@@ -318,6 +318,7 @@
 		80362AF7186322F00017945E /* interestImage4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362AF1186322F00017945E /* interestImage4@2x.png */; };
 		80362AF8186322F00017945E /* interestImage5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362AF2186322F00017945E /* interestImage5@2x.png */; };
 		80362AF9186322F00017945E /* topSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362AF3186322F00017945E /* topSchoolsIcon@2x.png */; };
+		80362AFC186323A60017945E /* SDTopSchoolService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362AFB186323A60017945E /* SDTopSchoolService.m */; };
 		803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */; };
 		803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDBasicUserCell.xib */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
@@ -758,6 +759,8 @@
 		80362AF1186322F00017945E /* interestImage4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "interestImage4@2x.png"; sourceTree = "<group>"; };
 		80362AF2186322F00017945E /* interestImage5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "interestImage5@2x.png"; sourceTree = "<group>"; };
 		80362AF3186322F00017945E /* topSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topSchoolsIcon@2x.png"; sourceTree = "<group>"; };
+		80362AFA186323A60017945E /* SDTopSchoolService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolService.h; sourceTree = "<group>"; };
+		80362AFB186323A60017945E /* SDTopSchoolService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTopSchoolService.m; sourceTree = "<group>"; };
 		803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StaffButtonImage@2x.png"; sourceTree = "<group>"; };
 		803CDD5F1806D2E800BB399F /* SDBasicUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBasicUserCell.h; sourceTree = "<group>"; };
 		803CDD601806D2E800BB399F /* SDBasicUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBasicUserCell.m; sourceTree = "<group>"; };
@@ -1318,6 +1321,8 @@
 				8032EFD01755EEDE00C92AAC /* SDAPIClient.m */,
 				7B652362176EEA0E002EA795 /* SDActivityFeedService.h */,
 				7B652363176EEA0E002EA795 /* SDActivityFeedService.m */,
+				80362AFA186323A60017945E /* SDTopSchoolService.h */,
+				80362AFB186323A60017945E /* SDTopSchoolService.m */,
 				80A09F721858BC9200195470 /* SDCacheService.h */,
 				80A09F731858BC9200195470 /* SDCacheService.m */,
 				8032EFD11755EEDE00C92AAC /* SDChatService.h */,
@@ -2765,6 +2770,7 @@
 				7B93CEB6182AA007007A6275 /* SDFollowingCell.m in Sources */,
 				7B93CEB7182AA007007A6275 /* SDFilterListCell.m in Sources */,
 				7B93CEB8182AA007007A6275 /* SDCollectionCell.m in Sources */,
+				80362AFC186323A60017945E /* SDTopSchoolService.m in Sources */,
 				7B93CEB9182AA007007A6275 /* SDNotificationCell.m in Sources */,
 				7B93CEBA182AA007007A6275 /* SDImageEnlargementView.m in Sources */,
 				7B93CEBB182AA007007A6275 /* SDPlayersSearchHeader.m in Sources */,
