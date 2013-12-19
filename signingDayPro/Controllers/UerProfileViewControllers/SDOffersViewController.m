@@ -22,11 +22,17 @@
 #import "SDOfferEditCell.h"
 #import "SDCollegeSearchViewController.h"
 #import "SDUtils.h"
+#import "SDSharingService.h"
+#import "SDShareView.h"
 
-@interface SDOffersViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate>
+@interface SDOffersViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate,SDShareViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) Offer *commitedToOffer;
+
+//list tracking for sharing
+@property (nonatomic, strong) NSMutableArray *originalList;
+@property (nonatomic, strong) Offer *originalCommitedToOffer;
 
 @end
 
@@ -63,7 +69,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     [self addEditButton];
 }
 
@@ -150,6 +155,48 @@
         cell.textLabel.text = @"Add new";
         
         return cell;
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    BOOL result = (self.tableStyle == TABLE_STYLE_EDIT) ? YES : NO;
+    
+    if (indexPath.row >= [self.dataArray count])
+        result = NO;
+    
+    return result;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Delete";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSArray *deleteIndexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self deleteOffer:[self.dataArray objectAtIndex:indexPath.row]];
+        [self.dataArray removeObjectAtIndex:indexPath.row];
+        [self.tableView endUpdates];
     }
 }
 
@@ -278,6 +325,7 @@
 {
     if (self.tableStyle == TABLE_STYLE_NORMAL) {
         self.tableStyle = TABLE_STYLE_EDIT;
+        [self rememberCurrentListInfoForSharing];
     }
     else {
         self.tableStyle = TABLE_STYLE_NORMAL;
@@ -286,48 +334,6 @@
     
     [self updateButtonTitleAndSetImage];
     [self.tableView reloadData];
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    BOOL result = (self.tableStyle == TABLE_STYLE_EDIT) ? YES : NO;
-    
-    if (indexPath.row >= [self.dataArray count])
-        result = NO;
-    
-    return result;
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
-    return NO;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 0;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"Delete";
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        NSArray *deleteIndexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
-        [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self deleteOffer:[self.dataArray objectAtIndex:indexPath.row]];
-        [self.dataArray removeObjectAtIndex:indexPath.row];
-        [self.tableView endUpdates];
-    }
 }
 
 - (void)deleteOffer:(Offer *)offer
@@ -344,6 +350,17 @@
 }
 
 - (void)saveUpdates
+{
+    NSString *sharingString = [self formShareString];
+    if (!sharingString) {
+        [self sendUpdatesToServer];
+    }
+    else {
+        [self showSharingViewWithString:sharingString andUser:self.currentUser];
+    }
+}
+
+- (void)sendUpdatesToServer
 {
     [self showProgressHudInView:self.view withText:@"Saving"];
     //save changes to database and do a request to server with changes
@@ -363,13 +380,16 @@
     
     NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
     [context MR_saveOnlySelfAndWait];
+    [self.tableView reloadData];
     [self updateServerInfo];
 }
 
 - (void)cantSaveOffers
 {
-    self.tableStyle = TABLE_STYLE_NORMAL;
-    [self editButtonPressed:nil];
+    //can't save offers, back to edit mode
+    self.tableStyle = TABLE_STYLE_EDIT;
+    [self updateButtonTitleAndSetImage];
+    [self.tableView reloadData];
     
     [self hideProgressHudInView:self.view];
     [self showAlertWithTitle:nil andText:@"An error occurred. Please try again later."];
@@ -439,6 +459,132 @@
     [self.dataArray addObject:offer];
     [context MR_saveOnlySelfAndWait];
     [self.tableView reloadData];
+}
+
+#pragma mark - Sharing methods
+
+- (void)rememberCurrentListInfoForSharing
+{
+    //save original(initial) offer
+    self.originalCommitedToOffer = self.commitedToOffer;
+    
+    self.originalList = nil;
+    self.originalList = [[NSMutableArray alloc] init];
+    
+    //save team ids'
+    for (Offer *offer in self.dataArray) {
+        [self.originalList addObject:offer.team.theUser.identifier];
+    }
+}
+
+- (NSString *)formShareString
+{
+    //can return nil, caller responsible for checking this
+    NSString *result = nil;
+    
+    if (self.commitedToOffer) {
+        if (self.originalCommitedToOffer) {
+            if (![self.commitedToOffer.team.theUser.identifier isEqualToNumber:self.originalCommitedToOffer.team.theUser.identifier]) {
+                //initial team and current commited to team is not equal, need to form share text on commited info (this is more important, than add offers)
+                result = [self stringForCommitedPlayer];
+            }
+            else {
+                result = [self stringForReceivedOffers];
+            }
+        }
+        else {
+            //commited to new team
+            result = [self stringForCommitedPlayer];
+        }
+    }
+    else {
+        //check for newly added teams to form share text
+        result = [self stringForReceivedOffers];
+    }
+    
+    
+    
+    return result;
+}
+
+- (NSString *)stringForCommitedPlayer
+{
+    NSString *result = [NSString stringWithFormat:@"committed to %@ via @Signing_Day %@",self.commitedToOffer.team.theUser.name,kSharingUrlDisplayedText];
+    
+    return result;
+}
+
+- (NSString *)stringForReceivedOffers
+{
+    BOOL commitedToAtLeastOneNewTeam = NO;
+    
+    NSMutableString *result = [NSMutableString stringWithFormat:@"received offers from"];
+    for (Offer *offer in self.dataArray) {
+        if (![self.originalList containsObject:offer.team.theUser.identifier]) {
+            [result appendFormat:@" %@,",offer.team.theUser.name];
+            commitedToAtLeastOneNewTeam = YES;
+        }
+    }
+    if (commitedToAtLeastOneNewTeam) {
+        NSString *substring = [result substringToIndex:result.length -1];
+        result = [NSMutableString stringWithString:substring];
+        [result appendFormat:@" via @Signing_Day %@",kSharingUrlDisplayedText];
+    }
+    else
+        result = nil;
+    
+    
+    return result;
+}
+
+- (void)showSharingViewWithString:(NSString *)shareString andUser:(User *)currentUser
+{
+    //in delegate method sendUpdatesToServer
+    
+    SDShareView *shareView = (id)[SDShareView loadInstanceFromNib];
+    shareView.frame = self.navigationController.view.frame;
+    shareView.delegate = self;
+    [shareView setUpViewWithShareString:shareString andUser:currentUser];
+    shareView.alpha = 0.0f;
+    [self.navigationController.view addSubview:shareView];
+    
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        shareView.alpha = 1.0f;
+    } completion:^(__unused BOOL finished) {
+    }];
+}
+
+#pragma mark - ShareView Delegate
+
+- (void)shareButtonSelectedInShareView:(SDShareView *)shareView
+                         withShareText:(NSString *)shareText
+                       facebookEnabled:(BOOL)facebookEnabled
+                        twitterEnabled:(BOOL)twitterEnabled
+{
+    //send share string to fb or tw
+    [SDSharingService shareString:shareText
+                      forFacebook:facebookEnabled
+                       andTwitter:twitterEnabled];
+    
+    //send edited list to server
+    [self sendUpdatesToServer];
+    [self removeShareView:shareView];
+}
+
+- (void)dontShareButtonSelectedInShareView:(SDShareView *)shareView
+{
+    //send edited list to server
+    [self sendUpdatesToServer];
+    [self removeShareView:shareView];
+}
+
+- (void)removeShareView:(SDShareView *)shareView
+{
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        shareView.alpha = 0.0f;
+    } completion:^(__unused BOOL finished) {
+        [shareView removeFromSuperview];
+    }];
 }
 
 @end

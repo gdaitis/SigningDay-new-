@@ -31,22 +31,19 @@
 #import "SDCommentsViewController.h"
 #import "WebPreview.h"
 #import "SDActivityStoryViewController.h"
+#import "SDGlobalSearchViewController.h"
+#import "SDUserProfileViewController.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import "SDImageEnlargementView.h"
 #import "SDYoutubePlayerViewController.h"
 
-#import "SDNotificationsService.h"
-
 #import "SDGoogleAnalyticsService.h"
-#import "SDWarRoomService.h"
-
-#import "SDProfileService.h"
 
 #define kButtonImageViewTag 999
 #define kButtonCommentLabelTag 998
 
-@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate,SDActivityFeedTableViewDelegate>
+@interface SDActivityFeedViewController () <SDActivityFeedHeaderViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SDPublishVideoTableViewControllerDelegate, SDPublishPhotoTableViewControllerDelegate, SDModalNavigationControllerDelegate, SDActivityFeedTableViewDelegate, SDGlobalSearchViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet SDActivityFeedTableView *tableView;
 @property (nonatomic, weak) IBOutlet SDActivityFeedHeaderView *headerView;
@@ -55,6 +52,7 @@
 @property (nonatomic, strong) UIImage *capturedImage;
 @property (nonatomic, strong) NSURL *capturedVideoURL;
 @property (nonatomic, strong) NSString *mediaType;
+@property (nonatomic, strong) SDGlobalSearchViewController *globalSearchViewController;
 
 @end
 
@@ -73,8 +71,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    [SDProfileService searchForUsersWithSearchString:@"eric" completionBlock:nil failureBlock:nil];
     
     self.tableView.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
     self.headerView.clipsToBounds = NO;
@@ -99,17 +95,24 @@
     self.tableView.tableDelegate = self;
     
     [self.tableView checkServerAndDeleteOld:YES];
-    
-    [SDNotificationsService getNotificationsWithPageSize:nil
-                                            successBlock:nil
-                                            failureBlock:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSearch:) name:kSearchButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) addSearchButton];
+    
     self.screenName = @"Activity Feed screen";
     [self.tableView loadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSearchButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) removeSearchButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -190,6 +193,53 @@
                        animated:YES
                      completion:nil];
     [[SDGoogleAnalyticsService sharedService] trackUXEventWithLabel:@"Say_Something_Selected_Activity_Feed"];
+}
+
+#pragma mark - Search methods
+
+- (void)showSearch:(NSNotification *)notification
+{
+    [UIView beginAnimations:nil
+                    context:nil];
+    if ([[[notification userInfo] objectForKey:@"hideSearchView"] boolValue])
+        [self hideSearchView];
+    else
+        [self showSearchView];
+    [UIView commitAnimations];
+}
+
+- (void)showSearchView
+{
+    self.globalSearchViewController = [[SDGlobalSearchViewController alloc] init];
+    [self addChildViewController:self.globalSearchViewController];
+    [self.view addSubview:self.globalSearchViewController.view];
+    self.globalSearchViewController.view.frame = CGRectMake(0,
+                                                            64,
+                                                            self.view.frame.size.width,
+                                                            self.view.frame.size.height - 64);
+    self.globalSearchViewController.delegate = self;
+    [self.globalSearchViewController didMoveToParentViewController:self];
+}
+
+- (void)hideSearchView
+{
+    [self.globalSearchViewController willMoveToParentViewController:nil];
+    [self.globalSearchViewController.view removeFromSuperview];
+    [self.globalSearchViewController removeFromParentViewController];
+}
+
+#pragma mark - SDGlobalSearchViewControllerDelegate methods
+
+- (void)globalSearchViewController:(SDGlobalSearchViewController *)globalSearchViewController
+                     didSelectUser:(User *)user
+{
+    UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                        bundle:nil];
+    SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+    userProfileViewController.currentUser = user;
+    
+    [self.navigationController pushViewController:userProfileViewController
+                                         animated:YES];
 }
 
 #pragma mark - UIActionSheet delegate methods

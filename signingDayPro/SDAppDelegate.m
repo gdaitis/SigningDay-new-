@@ -35,7 +35,6 @@ NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDel
     [SDUtils setupCoreDataStack];
     
     [[SDGoogleAnalyticsService sharedService] setupService];
-    
 
     //if master user got deleted, performing logout
     NSString *username = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
@@ -80,6 +79,7 @@ NSString * const kSDAppDelegatePushNotificationReceivedNotification = @"SDAppDel
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[NSNotificationCenter defaultCenter] postNotificationName:kApplicationCameFromBackground object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

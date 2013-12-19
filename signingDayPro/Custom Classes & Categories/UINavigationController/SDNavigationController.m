@@ -29,8 +29,10 @@
 @property (nonatomic, strong) UIViewController *lastControllerForToolbarItems;
 @property (nonatomic, assign) BarButtonType lastSelectedType;
 @property (nonatomic, assign) BOOL showFilterButton;
+@property (nonatomic, assign) BOOL showSearchButton;
 @property (nonatomic, assign) BOOL showNewPostButton;
 @property (nonatomic, assign) BOOL filterViewVisible;
+@property (nonatomic, assign) BOOL searchButtonVisible;
 @property (nonatomic, assign) BOOL navigationInProgress;
 
 @end
@@ -248,13 +250,16 @@
     self.topToolBar.notificationButton.selected = (_selectedMenuType == BARBUTTONTYPE_NOTIFICATIONS) ? YES : NO;
     self.topToolBar.messagesButton.selected = (_selectedMenuType == BARBUTTONTYPE_CONVERSATIONS)? YES : NO;
     self.topToolBar.followersButton.selected = (_selectedMenuType == BARBUTTONTYPE_FOLLOWERS) ? YES : NO;
-    self.topToolBar.rightButton.selected = (self.filterViewVisible) ? YES : NO;
+    self.topToolBar.rightButton.selected = (self.filterViewVisible || self.searchButtonVisible) ? YES : NO;
     
     if (self.showFilterButton) {
         [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"LandingPageFilterButton.png"]];
         self.topToolBar.rightButton.hidden = NO;
     } else if (self.showNewPostButton) {
         [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"WarRoomNewPostButton.png"]];
+        self.topToolBar.rightButton.hidden = NO;
+    } else if (self.showSearchButton) {
+        [self.topToolBar setrightButtonImage:[UIImage imageNamed:@"SearchIcon.png"]];
         self.topToolBar.rightButton.hidden = NO;
     } else {
         self.topToolBar.rightButton.hidden = YES;
@@ -420,6 +425,36 @@
 - (void)removeNewPostButton
 {
     self.showNewPostButton = NO;
+    [self setToolbarButtons];
+}
+
+- (void)searchButtonSelected
+{
+    NSDictionary *dictionary = nil;
+    
+    if (self.searchButtonVisible) {
+        dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"hideSearchView", nil];
+        self.searchButtonVisible = NO;
+    }
+    else {
+        dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"hideSearchView", nil];
+        self.searchButtonVisible = YES;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonPressedNotification
+                                                        object:nil
+                                                      userInfo:dictionary];
+    [self setToolbarButtons];
+}
+
+- (void)addSearchButton
+{
+    self.showSearchButton = YES;
+    [self setToolbarButtons];
+}
+
+- (void)removeSearchButton
+{
+    self.showSearchButton = NO;
     [self setToolbarButtons];
 }
 
@@ -789,6 +824,8 @@
         [self filterButtonSelected];
     if (self.showNewPostButton)
         [self newPostButtonSelected];
+    if (self.showSearchButton)
+        [self searchButtonSelected];
 }
 
 - (void)notificationButtonPressedInToolbarView:(SDCustomNavigationToolbarView *)toolbarView

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0B5BD8185F21FD008A4BC0 /* SearchIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0B5BD7185F21FD008A4BC0 /* SearchIcon@2x.png */; };
 		7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E782717F5682A001F8305 /* badgeBg@2x.png */; };
 		7B1DF11D17E0AF9D005455D8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1DF11C17E0AF9D005455D8 /* Social.framework */; };
 		7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F638B17B8D22300B755B2 /* LikeImageOrange@2x.png */; };
@@ -97,7 +98,7 @@
 		7B93CEA9182AA007007A6275 /* SDLandingPagePlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B793D17D5C01D00BDA9D0 /* SDLandingPagePlayerCell.m */; };
 		7B93CEAA182AA007007A6275 /* SDLandingPageCollegeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */; };
 		7B93CEAB182AA007007A6275 /* SDLandingPageHighSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */; };
-		7B93CEAC182AA007007A6275 /* SDCoachingStaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */; };
+		7B93CEAC182AA007007A6275 /* SDBasicUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 803CDD601806D2E800BB399F /* SDBasicUserCell.m */; };
 		7B93CEAD182AA007007A6275 /* SDGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB81817E55B00A163FD /* SDGroupCell.m */; };
 		7B93CEAE182AA007007A6275 /* SDForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB51817E55B00A163FD /* SDForumCell.m */; };
 		7B93CEAF182AA007007A6275 /* SDThreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8094EFB21817E55B00A163FD /* SDThreadCell.m */; };
@@ -198,12 +199,14 @@
 		7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */; };
 		7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */; };
 		7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */; };
+		7BA5775D1859E24E00594729 /* SDGlobalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5775C1859E24E00594729 /* SDGlobalSearchViewController.m */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
 		7BAF744D184F620B00B5A2DE /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAF744C184F620B00B5A2DE /* Notification.m */; };
 		7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */; };
 		7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374017CF6A9B0064DBEB /* CoreText.framework */; };
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
 		7BB86C4D1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */; };
+		7BBBDCE61860726F00831D38 /* SDSharingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBDCE51860726F00831D38 /* SDSharingService.m */; };
 		7BC4DD90184CD1C400730E92 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC4DD8F184CD1C400730E92 /* User.m */; };
 		7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */; };
 		7BD8D7711850840000A0AD65 /* SDContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8D7701850840000A0AD65 /* SDContactInfoViewController.m */; };
@@ -249,6 +252,10 @@
 		80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80180D3E178C281700C24398 /* SDNewConversationCell.xib */; };
 		801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801C90F617E058AA00227D88 /* SDFilterListCell.xib */; };
 		801E8FE617FB0A9F002FFC81 /* SDActivityStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801E8FE517FB0A9F002FFC81 /* SDActivityStoryViewController.xib */; };
+		80250244185F1B2800FBA43B /* SDShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80250243185F1B2800FBA43B /* SDShareView.m */; };
+		80250246185F1B4200FBA43B /* SDShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80250245185F1B4200FBA43B /* SDShareView.xib */; };
+		80250249185F253A00FBA43B /* shareViewBoxFullImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80250248185F253A00FBA43B /* shareViewBoxFullImage@2x.png */; };
+		8025024B185F2A8500FBA43B /* shareButtonBigGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8025024A185F2A8500FBA43B /* shareButtonBigGreen@2x.png */; };
 		802597F418227D96003C0884 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 802597F318227D96003C0884 /* libz.dylib */; };
 		8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8026EE0E17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib */; };
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
@@ -276,11 +283,9 @@
 		8032F0A51755FA4D00C92AAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */; };
 		8032F0A71755FA5700C92AAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A61755FA5700C92AAC /* Security.framework */; };
 		8032F0A91755FA6400C92AAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8032F0A81755FA6400C92AAC /* CoreData.framework */; };
-		80362A8E186085510017945E /* SDTopSchoolService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362A8D186085510017945E /* SDTopSchoolService.m */; };
-		80362A90186099640017945E /* topSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362A8F186099640017945E /* topSchoolsIcon@2x.png */; };
-		80362A9318609E3F0017945E /* TopSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362A9218609E3F0017945E /* TopSchool.m */; };
+		80362A8B186069880017945E /* UIUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362A8A186069880017945E /* UIUnderlinedButton.m */; };
 		803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */; };
-		803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */; };
+		803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDBasicUserCell.xib */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
 		804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C0180E8D1100D17D2B /* NFLPA_logo@2x.png */; };
 		804299C3180ECD9900D17D2B /* toolbarBgIphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804299C2180ECD9900D17D2B /* toolbarBgIphone5@2x.png */; };
@@ -288,17 +293,6 @@
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
 		8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044394617D4A8C400AADFDB /* closeBtn@2x.png */; };
-		8050AFC8185A109B007688AB /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFC7185A109B007688AB /* Team.m */; };
-		8050AFCE185A109C007688AB /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFCD185A109C007688AB /* Player.m */; };
-		8050AFD1185A12C6007688AB /* SDTopSchoolsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFD0185A12C6007688AB /* SDTopSchoolsCell.m */; };
-		8050AFD4185A12DB007688AB /* SDTopSchoolEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8050AFD3185A12DB007688AB /* SDTopSchoolEditCell.m */; };
-		8050AFD6185A1317007688AB /* SDTopSchoolEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8050AFD5185A1317007688AB /* SDTopSchoolEditCell.xib */; };
-		8050AFD8185A132C007688AB /* SDTopSchoolsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8050AFD7185A132C007688AB /* SDTopSchoolsCell.xib */; };
-		8050AFDF185A1B1C007688AB /* interestImage1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8050AFDA185A1B1C007688AB /* interestImage1@2x.png */; };
-		8050AFE0185A1B1C007688AB /* interestImage5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8050AFDB185A1B1C007688AB /* interestImage5@2x.png */; };
-		8050AFE1185A1B1C007688AB /* interestImage4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8050AFDC185A1B1C007688AB /* interestImage4@2x.png */; };
-		8050AFE2185A1B1C007688AB /* interestImage2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8050AFDD185A1B1C007688AB /* interestImage2@2x.png */; };
-		8050AFE3185A1B1C007688AB /* interestImage3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8050AFDE185A1B1C007688AB /* interestImage3@2x.png */; };
 		80522C4F17D0C67200936936 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80522C4E17D0C67200936936 /* MediaPlayer.framework */; };
 		80540E46184CC781009EC1B8 /* SDOfferEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80540E45184CC781009EC1B8 /* SDOfferEditCell.m */; };
 		80540E48184CC799009EC1B8 /* SDOfferEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80540E47184CC799009EC1B8 /* SDOfferEditCell.xib */; };
@@ -363,6 +357,7 @@
 		80C2834C182BCC3F007759A0 /* WebPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2834B182BCC3F007759A0 /* WebPreview.m */; };
 		80C2834F182BCC3F007759A0 /* MediaGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2834E182BCC3F007759A0 /* MediaGallery.m */; };
 		80C28352182BCC3F007759A0 /* HighSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28351182BCC3F007759A0 /* HighSchool.m */; };
+		80C28355182BCC3F007759A0 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28354182BCC3F007759A0 /* Team.m */; };
 		80C28358182BCC3F007759A0 /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28357182BCC3F007759A0 /* Conference.m */; };
 		80C2835B182BCC3F007759A0 /* ActivityStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2835A182BCC3F007759A0 /* ActivityStory.m */; };
 		80C2835E182BCC3F007759A0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2835D182BCC3F007759A0 /* Comment.m */; };
@@ -379,6 +374,7 @@
 		80C28382182BCC41007759A0 /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28381182BCC41007759A0 /* ImageData.m */; };
 		80C28385182BCC41007759A0 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28384182BCC41007759A0 /* Group.m */; };
 		80C28388182BCC41007759A0 /* Like.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C28387182BCC41007759A0 /* Like.m */; };
+		80C2838B182BCC41007759A0 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2838A182BCC41007759A0 /* Player.m */; };
 		80C2838E182BCC41007759A0 /* MediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C2838D182BCC41007759A0 /* MediaItem.m */; };
 		80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */; };
 		80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */; };
@@ -423,6 +419,7 @@
 		7B09B76C17F05A480070688F /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGrowingTextView.m; sourceTree = "<group>"; };
 		7B09B76D17F05A480070688F /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTextViewInternal.h; sourceTree = "<group>"; };
 		7B09B76E17F05A480070688F /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTextViewInternal.m; sourceTree = "<group>"; };
+		7B0B5BD7185F21FD008A4BC0 /* SearchIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchIcon@2x.png"; sourceTree = "<group>"; };
 		7B0E781C17F56793001F8305 /* SDBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBadgeView.h; sourceTree = "<group>"; };
 		7B0E781D17F56793001F8305 /* SDBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBadgeView.m; sourceTree = "<group>"; };
 		7B0E782717F5682A001F8305 /* badgeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badgeBg@2x.png"; sourceTree = "<group>"; };
@@ -496,6 +493,8 @@
 		7BA0F55817E9EBE600C6DE89 /* UserProfileMessageButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BA0F55917E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfilePostButtonBig@2x.png"; sourceTree = "<group>"; };
 		7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileMessageButtonSmall@2x.png"; sourceTree = "<group>"; };
+		7BA5775B1859E24E00594729 /* SDGlobalSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDGlobalSearchViewController.h; sourceTree = "<group>"; };
+		7BA5775C1859E24E00594729 /* SDGlobalSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDGlobalSearchViewController.m; sourceTree = "<group>"; };
 		7BAA5A6717D5D353001DB55C /* SDLandingPagesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPagesService.h; sourceTree = "<group>"; };
 		7BAA5A6817D5D353001DB55C /* SDLandingPagesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPagesService.m; sourceTree = "<group>"; };
 		7BAF6ED017A93F5E00F7C6B3 /* SDCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommentsViewController.h; sourceTree = "<group>"; };
@@ -515,6 +514,8 @@
 		7BB4374017CF6A9B0064DBEB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
+		7BBBDCE41860726F00831D38 /* SDSharingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSharingService.h; sourceTree = "<group>"; };
+		7BBBDCE51860726F00831D38 /* SDSharingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSharingService.m; sourceTree = "<group>"; };
 		7BC1D86317F315C800D686E6 /* SDNotificationsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationsService.h; sourceTree = "<group>"; };
 		7BC1D86417F315C800D686E6 /* SDNotificationsService.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationsService.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
 		7BC4DD8E184CD1C400730E92 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -610,6 +611,11 @@
 		8022CC4017EC2B3F0054A1C5 /* SDNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationViewController.m; sourceTree = "<group>"; };
 		80236156174D1B6800595432 /* SDMenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMenuLabel.h; sourceTree = "<group>"; };
 		80236157174D1B6800595432 /* SDMenuLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMenuLabel.m; sourceTree = "<group>"; };
+		80250242185F1B2800FBA43B /* SDShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDShareView.h; sourceTree = "<group>"; };
+		80250243185F1B2800FBA43B /* SDShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDShareView.m; sourceTree = "<group>"; };
+		80250245185F1B4200FBA43B /* SDShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDShareView.xib; sourceTree = "<group>"; };
+		80250248185F253A00FBA43B /* shareViewBoxFullImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareViewBoxFullImage@2x.png"; sourceTree = "<group>"; };
+		8025024A185F2A8500FBA43B /* shareButtonBigGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareButtonBigGreen@2x.png"; sourceTree = "<group>"; };
 		802597F318227D96003C0884 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		8026EE0917F9A2E900A1A25D /* SDYoutubePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDYoutubePlayerViewController.h; sourceTree = "<group>"; };
 		8026EE0A17F9A2E900A1A25D /* SDYoutubePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDYoutubePlayerViewController.m; sourceTree = "<group>"; };
@@ -679,15 +685,12 @@
 		8032F0A41755FA4D00C92AAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8032F0A61755FA5700C92AAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8032F0A81755FA6400C92AAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		80362A8C186085510017945E /* SDTopSchoolService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolService.h; sourceTree = "<group>"; };
-		80362A8D186085510017945E /* SDTopSchoolService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTopSchoolService.m; sourceTree = "<group>"; };
-		80362A8F186099640017945E /* topSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topSchoolsIcon@2x.png"; sourceTree = "<group>"; };
-		80362A9118609E3F0017945E /* TopSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopSchool.h; sourceTree = "<group>"; };
-		80362A9218609E3F0017945E /* TopSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopSchool.m; sourceTree = "<group>"; };
+		80362A89186069880017945E /* UIUnderlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUnderlinedButton.h; sourceTree = "<group>"; };
+		80362A8A186069880017945E /* UIUnderlinedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUnderlinedButton.m; sourceTree = "<group>"; };
 		803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StaffButtonImage@2x.png"; sourceTree = "<group>"; };
-		803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCoachingStaffCell.h; sourceTree = "<group>"; };
-		803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCoachingStaffCell.m; sourceTree = "<group>"; };
-		803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCoachingStaffCell.xib; sourceTree = "<group>"; };
+		803CDD5F1806D2E800BB399F /* SDBasicUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBasicUserCell.h; sourceTree = "<group>"; };
+		803CDD601806D2E800BB399F /* SDBasicUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBasicUserCell.m; sourceTree = "<group>"; };
+		803CDD621806D30200BB399F /* SDBasicUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBasicUserCell.xib; sourceTree = "<group>"; };
 		803ECEC317F4248A0060702F /* SDBioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBioViewController.h; sourceTree = "<group>"; };
 		803ECEC417F4248A0060702F /* SDBioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDBioViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		803ECECE17F452CE0060702F /* SDCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionCell.h; sourceTree = "<group>"; };
@@ -757,21 +760,6 @@
 		8044394617D4A8C400AADFDB /* closeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeBtn@2x.png"; sourceTree = "<group>"; };
 		8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageEnlargementView.h; sourceTree = "<group>"; };
 		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
-		8050AFC6185A109B007688AB /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
-		8050AFC7185A109B007688AB /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
-		8050AFCC185A109C007688AB /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		8050AFCD185A109C007688AB /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		8050AFCF185A12C6007688AB /* SDTopSchoolsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolsCell.h; sourceTree = "<group>"; };
-		8050AFD0185A12C6007688AB /* SDTopSchoolsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTopSchoolsCell.m; sourceTree = "<group>"; };
-		8050AFD2185A12DB007688AB /* SDTopSchoolEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolEditCell.h; sourceTree = "<group>"; };
-		8050AFD3185A12DB007688AB /* SDTopSchoolEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTopSchoolEditCell.m; sourceTree = "<group>"; };
-		8050AFD5185A1317007688AB /* SDTopSchoolEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDTopSchoolEditCell.xib; sourceTree = "<group>"; };
-		8050AFD7185A132C007688AB /* SDTopSchoolsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDTopSchoolsCell.xib; sourceTree = "<group>"; };
-		8050AFDA185A1B1C007688AB /* interestImage1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "interestImage1@2x.png"; sourceTree = "<group>"; };
-		8050AFDB185A1B1C007688AB /* interestImage5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "interestImage5@2x.png"; sourceTree = "<group>"; };
-		8050AFDC185A1B1C007688AB /* interestImage4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "interestImage4@2x.png"; sourceTree = "<group>"; };
-		8050AFDD185A1B1C007688AB /* interestImage2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "interestImage2@2x.png"; sourceTree = "<group>"; };
-		8050AFDE185A1B1C007688AB /* interestImage3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "interestImage3@2x.png"; sourceTree = "<group>"; };
 		80522C4917CF5E5B00936936 /* SDActivityStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityStoryViewController.h; sourceTree = "<group>"; };
 		80522C4A17CF5E5C00936936 /* SDActivityStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityStoryViewController.m; sourceTree = "<group>"; };
 		80522C4E17D0C67200936936 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -922,6 +910,8 @@
 		80C2834E182BCC3F007759A0 /* MediaGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaGallery.m; sourceTree = "<group>"; };
 		80C28350182BCC3F007759A0 /* HighSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighSchool.h; sourceTree = "<group>"; };
 		80C28351182BCC3F007759A0 /* HighSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighSchool.m; sourceTree = "<group>"; };
+		80C28353182BCC3F007759A0 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		80C28354182BCC3F007759A0 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		80C28356182BCC3F007759A0 /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
 		80C28357182BCC3F007759A0 /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
 		80C28359182BCC3F007759A0 /* ActivityStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStory.h; sourceTree = "<group>"; };
@@ -954,6 +944,8 @@
 		80C28384182BCC41007759A0 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		80C28386182BCC41007759A0 /* Like.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Like.h; sourceTree = "<group>"; };
 		80C28387182BCC41007759A0 /* Like.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Like.m; sourceTree = "<group>"; };
+		80C28389182BCC41007759A0 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		80C2838A182BCC41007759A0 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		80C2838C182BCC41007759A0 /* MediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaItem.h; sourceTree = "<group>"; };
 		80C2838D182BCC41007759A0 /* MediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaItem.m; sourceTree = "<group>"; };
 		80C5695A18182FBF0055A041 /* SDOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOffersViewController.h; sourceTree = "<group>"; };
@@ -1203,6 +1195,7 @@
 				80F3015E1753A01B00134FF4 /* UINavigationController */,
 				805CF348174E02E40046E6A5 /* UISearchBar */,
 				80236152174D1B4C00595432 /* UILabel */,
+				80362A88186069880017945E /* UnderlinedTextButton */,
 				8032F0601755F98E00C92AAC /* Utils */,
 			);
 			name = "Custom classes";
@@ -1274,6 +1267,25 @@
 			path = "Custom Classes & Categories/UILabel";
 			sourceTree = "<group>";
 		};
+		8025023F185F1AF500FBA43B /* SharingView */ = {
+			isa = PBXGroup;
+			children = (
+				80250242185F1B2800FBA43B /* SDShareView.h */,
+				80250243185F1B2800FBA43B /* SDShareView.m */,
+				80250245185F1B4200FBA43B /* SDShareView.xib */,
+			);
+			path = SharingView;
+			sourceTree = "<group>";
+		};
+		80250247185F252700FBA43B /* ShareViewImages */ = {
+			isa = PBXGroup;
+			children = (
+				8025024A185F2A8500FBA43B /* shareButtonBigGreen@2x.png */,
+				80250248185F253A00FBA43B /* shareViewBoxFullImage@2x.png */,
+			);
+			name = ShareViewImages;
+			sourceTree = "<group>";
+		};
 		8032EFCE1755EEDE00C92AAC /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,8 +1301,6 @@
 				8032EFD41755EEDE00C92AAC /* SDErrorService.m */,
 				8032EFD51755EEDE00C92AAC /* SDFollowingService.h */,
 				8032EFD61755EEDE00C92AAC /* SDFollowingService.m */,
-				80362A8C186085510017945E /* SDTopSchoolService.h */,
-				80362A8D186085510017945E /* SDTopSchoolService.m */,
 				8032EFD71755EEDE00C92AAC /* SDImageService.h */,
 				8032EFD81755EEDE00C92AAC /* SDImageService.m */,
 				8032EFD91755EEDE00C92AAC /* SDLoginService.h */,
@@ -1307,6 +1317,8 @@
 				8012100C181538D800F65B0B /* SDWarRoomService.m */,
 				80A6F8E7184367E9008A07D1 /* SDGoogleAnalyticsService.h */,
 				80A6F8E8184367E9008A07D1 /* SDGoogleAnalyticsService.m */,
+				7BBBDCE41860726F00831D38 /* SDSharingService.h */,
+				7BBBDCE51860726F00831D38 /* SDSharingService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1447,18 +1459,14 @@
 			isa = PBXGroup;
 			children = (
 				80C28345182BCC2F007759A0 /* SigningDay.xcdatamodel */,
-				80362A9118609E3F0017945E /* TopSchool.h */,
-				80362A9218609E3F0017945E /* TopSchool.m */,
-				8050AFCC185A109C007688AB /* Player.h */,
-				8050AFCD185A109C007688AB /* Player.m */,
-				8050AFC6185A109B007688AB /* Team.h */,
-				8050AFC7185A109B007688AB /* Team.m */,
 				7BAF744B184F620B00B5A2DE /* Notification.h */,
 				7BAF744C184F620B00B5A2DE /* Notification.m */,
 				7BC4DD8E184CD1C400730E92 /* User.h */,
 				7BC4DD8F184CD1C400730E92 /* User.m */,
 				80C2838C182BCC41007759A0 /* MediaItem.h */,
 				80C2838D182BCC41007759A0 /* MediaItem.m */,
+				80C28389182BCC41007759A0 /* Player.h */,
+				80C2838A182BCC41007759A0 /* Player.m */,
 				80C28386182BCC41007759A0 /* Like.h */,
 				80C28387182BCC41007759A0 /* Like.m */,
 				80C28383182BCC41007759A0 /* Group.h */,
@@ -1491,6 +1499,8 @@
 				80C2835A182BCC3F007759A0 /* ActivityStory.m */,
 				80C28356182BCC3F007759A0 /* Conference.h */,
 				80C28357182BCC3F007759A0 /* Conference.m */,
+				80C28353182BCC3F007759A0 /* Team.h */,
+				80C28354182BCC3F007759A0 /* Team.m */,
 				80C28350182BCC3F007759A0 /* HighSchool.h */,
 				80C28351182BCC3F007759A0 /* HighSchool.m */,
 				80C2834D182BCC3F007759A0 /* MediaGallery.h */,
@@ -1501,6 +1511,15 @@
 				80C28348182BCC3E007759A0 /* Thread.m */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		80362A88186069880017945E /* UnderlinedTextButton */ = {
+			isa = PBXGroup;
+			children = (
+				80362A89186069880017945E /* UIUnderlinedButton.h */,
+				80362A8A186069880017945E /* UIUnderlinedButton.m */,
+			);
+			path = UnderlinedTextButton;
 			sourceTree = "<group>";
 		};
 		80431E0A17A006B3002F6E3D /* Categories */ = {
@@ -1592,19 +1611,6 @@
 				80431E4317A006B3002F6E3D /* MagicalRecordShorthand.h */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		8050AFD9185A1B05007688AB /* TopSchools */ = {
-			isa = PBXGroup;
-			children = (
-				80362A8F186099640017945E /* topSchoolsIcon@2x.png */,
-				8050AFDA185A1B1C007688AB /* interestImage1@2x.png */,
-				8050AFDD185A1B1C007688AB /* interestImage2@2x.png */,
-				8050AFDE185A1B1C007688AB /* interestImage3@2x.png */,
-				8050AFDC185A1B1C007688AB /* interestImage4@2x.png */,
-				8050AFDB185A1B1C007688AB /* interestImage5@2x.png */,
-			);
-			name = TopSchools;
 			sourceTree = "<group>";
 		};
 		805598B2174CE8200040631D = {
@@ -1781,12 +1787,6 @@
 				80540E44184CC781009EC1B8 /* SDOfferEditCell.h */,
 				80540E45184CC781009EC1B8 /* SDOfferEditCell.m */,
 				80540E47184CC799009EC1B8 /* SDOfferEditCell.xib */,
-				8050AFCF185A12C6007688AB /* SDTopSchoolsCell.h */,
-				8050AFD0185A12C6007688AB /* SDTopSchoolsCell.m */,
-				8050AFD7185A132C007688AB /* SDTopSchoolsCell.xib */,
-				8050AFD2185A12DB007688AB /* SDTopSchoolEditCell.h */,
-				8050AFD3185A12DB007688AB /* SDTopSchoolEditCell.m */,
-				8050AFD5185A1317007688AB /* SDTopSchoolEditCell.xib */,
 				7BAF6ED617A93FB000F7C6B3 /* SDCommentCell.h */,
 				7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */,
 				805F725717719BC400BDA30F /* SDActivityFeedCell.h */,
@@ -1874,6 +1874,8 @@
 				7BAF6ED117A93F5E00F7C6B3 /* SDCommentsViewController.m */,
 				7BAF6EDC17A94DBD00F7C6B3 /* SDLikesViewController.h */,
 				7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */,
+				7BA5775B1859E24E00594729 /* SDGlobalSearchViewController.h */,
+				7BA5775C1859E24E00594729 /* SDGlobalSearchViewController.m */,
 			);
 			path = ActivityFeedControllers;
 			sourceTree = "<group>";
@@ -1968,9 +1970,9 @@
 				8078685D17DDBFD300B77789 /* SDLandingPageHighSchoolCell.h */,
 				8078685E17DDBFD300B77789 /* SDLandingPageHighSchoolCell.m */,
 				8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */,
-				803CDD5F1806D2E800BB399F /* SDCoachingStaffCell.h */,
-				803CDD601806D2E800BB399F /* SDCoachingStaffCell.m */,
-				803CDD621806D30200BB399F /* SDCoachingStaffCell.xib */,
+				803CDD5F1806D2E800BB399F /* SDBasicUserCell.h */,
+				803CDD601806D2E800BB399F /* SDBasicUserCell.m */,
+				803CDD621806D30200BB399F /* SDBasicUserCell.xib */,
 			);
 			name = LandingPageCells;
 			sourceTree = "<group>";
@@ -2038,6 +2040,7 @@
 			children = (
 				8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */,
 				8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */,
+				8025023F185F1AF500FBA43B /* SharingView */,
 				7BEBA8D217D4BCE80049CA1C /* Search */,
 				7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */,
 				80CCAE601793E66B0015429A /* UsersProfileViews */,
@@ -2056,12 +2059,12 @@
 		80A0612A17529C84005FE319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				8050AFD9185A1B05007688AB /* TopSchools */,
-				8094EFC31817E62700A163FD /* ForumImages */,
 				7B77B01A18116F85007EE53B /* app_icon_retina.png */,
 				7B77B01C181173C0007EE53B /* 120.png */,
 				80540E49184CCBF9009EC1B8 /* offerCheckMark@2x.png */,
 				8044394617D4A8C400AADFDB /* closeBtn@2x.png */,
+				80250247185F252700FBA43B /* ShareViewImages */,
+				8094EFC31817E62700A163FD /* ForumImages */,
 				7B663CF517F1764F00CB59AE /* Switch */,
 				80F9089517DF5196005DF111 /* KeyAttributesImages */,
 				7BEBA8E017D4C5A20049CA1C /* LandingPages */,
@@ -2289,6 +2292,7 @@
 			children = (
 				802B4725184E1A4700FC87ED /* EditButton@2x.png */,
 				802B471F184E118200FC87ED /* SaveButton@2x.png */,
+				7B0B5BD7185F21FD008A4BC0 /* SearchIcon@2x.png */,
 				7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */,
 				801088EF179579DC002EF1EB /* MenuButtonClose@2x.png */,
 				801088F0179579DC002EF1EB /* MenuButtonDone@2x.png */,
@@ -2381,9 +2385,7 @@
 			files = (
 				805598CC174CE8200040631D /* InfoPlist.strings in Resources */,
 				805598DB174CE8200040631D /* MainStoryboard.storyboard in Resources */,
-				8050AFD8185A132C007688AB /* SDTopSchoolsCell.xib in Resources */,
 				805CF356174E08500046E6A5 /* SDMenuItemCell.xib in Resources */,
-				8050AFD6185A1317007688AB /* SDTopSchoolEditCell.xib in Resources */,
 				805CF358174E0B740046E6A5 /* BebasNeue.otf in Resources */,
 				80A0614E17529DB3005FE319 /* MenuItemList.plist in Resources */,
 				802B4720184E118200FC87ED /* SaveButton@2x.png in Resources */,
@@ -2403,6 +2405,7 @@
 				8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */,
 				7BE2FEF81826F3B70024834A /* ForumsHateIcon@2x.png in Resources */,
 				8032F08F1755F98E00C92AAC /* switchBlueBg.png in Resources */,
+				80250249185F253A00FBA43B /* shareViewBoxFullImage@2x.png in Resources */,
 				8032F0901755F98E00C92AAC /* switchOffPlain.png in Resources */,
 				8032F0911755F98E00C92AAC /* switchThumb.png in Resources */,
 				80EEF5EA17561A7E00A7C803 /* LoginStoryboard.storyboard in Resources */,
@@ -2441,14 +2444,14 @@
 				80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */,
 				7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */,
 				805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */,
-				803CDD631806D30200BB399F /* SDCoachingStaffCell.xib in Resources */,
+				803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */,
 				805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */,
 				80F2590C1773411900D3B85E /* commentImage@2x.png in Resources */,
 				8094EFC71817FE8300A163FD /* WarRoomStoryBoard.storyboard in Resources */,
+				8025024B185F2A8500FBA43B /* shareButtonBigGreen@2x.png in Resources */,
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
 				7B9D057618224CD6007F75DC /* NavigationBarBgIOS7@2x.png in Resources */,
-				80362A90186099640017945E /* topSchoolsIcon@2x.png in Resources */,
 				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
 				7B663D0F17F1B92D00CB59AE /* switch_thumb@2x.png in Resources */,
 				80180D40178C281700C24398 /* SDNewConversationCell.xib in Resources */,
@@ -2466,7 +2469,6 @@
 				809DF90C17955AC5001F37B3 /* UserProfileProspectsButton@2x.png in Resources */,
 				809DF90E17955AC5001F37B3 /* UserProfileVideoButton@2x.png in Resources */,
 				801088BC1795794A002EF1EB /* SDAddTagsCell.xib in Resources */,
-				8050AFE3185A1B1C007688AB /* interestImage3@2x.png in Resources */,
 				7BD8D7751850D04B00A0AD65 /* UserProfileContactsButton@2x.png in Resources */,
 				8094EFBF1817E55B00A163FD /* SDGroupCell.xib in Resources */,
 				801088DA179579BF002EF1EB /* activity_feed_header_bg@2x.png in Resources */,
@@ -2476,6 +2478,7 @@
 				801088DF179579BF002EF1EB /* camera_bottom_bg@2x.png in Resources */,
 				801088E0179579BF002EF1EB /* capture_image_button@2x.png in Resources */,
 				801088E1179579BF002EF1EB /* capture_video_button_active@2x.png in Resources */,
+				7B0B5BD8185F21FD008A4BC0 /* SearchIcon@2x.png in Resources */,
 				801088E2179579BF002EF1EB /* capture_video_button_inactive@2x.png in Resources */,
 				801088E3179579BF002EF1EB /* change_camera_button@2x.png in Resources */,
 				801088E4179579BF002EF1EB /* chat_bg@2x.png in Resources */,
@@ -2489,7 +2492,6 @@
 				801088EB179579BF002EF1EB /* publish_photo_button@2x.png in Resources */,
 				801088EC179579BF002EF1EB /* publish_video_button@2x.png in Resources */,
 				801088ED179579BF002EF1EB /* x_button_gray@2x.png in Resources */,
-				8050AFE0185A1B1C007688AB /* interestImage5@2x.png in Resources */,
 				801088EE179579BF002EF1EB /* x_button_yellow@2x.png in Resources */,
 				803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */,
 				80F531EC1802C1030089971C /* SDCommitsRostersCoachViewController.xib in Resources */,
@@ -2519,13 +2521,13 @@
 				7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */,
 				7B93CE55182A9F40007A6275 /* WarRoomNewPostButton@2x.png in Resources */,
 				7BDDAB91179FC457003F6AD7 /* HighSchoolsIcon@2x.png in Resources */,
+				80250246185F1B4200FBA43B /* SDShareView.xib in Resources */,
 				7BDDAB92179FC457003F6AD7 /* PlayersIcon@2x.png in Resources */,
 				7BDDAB93179FC457003F6AD7 /* SettingsIcon@2x.png in Resources */,
 				7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */,
 				80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */,
 				80431E9217A152B7002F6E3D /* Notes.rtf in Resources */,
 				7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */,
-				8050AFDF185A1B1C007688AB /* interestImage1@2x.png in Resources */,
 				8096974517AA90CF00970E73 /* playImage@2x.png in Resources */,
 				80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */,
 				804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */,
@@ -2534,7 +2536,6 @@
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
 				802B4726184E1A4700FC87ED /* EditButton@2x.png in Resources */,
-				8050AFE2185A1B1C007688AB /* interestImage2@2x.png in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
 				7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */,
 				8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */,
@@ -2545,7 +2546,6 @@
 				80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
-				8050AFE1185A1B1C007688AB /* interestImage4@2x.png in Resources */,
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
 				802B471C184DDA3A00FC87ED /* SDCollegeSearchViewController.xib in Resources */,
 				8062EE6B17D71F6700067B13 /* AccountVerifiedImage@2x.png in Resources */,
@@ -2666,22 +2666,20 @@
 				7B93CE99182AA007007A6275 /* SDBioViewController.m in Sources */,
 				7B93CE9A182AA007007A6275 /* SDCollectionViewController.m in Sources */,
 				7B93CE9B182AA007007A6275 /* SDTestingViewController.m in Sources */,
-				8050AFD1185A12C6007688AB /* SDTopSchoolsCell.m in Sources */,
 				7B93CE9C182AA007007A6275 /* SDNewDiscussionViewController.m in Sources */,
 				7B93CE9D182AA007007A6275 /* SDDiscussionViewController.m in Sources */,
 				802B471B184DDA3A00FC87ED /* SDCollegeSearchViewController.m in Sources */,
-				8050AFC8185A109B007688AB /* Team.m in Sources */,
 				80A09F771859E8C900195470 /* SDTopSchoolsViewController.m in Sources */,
 				7B93CE9E182AA007007A6275 /* SDForumListController.m in Sources */,
 				7B93CE9F182AA007007A6275 /* SDCommonWebViewController.m in Sources */,
 				7B93CEA0182AA007007A6275 /* SDTermsViewController.m in Sources */,
 				7B93CEA1182AA007007A6275 /* SDYoutubePlayerViewController.m in Sources */,
-				8050AFD4185A12DB007688AB /* SDTopSchoolEditCell.m in Sources */,
 				7B93CEA2182AA007007A6275 /* SDBaseViewController.m in Sources */,
 				7B93CEA3182AA007007A6275 /* SDMenuViewController.m in Sources */,
 				7B93CEA4182AA007007A6275 /* SDInitialSlidingViewController.m in Sources */,
 				7B93CEA5182AA007007A6275 /* SDBaseChatViewController.m in Sources */,
 				7B93CEA6182AA007007A6275 /* SDConversationCell.m in Sources */,
+				80C28355182BCC3F007759A0 /* Team.m in Sources */,
 				7B93CEA7182AA007007A6275 /* SDNewConversationCell.m in Sources */,
 				80C28346182BCC2F007759A0 /* SigningDay.xcdatamodel in Sources */,
 				7B93CEA8182AA007007A6275 /* SDMessageCell.m in Sources */,
@@ -2689,7 +2687,7 @@
 				7B93CEAA182AA007007A6275 /* SDLandingPageCollegeCell.m in Sources */,
 				7B93CEAB182AA007007A6275 /* SDLandingPageHighSchoolCell.m in Sources */,
 				80C2838E182BCC41007759A0 /* MediaItem.m in Sources */,
-				7B93CEAC182AA007007A6275 /* SDCoachingStaffCell.m in Sources */,
+				7B93CEAC182AA007007A6275 /* SDBasicUserCell.m in Sources */,
 				7B93CEAD182AA007007A6275 /* SDGroupCell.m in Sources */,
 				7BC4DD90184CD1C400730E92 /* User.m in Sources */,
 				7B93CEAE182AA007007A6275 /* SDForumCell.m in Sources */,
@@ -2726,10 +2724,10 @@
 				7B93CEC9182AA007007A6275 /* SDUserProfileCoachHeaderView.m in Sources */,
 				7B93CECA182AA007007A6275 /* SDUserProfileTeamHeaderView.m in Sources */,
 				7B93CECB182AA007007A6275 /* SDUserProfileSlidingButtonView.m in Sources */,
-				80362A8E186085510017945E /* SDTopSchoolService.m in Sources */,
 				7B93CECC182AA007007A6275 /* SDBuzzButtonView.m in Sources */,
 				7B93CECD182AA007007A6275 /* SDStarsRatingView.m in Sources */,
 				7B93CECE182AA007007A6275 /* SDBaseScoreView.m in Sources */,
+				80362A8B186069880017945E /* UIUnderlinedButton.m in Sources */,
 				80C2834C182BCC3F007759A0 /* WebPreview.m in Sources */,
 				7B93CECF182AA007007A6275 /* SDBaseProfileHeaderView.m in Sources */,
 				80C28373182BCC40007759A0 /* Master.m in Sources */,
@@ -2767,10 +2765,12 @@
 				7B93CE7A182A9FAE007A6275 /* SDNotificationsService.m in Sources */,
 				80C28352182BCC3F007759A0 /* HighSchool.m in Sources */,
 				7B93CE7B182A9FAE007A6275 /* SDWarRoomService.m in Sources */,
+				80250244185F1B2800FBA43B /* SDShareView.m in Sources */,
 				7B93CE7C182A9FAE007A6275 /* SDActivityFeedViewController.m in Sources */,
 				7B93CE7D182A9FAE007A6275 /* SDActivityStoryViewController.m in Sources */,
 				7BAF744D184F620B00B5A2DE /* Notification.m in Sources */,
 				7B93CE7E182A9FAE007A6275 /* SDBuzzSomethingViewController.m in Sources */,
+				80C2838B182BCC41007759A0 /* Player.m in Sources */,
 				7B93CE7F182A9FAE007A6275 /* SDAddTagsViewController.m in Sources */,
 				7B93CE80182A9FAE007A6275 /* SDEnterMediaInfoViewController.m in Sources */,
 				7B93CE81182A9FAE007A6275 /* SDPublishPhotoTableViewController.m in Sources */,
@@ -2778,12 +2778,12 @@
 				7B93CE82182A9FAE007A6275 /* SDPublishVideoTableViewController.m in Sources */,
 				7B93CE83182A9FAE007A6275 /* SDCommentsViewController.m in Sources */,
 				80C2837F182BCC40007759A0 /* Member.m in Sources */,
-				8050AFCE185A109C007688AB /* Player.m in Sources */,
 				806F4709183CE79600D58BD5 /* NSAttributedString+DTCoreText.m in Sources */,
 				7B93CE84182A9FAE007A6275 /* SDLikesViewController.m in Sources */,
 				7B93CE85182A9FAE007A6275 /* SDFollowingViewController.m in Sources */,
 				80C28376182BCC40007759A0 /* Offer.m in Sources */,
 				7B93CE86182A9FAE007A6275 /* SDBaseLandingPageViewController.m in Sources */,
+				7BBBDCE61860726F00831D38 /* SDSharingService.m in Sources */,
 				7B93CE87182A9FAE007A6275 /* SDPlayerLandingPageViewController.m in Sources */,
 				7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */,
 				7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */,
@@ -2798,8 +2798,8 @@
 				7B93CE92182A9FAE007A6275 /* SDSharingSettingsViewController.m in Sources */,
 				7B93CE93182A9FAE007A6275 /* SDEditProfileViewController.m in Sources */,
 				7B93CE94182A9FAE007A6275 /* SDBaseToolbarItemViewController.m in Sources */,
-				80362A9318609E3F0017945E /* TopSchool.m in Sources */,
 				7B93CE95182A9FAE007A6275 /* SDUserProfileViewController.m in Sources */,
+				7BA5775D1859E24E00594729 /* SDGlobalSearchViewController.m in Sources */,
 				7B93CE96182A9FAE007A6275 /* SDOffersViewController.m in Sources */,
 				7B93CE97182A9FAE007A6275 /* SDKeyAttributesViewController.m in Sources */,
 				7B93CE98182A9FAE007A6275 /* SDCommitsRostersCoachViewController.m in Sources */,

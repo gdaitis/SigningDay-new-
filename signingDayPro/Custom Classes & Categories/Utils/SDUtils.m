@@ -337,6 +337,32 @@
     return result;
 }
 
++ (NSString *)formatedLocalizedDateStringFromDate:(NSDate *)date
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
+    
+    NSInteger year = [components year];
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    
+    NSString * dateString = [NSString stringWithFormat: @"%d", month];
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM"];
+    NSDate* myDate = [dateFormatter dateFromString:dateString];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMMM"];
+    NSString *stringFromDate = [formatter stringFromDate:myDate];
+    
+    
+    NSString *result = [NSString stringWithFormat:@"%02d:%02d, %@ %d %d",hour,minute,stringFromDate,day,year];
+    
+    return result;
+}
+
 + (NSAttributedString *)attributedStringWithText:(NSString *)firstText firstColor:(UIColor *)firstColor andSecondText:(NSString *)secondText andSecondColor:(UIColor *)secondColor andFirstFont:(UIFont *)firstFont andSecondFont:(UIFont *)secondFont
 {
     NSString *str = [NSString stringWithFormat:@"%@ %@",firstText,secondText];

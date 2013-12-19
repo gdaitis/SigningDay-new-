@@ -22,7 +22,10 @@ typedef enum {
 
 #define kUserUpdatedNotification @"UserUpdatedNotification"
 #define kFilterButtonPressedNotification @"FilterButtonPressedNotification"
+#define kSearchButtonPressedNotification @"SearchButtonPressedNotification"
 #define kNewPostButtonPressedNotification @"NewPostButtonPressedNotification"
+
+#define kApplicationCameFromBackground @"ApplicationCameFromBackground"
 
 #define kMaxItemsPerPage    100      //max 100 more info on http://telligent.com/community/developers/w/developer7/29725.list-following-rest-endpoint.aspx
 
@@ -35,5 +38,7 @@ typedef enum {
 #define kDefaultPositionFilterName @"All positions"
 #define kDefaultStateFilterName @"All states"
 #define kDefaultStateConferenceName @"All conferences"
+
+#define kSharingUrlDisplayedText @"www.signingday.com"
 
 #endif

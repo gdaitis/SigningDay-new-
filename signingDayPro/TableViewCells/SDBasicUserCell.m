@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "SDCoachingStaffCell.h"
+#import "SDBasicUserCell.h"
 
-@implementation SDCoachingStaffCell
+@implementation SDBasicUserCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
