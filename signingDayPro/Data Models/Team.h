@@ -2,14 +2,14 @@
 //  Team.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 12/12/13.
+//  Created by Lukas Kekys on 12/19/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Coach, Member, Offer, User;
+@class Coach, Member, Offer, TopSchool, User;
 
 @interface Team : NSManagedObject
 
@@ -51,8 +51,8 @@
 - (void)addOffers:(NSSet *)values;
 - (void)removeOffers:(NSSet *)values;
 
-- (void)addTopSchoolsObject:(NSManagedObject *)value;
-- (void)removeTopSchoolsObject:(NSManagedObject *)value;
+- (void)addTopSchoolsObject:(TopSchool *)value;
+- (void)removeTopSchoolsObject:(TopSchool *)value;
 - (void)addTopSchools:(NSSet *)values;
 - (void)removeTopSchools:(NSSet *)values;
 

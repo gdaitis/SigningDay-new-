@@ -2,7 +2,7 @@
 //  Team.m
 //  SigningDay
 //
-//  Created by Lukas Kekys on 12/12/13.
+//  Created by Lukas Kekys on 12/19/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "Coach.h"
 #import "Member.h"
 #import "Offer.h"
+#import "TopSchool.h"
 #import "User.h"
 
 
