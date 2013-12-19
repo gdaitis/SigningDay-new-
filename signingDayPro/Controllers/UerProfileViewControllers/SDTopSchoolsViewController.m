@@ -21,8 +21,9 @@
 #import "SDCustomNavigationToolbarView.h"
 #import "IIViewDeckController.h"
 #import "SDTopSchoolService.h"
+#import "SDInterestSelectionView.h"
 
-@interface SDTopSchoolsViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate>
+@interface SDTopSchoolsViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate,SDInterestSelectionViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -181,11 +182,6 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 0;
-//}
-
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"Delete";
@@ -262,8 +258,7 @@
     
     if (self.tableStyle == TABLE_STYLE_EDIT) {
         if (indexPath.row < [self.dataArray count]) {
-            TopSchool *topSchool = [self.dataArray objectAtIndex:indexPath.row];
-            [self showInterestLevelViewForTopSchool:topSchool];
+            [self showInterestLevelViewForRow:indexPath.row];
         }
         else {
             //show team selection controller
@@ -308,24 +303,6 @@
     } failureBlock:^{
         
     }];
-    
-    //    [SDProfileService getOffersForUser:self.currentUser completionBlock:^{
-    //        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"playerCommited" ascending:NO];
-    //        NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"team.theUser.name"
-    //                                                                         ascending:YES];
-    //        self.dataArray = nil;
-    //        self.dataArray = [NSMutableArray arrayWithArray:[[self.currentUser.thePlayer.offers allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor, nameDescriptor, nil]]];
-    //
-    //        [self.tableView reloadData];
-    //        [self hideProgressHudInView:self.tableView];
-    //
-    //        if ([self.dataArray count] == 0)
-    //            [self showNoOffersLabel];
-    //        else
-    //            [self findOfferInArray:self.dataArray];
-    //    } failureBlock:^{
-    //        [self hideProgressHudInView:self.tableView];
-    //    }];
 }
 
 #pragma mark - Additional functions
@@ -508,13 +485,44 @@
 
 #pragma mark - Interest level view
 
-- (void)showInterestLevelViewForTopSchool:(TopSchool *)topSchool
+- (void)showInterestLevelViewForRow:(int)row
 {
     NSLog(@"Showing InterestLevel View");
+    TopSchool *topSchool = [self.dataArray objectAtIndex:row];
+    int interest = [topSchool.interest intValue];
+    
+    SDInterestSelectionView *interestView = (id)[SDInterestSelectionView loadInstanceFromNib];
+    interestView.tag = row;
+    interestView.frame = self.navigationController.view.frame;
+    interestView.delegate = self;
+    interestView.alpha = 0.0f;
+    [interestView setupButtonColorsWithIndex:interest];
+    [self.navigationController.view addSubview:interestView];
+    
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        interestView.alpha = 1.0f;
+    } completion:^(__unused BOOL finished) {
+    }];
+}
+
+- (void)removeInterestSelectionView:(SDInterestSelectionView *)interestView
+{
+    [UIView animateWithDuration:0.35f delay:0.3f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        interestView.alpha = 0.0f;
+    } completion:^(__unused BOOL finished) {
+        [interestView removeFromSuperview];
+    }];
 }
 
 #pragma mark - Interest Level View Delegate
 
-//
+- (void)interestSelectionView:(SDInterestSelectionView *)interestView interestSelected:(int)interestLevel
+{
+    TopSchool *topSchool = [self.dataArray objectAtIndex:interestView.tag];
+    topSchool.interest = [NSNumber numberWithInt:interestLevel];
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfAndWait];
+    [self.tableView reloadData];
+    [self removeInterestSelectionView:interestView];
+}
 
 @end

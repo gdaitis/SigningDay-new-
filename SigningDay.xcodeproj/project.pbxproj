@@ -319,6 +319,9 @@
 		80362AF8186322F00017945E /* interestImage5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362AF2186322F00017945E /* interestImage5@2x.png */; };
 		80362AF9186322F00017945E /* topSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362AF3186322F00017945E /* topSchoolsIcon@2x.png */; };
 		80362AFC186323A60017945E /* SDTopSchoolService.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362AFB186323A60017945E /* SDTopSchoolService.m */; };
+		80362B0318632E6A0017945E /* SDInterestSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80362B0218632E6A0017945E /* SDInterestSelectionView.m */; };
+		80362B0518632E910017945E /* SDInterestSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80362B0418632E910017945E /* SDInterestSelectionView.xib */; };
+		80362B0718632ED60017945E /* InterestViewBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80362B0618632ED60017945E /* InterestViewBg@2x.png */; };
 		803CDD561806C4F600BB399F /* StaffButtonImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */; };
 		803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803CDD621806D30200BB399F /* SDBasicUserCell.xib */; };
 		803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803ECED117F453F60060702F /* SDCollectionCell.xib */; };
@@ -761,6 +764,10 @@
 		80362AF3186322F00017945E /* topSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topSchoolsIcon@2x.png"; sourceTree = "<group>"; };
 		80362AFA186323A60017945E /* SDTopSchoolService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTopSchoolService.h; sourceTree = "<group>"; };
 		80362AFB186323A60017945E /* SDTopSchoolService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTopSchoolService.m; sourceTree = "<group>"; };
+		80362B0118632E6A0017945E /* SDInterestSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDInterestSelectionView.h; sourceTree = "<group>"; };
+		80362B0218632E6A0017945E /* SDInterestSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDInterestSelectionView.m; sourceTree = "<group>"; };
+		80362B0418632E910017945E /* SDInterestSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDInterestSelectionView.xib; sourceTree = "<group>"; };
+		80362B0618632ED60017945E /* InterestViewBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InterestViewBg@2x.png"; sourceTree = "<group>"; };
 		803CDD551806C4F500BB399F /* StaffButtonImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StaffButtonImage@2x.png"; sourceTree = "<group>"; };
 		803CDD5F1806D2E800BB399F /* SDBasicUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBasicUserCell.h; sourceTree = "<group>"; };
 		803CDD601806D2E800BB399F /* SDBasicUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBasicUserCell.m; sourceTree = "<group>"; };
@@ -1565,17 +1572,29 @@
 				80362AE8186322C50017945E /* SDTopSchoolsCell.xib */,
 			);
 			name = TopSchools;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		80362AED186322D70017945E /* TopSchools */ = {
 			isa = PBXGroup;
 			children = (
+				80362B0618632ED60017945E /* InterestViewBg@2x.png */,
 				80362AEE186322F00017945E /* interestImage1@2x.png */,
 				80362AEF186322F00017945E /* interestImage2@2x.png */,
 				80362AF0186322F00017945E /* interestImage3@2x.png */,
 				80362AF1186322F00017945E /* interestImage4@2x.png */,
 				80362AF2186322F00017945E /* interestImage5@2x.png */,
 				80362AF3186322F00017945E /* topSchoolsIcon@2x.png */,
+			);
+			name = TopSchools;
+			sourceTree = "<group>";
+		};
+		80362AFD18632DF50017945E /* TopSchools */ = {
+			isa = PBXGroup;
+			children = (
+				80362B0118632E6A0017945E /* SDInterestSelectionView.h */,
+				80362B0218632E6A0017945E /* SDInterestSelectionView.m */,
+				80362B0418632E910017945E /* SDInterestSelectionView.xib */,
 			);
 			name = TopSchools;
 			sourceTree = "<group>";
@@ -1833,6 +1852,7 @@
 		805CF34F174E07DA0046E6A5 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				80362AE2186322890017945E /* TopSchools */,
 				8094EFC21817E58E00A163FD /* ConversationCells */,
 				8094EFC11817E57700A163FD /* LandingPageCells */,
 				8094EFC01817E56300A163FD /* WarRoomCells */,
@@ -2096,9 +2116,9 @@
 		809E7284175735FE004840D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80362AE2186322890017945E /* TopSchools */,
 				8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */,
 				8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */,
+				80362AFD18632DF50017945E /* TopSchools */,
 				8025023F185F1AF500FBA43B /* SharingView */,
 				7BEBA8D217D4BCE80049CA1C /* Search */,
 				7BBFBBE017AA4F6800BF45A5 /* ActivityFeed */,
@@ -2457,6 +2477,7 @@
 				80F301801753A85E00134FF4 /* NotificationIcon@2x.png in Resources */,
 				80F301821753A85E00134FF4 /* NotificationIconActive@2x.png in Resources */,
 				80F301841753A85E00134FF4 /* ToolbarBg@2x.png in Resources */,
+				80362B0518632E910017945E /* SDInterestSelectionView.xib in Resources */,
 				805CF3A1175490F0004C69E5 /* MenuButton@2x.png in Resources */,
 				805CF3A517549403004C69E5 /* MenuButtonBack@2x.png in Resources */,
 				805CF3E91754E69C004C69E5 /* UserProfileStoryboard.storyboard in Resources */,
@@ -2506,6 +2527,7 @@
 				80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */,
 				7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */,
 				805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */,
+				80362B0718632ED60017945E /* InterestViewBg@2x.png in Resources */,
 				803CDD631806D30200BB399F /* SDBasicUserCell.xib in Resources */,
 				805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */,
 				80F2590C1773411900D3B85E /* commentImage@2x.png in Resources */,
@@ -2744,6 +2766,7 @@
 				80362AB1186321EC0017945E /* Offer.m in Sources */,
 				7B93CE9F182AA007007A6275 /* SDCommonWebViewController.m in Sources */,
 				7B93CEA0182AA007007A6275 /* SDTermsViewController.m in Sources */,
+				80362B0318632E6A0017945E /* SDInterestSelectionView.m in Sources */,
 				7B93CEA1182AA007007A6275 /* SDYoutubePlayerViewController.m in Sources */,
 				7B93CEA2182AA007007A6275 /* SDBaseViewController.m in Sources */,
 				7B93CEA3182AA007007A6275 /* SDMenuViewController.m in Sources */,
