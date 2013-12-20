@@ -87,7 +87,6 @@
 - (IBAction)buttonPressed:(UIButton *)sender
 {
     [self setupButtonColorsWithIndex:sender.tag];
-    NSLog(@"button tag = %d",sender.tag);
     [self.delegate interestSelectionView:self interestSelected:sender.tag];
 }
 

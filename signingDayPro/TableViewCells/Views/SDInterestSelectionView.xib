@@ -103,6 +103,7 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
+                <outlet property="contentView" destination="Lua-ml-qX1" id="rsf-6m-RkV"/>
                 <outlet property="fifthButton" destination="mDX-CF-gxL" id="mU6-rC-C1w"/>
                 <outlet property="firstButton" destination="9vB-8D-k1h" id="BKF-KH-dl7"/>
                 <outlet property="fourthButton" destination="MXE-3i-nh3" id="61y-Qf-Lxm"/>

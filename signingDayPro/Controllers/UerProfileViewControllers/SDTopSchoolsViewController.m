@@ -202,6 +202,9 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
+    if (proposedDestinationIndexPath.row == self.dataArray.count) {
+        return [NSIndexPath indexPathForRow:proposedDestinationIndexPath.row-1 inSection:sourceIndexPath.section];
+    }
     if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
         NSInteger row = 0;
         if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
@@ -487,7 +490,6 @@
 
 - (void)showInterestLevelViewForRow:(int)row
 {
-    NSLog(@"Showing InterestLevel View");
     TopSchool *topSchool = [self.dataArray objectAtIndex:row];
     int interest = [topSchool.interest intValue];
     
@@ -499,15 +501,17 @@
     [interestView setupButtonColorsWithIndex:interest];
     [self.navigationController.view addSubview:interestView];
     
-    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+    interestView.contentView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+    [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
         interestView.alpha = 1.0f;
+        interestView.contentView.transform = CGAffineTransformIdentity;
     } completion:^(__unused BOOL finished) {
     }];
 }
 
 - (void)removeInterestSelectionView:(SDInterestSelectionView *)interestView
 {
-    [UIView animateWithDuration:0.35f delay:0.3f options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.25f delay:0.2f options:UIViewAnimationOptionCurveEaseIn animations:^{
         interestView.alpha = 0.0f;
     } completion:^(__unused BOOL finished) {
         [interestView removeFromSuperview];

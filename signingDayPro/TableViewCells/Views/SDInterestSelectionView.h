@@ -20,7 +20,9 @@
 
 @interface SDInterestSelectionView : UIView
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, weak) id <SDInterestSelectionViewDelegate> delegate;
+
 - (void)setupButtonColorsWithIndex:(int)index;
 
 @end
