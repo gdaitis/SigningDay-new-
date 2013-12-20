@@ -101,8 +101,8 @@
 {
     [super viewDidAppear:animated];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSearch:) name:kSearchButtonPressedNotification object:nil];
-//    [((SDNavigationController *)self.navigationController) addSearchButton];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSearch:) name:kSearchButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) addSearchButton];
     
     self.screenName = @"Activity Feed screen";
     [self.tableView loadData];
@@ -111,8 +111,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSearchButtonPressedNotification object:nil];
-//    [((SDNavigationController *)self.navigationController) removeSearchButton];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSearchButtonPressedNotification object:nil];
+    [((SDNavigationController *)self.navigationController) removeSearchButton];
 }
 
 - (void)didReceiveMemoryWarning
