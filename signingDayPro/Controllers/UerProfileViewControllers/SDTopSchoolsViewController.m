@@ -22,10 +22,13 @@
 #import "IIViewDeckController.h"
 #import "SDTopSchoolService.h"
 #import "SDInterestSelectionView.h"
+#import "SDShareView.h"
+#import "SDSharingService.h"
 
-@interface SDTopSchoolsViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate,SDInterestSelectionViewDelegate>
+@interface SDTopSchoolsViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate,SDInterestSelectionViewDelegate,SDShareViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *originalList;
 
 @end
 
@@ -364,6 +367,8 @@
     if (self.tableStyle == TABLE_STYLE_NORMAL) {
         self.tableStyle = TABLE_STYLE_EDIT;
         [self.tableView setEditing:YES];
+        [self rememberCurrentListInfoForSharing];
+        
     }
     else {
         self.tableStyle = TABLE_STYLE_NORMAL;
@@ -380,34 +385,137 @@
     if (topSchool) {
         
         NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-#warning check cascade rules for deleting
-        //        [SDCacheService teamsShouldBeUpdateWhenNeeded];
         [context deleteObject:topSchool];
         [context MR_saveOnlySelfAndWait];
     }
 }
 
+- (void)rememberCurrentListInfoForSharing
+{
+    //save original(initial) offer
+    self.originalList = nil;
+    self.originalList = [[NSMutableArray alloc] init];
+    
+    //save team ids'
+    for (TopSchool *topSchool in self.dataArray) {
+        [self.originalList addObject:topSchool.theTeam.theUser.identifier];
+    }
+}
+
 - (void)saveUpdates
 {
+    NSString *sharingString = [self formShareString];
+    if (!sharingString) {
+        [self sendUpdatesToServer];
+    }
+    else {
+        [self showSharingViewWithString:sharingString andUser:self.currentUser];
+    }
+}
+
+- (void)sendUpdatesToServer
+{
 //    [self showProgressHudInView:self.view withText:@"Saving"];
-    //save changes to database and do a request to server with changes
-    //    if (self.commitedToOffer) {
-    //        for (Offer *offer in self.dataArray) {
-    //            if (![offer isEqual:self.commitedToOffer])
-    //                offer.playerCommited = [NSNumber numberWithBool:NO];
-    //            else
-    //                offer.playerCommited = [NSNumber numberWithBool:YES];
-    //        }
-    //    }
-    //    else {
-    //        for (Offer *offer in self.dataArray) {
-    //            offer.playerCommited = [NSNumber numberWithBool:NO];
-    //        }
-    //    }
-    //
-    //    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-    //    [context MR_saveOnlySelfAndWait];
-    //    [self updateServerInfo];
+//    //save changes to database and do a request to server with changes
+//    if (self.commitedToOffer) {
+//        for (Offer *offer in self.dataArray) {
+//            if (![offer isEqual:self.commitedToOffer])
+//                offer.playerCommited = [NSNumber numberWithBool:NO];
+//            else
+//                offer.playerCommited = [NSNumber numberWithBool:YES];
+//        }
+//    }
+//    else {
+//        for (Offer *offer in self.dataArray) {
+//            offer.playerCommited = [NSNumber numberWithBool:NO];
+//        }
+//    }
+//    
+//    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+//    [context MR_saveOnlySelfAndWait];
+//    [self.tableView reloadData];
+//    [self updateServerInfo];
+}
+
+- (NSString *)formShareString
+{
+    //can return nil, caller responsible for checking this
+    NSString *result = [self stringForReceivedOffers];
+    
+    return result;
+}
+
+- (NSString *)stringForReceivedOffers
+{
+    BOOL commitedToAtLeastOneNewTeam = NO;
+    
+    NSMutableString *result = [NSMutableString stringWithFormat:@"added"];
+    for (TopSchool *topSchool in self.dataArray) {
+        if (![self.originalList containsObject:topSchool.theTeam.theUser.identifier]) {
+            [result appendFormat:@" %@,",topSchool.theTeam.theUser.name];
+            commitedToAtLeastOneNewTeam = YES;
+        }
+    }
+    if (commitedToAtLeastOneNewTeam) {
+        NSString *substring = [result substringToIndex:result.length -1];
+        result = [NSMutableString stringWithString:substring];
+        [result appendFormat:@" to his top schools via @Signing_Day %@",kSharingUrlDisplayedText];
+    }
+    else
+        result = nil;
+    
+    
+    return result;
+}
+
+- (void)showSharingViewWithString:(NSString *)shareString andUser:(User *)currentUser
+{
+    //in delegate method sendUpdatesToServer
+    
+    SDShareView *shareView = (id)[SDShareView loadInstanceFromNib];
+    shareView.frame = self.navigationController.view.frame;
+    shareView.delegate = self;
+    [shareView setUpViewWithShareString:shareString andUser:currentUser];
+    shareView.alpha = 0.0f;
+    [self.navigationController.view addSubview:shareView];
+    
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        shareView.alpha = 1.0f;
+    } completion:^(__unused BOOL finished) {
+    }];
+}
+
+#pragma mark - ShareView Delegate
+
+- (void)shareButtonSelectedInShareView:(SDShareView *)shareView
+                         withShareText:(NSString *)shareText
+                       facebookEnabled:(BOOL)facebookEnabled
+                        twitterEnabled:(BOOL)twitterEnabled
+{
+    //send share string to fb or tw
+    [SDSharingService shareString:shareText
+                      forFacebook:facebookEnabled
+                       andTwitter:twitterEnabled];
+    
+    //send edited list to server
+    [self sendUpdatesToServer];
+    [self removeShareView:shareView];
+}
+
+- (void)dontShareButtonSelectedInShareView:(SDShareView *)shareView
+{
+    //send edited list to server
+    [self sendUpdatesToServer];
+    [self removeShareView:shareView];
+}
+
+- (void)removeShareView:(SDShareView *)shareView
+{
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        shareView.alpha = 0.0f;
+    } completion:^(__unused BOOL finished) {
+        [shareView removeFromSuperview];
+    }];
 }
 
 - (void)cantSaveTopSchools
