@@ -15,4 +15,7 @@
 + (void)getTopSchoolsForUser:(User *)user
              completionBlock:(void (^)(void))completionBlock
                 failureBlock:(void (^)(void))failureBlock;
++ (void)saveTopSchoolsFromString:(NSString *)offersString
+                 completionBlock:(void (^)(void))completionBlock
+                    failureBlock:(void (^)(void))failureBlock;
 @end

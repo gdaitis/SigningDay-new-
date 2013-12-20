@@ -181,7 +181,7 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return UITableViewCellEditingStyleNone;
+    //    return UITableViewCellEditingStyleNone;
     return UITableViewCellEditingStyleDelete;
 }
 
@@ -224,16 +224,16 @@
 //{
 //    if([[[subviewCell class] description] isEqualToString:@"UITableViewCellReorderControl"]) {
 //        static int TRANSLATION_REORDER_CONTROL_Y = -20;
-//        
+//
 //        //Code to move the reorder control, you change change it for your code, this works for me
 //        UIView* resizedGripView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,    CGRectGetMaxX(subviewCell.frame), CGRectGetMaxY(subviewCell.frame))];
 //        [resizedGripView addSubview:subviewCell];
 //        [cell addSubview:resizedGripView];
-//        
+//
 //        //  Original transform
 //        const CGAffineTransform transform = CGAffineTransformMakeTranslation(subviewCell.frame.size.width - cell.frame.size.width, TRANSLATION_REORDER_CONTROL_Y);
 //        //  Move custom view so the grip's top left aligns with the cell's top left
-//        
+//
 //        [resizedGripView setTransform:transform];
 //    }
 //}
@@ -404,6 +404,12 @@
 
 - (void)saveUpdates
 {
+    for (int i = 0; i< [self.dataArray count]; i++) {
+        TopSchool *topSchool = [self.dataArray objectAtIndex:i];
+        topSchool.rank = [NSNumber numberWithInt:i+1];
+    }
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfAndWait];
+    
     NSString *sharingString = [self formShareString];
     if (!sharingString) {
         [self sendUpdatesToServer];
@@ -415,26 +421,10 @@
 
 - (void)sendUpdatesToServer
 {
-//    [self showProgressHudInView:self.view withText:@"Saving"];
-//    //save changes to database and do a request to server with changes
-//    if (self.commitedToOffer) {
-//        for (Offer *offer in self.dataArray) {
-//            if (![offer isEqual:self.commitedToOffer])
-//                offer.playerCommited = [NSNumber numberWithBool:NO];
-//            else
-//                offer.playerCommited = [NSNumber numberWithBool:YES];
-//        }
-//    }
-//    else {
-//        for (Offer *offer in self.dataArray) {
-//            offer.playerCommited = [NSNumber numberWithBool:NO];
-//        }
-//    }
-//    
-//    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-//    [context MR_saveOnlySelfAndWait];
-//    [self.tableView reloadData];
-//    [self updateServerInfo];
+    [self showProgressHudInView:self.view withText:@"Saving"];
+    
+    [self.tableView reloadData];
+    [self updateServerInfo];
 }
 
 - (NSString *)formShareString
@@ -534,39 +524,25 @@
 
 - (void)updateServerInfo
 {
-    //    //    { Teams: [{TeamId: 2182, Commited: true}, {TeamId: 2143, Commited: false}] }
-    //
-    //    NSMutableString *dataString = [NSMutableString stringWithFormat:@"{Teams:["];
-    //
-    //    int commitedValidator = 0;
-    //    if ([self.dataArray count] > 0) {
-    //        for (int i = 0; i < [self.dataArray count]; i++) {
-    //
-    //            Offer *offer = [self.dataArray objectAtIndex:i];
-    //            [dataString appendFormat:@"{TeamId:%d,",[offer.team.theUser.identifier intValue]];
-    //            if ([offer.playerCommited boolValue]) {
-    //                [dataString appendFormat:@"Commited:true}"];
-    //                commitedValidator ++;
-    //            }
-    //            else
-    //                [dataString appendFormat:@"Commited:false}"];
-    //
-    //            if (i+1 != [self.dataArray count])
-    //                [dataString appendFormat:@","];
-    //        }
-    //    }
-    //    [dataString appendFormat:@"]}"];
-    //    if (commitedValidator > 1) {
-    //        //user can't be commited to more than one team
-    //        [self cantTopSchools];
-    //    }
-    //    else {
-    //        [SDProfileService saveUsersOffersFromString:dataString completionBlock:^{
-    //            [self topSchoolsSaved];
-    //        } failureBlock:^{
-    //            [self cantTopSchools];
-    //        }];
-    //    }
+    NSMutableString *dataString = [NSMutableString stringWithFormat:@"{Teams:["];
+    
+    if ([self.dataArray count] > 0) {
+        for (int i = 0; i < [self.dataArray count]; i++) {
+            
+            TopSchool *topSchool = [self.dataArray objectAtIndex:i];
+            [dataString appendFormat:@"{TeamId:%d, Rank:%d, Interest:%d}",[topSchool.theTeam.theUser.identifier intValue],[topSchool.rank intValue],[topSchool.interest intValue]];
+            
+            if (i+1 != [self.dataArray count])
+                [dataString appendFormat:@","];
+        }
+    }
+    [dataString appendFormat:@"]}"];
+    
+    [SDTopSchoolService saveTopSchoolsFromString:dataString completionBlock:^{
+        [self topSchoolsSaved];
+    } failureBlock:^{
+        [self cantSaveTopSchools];
+    }];
 }
 
 #pragma mark - SDCollegeSearchControllerDelegate
