@@ -8,8 +8,9 @@
 
 #import "SDUserProfileHighSchoolHeaderView.h"
 #import "HighSchool.h"
+#import "TTTAttributedLabel.h"
 
-@interface SDUserProfileHighSchoolHeaderView ()
+@interface SDUserProfileHighSchoolHeaderView () <TTTAttributedLabelDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *mascotLabel;
@@ -17,7 +18,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *headCoachNameLabel;
 
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;
-@property (nonatomic, weak) IBOutlet UILabel *addressNameLabel;
+@property (nonatomic, weak) IBOutlet TTTAttributedLabel *addressNameLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *userImageView;
 
 @end
@@ -36,6 +37,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
     }
     return self;
 }
@@ -57,7 +59,15 @@
     self.nameLabel.text = user.name;
     self.mascotLabel.text = [NSString stringWithFormat:@"Mascot: %@", user.theHighSchool.mascot];
     self.headCoachNameLabel.text = user.theHighSchool.headCoachName;
+    
+    self.addressNameLabel.delegate = self;
+    self.addressNameLabel.linkAttributes = nil;
+    self.addressNameLabel.delegate = self;
     self.addressNameLabel.text = user.theHighSchool.address;
+    NSRange range = (NSRange){0, user.theHighSchool.address.length};
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@", [user.theHighSchool.address stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    [self.addressNameLabel addLinkToURL:[NSURL URLWithString:urlString]
+                              withRange:range];
     
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl
                                                   success:^(UIImage *image) {
@@ -68,5 +78,11 @@
     }];
 }
 
+#pragma mark - TTTAttributedLabelDelegate methods
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [[UIApplication sharedApplication] openURL:url];
+}
 
 @end
