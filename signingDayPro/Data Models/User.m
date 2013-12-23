@@ -2,7 +2,7 @@
 //  User.m
 //  SigningDay
 //
-//  Created by lite on 02/12/13.
+//  Created by Lukas Kekys on 12/19/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -33,6 +33,12 @@
 @dynamic allowPrivateMessage;
 @dynamic avatarUrl;
 @dynamic bio;
+@dynamic bioAddress;
+@dynamic bioCity;
+@dynamic bioEmail;
+@dynamic bioPhone;
+@dynamic bioState;
+@dynamic bioZip;
 @dynamic followerRelationshipCreated;
 @dynamic followingRelationshipCreated;
 @dynamic identifier;
@@ -45,12 +51,6 @@
 @dynamic username;
 @dynamic userType;
 @dynamic userTypeId;
-@dynamic bioAddress;
-@dynamic bioCity;
-@dynamic bioEmail;
-@dynamic bioPhone;
-@dynamic bioState;
-@dynamic bioZip;
 @dynamic activityStories;
 @dynamic activityStoriesFromOtherUsers;
 @dynamic authorOf;

@@ -8,11 +8,27 @@
 
 #import "SDTopSchoolsViewController.h"
 #import "User.h"
+#import "TopSchool.h"
+#import "Player.h"
+#import "Team.h"
 #import "SDCollegeSearchViewController.h"
+#import "SDTopSchoolsCell.h"
+#import "SDTopSchoolEditCell.h"
+#import "UIView+NibLoading.h"
+#import "SDUtils.h"
+#import "SDUserProfileViewController.h"
+#import "SDNavigationController.h"
+#import "SDCustomNavigationToolbarView.h"
+#import "IIViewDeckController.h"
+#import "SDTopSchoolService.h"
+#import "SDInterestSelectionView.h"
+#import "SDShareView.h"
+#import "SDSharingService.h"
 
-@interface SDTopSchoolsViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate>
+@interface SDTopSchoolsViewController () <UITableViewDataSource,UITableViewDelegate,SDCollegeSearchViewControllerDelegate,SDInterestSelectionViewDelegate,SDShareViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *originalList;
 
 @end
 
@@ -30,8 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
     
     //set navigation Title to show title instead of buttons in navigationBar
     self.navigationTitle = @"Top Schools";
@@ -41,8 +55,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableStyle = TABLE_STYLE_NORMAL;
+    [self.tableView setAllowsSelectionDuringEditing:YES];
     
-    //show college list with offers
     [self loadData];
 }
 
@@ -90,53 +104,157 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.row < [self.dataArray count]) {
-//        
-//        Offer *offer = [self.dataArray objectAtIndex:indexPath.row];
-//        
-//        if (!self.tableStyle == TABLE_STYLE_EDIT) {
-//            NSString *identifier = @"SDOfferCellID";
-//            SDOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//            
-//            if (!cell) {
-//                cell = (id)[SDOfferCell loadInstanceFromNib];
-//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//                cell.backgroundColor = [UIColor clearColor];
-//            }
-//            
-//            [cell setupCellWithOffer:offer];
-//            
-//            return cell;
-//        }
-//        else {
-//            NSString *identifier = @"SDOfferEditCellID";
-//            SDOfferEditCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//            
-//            if (!cell) {
-//                cell = (id)[SDOfferEditCell loadInstanceFromNib];
-//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//                cell.backgroundColor = [UIColor clearColor];
-//            }
-//            
-//            BOOL commited = ([offer isEqual:self.commitedToOffer]) ? YES : NO;
-//            [cell setupCellWithOffer:offer andPlayerCommitted:commited];
-//            
-//            return cell;
-//        }
-//    }
-//    else {
-//        
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCellID"];
-//        if (!cell) {
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCellID"];
-//            cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        }
-//        cell.textLabel.text = @"Add new";
-//        
-//        return cell;
-//    }
+    if (indexPath.row < [self.dataArray count]) {
+        
+        TopSchool *topSchool = [self.dataArray objectAtIndex:indexPath.row];
+        
+        if (!self.tableStyle == TABLE_STYLE_EDIT) {
+            NSString *identifier = @"SDtopSchoolsCellID";
+            SDTopSchoolsCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            
+            if (!cell) {
+                cell = (id)[SDTopSchoolsCell loadInstanceFromNib];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.backgroundColor = [UIColor clearColor];
+            }
+            
+            [cell setupCellWithTopSchool:topSchool];
+            
+            return cell;
+        }
+        else {
+            NSString *identifier = @"SDTopSchoolsEditCellID";
+            SDTopSchoolEditCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            
+            if (!cell) {
+                cell = (id)[SDTopSchoolEditCell loadInstanceFromNib];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.backgroundColor = [UIColor clearColor];
+            }
+            
+            [cell setupCellWithTopSchool:topSchool];
+            
+            return cell;
+        }
+    }
+    else {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCellID"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCellID"];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        cell.textLabel.text = @"Add new";
+        
+        return cell;
+    }
 }
+
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL result = (indexPath.row != [self.dataArray count]) ? YES : NO;
+    return result;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    TopSchool *topSchool = [self.dataArray objectAtIndex:sourceIndexPath.row];
+    [self.dataArray removeObjectAtIndex:sourceIndexPath.row];
+    [self.dataArray insertObject:topSchool atIndex:destinationIndexPath.row];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    BOOL result = (self.tableStyle == TABLE_STYLE_EDIT) ? YES : NO;
+    
+    if (indexPath.row >= [self.dataArray count])
+        result = NO;
+    
+    return result;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    return UITableViewCellEditingStyleNone;
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Delete";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSArray *deleteIndexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self deleteTopSchool:[self.dataArray objectAtIndex:indexPath.row]];
+        [self.dataArray removeObjectAtIndex:indexPath.row];
+        [self.tableView endUpdates];
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+    if (proposedDestinationIndexPath.row == self.dataArray.count) {
+        return [NSIndexPath indexPathForRow:proposedDestinationIndexPath.row-1 inSection:sourceIndexPath.section];
+    }
+    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
+        NSInteger row = 0;
+        if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+            row = [tableView numberOfRowsInSection:sourceIndexPath.section] - 1;
+        }
+        return [NSIndexPath indexPathForRow:row inSection:sourceIndexPath.section];
+    }
+    
+    return proposedDestinationIndexPath;
+}
+
+
+//- (void)moveReorderControl:(UITableViewCell *)cell subviewCell:(UIView *)subviewCell
+//{
+//    if([[[subviewCell class] description] isEqualToString:@"UITableViewCellReorderControl"]) {
+//        static int TRANSLATION_REORDER_CONTROL_Y = -20;
+//
+//        //Code to move the reorder control, you change change it for your code, this works for me
+//        UIView* resizedGripView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,    CGRectGetMaxX(subviewCell.frame), CGRectGetMaxY(subviewCell.frame))];
+//        [resizedGripView addSubview:subviewCell];
+//        [cell addSubview:resizedGripView];
+//
+//        //  Original transform
+//        const CGAffineTransform transform = CGAffineTransformMakeTranslation(subviewCell.frame.size.width - cell.frame.size.width, TRANSLATION_REORDER_CONTROL_Y);
+//        //  Move custom view so the grip's top left aligns with the cell's top left
+//
+//        [resizedGripView setTransform:transform];
+//    }
+//}
+//
+////This method is due to the move cells icons is on right by default, we need to move it.
+//- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    for(UIView* subviewCell in cell.subviews)
+//    {
+//        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+//            if([[[subviewCell class] description] isEqualToString:@"UITableViewCellScrollView"]) {
+//                for(UIView* subSubviewCell in subviewCell.subviews) {
+//                    [self moveReorderControl:cell subviewCell:subSubviewCell];
+//                }
+//            }
+//        }
+//        else{
+//            [self moveReorderControl:cell subviewCell:subviewCell];
+//        }
+//    }
+//}
 
 #pragma mark - Table view delegate
 
@@ -144,31 +262,29 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    if (self.tableStyle == TABLE_STYLE_EDIT) {
-//        if (indexPath.row < [self.dataArray count]) {
-//            Offer *selectedOffer = [self.dataArray objectAtIndex:indexPath.row];
-//            self.commitedToOffer = ([selectedOffer isEqual:self.commitedToOffer]) ? nil : selectedOffer;
-//            [tableView reloadData];
-//        }
-//        else {
-//            //show team selection controller
-//            SDCollegeSearchViewController *collegeSearchViewController = [[SDCollegeSearchViewController alloc] initWithNibName:@"SDCollegeSearchViewController" bundle:[NSBundle mainBundle]];
-//            collegeSearchViewController.delegate = self;
-//            
-//            collegeSearchViewController.collegeYear = (self.currentUser.thePlayer.userClass) ? self.currentUser.thePlayer.userClass : [SDUtils currentYear];
-//            [self.navigationController pushViewController:collegeSearchViewController animated:YES];
-//        }
-//    }
-//    else {
-//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        Offer *offer = [self.dataArray objectAtIndex:indexPath.row];
-//        UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
-//                                                                            bundle:nil];
-//        SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
-//        userProfileViewController.currentUser = offer.team.theUser;
-//        
-//        [self.navigationController pushViewController:userProfileViewController animated:YES];
-//    }
+    if (self.tableStyle == TABLE_STYLE_EDIT) {
+        if (indexPath.row < [self.dataArray count]) {
+            [self showInterestLevelViewForRow:indexPath.row];
+        }
+        else {
+            //show team selection controller
+            SDCollegeSearchViewController *collegeSearchViewController = [[SDCollegeSearchViewController alloc] initWithNibName:@"SDCollegeSearchViewController" bundle:[NSBundle mainBundle]];
+            collegeSearchViewController.delegate = self;
+            
+            collegeSearchViewController.collegeYear = (self.currentUser.thePlayer.userClass) ? self.currentUser.thePlayer.userClass : [SDUtils currentYear];
+            [self.navigationController pushViewController:collegeSearchViewController animated:YES];
+        }
+    }
+    else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        TopSchool *topSchool = [self.dataArray objectAtIndex:indexPath.row];
+        UIStoryboard *userProfileViewStoryboard = [UIStoryboard storyboardWithName:@"UserProfileStoryboard"
+                                                                            bundle:nil];
+        SDUserProfileViewController *userProfileViewController = [userProfileViewStoryboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+        userProfileViewController.currentUser = topSchool.theTeam.theUser;
+        
+        [self.navigationController pushViewController:userProfileViewController animated:YES];
+    }
 }
 
 
@@ -177,23 +293,22 @@
 - (void)loadData
 {
     [self showProgressHudInView:self.tableView withText:@"Loading"];
-//    [SDProfileService getOffersForUser:self.currentUser completionBlock:^{
-//        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"playerCommited" ascending:NO];
-//        NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"team.theUser.name"
-//                                                                         ascending:YES];
-//        self.dataArray = nil;
-//        self.dataArray = [NSMutableArray arrayWithArray:[[self.currentUser.thePlayer.offers allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor, nameDescriptor, nil]]];
-//        
-//        [self.tableView reloadData];
-//        [self hideProgressHudInView:self.tableView];
-//        
-//        if ([self.dataArray count] == 0)
-//            [self showNoOffersLabel];
-//        else
-//            [self findOfferInArray:self.dataArray];
-//    } failureBlock:^{
-//        [self hideProgressHudInView:self.tableView];
-//    }];
+    
+    [SDTopSchoolService getTopSchoolsForUser:self.currentUser completionBlock:^{
+        NSSortDescriptor *rankDescriptor =      [NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES];
+        
+        self.dataArray = nil;
+        self.dataArray = [NSMutableArray arrayWithArray:[[self.currentUser.thePlayer.topSchools allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:rankDescriptor, nil]]];
+        
+        [self.tableView reloadData];
+        [self hideProgressHudInView:self.tableView];
+        if ([self.dataArray count] == 0)
+            [self showNoOffersLabel];
+        
+        
+    } failureBlock:^{
+        
+    }];
 }
 
 #pragma mark - Additional functions
@@ -215,10 +330,10 @@
 
 - (void)updateButtonTitleAndSetImage
 {
-//    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-//    
-//    UIImage *imageName = (self.tableStyle == TABLE_STYLE_NORMAL) ? [UIImage imageNamed:@"EditButton.png"] : [UIImage imageNamed:@"SaveButton.png"];
-//    [navigationController.topToolBar setrightButtonImage:imageName];
+    SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
+    
+    UIImage *imageName = (self.tableStyle == TABLE_STYLE_NORMAL) ? [UIImage imageNamed:@"EditButton.png"] : [UIImage imageNamed:@"SaveButton.png"];
+    [navigationController.topToolBar setrightButtonImage:imageName];
     
 }
 
@@ -226,44 +341,38 @@
 
 - (void)addEditButton
 {
-//    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
-//        self.viewDeckController.panningMode = IIViewDeckNoPanning;
-//        SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-//        
-//        [navigationController.topToolBar.rightButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        navigationController.topToolBar.rightButton.hidden = NO;
-//        [self updateButtonTitleAndSetImage];
-//    }
+    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        self.viewDeckController.panningMode = IIViewDeckNoPanning;
+        SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
+        
+        [navigationController.topToolBar.rightButton addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        navigationController.topToolBar.rightButton.hidden = NO;
+        [self updateButtonTitleAndSetImage];
+    }
 }
 
 - (void)removeEditButton
 {
-//    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
-//        self.viewDeckController.panningMode = IIViewDeckFullViewPanning;
-//        SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
-//        [navigationController.topToolBar.rightButton removeTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        [navigationController.topToolBar.rightButton setImage:nil forState:UIControlStateNormal];
-//        navigationController.topToolBar.rightButton.hidden = YES;
-//    }
-}
-
-- (void)findOfferInArray:(NSArray *)array
-{
-//    for (Offer *offer in array)
-//    {
-//        if ([offer.playerCommited boolValue]) {
-//            self.commitedToOffer = offer;
-//        }
-//    }
+    if ([self.currentUser.identifier isEqualToNumber:[self getMasterIdentifier]]) {
+        self.viewDeckController.panningMode = IIViewDeckFullViewPanning;
+        SDNavigationController *navigationController = (SDNavigationController *)self.navigationController;
+        [navigationController.topToolBar.rightButton removeTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [navigationController.topToolBar.rightButton setImage:nil forState:UIControlStateNormal];
+        navigationController.topToolBar.rightButton.hidden = YES;
+    }
 }
 
 - (void)editButtonPressed:(UIButton *)sender
 {
     if (self.tableStyle == TABLE_STYLE_NORMAL) {
         self.tableStyle = TABLE_STYLE_EDIT;
+        [self.tableView setEditing:YES];
+        [self rememberCurrentListInfoForSharing];
+        
     }
     else {
         self.tableStyle = TABLE_STYLE_NORMAL;
+        [self.tableView setEditing:NO];
         [self saveUpdates];
     }
     
@@ -271,85 +380,135 @@
     [self.tableView reloadData];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)deleteTopSchool:(TopSchool *)topSchool
 {
-    return NO;
+    if (topSchool) {
+        
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+        [context deleteObject:topSchool];
+        [context MR_saveOnlySelfAndWait];
+    }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)rememberCurrentListInfoForSharing
+{
+    //save original(initial) offer
+    self.originalList = nil;
+    self.originalList = [[NSMutableArray alloc] init];
     
-    BOOL result = (self.tableStyle == TABLE_STYLE_EDIT) ? YES : NO;
+    //save team ids'
+    for (TopSchool *topSchool in self.dataArray) {
+        [self.originalList addObject:topSchool.theTeam.theUser.identifier];
+    }
+}
+
+- (void)saveUpdates
+{
+    for (int i = 0; i< [self.dataArray count]; i++) {
+        TopSchool *topSchool = [self.dataArray objectAtIndex:i];
+        topSchool.rank = [NSNumber numberWithInt:i+1];
+    }
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfAndWait];
     
-    if (indexPath.row >= [self.dataArray count])
-        result = NO;
+    NSString *sharingString = [self formShareString];
+    if (!sharingString) {
+        [self sendUpdatesToServer];
+    }
+    else {
+        [self showSharingViewWithString:sharingString andUser:self.currentUser];
+    }
+}
+
+- (void)sendUpdatesToServer
+{
+    [self showProgressHudInView:self.view withText:@"Saving"];
+    
+    [self.tableView reloadData];
+    [self updateServerInfo];
+}
+
+- (NSString *)formShareString
+{
+    //can return nil, caller responsible for checking this
+    NSString *result = [self stringForReceivedOffers];
     
     return result;
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
-    return NO;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)stringForReceivedOffers
 {
-    return 0;
+    BOOL commitedToAtLeastOneNewTeam = NO;
+    
+    NSMutableString *result = [NSMutableString stringWithFormat:@"added"];
+    for (TopSchool *topSchool in self.dataArray) {
+        if (![self.originalList containsObject:topSchool.theTeam.theUser.identifier]) {
+            [result appendFormat:@" %@,",topSchool.theTeam.theUser.name];
+            commitedToAtLeastOneNewTeam = YES;
+        }
+    }
+    if (commitedToAtLeastOneNewTeam) {
+        NSString *substring = [result substringToIndex:result.length -1];
+        result = [NSMutableString stringWithString:substring];
+        [result appendFormat:@" to his top schools via @Signing_Day %@",kSharingUrlDisplayedText];
+    }
+    else
+        result = nil;
+    
+    
+    return result;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)showSharingViewWithString:(NSString *)shareString andUser:(User *)currentUser
 {
-    return @"Delete";
+    //in delegate method sendUpdatesToServer
+    
+    SDShareView *shareView = (id)[SDShareView loadInstanceFromNib];
+    shareView.frame = self.navigationController.view.frame;
+    shareView.delegate = self;
+    [shareView setUpViewWithShareString:shareString andUser:currentUser];
+    shareView.alpha = 0.0f;
+    [self.navigationController.view addSubview:shareView];
+    
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        shareView.alpha = 1.0f;
+    } completion:^(__unused BOOL finished) {
+    }];
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - ShareView Delegate
+
+- (void)shareButtonSelectedInShareView:(SDShareView *)shareView
+                         withShareText:(NSString *)shareText
+                       facebookEnabled:(BOOL)facebookEnabled
+                        twitterEnabled:(BOOL)twitterEnabled
 {
-//    if(editingStyle == UITableViewCellEditingStyleDelete)
-//    {
-//        NSArray *deleteIndexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
-//        [self.tableView beginUpdates];
-//        [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-//        [self deleteOffer:[self.dataArray objectAtIndex:indexPath.row]];
-//        [self.dataArray removeObjectAtIndex:indexPath.row];
-//        [self.tableView endUpdates];
-//    }
+    //send share string to fb or tw
+    [SDSharingService shareString:shareText
+                      forFacebook:facebookEnabled
+                       andTwitter:twitterEnabled];
+    
+    //send edited list to server
+    [self sendUpdatesToServer];
+    [self removeShareView:shareView];
 }
 
-//- (void)deleteOffer:(Offer *)offer
-//{
-//    if (offer) {
-//        
-//        if ([offer isEqual:self.commitedToOffer])
-//            self.commitedToOffer = nil;
-//        
-//        NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-//        [context deleteObject:offer];
-//        [context MR_saveOnlySelfAndWait];
-//    }
-//}
-
-- (void)saveUpdates
+- (void)dontShareButtonSelectedInShareView:(SDShareView *)shareView
 {
-    [self showProgressHudInView:self.view withText:@"Saving"];
-    //save changes to database and do a request to server with changes
-//    if (self.commitedToOffer) {
-//        for (Offer *offer in self.dataArray) {
-//            if (![offer isEqual:self.commitedToOffer])
-//                offer.playerCommited = [NSNumber numberWithBool:NO];
-//            else
-//                offer.playerCommited = [NSNumber numberWithBool:YES];
-//        }
-//    }
-//    else {
-//        for (Offer *offer in self.dataArray) {
-//            offer.playerCommited = [NSNumber numberWithBool:NO];
-//        }
-//    }
-//    
-//    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-//    [context MR_saveOnlySelfAndWait];
-//    [self updateServerInfo];
+    //send edited list to server
+    [self sendUpdatesToServer];
+    [self removeShareView:shareView];
 }
 
-- (void)cantSaveOffers
+- (void)removeShareView:(SDShareView *)shareView
+{
+    [UIView animateWithDuration:0.35f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        shareView.alpha = 0.0f;
+    } completion:^(__unused BOOL finished) {
+        [shareView removeFromSuperview];
+    }];
+}
+
+- (void)cantSaveTopSchools
 {
     self.tableStyle = TABLE_STYLE_NORMAL;
     [self editButtonPressed:nil];
@@ -358,46 +517,32 @@
     [self showAlertWithTitle:nil andText:@"An error occurred. Please try again later."];
 }
 
-- (void)offersSaved
+- (void)topSchoolsSaved
 {
     [self hideProgressHudInView:self.view];
 }
 
 - (void)updateServerInfo
 {
-//    //    { Teams: [{TeamId: 2182, Commited: true}, {TeamId: 2143, Commited: false}] }
-//    
-//    NSMutableString *dataString = [NSMutableString stringWithFormat:@"{Teams:["];
-//    
-//    int commitedValidator = 0;
-//    if ([self.dataArray count] > 0) {
-//        for (int i = 0; i < [self.dataArray count]; i++) {
-//            
-//            Offer *offer = [self.dataArray objectAtIndex:i];
-//            [dataString appendFormat:@"{TeamId:%d,",[offer.team.theUser.identifier intValue]];
-//            if ([offer.playerCommited boolValue]) {
-//                [dataString appendFormat:@"Commited:true}"];
-//                commitedValidator ++;
-//            }
-//            else
-//                [dataString appendFormat:@"Commited:false}"];
-//            
-//            if (i+1 != [self.dataArray count])
-//                [dataString appendFormat:@","];
-//        }
-//    }
-//    [dataString appendFormat:@"]}"];
-//    if (commitedValidator > 1) {
-//        //user can't be commited to more than one team
-//        [self cantSaveOffers];
-//    }
-//    else {
-//        [SDProfileService saveUsersOffersFromString:dataString completionBlock:^{
-//            [self offersSaved];
-//        } failureBlock:^{
-//            [self cantSaveOffers];
-//        }];
-//    }
+    NSMutableString *dataString = [NSMutableString stringWithFormat:@"{Teams:["];
+    
+    if ([self.dataArray count] > 0) {
+        for (int i = 0; i < [self.dataArray count]; i++) {
+            
+            TopSchool *topSchool = [self.dataArray objectAtIndex:i];
+            [dataString appendFormat:@"{TeamId:%d, Rank:%d, Interest:%d}",[topSchool.theTeam.theUser.identifier intValue],[topSchool.rank intValue],[topSchool.interest intValue]];
+            
+            if (i+1 != [self.dataArray count])
+                [dataString appendFormat:@","];
+        }
+    }
+    [dataString appendFormat:@"]}"];
+    
+    [SDTopSchoolService saveTopSchoolsFromString:dataString completionBlock:^{
+        [self topSchoolsSaved];
+    } failureBlock:^{
+        [self cantSaveTopSchools];
+    }];
 }
 
 #pragma mark - SDCollegeSearchControllerDelegate
@@ -407,21 +552,65 @@
     if (!teamUser || !teamUser.identifier)
         return;
     
-//    for (Offer *offer in self.dataArray) {
-//        if ([offer.team.theUser.identifier isEqualToNumber:teamUser.identifier])
-//            return; //team already exists in the list
-//    }
-//    
-//    //if team doesn't exist, creating team offer and saving to DB
-//    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
-//    Offer *offer = [Offer MR_createInContext:context];
-//    offer.team = teamUser.theTeam;
-//    offer.player = self.currentUser.thePlayer;
-//    offer.playerCommited = [NSNumber numberWithBool:NO];
-//    
-//    [self.dataArray addObject:offer];
-//    [context MR_saveOnlySelfAndWait];
-//    [self.tableView reloadData];
+    for (TopSchool *topSchool in self.dataArray) {
+        if ([topSchool.theTeam.theUser.identifier isEqualToNumber:teamUser.identifier])
+            return; //team already exists in the list
+    }
+    
+    //if team doesn't exist, creating team offer and saving to DB
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+    TopSchool *topSchool = [TopSchool MR_createInContext:context];
+    topSchool.theTeam = teamUser.theTeam;
+    topSchool.thePlayer = self.currentUser.thePlayer;
+    topSchool.interest = [NSNumber numberWithInt:1];
+    topSchool.rank = [NSNumber numberWithInt:[self.dataArray count]+1];
+    
+    [self.dataArray addObject:topSchool];
+    [context MR_saveOnlySelfAndWait];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Interest level view
+
+- (void)showInterestLevelViewForRow:(int)row
+{
+    TopSchool *topSchool = [self.dataArray objectAtIndex:row];
+    int interest = [topSchool.interest intValue];
+    
+    SDInterestSelectionView *interestView = (id)[SDInterestSelectionView loadInstanceFromNib];
+    interestView.tag = row;
+    interestView.frame = self.navigationController.view.frame;
+    interestView.delegate = self;
+    interestView.alpha = 0.0f;
+    [interestView setupButtonColorsWithIndex:interest];
+    [self.navigationController.view addSubview:interestView];
+    
+    interestView.contentView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+    [UIView animateWithDuration:0.25f delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        interestView.alpha = 1.0f;
+        interestView.contentView.transform = CGAffineTransformIdentity;
+    } completion:^(__unused BOOL finished) {
+    }];
+}
+
+- (void)removeInterestSelectionView:(SDInterestSelectionView *)interestView
+{
+    [UIView animateWithDuration:0.25f delay:0.2f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        interestView.alpha = 0.0f;
+    } completion:^(__unused BOOL finished) {
+        [interestView removeFromSuperview];
+    }];
+}
+
+#pragma mark - Interest Level View Delegate
+
+- (void)interestSelectionView:(SDInterestSelectionView *)interestView interestSelected:(int)interestLevel
+{
+    TopSchool *topSchool = [self.dataArray objectAtIndex:interestView.tag];
+    topSchool.interest = [NSNumber numberWithInt:interestLevel];
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfAndWait];
+    [self.tableView reloadData];
+    [self removeInterestSelectionView:interestView];
 }
 
 @end

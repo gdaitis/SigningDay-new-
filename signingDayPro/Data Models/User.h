@@ -2,7 +2,7 @@
 //  User.h
 //  SigningDay
 //
-//  Created by lite on 02/12/13.
+//  Created by Lukas Kekys on 12/19/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -18,6 +18,12 @@
 @property (nonatomic, retain) NSNumber * allowPrivateMessage;
 @property (nonatomic, retain) NSString * avatarUrl;
 @property (nonatomic, retain) NSString * bio;
+@property (nonatomic, retain) NSString * bioAddress;
+@property (nonatomic, retain) NSString * bioCity;
+@property (nonatomic, retain) NSString * bioEmail;
+@property (nonatomic, retain) NSString * bioPhone;
+@property (nonatomic, retain) NSString * bioState;
+@property (nonatomic, retain) NSString * bioZip;
 @property (nonatomic, retain) NSDate * followerRelationshipCreated;
 @property (nonatomic, retain) NSDate * followingRelationshipCreated;
 @property (nonatomic, retain) NSNumber * identifier;
@@ -30,12 +36,6 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSNumber * userTypeId;
-@property (nonatomic, retain) NSString * bioAddress;
-@property (nonatomic, retain) NSString * bioCity;
-@property (nonatomic, retain) NSString * bioEmail;
-@property (nonatomic, retain) NSString * bioPhone;
-@property (nonatomic, retain) NSString * bioState;
-@property (nonatomic, retain) NSString * bioZip;
 @property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) NSSet *activityStoriesFromOtherUsers;
 @property (nonatomic, retain) NSSet *authorOf;

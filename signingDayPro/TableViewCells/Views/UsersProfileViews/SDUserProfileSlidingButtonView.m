@@ -94,13 +94,15 @@
                                         [NSNumber numberWithInt:SDProfileButtonTypeOffers],
                                         [NSNumber numberWithInt:SDProfileButtonTypePhotos],
                                         [NSNumber numberWithInt:SDProfileButtonTypeVideos],
-                                        [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+                                        [NSNumber numberWithInt:SDProfileButtonTypeBio],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeTopSchools]];
             else
                 profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeKeyAttributes],
                                         [NSNumber numberWithInt:SDProfileButtonTypeOffers],
                                         [NSNumber numberWithInt:SDProfileButtonTypePhotos],
                                         [NSNumber numberWithInt:SDProfileButtonTypeVideos],
-                                        [NSNumber numberWithInt:SDProfileButtonTypeBio]];
+                                        [NSNumber numberWithInt:SDProfileButtonTypeBio],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeTopSchools]];
             break;
         case SDUserTypeHighSchool:
             profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeRoster],

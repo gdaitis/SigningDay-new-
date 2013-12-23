@@ -2,14 +2,14 @@
 //  Player.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 11/7/13.
+//  Created by Lukas Kekys on 12/19/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class HighSchool, Offer, User;
+@class HighSchool, Offer, TopSchool, User;
 
 @interface Player : NSManagedObject
 
@@ -28,6 +28,7 @@
 @property (nonatomic, retain) NSSet *offers;
 @property (nonatomic, retain) HighSchool *rosterOf;
 @property (nonatomic, retain) User *theUser;
+@property (nonatomic, retain) NSSet *topSchools;
 @end
 
 @interface Player (CoreDataGeneratedAccessors)
@@ -36,5 +37,10 @@
 - (void)removeOffersObject:(Offer *)value;
 - (void)addOffers:(NSSet *)values;
 - (void)removeOffers:(NSSet *)values;
+
+- (void)addTopSchoolsObject:(TopSchool *)value;
+- (void)removeTopSchoolsObject:(TopSchool *)value;
+- (void)addTopSchools:(NSSet *)values;
+- (void)removeTopSchools:(NSSet *)values;
 
 @end

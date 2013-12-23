@@ -2,7 +2,7 @@
 //  Notification.m
 //  SigningDay
 //
-//  Created by lite on 04/12/13.
+//  Created by Lukas Kekys on 12/19/13.
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
@@ -17,10 +17,10 @@
 @dynamic contentTypeId;
 @dynamic contentTypeName;
 @dynamic createdDate;
+@dynamic forumThreadId;
 @dynamic identifier;
 @dynamic isNew;
 @dynamic notificationTypeId;
-@dynamic forumThreadId;
 @dynamic fromUser;
 @dynamic master;
 

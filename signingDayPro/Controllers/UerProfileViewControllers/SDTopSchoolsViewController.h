@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
-typedef enum {
-    TABLE_STYLE_EDIT  = 0,
-    TABLE_STYLE_NORMAL  = 1
-} TableEditStyle;
-
 @class User;
 
 @interface SDTopSchoolsViewController : SDBaseViewController
