@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const kSDLogoURLString;
+//extern NSString * const kSDLogoURLString;
 
 @interface SDUploadService : NSObject
 

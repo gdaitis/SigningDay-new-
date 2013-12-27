@@ -73,6 +73,10 @@
                                              selector:@selector(pushNotificationReceived:)
                                                  name:kSDAppDelegatePushNotificationReceivedNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(searchButtonSelected)
+                                                 name:kSearchCancelButtonPressedNotification
+                                               object:nil];
     
     self.delegate = self;
     
@@ -87,6 +91,9 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kSDAppDelegatePushNotificationReceivedNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kSearchCancelButtonPressedNotification
                                                   object:nil];
 }
 

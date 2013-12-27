@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) NSTimer *typingTimer;
 
 @end
 
@@ -30,6 +31,7 @@
     
     self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.delegate = self;
+    self.searchBar.showsCancelButton = YES;
     
     self.tableView = [[UITableView alloc] init];
     self.tableView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -96,13 +98,22 @@
 - (void)searchBar:(UISearchBar *)searchBar
     textDidChange:(NSString *)searchText
 {
-    
+    if (self.typingTimer) {
+        if ([self.typingTimer isValid]) {
+            [self.typingTimer invalidate];
+        }
+        self.typingTimer = nil;
+    }
+    self.typingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                        target:self
+                                                      selector:@selector(checkServer)
+                                                      userInfo:nil
+                                                       repeats:NO];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    self.searchResults = nil;
-    [self.tableView reloadData];
+    [self.delegate globalSearchViewControllerDidClickCancel:self];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar

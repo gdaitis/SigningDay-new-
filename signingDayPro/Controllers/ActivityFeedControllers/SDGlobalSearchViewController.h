@@ -18,6 +18,7 @@
 
 - (void)globalSearchViewController:(SDGlobalSearchViewController *)globalSearchViewController
                      didSelectUser:(User *)user;
+- (void)globalSearchViewControllerDidClickCancel:(SDGlobalSearchViewController *)globalSearchViewController;
 
 @end
 
