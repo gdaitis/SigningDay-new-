@@ -118,7 +118,7 @@
                 cell.backgroundColor = [UIColor clearColor];
             }
             
-            [cell setupCellWithTopSchool:topSchool];
+            [cell setupCellWithTopSchool:topSchool atRow:indexPath.row];
             
             return cell;
         }
@@ -132,7 +132,7 @@
                 cell.backgroundColor = [UIColor clearColor];
             }
             
-            [cell setupCellWithTopSchool:topSchool];
+            [cell setupCellWithTopSchool:topSchool atRow:indexPath.row];
             
             return cell;
         }
@@ -163,6 +163,8 @@
     TopSchool *topSchool = [self.dataArray objectAtIndex:sourceIndexPath.row];
     [self.dataArray removeObjectAtIndex:sourceIndexPath.row];
     [self.dataArray insertObject:topSchool atIndex:destinationIndexPath.row];
+    
+//    [tableView reloadData];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

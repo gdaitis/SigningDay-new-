@@ -18,6 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <view contentMode="scaleToFill" id="Chs-wQ-Shh" customClass="UIImageView">
+                        <rect key="frame" x="30" y="29" width="16" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ITs-gu-Gcx">
+                                <rect key="frame" x="5" y="2" width="7" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6tX-zI-UZL">
                         <rect key="frame" x="62" y="15" width="120" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,6 +58,8 @@
                 <outlet property="avatarImageView" destination="Qkf-qJ-Ido" id="7rt-su-hvN"/>
                 <outlet property="collegeNameLabel" destination="6tX-zI-UZL" id="Mkg-Qu-ejR"/>
                 <outlet property="interestButton" destination="JhR-5H-XJ1" id="EN1-dY-L4I"/>
+                <outlet property="positionLabel" destination="ITs-gu-Gcx" id="mrI-0p-02v"/>
+                <outlet property="positionNumberBackgroundImageView" destination="Chs-wQ-Shh" id="GnJ-ql-bkO"/>
             </connections>
         </tableViewCell>
     </objects>

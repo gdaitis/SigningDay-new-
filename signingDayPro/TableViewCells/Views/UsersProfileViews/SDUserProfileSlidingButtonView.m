@@ -90,19 +90,19 @@
         case SDUserTypePlayer:
             if (masterIsCoach)
                 profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeContacts],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeTopSchools],
                                         [NSNumber numberWithInt:SDProfileButtonTypeKeyAttributes],
                                         [NSNumber numberWithInt:SDProfileButtonTypeOffers],
                                         [NSNumber numberWithInt:SDProfileButtonTypePhotos],
                                         [NSNumber numberWithInt:SDProfileButtonTypeVideos],
-                                        [NSNumber numberWithInt:SDProfileButtonTypeBio],
-                                        [NSNumber numberWithInt:SDProfileButtonTypeTopSchools]];
+                                        [NSNumber numberWithInt:SDProfileButtonTypeBio]];
             else
-                profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeKeyAttributes],
+                profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeTopSchools],
+                                        [NSNumber numberWithInt:SDProfileButtonTypeKeyAttributes],
                                         [NSNumber numberWithInt:SDProfileButtonTypeOffers],
                                         [NSNumber numberWithInt:SDProfileButtonTypePhotos],
                                         [NSNumber numberWithInt:SDProfileButtonTypeVideos],
-                                        [NSNumber numberWithInt:SDProfileButtonTypeBio],
-                                        [NSNumber numberWithInt:SDProfileButtonTypeTopSchools]];
+                                        [NSNumber numberWithInt:SDProfileButtonTypeBio]];
             break;
         case SDUserTypeHighSchool:
             profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypeRoster],

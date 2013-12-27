@@ -18,6 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <view contentMode="scaleToFill" id="5qK-aG-XNp" customClass="UIImageView">
+                        <rect key="frame" x="30" y="29" width="16" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4oT-ne-HHP">
+                                <rect key="frame" x="5" y="2" width="7" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="offerCheckMark.png" id="9nu-Ad-bWa">
                         <rect key="frame" x="283" y="13" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,6 +63,8 @@
                 <outlet property="checkMarkImageView" destination="9nu-Ad-bWa" id="MkR-UT-RJB"/>
                 <outlet property="collegeNameLabel" destination="XiC-mJ-f8E" id="oMs-zh-gih"/>
                 <outlet property="interestButton" destination="JxE-Hp-zYR" id="DCW-1w-YcU"/>
+                <outlet property="positionLabel" destination="4oT-ne-HHP" id="5ve-vP-o6D"/>
+                <outlet property="positionNumberBackgroundImageView" destination="5qK-aG-XNp" id="iIy-10-VHD"/>
             </connections>
         </tableViewCell>
     </objects>

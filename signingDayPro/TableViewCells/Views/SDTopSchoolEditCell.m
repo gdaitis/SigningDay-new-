@@ -19,10 +19,19 @@
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UIButton *interestButton;
 @property (nonatomic, assign) int interestLevel;
+@property (nonatomic, weak) IBOutlet UIImageView *positionNumberBackgroundImageView;
+@property (nonatomic, weak) IBOutlet UILabel *positionLabel;
 
 @end
 
 @implementation SDTopSchoolEditCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.positionNumberBackgroundImageView.image = [[UIImage imageNamed:@"PlayerCellStrechableNumberImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    self.positionLabel.font = [UIFont fontWithName:@"BebasNeue" size:14];
+}
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
@@ -77,7 +86,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setupCellWithTopSchool:(TopSchool *)topSchool
+- (void)setupCellWithTopSchool:(TopSchool *)topSchool atRow:(int)rowNumber 
 {
     self.showsReorderControl = YES;
     self.collegeNameLabel.text = topSchool.theTeam.theUser.name;
@@ -86,6 +95,15 @@
     [self.avatarImageView cancelImageRequestOperation];
     self.avatarImageView.image = nil;
     [self.avatarImageView setImageWithURL:[NSURL URLWithString:topSchool.theTeam.theUser.avatarUrl]];
+    
+    self.positionLabel.text = [NSString stringWithFormat:@"%d",rowNumber+1];
+    [self.positionLabel sizeToFit];
+    CGRect frame = self.positionNumberBackgroundImageView.frame;
+    frame.size.width = self.positionLabel.frame.size.width + 6;
+#warning fix hardcoded values
+    frame.origin.x = 124 -frame.size.width;
+    self.positionNumberBackgroundImageView.frame = frame;
+    self.positionLabel.frame = self.positionNumberBackgroundImageView.bounds;
 }
 
 #pragma mark - IBActions

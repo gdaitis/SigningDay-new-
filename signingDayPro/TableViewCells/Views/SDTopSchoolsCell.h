@@ -12,6 +12,6 @@
 
 @interface SDTopSchoolsCell : UITableViewCell
 
-- (void)setupCellWithTopSchool:(TopSchool *)topSchool;
+- (void)setupCellWithTopSchool:(TopSchool *)topSchool atRow:(int)rowNumber;
 
 @end
