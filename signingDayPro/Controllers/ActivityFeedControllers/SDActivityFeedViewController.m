@@ -242,6 +242,12 @@
                                          animated:YES];
 }
 
+- (void)globalSearchViewControllerDidClickCancel:(SDGlobalSearchViewController *)globalSearchViewController
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSearchCancelButtonPressedNotification
+                                                        object:nil];
+}
+
 #pragma mark - UIActionSheet delegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

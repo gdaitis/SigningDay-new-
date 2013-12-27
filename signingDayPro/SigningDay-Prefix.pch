@@ -23,6 +23,7 @@ typedef enum {
 #define kUserUpdatedNotification @"UserUpdatedNotification"
 #define kFilterButtonPressedNotification @"FilterButtonPressedNotification"
 #define kSearchButtonPressedNotification @"SearchButtonPressedNotification"
+#define kSearchCancelButtonPressedNotification @"SearchCancelButtonPressedNotification"
 #define kNewPostButtonPressedNotification @"NewPostButtonPressedNotification"
 
 #define kApplicationCameFromBackground @"ApplicationCameFromBackground"
