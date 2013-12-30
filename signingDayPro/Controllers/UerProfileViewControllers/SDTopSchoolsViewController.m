@@ -132,7 +132,7 @@
                 cell.backgroundColor = [UIColor clearColor];
             }
             
-            [cell setupCellWithTopSchool:topSchool atRow:indexPath.row];
+            [cell setupCellWithTopSchool:topSchool];
             
             return cell;
         }
