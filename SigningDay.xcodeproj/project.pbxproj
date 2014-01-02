@@ -346,6 +346,18 @@
 		805CF3A517549403004C69E5 /* MenuButtonBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805CF3A317549403004C69E5 /* MenuButtonBack@2x.png */; };
 		805CF3E91754E69C004C69E5 /* UserProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805CF3E81754E69C004C69E5 /* UserProfileStoryboard.storyboard */; };
 		805CF3EC1754E870004C69E5 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805CF3EB1754E870004C69E5 /* SettingsStoryboard.storyboard */; };
+		805D64DA18719BBB003211F0 /* SDJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805D64D818719BBB003211F0 /* SDJoinViewController.m */; };
+		805D64DB18719BBB003211F0 /* SDJoinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805D64D918719BBB003211F0 /* SDJoinViewController.xib */; };
+		805D64E11871A48D003211F0 /* SDJoinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805D64E01871A48D003211F0 /* SDJoinCell.m */; };
+		805D64E31871A4B4003211F0 /* SDJoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805D64E21871A4B4003211F0 /* SDJoinCell.xib */; };
+		805D64EA1871A997003211F0 /* JoinCoachIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805D64E51871A997003211F0 /* JoinCoachIcon@2x.png */; };
+		805D64EB1871A997003211F0 /* JoinFansIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805D64E61871A997003211F0 /* JoinFansIcon@2x.png */; };
+		805D64EC1871A997003211F0 /* JoinHighSchoolIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805D64E71871A997003211F0 /* JoinHighSchoolIcon@2x.png */; };
+		805D64ED1871A997003211F0 /* JoinParentsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805D64E81871A997003211F0 /* JoinParentsIcon@2x.png */; };
+		805D64EE1871A997003211F0 /* JoinPlayerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805D64E91871A997003211F0 /* JoinPlayerIcon@2x.png */; };
+		805D64F11871AD53003211F0 /* JoinScreenMoreInfoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805D64EF1871AD53003211F0 /* JoinScreenMoreInfoButton@2x.png */; };
+		805D64F21871AD53003211F0 /* JoinScreenRegisterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 805D64F01871AD53003211F0 /* JoinScreenRegisterButton@2x.png */; };
+		805D64F41871B5D0003211F0 /* JoinList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 805D64F31871B5D0003211F0 /* JoinList.plist */; };
 		805F725C17719BD900BDA30F /* SDActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */; };
 		805F725E1771ADE900BDA30F /* ActivityFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 805F725D1771ADE800BDA30F /* ActivityFeedStoryboard.storyboard */; };
 		8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8062EE2617D6065000067B13 /* SearchButtonBig@2x.png */; };
@@ -877,6 +889,20 @@
 		805CF3F11754EB1A004C69E5 /* SDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSettingsViewController.m; sourceTree = "<group>"; };
 		805CF3F61754FF59004C69E5 /* SDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDTableView.h; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.h"; sourceTree = "<group>"; };
 		805CF3F71754FF59004C69E5 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDTableView.m; path = "../../Custom Classes & Categories/UIStaticHeaderTableView/SDTableView.m"; sourceTree = "<group>"; };
+		805D64D718719BBB003211F0 /* SDJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDJoinViewController.h; sourceTree = "<group>"; };
+		805D64D818719BBB003211F0 /* SDJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDJoinViewController.m; sourceTree = "<group>"; };
+		805D64D918719BBB003211F0 /* SDJoinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDJoinViewController.xib; sourceTree = "<group>"; };
+		805D64DF1871A48D003211F0 /* SDJoinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDJoinCell.h; sourceTree = "<group>"; };
+		805D64E01871A48D003211F0 /* SDJoinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDJoinCell.m; sourceTree = "<group>"; };
+		805D64E21871A4B4003211F0 /* SDJoinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDJoinCell.xib; sourceTree = "<group>"; };
+		805D64E51871A997003211F0 /* JoinCoachIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinCoachIcon@2x.png"; sourceTree = "<group>"; };
+		805D64E61871A997003211F0 /* JoinFansIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinFansIcon@2x.png"; sourceTree = "<group>"; };
+		805D64E71871A997003211F0 /* JoinHighSchoolIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinHighSchoolIcon@2x.png"; sourceTree = "<group>"; };
+		805D64E81871A997003211F0 /* JoinParentsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinParentsIcon@2x.png"; sourceTree = "<group>"; };
+		805D64E91871A997003211F0 /* JoinPlayerIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinPlayerIcon@2x.png"; sourceTree = "<group>"; };
+		805D64EF1871AD53003211F0 /* JoinScreenMoreInfoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinScreenMoreInfoButton@2x.png"; sourceTree = "<group>"; };
+		805D64F01871AD53003211F0 /* JoinScreenRegisterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinScreenRegisterButton@2x.png"; sourceTree = "<group>"; };
+		805D64F31871B5D0003211F0 /* JoinList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = JoinList.plist; sourceTree = "<group>"; };
 		805F6871178EFBF100ED186B /* SDTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTermsViewController.h; sourceTree = "<group>"; };
 		805F6872178EFBF100ED186B /* SDTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTermsViewController.m; sourceTree = "<group>"; };
 		805F6875178F00B200ED186B /* SDSharingSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSharingSettingsViewController.h; sourceTree = "<group>"; };
@@ -1852,6 +1878,7 @@
 		805CF34F174E07DA0046E6A5 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				805D64DC1871A45F003211F0 /* LoginViewControllerCells */,
 				80362AE2186322890017945E /* TopSchools */,
 				8094EFC21817E58E00A163FD /* ConversationCells */,
 				8094EFC11817E57700A163FD /* LandingPageCells */,
@@ -1911,6 +1938,30 @@
 				805F6879178F014000ED186B /* SDEditProfileViewController.m */,
 			);
 			path = SettingsViewControllers;
+			sourceTree = "<group>";
+		};
+		805D64DC1871A45F003211F0 /* LoginViewControllerCells */ = {
+			isa = PBXGroup;
+			children = (
+				805D64DF1871A48D003211F0 /* SDJoinCell.h */,
+				805D64E01871A48D003211F0 /* SDJoinCell.m */,
+				805D64E21871A4B4003211F0 /* SDJoinCell.xib */,
+			);
+			path = LoginViewControllerCells;
+			sourceTree = "<group>";
+		};
+		805D64E41871A997003211F0 /* JoinScreenIcons */ = {
+			isa = PBXGroup;
+			children = (
+				805D64EF1871AD53003211F0 /* JoinScreenMoreInfoButton@2x.png */,
+				805D64F01871AD53003211F0 /* JoinScreenRegisterButton@2x.png */,
+				805D64E51871A997003211F0 /* JoinCoachIcon@2x.png */,
+				805D64E61871A997003211F0 /* JoinFansIcon@2x.png */,
+				805D64E71871A997003211F0 /* JoinHighSchoolIcon@2x.png */,
+				805D64E81871A997003211F0 /* JoinParentsIcon@2x.png */,
+				805D64E91871A997003211F0 /* JoinPlayerIcon@2x.png */,
+			);
+			path = JoinScreenIcons;
 			sourceTree = "<group>";
 		};
 		805F686E178EFBF100ED186B /* WebViewControllers */ = {
@@ -1984,6 +2035,7 @@
 				807ACB2317E1ABF1005B8442 /* PositionsList.plist */,
 				807ACB2D17E1ADC1005B8442 /* YearsList.plist */,
 				80A0614D17529DB3005FE319 /* MenuItemList.plist */,
+				805D64F31871B5D0003211F0 /* JoinList.plist */,
 				80A09F70185769A700195470 /* FAQhtml.txt */,
 			);
 			path = DataFiles;
@@ -2142,6 +2194,7 @@
 				7B77B01C181173C0007EE53B /* 120.png */,
 				80540E49184CCBF9009EC1B8 /* offerCheckMark@2x.png */,
 				8044394617D4A8C400AADFDB /* closeBtn@2x.png */,
+				805D64E41871A997003211F0 /* JoinScreenIcons */,
 				80362AED186322D70017945E /* TopSchools */,
 				80250247185F252700FBA43B /* ShareViewImages */,
 				8094EFC31817E62700A163FD /* ForumImages */,
@@ -2312,6 +2365,9 @@
 			children = (
 				80EEF5FF175626C200A7C803 /* SDLoginViewController.h */,
 				80EEF600175626C200A7C803 /* SDLoginViewController.m */,
+				805D64D718719BBB003211F0 /* SDJoinViewController.h */,
+				805D64D818719BBB003211F0 /* SDJoinViewController.m */,
+				805D64D918719BBB003211F0 /* SDJoinViewController.xib */,
 			);
 			path = LoginViewControllers;
 			sourceTree = "<group>";
@@ -2486,6 +2542,7 @@
 				8032EFC91755E83300C92AAC /* SearchFieldBg@2x.png in Resources */,
 				7BE2FEF81826F3B70024834A /* ForumsHateIcon@2x.png in Resources */,
 				8032F08F1755F98E00C92AAC /* switchBlueBg.png in Resources */,
+				805D64ED1871A997003211F0 /* JoinParentsIcon@2x.png in Resources */,
 				80250249185F253A00FBA43B /* shareViewBoxFullImage@2x.png in Resources */,
 				8032F0901755F98E00C92AAC /* switchOffPlain.png in Resources */,
 				8032F0911755F98E00C92AAC /* switchThumb.png in Resources */,
@@ -2537,6 +2594,7 @@
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80362AEA186322C50017945E /* SDTopSchoolEditCell.xib in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
+				805D64DB18719BBB003211F0 /* SDJoinViewController.xib in Resources */,
 				7B9D057618224CD6007F75DC /* NavigationBarBgIOS7@2x.png in Resources */,
 				80FA04EE177C6F8500CE1ED5 /* strechableCellBg@2x.png in Resources */,
 				7B663D0F17F1B92D00CB59AE /* switch_thumb@2x.png in Resources */,
@@ -2555,6 +2613,7 @@
 				809DF90A17955AC5001F37B3 /* UserProfilePhotosButton@2x.png in Resources */,
 				809DF90C17955AC5001F37B3 /* UserProfileProspectsButton@2x.png in Resources */,
 				809DF90E17955AC5001F37B3 /* UserProfileVideoButton@2x.png in Resources */,
+				805D64EE1871A997003211F0 /* JoinPlayerIcon@2x.png in Resources */,
 				801088BC1795794A002EF1EB /* SDAddTagsCell.xib in Resources */,
 				7BD8D7751850D04B00A0AD65 /* UserProfileContactsButton@2x.png in Resources */,
 				8094EFBF1817E55B00A163FD /* SDGroupCell.xib in Resources */,
@@ -2569,6 +2628,7 @@
 				801088E2179579BF002EF1EB /* capture_video_button_inactive@2x.png in Resources */,
 				801088E3179579BF002EF1EB /* change_camera_button@2x.png in Resources */,
 				801088E4179579BF002EF1EB /* chat_bg@2x.png in Resources */,
+				805D64EA1871A997003211F0 /* JoinCoachIcon@2x.png in Resources */,
 				801088E5179579BF002EF1EB /* check_selected@2x.png in Resources */,
 				801088E6179579BF002EF1EB /* check_unselected@2x.png in Resources */,
 				801088E7179579BF002EF1EB /* flash_auto_button@2x.png in Resources */,
@@ -2618,10 +2678,12 @@
 				7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */,
 				8096974517AA90CF00970E73 /* playImage@2x.png in Resources */,
 				80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */,
+				805D64F11871AD53003211F0 /* JoinScreenMoreInfoButton@2x.png in Resources */,
 				804299C1180E8D1100D17D2B /* NFLPA_logo@2x.png in Resources */,
 				7BE2FEF71826F3B70024834A /* ForumsBelieveIcon@2x.png in Resources */,
 				7B90F1D017B3B45D00F9702F /* CommentsHeaderLike@2x.png in Resources */,
 				7B0E782817F5682A001F8305 /* badgeBg@2x.png in Resources */,
+				805D64EB1871A997003211F0 /* JoinFansIcon@2x.png in Resources */,
 				7B1F638D17B8D22300B755B2 /* LikeImageOrange@2x.png in Resources */,
 				802B4726184E1A4700FC87ED /* EditButton@2x.png in Resources */,
 				7B1F638E17B8D22300B755B2 /* strechableBorderedImageOrange@2x.png in Resources */,
@@ -2632,6 +2694,7 @@
 				8083892217D4D7AB006E4FE9 /* LandingPageSearchBackground@2x.png in Resources */,
 				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
 				80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */,
+				805D64E31871A4B4003211F0 /* SDJoinCell.xib in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
@@ -2640,18 +2703,21 @@
 				8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */,
 				8094EFBB1817E55B00A163FD /* SDThreadCell.xib in Resources */,
 				80A09F71185769A700195470 /* FAQhtml.txt in Resources */,
+				805D64F41871B5D0003211F0 /* JoinList.plist in Resources */,
 				8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */,
 				8026EE0F17FABD1E00A1A25D /* SDYoutubePlayerViewController.xib in Resources */,
 				80F9089817DF5196005DF111 /* KeyAttributesImage@2x.png in Resources */,
 				80F9089917DF5196005DF111 /* strechableKeyAttributesValueImage@2x.png in Resources */,
 				801C90F717E058AA00227D88 /* SDFilterListCell.xib in Resources */,
 				8094EFB01817E54200A163FD /* SDBaseViewController.xib in Resources */,
+				805D64F21871AD53003211F0 /* JoinScreenRegisterButton@2x.png in Resources */,
 				80362AF6186322F00017945E /* interestImage3@2x.png in Resources */,
 				807ACB2417E1ABF1005B8442 /* PositionsList.plist in Resources */,
 				807ACB2E17E1ADC1005B8442 /* YearsList.plist in Resources */,
 				7B5B5FBE17E8489C00215ED4 /* add_media_button@2x.png in Resources */,
 				7B5B5FBF17E8489C00215ED4 /* buzz_something_button@2x.png in Resources */,
 				7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */,
+				805D64EC1871A997003211F0 /* JoinHighSchoolIcon@2x.png in Resources */,
 				7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */,
 				7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */,
 				7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */,
@@ -2874,11 +2940,13 @@
 				806F4709183CE79600D58BD5 /* NSAttributedString+DTCoreText.m in Sources */,
 				7B93CE84182A9FAE007A6275 /* SDLikesViewController.m in Sources */,
 				7B93CE85182A9FAE007A6275 /* SDFollowingViewController.m in Sources */,
+				805D64DA18719BBB003211F0 /* SDJoinViewController.m in Sources */,
 				7B93CE86182A9FAE007A6275 /* SDBaseLandingPageViewController.m in Sources */,
 				7BBBDCE61860726F00831D38 /* SDSharingService.m in Sources */,
 				7B93CE87182A9FAE007A6275 /* SDPlayerLandingPageViewController.m in Sources */,
 				7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */,
 				7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */,
+				805D64E11871A48D003211F0 /* SDJoinCell.m in Sources */,
 				7B93CE8A182A9FAE007A6275 /* SDFilterListViewController.m in Sources */,
 				7B93CE8C182A9FAE007A6275 /* SDLoginViewController.m in Sources */,
 				7B93CE8D182A9FAE007A6275 /* SDMessageViewController.m in Sources */,

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>IconImageName</key>
+		<string>JoinFansIcon.png</string>
+		<key>TitleText</key>
+		<string>FANS</string>
+		<key>AdditionalInfoText</key>
+		<string>Get direct access</string>
+		<key>UserType</key>
+		<string>fan</string>
+		<key>AttributeStringArray</key>
+		<array>
+			<string>Follow your team and the players they recruit</string>
+			<string>Get recruiting updates directly from prospects</string>
+			<string>Participate in discussions</string>
+		</array>
+	</dict>
+	<dict>
+		<key>IconImageName</key>
+		<string>JoinParentsIcon.png</string>
+		<key>TitleText</key>
+		<string>PARENTS</string>
+		<key>AdditionalInfoText</key>
+		<string>The path for success on SigningDay</string>
+		<key>UserType</key>
+		<string>parent</string>
+		<key>AttributeStringArray</key>
+		<array>
+			<string>View your son&apos;s recruiting process</string>
+			<string>Participate in discussions</string>
+			<string>Get recruiting support</string>
+		</array>
+	</dict>
+	<dict>
+		<key>IconImageName</key>
+		<string>JoinPlayerIcon.png</string>
+		<key>TitleText</key>
+		<string>PLAYERS</string>
+		<key>AdditionalInfoText</key>
+		<string>Get Signed</string>
+		<key>UserType</key>
+		<string>player</string>
+		<key>AttributeStringArray</key>
+		<array>
+			<string>Control yout own profile</string>
+			<string>Increase your exposure to college coaches</string>
+			<string>Get ranked</string>
+		</array>
+	</dict>
+	<dict>
+		<key>IconImageName</key>
+		<string>JoinCoachIcon.png</string>
+		<key>TitleText</key>
+		<string>COLLEGE COACHES</string>
+		<key>AdditionalInfoText</key>
+		<string>Streamline the recruiting process</string>
+		<key>UserType</key>
+		<string>coach</string>
+		<key>AttributeStringArray</key>
+		<array>
+			<string>Prospect list by class</string>
+			<string>Current film</string>
+			<string>Direct message prospects</string>
+		</array>
+	</dict>
+	<dict>
+		<key>IconImageName</key>
+		<string>JoinHighSchoolIcon.png</string>
+		<key>TitleText</key>
+		<string>HIGH SCHOOLS</string>
+		<key>AdditionalInfoText</key>
+		<string>Advance your players. Better your program.</string>
+		<key>UserType</key>
+		<string>highschool</string>
+		<key>AttributeStringArray</key>
+		<array>
+			<string>Promote your players</string>
+			<string>Connect with college coaches</string>
+			<string>Brand your program</string>
+		</array>
+	</dict>
+</array>
+</plist>
