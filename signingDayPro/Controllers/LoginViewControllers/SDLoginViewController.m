@@ -12,6 +12,8 @@
 #import "MBProgressHUD.h"
 #import "SDTermsViewController.h"
 #import "SDWebViewController.h"
+#import "SDJoinViewController.h"
+#import "SDNavigationController.h"
 
 @interface SDLoginViewController () <UITextFieldDelegate>
 
@@ -21,6 +23,7 @@
 
 - (IBAction)helpCenterButtonPressed:(UIButton *)sender;
 - (IBAction)forgotPasswordButtonPressed:(UIButton *)sender;
+- (IBAction)registerButtonPressed:(UIButton *)sender;
 
 @end
 
@@ -133,6 +136,16 @@
     viewController.gaScreenName = @"Help center screen";
     viewController.navigationTitle = @"Help center";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
+}
+
+- (IBAction)registerButtonPressed:(UIButton *)sender
+{
+    SDJoinViewController *viewController = [[SDJoinViewController alloc] initWithNibName:@"SDJoinViewController" bundle:nil];
+
+    SDNavigationController *navigationController = [[SDNavigationController alloc] initWithRootViewController:viewController];
     [self presentViewController:navigationController animated:YES completion:^{
         
     }];
