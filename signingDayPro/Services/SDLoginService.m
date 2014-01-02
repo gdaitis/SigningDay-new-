@@ -159,6 +159,46 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     }
 }
 
++ (void)registerNewUserWithType:(SDUserType)userType
+                       username:(NSString *)username
+                       password:(NSString *)password
+                          email:(NSString *)email
+                    parentEmail:(NSString *)parentEmail
+                 birthdayString:(NSString *)birthdayString
+                  parentConsent:(BOOL)parentConsent
+                   successBlock:(void (^)(void))successBlock
+                   failureBlock:(void (^)(void))failureBlock
+{
+    /*
+     REST service method: ~/api.ashx/v2/sd/registration.json
+     HTTP method: POST
+     Requires Rest-User-Token from user with admin role
+     Allows registration of players and members only
+     Request example:
+     { UserType: 1, Username: "registeredplayer", Password: "123456", Email: "registeredplayer@gmail.com", ParentEmail: "parent159@gmail.com", Birthday: "12/18/2000", ParentConsent: true }
+     */
+    
+    [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:[STKeychain getPasswordForUsername:@"initialApiKey"
+                                                                                andServiceName:@"SigningDayPro"
+                                                                                         error:nil]];
+    NSDictionary *params = @{@"UserType": [NSNumber numberWithInt:userType],
+                             @"Username": username,
+                             @"Password": password,
+                             @"Email": email,
+                             @"ParentEmail": parentEmail,
+                             @"Birthday": birthdayString,
+                             @"ParentConsent": [NSNumber numberWithBool:parentConsent]};
+    [[SDAPIClient sharedClient] postPath:@"sd/registration.json"
+                              parameters:params
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     if (successBlock)
+                                         successBlock();
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     if (failureBlock)
+                                         failureBlock();
+                                 }];
+}
+
 + (void)cleanUpUserSession
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSDLoginServiceUserDidLogoutNotification object:nil];
