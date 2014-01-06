@@ -12,6 +12,8 @@
 #import "SDNavigationController.h"
 #import "SDCustomNavigationToolbarView.h"
 #import "SDRegisterViewController.h"
+#import "SDClaimAccountViewController.h"
+#import "SDStandartNavigationController.h"
 
 #define kContractedHeight 165.0
 
@@ -40,8 +42,8 @@
     // Do any additional setup after loading the view from its nib.
     self.selectedIndexPathRow = -1;
     [self.refreshControl removeFromSuperview];
-    self.navigationTitle = @"Join";
-    [self.navigationController setNavigationBarHidden:YES];
+    
+    [self.navigationController setNavigationBarHidden:NO];
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -53,30 +55,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Join"];
 
     [self.tableView setAllowsMultipleSelection:NO];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"JoinList" ofType:@"plist"];
     self.dataArray = [[NSArray alloc] initWithContentsOfFile:path];
-    
-    SDNavigationController *navigationController = (id)self.navigationController;
-    [navigationController.topToolBar.leftButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [navigationController.topToolBar setLeftButtonImage:[UIImage imageNamed:@"MenuButtonBack.png"]];
-    
-    CGRect frame = self.tableView.frame;
-    frame.size.height = self.view.frame.size.height - navigationController.topToolBar.frame.size.height;
-    self.tableView.frame = frame;
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7) {
-        frame = navigationController.topToolBar.frame;
-        frame.origin.y = 20;
-        navigationController.topToolBar.frame = frame;
-    }
 }
-
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -176,6 +161,32 @@
 
 - (void)registerButtonPressed:(UIButton *)sender
 {
+    switch (sender.tag) {
+        case SDJoinControllerCellUserType_FAN:
+
+            break;
+            
+        case SDJoinControllerCellUserType_PARENT:
+
+            break;
+            
+        case SDJoinControllerCellUserType_PLAYER:
+
+            break;
+            
+        case SDJoinControllerCellUserType_COACH:
+
+            break;
+            
+        case SDJoinControllerCellUserType_HIGHSCHOOL:
+
+            break;
+            
+        default:
+            break;
+    }
+//    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
+//    [self.navigationController pushViewController:claimAccountViewController animated:YES];
     SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
     [self.navigationController pushViewController:rvc animated:YES];
 }

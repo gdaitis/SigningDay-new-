@@ -141,6 +141,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwZ-Ua-6Cn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="294" y="-459"/>
+        </scene>
+        <!--Standart Navigation Controller-->
+        <scene sceneID="sPF-a3-zLq">
+            <objects>
+                <navigationController storyboardIdentifier="LoginNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ijh-lY-AtL" customClass="SDStandartNavigationController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="sti-8i-KrY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qJQ-0Q-bcc" kind="relationship" relationship="rootViewController" id="c2l-ag-Ffd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PTy-g1-JoR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-232" y="-459"/>
         </scene>
     </scenes>

@@ -54,6 +54,12 @@
     self.backgroundImageView.image = bgImage;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -143,13 +149,14 @@
 
 - (IBAction)registerButtonPressed:(UIButton *)sender
 {
-    SDJoinViewController *viewController = [[SDJoinViewController alloc] initWithNibName:@"SDJoinViewController" bundle:nil];
-    viewController.delegate = self;
-
-    SDNavigationController *navigationController = [[SDNavigationController alloc] initWithRootViewController:viewController];
-    [self presentViewController:navigationController animated:YES completion:^{
-        
-    }];
+    SDJoinViewController *joinViewController = [[SDJoinViewController alloc] initWithNibName:@"SDJoinViewController" bundle:nil];
+    joinViewController.delegate = self;
+    
+    [self.navigationController pushViewController:joinViewController animated:YES];
+//    SDNavigationController *navigationController = [[SDNavigationController alloc] initWithRootViewController:viewController];
+//    [self presentViewController:navigationController animated:YES completion:^{
+//        
+//    }];
 }
 
 - (void)bakcPressedInJoinViewController:(SDJoinViewController *)joinViewController
