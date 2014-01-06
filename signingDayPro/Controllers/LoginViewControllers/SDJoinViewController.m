@@ -9,6 +9,7 @@
 #import "SDJoinViewController.h"
 #import "SDJoinCell.h"
 #import "UIView+NibLoading.h"
+#import "SDRegisterViewController.h"
 
 #define kContractedHeight 165.0
 
@@ -140,7 +141,8 @@
 
 - (void)registerButtonPressed:(UIButton *)sender
 {
-    
+    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 @end
