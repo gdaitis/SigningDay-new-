@@ -8,15 +8,8 @@
 
 #import "SDCommonRegistrationViewController.h"
 #import "UIPlaceHolderTextView.h"
-#import "TTTAttributedLabel.h"
 
-NSString * const kSDCommonRegistrationViewControllerTermsAndConditionsLink = @"SDCommonRegistrationViewControllerTermsAndConditionsLink";
-NSString * const kSDCommonRegistrationViewControllerPrivacyPolicyLink = @"SDCommonRegistrationViewControllerPrivacyPolicyLink";
-NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonRegistrationViewControllerTwitterLink";
-
-@interface SDCommonRegistrationViewController () <TTTAttributedLabelDelegate>
-
-@property (nonatomic, strong) UIButton *checkboxButton;
+@interface SDCommonRegistrationViewController ()
 
 @end
 
@@ -58,6 +51,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                  rect.origin.y,
                                  kSDCommonRegistrationViewControllerInputFieldContentWidth,
                                  rect.size.height);
+    textField.delegate = self;
     return textField;
 }
 
@@ -181,6 +175,11 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
 }
 
 #pragma mark - View construction
+
+- (UIView *)createContentView
+{
+    return nil;
+}
 
 - (UIView *)inputFieldAtYPoint:(CGFloat)yPoint
            withPlaceholderText:(NSString *)placeholderText
@@ -450,13 +449,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
 - (void)attributedLabel:(TTTAttributedLabel *)label
    didSelectLinkWithURL:(NSURL *)url
 {
-    if ([[url description] isEqual:kSDCommonRegistrationViewControllerTermsAndConditionsLink]) {
-        
-    } else if ([[url description] isEqual:kSDCommonRegistrationViewControllerPrivacyPolicyLink]) {
-        
-    } else if ([[url description] isEqual:kSDCommonRegistrationViewControllerTwitterLink]) {
-        
-    }
+    
 }
 
 @end
