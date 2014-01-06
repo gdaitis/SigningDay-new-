@@ -15,6 +15,11 @@
 		7B2D9AAD1799524700B1D660 /* UserProfileStarActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B2D9AAB1799524700B1D660 /* UserProfileStarActive@2x.png */; };
 		7B2D9AAE1799524700B1D660 /* UserProfileStarFaded@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B2D9AAC1799524700B1D660 /* UserProfileStarFaded@2x.png */; };
 		7B3031B0177ADB97006EF25B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3031AF177ADB97006EF25B /* libxml2.dylib */; };
+		7B38E1DD187838FF007ACC8A /* RegistrationInputFieldLowerBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B38E1DB187838FF007ACC8A /* RegistrationInputFieldLowerBg@2x.png */; };
+		7B38E1DE187838FF007ACC8A /* RegistrationInputFieldUpperBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B38E1DC187838FF007ACC8A /* RegistrationInputFieldUpperBg@2x.png */; };
+		7B38E1E1187854F8007ACC8A /* RegistrationCheckboxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B38E1DF187854F8007ACC8A /* RegistrationCheckboxChecked@2x.png */; };
+		7B38E1E2187854F8007ACC8A /* RegistrationCheckboxUnchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B38E1E0187854F8007ACC8A /* RegistrationCheckboxUnchecked@2x.png */; };
+		7B38E1E418786D1F007ACC8A /* RegistrationGreenButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B38E1E318786D1F007ACC8A /* RegistrationGreenButtonBg@2x.png */; };
 		7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288A1765DC5500091954 /* chat_box_bg@2x.png */; };
 		7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */; };
 		7B46288F1765DC5500091954 /* chat_box_text_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */; };
@@ -206,9 +211,13 @@
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
 		7BB86C4D1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */; };
 		7BBBDCE61860726F00831D38 /* SDSharingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBDCE51860726F00831D38 /* SDSharingService.m */; };
+		7BBDFA881875AD370070F9F0 /* SDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */; };
+		7BBDFA8B1875AE2D0070F9F0 /* SDCommonRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBDFA8A1875AE2D0070F9F0 /* SDCommonRegistrationViewController.m */; };
+		7BBDFA8D1875B2F20070F9F0 /* RegistrationInputFieldBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BBDFA8C1875B2F20070F9F0 /* RegistrationInputFieldBg@2x.png */; };
 		7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5234917F9905A007F8F67 /* SDNotificationCell.xib */; };
 		7BD8D7711850840000A0AD65 /* SDContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8D7701850840000A0AD65 /* SDContactInfoViewController.m */; };
 		7BD8D7751850D04B00A0AD65 /* UserProfileContactsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD8D7741850D04B00A0AD65 /* UserProfileContactsButton@2x.png */; };
+		7BDCCDB0187AB5E9008855C1 /* RegistrationPhotoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDCCDAF187AB5E9008855C1 /* RegistrationPhotoIcon@2x.png */; };
 		7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */; };
 		7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */; };
 		7BDDAB91179FC457003F6AD7 /* HighSchoolsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */; };
@@ -220,6 +229,7 @@
 		7BE2FEF71826F3B70024834A /* ForumsBelieveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BE2FEF51826F3B70024834A /* ForumsBelieveIcon@2x.png */; };
 		7BE2FEF81826F3B70024834A /* ForumsHateIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BE2FEF61826F3B70024834A /* ForumsHateIcon@2x.png */; };
 		7BEBA8E217D4C5B40049CA1C /* SearchOptionButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */; };
+		7BFA775B1876D81C00FE920A /* RegistrationCalendarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFA775A1876D81C00FE920A /* RegistrationCalendarIcon@2x.png */; };
 		7BFE1FE7179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */; };
 		7BFE1FE8179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE5179D1B6700D94B3C /* UserProfileBaseScoreBarFull@2x.png */; };
 		7BFE1FE9179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE1FE6179D1B6700D94B3C /* UserProfileBaseScoreBarHalfFull@2x.png */; };
@@ -402,12 +412,6 @@
 		80A7B92A1797F06E006FC87E /* MenuButtonPost@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7B9291797F06E006FC87E /* MenuButtonPost@2x.png */; };
 		80A7DB31180308BB00D622B5 /* UserProfileCommitsButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80A7DB30180308BB00D622B5 /* UserProfileCommitsButton@2x.png */; };
 		80B4DD9B17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */; };
-		80B533381875B53F00AE2604 /* SDClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B533361875B53F00AE2604 /* SDClaimAccountViewController.m */; };
-		80B533391875B53F00AE2604 /* SDClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B533371875B53F00AE2604 /* SDClaimAccountViewController.xib */; };
-		80B5333F1875B8D400AE2604 /* SDCantFindYourselfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B5333E1875B8D400AE2604 /* SDCantFindYourselfView.m */; };
-		80B533411875B8F000AE2604 /* SDCantFindYourselfView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B533401875B8F000AE2604 /* SDCantFindYourselfView.xib */; };
-		80B533471875B99700AE2604 /* CantFindYourselfRegisterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B533451875B99700AE2604 /* CantFindYourselfRegisterButton@2x.png */; };
-		80B533481875B99700AE2604 /* CantFindYourselfBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B533461875B99700AE2604 /* CantFindYourselfBackground@2x.png */; };
 		80C28346182BCC2F007759A0 /* SigningDay.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 80C28345182BCC2F007759A0 /* SigningDay.xcdatamodel */; };
 		80C7EF3F17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */; };
 		80CCAE671793E6D20015429A /* SDUserProfileMemberHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CCAE661793E6D20015429A /* SDUserProfileMemberHeaderView.xib */; };
@@ -422,7 +426,6 @@
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
 		80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BAF1758B8590013545C /* FollowingSelected@2x.png */; };
 		80E31BB51758B8590013545C /* FollowingUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BB11758B8590013545C /* FollowingUnselected@2x.png */; };
-		80E60DD31876FCF1009835A3 /* SDStandartNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E60DD21876FCF1009835A3 /* SDStandartNavigationController.m */; };
 		80E6CAA9180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E6CAA8180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib */; };
 		80EEF5D817560D0500A7C803 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EEF5D717560D0500A7C803 /* libsqlite3.dylib */; };
 		80EEF5EA17561A7E00A7C803 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EEF5E917561A7E00A7C803 /* LoginStoryboard.storyboard */; };
@@ -473,6 +476,11 @@
 		7B3031AF177ADB97006EF25B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		7B33A5A117BBC849002A994F /* NSDictionary+NullConverver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullConverver.h"; sourceTree = "<group>"; };
 		7B33A5A217BBC849002A994F /* NSDictionary+NullConverver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullConverver.m"; sourceTree = "<group>"; };
+		7B38E1DB187838FF007ACC8A /* RegistrationInputFieldLowerBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationInputFieldLowerBg@2x.png"; sourceTree = "<group>"; };
+		7B38E1DC187838FF007ACC8A /* RegistrationInputFieldUpperBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationInputFieldUpperBg@2x.png"; sourceTree = "<group>"; };
+		7B38E1DF187854F8007ACC8A /* RegistrationCheckboxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationCheckboxChecked@2x.png"; sourceTree = "<group>"; };
+		7B38E1E0187854F8007ACC8A /* RegistrationCheckboxUnchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationCheckboxUnchecked@2x.png"; sourceTree = "<group>"; };
+		7B38E1E318786D1F007ACC8A /* RegistrationGreenButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationGreenButtonBg@2x.png"; sourceTree = "<group>"; };
 		7B46288A1765DC5500091954 /* chat_box_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_bg@2x.png"; sourceTree = "<group>"; };
 		7B46288B1765DC5500091954 /* chat_box_send_bt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_send_bt@2x.png"; sourceTree = "<group>"; };
 		7B46288C1765DC5500091954 /* chat_box_text_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_box_text_bg@2x.png"; sourceTree = "<group>"; };
@@ -548,6 +556,11 @@
 		7BB86C4C1806D86800EFB0A3 /* DTCoreTextFontOverrides.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DTCoreTextFontOverrides.plist; sourceTree = "<group>"; };
 		7BBBDCE41860726F00831D38 /* SDSharingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSharingService.h; sourceTree = "<group>"; };
 		7BBBDCE51860726F00831D38 /* SDSharingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSharingService.m; sourceTree = "<group>"; };
+		7BBDFA861875AD370070F9F0 /* SDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRegisterViewController.h; sourceTree = "<group>"; };
+		7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRegisterViewController.m; sourceTree = "<group>"; };
+		7BBDFA891875AE2D0070F9F0 /* SDCommonRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommonRegistrationViewController.h; sourceTree = "<group>"; };
+		7BBDFA8A1875AE2D0070F9F0 /* SDCommonRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommonRegistrationViewController.m; sourceTree = "<group>"; };
+		7BBDFA8C1875B2F20070F9F0 /* RegistrationInputFieldBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationInputFieldBg@2x.png"; sourceTree = "<group>"; };
 		7BC1D86317F315C800D686E6 /* SDNotificationsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationsService.h; sourceTree = "<group>"; };
 		7BC1D86417F315C800D686E6 /* SDNotificationsService.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SDNotificationsService.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
 		7BD5233E17F99045007F8F67 /* SDNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDNotificationCell.h; sourceTree = "<group>"; };
@@ -556,6 +569,7 @@
 		7BD8D76F1850840000A0AD65 /* SDContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDContactInfoViewController.h; sourceTree = "<group>"; };
 		7BD8D7701850840000A0AD65 /* SDContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDContactInfoViewController.m; sourceTree = "<group>"; };
 		7BD8D7741850D04B00A0AD65 /* UserProfileContactsButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileContactsButton@2x.png"; sourceTree = "<group>"; };
+		7BDCCDAF187AB5E9008855C1 /* RegistrationPhotoIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationPhotoIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB89179FC456003F6AD7 /* ActivityFeedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityFeedIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8A179FC456003F6AD7 /* CoachesIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoachesIcon@2x.png"; sourceTree = "<group>"; };
 		7BDDAB8B179FC457003F6AD7 /* HighSchoolsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HighSchoolsIcon@2x.png"; sourceTree = "<group>"; };
@@ -571,6 +585,7 @@
 		7BEBA8DB17D4BD300049CA1C /* SDPlayersSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayersSearchHeader.h; sourceTree = "<group>"; };
 		7BEBA8DC17D4BD300049CA1C /* SDPlayersSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayersSearchHeader.m; sourceTree = "<group>"; };
 		7BEBA8E117D4C5B40049CA1C /* SearchOptionButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchOptionButtonBg@2x.png"; sourceTree = "<group>"; };
+		7BFA775A1876D81C00FE920A /* RegistrationCalendarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RegistrationCalendarIcon@2x.png"; sourceTree = "<group>"; };
 		7BFE1FE1179D1A8D00D94B3C /* SDBaseScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseScoreView.h; sourceTree = "<group>"; };
 		7BFE1FE2179D1A8D00D94B3C /* SDBaseScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseScoreView.m; sourceTree = "<group>"; };
 		7BFE1FE4179D1B6700D94B3C /* UserProfileBaseScoreBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserProfileBaseScoreBarEmpty@2x.png"; sourceTree = "<group>"; };
@@ -1015,14 +1030,6 @@
 		80B4DD9717B2599200352E07 /* SDUserProfileHighSchoolHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileHighSchoolHeaderView.h; sourceTree = "<group>"; };
 		80B4DD9817B2599200352E07 /* SDUserProfileHighSchoolHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileHighSchoolHeaderView.m; sourceTree = "<group>"; };
 		80B4DD9A17B259AA00352E07 /* SDUserProfileHighSchoolHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileHighSchoolHeaderView.xib; sourceTree = "<group>"; };
-		80B533351875B53F00AE2604 /* SDClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDClaimAccountViewController.h; sourceTree = "<group>"; };
-		80B533361875B53F00AE2604 /* SDClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDClaimAccountViewController.m; sourceTree = "<group>"; };
-		80B533371875B53F00AE2604 /* SDClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDClaimAccountViewController.xib; sourceTree = "<group>"; };
-		80B5333D1875B8D400AE2604 /* SDCantFindYourselfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCantFindYourselfView.h; sourceTree = "<group>"; };
-		80B5333E1875B8D400AE2604 /* SDCantFindYourselfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCantFindYourselfView.m; sourceTree = "<group>"; };
-		80B533401875B8F000AE2604 /* SDCantFindYourselfView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCantFindYourselfView.xib; sourceTree = "<group>"; };
-		80B533451875B99700AE2604 /* CantFindYourselfRegisterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CantFindYourselfRegisterButton@2x.png"; sourceTree = "<group>"; };
-		80B533461875B99700AE2604 /* CantFindYourselfBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CantFindYourselfBackground@2x.png"; sourceTree = "<group>"; };
 		80C28345182BCC2F007759A0 /* SigningDay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SigningDay.xcdatamodel; sourceTree = "<group>"; };
 		80C5695A18182FBF0055A041 /* SDOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOffersViewController.h; sourceTree = "<group>"; };
 		80C5695B18182FBF0055A041 /* SDOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDOffersViewController.m; sourceTree = "<group>"; };
@@ -1066,8 +1073,6 @@
 		80E31BA91758AF990013545C /* SDFollowingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDFollowingCell.xib; sourceTree = "<group>"; };
 		80E31BAF1758B8590013545C /* FollowingSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingSelected@2x.png"; sourceTree = "<group>"; };
 		80E31BB11758B8590013545C /* FollowingUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingUnselected@2x.png"; sourceTree = "<group>"; };
-		80E60DD11876FCF1009835A3 /* SDStandartNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStandartNavigationController.h; sourceTree = "<group>"; };
-		80E60DD21876FCF1009835A3 /* SDStandartNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStandartNavigationController.m; sourceTree = "<group>"; };
 		80E6CAA8180D5A1800077B6E /* SDUserProfileNFLPAHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserProfileNFLPAHeaderView.xib; sourceTree = "<group>"; };
 		80E6CAAA180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserProfileNFLPAHeaderView.h; sourceTree = "<group>"; };
 		80E6CAAB180D5A3800077B6E /* SDUserProfileNFLPAHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserProfileNFLPAHeaderView.m; sourceTree = "<group>"; };
@@ -1977,6 +1982,14 @@
 				805D64E71871A997003211F0 /* JoinHighSchoolIcon@2x.png */,
 				805D64E81871A997003211F0 /* JoinParentsIcon@2x.png */,
 				805D64E91871A997003211F0 /* JoinPlayerIcon@2x.png */,
+				7BBDFA8C1875B2F20070F9F0 /* RegistrationInputFieldBg@2x.png */,
+				7BFA775A1876D81C00FE920A /* RegistrationCalendarIcon@2x.png */,
+				7BDCCDAF187AB5E9008855C1 /* RegistrationPhotoIcon@2x.png */,
+				7B38E1DB187838FF007ACC8A /* RegistrationInputFieldLowerBg@2x.png */,
+				7B38E1DC187838FF007ACC8A /* RegistrationInputFieldUpperBg@2x.png */,
+				7B38E1DF187854F8007ACC8A /* RegistrationCheckboxChecked@2x.png */,
+				7B38E1E0187854F8007ACC8A /* RegistrationCheckboxUnchecked@2x.png */,
+				7B38E1E318786D1F007ACC8A /* RegistrationGreenButtonBg@2x.png */,
 			);
 			path = JoinScreenIcons;
 			sourceTree = "<group>";
@@ -2187,7 +2200,6 @@
 			children = (
 				8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */,
 				8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */,
-				80B5333A1875B8AA00AE2604 /* RegisterViews */,
 				80362AFD18632DF50017945E /* TopSchools */,
 				8025023F185F1AF500FBA43B /* SharingView */,
 				7BEBA8D217D4BCE80049CA1C /* Search */,
@@ -2212,7 +2224,6 @@
 				7B77B01C181173C0007EE53B /* 120.png */,
 				80540E49184CCBF9009EC1B8 /* offerCheckMark@2x.png */,
 				8044394617D4A8C400AADFDB /* closeBtn@2x.png */,
-				80B533421875B98E00AE2604 /* ClaimAccount */,
 				805D64E41871A997003211F0 /* JoinScreenIcons */,
 				80362AED186322D70017945E /* TopSchools */,
 				80250247185F252700FBA43B /* ShareViewImages */,
@@ -2261,25 +2272,6 @@
 			);
 			name = WarRoomControllers;
 			path = WarRoom;
-			sourceTree = "<group>";
-		};
-		80B5333A1875B8AA00AE2604 /* RegisterViews */ = {
-			isa = PBXGroup;
-			children = (
-				80B5333D1875B8D400AE2604 /* SDCantFindYourselfView.h */,
-				80B5333E1875B8D400AE2604 /* SDCantFindYourselfView.m */,
-				80B533401875B8F000AE2604 /* SDCantFindYourselfView.xib */,
-			);
-			path = RegisterViews;
-			sourceTree = "<group>";
-		};
-		80B533421875B98E00AE2604 /* ClaimAccount */ = {
-			isa = PBXGroup;
-			children = (
-				80B533451875B99700AE2604 /* CantFindYourselfRegisterButton@2x.png */,
-				80B533461875B99700AE2604 /* CantFindYourselfBackground@2x.png */,
-			);
-			path = ClaimAccount;
 			sourceTree = "<group>";
 		};
 		80CCAE601793E66B0015429A /* UsersProfileViews */ = {
@@ -2406,9 +2398,10 @@
 				805D64D718719BBB003211F0 /* SDJoinViewController.h */,
 				805D64D818719BBB003211F0 /* SDJoinViewController.m */,
 				805D64D918719BBB003211F0 /* SDJoinViewController.xib */,
-				80B533351875B53F00AE2604 /* SDClaimAccountViewController.h */,
-				80B533361875B53F00AE2604 /* SDClaimAccountViewController.m */,
-				80B533371875B53F00AE2604 /* SDClaimAccountViewController.xib */,
+				7BBDFA891875AE2D0070F9F0 /* SDCommonRegistrationViewController.h */,
+				7BBDFA8A1875AE2D0070F9F0 /* SDCommonRegistrationViewController.m */,
+				7BBDFA861875AD370070F9F0 /* SDRegisterViewController.h */,
+				7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */,
 			);
 			path = LoginViewControllers;
 			sourceTree = "<group>";
@@ -2459,8 +2452,6 @@
 				80C7EF3317F1765C000A3B3D /* SDCustomNavigationToolbarView.h */,
 				80C7EF3417F1765C000A3B3D /* SDCustomNavigationToolbarView.m */,
 				80C7EF3E17F1768E000A3B3D /* SDCustomNavigationToolbarView.xib */,
-				80E60DD11876FCF1009835A3 /* SDStandartNavigationController.h */,
-				80E60DD21876FCF1009835A3 /* SDStandartNavigationController.m */,
 			);
 			name = UINavigationController;
 			path = "Custom Classes & Categories/UINavigationController";
@@ -2575,6 +2566,7 @@
 				80F3017C1753A85E00134FF4 /* MailIconActive@2x.png in Resources */,
 				80F301801753A85E00134FF4 /* NotificationIcon@2x.png in Resources */,
 				80F301821753A85E00134FF4 /* NotificationIconActive@2x.png in Resources */,
+				7BDCCDB0187AB5E9008855C1 /* RegistrationPhotoIcon@2x.png in Resources */,
 				80F301841753A85E00134FF4 /* ToolbarBg@2x.png in Resources */,
 				80362B0518632E910017945E /* SDInterestSelectionView.xib in Resources */,
 				805CF3A1175490F0004C69E5 /* MenuButton@2x.png in Resources */,
@@ -2591,6 +2583,7 @@
 				8032F0911755F98E00C92AAC /* switchThumb.png in Resources */,
 				80EEF5EA17561A7E00A7C803 /* LoginStoryboard.storyboard in Resources */,
 				80EEF5F21756231E00A7C803 /* login_bg.png in Resources */,
+				7B38E1DE187838FF007ACC8A /* RegistrationInputFieldUpperBg@2x.png in Resources */,
 				80362AF5186322F00017945E /* interestImage2@2x.png in Resources */,
 				80EEF5F31756231E00A7C803 /* login_bg@2x.png in Resources */,
 				80EEF5F51756231E00A7C803 /* login_button@2x.png in Resources */,
@@ -2606,6 +2599,7 @@
 				80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */,
 				80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */,
 				80E31BB51758B8590013545C /* FollowingUnselected@2x.png in Resources */,
+				7B38E1E1187854F8007ACC8A /* RegistrationCheckboxChecked@2x.png in Resources */,
 				7B736521175F8249007A338E /* MessagesStoryboard.storyboard in Resources */,
 				7B736525175F84B3007A338E /* chat_send_message_bg@2x.png in Resources */,
 				7B663D0C17F1B92D00CB59AE /* switch_bg.png in Resources */,
@@ -2621,7 +2615,6 @@
 				7B6B1EB51760A86B00BC878A /* app_icon@2x.png in Resources */,
 				80362AF7186322F00017945E /* interestImage4@2x.png in Resources */,
 				7B6B1EB71760A87100BC878A /* app_icon.png in Resources */,
-				80B533471875B99700AE2604 /* CantFindYourselfRegisterButton@2x.png in Resources */,
 				7B6B1EBA1760A8C900BC878A /* login_bg-568h@2x.png in Resources */,
 				7B46288D1765DC5500091954 /* chat_box_bg@2x.png in Resources */,
 				7B46288E1765DC5500091954 /* chat_box_send_bt@2x.png in Resources */,
@@ -2635,7 +2628,6 @@
 				8094EFC71817FE8300A163FD /* WarRoomStoryBoard.storyboard in Resources */,
 				8025024B185F2A8500FBA43B /* shareButtonBigGreen@2x.png in Resources */,
 				80362AEC186322C50017945E /* SDTopSchoolsCell.xib in Resources */,
-				80B533391875B53F00AE2604 /* SDClaimAccountViewController.xib in Resources */,
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80362AEA186322C50017945E /* SDTopSchoolEditCell.xib in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
@@ -2656,7 +2648,7 @@
 				80362AF9186322F00017945E /* topSchoolsIcon@2x.png in Resources */,
 				809DF90817955AC5001F37B3 /* UserProfileKeyAttributesButton@2x.png in Resources */,
 				809DF90A17955AC5001F37B3 /* UserProfilePhotosButton@2x.png in Resources */,
-				80B533481875B99700AE2604 /* CantFindYourselfBackground@2x.png in Resources */,
+				7B38E1E418786D1F007ACC8A /* RegistrationGreenButtonBg@2x.png in Resources */,
 				809DF90C17955AC5001F37B3 /* UserProfileProspectsButton@2x.png in Resources */,
 				809DF90E17955AC5001F37B3 /* UserProfileVideoButton@2x.png in Resources */,
 				805D64EE1871A997003211F0 /* JoinPlayerIcon@2x.png in Resources */,
@@ -2676,6 +2668,7 @@
 				801088E4179579BF002EF1EB /* chat_bg@2x.png in Resources */,
 				805D64EA1871A997003211F0 /* JoinCoachIcon@2x.png in Resources */,
 				801088E5179579BF002EF1EB /* check_selected@2x.png in Resources */,
+				7B38E1E2187854F8007ACC8A /* RegistrationCheckboxUnchecked@2x.png in Resources */,
 				801088E6179579BF002EF1EB /* check_unselected@2x.png in Resources */,
 				801088E7179579BF002EF1EB /* flash_auto_button@2x.png in Resources */,
 				801088E8179579BF002EF1EB /* flash_off_button@2x.png in Resources */,
@@ -2689,7 +2682,6 @@
 				803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */,
 				80F531EC1802C1030089971C /* SDCommitsRostersCoachViewController.xib in Resources */,
 				80540E4A184CCBF9009EC1B8 /* offerCheckMark@2x.png in Resources */,
-				80B533411875B8F000AE2604 /* SDCantFindYourselfView.xib in Resources */,
 				801088F1179579DC002EF1EB /* MenuButtonClose@2x.png in Resources */,
 				801088F2179579DC002EF1EB /* MenuButtonDone@2x.png in Resources */,
 				80D1F39917967FF20051E8E1 /* BuzzButtonBackground@2x.png in Resources */,
@@ -2718,6 +2710,7 @@
 				7BDDAB91179FC457003F6AD7 /* HighSchoolsIcon@2x.png in Resources */,
 				80250246185F1B4200FBA43B /* SDShareView.xib in Resources */,
 				7BDDAB92179FC457003F6AD7 /* PlayersIcon@2x.png in Resources */,
+				7B38E1DD187838FF007ACC8A /* RegistrationInputFieldLowerBg@2x.png in Resources */,
 				7BDDAB93179FC457003F6AD7 /* SettingsIcon@2x.png in Resources */,
 				7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */,
 				80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */,
@@ -2742,6 +2735,7 @@
 				8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */,
 				80A09F6D18574CA900195470 /* SDWebViewController.xib in Resources */,
 				805D64E31871A4B4003211F0 /* SDJoinCell.xib in Resources */,
+				7BBDFA8D1875B2F20070F9F0 /* RegistrationInputFieldBg@2x.png in Resources */,
 				8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */,
 				802B794817D5C02900BDA9D0 /* SDLandingPagePlayerCell.xib in Resources */,
 				8062EE2717D6065000067B13 /* SearchButtonBig@2x.png in Resources */,
@@ -2767,6 +2761,7 @@
 				805D64EC1871A997003211F0 /* JoinHighSchoolIcon@2x.png in Resources */,
 				7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */,
 				7BD5234A17F9905A007F8F67 /* SDNotificationCell.xib in Resources */,
+				7BFA775B1876D81C00FE920A /* RegistrationCalendarIcon@2x.png in Resources */,
 				7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */,
 				7BA0F55A17E9EBE700C6DE89 /* UserProfileMessageButtonBig@2x.png in Resources */,
 				7BA0F55B17E9EBE700C6DE89 /* UserProfilePostButtonBig@2x.png in Resources */,
@@ -2833,7 +2828,6 @@
 				7B93CEED182AA038007A6275 /* NSManagedObject+MagicalFinders.m in Sources */,
 				80362A96186321EA0017945E /* HighSchool.m in Sources */,
 				80A09F6C18574CA900195470 /* SDWebViewController.m in Sources */,
-				80E60DD31876FCF1009835A3 /* SDStandartNavigationController.m in Sources */,
 				7B93CEEE182AA038007A6275 /* NSManagedObject+MagicalRecord.m in Sources */,
 				7B93CEEF182AA038007A6275 /* NSManagedObject+MagicalRequests.m in Sources */,
 				7B93CEF0182AA038007A6275 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
@@ -2891,6 +2885,7 @@
 				7B93CEA7182AA007007A6275 /* SDNewConversationCell.m in Sources */,
 				80C28346182BCC2F007759A0 /* SigningDay.xcdatamodel in Sources */,
 				7B93CEA8182AA007007A6275 /* SDMessageCell.m in Sources */,
+				7BBDFA881875AD370070F9F0 /* SDRegisterViewController.m in Sources */,
 				7B93CEA9182AA007007A6275 /* SDLandingPagePlayerCell.m in Sources */,
 				7B93CEAA182AA007007A6275 /* SDLandingPageCollegeCell.m in Sources */,
 				7B93CEAB182AA007007A6275 /* SDLandingPageHighSchoolCell.m in Sources */,
@@ -2910,6 +2905,7 @@
 				80362AFC186323A60017945E /* SDTopSchoolService.m in Sources */,
 				7B93CEB9182AA007007A6275 /* SDNotificationCell.m in Sources */,
 				7B93CEBA182AA007007A6275 /* SDImageEnlargementView.m in Sources */,
+				7BBDFA8B1875AE2D0070F9F0 /* SDCommonRegistrationViewController.m in Sources */,
 				7B93CEBB182AA007007A6275 /* SDPlayersSearchHeader.m in Sources */,
 				7B93CEBC182AA007007A6275 /* SDTeamsSearchHeader.m in Sources */,
 				7B93CEBD182AA007007A6275 /* SDHighSchoolsSearchHeader.m in Sources */,
@@ -2971,7 +2967,6 @@
 				7B93CE77182A9FAE007A6275 /* SDProfileService.m in Sources */,
 				7B93CE78182A9FAE007A6275 /* SDUploadService.m in Sources */,
 				7B93CE79182A9FAE007A6275 /* SDLandingPagesService.m in Sources */,
-				80B533381875B53F00AE2604 /* SDClaimAccountViewController.m in Sources */,
 				7B93CE7A182A9FAE007A6275 /* SDNotificationsService.m in Sources */,
 				80362AEB186322C50017945E /* SDTopSchoolsCell.m in Sources */,
 				80362AC6186321EE0017945E /* NFLPA.m in Sources */,
@@ -2993,7 +2988,6 @@
 				7B93CE86182A9FAE007A6275 /* SDBaseLandingPageViewController.m in Sources */,
 				7BBBDCE61860726F00831D38 /* SDSharingService.m in Sources */,
 				7B93CE87182A9FAE007A6275 /* SDPlayerLandingPageViewController.m in Sources */,
-				80B5333F1875B8D400AE2604 /* SDCantFindYourselfView.m in Sources */,
 				7B93CE88182A9FAE007A6275 /* SDCollegeLandingPageViewController.m in Sources */,
 				7B93CE89182A9FAE007A6275 /* SDHighSchoolLandingPageViewController.m in Sources */,
 				805D64E11871A48D003211F0 /* SDJoinCell.m in Sources */,

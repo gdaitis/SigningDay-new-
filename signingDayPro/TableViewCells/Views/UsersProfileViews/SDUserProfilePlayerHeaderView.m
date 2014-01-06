@@ -85,11 +85,27 @@
         }
     }
     self.schoolNamelabel.text = mutableLocationString;
-    self.starsRatingView.starsCount = [user.thePlayer.starsCount intValue];
     self.baseScoreView.baseScore = [user.thePlayer.baseScore floatValue];
-    self.positionNumberlabel.text = [user.thePlayer.positionRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.positionRanking intValue]] : @"N/A";
-    self.nationalNumberlabel.text = [user.thePlayer.nationalRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.nationalRanking intValue]] : @"N/A";
-    self.stateNumberlabel.text = [user.thePlayer.stateRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.stateRanking intValue]] : @"N/A";
+    NSString *positionNumberText;
+    NSString *nationalNumberText;
+    NSString *stateNumberText;
+    int starsCount;
+    if ([user.thePlayer.baseScore integerValue] > 0) {
+        positionNumberText = [user.thePlayer.positionRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.positionRanking intValue]] : @"N/A";
+        nationalNumberText = [user.thePlayer.nationalRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.nationalRanking intValue]] : @"N/A";
+        stateNumberText = [user.thePlayer.stateRanking intValue] < 1000 ? [NSString stringWithFormat:@"%d", [user.thePlayer.stateRanking intValue]] : @"N/A";
+        starsCount = [user.thePlayer.starsCount intValue];
+    } else {
+        positionNumberText = @"N/A";
+        nationalNumberText = @"N/A";
+        stateNumberText = @"N/A";
+        starsCount = 0;
+    }
+    self.positionNumberlabel.text = positionNumberText;
+    self.nationalNumberlabel.text = nationalNumberText;
+    self.stateNumberlabel.text = stateNumberText;
+    self.starsRatingView.starsCount = starsCount;
+    
     self.postionAndHeightlabel.text = [NSString stringWithFormat:@"%@ %@", user.thePlayer.position, [SDUtils stringHeightFromInches:[user.thePlayer.height intValue]]];
     self.weightlabel.text = [NSString stringWithFormat:@"%d lbs",[user.thePlayer.weight intValue]];
     
