@@ -15,7 +15,7 @@
 #import "SDJoinViewController.h"
 #import "SDNavigationController.h"
 
-@interface SDLoginViewController () <UITextFieldDelegate>
+@interface SDLoginViewController () <UITextFieldDelegate, SDJoinViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -144,9 +144,17 @@
 - (IBAction)registerButtonPressed:(UIButton *)sender
 {
     SDJoinViewController *viewController = [[SDJoinViewController alloc] initWithNibName:@"SDJoinViewController" bundle:nil];
+    viewController.delegate = self;
 
     SDNavigationController *navigationController = [[SDNavigationController alloc] initWithRootViewController:viewController];
     [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
+}
+
+- (void)bakcPressedInJoinViewController:(SDJoinViewController *)joinViewController
+{
+    [self dismissViewControllerAnimated:YES completion:^{
         
     }];
 }

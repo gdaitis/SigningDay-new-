@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseViewController.h"
 
+@class SDJoinViewController;
+
+@protocol SDJoinViewControllerDelegate <NSObject>
+
+- (void)bakcPressedInJoinViewController:(SDJoinViewController *)joinViewController;
+
+@end
+
 @interface SDJoinViewController : SDBaseViewController
+
+@property (nonatomic, assign) id <SDJoinViewControllerDelegate> delegate;
 
 @end
