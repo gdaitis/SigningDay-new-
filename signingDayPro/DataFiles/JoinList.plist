@@ -9,8 +9,8 @@
 		<string>FANS</string>
 		<key>AdditionalInfoText</key>
 		<string>Get direct access</string>
-		<key>UserType</key>
-		<string>fan</string>
+		<key>JoinControllerUserType</key>
+		<integer>0</integer>
 		<key>AttributeStringArray</key>
 		<array>
 			<string>Follow your team and the players they recruit</string>
@@ -25,8 +25,8 @@
 		<string>PARENTS</string>
 		<key>AdditionalInfoText</key>
 		<string>The path for success on SigningDay</string>
-		<key>UserType</key>
-		<string>parent</string>
+		<key>JoinControllerUserType</key>
+		<integer>1</integer>
 		<key>AttributeStringArray</key>
 		<array>
 			<string>View your son&apos;s recruiting process</string>
@@ -41,8 +41,8 @@
 		<string>PLAYERS</string>
 		<key>AdditionalInfoText</key>
 		<string>Get Signed</string>
-		<key>UserType</key>
-		<string>player</string>
+		<key>JoinControllerUserType</key>
+		<integer>2</integer>
 		<key>AttributeStringArray</key>
 		<array>
 			<string>Control your own profile</string>
@@ -57,8 +57,8 @@
 		<string>COLLEGE COACHES</string>
 		<key>AdditionalInfoText</key>
 		<string>Streamline the recruiting process</string>
-		<key>UserType</key>
-		<string>coach</string>
+		<key>JoinControllerUserType</key>
+		<integer>3</integer>
 		<key>AttributeStringArray</key>
 		<array>
 			<string>Prospect list by class</string>
@@ -73,8 +73,8 @@
 		<string>HIGH SCHOOLS</string>
 		<key>AdditionalInfoText</key>
 		<string>Advance your players. Better your program.</string>
-		<key>UserType</key>
-		<string>highschool</string>
+		<key>JoinControllerUserType</key>
+		<integer>4</integer>
 		<key>AttributeStringArray</key>
 		<array>
 			<string>Promote your players</string>
