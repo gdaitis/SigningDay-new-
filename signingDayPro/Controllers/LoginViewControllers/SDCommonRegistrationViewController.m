@@ -9,6 +9,10 @@
 #import "SDCommonRegistrationViewController.h"
 #import "UIPlaceHolderTextView.h"
 
+NSString * const kSDCommonRegistrationViewControllerTermsAndConditionsLink = @"SDCommonRegistrationViewControllerTermsAndConditionsLink";
+NSString * const kSDCommonRegistrationViewControllerPrivacyPolicyLink = @"SDCommonRegistrationViewControllerPrivacyPolicyLink";
+NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonRegistrationViewControllerTwitterLink";
+
 @interface SDCommonRegistrationViewController ()
 
 @end
@@ -19,12 +23,25 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
     self.view.backgroundColor = [UIColor colorWithRed:221.0f/255.0f
                                                 green:221.0f/255.0f
                                                  blue:221.0f/255.0f
                                                 alpha:1.0f];
-    UIView *view = [self viewForNoticeLabelAtYPoint:100];
-    [self.view addSubview:view];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 #pragma mark - Private methods
@@ -40,20 +57,20 @@
     return inputFieldBackgroundImageView;
 }
 
-- (UITextField *)createTextFieldForRect:(CGRect)rect
-                        withPlaceholder:(NSString *)placeholder
-{
-    UITextField *textField = [[UITextField alloc] init];
-    textField.backgroundColor = [UIColor clearColor];
-    textField.font = [UIFont systemFontOfSize:17];
-    textField.placeholder = placeholder;
-    textField.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding,
-                                 rect.origin.y,
-                                 kSDCommonRegistrationViewControllerInputFieldContentWidth,
-                                 rect.size.height);
-    textField.delegate = self;
-    return textField;
-}
+//- (UITextField *)createTextFieldForRect:(CGRect)rect
+//                        withPlaceholder:(NSString *)placeholder
+//{
+//    UITextField *textField = [[UITextField alloc] init];
+//    textField.backgroundColor = [UIColor clearColor];
+//    textField.font = [UIFont systemFontOfSize:17];
+//    textField.placeholder = placeholder;
+//    textField.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding,
+//                                 rect.origin.y,
+//                                 kSDCommonRegistrationViewControllerInputFieldContentWidth,
+//                                 rect.size.height);
+//    textField.delegate = self;
+//    return textField;
+//}
 
 - (UILabel *)createInfoLabelWithInfoText:(NSString *)infoText
                                  forRect:(CGRect)rect
@@ -82,6 +99,7 @@
            withPlaceholderText:(NSString *)placeholderText
                       infoText:(NSString *)infoText
                backgroundImage:(UIImage *)backgroundImage
+                     iconImage:(UIImage *)iconImage
                   forTextField:(UITextField **)targetTextField
 {
     UIView *view = [[UIView alloc] init];
@@ -90,8 +108,26 @@
                                                                                  atYPoint:0];
     [view addSubview:inputFieldBackgroundImageView];
     
-    UITextField *textField = [self createTextFieldForRect:inputFieldBackgroundImageView.frame
-                                          withPlaceholder:placeholderText];
+    if (iconImage) {
+        UIImageView *calendarIconImageView = [[UIImageView alloc] initWithImage:iconImage];
+        CGRect calendarIconImageViewFrame = calendarIconImageView.frame;
+        calendarIconImageViewFrame.origin = CGPointMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding,
+                                                        9);
+        calendarIconImageView.frame = calendarIconImageViewFrame;
+        calendarIconImageView.userInteractionEnabled = NO;
+        calendarIconImageView.exclusiveTouch = NO;
+        [view addSubview:calendarIconImageView];
+    }
+    
+    UITextField *textField = [[UITextField alloc] init];
+    textField.backgroundColor = [UIColor clearColor];
+    textField.font = [UIFont systemFontOfSize:17];
+    textField.placeholder = placeholderText;
+    textField.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding + (iconImage ? (iconImage.size.width + 10) : 0),
+                                 inputFieldBackgroundImageView.frame.origin.y,
+                                 kSDCommonRegistrationViewControllerInputFieldContentWidth - (iconImage ? (iconImage.size.width + 10) : 0),
+                                 inputFieldBackgroundImageView.frame.size.height);
+    textField.delegate = self;
     [view addSubview:textField];
     *targetTextField = textField;
     
@@ -105,7 +141,7 @@
                                                        forRect:inputFieldBackgroundImageView.frame];
         
         CGRect viewFrame = view.frame;
-        viewFrame.size.height += infoLabel.frame.origin.y + infoLabel.frame.size.height;
+        viewFrame.size.height += infoLabel.frame.origin.y - viewFrame.size.height + infoLabel.frame.size.height;
         view.frame = viewFrame;
         
         [view addSubview:infoLabel];
@@ -174,12 +210,47 @@
     return view;
 }
 
-#pragma mark - View construction
+#pragma mark - Keyboard methods
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    [self resizeViewWithOptions:[notification userInfo]];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    [self resizeViewWithOptions:[notification userInfo]];
+}
+
+- (void)resizeViewWithOptions:(NSDictionary *)options
+{
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardEndFrame;
+    [[options objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[options objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[options objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationCurve:animationCurve];
+    [UIView setAnimationDuration:animationDuration];
+    CGRect viewFrame = self.scrollView.frame;
+    
+    CGRect keyboardFrameEndRelative = [self.view convertRect:keyboardEndFrame fromView:nil];
+    
+    viewFrame.size.height =  keyboardFrameEndRelative.origin.y;
+    self.scrollView.frame = viewFrame;
+    [UIView commitAnimations];
+}
+
+#pragma mark - Public methods
 
 - (UIView *)createContentView
 {
     return nil;
 }
+
+#pragma mark - Public view construction methods
 
 - (UIView *)inputFieldAtYPoint:(CGFloat)yPoint
            withPlaceholderText:(NSString *)placeholderText
@@ -190,6 +261,7 @@
                         withPlaceholderText:placeholderText
                                    infoText:infoText
                             backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldBg"]
+                                  iconImage:nil
                                forTextField:targetTextField];
     
     return view;
@@ -208,6 +280,7 @@
                                        withPlaceholderText:firstPlaceholder
                                                   infoText:nil
                                            backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldUpperBg"]
+                                                 iconImage:nil
                                               forTextField:firstTargetTextField];
     [view addSubview:firstInputFieldView];
 
@@ -215,6 +288,7 @@
                                         withPlaceholderText:secondPlaceholder
                                                    infoText:infoText
                                             backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldLowerBg"]
+                                                  iconImage:nil
                                                forTextField:secondTargetTextField];
     [view addSubview:secondInputFieldView];
     
@@ -222,6 +296,19 @@
                             yPoint,
                             self.view.frame.size.width,
                             secondInputFieldView.frame.origin.y + secondInputFieldView.frame.size.height);
+    
+    return view;
+}
+
+- (UIView *)inputFieldForBirthdayAtYPoint:(CGFloat)yPoint
+                             forTextField:(UITextField **)targetTextField
+{
+    UIView *view = [self inputFieldAtYPoint:yPoint
+                        withPlaceholderText:@"Birthday"
+                                   infoText:nil
+                            backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldBg"]
+                                  iconImage:[UIImage imageNamed:@"RegistrationCalendarIcon"]
+                               forTextField:targetTextField];
     
     return view;
 }

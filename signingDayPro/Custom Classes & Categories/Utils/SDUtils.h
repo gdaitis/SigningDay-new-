@@ -21,6 +21,7 @@
 + (NSString *)formatedTimeForDate:(NSDate *)date;
 + (NSString *)formatedDateStringFromDateToNow:(NSDate *)date;
 + (NSString *)formatedDateStringFromDate:(NSDate *)date;
++ (NSString *)formatedDateWithoutHoursStringFromDate:(NSDate *)date;
 + (NSString *)formatedLocalizedDateStringFromDate:(NSDate *)date;
 
 + (NSDate *)notLocalizedDateFromString:(NSString *)dateString;

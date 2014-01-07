@@ -337,6 +337,19 @@
     return result;
 }
 
++ (NSString *)formatedDateWithoutHoursStringFromDate:(NSDate *)date
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
+    
+    NSInteger year = [components year];
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    
+    NSString *result = [NSString stringWithFormat:@"%d/%d/%d",month,day,year];
+    
+    return result;
+}
+
 + (NSString *)formatedLocalizedDateStringFromDate:(NSDate *)date
 {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSHourCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];

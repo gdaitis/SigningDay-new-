@@ -7,14 +7,17 @@
 //
 
 #import "SDRegisterViewController.h"
+#import "SDTermsViewController.h"
+#import "SDUtils.h"
 
 @interface SDRegisterViewController ()
 
 @property (nonatomic, strong) UITextField *signInNameTextField;
 @property (nonatomic, strong) UITextField *emailTextField;
-@property (nonatomic, strong) UILabel *birthdayLabel;
-@property (nonatomic, strong) UITextField *newPasswordTextField;
-@property (nonatomic, strong) UITextField *confirmPasswordTextField;
+@property (nonatomic, strong) UITextField *birthdayTextField;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UITextField *firstPasswordTextField;
+@property (nonatomic, strong) UITextField *secondPasswordTextField;
 
 @end
 
@@ -24,7 +27,16 @@
 {
     [super viewDidLoad];
     
-    
+    self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView.frame = CGRectMake(0,
+                                       0,
+                                       self.view.frame.size.width,
+                                       self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height);
+    UIView *contentView = [self createContentView];
+    self.scrollView.contentSize = contentView.frame.size;
+    [self.scrollView addSubview:contentView];
+    self.scrollView.scrollEnabled = YES;
+    [self.view addSubview:self.scrollView];
 }
 
 - (UIView *)createContentView
@@ -51,16 +63,20 @@
     self.emailTextField = emailTextField;
     [contentView addSubview:emailTextFieldView];
     
-    currentY += emailTextFieldView.frame.size.height + kSDCommonRegistrationViewControllerInputFieldVerticalSpacing;
-    UILabel *birthdayLabel;
-    UIView *birthdayButtonView = [self birthdaySelectButtonViewAtYPoint:currentY
-                                                           withSelector:@selector(birthdaySelected)
-                                                                 target:self
-                                                    targetBirthdayLabel:&birthdayLabel];
-    self.birthdayLabel = birthdayLabel;
-    [contentView addSubview:birthdayButtonView];
+    currentY += emailTextFieldView.frame.size.height + 20;
+    UITextField *birthdayTextField;
+    UIView *birthdayFieldView = [self inputFieldForBirthdayAtYPoint:currentY
+                                                       forTextField:&birthdayTextField];
+    self.birthdayTextField = birthdayTextField;
+    self.datePicker = [[UIDatePicker alloc] init];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
+    [self.datePicker addTarget:self
+                        action:@selector(datePicked)
+              forControlEvents:UIControlEventValueChanged];
+    self.birthdayTextField.inputView = self.datePicker;
+    [contentView addSubview:birthdayFieldView];
     
-    currentY += birthdayButtonView.frame.size.height + kSDCommonRegistrationViewControllerInputFieldVerticalSpacing;
+    currentY += birthdayFieldView.frame.size.height + 20;
     UITextField *newPasswordTextField;
     UITextField *confirmPasswordTextField;
     UIView *passwordInputFieldsView = [self passwordInputFieldsViewAtYPoint:currentY
@@ -69,15 +85,15 @@
                                                                    infoText:@"Your password must be at least 6 characters"
                                                           forFirstTextField:&newPasswordTextField
                                                             secondTextField:&confirmPasswordTextField];
-    self.newPasswordTextField = newPasswordTextField;
-    self.confirmPasswordTextField = confirmPasswordTextField;
+    self.firstPasswordTextField = newPasswordTextField;
+    self.secondPasswordTextField = confirmPasswordTextField;
     [contentView addSubview:passwordInputFieldsView];
     
-    currentY += passwordInputFieldsView.frame.size.height + kSDCommonRegistrationViewControllerInputFieldVerticalSpacing;
+    currentY += passwordInputFieldsView.frame.size.height + 33;
     UIView *checkboxView = [self checkboxViewAtYPoint:currentY];
     [contentView addSubview:checkboxView];
     
-    currentY += checkboxView.frame.size.height + kSDCommonRegistrationViewControllerInputFieldVerticalSpacing;
+    currentY += checkboxView.frame.size.height + 23;
     UIView *joinButtonView = [self greenButtonViewAtYPoint:currentY
                                                  withTitle:@"Join now"
                                                   selector:@selector(joinNowSelected)];
@@ -103,16 +119,27 @@
     
 }
 
+- (void)datePicked
+{
+    NSDate *date = [self.datePicker date];
+    NSString *dateString = [SDUtils formatedDateWithoutHoursStringFromDate:date];
+    self.birthdayTextField.text = dateString;
+}
+
 #pragma mark - TTTAttributedLabelDelegate methods
 
 - (void)attributedLabel:(TTTAttributedLabel *)label
    didSelectLinkWithURL:(NSURL *)url
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SettingsStoryboard" bundle:nil];
+    SDTermsViewController *termsViewController = [storyboard instantiateViewControllerWithIdentifier:@"TermsStroyBoardID"];
     if ([[url description] isEqual:kSDCommonRegistrationViewControllerTermsAndConditionsLink]) {
-        
+        termsViewController.urlString = @"/p/terms.aspx";
     } else if ([[url description] isEqual:kSDCommonRegistrationViewControllerPrivacyPolicyLink]) {
-        
+        termsViewController.urlString = @"/p/privacy.aspx";
     }
+    [self.navigationController pushViewController:termsViewController
+                                         animated:YES];
 }
 
 @end

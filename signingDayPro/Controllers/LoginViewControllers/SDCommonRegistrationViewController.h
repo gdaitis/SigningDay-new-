@@ -19,12 +19,13 @@
 #define kSDCommonRegistrationViewControllerInputFieldBottomPadding 2
 #define kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding 14
 
-NSString * const kSDCommonRegistrationViewControllerTermsAndConditionsLink = @"SDCommonRegistrationViewControllerTermsAndConditionsLink";
-NSString * const kSDCommonRegistrationViewControllerPrivacyPolicyLink = @"SDCommonRegistrationViewControllerPrivacyPolicyLink";
-NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonRegistrationViewControllerTwitterLink";
+extern NSString * const kSDCommonRegistrationViewControllerTermsAndConditionsLink;
+extern NSString * const kSDCommonRegistrationViewControllerPrivacyPolicyLink;
+extern NSString * const kSDCommonRegistrationViewControllerTwitterLink;
 
 @interface SDCommonRegistrationViewController : UIViewController <UITextFieldDelegate, TTTAttributedLabelDelegate>
 
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIButton *checkboxButton;
 
 - (UIView *)createContentView;
@@ -39,6 +40,8 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                    infoText:(NSString *)infoText
                           forFirstTextField:(UITextField **)firstTargetTextField
                             secondTextField:(UITextField **)secondTargetTextField;
+- (UIView *)inputFieldForBirthdayAtYPoint:(CGFloat)yPoint
+                             forTextField:(UITextField **)targetTextField;
 - (UIView *)birthdaySelectButtonViewAtYPoint:(CGFloat)yPoint
                                 withSelector:(SEL)selector
                                       target:(id)target
