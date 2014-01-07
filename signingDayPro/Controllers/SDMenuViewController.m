@@ -18,6 +18,7 @@
 #import "UIImage+Crop.h"
 #import "SDLoginService.h"
 #import "SDSettingsViewController.h"
+#import "SDStandartNavigationController.h"
 
 #define kHeaderSize  40
 
@@ -263,11 +264,13 @@
     if ([presentedVC isKindOfClass:[SDLoginViewController class]] && presentedVC)
         return;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginStoryboard" bundle:nil];
-    SDLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationViewController"];
-    [loginVC setModalPresentationStyle:UIModalPresentationFullScreen];
-    loginVC.delegate = self;
     
-    [self.viewDeckController presentViewController:loginVC
+    SDStandartNavigationController *loginNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationViewController"];
+    [loginNavigationController setModalPresentationStyle:UIModalPresentationFullScreen];
+    SDLoginViewController *loginViewController = [loginNavigationController.viewControllers objectAtIndex:0];
+    loginViewController.delegate = self;
+    
+    [self.viewDeckController presentViewController:loginNavigationController
                        animated:YES
                      completion:^{
                          UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ActivityFeedStoryboard" bundle:nil];
