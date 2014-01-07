@@ -10,6 +10,8 @@
 #import "SDTermsViewController.h"
 #import "SDUtils.h"
 
+#define kSDRegisterViewControllerParentsStuffViewInsertionYCoordinate 340
+
 @interface SDRegisterViewController ()
 
 @property (nonatomic, strong) UITextField *signInNameTextField;
@@ -18,6 +20,8 @@
 @property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) UITextField *firstPasswordTextField;
 @property (nonatomic, strong) UITextField *secondPasswordTextField;
+@property (nonatomic, strong) UITextField *parentEmailTextField;
+@property (nonatomic, strong) UIView *parentsStuffView;
 
 @end
 
@@ -115,6 +119,69 @@
     NSDate *date = [self.datePicker date];
     NSString *dateString = [SDUtils formatedDateWithoutHoursStringFromDate:date];
     self.birthdayTextField.text = dateString;
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit
+                                                                   fromDate:date
+                                                                     toDate:[NSDate date]
+                                                                    options:0];
+    int years = [components year];
+    
+    if (years < 13)
+        [self expandViewWithParentsConsent];
+    else
+        [self removeParentsConsent];
+}
+
+- (void)expandViewWithParentsConsent
+{
+    CGFloat currentY = kSDRegisterViewControllerParentsStuffViewInsertionYCoordinate;
+    
+    self.parentsStuffView = [[UIView alloc] init];
+    UIView *parentsChecboxView = [self parentCheckboxViewAtYPoint:0];
+    UITextField *parentEmailTextField;
+    UIView *parentsEmailView = [self inputFieldAtYPoint:parentsChecboxView.frame.size.height + 15
+                                    withPlaceholderText:@"Parent Email Address"
+                                               infoText:@"Your e-mail address will not be published"
+                                           forTextField:&parentEmailTextField];
+    self.parentEmailTextField = parentEmailTextField;
+    [self.parentsStuffView addSubview:parentsChecboxView];
+    [self.parentsStuffView addSubview:parentsEmailView];
+    self.parentsStuffView.frame = CGRectMake(0,
+                                             currentY,
+                                             self.view.frame.size.width,
+                                             parentsEmailView.frame.origin.y + parentsEmailView.frame.size.height + 18);
+    
+    for (UIView *subview in self.contentView.subviews) {
+        if (subview.frame.origin.y >= currentY) {
+            CGRect subviewFrame = subview.frame;
+            subviewFrame.origin.y += self.parentsStuffView.frame.size.height;
+            subview.frame = subviewFrame;
+        }
+    }
+    [self.contentView addSubview:self.parentsStuffView];
+    CGRect contentViewFrame = self.contentView.frame;
+    contentViewFrame.size.height += self.parentsStuffView.frame.size.height;
+    self.contentView.frame = contentViewFrame;
+    
+    self.scrollView.contentSize = self.contentView.frame.size;
+}
+
+- (void)removeParentsConsent
+{
+    [self.parentsStuffView removeFromSuperview];
+    
+    for (UIView *subview in self.contentView.subviews) {
+        if (subview.frame.origin.y >= kSDRegisterViewControllerParentsStuffViewInsertionYCoordinate) {
+            CGRect subviewFrame = subview.frame;
+            subviewFrame.origin.y -= self.parentsStuffView.frame.size.height;
+            subview.frame = subviewFrame;
+        }
+    }
+    CGRect contentViewFrame = self.contentView.frame;
+    contentViewFrame.size.height -= self.parentsStuffView.frame.size.height;
+    self.contentView.frame = contentViewFrame;
+    
+    self.scrollView.contentSize = self.contentView.frame.size;
 }
 
 #pragma mark - TTTAttributedLabelDelegate methods

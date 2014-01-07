@@ -27,6 +27,8 @@ extern NSString * const kSDCommonRegistrationViewControllerTwitterLink;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIButton *checkboxButton;
+@property (nonatomic, strong) UIButton *parentCheckboxButton;
+@property (nonatomic, strong) UIView *contentView;
 
 - (UIView *)createContentView;
 
@@ -50,6 +52,7 @@ extern NSString * const kSDCommonRegistrationViewControllerTwitterLink;
                         withSelector:(SEL)selector
                               target:(id)target;
 - (UIView *)checkboxViewAtYPoint:(CGFloat)yPoint;
+- (UIView *)parentCheckboxViewAtYPoint:(CGFloat)yPoint;
 - (UIView *)greenButtonViewAtYPoint:(CGFloat)yPoint
                           withTitle:(NSString *)title
                            selector:(SEL)selector;

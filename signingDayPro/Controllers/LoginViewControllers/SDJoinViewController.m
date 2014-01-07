@@ -162,38 +162,33 @@
 
 - (void)registerButtonPressed:(UIButton *)sender
 {
+    UIViewController *viewController;
     switch (sender.tag) {
         case SDJoinControllerCellUserType_FAN:
-
+            viewController = [[SDRegisterViewController alloc] init];
             break;
             
         case SDJoinControllerCellUserType_PARENT:
-
+            viewController = [[SDRegisterViewController alloc] init];
             break;
             
         case SDJoinControllerCellUserType_PLAYER:
-
+            viewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
             break;
             
         case SDJoinControllerCellUserType_COACH:
-
+            viewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
             break;
             
         case SDJoinControllerCellUserType_HIGHSCHOOL:
-
+            viewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
             break;
             
         default:
             break;
     }
-//    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
-//    [self.navigationController pushViewController:claimAccountViewController animated:YES];
-    
-//    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
-//    [self.navigationController pushViewController:rvc animated:YES];
-    
-    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
-    [self.navigationController pushViewController:crvc animated:YES];
+    [self.navigationController pushViewController:viewController
+                                         animated:YES];
 }
 
 - (void)backPressed:(id)sender
