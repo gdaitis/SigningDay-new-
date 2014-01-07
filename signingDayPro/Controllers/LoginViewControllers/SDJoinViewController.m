@@ -56,6 +56,8 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Join"];
+    
+    self.screenName = @"Join screen";
 
     [self.tableView setAllowsMultipleSelection:NO];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"JoinList" ofType:@"plist"];
@@ -114,11 +116,9 @@
     }
     NSString *buttonTitle = (self.selectedIndexPathRow == indexPath.row) ? @"Less info" : @"More info";
     [cell.moreInfoButton setTitle:buttonTitle forState:UIControlStateNormal];
-    cell.moreInfoButton.tag = indexPath.row;
-    cell.registerButton.tag = indexPath.row;
     
-    [cell removeUnnecessaryLabels];
     [cell setupCellWithDictionary:dataDictionary];
+    [cell removeUnnecessaryLabels];
     
     if (self.selectedIndexPathRow == indexPath.row)
         [cell setAdditionalAttributeArray:[dataDictionary valueForKey:@"AttributeStringArray"]]; //expanded cell
@@ -160,32 +160,33 @@
 
 - (void)registerButtonPressed:(UIButton *)sender
 {
-    
+    SDUserType userType;
     switch (sender.tag) {
         case SDJoinControllerCellUserType_FAN:
-
+            userType = SDUserTypeMember;
             break;
             
         case SDJoinControllerCellUserType_PARENT:
-
+            userType = SDUserTypePlayer;
             break;
             
         case SDJoinControllerCellUserType_PLAYER:
-
+            userType = SDUserTypePlayer;
             break;
             
         case SDJoinControllerCellUserType_COACH:
-
+            userType = SDUserTypeCoach;
             break;
             
         case SDJoinControllerCellUserType_HIGHSCHOOL:
-
+            userType = SDUserTypeHighSchool;
             break;
             
         default:
             break;
     }
-    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
+    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+    claimAccountViewController.userType = userType;
     [self.navigationController pushViewController:claimAccountViewController animated:YES];
 }
 

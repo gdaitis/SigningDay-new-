@@ -342,7 +342,7 @@
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
 		8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044394617D4A8C400AADFDB /* closeBtn@2x.png */; };
 		80459264187AE73700F51D43 /* SDClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80459262187AE73700F51D43 /* SDClaimAccountViewController.m */; };
-		80459265187AE73700F51D43 /* SDClaimAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80459263187AE73700F51D43 /* SDClaimAccountViewController.xib */; };
+		80459265187AE73700F51D43 /* SDCommonUserSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80459263187AE73700F51D43 /* SDCommonUserSearchViewController.xib */; };
 		80459269187AE79400F51D43 /* CantFindYourselfBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80459267187AE79400F51D43 /* CantFindYourselfBackground@2x.png */; };
 		8045926A187AE79400F51D43 /* CantFindYourselfRegisterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80459268187AE79400F51D43 /* CantFindYourselfRegisterButton@2x.png */; };
 		8045926D187AE87B00F51D43 /* SDStandartNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8045926C187AE87B00F51D43 /* SDStandartNavigationController.m */; };
@@ -429,6 +429,7 @@
 		80D1F39C17967FF20051E8E1 /* MessageIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D1F39817967FF20051E8E1 /* MessageIcon@2x.png */; };
 		80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */; };
 		80D336BC181E9D180032230D /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D336BB181E9D180032230D /* checkMark.png */; };
+		80D55DBA187C00900086DB04 /* SDCommonUserSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D55DB9187C00900086DB04 /* SDCommonUserSearchViewController.m */; };
 		80E202941829199D00449287 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E202931829199D00449287 /* libGoogleAnalyticsServices.a */; };
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
 		80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BAF1758B8590013545C /* FollowingSelected@2x.png */; };
@@ -884,7 +885,7 @@
 		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
 		80459261187AE73700F51D43 /* SDClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDClaimAccountViewController.h; sourceTree = "<group>"; };
 		80459262187AE73700F51D43 /* SDClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDClaimAccountViewController.m; sourceTree = "<group>"; };
-		80459263187AE73700F51D43 /* SDClaimAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDClaimAccountViewController.xib; sourceTree = "<group>"; };
+		80459263187AE73700F51D43 /* SDCommonUserSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCommonUserSearchViewController.xib; sourceTree = "<group>"; };
 		80459267187AE79400F51D43 /* CantFindYourselfBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CantFindYourselfBackground@2x.png"; sourceTree = "<group>"; };
 		80459268187AE79400F51D43 /* CantFindYourselfRegisterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CantFindYourselfRegisterButton@2x.png"; sourceTree = "<group>"; };
 		8045926B187AE87B00F51D43 /* SDStandartNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStandartNavigationController.h; sourceTree = "<group>"; };
@@ -1071,6 +1072,8 @@
 		80D1F39E179680C50051E8E1 /* SDBuzzButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBuzzButtonView.m; sourceTree = "<group>"; };
 		80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDBuzzButtonView.xib; sourceTree = "<group>"; };
 		80D336BB181E9D180032230D /* checkMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMark.png; sourceTree = "<group>"; };
+		80D55DB8187C00900086DB04 /* SDCommonUserSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommonUserSearchViewController.h; sourceTree = "<group>"; };
+		80D55DB9187C00900086DB04 /* SDCommonUserSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommonUserSearchViewController.m; sourceTree = "<group>"; };
 		80D59A8D17CB61CC00CB494D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedTableView.h; sourceTree = "<group>"; };
@@ -2438,9 +2441,11 @@
 				805D64D918719BBB003211F0 /* SDJoinViewController.xib */,
 				7BBDFA891875AE2D0070F9F0 /* SDCommonRegistrationViewController.h */,
 				7BBDFA8A1875AE2D0070F9F0 /* SDCommonRegistrationViewController.m */,
+				80D55DB8187C00900086DB04 /* SDCommonUserSearchViewController.h */,
+				80D55DB9187C00900086DB04 /* SDCommonUserSearchViewController.m */,
+				80459263187AE73700F51D43 /* SDCommonUserSearchViewController.xib */,
 				80459261187AE73700F51D43 /* SDClaimAccountViewController.h */,
 				80459262187AE73700F51D43 /* SDClaimAccountViewController.m */,
-				80459263187AE73700F51D43 /* SDClaimAccountViewController.xib */,
 				7BBDFA861875AD370070F9F0 /* SDRegisterViewController.h */,
 				7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */,
 			);
@@ -2725,7 +2730,7 @@
 				801088ED179579BF002EF1EB /* x_button_gray@2x.png in Resources */,
 				801088EE179579BF002EF1EB /* x_button_yellow@2x.png in Resources */,
 				803ECED217F453F60060702F /* SDCollectionCell.xib in Resources */,
-				80459265187AE73700F51D43 /* SDClaimAccountViewController.xib in Resources */,
+				80459265187AE73700F51D43 /* SDCommonUserSearchViewController.xib in Resources */,
 				80F531EC1802C1030089971C /* SDCommitsRostersCoachViewController.xib in Resources */,
 				80540E4A184CCBF9009EC1B8 /* offerCheckMark@2x.png in Resources */,
 				801088F1179579DC002EF1EB /* MenuButtonClose@2x.png in Resources */,
@@ -3015,6 +3020,7 @@
 				7B93CE76182A9FAE007A6275 /* SDLoginService.m in Sources */,
 				7B93CE77182A9FAE007A6275 /* SDProfileService.m in Sources */,
 				7B93CE78182A9FAE007A6275 /* SDUploadService.m in Sources */,
+				80D55DBA187C00900086DB04 /* SDCommonUserSearchViewController.m in Sources */,
 				7B93CE79182A9FAE007A6275 /* SDLandingPagesService.m in Sources */,
 				7B93CE7A182A9FAE007A6275 /* SDNotificationsService.m in Sources */,
 				80362AEB186322C50017945E /* SDTopSchoolsCell.m in Sources */,

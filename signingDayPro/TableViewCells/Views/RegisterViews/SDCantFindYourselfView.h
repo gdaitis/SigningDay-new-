@@ -20,6 +20,4 @@
 
 @property (nonatomic, assign) id <SDCantFindYourselfViewDelegate> delegate;
 
-- (void)setupFonts;
-
 @end

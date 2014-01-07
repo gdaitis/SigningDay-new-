@@ -62,6 +62,8 @@
 {
     [super viewWillAppear:animated];
     [self addSearchBar];
+    
+    self.screenName = @"College search screen";
 }
 
 - (void)didReceiveMemoryWarning

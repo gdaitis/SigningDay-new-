@@ -15,17 +15,18 @@
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
 
+- (void)setupFonts;
 - (IBAction)registerButtonPressed:(id)sender;
 
 @end
 
 @implementation SDCantFindYourselfView
 
-//- (void)awakeFromNib
-//{
-//    [super awakeFromNib];
-//    [self setupFonts];
-//}
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setupFonts];
+}
 
 - (id) awakeAfterUsingCoder:(NSCoder*)aDecoder
 {
@@ -34,7 +35,6 @@
         cantFindView.frame = self.frame;
         cantFindView.autoresizingMask = self.autoresizingMask;
         cantFindView.alpha = self.alpha;
-//        [self setupFonts];
         
         return cantFindView;
     }
@@ -52,8 +52,8 @@
 
 - (void)setupFonts
 {
-    self.cantFindYourselfLabel.font = [UIFont fontWithName:@"BebasNeue" size:21];
-    self.registerButton.titleLabel.font = [UIFont fontWithName:@"BebasNeue" size:21];
+    self.cantFindYourselfLabel.font = [UIFont fontWithName:@"BebasNeue" size:23];
+    self.registerButton.titleLabel.font = [UIFont fontWithName:@"BebasNeue" size:22];
 }
 
 - (IBAction)registerButtonPressed:(id)sender
