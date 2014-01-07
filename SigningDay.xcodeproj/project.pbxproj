@@ -341,7 +341,7 @@
 		80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80431E08179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png */; };
 		80431E9217A152B7002F6E3D /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 80431E9117A152B7002F6E3D /* Notes.rtf */; };
 		8044394717D4A8C400AADFDB /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044394617D4A8C400AADFDB /* closeBtn@2x.png */; };
-		80459264187AE73700F51D43 /* SDClaimAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80459262187AE73700F51D43 /* SDClaimAccountViewController.m */; };
+		80459264187AE73700F51D43 /* SDPlayerSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80459262187AE73700F51D43 /* SDPlayerSearchViewController.m */; };
 		80459265187AE73700F51D43 /* SDCommonUserSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80459263187AE73700F51D43 /* SDCommonUserSearchViewController.xib */; };
 		80459269187AE79400F51D43 /* CantFindYourselfBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80459267187AE79400F51D43 /* CantFindYourselfBackground@2x.png */; };
 		8045926A187AE79400F51D43 /* CantFindYourselfRegisterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80459268187AE79400F51D43 /* CantFindYourselfRegisterButton@2x.png */; };
@@ -883,8 +883,8 @@
 		8044394617D4A8C400AADFDB /* closeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeBtn@2x.png"; sourceTree = "<group>"; };
 		8044395917D4B0E600AADFDB /* SDImageEnlargementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageEnlargementView.h; sourceTree = "<group>"; };
 		8044395A17D4B0E600AADFDB /* SDImageEnlargementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageEnlargementView.m; sourceTree = "<group>"; };
-		80459261187AE73700F51D43 /* SDClaimAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDClaimAccountViewController.h; sourceTree = "<group>"; };
-		80459262187AE73700F51D43 /* SDClaimAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDClaimAccountViewController.m; sourceTree = "<group>"; };
+		80459261187AE73700F51D43 /* SDPlayerSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPlayerSearchViewController.h; sourceTree = "<group>"; };
+		80459262187AE73700F51D43 /* SDPlayerSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPlayerSearchViewController.m; sourceTree = "<group>"; };
 		80459263187AE73700F51D43 /* SDCommonUserSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCommonUserSearchViewController.xib; sourceTree = "<group>"; };
 		80459267187AE79400F51D43 /* CantFindYourselfBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CantFindYourselfBackground@2x.png"; sourceTree = "<group>"; };
 		80459268187AE79400F51D43 /* CantFindYourselfRegisterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CantFindYourselfRegisterButton@2x.png"; sourceTree = "<group>"; };
@@ -2444,8 +2444,8 @@
 				80D55DB8187C00900086DB04 /* SDCommonUserSearchViewController.h */,
 				80D55DB9187C00900086DB04 /* SDCommonUserSearchViewController.m */,
 				80459263187AE73700F51D43 /* SDCommonUserSearchViewController.xib */,
-				80459261187AE73700F51D43 /* SDClaimAccountViewController.h */,
-				80459262187AE73700F51D43 /* SDClaimAccountViewController.m */,
+				80459261187AE73700F51D43 /* SDPlayerSearchViewController.h */,
+				80459262187AE73700F51D43 /* SDPlayerSearchViewController.m */,
 				7BBDFA861875AD370070F9F0 /* SDRegisterViewController.h */,
 				7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */,
 			);
@@ -2992,7 +2992,7 @@
 				7B93CED1182AA007007A6275 /* SDCameraOverlayView.m in Sources */,
 				7B93CED2182AA007007A6275 /* SDContentHeaderView.m in Sources */,
 				7B93CED3182AA007007A6275 /* SDTableView.m in Sources */,
-				80459264187AE73700F51D43 /* SDClaimAccountViewController.m in Sources */,
+				80459264187AE73700F51D43 /* SDPlayerSearchViewController.m in Sources */,
 				80459272187AE8CA00F51D43 /* SDCantFindYourselfView.m in Sources */,
 				7B93CED4182AA007007A6275 /* SDBadgeView.m in Sources */,
 				7B93CED6182AA007007A6275 /* NSObject+MasterUserMethods.m in Sources */,

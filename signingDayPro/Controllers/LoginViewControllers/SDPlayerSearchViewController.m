@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Seriously inc. All rights reserved.
 //
 
-#import "SDClaimAccountViewController.h"
+#import "SDPlayerSearchViewController.h"
 #import "SDNavigationController.h"
 #import "SDCustomNavigationToolbarView.h"
 #import "SDCantFindYourselfView.h"
 #import "SDStandartNavigationController.h"
 
-@interface SDClaimAccountViewController ()
+@interface SDPlayerSearchViewController ()
 
 @end
 
-@implementation SDClaimAccountViewController
+@implementation SDPlayerSearchViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

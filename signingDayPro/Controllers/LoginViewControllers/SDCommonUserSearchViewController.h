@@ -14,5 +14,11 @@
 @interface SDCommonUserSearchViewController : SDBaseViewController
 
 @property (nonatomic, assign) SDUserType userType;
+@property (nonatomic, strong) UISearchDisplayController *customSearchDisplayController;
+
+#pragma mark - Data Loading
+
+- (void)loadLocalDbDataWithString:(NSString *)searchString;
+- (void)checkServer;
 
 @end

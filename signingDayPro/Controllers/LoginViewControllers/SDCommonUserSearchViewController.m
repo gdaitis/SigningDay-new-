@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSArray *dataArray;
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, strong) UISearchDisplayController *customSearchDisplayController;
 
 @end
 
@@ -48,16 +47,15 @@
 
 - (void)setupSearchBar
 {
-    self.searchBar.delegate = self;
-    
     UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
-                                                          initWithSearchBar:_searchBar contentsController:self];
+                                                          initWithSearchBar:self.searchBar contentsController:self];
     
     self.customSearchDisplayController = searchDisplayController;
     
-    _customSearchDisplayController.delegate = self;
-    _customSearchDisplayController.searchResultsDataSource = self;
-    _customSearchDisplayController.searchResultsDelegate = self;
+    self.customSearchDisplayController.delegate = self;
+    self.customSearchDisplayController.searchResultsDataSource = self;
+    self.customSearchDisplayController.searchResultsDelegate = self;
+    self.searchBar.delegate = self;
 }
 
 #pragma mark - UISearchBar delegate
@@ -97,7 +95,7 @@
 
 - (void)reloadTableView
 {
-    if ([_searchBar.text length] > 0) {
+    if ([self.searchBar.text length] > 0) {
         //reload searchresultstableview to update cell
         [_customSearchDisplayController.searchResultsTableView reloadData];
     }
@@ -225,18 +223,6 @@
     UITableView *tableView = [[self searchDisplayController] searchResultsTableView];
     [tableView setContentInset:UIEdgeInsetsZero];
     [tableView setScrollIndicatorInsets:UIEdgeInsetsZero];
-}
-
-#pragma mark - Data Loading
-
-- (void)loadLocalDbDataWithString:(NSString *)searchString
-{
-    
-}
-
-- (void)checkServer
-{
-    
 }
 
 #pragma mark - Cant Find Yourself View Delegate

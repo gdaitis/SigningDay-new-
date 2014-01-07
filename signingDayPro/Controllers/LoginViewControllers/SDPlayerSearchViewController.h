@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SDCommonUserSearchViewController.h"
 
-@interface SDClaimAccountViewController : SDCommonUserSearchViewController
+@interface SDPlayerSearchViewController : SDCommonUserSearchViewController
 
 @end
