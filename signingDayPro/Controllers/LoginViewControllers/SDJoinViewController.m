@@ -11,7 +11,9 @@
 #import "UIView+NibLoading.h"
 #import "SDNavigationController.h"
 #import "SDCustomNavigationToolbarView.h"
-#import "SDClaimAccountViewController.h"
+#import "SDPlayerSearchViewController.h"
+#import "SDClaimRegistrationViewController.h"
+#import "SDRegisterViewController.h"
 #import "SDStandartNavigationController.h"
 
 #define kContractedHeight 165.0
@@ -144,7 +146,6 @@
 
 - (void)moreInfoButtonPressed:(UIButton *)sender
 {
-    NSLog(@"self.selectedIndexPathRow = %d",self.selectedIndexPathRow);
     if (self.selectedIndexPathRow != -1) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.selectedIndexPathRow inSection:0];
         self.selectedIndexPathRow = (self.selectedIndexPathRow == sender.tag) ? -1 : sender.tag;
@@ -160,34 +161,52 @@
 
 - (void)registerButtonPressed:(UIButton *)sender
 {
-    SDUserType userType;
+    id viewController = nil;
+    
     switch (sender.tag) {
-        case SDJoinControllerCellUserType_FAN:
-            userType = SDUserTypeMember;
+        case SDJoinControllerCellUserType_FAN: {
+
             break;
+        }
+        case SDJoinControllerCellUserType_PARENT: {
             
-        case SDJoinControllerCellUserType_PARENT:
-            userType = SDUserTypePlayer;
+            SDPlayerSearchViewController *playerSearchViewController = [[SDPlayerSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+            playerSearchViewController.userType = SDUserTypePlayer;
+            viewController = playerSearchViewController;
             break;
-            
-        case SDJoinControllerCellUserType_PLAYER:
-            userType = SDUserTypePlayer;
+        }
+        case SDJoinControllerCellUserType_PLAYER: {
+            SDPlayerSearchViewController *playerSearchViewController = [[SDPlayerSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+            playerSearchViewController.userType = SDUserTypePlayer;
+            viewController = playerSearchViewController;
             break;
-            
-        case SDJoinControllerCellUserType_COACH:
-            userType = SDUserTypeCoach;
+        }
+        case SDJoinControllerCellUserType_COACH: {
+//            SDCoachSearchViewController *coachSearchViewController = [[SDCoachSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+//            coachSearchViewController.userType = SDUserTypeCoach;
+//            viewController = coachSearchViewController;
             break;
-            
-        case SDJoinControllerCellUserType_HIGHSCHOOL:
-            userType = SDUserTypeHighSchool;
+        }
+        case SDJoinControllerCellUserType_HIGHSCHOOL: {
+//            SDHighSchoolSearchViewController *highSchoolSearchViewController = [[SDHighSchoolSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+//            highSchoolSearchViewController.userType = SDUserTypeHighSchool;
+//            viewController = highSchoolSearchViewController;
             break;
-            
+        }
         default:
             break;
     }
-    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
-    claimAccountViewController.userType = userType;
-    [self.navigationController pushViewController:claimAccountViewController animated:YES];
+//    if (viewController)
+//        [self.navigationController pushViewController:viewController animated:YES];
+    
+//    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
+//    [self.navigationController pushViewController:claimAccountViewController animated:YES];
+    
+//    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+//    [self.navigationController pushViewController:rvc animated:YES];
+    
+    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
+    [self.navigationController pushViewController:crvc animated:YES];
 }
 
 - (void)backPressed:(id)sender
