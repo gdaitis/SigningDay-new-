@@ -6,19 +6,17 @@
 //  Copyright (c) 2014 Seriously inc. All rights reserved.
 //
 
-#import "SDClaimAccountViewController.h"
+#import "SDPlayerSearchViewController.h"
 #import "SDNavigationController.h"
 #import "SDCustomNavigationToolbarView.h"
 #import "SDCantFindYourselfView.h"
 #import "SDStandartNavigationController.h"
 
-@interface SDClaimAccountViewController () <SDCantFindYourselfViewDelegate>
-
-@property (nonatomic, weak) IBOutlet SDCantFindYourselfView *cantFindYourselfView;
+@interface SDPlayerSearchViewController ()
 
 @end
 
-@implementation SDClaimAccountViewController
+@implementation SDPlayerSearchViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +31,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.cantFindYourselfView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,7 +40,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Claim Account"];
     
-    [self.cantFindYourselfView setupFonts];
+    self.screenName = @"Claim account screen";
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,9 +49,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)registerButtonPressedInCantFindYourselfView:(SDCantFindYourselfView *)cantFindYourselfView
-{
-    
-}
+
 
 @end

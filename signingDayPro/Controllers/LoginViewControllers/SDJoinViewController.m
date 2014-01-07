@@ -11,10 +11,10 @@
 #import "UIView+NibLoading.h"
 #import "SDNavigationController.h"
 #import "SDCustomNavigationToolbarView.h"
-#import "SDRegisterViewController.h"
-#import "SDClaimAccountViewController.h"
-#import "SDStandartNavigationController.h"
+#import "SDPlayerSearchViewController.h"
 #import "SDClaimRegistrationViewController.h"
+#import "SDRegisterViewController.h"
+#import "SDStandartNavigationController.h"
 
 #define kContractedHeight 165.0
 
@@ -58,6 +58,8 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Join"];
+    
+    self.screenName = @"Join screen";
 
     [self.tableView setAllowsMultipleSelection:NO];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"JoinList" ofType:@"plist"];
@@ -116,11 +118,9 @@
     }
     NSString *buttonTitle = (self.selectedIndexPathRow == indexPath.row) ? @"Less info" : @"More info";
     [cell.moreInfoButton setTitle:buttonTitle forState:UIControlStateNormal];
-    cell.moreInfoButton.tag = indexPath.row;
-    cell.registerButton.tag = indexPath.row;
     
-    [cell removeUnnecessaryLabels];
     [cell setupCellWithDictionary:dataDictionary];
+    [cell removeUnnecessaryLabels];
     
     if (self.selectedIndexPathRow == indexPath.row)
         [cell setAdditionalAttributeArray:[dataDictionary valueForKey:@"AttributeStringArray"]]; //expanded cell
@@ -146,7 +146,6 @@
 
 - (void)moreInfoButtonPressed:(UIButton *)sender
 {
-    NSLog(@"self.selectedIndexPathRow = %d",self.selectedIndexPathRow);
     if (self.selectedIndexPathRow != -1) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.selectedIndexPathRow inSection:0];
         self.selectedIndexPathRow = (self.selectedIndexPathRow == sender.tag) ? -1 : sender.tag;
@@ -162,33 +161,52 @@
 
 - (void)registerButtonPressed:(UIButton *)sender
 {
-    UIViewController *viewController;
+    id viewController = nil;
+    
     switch (sender.tag) {
-        case SDJoinControllerCellUserType_FAN:
-            viewController = [[SDRegisterViewController alloc] init];
+        case SDJoinControllerCellUserType_FAN: {
+
             break;
+        }
+        case SDJoinControllerCellUserType_PARENT: {
             
-        case SDJoinControllerCellUserType_PARENT:
-            viewController = [[SDRegisterViewController alloc] init];
+            SDPlayerSearchViewController *playerSearchViewController = [[SDPlayerSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+            playerSearchViewController.userType = SDUserTypePlayer;
+            viewController = playerSearchViewController;
             break;
-            
-        case SDJoinControllerCellUserType_PLAYER:
-            viewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
+        }
+        case SDJoinControllerCellUserType_PLAYER: {
+            SDPlayerSearchViewController *playerSearchViewController = [[SDPlayerSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+            playerSearchViewController.userType = SDUserTypePlayer;
+            viewController = playerSearchViewController;
             break;
-            
-        case SDJoinControllerCellUserType_COACH:
-            viewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
+        }
+        case SDJoinControllerCellUserType_COACH: {
+//            SDCoachSearchViewController *coachSearchViewController = [[SDCoachSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+//            coachSearchViewController.userType = SDUserTypeCoach;
+//            viewController = coachSearchViewController;
             break;
-            
-        case SDJoinControllerCellUserType_HIGHSCHOOL:
-            viewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
+        }
+        case SDJoinControllerCellUserType_HIGHSCHOOL: {
+//            SDHighSchoolSearchViewController *highSchoolSearchViewController = [[SDHighSchoolSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+//            highSchoolSearchViewController.userType = SDUserTypeHighSchool;
+//            viewController = highSchoolSearchViewController;
             break;
-            
+        }
         default:
             break;
     }
-    [self.navigationController pushViewController:viewController
-                                         animated:YES];
+//    if (viewController)
+//        [self.navigationController pushViewController:viewController animated:YES];
+    
+//    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
+//    [self.navigationController pushViewController:claimAccountViewController animated:YES];
+    
+//    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+//    [self.navigationController pushViewController:rvc animated:YES];
+    
+    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
+    [self.navigationController pushViewController:crvc animated:YES];
 }
 
 - (void)backPressed:(id)sender

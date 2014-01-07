@@ -64,6 +64,8 @@
 {
     [super viewWillAppear:animated];
     [self addEditButton];
+    
+    self.screenName = @"Top schools screen";
 }
 
 - (void)viewWillDisappear:(BOOL)animated

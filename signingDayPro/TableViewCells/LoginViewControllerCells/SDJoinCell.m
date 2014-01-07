@@ -7,6 +7,7 @@
 //
 
 #import "SDJoinCell.h"
+#import "SDJoinViewController.h"
 
 #define kAdditionalLabelTag 888   //If cell is expanded additional labels are added with these tags
 
@@ -82,6 +83,15 @@
     self.titleLabel.text = [dataDictionary valueForKey:@"TitleText"];
     self.iconImageView.image = [UIImage imageNamed:[dataDictionary valueForKey:@"IconImageName"]];
     self.additionalInfoLabel.text = [dataDictionary valueForKey:@"AdditionalInfoText"];
+    
+    int joinControllerUserType = [[dataDictionary valueForKey:@"JoinControllerUserType"] intValue];
+    self.moreInfoButton.tag = self.registerButton.tag = joinControllerUserType;
+    
+    if (joinControllerUserType != SDJoinControllerCellUserType_HIGHSCHOOL && joinControllerUserType != SDJoinControllerCellUserType_COACH)
+        [self.registerButton setTitle:@"Register" forState:UIControlStateNormal];
+    else
+        [self.registerButton setTitle:@"Claim" forState:UIControlStateNormal];
+    
 }
 
 @end

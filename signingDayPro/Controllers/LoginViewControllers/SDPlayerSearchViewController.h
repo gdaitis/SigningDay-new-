@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDBaseViewController.h"
+#import "SDCommonUserSearchViewController.h"
 
-@interface SDClaimAccountViewController : SDBaseViewController
+@interface SDPlayerSearchViewController : SDCommonUserSearchViewController
 
 @end
