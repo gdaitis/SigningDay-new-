@@ -206,6 +206,7 @@
 		7BA0F55D17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55C17E9EF7000C6DE89 /* UserProfileMessageButtonSmall@2x.png */; };
 		7BA5775D1859E24E00594729 /* SDGlobalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5775C1859E24E00594729 /* SDGlobalSearchViewController.m */; };
 		7BAF6EE017A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */; };
+		7BB03955187BFF0E009CE1CD /* SDClaimRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB03954187BFF0E009CE1CD /* SDClaimRegistrationViewController.m */; };
 		7BB4373F17CF6A8E0064DBEB /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */; };
 		7BB4374117CF6A9B0064DBEB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374017CF6A9B0064DBEB /* CoreText.framework */; };
 		7BB4374317CF6AA40064DBEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */; };
@@ -557,6 +558,8 @@
 		7BAF6EDC17A94DBD00F7C6B3 /* SDLikesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLikesViewController.h; sourceTree = "<group>"; };
 		7BAF6EDD17A94DBD00F7C6B3 /* SDLikesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLikesViewController.m; sourceTree = "<group>"; };
 		7BAF6EDF17A94DFD00F7C6B3 /* CommentsViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentsViewStoryboard.storyboard; sourceTree = "<group>"; };
+		7BB03953187BFF0E009CE1CD /* SDClaimRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDClaimRegistrationViewController.h; sourceTree = "<group>"; };
+		7BB03954187BFF0E009CE1CD /* SDClaimRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDClaimRegistrationViewController.m; sourceTree = "<group>"; };
 		7BB4373E17CF6A8E0064DBEB /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7BB4374017CF6A9B0064DBEB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7BB4374217CF6AA40064DBEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -2443,6 +2446,8 @@
 				80459263187AE73700F51D43 /* SDClaimAccountViewController.xib */,
 				7BBDFA861875AD370070F9F0 /* SDRegisterViewController.h */,
 				7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */,
+				7BB03953187BFF0E009CE1CD /* SDClaimRegistrationViewController.h */,
+				7BB03954187BFF0E009CE1CD /* SDClaimRegistrationViewController.m */,
 			);
 			path = LoginViewControllers;
 			sourceTree = "<group>";
@@ -2904,6 +2909,7 @@
 				7B93CF01182AA038007A6275 /* UICustomSwitch.m in Sources */,
 				7B93CF02182AA038007A6275 /* UIImage+Crop.m in Sources */,
 				7B93CF03182AA038007A6275 /* UIImage+Resize.m in Sources */,
+				7BB03955187BFF0E009CE1CD /* SDClaimRegistrationViewController.m in Sources */,
 				7B93CF04182AA038007A6275 /* UIImage+fixOrientation.m in Sources */,
 				7B93CF06182AA038007A6275 /* UIView+NibLoading.m in Sources */,
 				7B93CF07182AA038007A6275 /* IIViewDeckController.m in Sources */,

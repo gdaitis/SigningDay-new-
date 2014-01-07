@@ -14,6 +14,7 @@
 #import "SDRegisterViewController.h"
 #import "SDClaimAccountViewController.h"
 #import "SDStandartNavigationController.h"
+#import "SDClaimRegistrationViewController.h"
 
 #define kContractedHeight 165.0
 
@@ -187,8 +188,12 @@
     }
 //    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
 //    [self.navigationController pushViewController:claimAccountViewController animated:YES];
-    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
-    [self.navigationController pushViewController:rvc animated:YES];
+    
+//    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+//    [self.navigationController pushViewController:rvc animated:YES];
+    
+    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
+    [self.navigationController pushViewController:crvc animated:YES];
 }
 
 - (void)backPressed:(id)sender

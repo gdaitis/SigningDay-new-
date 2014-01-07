@@ -27,16 +27,7 @@
 {
     [super viewDidLoad];
     
-    self.scrollView = [[UIScrollView alloc] init];
-    self.scrollView.frame = CGRectMake(0,
-                                       0,
-                                       self.view.frame.size.width,
-                                       self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height);
-    UIView *contentView = [self createContentView];
-    self.scrollView.contentSize = contentView.frame.size;
-    [self.scrollView addSubview:contentView];
-    self.scrollView.scrollEnabled = YES;
-    [self.view addSubview:self.scrollView];
+    self.title = @"Register";
 }
 
 - (UIView *)createContentView

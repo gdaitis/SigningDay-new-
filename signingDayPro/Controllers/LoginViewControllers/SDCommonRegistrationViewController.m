@@ -32,6 +32,17 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                                 green:221.0f/255.0f
                                                  blue:221.0f/255.0f
                                                 alpha:1.0f];
+    
+    self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView.frame = CGRectMake(0,
+                                       0,
+                                       self.view.frame.size.width,
+                                       self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height);
+    UIView *contentView = [self createContentView];
+    self.scrollView.contentSize = contentView.frame.size;
+    [self.scrollView addSubview:contentView];
+    self.scrollView.scrollEnabled = YES;
+    [self.view addSubview:self.scrollView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -57,20 +68,22 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
     return inputFieldBackgroundImageView;
 }
 
-//- (UITextField *)createTextFieldForRect:(CGRect)rect
-//                        withPlaceholder:(NSString *)placeholder
-//{
-//    UITextField *textField = [[UITextField alloc] init];
-//    textField.backgroundColor = [UIColor clearColor];
-//    textField.font = [UIFont systemFontOfSize:17];
-//    textField.placeholder = placeholder;
-//    textField.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding,
-//                                 rect.origin.y,
-//                                 kSDCommonRegistrationViewControllerInputFieldContentWidth,
-//                                 rect.size.height);
-//    textField.delegate = self;
-//    return textField;
-//}
+/*
+- (UITextField *)createTextFieldForRect:(CGRect)rect
+                        withPlaceholder:(NSString *)placeholder
+{
+    UITextField *textField = [[UITextField alloc] init];
+    textField.backgroundColor = [UIColor clearColor];
+    textField.font = [UIFont systemFontOfSize:17];
+    textField.placeholder = placeholder;
+    textField.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding,
+                                 rect.origin.y,
+                                 kSDCommonRegistrationViewControllerInputFieldContentWidth,
+                                 rect.size.height);
+    textField.delegate = self;
+    return textField;
+}
+*/
 
 - (UILabel *)createInfoLabelWithInfoText:(NSString *)infoText
                                  forRect:(CGRect)rect
