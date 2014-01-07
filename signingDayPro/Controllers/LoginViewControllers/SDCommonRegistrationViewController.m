@@ -8,15 +8,12 @@
 
 #import "SDCommonRegistrationViewController.h"
 #import "UIPlaceHolderTextView.h"
-#import "TTTAttributedLabel.h"
 
 NSString * const kSDCommonRegistrationViewControllerTermsAndConditionsLink = @"SDCommonRegistrationViewControllerTermsAndConditionsLink";
 NSString * const kSDCommonRegistrationViewControllerPrivacyPolicyLink = @"SDCommonRegistrationViewControllerPrivacyPolicyLink";
 NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonRegistrationViewControllerTwitterLink";
 
-@interface SDCommonRegistrationViewController () <TTTAttributedLabelDelegate>
-
-@property (nonatomic, strong) UIButton *checkboxButton;
+@interface SDCommonRegistrationViewController ()
 
 @end
 
@@ -26,12 +23,36 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
     self.view.backgroundColor = [UIColor colorWithRed:221.0f/255.0f
                                                 green:221.0f/255.0f
                                                  blue:221.0f/255.0f
                                                 alpha:1.0f];
-    UIView *view = [self viewForNoticeLabelAtYPoint:100];
-    [self.view addSubview:view];
+    
+    self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView.frame = CGRectMake(0,
+                                       0,
+                                       self.view.frame.size.width,
+                                       self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height);
+    UIView *contentView = [self createContentView];
+    self.scrollView.contentSize = contentView.frame.size;
+    [self.scrollView addSubview:contentView];
+    self.scrollView.scrollEnabled = YES;
+    [self.view addSubview:self.scrollView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 #pragma mark - Private methods
@@ -47,6 +68,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
     return inputFieldBackgroundImageView;
 }
 
+/*
 - (UITextField *)createTextFieldForRect:(CGRect)rect
                         withPlaceholder:(NSString *)placeholder
 {
@@ -58,8 +80,10 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                  rect.origin.y,
                                  kSDCommonRegistrationViewControllerInputFieldContentWidth,
                                  rect.size.height);
+    textField.delegate = self;
     return textField;
 }
+*/
 
 - (UILabel *)createInfoLabelWithInfoText:(NSString *)infoText
                                  forRect:(CGRect)rect
@@ -88,6 +112,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
            withPlaceholderText:(NSString *)placeholderText
                       infoText:(NSString *)infoText
                backgroundImage:(UIImage *)backgroundImage
+                     iconImage:(UIImage *)iconImage
                   forTextField:(UITextField **)targetTextField
 {
     UIView *view = [[UIView alloc] init];
@@ -96,8 +121,26 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                                                                  atYPoint:0];
     [view addSubview:inputFieldBackgroundImageView];
     
-    UITextField *textField = [self createTextFieldForRect:inputFieldBackgroundImageView.frame
-                                          withPlaceholder:placeholderText];
+    if (iconImage) {
+        UIImageView *calendarIconImageView = [[UIImageView alloc] initWithImage:iconImage];
+        CGRect calendarIconImageViewFrame = calendarIconImageView.frame;
+        calendarIconImageViewFrame.origin = CGPointMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding,
+                                                        9);
+        calendarIconImageView.frame = calendarIconImageViewFrame;
+        calendarIconImageView.userInteractionEnabled = NO;
+        calendarIconImageView.exclusiveTouch = NO;
+        [view addSubview:calendarIconImageView];
+    }
+    
+    UITextField *textField = [[UITextField alloc] init];
+    textField.backgroundColor = [UIColor clearColor];
+    textField.font = [UIFont systemFontOfSize:17];
+    textField.placeholder = placeholderText;
+    textField.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding + (iconImage ? (iconImage.size.width + 10) : 0),
+                                 inputFieldBackgroundImageView.frame.origin.y,
+                                 kSDCommonRegistrationViewControllerInputFieldContentWidth - (iconImage ? (iconImage.size.width + 10) : 0),
+                                 inputFieldBackgroundImageView.frame.size.height);
+    textField.delegate = self;
     [view addSubview:textField];
     *targetTextField = textField;
     
@@ -111,7 +154,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                                        forRect:inputFieldBackgroundImageView.frame];
         
         CGRect viewFrame = view.frame;
-        viewFrame.size.height += infoLabel.frame.origin.y + infoLabel.frame.size.height;
+        viewFrame.size.height += infoLabel.frame.origin.y - viewFrame.size.height + infoLabel.frame.size.height;
         view.frame = viewFrame;
         
         [view addSubview:infoLabel];
@@ -180,7 +223,47 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
     return view;
 }
 
-#pragma mark - View construction
+#pragma mark - Keyboard methods
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    [self resizeViewWithOptions:[notification userInfo]];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    [self resizeViewWithOptions:[notification userInfo]];
+}
+
+- (void)resizeViewWithOptions:(NSDictionary *)options
+{
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardEndFrame;
+    [[options objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[options objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[options objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationCurve:animationCurve];
+    [UIView setAnimationDuration:animationDuration];
+    CGRect viewFrame = self.scrollView.frame;
+    
+    CGRect keyboardFrameEndRelative = [self.view convertRect:keyboardEndFrame fromView:nil];
+    
+    viewFrame.size.height =  keyboardFrameEndRelative.origin.y;
+    self.scrollView.frame = viewFrame;
+    [UIView commitAnimations];
+}
+
+#pragma mark - Public methods
+
+- (UIView *)createContentView
+{
+    return nil;
+}
+
+#pragma mark - Public view construction methods
 
 - (UIView *)inputFieldAtYPoint:(CGFloat)yPoint
            withPlaceholderText:(NSString *)placeholderText
@@ -191,6 +274,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                         withPlaceholderText:placeholderText
                                    infoText:infoText
                             backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldBg"]
+                                  iconImage:nil
                                forTextField:targetTextField];
     
     return view;
@@ -209,6 +293,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                        withPlaceholderText:firstPlaceholder
                                                   infoText:nil
                                            backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldUpperBg"]
+                                                 iconImage:nil
                                               forTextField:firstTargetTextField];
     [view addSubview:firstInputFieldView];
 
@@ -216,6 +301,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                         withPlaceholderText:secondPlaceholder
                                                    infoText:infoText
                                             backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldLowerBg"]
+                                                  iconImage:nil
                                                forTextField:secondTargetTextField];
     [view addSubview:secondInputFieldView];
     
@@ -223,6 +309,19 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                             yPoint,
                             self.view.frame.size.width,
                             secondInputFieldView.frame.origin.y + secondInputFieldView.frame.size.height);
+    
+    return view;
+}
+
+- (UIView *)inputFieldForBirthdayAtYPoint:(CGFloat)yPoint
+                             forTextField:(UITextField **)targetTextField
+{
+    UIView *view = [self inputFieldAtYPoint:yPoint
+                        withPlaceholderText:@"Birthday"
+                                   infoText:nil
+                            backgroundImage:[UIImage imageNamed:@"RegistrationInputFieldBg"]
+                                  iconImage:[UIImage imageNamed:@"RegistrationCalendarIcon"]
+                               forTextField:targetTextField];
     
     return view;
 }
@@ -450,13 +549,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
 - (void)attributedLabel:(TTTAttributedLabel *)label
    didSelectLinkWithURL:(NSURL *)url
 {
-    if ([[url description] isEqual:kSDCommonRegistrationViewControllerTermsAndConditionsLink]) {
-        
-    } else if ([[url description] isEqual:kSDCommonRegistrationViewControllerPrivacyPolicyLink]) {
-        
-    } else if ([[url description] isEqual:kSDCommonRegistrationViewControllerTwitterLink]) {
-        
-    }
+    
 }
 
 @end
