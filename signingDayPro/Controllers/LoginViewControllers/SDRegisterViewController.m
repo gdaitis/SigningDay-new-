@@ -9,6 +9,7 @@
 #import "SDRegisterViewController.h"
 #import "SDTermsViewController.h"
 #import "SDUtils.h"
+#import "SDLoginService.h"
 
 #define kSDRegisterViewControllerParentsStuffViewInsertionYCoordinate 340
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UITextField *secondPasswordTextField;
 @property (nonatomic, strong) UITextField *parentEmailTextField;
 @property (nonatomic, strong) UIView *parentsStuffView;
+@property (assign) BOOL viewExpanded;
 
 @end
 
@@ -32,6 +34,8 @@
     [super viewDidLoad];
     
     self.title = @"Register";
+    
+    self.viewExpanded = NO;
 }
 
 - (UIView *)createContentView
@@ -56,6 +60,7 @@
                                                  infoText:@"Your e-mail address will not be published"
                                              forTextField:&emailTextField];
     self.emailTextField = emailTextField;
+    self.emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
     [contentView addSubview:emailTextFieldView];
     
     currentY += emailTextFieldView.frame.size.height + 20;
@@ -81,7 +86,9 @@
                                                           forFirstTextField:&newPasswordTextField
                                                             secondTextField:&confirmPasswordTextField];
     self.firstPasswordTextField = newPasswordTextField;
+    self.firstPasswordTextField.secureTextEntry = YES;
     self.secondPasswordTextField = confirmPasswordTextField;
+    self.secondPasswordTextField.secureTextEntry = YES;
     [contentView addSubview:passwordInputFieldsView];
     
     currentY += passwordInputFieldsView.frame.size.height + 33;
@@ -111,7 +118,47 @@
 
 - (void)joinNowSelected
 {
-    
+    if (!self.signInNameTextField.text) {
+        [self showAlertAndReturnWithText:@"Please enter the sign in name"];
+    } else if (!self.emailTextField.text) {
+        [self showAlertAndReturnWithText:@"Please enter the email"];
+    } if (!self.signInNameTextField.text) {
+        [self showAlertAndReturnWithText:@"Please enter the sign in name"];
+    } if (!self.firstPasswordTextField.text) {
+        [self showAlertAndReturnWithText:@"Please enter the password"];
+    } if (!self.secondPasswordTextField.text) {
+        [self showAlertAndReturnWithText:@"Please confirm the password"];
+    } if (![self.firstPasswordTextField.text isEqual:self.secondPasswordTextField.text]) {
+        [self showAlertAndReturnWithText:@"Password confirmation is not correct"];
+    } if (!self.checkboxButton.selected) {
+        [self showAlertAndReturnWithText:@"You must accept the Terms and Conditions and Privacy Policy"];
+    } if (!self.parentCheckboxButton.selected) {
+        [self showAlertAndReturnWithText:@"You must have the parents permision"];
+    }
+        
+    [SDLoginService registerNewUserWithType:self.userType
+                                   username:self.signInNameTextField.text
+                                   password:self.firstPasswordTextField.text
+                                      email:self.emailTextField.text
+                                parentEmail:self.parentEmailTextField.text
+                             birthdayString:self.birthdayTextField.text
+                              parentConsent:YES
+                               successBlock:^{
+                                   //
+                               } failureBlock:^{
+                                   //
+                               }];
+}
+
+- (void)showAlertAndReturnWithText:(NSString *)alertText
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:alertText
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    return;
 }
 
 - (void)datePicked
@@ -126,10 +173,15 @@
                                                                     options:0];
     int years = [components year];
     
-    if (years < 13)
-        [self expandViewWithParentsConsent];
-    else
+    if (years < 13) {
+        if (!self.viewExpanded) {
+            [self expandViewWithParentsConsent];
+            self.viewExpanded = YES;
+        }
+    } else {
         [self removeParentsConsent];
+        self.viewExpanded = NO;
+    }
 }
 
 - (void)expandViewWithParentsConsent

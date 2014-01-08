@@ -43,6 +43,7 @@
                                          forTextField:&emailTextField];
     self.emailTextField = emailTextField;
     [contentView addSubview:emailFieldView];
+    self.emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
     
     currentY += emailFieldView.frame.size.height + 13;
     UITextField *phoneTextField;
@@ -52,6 +53,7 @@
                                          forTextField:&phoneTextField];
     self.phoneTextField = phoneTextField;
     [contentView addSubview:phoneFieldView];
+    self.phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
     
     currentY += phoneFieldView.frame.size.height + 22;
     UIView *photoButtonView = [self uploadButtonViewAtYPoint:currentY

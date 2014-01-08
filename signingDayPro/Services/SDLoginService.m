@@ -13,10 +13,11 @@
 #import "SDAppDelegate.h"
 #import "MBProgressHUD.h"
 #import "SDErrorService.h"
-#import "SDProfileService.h"
 #import "User.h"
 #import "SDActivityFeedService.h"
 #import "NSDictionary+NullConverver.h"
+#import "UIImage+fixOrientation.h"
+#import <AFNetworking.h>
 
 NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUserDidLogoutNotificationName";
 
@@ -176,18 +177,19 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
      Allows registration of players and members only
      Request example:
      { UserType: 1, Username: "registeredplayer", Password: "123456", Email: "registeredplayer@gmail.com", ParentEmail: "parent159@gmail.com", Birthday: "12/18/2000", ParentConsent: true }
-     */
+    */
     
-    [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:[STKeychain getPasswordForUsername:@"initialApiKey"
-                                                                                andServiceName:@"SigningDayPro"
-                                                                                         error:nil]];
+    NSString *key = [STKeychain getPasswordForUsername:@"initialApiKey"
+                                        andServiceName:@"SigningDayPro"
+                                                 error:nil];
+    [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:key];
     NSDictionary *params = @{@"UserType": [NSNumber numberWithInt:userType],
                              @"Username": username,
                              @"Password": password,
                              @"Email": email,
                              @"ParentEmail": parentEmail,
                              @"Birthday": birthdayString,
-                             @"ParentConsent": [NSNumber numberWithBool:parentConsent]};
+                             @"ParentConsent": @"true"};
     [[SDAPIClient sharedClient] postPath:@"sd/registration.json"
                               parameters:params
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -197,6 +199,63 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                                      if (failureBlock)
                                          failureBlock();
                                  }];
+}
+
++ (void)claimUserForUserIdentifier:(NSNumber *)identifier
+                             email:(NSString *)email
+                             phone:(NSString *)phone
+                             image:(UIImage *)image
+                      successBlock:(void (^)(void))successBlock
+                      failureBlock:(void (^)(void))failureBlock
+{
+    NSDate *todayDateObj = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"ddMMyyyyHHmmss"];
+    NSString *fileName = [NSString stringWithFormat:@"photo%@.jpg", [dateFormat stringFromDate:todayDateObj]];
+    
+    NSMutableURLRequest *request = [[SDAPIClient sharedClient] multipartFormRequestWithMethod:@"POST"
+                                                                                         path:@"sd/accountclaims.json"
+                                                                                   parameters:@{@"UserId": identifier,
+                                                                                                @"Email": email,
+                                                                                                @"Phone": phone,
+                                                                                                @"FileName": fileName}
+                                                                    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                                                        UIImage *fixedImage = [image fixOrientation];
+                                                                        NSData *imageData = UIImageJPEGRepresentation(fixedImage, 1);
+                                                                        
+                                                                        [formData appendPartWithFileData:imageData
+                                                                                                    name:@"FileData"
+                                                                                                fileName:fileName
+                                                                                                mimeType:@"image/jpeg"];
+                                                                    }];
+    SDAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.window animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Uploading image";
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        hud.progress = (float)totalBytesWritten / (float)totalBytesExpectedToWrite;
+    }];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"Upload successful";
+        [hud hide:YES afterDelay:3];
+        
+        if (successBlock)
+            successBlock();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (error.code == -1009 || error.code == -1011) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"Upload unsuccessful"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        [MBProgressHUD hideAllHUDsForView:appDelegate.window
+                                 animated:YES];
+    }];
 }
 
 + (void)cleanUpUserSession
