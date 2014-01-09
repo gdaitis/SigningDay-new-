@@ -7,7 +7,10 @@
 //
 
 #import "SDCommonRegistrationViewController.h"
+#import "SDProfileService.h"
 
 @interface SDRegisterViewController : SDCommonRegistrationViewController
+
+@property (nonatomic, assign) SDUserType userType;
 
 @end

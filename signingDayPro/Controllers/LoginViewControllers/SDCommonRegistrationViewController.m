@@ -38,9 +38,9 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                        0,
                                        self.view.frame.size.width,
                                        self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height);
-    UIView *contentView = [self createContentView];
-    self.scrollView.contentSize = contentView.frame.size;
-    [self.scrollView addSubview:contentView];
+    self.contentView = [self createContentView];
+    self.scrollView.contentSize = self.contentView.frame.size;
+    [self.scrollView addSubview:self.contentView];
     self.scrollView.scrollEnabled = YES;
     [self.view addSubview:self.scrollView];
 }
@@ -167,6 +167,11 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
     self.checkboxButton.selected = !self.checkboxButton.selected;
 }
 
+- (void)parentCheckboxSelected
+{
+    self.parentCheckboxButton.selected = !self.parentCheckboxButton.selected;
+}
+
 - (UIView *)buttonViewAtYPoint:(CGFloat)yPoint
                   withSelector:(SEL)selector
                         target:(id)target
@@ -219,6 +224,69 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                             self.view.frame.size.width,
                             button.frame.size.height);
     [view addSubview:button];
+    
+    return view;
+}
+
+- (UIView *)checkboxViewAtYPoint:(CGFloat)yPoint
+           targetAttributedLabel:(TTTAttributedLabel **)targetAttributedLabel
+                       labelText:(NSString *)labelText
+                    targetButton:(UIButton **)targetButton
+                  buttonSelector:(SEL)selector
+{
+    UIView *view = [[UIView alloc] init];
+    
+    UIImage *checkedImage = [UIImage imageNamed:@"RegistrationCheckboxChecked"];
+    UIImage *uncheckedImage = [UIImage imageNamed:@"RegistrationCheckboxUnchecked"];
+    UIButton *checkboxButton;
+    checkboxButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [checkboxButton setAdjustsImageWhenHighlighted:NO];
+    [checkboxButton setImage:checkedImage
+                    forState:UIControlStateSelected];
+    [checkboxButton setImage:uncheckedImage
+                    forState:UIControlStateNormal];
+    [checkboxButton addTarget:self
+                       action:selector
+             forControlEvents:UIControlEventTouchUpInside];
+    checkboxButton.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding,
+                                      0,
+                                      checkedImage.size.width,
+                                      checkedImage.size.height);
+    [view addSubview:checkboxButton];
+    
+    if (targetButton)
+        *targetButton = checkboxButton;
+    
+    TTTAttributedLabel *label = [[TTTAttributedLabel alloc] init];
+    label.delegate = self;
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    label.textColor = [UIColor colorWithRed:102.0f/255.0f
+                                      green:102.0f/255.0f
+                                       blue:102.0f/255.0f
+                                      alpha:1.0f];
+    label.font = [UIFont systemFontOfSize:16];
+    label.activeLinkAttributes = nil;
+    label.linkAttributes = @{(NSString *)kCTUnderlineStyleAttributeName: [NSNumber numberWithBool:YES]};
+    label.text = labelText; // ALWAYS SET THE TEXT LAST
+    
+    CGSize calculatedSize = [label sizeThatFits:CGSizeMake(260,
+                                                           CGFLOAT_MAX)];
+    CGRect labelFrame = label.frame;
+    labelFrame.size = calculatedSize;
+    labelFrame.origin = CGPointMake(52, 0);
+    label.frame = labelFrame;
+    
+    [view addSubview:label];
+    
+    if (targetAttributedLabel)
+        *targetAttributedLabel = label;
+    
+    CGFloat maxHeight = label.frame.size.height > self.checkboxButton.frame.size.height ? label.frame.size.height : self.checkboxButton.frame.size.height;
+    view.frame = CGRectMake(0,
+                            yPoint,
+                            self.view.frame.size.width,
+                            maxHeight);
     
     return view;
 }
@@ -356,45 +424,16 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
 
 - (UIView *)checkboxViewAtYPoint:(CGFloat)yPoint
 {
-    UIView *view = [[UIView alloc] init];
-    
-    UIImage *checkedImage = [UIImage imageNamed:@"RegistrationCheckboxChecked"];
-    UIImage *uncheckedImage = [UIImage imageNamed:@"RegistrationCheckboxUnchecked"];
-    self.checkboxButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.checkboxButton setAdjustsImageWhenHighlighted:NO];
-    [self.checkboxButton setImage:checkedImage
-                         forState:UIControlStateSelected];
-    [self.checkboxButton setImage:uncheckedImage
-                         forState:UIControlStateNormal];
-    [self.checkboxButton addTarget:self
-                            action:@selector(checkboxSelected)
-                  forControlEvents:UIControlEventTouchUpInside];
-    self.checkboxButton.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding,
-                                           0,
-                                           checkedImage.size.width,
-                                           checkedImage.size.height);
-    [view addSubview:self.checkboxButton];
-    
-    TTTAttributedLabel *label = [[TTTAttributedLabel alloc] init];
-    label.delegate = self;
-    label.numberOfLines = 0;
-    label.lineBreakMode = NSLineBreakByWordWrapping;
     NSString *labelText = @"I accept the Terms and Conditions and Privacy Policy";
-    label.textColor = [UIColor colorWithRed:102.0f/255.0f
-                                      green:102.0f/255.0f
-                                       blue:102.0f/255.0f
-                                      alpha:1.0f];
-    label.font = [UIFont systemFontOfSize:16];
-    label.activeLinkAttributes = nil;
-    label.linkAttributes = @{(NSString *)kCTUnderlineStyleAttributeName: [NSNumber numberWithBool:YES]};
-    label.text = labelText; // ALWAYS SET THE TEXT LAST
+    TTTAttributedLabel *label;
+    UIButton *checkboxButton;
+    UIView *view = [self checkboxViewAtYPoint:yPoint
+                        targetAttributedLabel:&label
+                                    labelText:labelText
+                                 targetButton:&checkboxButton
+                               buttonSelector:@selector(checkboxSelected)];
     
-    CGSize calculatedSize = [label sizeThatFits:CGSizeMake(260,
-                                                           CGFLOAT_MAX)];
-    CGRect labelFrame = label.frame;
-    labelFrame.size = calculatedSize;
-    labelFrame.origin = CGPointMake(52, 0);
-    label.frame = labelFrame;
+    self.checkboxButton = checkboxButton;
     
     NSRange termsAndConditionsLinkRange = [labelText rangeOfString:@"Terms and Conditions"];
     [label addLinkToURL:[NSURL URLWithString:kSDCommonRegistrationViewControllerTermsAndConditionsLink]
@@ -402,13 +441,19 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
     NSRange privacyPolicyLinkRange = [labelText rangeOfString:@"Privacy Policy"];
     [label addLinkToURL:[NSURL URLWithString:kSDCommonRegistrationViewControllerPrivacyPolicyLink]
               withRange:privacyPolicyLinkRange];
-    [view addSubview:label];
     
-    CGFloat maxHeight = label.frame.size.height > self.checkboxButton.frame.size.height ? label.frame.size.height : self.checkboxButton.frame.size.height;
-    view.frame = CGRectMake(0,
-                            yPoint,
-                            self.view.frame.size.width,
-                            maxHeight);
+    return view;
+}
+
+- (UIView *)parentCheckboxViewAtYPoint:(CGFloat)yPoint
+{
+    UIButton *parentCheckboxButton;
+    UIView *view = [self checkboxViewAtYPoint:yPoint
+                        targetAttributedLabel:nil
+                                    labelText:@"I give permission for my child to use SigningDay and accept the Terms and Conditions and the Privacy Policy on my child's behalf."
+                                 targetButton:&parentCheckboxButton
+                               buttonSelector:@selector(parentCheckboxSelected)];
+    self.parentCheckboxButton = parentCheckboxButton;
     
     return view;
 }
