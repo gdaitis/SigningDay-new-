@@ -19,6 +19,7 @@
 #import "Conference.h"
 #import "State.h"
 #import "SDCacheService.h"
+#import "SDHTTPClient.h"
 
 @interface User (BasicUserInfoParsing)
 
@@ -81,12 +82,12 @@
                  stateCodeStringsArray:(NSArray *)statesArray
                 classYearsStringsArray:(NSArray *)classesArray
                   positionStringsArray:(NSArray *)positionsArray
-                     sortedBy:(NSString *)sortOption
+                              sortedBy:(NSString *)sortOption
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock
 {
     NSMutableArray *requestStringsArray = [[NSMutableArray alloc] init];
-
+    
     if (searchString) {
         NSString *searchRequestString = [NSString stringWithFormat:@"substringof('%@',DisplayName)", searchString];
         [requestStringsArray addObject:searchRequestString];
@@ -118,79 +119,134 @@
                                            failureBlock:failureBlock];
 }
 
+//+ (void)searchAllPlayersWithNameSubstring:(NSString *)nameSubstring
+//                             successBlock:(void (^)(void))successBlock
+//                             failureBlock:(void (^)(void))failureBlock
+//{
+////        NSString *path = [NSString stringWithFormat:@"services/signingday.svc/PlayersDto?$top=10&$orderBy=DisplayName asc&$format=json&$filter=substringof('%@',DisplayName)",[nameSubstring lowercaseString]];
+//    
+//    NSString *path = @"services/signingday.svc/PlayersDto";
+//    [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"GET" path:path];
+//    NSString *resultCount = @"10";
+//    
+//    [[SDHTTPClient sharedClient] getPath:path
+//                              parameters:@{@"$top": resultCount,
+//                                           @"$orderBy": @"DisplayName asc",
+//                                           @"$format": @"json",
+//                                           @"$filter": [NSString stringWithFormat:@"substringof('%@',DisplayName)",[nameSubstring lowercaseString]],
+//                                           }
+//                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                                     [self createPlayerFromResponse:responseObject];
+//                                     successBlock();
+//                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                     failureBlock();
+//                                 }];
+//    [[[URLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
+//    
+//}
+
++ (void)searchAllPlayersWithNameSubstring:(NSString *)nameSubstring
+                             successBlock:(void (^)(void))successBlock
+                             failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"services/signingday.svc/PlayersDto?$top=10&&$format=json&$filter=substringof('%@',DisplayName)",[nameSubstring lowercaseString]];
+    
+    NSString *formatedUrl = [[[path stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
+    
+    [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"GET" path:formatedUrl];
+    
+    [[SDHTTPClient sharedClient] getPath:formatedUrl
+                              parameters:nil
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     
+                                     [self createPlayerFromResponse:responseObject];
+                                     successBlock();
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     failureBlock();
+                                 }];
+}
+
 + (void)startPlayersHTTPRequestOperationWithURLString:(NSString *)URLString
                                          successBlock:(void (^)(void))successBlock
                                          failureBlock:(void (^)(void))failureBlock
 {
     [self startHTTPRequestOperationWithURLString:URLString
                            operationSuccessBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               [self createPlayerFromResponse:responseObject];
                                
-                               NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-                               
-                               [self createUsersFromResponseObject:responseObject
-                                                       withContext:context
-                                         withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
-                                             userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
-                                             user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
-                                             user.name = [userDictionary valueForKey:@"DisplayName"];
-                                             
-                                             if (!user.thePlayer)
-                                                 user.thePlayer = [Player MR_createInContext:context];
-                                             user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];
-                                             user.thePlayer.stateRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"StateRank"] intValue]];
-                                             user.thePlayer.height = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Height"] intValue]];
-                                             user.thePlayer.weight = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Weight"] intValue]];
-                                             user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[userDictionary valueForKey:@"Class"] intValue]];
-                                             user.thePlayer.position = [userDictionary valueForKey:@"Position"];
-                                             user.thePlayer.baseScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseScore"] floatValue]];
-                                             user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"NationalRank"] intValue]];
-                                             user.thePlayer.starsCount = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Stars"] intValue]];
-                                             
-                                             
-                                             //assign a state to user (this is needed for filtering in landingpagecontrollers)
-                                             NSString *code = [userDictionary valueForKey:@"PlayerStateCode"];
-                                             State *state = [State MR_findFirstByAttribute:@"code"
-                                                                                 withValue:code
-                                                                                 inContext:context];
-                                             if (!state) {
-                                                 state = [State MR_createInContext:context];
-                                                 state.code = code;
-                                             }
-                                             user.state = state;
-                                             
-                                             NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"HighSchoolID"] intValue]];
-                                             User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
-                                                                                        withValue:highSchoolIdentifier
-                                                                                        inContext:context];
-                                             if (!highSchoolUser) {
-                                                 highSchoolUser = [User MR_createInContext:context];
-                                                 highSchoolUser.identifier = highSchoolIdentifier;
-                                             }
-                                             highSchoolUser.name = [userDictionary valueForKey:@"HighSchoolName"];
-                                             if (!highSchoolUser.theHighSchool)
-                                                 highSchoolUser.theHighSchool = [HighSchool MR_createInContext:context];
-                                             highSchoolUser.theHighSchool.mascot = [userDictionary valueForKey:@"HighSchoolMascot"];
-                                             
-                                             user.thePlayer.highSchool = highSchoolUser.theHighSchool;
-                                             
-                                             NSString *highSchoolCode = [userDictionary valueForKey:@"HighSchoolStateCode"];
-                                             state = [State MR_findFirstByAttribute:@"code"
-                                                                                 withValue:highSchoolCode
-                                                                                 inContext:context];
-                                             if (!state) {
-                                                 state = [State MR_createInContext:context];
-                                                 state.code = highSchoolCode;
-                                             }
-                                             user.thePlayer.highSchool.theUser.state = state;
-                                             
-                                         }];
-                               [context MR_saveOnlySelfAndWait];
                                if (successBlock)
                                    successBlock();
                            } operationFailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
                                if (failureBlock)
                                    failureBlock();
                            }];
+}
+
++ (void)createPlayerFromResponse:(id)responseObject
+{
+#warning check for bugs!!
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    [self createUsersFromResponseObject:responseObject
+                            withContext:context
+              withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
+                  
+                  userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
+                  user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
+                  user.name = [userDictionary valueForKey:@"DisplayName"];
+                  user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
+                  
+                  if (!user.thePlayer)
+                      user.thePlayer = [Player MR_createInContext:context];
+                  user.thePlayer.positionRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"PositionRank"] intValue]];
+                  user.thePlayer.stateRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"StateRank"] intValue]];
+                  user.thePlayer.height = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Height"] intValue]];
+                  user.thePlayer.weight = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Weight"] intValue]];
+                  user.thePlayer.userClass = [NSString stringWithFormat:@"%d", [[userDictionary valueForKey:@"Class"] intValue]];
+                  user.thePlayer.position = [userDictionary valueForKey:@"Position"];
+                  user.thePlayer.baseScore = [NSNumber numberWithFloat:[[userDictionary valueForKey:@"BaseScore"] floatValue]];
+                  user.thePlayer.nationalRanking = [NSNumber numberWithInt:[[userDictionary valueForKey:@"NationalRank"] intValue]];
+                  user.thePlayer.starsCount = [NSNumber numberWithInt:[[userDictionary valueForKey:@"Stars"] intValue]];
+                  
+                  
+                  //assign a state to user (this is needed for filtering in landingpagecontrollers)
+                  NSString *code = [userDictionary valueForKey:@"PlayerStateCode"];
+                  State *state = [State MR_findFirstByAttribute:@"code"
+                                                      withValue:code
+                                                      inContext:context];
+                  if (!state) {
+                      state = [State MR_createInContext:context];
+                      state.code = code;
+                  }
+                  user.state = state;
+                  
+                  NSNumber *highSchoolIdentifier = [NSNumber numberWithInt:[[userDictionary valueForKey:@"HighSchoolID"] intValue]];
+                  User *highSchoolUser = [User MR_findFirstByAttribute:@"identifier"
+                                                             withValue:highSchoolIdentifier
+                                                             inContext:context];
+                  if (!highSchoolUser) {
+                      highSchoolUser = [User MR_createInContext:context];
+                      highSchoolUser.identifier = highSchoolIdentifier;
+                  }
+                  highSchoolUser.name = [userDictionary valueForKey:@"HighSchoolName"];
+                  if (!highSchoolUser.theHighSchool)
+                      highSchoolUser.theHighSchool = [HighSchool MR_createInContext:context];
+                  highSchoolUser.theHighSchool.mascot = [userDictionary valueForKey:@"HighSchoolMascot"];
+                  
+                  user.thePlayer.highSchool = highSchoolUser.theHighSchool;
+                  
+                  NSString *highSchoolCode = [userDictionary valueForKey:@"HighSchoolStateCode"];
+                  state = [State MR_findFirstByAttribute:@"code"
+                                               withValue:highSchoolCode
+                                               inContext:context];
+                  if (!state) {
+                      state = [State MR_createInContext:context];
+                      state.code = highSchoolCode;
+                  }
+                  user.thePlayer.highSchool.theUser.state = state;
+                  
+              }];
+    [context MR_saveOnlySelfAndWait];
 }
 
 #pragma mark - Teams
@@ -203,7 +259,7 @@
                                                failureBlock:(void (^)(void))failureBlock
 {
     NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
-
+    
     if (conferenceIdString)
         [urlString appendFormat:@"&conference=%@",conferenceIdString];
     [urlString appendString:@"&$format=json"];
@@ -237,7 +293,7 @@
         
         NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
         NSArray *object = [JSON valueForKey:@"d"];
-
+        
         for (NSDictionary *dict in object)
         {
             NSNumber *identifier = [NSNumber numberWithInteger:[[dict valueForKey:@"UserID"] integerValue]];
@@ -249,7 +305,7 @@
             teamUser.avatarUrl = [dict valueForKey:@"TeamLogoURL"];
             teamUser.name = [dict valueForKey:@"Institution"];
             teamUser.userTypeId = [NSNumber numberWithInt:SDUserTypeTeam];
-
+            
             if (!teamUser.theTeam)
                 teamUser.theTeam = [Team MR_createInContext:context];
             teamUser.theTeam.teamName = [dict valueForKey:@"Institution"];
@@ -291,7 +347,7 @@
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock
 {
-//    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
+    //    NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?year=%@&page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, classString, pageNumber, pageSize];
     NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"%@services/signingday.svc/Teams?page=%i&count=%i&$format=json", kSDBaseSigningDayURLString, pageNumber, pageSize];
     
     [self startTeamsHTTPRequestOperationWithURLString:urlString
@@ -304,7 +360,7 @@
                         successBlock:(void (^)(void))successBlock
                         failureBlock:(void (^)(void))failureBlock
 {
-//    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@", kSDBaseSigningDayURLString, classString];
+    //    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@", kSDBaseSigningDayURLString, classString];
     
     if (searchString.length > 2) {
         NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams$filter=(substringof(tolower('%@'),tolower(DisplayName)))&$format=json", kSDBaseSigningDayURLString,searchString];
@@ -370,10 +426,10 @@
 
 + (void)getAllHighSchoolsForState:(NSString *)stateCode
                     ForYearString:(NSString *)yearString
-                                        pageNumber:(NSInteger)pageNumber
-                                          pageSize:(NSInteger)pageSize
-                                      successBlock:(void (^)(void))successBlock
-                                      failureBlock:(void (^)(void))failureBlock
+                       pageNumber:(NSInteger)pageNumber
+                         pageSize:(NSInteger)pageSize
+                     successBlock:(void (^)(void))successBlock
+                     failureBlock:(void (^)(void))failureBlock
 {
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&count=%d&page=%d&state='%@'&$format=json", kSDBaseSigningDayURLString, yearString, pageSize, pageNumber,stateCode];
     
@@ -416,8 +472,8 @@
     NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/HighSchools?year=%@&$format=json&$filter=(%@)", kSDBaseSigningDayURLString, yearString, filterString];
     
     [self startHighSchoolsHTTPRequestOperationWithURLString:urlString
-                                           successBlock:successBlock
-                                           failureBlock:failureBlock];
+                                               successBlock:successBlock
+                                               failureBlock:failureBlock];
 }
 
 + (void)startHighSchoolsHTTPRequestOperationWithURLString:(NSString *)URLString
@@ -542,16 +598,22 @@
     }];
     [operation start];
 }
-
 + (void)createUsersFromResponseObject:(id)responseObject
                           withContext:(NSManagedObjectContext *)context
             withBlockForSpecificTypes:(void (^)(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user))specificTypeOfUserCreationBlock
 {
-//    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
-    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                         options:kNilOptions
-                                                           error:nil];
-    NSArray *resultsArray = [JSON valueForKey:@"d"];
+    NSArray *resultsArray = nil;
+    
+    if ([[responseObject class] isSubclassOfClass:[NSDictionary class]])
+        resultsArray = [responseObject valueForKey:@"d"];
+    else {
+        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                             options:kNilOptions
+                                                               error:nil];
+        resultsArray = [JSON valueForKey:@"d"];
+    }
+    
+    
     for (NSDictionary *userDictionaryWithNulls in resultsArray) {
         NSDictionary *userDictionary = [userDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
         User *user = [User getUserWithBasicUserInfoFromUserDictionary:userDictionary
@@ -559,7 +621,6 @@
         if (specificTypeOfUserCreationBlock)
             specificTypeOfUserCreationBlock(userDictionary, context, user);
     }
-//    [context MR_saveOnlySelfAndWait];
 }
 
 + (NSString *)makeRequestsStringFromRequestsArray:(NSArray *)requestsArray

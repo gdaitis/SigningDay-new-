@@ -165,7 +165,8 @@
     
     switch (sender.tag) {
         case SDJoinControllerCellUserType_FAN: {
-
+            SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+            viewController = rvc;
             break;
         }
         case SDJoinControllerCellUserType_PARENT: {
@@ -196,8 +197,8 @@
         default:
             break;
     }
-//    if (viewController)
-//        [self.navigationController pushViewController:viewController animated:YES];
+    if (viewController)
+        [self.navigationController pushViewController:viewController animated:YES];
     
 //    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
 //    [self.navigationController pushViewController:claimAccountViewController animated:YES];
@@ -205,8 +206,8 @@
 //    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
 //    [self.navigationController pushViewController:rvc animated:YES];
     
-    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
-    [self.navigationController pushViewController:crvc animated:YES];
+//    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
+//    [self.navigationController pushViewController:crvc animated:YES];
 }
 
 - (void)backPressed:(id)sender

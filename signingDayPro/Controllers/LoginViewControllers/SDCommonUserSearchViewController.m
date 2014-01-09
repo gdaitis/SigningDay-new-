@@ -8,8 +8,10 @@
 
 #import "SDCommonUserSearchViewController.h"
 #import "SDCantFindYourselfView.h"
-
-#define kHideKeyboardButtonTag 999
+#import "SDUserSearchClaimAccountCell.h"
+#import "SDSearchDisplayController.h"
+#import "UIView+NibLoading.h"
+#import "User.h"
 
 @interface SDCommonUserSearchViewController () <SDCantFindYourselfViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -17,6 +19,8 @@
 @property (nonatomic, strong) NSArray *dataArray;
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) SDSearchDisplayController *customSearchDisplayController;
+@property (nonatomic, strong) UILabel *infoLabel;  //displays info text "Enter minimu 3 symbols for search"
 
 @end
 
@@ -37,6 +41,31 @@
 	// Do any additional setup after loading the view.
     self.cantFindYourselfView.delegate = self;
     [self.refreshControl removeFromSuperview];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.text = @"Enter minimum 3 symbols";
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.textColor = [UIColor lightGrayColor];
+    [label sizeToFit];
+    CGRect frame = label.frame;
+    frame.origin.x = self.tableView.bounds.size.width/2 - frame.size.width/2;
+    frame.origin.y = 98; //hardcoded to overlap native title, and not to glitch on the screen
+    label.frame = frame;
+    
+    self.infoLabel = label;
+    [self.tableView addSubview:self.infoLabel];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setupSearchBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +76,7 @@
 
 - (void)setupSearchBar
 {
-    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc]
+    SDSearchDisplayController *searchDisplayController = [[SDSearchDisplayController alloc]
                                                           initWithSearchBar:self.searchBar contentsController:self];
     
     self.customSearchDisplayController = searchDisplayController;
@@ -62,13 +91,7 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    UIButton *hideKeyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    hideKeyboardButton.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - kKeyboardHeightPortrait);
-    
-    hideKeyboardButton.tag = kHideKeyboardButtonTag;
-    [hideKeyboardButton addTarget:self action:@selector(removeKeyboard) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:hideKeyboardButton];
+
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
@@ -83,14 +106,10 @@
 
 - (void)removeKeyboard
 {
-    if ([self.searchBar isFirstResponder]) {
+    if ([self.searchBar isFirstResponder])
         [self.searchBar resignFirstResponder];
-        [(UIButton *)[self.view viewWithTag:kHideKeyboardButtonTag] removeFromSuperview];
-    }
-    if ([self.customSearchDisplayController.searchBar isFirstResponder]) {
+    if ([self.customSearchDisplayController.searchBar isFirstResponder])
         [self.customSearchDisplayController.searchBar resignFirstResponder];
-        [(UIButton *)[self.view viewWithTag:kHideKeyboardButtonTag] removeFromSuperview];
-    }
 }
 
 - (void)reloadTableView
@@ -132,7 +151,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    NSString *cellId = @"SDUserSearchClaimAccountCellID";
+    SDUserSearchClaimAccountCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        cell = (id)[SDUserSearchClaimAccountCell loadInstanceFromNib];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.claimButton addTarget:self action:@selector(claimButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    cell.claimButton.tag = indexPath.row;
+    
+    User *user = [self.dataArray objectAtIndex:indexPath.row];
+    [cell setupCellWithUser:user];
+    
+    return cell;
 }
 
 #pragma mark - Table view delegate
@@ -143,7 +174,19 @@
     if ([self.searchBar isFirstResponder])
         [self removeKeyboard];
     
+    User *user = [self.dataArray objectAtIndex:indexPath.row];
+    
+    if ([self respondsToSelector:@selector(claimAccount:)])
+        [self claimAccount:user];
     //show claim controller
+}
+
+- (void)claimButtonPressed:(id)sender
+{
+    User *user = [self.dataArray objectAtIndex:((UIButton *)sender).tag];
+    
+    if ([self respondsToSelector:@selector(claimAccount:)])
+        [self claimAccount:user];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -180,19 +223,36 @@
 - (void)loadDataWithSearchString:(NSString *)searchString
 {
     if (searchString.length > 2) {
+        [self hideInfoText];
         [self loadLocalDbDataWithString:searchString];
-        [self checkServer];
-        [self loadLocalDbDataWithString:searchString];
+        if ([self respondsToSelector:@selector(checkServerForUsersWithNameSubstring:)])
+            [self checkServerForUsersWithNameSubstring:searchString];
     }
     else if (searchString.length <= 2 && searchString.length > 0) {
+        [self hideInfoText];
         self.dataArray = nil;
         [self reloadTableView];
     }
     else {
         self.dataArray = nil;
         [self reloadTableView];
-#warning show label with text "Enter minimum 3 symbols" ?
+        [self displayInfoText];
     }
+}
+
+- (void)displayInfoText
+{
+    self.infoLabel.hidden = NO;
+}
+
+- (void)hideInfoText
+{
+    self.infoLabel.hidden = YES;
+}
+
+- (void)dataLoadedForSearchString:(NSString *)searchString
+{
+    [self loadLocalDbDataWithString:searchString];
 }
 
 - (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
@@ -206,16 +266,14 @@
 }
 
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
-    
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView {
-    
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
-    
 }
 
 - (void) keyboardWillHide
@@ -225,11 +283,42 @@
     [tableView setScrollIndicatorInsets:UIEdgeInsetsZero];
 }
 
+#pragma mark - UISearchBar Delegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    [self loadDataWithSearchString:nil];
+}
+
+#pragma mark - Data loading
+
+- (void)loadLocalDbDataWithString:(NSString *)searchString
+{
+    //Form and compound predicates
+    
+    NSPredicate *userTypePredicate = [NSPredicate predicateWithFormat:@"userTypeId == %d",self.userType];
+    NSPredicate *nameSearchPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchString];
+    
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[userTypePredicate,nameSearchPredicate]];
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSFetchRequest *request = [User MR_requestAllWithPredicate:compoundPredicate inContext:context];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    NSArray *descriptorArray = [NSArray arrayWithObject:nameDescriptor];
+    [request setSortDescriptors:descriptorArray];
+    
+    self.dataArray = [User MR_executeFetchRequest:request inContext:context];
+    
+    [self reloadTableView];
+}
+
 #pragma mark - Cant Find Yourself View Delegate
 
 - (void)registerButtonPressedInCantFindYourselfView:(SDCantFindYourselfView *)cantFindYourselfView
 {
-    
+    if ([self respondsToSelector:@selector(createNewAccount)]) {
+        [self createNewAccount];
+    }
 }
 
 @end

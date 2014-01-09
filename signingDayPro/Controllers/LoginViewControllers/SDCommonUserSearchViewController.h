@@ -9,16 +9,16 @@
 #import "SDBaseViewController.h"
 #import "SDProfileService.h"
 
-@class SDCantFindYourselfView;
+@class SDCantFindYourselfView,User;
 
 @interface SDCommonUserSearchViewController : SDBaseViewController
 
 @property (nonatomic, assign) SDUserType userType;
-@property (nonatomic, strong) UISearchDisplayController *customSearchDisplayController;
 
-#pragma mark - Data Loading
+- (void)checkServerForUsersWithNameSubstring:(NSString *)nameSubstring;
+- (void)dataLoadedForSearchString:(NSString *)searchString;
 
-- (void)loadLocalDbDataWithString:(NSString *)searchString;
-- (void)checkServer;
+- (void)claimAccount:(User *)user;
+- (void)createNewAccount;
 
 @end

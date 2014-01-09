@@ -11,6 +11,9 @@
 #import "SDCustomNavigationToolbarView.h"
 #import "SDCantFindYourselfView.h"
 #import "SDStandartNavigationController.h"
+#import "SDLandingPagesService.h"
+#import "SDRegisterViewController.h"
+#import "SDClaimRegistrationViewController.h"
 
 @interface SDPlayerSearchViewController ()
 
@@ -40,7 +43,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Claim Account"];
     
-    self.screenName = @"Claim account screen";
+    self.screenName = @"ClaimAccount_PlayerSearchScreen";
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,5 +53,29 @@
 }
 
 
+- (void)checkServerForUsersWithNameSubstring:(NSString *)nameSubstring
+{
+    [self showProgressHudInView:self.view withText:@"Loading"];
+    
+    [SDLandingPagesService searchAllPlayersWithNameSubstring:nameSubstring successBlock:^{
+        [self dataLoadedForSearchString:nameSubstring];
+        [self hideProgressHudInView:self.view];
+    } failureBlock:^{
+        
+        [self hideProgressHudInView:self.view];
+    }];
+}
+
+- (void)createNewAccount
+{
+    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+    [self.navigationController pushViewController:rvc animated:YES];
+}
+
+- (void)claimAccount:(User *)user
+{
+    SDClaimRegistrationViewController *claimAccountViewController = [[SDClaimRegistrationViewController alloc] initWithNibName:@"SDClaimRegistrationViewController" bundle:nil];
+    [self.navigationController pushViewController:claimAccountViewController animated:YES];
+}
 
 @end

@@ -431,6 +431,10 @@
 		80D1F3A1179680DD0051E8E1 /* SDBuzzButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D1F3A0179680DD0051E8E1 /* SDBuzzButtonView.xib */; };
 		80D336BC181E9D180032230D /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D336BB181E9D180032230D /* checkMark.png */; };
 		80D55DBA187C00900086DB04 /* SDCommonUserSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D55DB9187C00900086DB04 /* SDCommonUserSearchViewController.m */; };
+		80D55DBD187C41460086DB04 /* SDUserSearchClaimAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D55DBC187C41460086DB04 /* SDUserSearchClaimAccountCell.m */; };
+		80D55DBF187C41590086DB04 /* SDUserSearchClaimAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D55DBE187C41590086DB04 /* SDUserSearchClaimAccountCell.xib */; };
+		80D55DC6187D51250086DB04 /* SDSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D55DC5187D51250086DB04 /* SDSearchDisplayController.m */; };
+		80D55DC9187D75140086DB04 /* SDHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D55DC8187D75140086DB04 /* SDHTTPClient.m */; };
 		80E202941829199D00449287 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E202931829199D00449287 /* libGoogleAnalyticsServices.a */; };
 		80E31BAB1758AF990013545C /* SDFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BA91758AF990013545C /* SDFollowingCell.xib */; };
 		80E31BB31758B8590013545C /* FollowingSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E31BAF1758B8590013545C /* FollowingSelected@2x.png */; };
@@ -1077,6 +1081,13 @@
 		80D336BB181E9D180032230D /* checkMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMark.png; sourceTree = "<group>"; };
 		80D55DB8187C00900086DB04 /* SDCommonUserSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCommonUserSearchViewController.h; sourceTree = "<group>"; };
 		80D55DB9187C00900086DB04 /* SDCommonUserSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCommonUserSearchViewController.m; sourceTree = "<group>"; };
+		80D55DBB187C41460086DB04 /* SDUserSearchClaimAccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUserSearchClaimAccountCell.h; sourceTree = "<group>"; };
+		80D55DBC187C41460086DB04 /* SDUserSearchClaimAccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUserSearchClaimAccountCell.m; sourceTree = "<group>"; };
+		80D55DBE187C41590086DB04 /* SDUserSearchClaimAccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDUserSearchClaimAccountCell.xib; sourceTree = "<group>"; };
+		80D55DC4187D51250086DB04 /* SDSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDSearchDisplayController.h; path = "Custom Classes & Categories/SDSearchDisplayController.h"; sourceTree = "<group>"; };
+		80D55DC5187D51250086DB04 /* SDSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDSearchDisplayController.m; path = "Custom Classes & Categories/SDSearchDisplayController.m"; sourceTree = "<group>"; };
+		80D55DC7187D75140086DB04 /* SDHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHTTPClient.h; sourceTree = "<group>"; };
+		80D55DC8187D75140086DB04 /* SDHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHTTPClient.m; sourceTree = "<group>"; };
 		80D59A8D17CB61CC00CB494D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		80D59A8E17CB61CD00CB494D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		80DF59C017A7E81E004F5246 /* SDActivityFeedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedTableView.h; sourceTree = "<group>"; };
@@ -1295,6 +1306,7 @@
 		7BBFBBDE17AA4ED300BF45A5 /* Custom classes */ = {
 			isa = PBXGroup;
 			children = (
+				80D55DC3187D50A70086DB04 /* UISearchDisplayController */,
 				806F4706183CE75700D58BD5 /* NSAttributedString+DTCoreText */,
 				7BA0F54417E9B1F100C6DE89 /* NSObject+MasterUserMethods */,
 				7B1DF10817E0A187005455D8 /* UIImageView+Crop */,
@@ -1397,6 +1409,8 @@
 			children = (
 				8032EFCF1755EEDE00C92AAC /* SDAPIClient.h */,
 				8032EFD01755EEDE00C92AAC /* SDAPIClient.m */,
+				80D55DC7187D75140086DB04 /* SDHTTPClient.h */,
+				80D55DC8187D75140086DB04 /* SDHTTPClient.m */,
 				7B652362176EEA0E002EA795 /* SDActivityFeedService.h */,
 				7B652363176EEA0E002EA795 /* SDActivityFeedService.m */,
 				80362AFA186323A60017945E /* SDTopSchoolService.h */,
@@ -2010,6 +2024,9 @@
 				805D64DF1871A48D003211F0 /* SDJoinCell.h */,
 				805D64E01871A48D003211F0 /* SDJoinCell.m */,
 				805D64E21871A4B4003211F0 /* SDJoinCell.xib */,
+				80D55DBB187C41460086DB04 /* SDUserSearchClaimAccountCell.h */,
+				80D55DBC187C41460086DB04 /* SDUserSearchClaimAccountCell.m */,
+				80D55DBE187C41590086DB04 /* SDUserSearchClaimAccountCell.xib */,
 			);
 			path = LoginViewControllerCells;
 			sourceTree = "<group>";
@@ -2367,6 +2384,15 @@
 			path = "UIView+NibLoading";
 			sourceTree = "<group>";
 		};
+		80D55DC3187D50A70086DB04 /* UISearchDisplayController */ = {
+			isa = PBXGroup;
+			children = (
+				80D55DC4187D51250086DB04 /* SDSearchDisplayController.h */,
+				80D55DC5187D51250086DB04 /* SDSearchDisplayController.m */,
+			);
+			name = UISearchDisplayController;
+			sourceTree = "<group>";
+		};
 		80E2028C1829199D00449287 /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -2635,6 +2661,7 @@
 				8032F0901755F98E00C92AAC /* switchOffPlain.png in Resources */,
 				8032F0911755F98E00C92AAC /* switchThumb.png in Resources */,
 				80EEF5EA17561A7E00A7C803 /* LoginStoryboard.storyboard in Resources */,
+				80D55DBF187C41590086DB04 /* SDUserSearchClaimAccountCell.xib in Resources */,
 				80EEF5F21756231E00A7C803 /* login_bg.png in Resources */,
 				7B38E1DE187838FF007ACC8A /* RegistrationInputFieldUpperBg@2x.png in Resources */,
 				80362AF5186322F00017945E /* interestImage2@2x.png in Resources */,
@@ -2953,6 +2980,7 @@
 				7B93CEAF182AA007007A6275 /* SDThreadCell.m in Sources */,
 				7B93CEB0182AA007007A6275 /* SDPostCell.m in Sources */,
 				7B93CEB1182AA007007A6275 /* SDAddTagsCell.m in Sources */,
+				80D55DC6187D51250086DB04 /* SDSearchDisplayController.m in Sources */,
 				7B93CEB2182AA007007A6275 /* SDOfferCell.m in Sources */,
 				7B93CEB3182AA007007A6275 /* SDCommentCell.m in Sources */,
 				7B93CEB4182AA007007A6275 /* SDActivityFeedCell.m in Sources */,
@@ -3027,6 +3055,7 @@
 				7B93CE77182A9FAE007A6275 /* SDProfileService.m in Sources */,
 				7B93CE78182A9FAE007A6275 /* SDUploadService.m in Sources */,
 				80D55DBA187C00900086DB04 /* SDCommonUserSearchViewController.m in Sources */,
+				80D55DC9187D75140086DB04 /* SDHTTPClient.m in Sources */,
 				7B93CE79182A9FAE007A6275 /* SDLandingPagesService.m in Sources */,
 				7B93CE7A182A9FAE007A6275 /* SDNotificationsService.m in Sources */,
 				80362AEB186322C50017945E /* SDTopSchoolsCell.m in Sources */,
@@ -3067,6 +3096,7 @@
 				7B93CE95182A9FAE007A6275 /* SDUserProfileViewController.m in Sources */,
 				80362AD2186321EE0017945E /* Master.m in Sources */,
 				80362ADE186321EF0017945E /* Member.m in Sources */,
+				80D55DBD187C41460086DB04 /* SDUserSearchClaimAccountCell.m in Sources */,
 				7BA5775D1859E24E00594729 /* SDGlobalSearchViewController.m in Sources */,
 				7B93CE96182A9FAE007A6275 /* SDOffersViewController.m in Sources */,
 				7B93CE97182A9FAE007A6275 /* SDKeyAttributesViewController.m in Sources */,

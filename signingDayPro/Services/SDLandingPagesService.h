@@ -30,6 +30,11 @@
                               sortedBy:(NSString *)sortOption
                           successBlock:(void (^)(void))successBlock
                           failureBlock:(void (^)(void))failureBlock;
+
++ (void)searchAllPlayersWithNameSubstring:(NSString *)nameSubstring
+                             successBlock:(void (^)(void))successBlock
+                             failureBlock:(void (^)(void))failureBlock;
+
 // Teams
 + (void)getTeamsOrderedByDescendingTotalScoreWithPageNumber:(NSInteger)pageNumber
                                                    pageSize:(NSInteger)pageSize
