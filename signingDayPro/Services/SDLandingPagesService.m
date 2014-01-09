@@ -20,6 +20,7 @@
 #import "State.h"
 #import "SDCacheService.h"
 #import "SDHTTPClient.h"
+#import "Coach.h"
 
 @interface User (BasicUserInfoParsing)
 
@@ -119,32 +120,6 @@
                                            failureBlock:failureBlock];
 }
 
-//+ (void)searchAllPlayersWithNameSubstring:(NSString *)nameSubstring
-//                             successBlock:(void (^)(void))successBlock
-//                             failureBlock:(void (^)(void))failureBlock
-//{
-////        NSString *path = [NSString stringWithFormat:@"services/signingday.svc/PlayersDto?$top=10&$orderBy=DisplayName asc&$format=json&$filter=substringof('%@',DisplayName)",[nameSubstring lowercaseString]];
-//    
-//    NSString *path = @"services/signingday.svc/PlayersDto";
-//    [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"GET" path:path];
-//    NSString *resultCount = @"10";
-//    
-//    [[SDHTTPClient sharedClient] getPath:path
-//                              parameters:@{@"$top": resultCount,
-//                                           @"$orderBy": @"DisplayName asc",
-//                                           @"$format": @"json",
-//                                           @"$filter": [NSString stringWithFormat:@"substringof('%@',DisplayName)",[nameSubstring lowercaseString]],
-//                                           }
-//                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                                     [self createPlayerFromResponse:responseObject];
-//                                     successBlock();
-//                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                                     failureBlock();
-//                                 }];
-//    [[[URLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
-//    
-//}
-
 + (void)searchAllPlayersWithNameSubstring:(NSString *)nameSubstring
                              successBlock:(void (^)(void))successBlock
                              failureBlock:(void (^)(void))failureBlock
@@ -153,7 +128,7 @@
     
     NSString *formatedUrl = [[[path stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
     
-    [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"GET" path:formatedUrl];
+    [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"GET" path:nil];
     
     [[SDHTTPClient sharedClient] getPath:formatedUrl
                               parameters:nil
@@ -194,7 +169,6 @@
                   userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
                   user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                   user.name = [userDictionary valueForKey:@"DisplayName"];
-                  user.userTypeId = [NSNumber numberWithInt:SDUserTypePlayer];
                   
                   if (!user.thePlayer)
                       user.thePlayer = [Player MR_createInContext:context];
@@ -578,6 +552,56 @@
                                    failureBlock();
                            }];
 }
+#pragma mark - Coaches
+
++ (void)searchAllCoachesWithNameSubstring:(NSString *)nameSubstring
+                             successBlock:(void (^)(void))successBlock
+                             failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"Services/CoachService.asmx/SearchCoachesByName"];
+
+    [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"POST" path:path];
+    NSMutableURLRequest *request = [[SDHTTPClient sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
+    
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    NSString *body = [NSString stringWithFormat:@"{searchStr:\"%@\", maxRows:\"10\"}",nameSubstring];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [[[SDHTTPClient sharedClient] operationQueue] addOperation:operation];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        
+        [self createCoachesFromResponse:data];
+        successBlock();
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock();
+    }];
+    [operation start];
+}
+
++ (void)createCoachesFromResponse:(id)responseObject
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    [self createUsersFromResponseObject:responseObject
+                            withContext:context
+              withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
+                  
+                  userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
+                  user.userTypeId = [NSNumber numberWithInt:SDUserTypeCoach];
+                  user.name = [userDictionary valueForKey:@"CoachName"];
+                  user.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
+                  
+                  
+                  if (!user.theCoach)
+                      user.theCoach = [Coach MR_createInContext:context];
+
+
+              }];
+    [context MR_saveOnlySelfAndWait];
+}
 
 #pragma mark - Common methods
 
@@ -602,24 +626,41 @@
                           withContext:(NSManagedObjectContext *)context
             withBlockForSpecificTypes:(void (^)(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user))specificTypeOfUserCreationBlock
 {
-    NSArray *resultsArray = nil;
-    
+    id results = nil;
     if ([[responseObject class] isSubclassOfClass:[NSDictionary class]])
-        resultsArray = [responseObject valueForKey:@"d"];
+        results = [responseObject valueForKey:@"d"];
     else {
-        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:responseObject
+        id JSON = [NSJSONSerialization JSONObjectWithData:responseObject
                                                              options:kNilOptions
                                                                error:nil];
-        resultsArray = [JSON valueForKey:@"d"];
+        
+        results = [JSON valueForKey:@"d"];
     }
     
-    
-    for (NSDictionary *userDictionaryWithNulls in resultsArray) {
-        NSDictionary *userDictionary = [userDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
-        User *user = [User getUserWithBasicUserInfoFromUserDictionary:userDictionary
-                                                           andContext:context];
-        if (specificTypeOfUserCreationBlock)
-            specificTypeOfUserCreationBlock(userDictionary, context, user);
+    if ([[results class] isSubclassOfClass:[NSDictionary class]] || [[results class] isSubclassOfClass:[NSArray class]] ) {
+        for (NSDictionary *userDictionaryWithNulls in results) {
+            NSDictionary *userDictionary = [userDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
+            User *user = [User getUserWithBasicUserInfoFromUserDictionary:userDictionary
+                                                               andContext:context];
+            if (specificTypeOfUserCreationBlock)
+                specificTypeOfUserCreationBlock(userDictionary, context, user);
+        }
+    }
+    else {
+#warning wtf is this? Check with Vytas (after using NSJSONSerialization we get nsstring)
+        if ([[results class] isSubclassOfClass:[NSString class]]) {
+            NSData *data = [results dataUsingEncoding:NSUTF8StringEncoding];
+            id dataArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            for (NSDictionary *userDictionaryWithNulls in dataArray) {
+                NSDictionary *userDictionary = [userDictionaryWithNulls dictionaryByReplacingNullsWithStrings];
+                User *user = [User getUserWithBasicUserInfoFromUserDictionary:userDictionary
+                                                                   andContext:context];
+                if (specificTypeOfUserCreationBlock)
+                    specificTypeOfUserCreationBlock(userDictionary, context, user);
+            }
+        }
+        else
+            NSLog(@"JSON data type not clear");
     }
 }
 

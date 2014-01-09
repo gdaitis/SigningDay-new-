@@ -88,6 +88,13 @@
                      stateCodeStringsArray:(NSArray *)statesArray
                               successBlock:(void (^)(void))successBlock
                               failureBlock:(void (^)(void))failureBlock;
+
+//Coaches
++ (void)searchAllCoachesWithNameSubstring:(NSString *)nameSubstring
+                             successBlock:(void (^)(void))successBlock
+                             failureBlock:(void (^)(void))failureBlock;
+
+
 // Conferences
 + (void)getAllConferencesOFullNameWithSuccessBlock:(void (^)(void))successBlock
                                       failureBlock:(void (^)(void))failureBlock;

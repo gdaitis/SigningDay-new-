@@ -15,6 +15,7 @@
 #import "SDClaimRegistrationViewController.h"
 #import "SDRegisterViewController.h"
 #import "SDStandartNavigationController.h"
+#import "SDCoachSearchViewController.h"
 
 #define kContractedHeight 165.0
 
@@ -183,9 +184,9 @@
             break;
         }
         case SDJoinControllerCellUserType_COACH: {
-//            SDCoachSearchViewController *coachSearchViewController = [[SDCoachSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
-//            coachSearchViewController.userType = SDUserTypeCoach;
-//            viewController = coachSearchViewController;
+            SDCoachSearchViewController *coachSearchViewController = [[SDCoachSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+            coachSearchViewController.userType = SDUserTypeCoach;
+            viewController = coachSearchViewController;
             break;
         }
         case SDJoinControllerCellUserType_HIGHSCHOOL: {
@@ -203,9 +204,9 @@
 //    SDClaimAccountViewController *claimAccountViewController = [[SDClaimAccountViewController alloc] initWithNibName:@"SDClaimAccountViewController" bundle:nil];
 //    [self.navigationController pushViewController:claimAccountViewController animated:YES];
     
-    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
-    rvc.userType = SDUserTypeMember;
-    [self.navigationController pushViewController:rvc animated:YES];
+//    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+//    rvc.userType = SDUserTypeMember;
+//    [self.navigationController pushViewController:rvc animated:YES];
     
 //    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
 //    [self.navigationController pushViewController:crvc animated:YES];
