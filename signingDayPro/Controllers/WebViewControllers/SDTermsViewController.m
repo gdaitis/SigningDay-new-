@@ -8,6 +8,7 @@
 
 #import "SDTermsViewController.h"
 #import "SDAPIClient.h"
+#import "SDStandartNavigationController.h"
 
 @implementation SDTermsViewController
 
@@ -35,6 +36,19 @@
     [button addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = barButton;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([[self.navigationController class] isSubclassOfClass:[SDStandartNavigationController class]]) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        [(SDStandartNavigationController *)self.navigationController setNavigationTitle:self.navigationTitle];
+        CGRect frame = self.webView.frame;
+        frame.size.height = self.view.bounds.size.height;
+        frame.origin.y = 0;
+        self.webView.frame = frame;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

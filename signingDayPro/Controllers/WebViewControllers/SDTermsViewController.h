@@ -12,5 +12,6 @@
 @interface SDTermsViewController : SDCommonWebViewController
 
 @property (nonatomic, strong) NSString *urlString;
+@property (nonatomic, strong) NSString *navigationTitle;
 
 @end

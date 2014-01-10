@@ -290,8 +290,10 @@
     SDTermsViewController *termsViewController = [storyboard instantiateViewControllerWithIdentifier:@"TermsStroyBoardID"];
     if ([[url description] isEqual:kSDCommonRegistrationViewControllerTermsAndConditionsLink]) {
         termsViewController.urlString = @"/p/terms.aspx";
+        termsViewController.navigationTitle = @"Terms and Conditions";
     } else if ([[url description] isEqual:kSDCommonRegistrationViewControllerPrivacyPolicyLink]) {
         termsViewController.urlString = @"/p/privacy.aspx";
+        termsViewController.navigationTitle = @"Privacy Policy";
     }
     [self.navigationController pushViewController:termsViewController
                                          animated:YES];
