@@ -136,6 +136,8 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
     textField.backgroundColor = [UIColor clearColor];
     textField.font = [UIFont systemFontOfSize:17];
     textField.placeholder = placeholderText;
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
     textField.frame = CGRectMake(kSDCommonRegistrationViewControllerLeftPadding + kSDCommonRegistrationViewControllerInputFieldInnerLeftPadding + (iconImage ? (iconImage.size.width + 10) : 0),
                                  inputFieldBackgroundImageView.frame.origin.y,
                                  kSDCommonRegistrationViewControllerInputFieldContentWidth - (iconImage ? (iconImage.size.width + 10) : 0),
@@ -329,6 +331,20 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
 - (UIView *)createContentView
 {
     return nil;
+}
+
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = /*@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"*/@"^[!$&*\\-=^`|~#%'\\.\"+/?_{}\\\\a-zA-Z0-9 ]+@[\\-\\.a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)+$";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
+- (BOOL)validateUsernamelWithString:(NSString*)username
+{
+    NSString *usernameRegex = @"^[a-zA-Z0-9._@-]+$";
+    NSPredicate *usernameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", usernameRegex];
+    return [usernameTest evaluateWithObject:username];
 }
 
 #pragma mark - Public view construction methods

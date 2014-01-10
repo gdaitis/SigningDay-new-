@@ -168,14 +168,14 @@
     switch (sender.tag) {
         case SDJoinControllerCellUserType_FAN: {
             SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+            rvc.userType = SDUserTypeMember;
             viewController = rvc;
             break;
         }
         case SDJoinControllerCellUserType_PARENT: {
-            
-            SDPlayerSearchViewController *playerSearchViewController = [[SDPlayerSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
-            playerSearchViewController.userType = SDUserTypePlayer;
-            viewController = playerSearchViewController;
+            SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+            rvc.userType = SDUserTypeMember;
+            viewController = rvc;
             break;
         }
         case SDJoinControllerCellUserType_PLAYER: {

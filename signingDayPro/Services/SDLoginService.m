@@ -213,6 +213,10 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
     [dateFormat setDateFormat:@"ddMMyyyyHHmmss"];
     NSString *fileName = [NSString stringWithFormat:@"photo%@.jpg", [dateFormat stringFromDate:todayDateObj]];
     
+    NSString *key = [STKeychain getPasswordForUsername:@"initialApiKey"
+                                        andServiceName:@"SigningDayPro"
+                                                 error:nil];
+    [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:key];
     NSMutableURLRequest *request = [[SDAPIClient sharedClient] multipartFormRequestWithMethod:@"POST"
                                                                                          path:@"sd/accountclaims.json"
                                                                                    parameters:@{@"UserId": identifier,
@@ -256,6 +260,8 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
         [MBProgressHUD hideAllHUDsForView:appDelegate.window
                                  animated:YES];
     }];
+    
+    [operation start];
 }
 
 + (void)cleanUpUserSession

@@ -8,6 +8,9 @@
 
 #import "SDClaimRegistrationViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "SDStandartNavigationController.h"
+#import "SDLoginService.h"
+#import "User.h"
 
 @interface SDClaimRegistrationViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -24,6 +27,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Claim Account"];
 }
 
 - (UIView *)createContentView
@@ -92,7 +97,32 @@
 
 - (void)claimAccountSelected
 {
-    
+    if (!self.emailTextField.text) {
+        [self showAlertWithTitle:nil
+                         andText:@"Please enter email"];
+        return;
+    } else if (![self validateEmailWithString:self.emailTextField.text]) {
+        [self showAlertWithTitle:nil
+                         andText:@"Your email is not correct"];
+        return;
+    } if (!self.phoneTextField.text) {
+        [self showAlertWithTitle:nil
+                         andText:@"Please enter phone number"];
+        return;
+    } if (!self.capturedImage) {
+        [self showAlertWithTitle:nil
+                         andText:@"Please add your photo ID"];
+        return;
+    }
+    [SDLoginService claimUserForUserIdentifier:self.user.identifier
+                                         email:self.emailTextField.text
+                                         phone:self.phoneTextField.text
+                                         image:self.capturedImage
+                                  successBlock:^{
+                                      
+                                  } failureBlock:^{
+                                      
+                                  }];
 }
 
 #pragma mark - UIActionSheet delegate methods

@@ -10,6 +10,7 @@
 #import "SDTermsViewController.h"
 #import "SDUtils.h"
 #import "SDLoginService.h"
+#import "SDStandartNavigationController.h"
 
 #define kSDRegisterViewControllerParentsStuffViewInsertionYCoordinate 340
 
@@ -23,7 +24,7 @@
 @property (nonatomic, strong) UITextField *secondPasswordTextField;
 @property (nonatomic, strong) UITextField *parentEmailTextField;
 @property (nonatomic, strong) UIView *parentsStuffView;
-@property (assign) BOOL viewExpanded;
+@property (assign) BOOL needsParentConsent;
 
 @end
 
@@ -33,9 +34,9 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Register";
+    [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Register Account"];
     
-    self.viewExpanded = NO;
+    self.needsParentConsent = NO;
 }
 
 - (UIView *)createContentView
@@ -82,7 +83,7 @@
     UIView *passwordInputFieldsView = [self passwordInputFieldsViewAtYPoint:currentY
                                                        withFirstPlaceholder:@"New Password"
                                                           secondPlaceholder:@"Confirm Password"
-                                                                   infoText:@"Your password must be at least 6 characters"
+                                                                   infoText:@"Your password must be at least 6 characters long"
                                                           forFirstTextField:&newPasswordTextField
                                                             secondTextField:&confirmPasswordTextField];
     self.firstPasswordTextField = newPasswordTextField;
@@ -119,23 +120,73 @@
 - (void)joinNowSelected
 {
     if (!self.signInNameTextField.text) {
-        [self showAlertAndReturnWithText:@"Please enter the sign in name"];
+        [self showAlertWithTitle:nil
+                         andText:@"Please enter sign in name"];
+        return;
+    } else if (self.signInNameTextField.text.length < 3) {
+        [self showAlertWithTitle:nil
+                         andText:@"Your sign in name must be at least 3 characters long"];
+        return;
+    } else if (self.signInNameTextField.text.length > 64) {
+        [self showAlertWithTitle:nil
+                         andText:@"Your sign in name must be less than 64 characters long"];
+        return;
+    } else if (![self validateUsernamelWithString:self.signInNameTextField.text]) {
+        [self showAlertWithTitle:nil
+                         andText:@"You can only use alphabetical letters, numbers and characters like _ - @ . in username field"];
+        return;
     } else if (!self.emailTextField.text) {
-        [self showAlertAndReturnWithText:@"Please enter the email"];
-    } if (!self.signInNameTextField.text) {
-        [self showAlertAndReturnWithText:@"Please enter the sign in name"];
-    } if (!self.firstPasswordTextField.text) {
-        [self showAlertAndReturnWithText:@"Please enter the password"];
-    } if (!self.secondPasswordTextField.text) {
-        [self showAlertAndReturnWithText:@"Please confirm the password"];
-    } if (![self.firstPasswordTextField.text isEqual:self.secondPasswordTextField.text]) {
-        [self showAlertAndReturnWithText:@"Password confirmation is not correct"];
-    } if (!self.checkboxButton.selected) {
-        [self showAlertAndReturnWithText:@"You must accept the Terms and Conditions and Privacy Policy"];
-    } if (!self.parentCheckboxButton.selected) {
-        [self showAlertAndReturnWithText:@"You must have the parents permision"];
+        [self showAlertWithTitle:nil
+                         andText:@"Please enter email"];
+        return;
+    } else if (![self validateEmailWithString:self.emailTextField.text]) {
+        [self showAlertWithTitle:nil
+                         andText:@"Your email is not correct"];
+        return;
+    } else if (!self.birthdayTextField.text) {
+        [self showAlertWithTitle:nil
+                         andText:@"Please enter your birthday"];
+        return;
+    } else if (!self.firstPasswordTextField.text) {
+        [self showAlertWithTitle:nil
+                         andText:@"Please enter password"];
+        return;
+    } else if (self.firstPasswordTextField.text.length < 6) {
+        [self showAlertWithTitle:nil
+                         andText:@"Your password must be at least 6 characters long"];
+        return;
+    } else if (!self.secondPasswordTextField.text) {
+        [self showAlertWithTitle:nil
+                         andText:@"Please confirm the password"];
+        return;
+    } else if (![self.firstPasswordTextField.text isEqual:self.secondPasswordTextField.text]) {
+        [self showAlertWithTitle:nil
+                         andText:@"Password confirmation is not correct"];
+        return;
+    } else if (!self.checkboxButton.selected) {
+        [self showAlertWithTitle:nil
+                         andText:@"You must accept the Terms and Conditions and Privacy Policy"];
+        return;
     }
-        
+    
+    if (self.needsParentConsent) {
+        if (!self.parentCheckboxButton.selected) {
+            [self showAlertWithTitle:nil
+                             andText:@"You must have parents permision to proceed"];
+            return;
+        } else if (!self.parentEmailTextField.text) {
+            [self showAlertWithTitle:nil
+                             andText:@"Please enter parent email"];
+            return;
+        } else if (![self validateEmailWithString:self.parentEmailTextField.text]) {
+            [self showAlertWithTitle:nil
+                             andText:@"Your parent email is not correct"];
+            return;
+        }
+    }
+    
+    [self beginRefreshing];
+    
     [SDLoginService registerNewUserWithType:self.userType
                                    username:self.signInNameTextField.text
                                    password:self.firstPasswordTextField.text
@@ -144,21 +195,13 @@
                              birthdayString:self.birthdayTextField.text
                               parentConsent:YES
                                successBlock:^{
-                                   //
+                                   [self endRefreshing];
                                } failureBlock:^{
-                                   //
+                                   [self endRefreshing];
+                                   
+                                   [self showAlertWithTitle:nil
+                                                    andText:@"The username you entered already exists"];
                                }];
-}
-
-- (void)showAlertAndReturnWithText:(NSString *)alertText
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:alertText
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-    [alertView show];
-    return;
 }
 
 - (void)datePicked
@@ -174,13 +217,13 @@
     int years = [components year];
     
     if (years < 13) {
-        if (!self.viewExpanded) {
+        if (!self.needsParentConsent) {
             [self expandViewWithParentsConsent];
-            self.viewExpanded = YES;
+            self.needsParentConsent = YES;
         }
     } else {
         [self removeParentsConsent];
-        self.viewExpanded = NO;
+        self.needsParentConsent = NO;
     }
 }
 
