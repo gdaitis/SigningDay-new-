@@ -191,10 +191,8 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    if ([self.searchBar isFirstResponder]) {
+    if ([self.searchBar isFirstResponder])
         [self removeKeyboard];
-//        [self loadDataWithSearchString:self.searchBar.text];
-    }
 }
 
 #pragma mark - Searchresults controller delegate

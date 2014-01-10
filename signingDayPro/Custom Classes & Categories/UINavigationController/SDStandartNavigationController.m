@@ -70,7 +70,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:20.0];
     label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.shadowOffset = CGSizeMake(0, 1);
+    label.shadowOffset = CGSizeMake(1, 1);
     label.textAlignment = NSTextAlignmentCenter;
     
     label.textColor = [UIColor whiteColor]; // change this color

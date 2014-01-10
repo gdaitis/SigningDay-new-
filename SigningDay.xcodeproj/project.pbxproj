@@ -270,6 +270,7 @@
 		80270422178FDC8000C8F872 /* submit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270420178FDC8000C8F872 /* submit_button@2x.png */; };
 		80270426178FE39B00C8F872 /* sign_out_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80270424178FE39B00C8F872 /* sign_out_button@2x.png */; };
 		8029FE24181906180066D2B3 /* SDOfferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8029FE23181906180066D2B3 /* SDOfferCell.xib */; };
+		802B0ED1188022BB00B787AC /* SDThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B0ED0188022BB00B787AC /* SDThankYouViewController.m */; };
 		802B471B184DDA3A00FC87ED /* SDCollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802B4719184DDA3A00FC87ED /* SDCollegeSearchViewController.m */; };
 		802B471C184DDA3A00FC87ED /* SDCollegeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802B471A184DDA3A00FC87ED /* SDCollegeSearchViewController.xib */; };
 		802B4720184E118200FC87ED /* SaveButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802B471F184E118200FC87ED /* SaveButton@2x.png */; };
@@ -687,6 +688,8 @@
 		8029FE20181905D80066D2B3 /* SDOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOfferCell.h; sourceTree = "<group>"; };
 		8029FE21181905D80066D2B3 /* SDOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDOfferCell.m; sourceTree = "<group>"; };
 		8029FE23181906180066D2B3 /* SDOfferCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDOfferCell.xib; sourceTree = "<group>"; };
+		802B0ECF188022BB00B787AC /* SDThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDThankYouViewController.h; sourceTree = "<group>"; };
+		802B0ED0188022BB00B787AC /* SDThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDThankYouViewController.m; sourceTree = "<group>"; };
 		802B4718184DDA3A00FC87ED /* SDCollegeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollegeSearchViewController.h; sourceTree = "<group>"; };
 		802B4719184DDA3A00FC87ED /* SDCollegeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollegeSearchViewController.m; sourceTree = "<group>"; };
 		802B471A184DDA3A00FC87ED /* SDCollegeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCollegeSearchViewController.xib; sourceTree = "<group>"; };
@@ -2489,6 +2492,8 @@
 				7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */,
 				7BB03953187BFF0E009CE1CD /* SDClaimRegistrationViewController.h */,
 				7BB03954187BFF0E009CE1CD /* SDClaimRegistrationViewController.m */,
+				802B0ECF188022BB00B787AC /* SDThankYouViewController.h */,
+				802B0ED0188022BB00B787AC /* SDThankYouViewController.m */,
 			);
 			path = LoginViewControllers;
 			sourceTree = "<group>";
@@ -2931,6 +2936,7 @@
 				80540E46184CC781009EC1B8 /* SDOfferEditCell.m in Sources */,
 				7B93CEF3182AA038007A6275 /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				7B93CEF4182AA038007A6275 /* NSManagedObjectModel+MagicalRecord.m in Sources */,
+				802B0ED1188022BB00B787AC /* SDThankYouViewController.m in Sources */,
 				7B93CEF5182AA038007A6275 /* NSPersistentStore+MagicalRecord.m in Sources */,
 				7B93CEF6182AA038007A6275 /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				7B93CEF7182AA038007A6275 /* MagicalRecord+Actions.m in Sources */,
