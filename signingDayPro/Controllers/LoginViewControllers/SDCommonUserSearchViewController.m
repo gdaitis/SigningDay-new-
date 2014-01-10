@@ -318,7 +318,9 @@
 {
     [self removeKeyboard];
     SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
-    [self.navigationController pushViewController:crvc animated:YES];
+    crvc.user = user;
+    [self.navigationController pushViewController:crvc
+                                         animated:YES];
 }
 
 @end
