@@ -11,6 +11,7 @@
 #import "SDStandartNavigationController.h"
 #import "SDLoginService.h"
 #import "User.h"
+#import "SDThankYouViewController.h"
 
 @interface SDClaimRegistrationViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -119,9 +120,13 @@
                                          phone:self.phoneTextField.text
                                          image:self.capturedImage
                                   successBlock:^{
-                                      
+                                      SDThankYouViewController *thankYouController = [[SDThankYouViewController alloc] init];
+                                      thankYouController.infoText = @"Thank you for claiming your account. SigningDay staff will contact you shortly.";
+                                      thankYouController.buttonText = @"GO TO HOMEPAGE";
+                                      [self.navigationController pushViewController:thankYouController animated:YES];
                                   } failureBlock:^{
-                                      
+                                      [self showAlertWithTitle:nil
+                                                       andText:@"Operation could not be compelted."];
                                   }];
 }
 

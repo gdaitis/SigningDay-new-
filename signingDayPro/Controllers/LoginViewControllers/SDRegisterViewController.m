@@ -11,6 +11,7 @@
 #import "SDUtils.h"
 #import "SDLoginService.h"
 #import "SDStandartNavigationController.h"
+#import "SDThankYouViewController.h"
 
 #define kSDRegisterViewControllerParentsStuffViewInsertionYCoordinate 340
 
@@ -112,11 +113,6 @@
     return contentView;
 }
 
-- (void)birthdaySelected
-{
-    
-}
-
 - (void)joinNowSelected
 {
     if (!self.signInNameTextField.text) {
@@ -196,6 +192,11 @@
                               parentConsent:YES
                                successBlock:^{
                                    [self endRefreshing];
+                                   
+                                   SDThankYouViewController *thankYouController = [[SDThankYouViewController alloc] init];
+                                   thankYouController.infoText = @"Your SigningDay account has been created.";
+                                   thankYouController.buttonText = @"RETURN TO LOGIN";
+                                   [self.navigationController pushViewController:thankYouController animated:YES];
                                } failureBlock:^{
                                    [self endRefreshing];
                                    
@@ -238,6 +239,7 @@
                                     withPlaceholderText:@"Parent Email Address"
                                                infoText:@"Your e-mail address will not be published"
                                            forTextField:&parentEmailTextField];
+    parentEmailTextField.keyboardType = UIKeyboardTypeEmailAddress;
     self.parentEmailTextField = parentEmailTextField;
     [self.parentsStuffView addSubview:parentsChecboxView];
     [self.parentsStuffView addSubview:parentsEmailView];
