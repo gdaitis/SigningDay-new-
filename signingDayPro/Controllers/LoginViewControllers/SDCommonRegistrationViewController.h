@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Seriously inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SDBaseViewController.h"
 #import "TTTAttributedLabel.h"
 
 #define kSDCommonRegistrationViewControllerTopPadding 16
@@ -23,7 +23,7 @@ extern NSString * const kSDCommonRegistrationViewControllerTermsAndConditionsLin
 extern NSString * const kSDCommonRegistrationViewControllerPrivacyPolicyLink;
 extern NSString * const kSDCommonRegistrationViewControllerTwitterLink;
 
-@interface SDCommonRegistrationViewController : UIViewController <UITextFieldDelegate, TTTAttributedLabelDelegate>
+@interface SDCommonRegistrationViewController : SDBaseViewController <UITextFieldDelegate, TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIButton *checkboxButton;
@@ -31,6 +31,8 @@ extern NSString * const kSDCommonRegistrationViewControllerTwitterLink;
 @property (nonatomic, strong) UIView *contentView;
 
 - (UIView *)createContentView;
+- (BOOL)validateEmailWithString:(NSString*)email;
+- (BOOL)validateUsernamelWithString:(NSString*)username;
 
 - (UIView *)inputFieldAtYPoint:(CGFloat)yPoint
            withPlaceholderText:(NSString *)placeholderText

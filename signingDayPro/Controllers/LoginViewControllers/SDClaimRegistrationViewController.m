@@ -8,6 +8,9 @@
 
 #import "SDClaimRegistrationViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "SDStandartNavigationController.h"
+#import "SDLoginService.h"
+#import "User.h"
 
 @interface SDClaimRegistrationViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -24,6 +27,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Claim Account"];
 }
 
 - (UIView *)createContentView

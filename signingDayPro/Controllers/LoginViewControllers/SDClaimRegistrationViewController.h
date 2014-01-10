@@ -8,6 +8,10 @@
 
 #import "SDCommonRegistrationViewController.h"
 
+@class User;
+
 @interface SDClaimRegistrationViewController : SDCommonRegistrationViewController
+
+@property (nonatomic, strong) User *user;
 
 @end
