@@ -89,6 +89,11 @@
                               successBlock:(void (^)(void))successBlock
                               failureBlock:(void (^)(void))failureBlock;
 
++ (void)searchAllHighSchoolsWithNameSubstring:(NSString *)nameSubstring
+                                 successBlock:(void (^)(void))successBlock
+                                 failureBlock:(void (^)(void))failureBlock;
+
+
 //Coaches
 + (void)searchAllCoachesWithNameSubstring:(NSString *)nameSubstring
                              successBlock:(void (^)(void))successBlock

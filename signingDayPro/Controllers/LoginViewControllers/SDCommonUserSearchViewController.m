@@ -7,15 +7,14 @@
 //
 
 #import "SDCommonUserSearchViewController.h"
-#import "SDCantFindYourselfView.h"
 #import "SDUserSearchClaimAccountCell.h"
 #import "SDSearchDisplayController.h"
 #import "UIView+NibLoading.h"
 #import "User.h"
+#import "SDClaimRegistrationViewController.h"
 
-@interface SDCommonUserSearchViewController () <SDCantFindYourselfViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface SDCommonUserSearchViewController () <UISearchBarDelegate,UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet SDCantFindYourselfView *cantFindYourselfView;
 @property (nonatomic, strong) NSArray *dataArray;
 
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
@@ -39,7 +38,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.cantFindYourselfView.delegate = self;
     [self.refreshControl removeFromSuperview];
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -60,12 +58,18 @@
     
     self.infoLabel = label;
     [self.tableView addSubview:self.infoLabel];
+    [self setupSearchBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupSearchBar];
+    
+    //this is done, because at the moment there is no way of representing static searchbar for uisearchdisplaycontroller
+    NSString *beforeHidingText = self.searchBar.text;
+    [self.customSearchDisplayController setActive:NO animated:NO];
+    if (beforeHidingText && beforeHidingText.length > 0)
+        self.searchBar.text = beforeHidingText;
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,7 +100,7 @@
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    [self loadDataWithSearchString:searchBar.text];
+//    [self loadDataWithSearchString:searchBar.text];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
@@ -162,6 +166,7 @@
     
     User *user = [self.dataArray objectAtIndex:indexPath.row];
     [cell setupCellWithUser:user];
+    cell.locationLabel.text = [self addressTitleForUser:user];
     
     return cell;
 }
@@ -175,25 +180,20 @@
         [self removeKeyboard];
     
     User *user = [self.dataArray objectAtIndex:indexPath.row];
-    
-    if ([self respondsToSelector:@selector(claimAccount:)])
-        [self claimAccount:user];
-    //show claim controller
+    [self claimAccount:user];
 }
 
 - (void)claimButtonPressed:(id)sender
 {
     User *user = [self.dataArray objectAtIndex:((UIButton *)sender).tag];
-    
-    if ([self respondsToSelector:@selector(claimAccount:)])
-        [self claimAccount:user];
+    [self claimAccount:user];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if ([self.searchBar isFirstResponder]) {
         [self removeKeyboard];
-        [self loadDataWithSearchString:self.searchBar.text];
+//        [self loadDataWithSearchString:self.searchBar.text];
     }
 }
 
@@ -314,11 +314,11 @@
 
 #pragma mark - Cant Find Yourself View Delegate
 
-- (void)registerButtonPressedInCantFindYourselfView:(SDCantFindYourselfView *)cantFindYourselfView
+- (void)claimAccount:(User *)user
 {
-    if ([self respondsToSelector:@selector(createNewAccount)]) {
-        [self createNewAccount];
-    }
+    [self removeKeyboard];
+    SDClaimRegistrationViewController *crvc = [[SDClaimRegistrationViewController alloc] init];
+    [self.navigationController pushViewController:crvc animated:YES];
 }
 
 @end

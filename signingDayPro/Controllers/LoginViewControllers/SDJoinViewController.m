@@ -16,7 +16,7 @@
 #import "SDRegisterViewController.h"
 #import "SDStandartNavigationController.h"
 #import "SDCoachSearchViewController.h"
-#import "SDTeamSearchViewController.h"
+#import "SDHighSchoolSearchViewController.h"
 
 #define kContractedHeight 165.0
 
@@ -191,9 +191,9 @@
             break;
         }
         case SDJoinControllerCellUserType_HIGHSCHOOL: {
-            SDTeamSearchViewController *teamSearchViewController = [[SDTeamSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
-            teamSearchViewController.userType = SDUserTypeHighSchool;
-            viewController = teamSearchViewController;
+            SDHighSchoolSearchViewController *highSchoolSearchViewController = [[SDHighSchoolSearchViewController alloc] initWithNibName:@"SDCommonUserSearchViewController" bundle:nil];
+            highSchoolSearchViewController.userType = SDUserTypeHighSchool;
+            viewController = highSchoolSearchViewController;
             break;
         }
         default:

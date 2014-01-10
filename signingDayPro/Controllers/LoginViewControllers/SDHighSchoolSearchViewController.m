@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 Seriously inc. All rights reserved.
 //
 
-#import "SDTeamSearchViewController.h"
+#import "SDHighSchoolSearchViewController.h"
 #import "SDNavigationController.h"
 #import "SDCustomNavigationToolbarView.h"
 #import "SDStandartNavigationController.h"
 #import "SDLandingPagesService.h"
-#import "SDRegisterViewController.h"
-#import "SDClaimRegistrationViewController.h"
+#import "HighSchool.h"
+#import "User.h"
 
-@interface SDTeamSearchViewController ()
+@interface SDHighSchoolSearchViewController ()
 
 @end
 
-@implementation SDTeamSearchViewController
+@implementation SDHighSchoolSearchViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,7 +40,7 @@
     [super viewWillAppear:animated];
     
     [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Claim Account"];
-    self.screenName = @"ClaimAccount_TeamSearchScreen";
+    self.screenName = @"ClaimAccount_HighSchoolSearchScreen";
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,24 +54,19 @@
 {
     [self showProgressHudInView:self.view withText:@"Loading"];
     
-    [SDLandingPagesService searchForTeamsWithNameString:nameSubstring successBlock:^{
+    [SDLandingPagesService searchAllHighSchoolsWithNameSubstring:nameSubstring successBlock:^{
         [self dataLoadedForSearchString:nameSubstring];
         [self hideProgressHudInView:self.view];
+        
     } failureBlock:^{
         [self hideProgressHudInView:self.view];
     }];
 }
 
-- (void)createNewAccount
+- (NSString *)addressTitleForUser:(User *)user
 {
-    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
-    [self.navigationController pushViewController:rvc animated:YES];
-}
-
-- (void)claimAccount:(User *)user
-{
-    SDClaimRegistrationViewController *claimAccountViewController = [[SDClaimRegistrationViewController alloc] initWithNibName:@"SDClaimRegistrationViewController" bundle:nil];
-    [self.navigationController pushViewController:claimAccountViewController animated:YES];
+    NSString *result = user.theHighSchool.address;
+    return result;
 }
 
 @end

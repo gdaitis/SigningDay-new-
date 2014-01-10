@@ -480,6 +480,55 @@
                            }];
 }
 
++ (void)searchAllHighSchoolsWithNameSubstring:(NSString *)nameSubstring
+                                 successBlock:(void (^)(void))successBlock
+                                 failureBlock:(void (^)(void))failureBlock
+{
+    NSString *path = [NSString stringWithFormat:@"Services/HighSchoolService.asmx/SearchHighSchoolsByName"];
+    
+    [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"POST" path:path];
+    NSMutableURLRequest *request = [[SDHTTPClient sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
+    
+    [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    NSString *body = [NSString stringWithFormat:@"{searchStr:\"%@\", maxRows:\"10\"}",nameSubstring];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [[[SDHTTPClient sharedClient] operationQueue] addOperation:operation];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id data) {
+        
+        [self createHighSchoolsFromResponse:data];
+        successBlock();
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock();
+    }];
+    [operation start];
+}
+
++ (void)createHighSchoolsFromResponse:(id)responseObject
+{
+    NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    [self createUsersFromResponseObject:responseObject
+                            withContext:context
+              withBlockForSpecificTypes:^(NSDictionary *userDictionary, NSManagedObjectContext *context, User *user) {
+                  
+                  userDictionary = [userDictionary dictionaryByReplacingNullsWithStrings];
+                  user.userTypeId = [NSNumber numberWithInt:SDUserTypeHighSchool];
+                  user.name = [userDictionary valueForKey:@"Name"];
+                  user.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
+                  user.avatarUrl = [userDictionary valueForKey:@"LogoURL"];
+                  
+                  if (!user.theHighSchool)
+                      user.theHighSchool = [HighSchool MR_createInContext:context];
+                  user.theHighSchool.address = [userDictionary valueForKey:@"Address"];
+                  
+              }];
+    [context MR_saveOnlySelfAndWait];
+}
+
 #pragma mark - Conferences
 
 + (void)getAllConferencesOFullNameWithSuccessBlock:(void (^)(void))successBlock
@@ -559,7 +608,7 @@
                              failureBlock:(void (^)(void))failureBlock
 {
     NSString *path = [NSString stringWithFormat:@"Services/CoachService.asmx/SearchCoachesByName"];
-
+    
     [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"POST" path:path];
     NSMutableURLRequest *request = [[SDHTTPClient sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
     
@@ -593,12 +642,11 @@
                   user.userTypeId = [NSNumber numberWithInt:SDUserTypeCoach];
                   user.name = [userDictionary valueForKey:@"CoachName"];
                   user.accountVerified = [NSNumber numberWithBool:[[userDictionary valueForKey:@"IsVerified"] boolValue]];
-                  
+                  user.avatarUrl = [userDictionary valueForKey:@"CoachLogoURL"];
                   
                   if (!user.theCoach)
                       user.theCoach = [Coach MR_createInContext:context];
-
-
+                  user.theCoach.institution = [userDictionary valueForKey:@"Team"];
               }];
     [context MR_saveOnlySelfAndWait];
 }
@@ -631,8 +679,8 @@
         results = [responseObject valueForKey:@"d"];
     else {
         id JSON = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                             options:kNilOptions
-                                                               error:nil];
+                                                  options:kNilOptions
+                                                    error:nil];
         
         results = [JSON valueForKey:@"d"];
     }

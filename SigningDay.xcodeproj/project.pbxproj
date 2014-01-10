@@ -394,7 +394,7 @@
 		8083892317D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892017D4D7AB006E4FE9 /* LandingPageSearchBarMagnifyIcon@2x.png */; };
 		8083892417D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8083892117D4D7AB006E4FE9 /* PlayerCellStrechableNumberImage@2x.png */; };
 		80920200187ED24C00198605 /* SDCoachSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809201FF187ED24C00198605 /* SDCoachSearchViewController.m */; };
-		80920203187EF03600198605 /* SDTeamSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80920202187EF03600198605 /* SDTeamSearchViewController.m */; };
+		80920203187EF03600198605 /* SDHighSchoolSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80920202187EF03600198605 /* SDHighSchoolSearchViewController.m */; };
 		8094EFB01817E54200A163FD /* SDBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFAF1817E54200A163FD /* SDBaseViewController.xib */; };
 		8094EFBB1817E55B00A163FD /* SDThreadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFB31817E55B00A163FD /* SDThreadCell.xib */; };
 		8094EFBD1817E55B00A163FD /* SDForumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8094EFB61817E55B00A163FD /* SDForumCell.xib */; };
@@ -1006,8 +1006,8 @@
 		8083892817D4D80B006E4FE9 /* SDLandingPageSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageSearchBar.m; sourceTree = "<group>"; };
 		809201FE187ED24C00198605 /* SDCoachSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCoachSearchViewController.h; sourceTree = "<group>"; };
 		809201FF187ED24C00198605 /* SDCoachSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCoachSearchViewController.m; sourceTree = "<group>"; };
-		80920201187EF03600198605 /* SDTeamSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTeamSearchViewController.h; sourceTree = "<group>"; };
-		80920202187EF03600198605 /* SDTeamSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTeamSearchViewController.m; sourceTree = "<group>"; };
+		80920201187EF03600198605 /* SDHighSchoolSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolSearchViewController.h; sourceTree = "<group>"; };
+		80920202187EF03600198605 /* SDHighSchoolSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolSearchViewController.m; sourceTree = "<group>"; };
 		8094EFA81817E51500A163FD /* SDDiscussionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscussionViewController.h; sourceTree = "<group>"; };
 		8094EFA91817E51500A163FD /* SDDiscussionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscussionViewController.m; sourceTree = "<group>"; };
 		8094EFAA1817E51500A163FD /* SDForumListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDForumListController.h; sourceTree = "<group>"; };
@@ -2483,8 +2483,8 @@
 				80459262187AE73700F51D43 /* SDPlayerSearchViewController.m */,
 				809201FE187ED24C00198605 /* SDCoachSearchViewController.h */,
 				809201FF187ED24C00198605 /* SDCoachSearchViewController.m */,
-				80920201187EF03600198605 /* SDTeamSearchViewController.h */,
-				80920202187EF03600198605 /* SDTeamSearchViewController.m */,
+				80920201187EF03600198605 /* SDHighSchoolSearchViewController.h */,
+				80920202187EF03600198605 /* SDHighSchoolSearchViewController.m */,
 				7BBDFA861875AD370070F9F0 /* SDRegisterViewController.h */,
 				7BBDFA871875AD370070F9F0 /* SDRegisterViewController.m */,
 				7BB03953187BFF0E009CE1CD /* SDClaimRegistrationViewController.h */,
@@ -3058,7 +3058,7 @@
 				80362A9C186321EB0017945E /* Notification.m in Sources */,
 				7B93CE71182A9FAE007A6275 /* SDActivityFeedService.m in Sources */,
 				80A6F8E9184367EA008A07D1 /* SDGoogleAnalyticsService.m in Sources */,
-				80920203187EF03600198605 /* SDTeamSearchViewController.m in Sources */,
+				80920203187EF03600198605 /* SDHighSchoolSearchViewController.m in Sources */,
 				7B93CE72182A9FAE007A6275 /* SDChatService.m in Sources */,
 				7B93CE73182A9FAE007A6275 /* SDErrorService.m in Sources */,
 				7B93CE74182A9FAE007A6275 /* SDFollowingService.m in Sources */,

@@ -12,10 +12,12 @@
 #import "SDCantFindYourselfView.h"
 #import "SDStandartNavigationController.h"
 #import "SDLandingPagesService.h"
+#import "HighSchool.h"
 #import "SDRegisterViewController.h"
-#import "SDClaimRegistrationViewController.h"
+#import "Player.h"
+#import "UIView+NibLoading.h"
 
-@interface SDPlayerSearchViewController ()
+@interface SDPlayerSearchViewController () <SDCantFindYourselfViewDelegate>
 
 @end
 
@@ -44,12 +46,29 @@
     [(SDStandartNavigationController *)self.navigationController setNavigationTitle:@"Claim Account"];
     
     self.screenName = @"ClaimAccount_PlayerSearchScreen";
+    [self addCantFindYourselfView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)addCantFindYourselfView
+{
+    SDCantFindYourselfView *cantFindYourselfView = (id)[SDCantFindYourselfView loadInstanceFromNib];
+    cantFindYourselfView.delegate = self;
+    
+    CGRect frame = cantFindYourselfView.frame;
+    frame.origin.y = self.view.bounds.size.height - frame.size.height;
+    cantFindYourselfView.frame = frame;
+    
+    frame = self.tableView.frame;
+    frame.size.height = self.view.bounds.size.height - cantFindYourselfView.frame.size.height;
+    self.tableView.frame = frame;
+    
+    [self.view addSubview:cantFindYourselfView];
 }
 
 
@@ -66,16 +85,17 @@
     }];
 }
 
-- (void)createNewAccount
+- (NSString *)addressTitleForUser:(User *)user
 {
-    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
-    [self.navigationController pushViewController:rvc animated:YES];
+    NSString *result = user.thePlayer.highSchool.theUser.name;
+    return result;
 }
 
-- (void)claimAccount:(User *)user
+- (void)registerButtonPressedInCantFindYourselfView:(SDCantFindYourselfView *)cantFindYourselfView
 {
-    SDClaimRegistrationViewController *claimAccountViewController = [[SDClaimRegistrationViewController alloc] initWithNibName:@"SDClaimRegistrationViewController" bundle:nil];
-    [self.navigationController pushViewController:claimAccountViewController animated:YES];
+    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
+    rvc.userType = self.userType;
+    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 @end
