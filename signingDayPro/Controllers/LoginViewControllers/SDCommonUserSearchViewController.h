@@ -9,7 +9,7 @@
 #import "SDBaseViewController.h"
 #import "SDProfileService.h"
 
-@class SDCantFindYourselfView,User;
+@class User;
 
 @interface SDCommonUserSearchViewController : SDBaseViewController
 
@@ -20,5 +20,6 @@
 
 - (void)claimAccount:(User *)user;
 - (void)createNewAccount;
+- (NSString *)addressTitleForUser:(User *)user;
 
 @end

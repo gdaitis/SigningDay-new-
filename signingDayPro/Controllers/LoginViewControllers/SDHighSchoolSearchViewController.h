@@ -8,6 +8,6 @@
 
 #import "SDCommonUserSearchViewController.h"
 
-@interface SDTeamSearchViewController : SDCommonUserSearchViewController
+@interface SDHighSchoolSearchViewController : SDCommonUserSearchViewController
 
 @end

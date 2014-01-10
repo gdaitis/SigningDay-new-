@@ -8,9 +8,10 @@
 
 #import "SDCoachSearchViewController.h"
 #import "SDStandartNavigationController.h"
-#import "SDRegisterViewController.h"
-#import "SDClaimRegistrationViewController.h"
 #import "SDLandingPagesService.h"
+#import "User.h"
+#import "Team.h"
+#import "Coach.h"
 
 @interface SDCoachSearchViewController ()
 
@@ -63,17 +64,10 @@
     }];
 }
 
-- (void)createNewAccount
+- (NSString *)addressTitleForUser:(User *)user
 {
-    SDRegisterViewController *rvc = [[SDRegisterViewController alloc] init];
-    [self.navigationController pushViewController:rvc animated:YES];
+    NSString *result = user.theCoach.institution;
+    return result;
 }
-
-- (void)claimAccount:(User *)user
-{
-    SDClaimRegistrationViewController *claimAccountViewController = [[SDClaimRegistrationViewController alloc] initWithNibName:@"SDClaimRegistrationViewController" bundle:nil];
-    [self.navigationController pushViewController:claimAccountViewController animated:YES];
-}
-
 
 @end

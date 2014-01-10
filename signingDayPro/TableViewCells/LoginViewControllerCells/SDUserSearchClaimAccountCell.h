@@ -13,6 +13,7 @@
 @interface SDUserSearchClaimAccountCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *claimButton;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 - (void)setupCellWithUser:(User *)user;
 

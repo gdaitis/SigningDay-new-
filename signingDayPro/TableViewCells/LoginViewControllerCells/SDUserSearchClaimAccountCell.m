@@ -8,15 +8,12 @@
 
 #import "SDUserSearchClaimAccountCell.h"
 #import "User.h"
-#import "HighSchool.h"
-#import "Player.h"
 #import <AFNetworking.h>
 
 @interface SDUserSearchClaimAccountCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @end
 
@@ -56,7 +53,6 @@
     [self.userImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     
     self.nameLabel.text = user.name;
-    self.locationLabel.text = user.thePlayer.highSchool.theUser.name;
 }
 
 @end
