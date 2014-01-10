@@ -124,7 +124,7 @@
                              successBlock:(void (^)(void))successBlock
                              failureBlock:(void (^)(void))failureBlock
 {
-    NSString *path = [NSString stringWithFormat:@"services/signingday.svc/PlayersDto?$top=10&&$format=json&$filter=substringof('%@',DisplayName)",[nameSubstring lowercaseString]];
+    NSString *path = [NSString stringWithFormat:@"services/signingday.svc/PlayersDto?$top=10&$format=json&$filter=substringof('%@',DisplayName)",[nameSubstring lowercaseString]];
     
     NSString *formatedUrl = [[[path stringByReplacingOccurrencesOfString:@" " withString:@"%20"] stringByReplacingOccurrencesOfString:@"$" withString:@"%24"] stringByReplacingOccurrencesOfString:@"'" withString:@"%27"];
     
@@ -337,7 +337,7 @@
     //    NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?year=%@", kSDBaseSigningDayURLString, classString];
     
     if (searchString.length > 2) {
-        NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams$filter=(substringof(tolower('%@'),tolower(DisplayName)))&$format=json", kSDBaseSigningDayURLString,searchString];
+        NSString *urlString = [NSString stringWithFormat:@"%@services/signingday.svc/Teams?$filter=(substringof(tolower('%@'),tolower(DisplayName)))&$format=json", kSDBaseSigningDayURLString,searchString];
         [self startTeamsHTTPRequestOperationWithURLString:urlString
                                               classString:nil
                                              successBlock:successBlock
