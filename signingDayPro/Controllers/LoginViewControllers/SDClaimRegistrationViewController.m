@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UITextField *phoneTextField;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) UIImage *capturedImage;
+@property (nonatomic, strong) UILabel *photoLabel;
 
 @end
 
@@ -62,9 +63,11 @@
     self.phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
     
     currentY += phoneFieldView.frame.size.height + 22;
+    UILabel *photoLabel;
     UIView *photoButtonView = [self uploadButtonViewAtYPoint:currentY
                                                 withSelector:@selector(uploadPhotoSelected)
-                                                      target:self];
+                                                 targetLabel:&photoLabel];
+    self.photoLabel = photoLabel;
     [contentView addSubview:photoButtonView];
     
     currentY += photoButtonView.frame.size.height + 5;
@@ -167,8 +170,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         snapshot.transform = picker.cameraViewTransform;
         picker.cameraOverlayView = snapshot;
     }
+    self.photoLabel.text = @"Photo selected";
+    self.photoLabel.font = [UIFont boldSystemFontOfSize:17];
     [self.navigationController dismissViewControllerAnimated:YES
                                                   completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    if (!self.capturedImage) {
+        self.photoLabel.text = @"Upload Your Photo ID";
+        self.photoLabel.font = [UIFont systemFontOfSize:17];
+    }
 }
 
 #pragma mark - TTTAttributedLabelDelegate methods

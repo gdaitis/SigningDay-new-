@@ -410,31 +410,16 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
     return view;
 }
 
-- (UIView *)birthdaySelectButtonViewAtYPoint:(CGFloat)yPoint
-                                withSelector:(SEL)selector
-                                      target:(id)target
-                         targetBirthdayLabel:(UILabel **)targetBirthdayLabel
-{
-    UIView *view = [self buttonViewAtYPoint:yPoint
-                               withSelector:selector
-                                     target:target
-                                       icon:[UIImage imageNamed:@"RegistrationCalendarIcon"]
-                                  labelText:@"Birthday"
-                                targetLabel:targetBirthdayLabel];
-    
-    return view;
-}
-
 - (UIView *)uploadButtonViewAtYPoint:(CGFloat)yPoint
                         withSelector:(SEL)selector
-                              target:(id)target
+                         targetLabel:(UILabel **)targetLabel
 {
     UIView *view = [self buttonViewAtYPoint:yPoint
                                withSelector:selector
-                                     target:target
+                                     target:self
                                        icon:[UIImage imageNamed:@"RegistrationPhotoIcon"]
                                   labelText:@"Upload Your Photo ID"
-                                targetLabel:nil];
+                                targetLabel:targetLabel];
     return view;
 }
 

@@ -170,26 +170,20 @@ NSString * const kSDLoginServiceUserDidLogoutNotification = @"SDLoginServiceUser
                    successBlock:(void (^)(void))successBlock
                    failureBlock:(void (^)(void))failureBlock
 {
-    /*
-     REST service method: ~/api.ashx/v2/sd/registration.json
-     HTTP method: POST
-     Requires Rest-User-Token from user with admin role
-     Allows registration of players and members only
-     Request example:
-     { UserType: 1, Username: "registeredplayer", Password: "123456", Email: "registeredplayer@gmail.com", ParentEmail: "parent159@gmail.com", Birthday: "12/18/2000", ParentConsent: true }
-    */
-    
     NSString *key = [STKeychain getPasswordForUsername:@"initialApiKey"
                                         andServiceName:@"SigningDayPro"
                                                  error:nil];
     [[SDAPIClient sharedClient] setRestTokenHeaderWithToken:key];
-    NSDictionary *params = @{@"UserType": [NSNumber numberWithInt:userType],
-                             @"Username": username,
-                             @"Password": password,
-                             @"Email": email,
-                             @"ParentEmail": parentEmail,
-                             @"Birthday": birthdayString,
-                             @"ParentConsent": @"true"};
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"UserType": [NSNumber numberWithInt:userType],
+                                                                                  @"Username": username,
+                                                                                  @"Password": password,
+                                                                                  @"Email": email,
+                                                                                  @"Birthday": birthdayString,
+                                                                                  @"ParentConsent": @"true"}];
+    if (parentEmail)
+        [params setObject:parentEmail
+                   forKey:@"ParentEmail"];
+    
     [[SDAPIClient sharedClient] postPath:@"sd/registration.json"
                               parameters:params
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
