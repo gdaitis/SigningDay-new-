@@ -34,6 +34,7 @@ NSString * const kSDCommonRegistrationViewControllerTwitterLink = @"kSDCommonReg
                                                 alpha:1.0f];
     
     self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView.delaysContentTouches = NO;
     self.scrollView.frame = CGRectMake(0,
                                        0,
                                        self.view.frame.size.width,

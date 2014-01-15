@@ -198,6 +198,8 @@
 		7B93CF0C182AA0FD007A6275 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B93CF0B182AA0FD007A6275 /* UIPlaceHolderTextView.m */; };
 		7B94021C17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B94021B17C7588000F33FCB /* CommentsHeaderRightArrow@2x.png */; };
 		7B9D057618224CD6007F75DC /* NavigationBarBgIOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9D057518224CD6007F75DC /* NavigationBarBgIOS7@2x.png */; };
+		7B9ECBCD1886C39500741A27 /* LoginButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9ECBCB1886C39500741A27 /* LoginButton@2x.png */; };
+		7B9ECBCE1886C39500741A27 /* LoginRegisterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9ECBCC1886C39500741A27 /* LoginRegisterButton@2x.png */; };
 		7BA0F53017E9AB0500C6DE89 /* LandingPageFilterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */; };
 		7BA0F54B17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F54A17E9D96F00C6DE89 /* UserProfileFullButtonBackground@2x.png */; };
 		7BA0F55717E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA0F55517E9EA4000C6DE89 /* UserProfilePostButtonSmall@2x.png */; };
@@ -543,6 +545,8 @@
 		7B99556D17DA0344009B8D01 /* SDHighSchoolsSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHighSchoolsSearchHeader.h; sourceTree = "<group>"; };
 		7B99556E17DA0344009B8D01 /* SDHighSchoolsSearchHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHighSchoolsSearchHeader.m; sourceTree = "<group>"; };
 		7B9D057518224CD6007F75DC /* NavigationBarBgIOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavigationBarBgIOS7@2x.png"; sourceTree = "<group>"; };
+		7B9ECBCB1886C39500741A27 /* LoginButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginButton@2x.png"; sourceTree = "<group>"; };
+		7B9ECBCC1886C39500741A27 /* LoginRegisterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginRegisterButton@2x.png"; sourceTree = "<group>"; };
 		7BA0F52F17E9AB0500C6DE89 /* LandingPageFilterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LandingPageFilterButton@2x.png"; sourceTree = "<group>"; };
 		7BA0F53917E9B1ED00C6DE89 /* NSObject+MasterUserMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+MasterUserMethods.h"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.h"; sourceTree = "<group>"; };
 		7BA0F53A17E9B1ED00C6DE89 /* NSObject+MasterUserMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MasterUserMethods.m"; path = "Custom Classes & Categories/NSObject+MasterUserMethods.m"; sourceTree = "<group>"; };
@@ -1276,6 +1280,8 @@
 				80EEF5EC1756231E00A7C803 /* login_bg.png */,
 				80EEF5ED1756231E00A7C803 /* login_bg@2x.png */,
 				7B6B1EB91760A8C900BC878A /* login_bg-568h@2x.png */,
+				7B9ECBCB1886C39500741A27 /* LoginButton@2x.png */,
+				7B9ECBCC1886C39500741A27 /* LoginRegisterButton@2x.png */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2727,6 +2733,7 @@
 				80F2590E1773411900D3B85E /* LikeImage@2x.png in Resources */,
 				80362AEA186322C50017945E /* SDTopSchoolEditCell.xib in Resources */,
 				80FA04EB177C461000CE1ED5 /* strechableBorderedImage@2x.png in Resources */,
+				7B9ECBCD1886C39500741A27 /* LoginButton@2x.png in Resources */,
 				80459273187AE8CA00F51D43 /* SDCantFindYourselfView.xib in Resources */,
 				805D64DB18719BBB003211F0 /* SDJoinViewController.xib in Resources */,
 				7B9D057618224CD6007F75DC /* NavigationBarBgIOS7@2x.png in Resources */,
@@ -2805,6 +2812,7 @@
 				7BDDAB8F179FC457003F6AD7 /* ActivityFeedIcon@2x.png in Resources */,
 				8012100F18153DAC00F65B0B /* OffersButtonImage@2x.png in Resources */,
 				7BDDAB90179FC457003F6AD7 /* CoachesIcon@2x.png in Resources */,
+				7B9ECBCE1886C39500741A27 /* LoginRegisterButton@2x.png in Resources */,
 				7B93CE55182A9F40007A6275 /* WarRoomNewPostButton@2x.png in Resources */,
 				7BDDAB91179FC457003F6AD7 /* HighSchoolsIcon@2x.png in Resources */,
 				80250246185F1B4200FBA43B /* SDShareView.xib in Resources */,
