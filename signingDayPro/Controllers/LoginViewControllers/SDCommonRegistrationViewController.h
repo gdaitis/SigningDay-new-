@@ -46,13 +46,9 @@ extern NSString * const kSDCommonRegistrationViewControllerTwitterLink;
                             secondTextField:(UITextField **)secondTargetTextField;
 - (UIView *)inputFieldForBirthdayAtYPoint:(CGFloat)yPoint
                              forTextField:(UITextField **)targetTextField;
-- (UIView *)birthdaySelectButtonViewAtYPoint:(CGFloat)yPoint
-                                withSelector:(SEL)selector
-                                      target:(id)target
-                         targetBirthdayLabel:(UILabel **)targetBirthdayLabel;
 - (UIView *)uploadButtonViewAtYPoint:(CGFloat)yPoint
                         withSelector:(SEL)selector
-                              target:(id)target;
+                         targetLabel:(UILabel **)targetLabel;
 - (UIView *)checkboxViewAtYPoint:(CGFloat)yPoint;
 - (UIView *)parentCheckboxViewAtYPoint:(CGFloat)yPoint;
 - (UIView *)greenButtonViewAtYPoint:(CGFloat)yPoint
