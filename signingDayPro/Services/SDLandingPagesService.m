@@ -484,7 +484,8 @@
                                  successBlock:(void (^)(void))successBlock
                                  failureBlock:(void (^)(void))failureBlock
 {
-    NSString *path = [NSString stringWithFormat:@"Services/HighSchoolService.asmx/SearchHighSchoolsByName"];
+//    NSString *path = [NSString stringWithFormat:@"Services/HighSchoolService.asmx/SearchHighSchoolsByName"];
+    NSString *path = [NSString stringWithFormat:@"Services/HighSchoolService.asmx/SearchHighSchoolByNameForMobile"];
     
     [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"POST" path:path];
     NSMutableURLRequest *request = [[SDHTTPClient sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
@@ -607,7 +608,8 @@
                              successBlock:(void (^)(void))successBlock
                              failureBlock:(void (^)(void))failureBlock
 {
-    NSString *path = [NSString stringWithFormat:@"Services/CoachService.asmx/SearchCoachesByName"];
+//    NSString *path = [NSString stringWithFormat:@"Services/CoachService.asmx/SearchCoachesByName"];
+    NSString *path = [NSString stringWithFormat:@"Services/CoachService.asmx/SearchCoachesByNameForMobile"];
     
     [[SDHTTPClient sharedClient] cancelAllHTTPOperationsWithMethod:@"POST" path:path];
     NSMutableURLRequest *request = [[SDHTTPClient sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
