@@ -468,7 +468,7 @@
                                                         user.theCoach = [Coach MR_createInContext:userContext];
                                                     user.theCoach.location = [derivedUserDictionary valueForKey:@"Location"];
                                                     user.theCoach.position = [derivedUserDictionary valueForKey:@"Position"];
-#warning set "team" only for head coach
+                                                    
                                                     NSDictionary *teamDictionary = [derivedUserDictionary valueForKey:@"Team"];
                                                     NSNumber *teamIdentifier = [NSNumber numberWithInt:[[teamDictionary valueForKey:@"TeamId"] intValue]];
                                                     User *teamUser = [User MR_findFirstByAttribute:@"identifier"

@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "SDTableView.h"
 
+typedef enum {
+    ACTIVITY_FEED_MAINFEED    = 0,
+    ACTIVITY_FEED_USERPROFILE = 1
+} ActivityFeedTableType;
+
 @class SDActivityFeedTableView;
 @class ActivityStory;
 
@@ -28,6 +33,7 @@
 
 @interface SDActivityFeedTableView : SDTableView <UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic, assign) ActivityFeedTableType activityFeedTableType;
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSDate *lastActivityStoryDate;
 @property (nonatomic, assign) BOOL endReached;

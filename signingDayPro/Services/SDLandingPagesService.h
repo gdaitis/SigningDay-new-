@@ -43,13 +43,6 @@
                                                successBlock:(void (^)(void))successBlock
                                                failureBlock:(void (^)(void))failureBlock;
 
-+ (void)getTeamsOrderedByNameWithPageNumber:(NSInteger)pageNumber
-                                   pageSize:(NSInteger)pageSize
-                                classString:(NSString *)classString
-                         conferenceIdString:(NSString *)conferenceIdString
-                               successBlock:(void (^)(void))successBlock
-                               failureBlock:(void (^)(void))failureBlock;
-
 + (void)searchForTeamsWithNameString:(NSString *)searchString
                   conferenceIDString:(NSString *)conferenceString
                          classString:(NSString *)classString

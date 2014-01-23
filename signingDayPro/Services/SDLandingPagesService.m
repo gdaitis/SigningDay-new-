@@ -159,7 +159,6 @@
 
 + (void)createPlayerFromResponse:(id)responseObject
 {
-#warning check for bugs!!
     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
     
     [self createUsersFromResponseObject:responseObject
@@ -697,7 +696,6 @@
         }
     }
     else {
-#warning wtf is this? Check with Vytas (after using NSJSONSerialization we get nsstring)
         if ([[results class] isSubclassOfClass:[NSString class]]) {
             NSData *data = [results dataUsingEncoding:NSUTF8StringEncoding];
             id dataArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];

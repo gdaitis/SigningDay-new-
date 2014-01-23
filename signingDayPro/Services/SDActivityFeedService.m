@@ -115,6 +115,8 @@
 + (BOOL)validateActivityStory:(NSDictionary *)activityStoryDictionary fromContext:(NSManagedObjectContext *)context
 {
     BOOL valid = YES;
+#warning left for later validation
+    
     if ([[activityStoryDictionary valueForKey:@"MediaType"] length] == 0 && [[activityStoryDictionary valueForKey:@"MediaUrl"] length] == 0 ) {
         if ([[activityStoryDictionary valueForKey:@"MessageText"] length] == 0  && [[activityStoryDictionary valueForKey:@"DescriptionText"] length] == 0 ) {
             valid = NO;

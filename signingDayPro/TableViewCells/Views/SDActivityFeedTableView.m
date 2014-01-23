@@ -18,6 +18,12 @@
 #import "SDCommentsViewController.h"
 #import "SDGoogleAnalyticsService.h"
 #import "SDUserProfileViewController.h"
+#import "UIView+NibLoading.h"
+#import "SDActivityFeedForumCell.h"
+#import "NSAttributedString+DTCoreText.h"
+
+#define kOffsetHeaderViewSize 6
+#define kMinimalCustomTableHeaderSize 369
 
 @interface SDActivityFeedTableView ()
 
@@ -101,6 +107,16 @@
         int result = 119/*buttons images etc..*/ + contentHeight;
         
         return result;
+        
+        //    NSString *postText = @"<p>reply</p>";
+//        NSString *postText = @"<p><div class=\"quote-header\"></div><div class=\"quote-mycustom\"><blockquote class=\"quote\"><div class=\"quote-user\">Lukas</div><div class=\"quote-content\"><p>reply</p><p></p></div></blockquote></div><div class=\"quote-footer\"></div></p><p>Quote test</p>";
+//        
+//        NSAttributedString *attributedString = [SDUtils buildDTCoreTextStringForSigningdayWithHTMLText:postText];
+//        CGSize attributedTextSize = [attributedString attributedStringSizeForWidth:kSDActivityFeedForumCellPostLabelWidth];
+//        int result = 110/*buttons images etc..*/ + attributedTextSize.height;
+//        
+//        return result;
+
     }
     else {
         return 60;
@@ -123,21 +139,12 @@
 {
     if (indexPath.row != [self.dataArray count] && [self.dataArray count] > 0) {
         
-        SDActivityFeedCell *cell = nil;
+        ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
         NSString *cellIdentifier = @"ActivityFeedCellId";
-        cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            // Load cell
-            NSArray *topLevelObjects = nil;
+        SDActivityFeedCell *cell = (SDActivityFeedCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
             
-            topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SDActivityFeedCell" owner:nil options:nil];
-            // Grab cell reference which was set during nib load:
-            for(id currentObject in topLevelObjects){
-                if([currentObject isKindOfClass:[SDActivityFeedCell class]]) {
-                    cell = currentObject;
-                    break;
-                }
-            }
+            cell = (id)[SDActivityFeedCell loadInstanceFromNib];
             [cell.playerNameButton addTarget:self action:@selector(firstUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [cell.secondPlayerNameButton addTarget:self action:@selector(secondUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -145,47 +152,24 @@
             cell.backgroundColor = [UIColor clearColor];
         }
         
-        cell.playerNameButton.tag = cell.secondPlayerNameButton.tag = indexPath.row;
-        ActivityStory *activityStory = [self.dataArray objectAtIndex:indexPath.row];
-        
-        [cell.thumbnailImageView cancelImageRequestOperation];
-        cell.likeButton.tag = indexPath.row;
-        cell.commentButton.tag = indexPath.row;
-        
-        cell.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likesCount intValue]];
-        
-        UIImage *buttonBackgroundImage;
-        UIImage *likeImage;
-        
-        if ([activityStory.likedByMaster boolValue]) {
-            cell.likeCountLabel.textColor = [UIColor colorWithRed:183.0f/255.0f green:158.0f/255.0f blue:15.0f/255.0f alpha:1.0f];
-            cell.likeTextLabel.text = @"Unlike";
-            cell.likeTextLabel.textColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
-            likeImage = [UIImage imageNamed:@"LikeImageOrange"];
-            buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImageOrange"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-        } else {
-            cell.likeCountLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-            cell.likeTextLabel.text = @"Like";
-            cell.likeTextLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            likeImage = [UIImage imageNamed:@"LikeImage"];
-            buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImage"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-        }
-        cell.likeButtonView.image = buttonBackgroundImage;
-        cell.likeImageView.image = likeImage;
-        
-        cell.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.commentCount intValue]];
-        [cell.resizableActivityFeedView setActivityStory:activityStory];
-        
-        [cell.thumbnailImageView cancelImageRequestOperation];
-        cell.thumbnailImageView.image = nil;
-        if ([activityStory.author.avatarUrl length] > 0) {
-            [cell.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
-        }
-        
-        cell.postDateLabel.text = [SDUtils formatedTimeForDate:activityStory.createdDate];
-        [cell setupNameLabelForActivityStory:activityStory];
+        [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
         
         return cell;
+        
+//        NSString *cellIdentifier = @"ActivityFeedForumCellId";
+//        SDActivityFeedForumCell *cell = (SDActivityFeedForumCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//        if (!cell) {
+//            
+//            cell = (id)[SDActivityFeedForumCell loadInstanceFromNib];
+//            [cell.userNameButton addTarget:self action:@selector(firstUserNameButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//            [cell.likeButton addTarget:self action:@selector(likeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//            [cell.replyButton addTarget:self action:@selector(commentButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//            cell.backgroundColor = [UIColor clearColor];
+//        }
+//
+//        [cell setupCellWithActivityStory:activityStory atIndexPath:indexPath];
+//        
+//        return cell;
     }
     else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -198,9 +182,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         
-        if (!self.headerInfoDownloading && self.dataDownloadInProgress == NO) {
+        if (!self.headerInfoDownloading && self.dataDownloadInProgress == NO)
             [self checkServerAndDeleteOld:NO];
-        }
         
         return cell;
     }
@@ -208,24 +191,25 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (self.customHeaderView)
+    if (self.activityFeedTableType == ACTIVITY_FEED_USERPROFILE)
     {
         return self.customHeaderView;
     }
     else {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 6)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, kOffsetHeaderViewSize)];
         return headerView;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (self.customHeaderView)
+    if (self.activityFeedTableType == ACTIVITY_FEED_USERPROFILE)
     {
-        return self.customHeaderView.frame.size.height;
+        int result = (self.customHeaderView.frame.size.height < kMinimalCustomTableHeaderSize) ? kMinimalCustomTableHeaderSize : self.customHeaderView.frame.size.height;
+        return result;
     }
     else {
-        return 6;
+        return kOffsetHeaderViewSize;
     }
 }
 
@@ -245,22 +229,21 @@
     
     if (self.user) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author == %@ OR postedToUser == %@", self.user,self.user];
-        //        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO withPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
         
         //seting fetch limit for pagination
         NSFetchRequest *request = [ActivityStory MR_requestAllWithPredicate:predicate inContext:context];
         [request setFetchLimit:self.fetchLimit];
-        //set sort descriptor
+
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdateDate" ascending:NO];
         [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
         self.dataArray = [ActivityStory MR_executeFetchRequest:request inContext:context];
         
     }
     else {
-        //        self.dataArray = [ActivityStory MR_findAllSortedBy:@"lastUpdateDate" ascending:NO inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+        
         NSFetchRequest *request = [ActivityStory MR_requestAllInContext:context];
         [request setFetchLimit:self.fetchLimit];
-        //set sort descriptor
+
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"lastUpdateDate" ascending:NO];
         [request setSortDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
         self.dataArray = [ActivityStory MR_executeFetchRequest:request inContext:context];

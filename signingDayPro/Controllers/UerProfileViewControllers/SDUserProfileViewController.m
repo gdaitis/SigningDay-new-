@@ -77,6 +77,9 @@
     if ([_currentUser.identifier isEqualToNumber:[self getMasterIdentifier]])
         _isMasterProfile = YES;
     
+    self.tableView.activityFeedTableType = ACTIVITY_FEED_USERPROFILE;
+    [self setupTableViewHeader];
+    
     UIColor *backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0f];
     self.tableView.backgroundColor = backgroundColor;
     self.view.backgroundColor = backgroundColor;
@@ -88,7 +91,6 @@
     self.tableView.endReached = NO;
     self.tableView.user = self.currentUser;
     self.tableView.tableDelegate = self;
-    [self setupTableViewHeader];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -230,8 +232,8 @@
         self.headerView = view;
         self.tableView.headerInfoDownloading = YES;
         [self setupHeaderView];
+        self.tableView.customHeaderView = self.headerView;
     }
-    self.tableView.customHeaderView = self.headerView;
 }
 
 - (void)setupHeaderView

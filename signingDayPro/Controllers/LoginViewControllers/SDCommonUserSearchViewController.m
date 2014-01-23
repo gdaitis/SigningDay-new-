@@ -321,4 +321,22 @@
                                          animated:YES];
 }
 
+#pragma mark - Methods for extended classes to overide
+
+- (void)checkServerForUsersWithNameSubstring:(NSString *)nameSubstring
+{
+    //extended classes should override this
+}
+
+- (void)createNewAccount
+{
+    //extended classes should override this
+}
+
+- (NSString *)addressTitleForUser:(User *)user
+{
+    //extended classes should override this
+    return nil;
+}
+
 @end

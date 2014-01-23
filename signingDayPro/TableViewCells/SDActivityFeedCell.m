@@ -76,14 +76,38 @@
 
 - (void)setupCellWithActivityStory:(ActivityStory *)activityStory atIndexPath:(NSIndexPath *)indexPath
 {
+    self.playerNameButton.tag = self.secondPlayerNameButton.tag = indexPath.row;
+    
     [self.thumbnailImageView cancelImageRequestOperation];
     self.likeButton.tag = indexPath.row;
     self.commentButton.tag = indexPath.row;
     
     self.likeCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.likesCount intValue]];
+    
+    UIImage *buttonBackgroundImage;
+    UIImage *likeImage;
+    
+    if ([activityStory.likedByMaster boolValue]) {
+        self.likeCountLabel.textColor = [UIColor colorWithRed:183.0f/255.0f green:158.0f/255.0f blue:15.0f/255.0f alpha:1.0f];
+        self.likeTextLabel.text = @"Unlike";
+        self.likeTextLabel.textColor = [UIColor colorWithRed:107.0f/255.0f green:93.0f/255.0f blue:0.0f/255.0f alpha:1.0f];
+        likeImage = [UIImage imageNamed:@"LikeImageOrange"];
+        buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImageOrange"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    } else {
+        self.likeCountLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        self.likeTextLabel.text = @"Like";
+        self.likeTextLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        likeImage = [UIImage imageNamed:@"LikeImage"];
+        buttonBackgroundImage = [[UIImage imageNamed:@"strechableBorderedImage"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    }
+    self.likeButtonView.image = buttonBackgroundImage;
+    self.likeImageView.image = likeImage;
+    
     self.commentCountLabel.text = [NSString stringWithFormat:@"- %d",[activityStory.commentCount intValue]];
     [self.resizableActivityFeedView setActivityStory:activityStory];
     
+    [self.thumbnailImageView cancelImageRequestOperation];
+    self.thumbnailImageView.image = nil;
     if ([activityStory.author.avatarUrl length] > 0) {
         [self.thumbnailImageView setImageWithURL:[NSURL URLWithString:activityStory.author.avatarUrl]];
     }

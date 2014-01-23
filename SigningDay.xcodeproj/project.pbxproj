@@ -388,6 +388,8 @@
 		8063D2E1179D507800C01D92 /* SDUserProfileCoachHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2DC179D507800C01D92 /* SDUserProfileCoachHeaderView.xib */; };
 		8063D2E3179D507800C01D92 /* SDUserProfileTeamHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8063D2DF179D507800C01D92 /* SDUserProfileTeamHeaderView.xib */; };
 		806F4709183CE79600D58BD5 /* NSAttributedString+DTCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 806F4708183CE79600D58BD5 /* NSAttributedString+DTCoreText.m */; };
+		807262B8189003F00032A064 /* SDActivityFeedForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 807262B7189003F00032A064 /* SDActivityFeedForumCell.m */; };
+		807262BA1890040B0032A064 /* SDActivityFeedForumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807262B91890040B0032A064 /* SDActivityFeedForumCell.xib */; };
 		8078686117DDBFD300B77789 /* SDLandingPageCollegeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8078685C17DDBFD300B77789 /* SDLandingPageCollegeCell.xib */; };
 		8078686317DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8078685F17DDBFD300B77789 /* SDLandingPageHighSchoolCell.xib */; };
 		807ACB2417E1ABF1005B8442 /* PositionsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 807ACB2317E1ABF1005B8442 /* PositionsList.plist */; };
@@ -989,6 +991,9 @@
 		8063D2E5179D706100C01D92 /* SDBaseProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProfileHeaderView.m; sourceTree = "<group>"; };
 		806F4707183CE79600D58BD5 /* NSAttributedString+DTCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+DTCoreText.h"; path = "Custom Classes & Categories/NSAttributedString+DTCoreText.h"; sourceTree = "<group>"; };
 		806F4708183CE79600D58BD5 /* NSAttributedString+DTCoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+DTCoreText.m"; path = "Custom Classes & Categories/NSAttributedString+DTCoreText.m"; sourceTree = "<group>"; };
+		807262B6189003F00032A064 /* SDActivityFeedForumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDActivityFeedForumCell.h; sourceTree = "<group>"; };
+		807262B7189003F00032A064 /* SDActivityFeedForumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDActivityFeedForumCell.m; sourceTree = "<group>"; };
+		807262B91890040B0032A064 /* SDActivityFeedForumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDActivityFeedForumCell.xib; sourceTree = "<group>"; };
 		8078685A17DDBFD300B77789 /* SDLandingPageCollegeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLandingPageCollegeCell.h; sourceTree = "<group>"; };
 		8078685B17DDBFD300B77789 /* SDLandingPageCollegeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLandingPageCollegeCell.m; sourceTree = "<group>"; };
 		8078685C17DDBFD300B77789 /* SDLandingPageCollegeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDLandingPageCollegeCell.xib; sourceTree = "<group>"; };
@@ -1971,6 +1976,7 @@
 		805CF34F174E07DA0046E6A5 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				807262B5189003C00032A064 /* ActivityFeed */,
 				805D64DC1871A45F003211F0 /* LoginViewControllerCells */,
 				80362AE2186322890017945E /* TopSchools */,
 				8094EFC21817E58E00A163FD /* ConversationCells */,
@@ -1987,9 +1993,6 @@
 				80540E47184CC799009EC1B8 /* SDOfferEditCell.xib */,
 				7BAF6ED617A93FB000F7C6B3 /* SDCommentCell.h */,
 				7BAF6ED717A93FB000F7C6B3 /* SDCommentCell.m */,
-				805F725717719BC400BDA30F /* SDActivityFeedCell.h */,
-				805F725817719BC400BDA30F /* SDActivityFeedCell.m */,
-				805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */,
 				805CF352174E08320046E6A5 /* SDMenuItemCell.h */,
 				805CF353174E08320046E6A5 /* SDMenuItemCell.m */,
 				805CF355174E08500046E6A5 /* SDMenuItemCell.xib */,
@@ -2131,6 +2134,19 @@
 				806F4708183CE79600D58BD5 /* NSAttributedString+DTCoreText.m */,
 			);
 			name = "NSAttributedString+DTCoreText";
+			sourceTree = "<group>";
+		};
+		807262B5189003C00032A064 /* ActivityFeed */ = {
+			isa = PBXGroup;
+			children = (
+				805F725717719BC400BDA30F /* SDActivityFeedCell.h */,
+				805F725817719BC400BDA30F /* SDActivityFeedCell.m */,
+				805F725B17719BD900BDA30F /* SDActivityFeedCell.xib */,
+				807262B6189003F00032A064 /* SDActivityFeedForumCell.h */,
+				807262B7189003F00032A064 /* SDActivityFeedForumCell.m */,
+				807262B91890040B0032A064 /* SDActivityFeedForumCell.xib */,
+			);
+			name = ActivityFeed;
 			sourceTree = "<group>";
 		};
 		807ACB2217E1ABF1005B8442 /* DataFiles */ = {
@@ -2818,6 +2834,7 @@
 				80250246185F1B4200FBA43B /* SDShareView.xib in Resources */,
 				7BDDAB92179FC457003F6AD7 /* PlayersIcon@2x.png in Resources */,
 				7B38E1DD187838FF007ACC8A /* RegistrationInputFieldLowerBg@2x.png in Resources */,
+				807262BA1890040B0032A064 /* SDActivityFeedForumCell.xib in Resources */,
 				7BDDAB93179FC457003F6AD7 /* SettingsIcon@2x.png in Resources */,
 				7BDDAB94179FC457003F6AD7 /* WarRoomIcon@2x.png in Resources */,
 				80431E09179FF6F4002F6E3D /* UserProfileHeaderBg@2x.png in Resources */,
@@ -3064,6 +3081,7 @@
 				7B93CEDC182AA007007A6275 /* SDLandingPageSearchBar.m in Sources */,
 				80362ADB186321EF0017945E /* ActivityStory.m in Sources */,
 				7B93CEDD182AA007007A6275 /* SDMenuLabel.m in Sources */,
+				807262B8189003F00032A064 /* SDActivityFeedForumCell.m in Sources */,
 				7B93CEDE182AA007007A6275 /* SDUtils.m in Sources */,
 				7B93CEDF182AA007007A6275 /* HPGrowingTextView.m in Sources */,
 				7B93CEE0182AA007007A6275 /* HPTextViewInternal.m in Sources */,
