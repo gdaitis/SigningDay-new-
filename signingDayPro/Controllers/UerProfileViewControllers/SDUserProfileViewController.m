@@ -16,7 +16,7 @@
 #import "SDUserProfileHighSchoolHeaderView.h"
 #import "SDUserProfileTeamHeaderView.h"
 #import "User.h"
-#import "SDUserProfileNFLPAHeaderView.h"
+#import "SDUserProfileOrganizationMemeberHeaderView.h"
 #import "Team.h"
 #import "SDActivityFeedService.h"
 #import "SDUtils.h"
@@ -46,6 +46,7 @@
 #import "SDOffersViewController.h"
 #import "SDContactInfoViewController.h"
 #import "SDTopSchoolsViewController.h"
+#import "SDUserProfileOrganizationHeaderView.h"
 
 #define kUserProfileHeaderHeight 360
 #define kUserProfileHeaderHeightWithBuzzButtonView 450
@@ -150,8 +151,7 @@
         id view = nil;
         SDUserType userType = [self.currentUser.userTypeId intValue];
         switch (userType) {
-            case SDUserTypePlayer:
-            {
+            case SDUserTypePlayer: {
                 SDUserProfilePlayerHeaderView *playerView = (SDUserProfilePlayerHeaderView *)[SDUserProfilePlayerHeaderView loadInstanceFromNib];
                 playerView.delegate = self;
                 playerView.buzzButtonView.delegate = self;
@@ -161,8 +161,7 @@
                 view = playerView;
                 break;
             }
-            case SDUserTypeHighSchool:
-            {
+            case SDUserTypeHighSchool: {
                 SDUserProfileHighSchoolHeaderView *highschoolView = (SDUserProfileHighSchoolHeaderView *) [SDUserProfileHighSchoolHeaderView loadInstanceFromNib];
                 highschoolView.delegate = self;
                 highschoolView.buzzButtonView.delegate = self;
@@ -172,8 +171,7 @@
                 view = highschoolView;
                 break;
             }
-            case SDUserTypeTeam:
-            {
+            case SDUserTypeTeam: {
                 SDUserProfileTeamHeaderView *teamView = (SDUserProfileTeamHeaderView *) [SDUserProfileTeamHeaderView loadInstanceFromNib];
                 teamView.delegate = self;
                 teamView.buzzButtonView.delegate = self;
@@ -183,8 +181,7 @@
                 view = teamView;
                 break;
             }
-            case SDUserTypeMember:
-            {
+            case SDUserTypeMember: {
                 SDUserProfileMemberHeaderView *memberView = (SDUserProfileMemberHeaderView *) [SDUserProfileMemberHeaderView loadInstanceFromNib];
                 memberView.delegate = self;
                 memberView.buzzButtonView.delegate = self;
@@ -194,8 +191,7 @@
                 view = memberView;
                 break;
             }
-            case SDUserTypeCoach:
-            {
+            case SDUserTypeCoach: {
                 SDUserProfileCoachHeaderView *coachView = (SDUserProfileCoachHeaderView *) [SDUserProfileCoachHeaderView loadInstanceFromNib];
                 coachView.delegate = self;
                 coachView.buzzButtonView.delegate = self;
@@ -205,9 +201,18 @@
                 view = coachView;
                 break;
             }
-            case SDUserTypeNFLPA:
-            {
-                SDUserProfileNFLPAHeaderView *nflpaView = (SDUserProfileNFLPAHeaderView *) [SDUserProfileNFLPAHeaderView loadInstanceFromNib];
+            case SDUserTypeOrganization: {
+                SDUserProfileOrganizationHeaderView *organizationView = (SDUserProfileOrganizationHeaderView *) [SDUserProfileOrganizationHeaderView loadInstanceFromNib];
+                organizationView.delegate = self;
+                organizationView.buzzButtonView.delegate = self;
+                organizationView.slidingButtonView.delegate = self;
+                organizationView.slidingButtonView.userType = userType;
+                
+                view = organizationView;
+                break;
+            }
+            case SDUserTypeOrganizationMember: {
+                SDUserProfileOrganizationMemeberHeaderView *nflpaView = (SDUserProfileOrganizationMemeberHeaderView *) [SDUserProfileOrganizationMemeberHeaderView loadInstanceFromNib];
                 nflpaView.delegate = self;
                 nflpaView.buzzButtonView.delegate = self;
                 nflpaView.slidingButtonView.delegate = self;
@@ -216,8 +221,7 @@
                 view = nflpaView;
                 break;
             }
-            default:
-            {
+            default: {
                 SDUserProfileMemberHeaderView *memberView = (SDUserProfileMemberHeaderView *) [SDUserProfileMemberHeaderView loadInstanceFromNib];
                 memberView.delegate = self;
                 memberView.buzzButtonView.delegate = self;

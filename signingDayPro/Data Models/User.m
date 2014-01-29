@@ -2,8 +2,8 @@
 //  User.m
 //  SigningDay
 //
-//  Created by Lukas Kekys on 12/19/13.
-//  Copyright (c) 2013 Seriously inc. All rights reserved.
+//  Created by lite on 27/01/14.
+//  Copyright (c) 2014 Seriously inc. All rights reserved.
 //
 
 #import "User.h"
@@ -18,8 +18,9 @@
 #import "MediaGallery.h"
 #import "Member.h"
 #import "Message.h"
-#import "NFLPA.h"
 #import "Notification.h"
+#import "Organization.h"
+#import "OrganizationMemeber.h"
 #import "Player.h"
 #import "State.h"
 #import "Team.h"
@@ -51,6 +52,7 @@
 @dynamic username;
 @dynamic userType;
 @dynamic userTypeId;
+@dynamic bioFax;
 @dynamic activityStories;
 @dynamic activityStoriesFromOtherUsers;
 @dynamic authorOf;
@@ -68,9 +70,10 @@
 @dynamic theCoach;
 @dynamic theHighSchool;
 @dynamic theMember;
-@dynamic theNFLPA;
+@dynamic theOrganizationMember;
 @dynamic thePlayer;
 @dynamic theTeam;
 @dynamic threads;
+@dynamic theOrganization;
 
 @end

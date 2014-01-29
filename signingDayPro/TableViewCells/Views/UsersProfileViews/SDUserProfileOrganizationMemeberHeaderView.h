@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SDBaseProfileHeaderView.h"
 
-@interface SDUserProfileNFLPAHeaderView : SDBaseProfileHeaderView
+@interface SDUserProfileOrganizationMemeberHeaderView : SDBaseProfileHeaderView
 
 @end

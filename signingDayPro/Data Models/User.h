@@ -2,14 +2,14 @@
 //  User.h
 //  SigningDay
 //
-//  Created by Lukas Kekys on 12/19/13.
-//  Copyright (c) 2013 Seriously inc. All rights reserved.
+//  Created by lite on 27/01/14.
+//  Copyright (c) 2014 Seriously inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ActivityStory, Coach, Comment, Conversation, ForumReply, HighSchool, Like, Master, MediaGallery, Member, Message, NFLPA, Notification, Player, State, Team, Thread;
+@class ActivityStory, Coach, Comment, Conversation, ForumReply, HighSchool, Like, Master, MediaGallery, Member, Message, Notification, Organization, OrganizationMemeber, Player, State, Team, Thread;
 
 @interface User : NSManagedObject
 
@@ -36,6 +36,7 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSNumber * userTypeId;
+@property (nonatomic, retain) NSString * bioFax;
 @property (nonatomic, retain) NSSet *activityStories;
 @property (nonatomic, retain) NSSet *activityStoriesFromOtherUsers;
 @property (nonatomic, retain) NSSet *authorOf;
@@ -53,10 +54,11 @@
 @property (nonatomic, retain) Coach *theCoach;
 @property (nonatomic, retain) HighSchool *theHighSchool;
 @property (nonatomic, retain) Member *theMember;
-@property (nonatomic, retain) NFLPA *theNFLPA;
+@property (nonatomic, retain) OrganizationMemeber *theOrganizationMember;
 @property (nonatomic, retain) Player *thePlayer;
 @property (nonatomic, retain) Team *theTeam;
 @property (nonatomic, retain) NSSet *threads;
+@property (nonatomic, retain) Organization *theOrganization;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

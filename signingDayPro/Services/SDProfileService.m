@@ -30,7 +30,8 @@
 #import "MediaGallery.h"
 #import "SDUtils.h"
 #import "State.h"
-#import "NFLPA.h"
+#import "Organization.h"
+#import "OrganizationMemeber.h"
 
 @interface SDProfileService ()
 
@@ -548,16 +549,40 @@
                                                 }
                                                     break;
                                                     
-                                                case SDUserTypeNFLPA: {
-                                                    if (!user.theNFLPA)
-                                                        user.theNFLPA = [NFLPA MR_createInContext:userContext];
-                                                    user.theNFLPA.collegeName = [derivedUserDictionary valueForKey:@"College"];
-                                                    user.theNFLPA.nflpaAvatarUrl = [derivedUserDictionary valueForKey:@"NFLPAAvatarUrl"];
-                                                    user.theNFLPA.position = [derivedUserDictionary valueForKey:@"Position"];
-                                                    user.theNFLPA.teamName = [derivedUserDictionary valueForKey:@"Team"];
-                                                    user.theNFLPA.websiteTitle = [derivedUserDictionary valueForKey:@"Website"];
-                                                    user.theNFLPA.websiteUrl = [derivedUserDictionary valueForKey:@"WebsiteURL"];
-                                                    user.theNFLPA.yearsPro = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"YearsPro"] intValue]];
+                                                case SDUserTypeOrganization: {
+                                                    if (!user.theOrganization) {
+                                                        user.theOrganization = [Organization MR_createInContext:userContext];
+                                                    }
+                                                    user.bio = [derivedUserDictionary valueForKey:@"Bio"];
+                                                    user.bioCity = [derivedUserDictionary valueForKey:@"CityName"];
+                                                    user.bioFax = [derivedUserDictionary valueForKey:@"Fax"];
+                                                    user.bioAddress = [derivedUserDictionary valueForKey:@"FullAddress"];
+                                                    user.theOrganization.coFounder = [derivedUserDictionary valueForKey:@"Founder"];
+                                                    
+                                                    NSArray *organizationMembers = [derivedUserDictionary valueForKey:@"OrganizationMembers"];
+                                                    for (__strong NSDictionary *organizationMemeberDictionary in organizationMembers) {
+                                                        organizationMemeberDictionary = [organizationMemeberDictionary dictionaryByReplacingNullsWithStrings];
+                                                        NSNumber *organizationMemberIdentifier = [NSNumber numberWithInt:[[organizationMemeberDictionary valueForKey:@"UserId"] intValue]];
+                                                        User *organizationMemberUser = [User MR_findFirstByAttribute:@"identifier"
+                                                                                                           withValue:organizationMemberIdentifier inContext:userContext];
+                                                        if (!organizationMemberUser) {
+                                                            organizationMemberUser = [User MR_createInContext:userContext];
+                                                            organizationMemberUser.identifier = identifier;
+                                                        }
+                                                        organizationMemberUser.bioCity = [organizationMemeberDictionary valueForKey:@"CityName"];
+                                                        organizationMemberUser.name = [organizationMemeberDictionary valueForKey:@"DisplayName"];
+                                                        organizationMemberUser.bioState = [organizationMemeberDictionary valueForKey:@"StateCode"];
+                                                        organizationMemberUser.theOrganizationMember = [self organizationMemberWithExtendedInformationFromDictionary:organizationMemeberDictionary
+                                                                                                                                                             forUser:organizationMemberUser
+                                                                                                                                                             context:userContext];
+                                                        organizationMemberUser.theOrganizationMember.organization = user.theOrganization;
+                                                    }
+                                                }
+                                                    
+                                                case SDUserTypeOrganizationMember: {
+                                                    user.theOrganizationMember = [self organizationMemberWithBasicInformationFromDictionary:derivedUserDictionary
+                                                                                                                                    forUser:user
+                                                                                                                                    context:userContext];
                                                 }
                                                     break;
                                                     
@@ -574,6 +599,36 @@
                                     if (failureBlock)
                                         failureBlock();
                                 }];
+}
+
++ (OrganizationMemeber *)organizationMemberWithBasicInformationFromDictionary:(NSDictionary *)derivedUserDictionary
+                                                                      forUser:(User *)user
+                                                                      context:(NSManagedObjectContext *)context
+{
+    OrganizationMemeber *organizationMember = user.theOrganizationMember;
+    if (!organizationMember)
+        organizationMember = [OrganizationMemeber MR_createInContext:context];
+    organizationMember.collegeName = [derivedUserDictionary valueForKey:@"College"];
+    organizationMember.nflpaAvatarUrl = [derivedUserDictionary valueForKey:@"NFLPAAvatarUrl"];
+    organizationMember.position = [derivedUserDictionary valueForKey:@"Position"];
+    organizationMember.teamName = [derivedUserDictionary valueForKey:@"Team"];
+    organizationMember.websiteTitle = [derivedUserDictionary valueForKey:@"Website"];
+    organizationMember.websiteUrl = [derivedUserDictionary valueForKey:@"WebsiteURL"];
+    organizationMember.yearsPro = [NSNumber numberWithInt:[[derivedUserDictionary valueForKey:@"YearsPro"] intValue]];
+    
+    return organizationMember;
+}
+
++ (OrganizationMemeber *)organizationMemberWithExtendedInformationFromDictionary:(NSDictionary *)derivedUserDictionary
+                                                                         forUser:(User *)user
+                                                                         context:(NSManagedObjectContext *)context
+{
+    OrganizationMemeber *organizationMember = [self organizationMemberWithBasicInformationFromDictionary:derivedUserDictionary
+                                                                                                 forUser:user
+                                                                                                 context:context];
+    organizationMember.jobTitle = [derivedUserDictionary valueForKey:@"JobTitle"];
+    
+    return organizationMember;
 }
 
 + (void)getBasicProfileInfoForUserIdentifier:(NSNumber *)identifier
@@ -616,6 +671,7 @@
     [[SDAPIClient sharedClient] getPath:@"sd/bio.json"
                              parameters:@{@"UserId":[NSString stringWithFormat:@"%d", [identifier integerValue]]}
                                 success:^(AFHTTPRequestOperation *operation, id JSON) {
+                                    JSON = [JSON dictionaryByReplacingNullsWithStrings];
                                     NSManagedObjectContext *context = [NSManagedObjectContext MR_contextForCurrentThread];
                                     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
                                     User *user = [User MR_findFirstWithPredicate:predicate
@@ -624,7 +680,11 @@
                                         user = [User MR_createInContext:context];
                                         user.identifier = identifier;
                                     }
-                                    NSDictionary *resultsDictionary = [[[JSON valueForKey:@"Results"] objectAtIndex:0] dictionaryByReplacingNullsWithStrings];
+                                    if ([[JSON valueForKey:@"Results"] isKindOfClass:[NSString class]]) {
+                                        completionBlock();
+                                        return;
+                                    }
+                                    NSDictionary *resultsDictionary = [[JSON valueForKey:@"Results"] objectAtIndex:0];
                                     user.bioAddress = [resultsDictionary valueForKey:@"Address"];
                                     user.bioCity = [resultsDictionary valueForKey:@"City"];
                                     user.bioEmail = [resultsDictionary valueForKey:@"Email"];

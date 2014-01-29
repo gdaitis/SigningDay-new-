@@ -93,13 +93,13 @@
 {
     CGFloat currentYPosition = kSDBioViewControllerBioLabelTopPadding;
     
-    if (![mobileNr isEqualToString:@""] || ![email isEqualToString:@""] || ![address isEqualToString:@""]) {
+    if ((mobileNr && ![mobileNr isEqualToString:@""]) || (email && ![email isEqualToString:@""]) || (address && ![address isEqualToString:@""])) {
         self.contactsLabel.hidden = NO;
         
         [self setupContactsLabelAtYPosition:currentYPosition];
         currentYPosition += self.contactsLabel.frame.size.height;
         
-        if (![mobileNr isEqualToString:@""]) {
+        if (mobileNr && ![mobileNr isEqualToString:@""]) {
             self.mobileLabel.hidden = NO;
             self.mobileInfoLabel.hidden = NO;
             
@@ -112,7 +112,7 @@
             self.mobileInfoLabel.hidden = YES;
         }
         
-        if (![email isEqualToString:@""]) {
+        if (email && ![email isEqualToString:@""]) {
             self.emailLabel.hidden = NO;
             self.emailInfoLabel.hidden = NO;
             currentYPosition += kSDBioViewControllerContactsInfoLabelsVerticalSpacing;
@@ -124,7 +124,7 @@
             self.emailInfoLabel.hidden = YES;
         }
         
-        if (![address isEqualToString:@""]) {
+        if (address && ![address isEqualToString:@""]) {
             self.addressLabel.hidden = NO;
             self.addressInfoLabel.hidden = NO;
             

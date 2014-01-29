@@ -127,7 +127,13 @@
                                     [NSNumber numberWithInt:SDProfileButtonTypeVideos],
                                     [NSNumber numberWithInt:SDProfileButtonTypeBio]];
             break;
-        case SDUserTypeNFLPA:
+        case SDUserTypeOrganization:
+            profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypePhotos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeVideos],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeBio],
+                                    [NSNumber numberWithInt:SDProfileButtonTypeContacts]];
+            break;
+        case SDUserTypeOrganizationMember:
             profileButtonsArray = @[[NSNumber numberWithInt:SDProfileButtonTypePhotos],
                                     [NSNumber numberWithInt:SDProfileButtonTypeVideos],
                                     [NSNumber numberWithInt:SDProfileButtonTypeBio]];

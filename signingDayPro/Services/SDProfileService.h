@@ -15,7 +15,7 @@ typedef enum {
     SDUserTypeHighSchool = 4,
     SDUserTypeMember = 5,
     SDUserTypeOrganization = 6,
-    SDUserTypeNFLPA = 7
+    SDUserTypeOrganizationMember = 7
 } SDUserType;
 
 typedef enum {

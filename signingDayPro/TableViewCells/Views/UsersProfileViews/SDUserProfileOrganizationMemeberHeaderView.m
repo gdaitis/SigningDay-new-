@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Seriously inc. All rights reserved.
 //
 
-#import "SDUserProfileNFLPAHeaderView.h"
+#import "SDUserProfileOrganizationMemeberHeaderView.h"
 #import "Member.h"
-#import "NFLPA.h"
+#import "OrganizationMemeber.h"
 #import "AFNetworking.h"
 #import "SDAPIClient.h"
 #import "UIImage+Resize.h"
 #import <CoreText/CoreText.h>
 
-@interface SDUserProfileNFLPAHeaderView ()
+@interface SDUserProfileOrganizationMemeberHeaderView ()
 
 //headerView labels
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
@@ -29,7 +29,7 @@
 
 @end
 
-@implementation SDUserProfileNFLPAHeaderView
+@implementation SDUserProfileOrganizationMemeberHeaderView
 
 - (void)awakeFromNib
 {
@@ -61,11 +61,11 @@
     
     self.nameLabel.text = user.name;
     
-    self.teamNameLabel.text = user.theNFLPA.teamName;
-    self.universityNameLabel.text = user.theNFLPA.collegeName;
+    self.teamNameLabel.text = user.theOrganizationMember.teamName;
+    self.universityNameLabel.text = user.theOrganizationMember.collegeName;
     
-    self.positionTextLabel.text = user.theNFLPA.position;
-    self.yearsProLabel.text = ([user.theNFLPA.yearsPro intValue] > 0) ? [NSString stringWithFormat:@"%d",[user.theNFLPA.yearsPro intValue]] : @"N/A";
+    self.positionTextLabel.text = user.theOrganizationMember.position;
+    self.yearsProLabel.text = ([user.theOrganizationMember.yearsPro intValue] > 0) ? [NSString stringWithFormat:@"%d",[user.theOrganizationMember.yearsPro intValue]] : @"N/A";
     
     [[SDImageService sharedService] getImageWithURLString:user.avatarUrl
                                                   success:^(UIImage *image) {
