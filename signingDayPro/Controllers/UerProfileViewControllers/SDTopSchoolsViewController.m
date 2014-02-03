@@ -327,7 +327,7 @@
     offersLabel.center = CGPointMake(160, self.navigationController.view.frame.size.height/2);
     offersLabel.numberOfLines = 0;
     offersLabel.textColor = [UIColor blackColor];
-    offersLabel.text = [NSString stringWithFormat:@"%@ does not have any offers yet.",self.currentUser.name];
+    offersLabel.text = [NSString stringWithFormat:@"%@ has not yet indicated his top schools.",self.currentUser.name];
     
     [self.view addSubview:offersLabel];
 }
