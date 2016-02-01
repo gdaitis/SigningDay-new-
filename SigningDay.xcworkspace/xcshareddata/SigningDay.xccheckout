@@ -5,11 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>5D8112B2-0BC5-4A4F-83B1-D3C792E235ED</string>
+	<string>A84A8A1D-287A-402A-83EC-3D8717748C22</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SigningDay</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>02B80D60846BBF3D4212F738EA7D9CC74A71F0BC</key>
+		<string>https://github.com/Seriously/SigningDay-ios.git</string>
 		<key>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</key>
 		<string>https://github.com/Seriously/SigningDay-ios.git</string>
 	</dict>
@@ -17,15 +19,17 @@
 	<string>SigningDay.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</key>
+		<key>02B80D60846BBF3D4212F738EA7D9CC74A71F0BC</key>
 		<string>..</string>
+		<key>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</key>
+		<string>../../newSigningDay-ios</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Seriously/SigningDay-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</string>
+	<string>02B80D60846BBF3D4212F738EA7D9CC74A71F0BC</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>3C356CCF-62D2-47E1-B19D-34797AE9E2F5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>newSigningDay-ios</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>02B80D60846BBF3D4212F738EA7D9CC74A71F0BC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SigningDay-ios</string>
 		</dict>
 	</array>
 </dict>

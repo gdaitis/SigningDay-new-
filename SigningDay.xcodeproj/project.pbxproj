@@ -3202,8 +3202,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3237,8 +3237,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3261,8 +3261,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE9475C8047F4D62869BFFDC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3282,8 +3282,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE9475C8047F4D62869BFFDC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lewis Applefeld (62N2CGSFYV)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Athletic Integrity LLC (24G8XXFRSX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
